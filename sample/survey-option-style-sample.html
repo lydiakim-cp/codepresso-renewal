@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>설문 옵션 디자인 시안</title>
+  <link rel="stylesheet" href="../css/tokens.css">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-family-sans);
+      background: var(--color-bg-login-pre);
+      color: var(--color-ink);
+      padding: 48px 20px 96px;
+    }
+
+    h1 {
+      max-width: 1100px;
+      margin: 0 auto 8px;
+      font-size: var(--text-heading-32);
+      letter-spacing: var(--tracking-heading-tight);
+      color: var(--color-ink-heaviest);
+    }
+
+    .lead {
+      max-width: 1100px;
+      margin: 0 auto 40px;
+      color: var(--color-ink-light);
+      font-size: var(--text-body);
+    }
+
+    .concepts {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+    }
+
+    .concept {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .concept-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .concept-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      background: var(--color-brand-tint-2);
+      color: var(--color-brand-dark);
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--text-body-muted);
+      flex-shrink: 0;
+    }
+
+    .concept-title {
+      font-size: var(--text-card-title);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-ink-heaviest);
+      margin: 0;
+    }
+
+    .concept-desc {
+      margin: 0 0 0 44px;
+      font-size: var(--text-body-muted);
+      color: var(--color-ink-light);
+    }
+
+    /* ---------------------------------------------
+     * 공용 카드 셸 — 실제 hero-survey-frame / hero-survey 톤 재현
+     * --------------------------------------------- */
+    .demo-frame {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      padding: 32px;
+      min-height: 460px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 44px;
+    }
+
+    .demo-glow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 20% 15%, color-mix(in srgb, var(--color-brand) 55%, white) 0%, transparent 45%),
+        radial-gradient(circle at 60% 10%, color-mix(in srgb, var(--color-brand-dark) 45%, white) 0%, transparent 50%),
+        radial-gradient(circle at 85% 55%, var(--color-brand-tint-2) 0%, transparent 55%),
+        linear-gradient(160deg, var(--color-brand-tint-1) 0%, var(--color-brand-tint-2) 100%);
+    }
+
+    .demo-stack {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-pill {
+      display: inline-flex;
+      margin-bottom: 10px;
+      align-items: center;
+      gap: var(--space-8);
+      width: fit-content;
+      padding: var(--space-12) var(--space-24);
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, .55);
+      border: 1px solid rgba(255, 255, 255, .7);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      box-shadow: var(--shadow-sm);
+      font-size: var(--text-body-muted);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-ink-heaviest);
+    }
+    .demo-pill svg { width: 18px; height: 18px; color: var(--color-brand-dark); }
+
+    .demo-card {
+      position: relative;
+      background: rgba(255, 255, 255, .82);
+      border: 1px solid rgba(255, 255, 255, .9);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      padding: 32px 28px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-20);
+    }
+
+    .demo-progress {
+      height: 6px;
+      border-radius: var(--radius-full);
+      background: var(--color-line);
+      overflow: hidden;
+    }
+    .demo-progress-bar {
+      display: block;
+      height: 100%;
+      width: 9%;
+      border-radius: var(--radius-full);
+      background: linear-gradient(90deg, var(--color-brand-dark), var(--color-brand));
+    }
+
+    .demo-question {
+      font-size: var(--text-h3);
+      line-height: var(--leading-h3);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: var(--tracking-h3);
+      color: var(--color-ink-heaviest);
+    }
+
+    .replay {
+      align-self: flex-start;
+      margin-left: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-8);
+      padding: var(--space-10) var(--space-20);
+      border-radius: var(--radius-full);
+      background: var(--color-surface);
+      border: 1px solid var(--color-line);
+      box-shadow: var(--shadow-sm);
+      font-size: var(--text-body-muted);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-ink);
+      cursor: pointer;
+      transition: box-shadow var(--duration-hover) var(--ease-hover),
+        border-color var(--duration-hover) var(--ease-hover);
+    }
+    .replay:hover { border-color: var(--color-brand); box-shadow: var(--shadow-md); }
+    .replay svg { width: 14px; height: 14px; color: var(--color-brand); }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ---------------------------------------------
+     * 1. 라디오 마커 카드
+     * --------------------------------------------- */
+    .opt-radio {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: var(--space-12);
+      text-align: left;
+      background: rgba(255, 255, 255, .7);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-md);
+      padding: var(--space-12) var(--space-20);
+      font-family: var(--font-family-sans);
+      font-size: var(--text-body-muted);
+      line-height: var(--leading-body-muted);
+      color: var(--color-ink);
+      cursor: pointer;
+      transition: background-color var(--duration-hover) var(--ease-hover),
+        border-color var(--duration-hover) var(--ease-hover),
+        box-shadow var(--duration-hover) var(--ease-hover);
+    }
+    .opt-radio-marker {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1.5px solid var(--color-line-heavy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-ink-lighter);
+      transition: border-color var(--duration-hover) var(--ease-hover),
+        background-color var(--duration-hover) var(--ease-hover),
+        color var(--duration-hover) var(--ease-hover),
+        transform var(--duration-hover) var(--ease-hover);
+    }
+    .opt-radio:hover { border-color: var(--color-brand); box-shadow: var(--shadow-sm); }
+    .opt-radio:hover .opt-radio-marker { border-color: var(--color-brand); transform: scale(1.08); }
+    .opt-radio.is-selected {
+      border-color: var(--color-brand);
+      background: var(--color-brand-tint-1);
+      box-shadow: var(--shadow-sm);
+    }
+    .opt-radio.is-selected .opt-radio-marker {
+      background: var(--color-brand);
+      border-color: var(--color-brand);
+      color: #fff;
+    }
+
+    /* ---------------------------------------------
+     * 2. 그라디언트 체크 카드
+     * --------------------------------------------- */
+    .opt-check {
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-12);
+      text-align: left;
+      background: rgba(255, 255, 255, .7);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-md);
+      padding: var(--space-12) var(--space-20);
+      font-family: var(--font-family-sans);
+      font-size: var(--text-body-muted);
+      line-height: var(--leading-body-muted);
+      color: var(--color-ink);
+      cursor: pointer;
+      transition: opacity var(--duration-hover) var(--ease-hover),
+        border-color var(--duration-hover) var(--ease-hover),
+        background var(--duration-scroll) var(--ease-scroll);
+    }
+    .opt-check-icon {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      color: var(--color-brand);
+      opacity: 0;
+      transform: scale(.6);
+      transition: opacity var(--duration-hover) var(--ease-hover),
+        transform var(--duration-hover) var(--ease-hover);
+    }
+    .options.has-selection .opt-check:not(.is-selected) { opacity: .45; }
+    .opt-check.is-selected {
+      border-color: transparent;
+      color: var(--color-ink-heaviest);
+      background: linear-gradient(120deg, var(--color-brand-tint-2), color-mix(in srgb, var(--color-brand) 22%, var(--color-brand-tint-2)));
+      box-shadow: var(--shadow-sm);
+    }
+    .opt-check.is-selected .opt-check-icon { opacity: 1; transform: scale(1); }
+    .opt-check:hover:not(.is-selected) { border-color: var(--color-brand); }
+
+    /* 클릭 시 물방울처럼 은은하게 부풀었다가 되돌아오는 모션 */
+    .opt-check.is-bubbling {
+      animation: opt-check-bubble var(--duration-scroll) var(--ease-scroll);
+    }
+    @keyframes opt-check-bubble {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.025); }
+      100% { transform: scale(1); }
+    }
+
+    /* 다음 문항 전환 페이드 */
+    .demo-card.is-transitioning .demo-question,
+    .demo-card.is-transitioning .options {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    .demo-question,
+    .options {
+      transition: opacity var(--duration-scroll) var(--ease-scroll),
+        transform var(--duration-scroll) var(--ease-scroll);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .opt-check.is-bubbling { animation: none; }
+      .demo-question, .options { transition: none; }
+    }
+
+    /* ---------------------------------------------
+     * 3. 미니멀 언더라인 리스트
+     * --------------------------------------------- */
+    .options--underline { gap: 0; }
+    .opt-underline {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-12);
+      text-align: left;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--color-line);
+      padding: var(--space-18) 2px;
+      font-family: var(--font-family-sans);
+      font-size: var(--text-body-muted);
+      line-height: var(--leading-body-muted);
+      color: var(--color-ink-light);
+      cursor: pointer;
+      transition: color var(--duration-hover) var(--ease-hover);
+    }
+    .options--underline li:last-child .opt-underline { border-bottom: none; }
+    .opt-underline-arrow {
+      flex-shrink: 0;
+      width: 14px;
+      height: 14px;
+      color: var(--color-brand);
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: opacity var(--duration-hover) var(--ease-hover),
+        transform var(--duration-hover) var(--ease-hover);
+    }
+    .opt-underline:hover,
+    .opt-underline.is-selected {
+      color: var(--color-ink-heaviest);
+      font-weight: var(--font-weight-medium);
+    }
+    .opt-underline:hover .opt-underline-arrow,
+    .opt-underline.is-selected .opt-underline-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .opt-underline.is-selected { color: var(--color-brand-dark); font-weight: var(--font-weight-semibold); }
+
+    /* ---------------------------------------------
+     * 4. 플로팅 필 버튼
+     * --------------------------------------------- */
+    .opt-pill {
+      width: 100%;
+      text-align: left;
+      background: var(--color-surface);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-full);
+      padding: var(--space-12) var(--space-24);
+      font-family: var(--font-family-sans);
+      font-size: var(--text-body-muted);
+      line-height: var(--leading-body-muted);
+      color: var(--color-ink);
+      cursor: pointer;
+      box-shadow: 0 2px 0 0 var(--color-line);
+      transition: transform var(--duration-hover) var(--ease-hover),
+        box-shadow var(--duration-hover) var(--ease-hover),
+        background-color var(--duration-hover) var(--ease-hover),
+        color var(--duration-hover) var(--ease-hover),
+        border-color var(--duration-hover) var(--ease-hover);
+    }
+    .opt-pill:hover {
+      border-color: var(--color-brand);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 0 0 var(--color-brand-tint-2);
+    }
+    .opt-pill:active,
+    .opt-pill.is-selected {
+      transform: translateY(1px);
+      box-shadow: 0 0 0 0 transparent;
+    }
+    .opt-pill.is-selected {
+      background: var(--color-brand-dark);
+      border-color: var(--color-brand-dark);
+      color: #fff;
+    }
+
+    @media (max-width: 640px) {
+      .demo-frame, .replay { margin-left: 0; }
+      .concept-desc { margin-left: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>설문 옵션 디자인 시안</h1>
+  <p class="lead">AI 리터러시 진단 설문 카드의 옵션(보기) 영역을 대체할 4가지 디자인입니다. 옵션을 클릭하면 선택 상태 인터랙션을 바로 확인할 수 있습니다.</p>
+
+  <div class="concepts">
+    <!-- 1. 라디오 마커 카드 -->
+    <section class="concept">
+      <div class="concept-head">
+        <span class="concept-num">1</span>
+        <p class="concept-title">라디오 마커 카드</p>
+      </div>
+      <p class="concept-desc">옵션 앞에 A/B/C/D 마커. 선택 시 마커가 brand 컬러로 채워지고 카드 배경이 옅은 tint로 물듦. 설문/시험 UI에 익숙한 신뢰감 있는 패턴.</p>
+
+      <div class="demo-frame">
+        <span class="demo-glow" aria-hidden="true"></span>
+        <div class="demo-stack">
+          <span class="demo-pill">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
+              <path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9s1.3-6.5 3.8-9Z" stroke="currentColor" stroke-width="1.6" />
+            </svg>
+            AI 리터러시 진단
+          </span>
+
+          <div class="demo-card">
+            <div class="demo-progress" role="progressbar" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100">
+              <span class="demo-progress-bar"></span>
+            </div>
+
+            <p class="demo-question">새로운 업무나 과제를 맡았을 때, 어떤 방식으로 시작하시나요?</p>
+
+            <ul class="options" data-group>
+              <li><button class="opt-radio" type="button" data-select><span class="opt-radio-marker">A</span>익숙한 기존 방식대로 시작하며, AI 활용은 특별히 고려하지 않는다.</button></li>
+              <li><button class="opt-radio" type="button" data-select><span class="opt-radio-marker">B</span>업무를 직접 진행하다가 막히거나 궁금한 점이 생길 때 AI를 활용한다.</button></li>
+              <li><button class="opt-radio" type="button" data-select><span class="opt-radio-marker">C</span>자료 조사, 초안 작성 등의 업무 보조 도구로 AI를 습관적으로 활용한다.</button></li>
+              <li><button class="opt-radio" type="button" data-select><span class="opt-radio-marker">D</span>업무의 특성에 맞춰 AI를 어떻게 활용할지 구상하고, 그에 맞게 계획해 실행한다.</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <button class="replay" type="button" data-reset>선택 초기화</button>
+    </section>
+
+    <!-- 2. 그라디언트 체크 카드 (실제 반영본: 밝은 그라디언트 + bubble 클릭 모션 + 다음 문항 전환) -->
+    <section class="concept" data-concept="2">
+      <div class="concept-head">
+        <span class="concept-num">2</span>
+        <p class="concept-title">그라디언트 체크 카드</p>
+      </div>
+      <p class="concept-desc">선택한 옵션은 밝은 brand tint 그라디언트로 채워지고 체크 아이콘이 fade-in, 나머지 옵션은 흐려짐(dim). 클릭 시 물방울처럼 은은하게 부풀었다가 돌아오고, 잠시 후 다음 문항으로 페이드 전환된다.</p>
+
+      <div class="demo-frame">
+        <span class="demo-glow" aria-hidden="true"></span>
+        <div class="demo-stack">
+          <span class="demo-pill">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
+              <path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9s1.3-6.5 3.8-9Z" stroke="currentColor" stroke-width="1.6" />
+            </svg>
+            AI 리터러시 진단
+          </span>
+
+          <div class="demo-card" data-role="card">
+            <div class="demo-progress" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" data-role="progressWrap">
+              <span class="demo-progress-bar" data-role="progressBar"></span>
+            </div>
+
+            <p class="demo-question" data-role="question">새로운 업무나 과제를 맡았을 때, 어떤 방식으로 시작하시나요?</p>
+
+            <ul class="options" data-group data-role="options">
+              <li><button class="opt-check" type="button" data-select><span>익숙한 기존 방식대로 시작하며, AI 활용은 특별히 고려하지 않는다.</span>
+                <svg class="opt-check-icon" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button></li>
+              <li><button class="opt-check" type="button" data-select><span>업무를 직접 진행하다가 막히거나 궁금한 점이 생길 때 AI를 활용한다.</span>
+                <svg class="opt-check-icon" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button></li>
+              <li><button class="opt-check" type="button" data-select><span>자료 조사, 초안 작성 등의 업무 보조 도구로 AI를 습관적으로 활용한다.</span>
+                <svg class="opt-check-icon" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button></li>
+              <li><button class="opt-check" type="button" data-select><span>업무의 특성에 맞춰 AI를 어떻게 활용할지 구상하고, 그에 맞게 계획해 실행한다.</span>
+                <svg class="opt-check-icon" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <button class="replay" type="button" data-reset>처음부터 다시보기</button>
+    </section>
+
+    <!-- 3. 미니멀 언더라인 리스트 -->
+    <section class="concept">
+      <div class="concept-head">
+        <span class="concept-num">3</span>
+        <p class="concept-title">미니멀 언더라인 리스트</p>
+      </div>
+      <p class="concept-desc">박스/테두리 없이 구분선만 있는 리스트. hover·선택 시 텍스트가 brand 컬러로 바뀌고 화살표가 슬라이드인. 여백을 살린 가장 미니멀한 방향.</p>
+
+      <div class="demo-frame">
+        <span class="demo-glow" aria-hidden="true"></span>
+        <div class="demo-stack">
+          <span class="demo-pill">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
+              <path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9s1.3-6.5 3.8-9Z" stroke="currentColor" stroke-width="1.6" />
+            </svg>
+            AI 리터러시 진단
+          </span>
+
+          <div class="demo-card">
+            <div class="demo-progress" role="progressbar" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100">
+              <span class="demo-progress-bar"></span>
+            </div>
+
+            <p class="demo-question">새로운 업무나 과제를 맡았을 때, 어떤 방식으로 시작하시나요?</p>
+
+            <ul class="options options--underline" data-group>
+              <li><button class="opt-underline" type="button" data-select><span>익숙한 기존 방식대로 시작하며, AI 활용은 특별히 고려하지 않는다.</span>
+                <svg class="opt-underline-arrow" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button></li>
+              <li><button class="opt-underline" type="button" data-select><span>업무를 직접 진행하다가 막히거나 궁금한 점이 생길 때 AI를 활용한다.</span>
+                <svg class="opt-underline-arrow" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button></li>
+              <li><button class="opt-underline" type="button" data-select><span>자료 조사, 초안 작성 등의 업무 보조 도구로 AI를 습관적으로 활용한다.</span>
+                <svg class="opt-underline-arrow" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button></li>
+              <li><button class="opt-underline" type="button" data-select><span>업무의 특성에 맞춰 AI를 어떻게 활용할지 구상하고, 그에 맞게 계획해 실행한다.</span>
+                <svg class="opt-underline-arrow" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <button class="replay" type="button" data-reset>선택 초기화</button>
+    </section>
+
+    <!-- 4. 플로팅 필 버튼 -->
+    <section class="concept">
+      <div class="concept-head">
+        <span class="concept-num">4</span>
+        <p class="concept-title">플로팅 필 버튼</p>
+      </div>
+      <p class="concept-desc">알약형 버튼에 살짝 입체감(하단 그림자). 클릭 시 눌리는 애니메이션 + 배경이 brand-dark로 전환. 손맛이 좋은 모바일 앱 설문 느낌.</p>
+
+      <div class="demo-frame">
+        <span class="demo-glow" aria-hidden="true"></span>
+        <div class="demo-stack">
+          <span class="demo-pill">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
+              <path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9s1.3-6.5 3.8-9Z" stroke="currentColor" stroke-width="1.6" />
+            </svg>
+            AI 리터러시 진단
+          </span>
+
+          <div class="demo-card">
+            <div class="demo-progress" role="progressbar" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100">
+              <span class="demo-progress-bar"></span>
+            </div>
+
+            <p class="demo-question">새로운 업무나 과제를 맡았을 때, 어떤 방식으로 시작하시나요?</p>
+
+            <ul class="options" data-group>
+              <li><button class="opt-pill" type="button" data-select>익숙한 기존 방식대로 시작하며, AI 활용은 특별히 고려하지 않는다.</button></li>
+              <li><button class="opt-pill" type="button" data-select>업무를 직접 진행하다가 막히거나 궁금한 점이 생길 때 AI를 활용한다.</button></li>
+              <li><button class="opt-pill" type="button" data-select>자료 조사, 초안 작성 등의 업무 보조 도구로 AI를 습관적으로 활용한다.</button></li>
+              <li><button class="opt-pill" type="button" data-select>업무의 특성에 맞춰 AI를 어떻게 활용할지 구상하고, 그에 맞게 계획해 실행한다.</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <button class="replay" type="button" data-reset>선택 초기화</button>
+    </section>
+  </div>
+
+  <script>
+    // 컨셉 2(그라디언트 체크 카드)는 실제 반영 로직(문항 순환 + bubble + 전환)이 별도로 있으므로 공용 루프에서 제외한다.
+    document.querySelectorAll('.concept:not([data-concept="2"])').forEach(section => {
+      const group = section.querySelector('[data-group]');
+      const buttons = section.querySelectorAll('[data-select]');
+      const resetBtn = section.querySelector('[data-reset]');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('is-selected'));
+          btn.classList.add('is-selected');
+          group.classList.add('has-selection');
+        });
+      });
+
+      resetBtn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('is-selected'));
+        group.classList.remove('has-selection');
+      });
+    });
+
+    // 컨셉 2 — 실제 hero-survey에 반영한 동작을 그대로 재현: 클릭 → bubble 모션 → 다음 문항 페이드 전환.
+    (() => {
+      const section = document.querySelector('.concept[data-concept="2"]');
+      if (!section) return;
+
+      const card = section.querySelector('[data-role="card"]');
+      const questionEl = section.querySelector('[data-role="question"]');
+      const optionsList = section.querySelector('[data-role="options"]');
+      const progressBar = section.querySelector('[data-role="progressBar"]');
+      const progressWrap = section.querySelector('[data-role="progressWrap"]');
+      const resetBtn = section.querySelector('[data-reset]');
+
+      const QUESTIONS = [
+        {
+          text: '새로운 업무나 과제를 맡았을 때, 어떤 방식으로 시작하시나요?',
+          options: [
+            '익숙한 기존 방식대로 시작하며, AI 활용은 특별히 고려하지 않는다.',
+            '업무를 직접 진행하다가 막히거나 궁금한 점이 생길 때 AI를 활용한다.',
+            '자료 조사, 초안 작성 등의 업무 보조 도구로 AI를 습관적으로 활용한다.',
+            '업무의 특성에 맞춰 AI를 어떻게 활용할지 구상하고, 그에 맞게 계획해 실행한다.',
+          ],
+        },
+        {
+          text: '업무 중 AI가 내놓은 결과물을 받았을 때, 다음 행동은 무엇에 가장 가깝나요?',
+          options: [
+            '결과물을 그대로 사용한다.',
+            '핵심 오류만 빠르게 훑어보고 사용한다.',
+            '근거와 맥락을 확인한 뒤 필요한 부분을 다시 다듬는다.',
+            '결과물을 바탕으로 더 나은 프롬프트나 방향을 다시 설계한다.',
+          ],
+        },
+        {
+          text: '동료가 AI 활용법을 물어본다면, 어떤 조언을 해줄 수 있나요?',
+          options: [
+            '잘 몰라서 특별히 해줄 조언이 없다.',
+            '내가 쓰는 도구 한두 가지를 알려줄 수 있다.',
+            '상황별로 어떤 도구·프롬프트가 적합한지 알려줄 수 있다.',
+            '업무 프로세스 전체를 함께 재설계해줄 수 있다.',
+          ],
+        },
+      ];
+      const TOTAL = QUESTIONS.length;
+      let index = 0;
+      let isTransitioning = false;
+
+      function renderProgress() {
+        const pct = Math.round(((index + 1) / TOTAL) * 100);
+        progressBar.style.width = pct + '%';
+        progressWrap.setAttribute('aria-valuenow', String(pct));
+      }
+
+      function renderQuestion() {
+        const q = QUESTIONS[index];
+        questionEl.textContent = q.text;
+        const items = optionsList.querySelectorAll('.opt-check');
+        items.forEach((btn, i) => {
+          const label = btn.querySelector('span');
+          if (label) label.textContent = q.options[i] ?? '';
+          btn.classList.remove('is-selected', 'is-bubbling');
+        });
+        optionsList.classList.remove('has-selection');
+      }
+
+      function goToNext() {
+        index = index >= TOTAL - 1 ? 0 : index + 1;
+        renderQuestion();
+        renderProgress();
+      }
+
+      function advanceWithTransition() {
+        isTransitioning = true;
+        card.classList.add('is-transitioning');
+        window.setTimeout(() => {
+          goToNext();
+          requestAnimationFrame(() => {
+            card.classList.remove('is-transitioning');
+            isTransitioning = false;
+          });
+        }, 500);
+      }
+
+      optionsList.addEventListener('click', (event) => {
+        if (isTransitioning) return;
+        const button = event.target.closest('.opt-check');
+        if (!button) return;
+
+        const items = optionsList.querySelectorAll('.opt-check');
+        items.forEach(b => b.classList.remove('is-selected', 'is-bubbling'));
+        button.classList.add('is-selected');
+        optionsList.classList.add('has-selection');
+
+        button.classList.add('is-bubbling');
+        button.addEventListener('animationend', () => button.classList.remove('is-bubbling'), { once: true });
+
+        window.setTimeout(advanceWithTransition, 550);
+      });
+
+      resetBtn.addEventListener('click', () => {
+        index = 0;
+        renderQuestion();
+        renderProgress();
+      });
+
+      renderQuestion();
+      renderProgress();
+    })();
+  </script>
+</body>
+
+</html>

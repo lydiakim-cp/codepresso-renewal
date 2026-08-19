@@ -1,0 +1,167 @@
+/*
+ * Component: Motion Demo
+ * 모션 섹션에서 실제로 동작하는 hover / 스크롤 페이드 예시를 보여주는 데모 UI.
+ * 원칙: hover류는 --duration-hover(0.1s)로 즉각 반응, 진입성 모션은
+ * --duration-scroll(0.5s)로 느긋하게 — 두 리듬을 섞지 않는다.
+ */
+
+.motion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-24);
+  margin-top: var(--space-12);
+}
+
+.motion-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+  padding: 24px var(--space-12);
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+}
+
+.motion-caption {
+  font-size: var(--text-label);
+  color: var(--color-ink-lighter);
+  font-family: var(--font-family-mono);
+  text-align: center;
+}
+
+/* --- Hover: Button --- */
+
+.motion-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--color-brand);
+  color: var(--color-surface);
+  font-size: var(--text-body-muted);
+  font-weight: var(--font-weight-medium);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-hover) var(--ease-hover),
+              background var(--duration-hover) var(--ease-hover);
+}
+
+.motion-button:hover {
+  background: color-mix(in srgb, var(--color-brand) 85%, white);
+  box-shadow: var(--shadow-md);
+}
+
+/* --- Hover: Card --- */
+
+.motion-card {
+  width: 100%;
+  padding: var(--space-24);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--text-body-muted);
+  color: var(--color-ink-light);
+  text-align: center;
+  transition: box-shadow var(--duration-hover) var(--ease-hover),
+              border-color var(--duration-hover) var(--ease-hover),
+              transform var(--duration-hover) var(--ease-hover);
+}
+
+.motion-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-brand-tint-2);
+  transform: translateY(-3px);
+}
+
+/* --- Hover: Link underline ---
+ * 밑줄 reveal 애니메이션 자체는 .link-underline(css/components/link.css)에서 가져온다. */
+
+.motion-link {
+  position: relative;
+  color: var(--color-brand);
+  font-size: var(--text-body-muted);
+  font-weight: var(--font-weight-medium);
+}
+
+/* --- Scroll fade-in --- */
+
+.motion-fade {
+  width: 100%;
+  padding: var(--space-24);
+  background: var(--color-brand-tint-1);
+  border: 1px solid var(--color-brand-tint-2);
+  border-radius: var(--radius-md);
+  color: var(--color-brand-dark);
+  font-size: var(--text-body-muted);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(var(--motion-rise));
+  transition: opacity var(--duration-scroll) var(--ease-scroll),
+              transform var(--duration-scroll) var(--ease-scroll);
+}
+
+.motion-fade.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Toggle (checkbox 기반, JS 없이 :has()로 상태 표시) --- */
+
+.motion-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  cursor: pointer;
+}
+
+.motion-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.motion-track {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background: var(--color-line-heavy);
+  transition: background var(--duration-hover) var(--ease-hover);
+}
+
+.motion-track::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-hover) var(--ease-hover);
+}
+
+.motion-toggle:has(input:checked) .motion-track {
+  background: var(--color-brand);
+}
+
+.motion-toggle:has(input:checked) .motion-track::before {
+  transform: translateX(20px);
+}
+
+.motion-toggle:has(input:focus-visible) .motion-track {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-button,
+  .motion-card,
+  .motion-fade,
+  .motion-track,
+  .motion-track::before {
+    transition-duration: 0.001ms;
+  }
+}

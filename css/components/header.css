@@ -1,0 +1,93 @@
+/*
+ * Component: Site Header
+ * 랜딩 페이지 상단 GNB. 로고 + 1depth 네비게이션 + 로그인/CTA 버튼으로 구성.
+ * 배경은 브랜드 틴트 계열의 옅은 그라디언트로 처리한다.
+ */
+
+.header {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--color-line);
+  transform: translateY(0);
+  transition: transform var(--duration-scroll) var(--ease-scroll);
+}
+
+.header.is-hidden {
+  transform: translateY(-100%);
+}
+
+.header-inner {
+  max-width: var(--container-wide);
+  height: 75px;
+  margin: 0 auto;
+  padding: 16px 40px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--space-48);
+}
+
+/* 로고 */
+.logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo img {
+  height: 28px;
+  width: auto;
+}
+
+/* 1depth 네비게이션 */
+.nav {
+  flex: 1;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-35);
+}
+
+.nav-trigger,
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: var(--text-gnb);
+  line-height: var(--leading-gnb);
+  letter-spacing: var(--tracking-gnb);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink);
+  transition: color var(--duration-hover) var(--ease-hover);
+}
+
+.nav-trigger:hover,
+.nav-link:hover {
+  color: var(--color-brand);
+}
+
+.nav-chevron {
+  width: 16px;
+  height: 16px;
+  color: var(--color-ink-lighter);
+  transition: transform var(--duration-hover) var(--ease-hover);
+}
+
+.nav-trigger[aria-expanded="true"] .nav-chevron {
+  transform: rotate(180deg);
+}
+
+/* 우측 액션 영역 */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  flex-shrink: 0;
+}

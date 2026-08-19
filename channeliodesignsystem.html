@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Channel.io 디자인 시스템 추출 리포트</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+background:#FCFCFC;color:rgba(0,0,0,.85);letter-spacing:-.16px;line-height:1.6}
+.wrap{max-width:1160px;margin:0 auto;padding:56px 28px 100px}
+h1{font-size:40px;line-height:1.3;font-weight:600;letter-spacing:-.8px;color:#111115;margin:0 0 8px}
+.sub{color:rgba(0,0,0,.6);font-size:16px;margin:0 0 48px}
+h2{font-size:24px;font-weight:600;letter-spacing:-.4px;margin:56px 0 6px;color:#000}
+h2 .n{display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;border-radius:8px;
+background:#6157ea1a;color:#6157ea;font-size:14px;margin-right:10px;vertical-align:2px}
+h3{font-size:16px;font-weight:600;margin:28px 0 10px;color:rgba(0,0,0,.85)}
+p.d{color:rgba(0,0,0,.6);font-size:14px;margin:0 0 18px}
+.card{background:#fff;border:1px solid #00000014;border-radius:20px;padding:26px 28px;margin:14px 0;
+box-shadow:0 0 4px rgba(0,0,0,.03)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid #00000014;vertical-align:middle}
+th{font-weight:600;color:rgba(0,0,0,.6);font-size:12px;text-transform:uppercase;letter-spacing:0}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
+background:#00000008;padding:2px 6px;border-radius:4px;color:#4E40C9}
+.sw{display:inline-block;width:22px;height:22px;border-radius:6px;border:1px solid #00000014;vertical-align:-6px;margin-right:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.ct{border:1px solid #00000014;border-radius:12px;overflow:hidden;background:#fff}
+.ct .bar{height:52px}
+.ct .m{padding:8px 10px;font-size:11.5px;line-height:1.45}
+.ct .m b{display:block;font-weight:600;color:rgba(0,0,0,.85);font-size:12px}
+.ct .m span{color:rgba(0,0,0,.5);font-family:monospace}
+.pill{display:inline-block;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600;margin:0 6px 6px 0}
+.key{background:#6157ea1a;color:#4E40C9}
+.note{background:#EDBC401A;border-left:3px solid #EDBC40;border-radius:0 8px 8px 0;padding:14px 18px;font-size:14px;margin:16px 0}
+.ramp{display:flex;border-radius:10px;overflow:hidden;border:1px solid #00000014}
+.ramp div{flex:1;height:44px;display:flex;align-items:flex-end;justify-content:center;font-size:9px;padding-bottom:3px;color:#fff;font-family:monospace}
+.tspec{display:flex;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid #00000014}
+.tspec .lbl{flex:0 0 120px;font-size:12px;color:rgba(0,0,0,.5);font-family:monospace}
+.rad{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;margin-top:10px}
+.rad i{display:block;width:64px;height:64px;background:#EFEFF0;border:1px solid #00000014}
+.rad figcaption{font-size:11px;text-align:center;margin-top:6px;color:rgba(0,0,0,.55);font-family:monospace}
+.rad figure{margin:0}
+footer{margin-top:64px;padding-top:24px;border-top:1px solid #00000014;font-size:12.5px;color:rgba(0,0,0,.45)}
+</style></head><body><div class="wrap">
+
+<h1>Channel.io 디자인 시스템 구조</h1>
+<p class="sub">channel.io/kr 런타임 CSS 추출 · 2026-08-18 · CSS 변수 613개 (디자인 토큰 307 + 다크모드 미러 275 + 스크롤바 31)</p>
+
+<div class="card">
+<h3 style="margin-top:0">한눈에 보기</h3>
+<span class="pill key">Pretendard</span><span class="pill key">3계층 토큰</span><span class="pill key">11 Accent Hue</span>
+<span class="pill key">4px 그리드</span><span class="pill key">radius 8 / 20 / 35 / 999</span><span class="pill key">1320px 컨테이너</span>
+<span class="pill key">inverted-* 다크모드</span><span class="pill key">0.15s cubic-bezier(.3,0,0,1)</span>
+<p class="d" style="margin:14px 0 0">토큰이 <b>의미(semantic) 기반</b>으로 이름 붙어 있고, 라이트/다크가 완전히 대칭되는 성숙한 시스템입니다. 색상은 hex 8자리(<code>#RRGGBBAA</code>)로 알파를 값에 내장해 <code>rgba()</code> 계산 없이 투명도 단계를 관리합니다.</p>
+</div>
+
+<h2><span class="n">1</span>폰트 시스템</h2>
+<p class="d">본문 전체가 <b>Pretendard</b> 단일 서체. 한글 최적화 서체이며 시스템 폰트 폴백 체인을 갖습니다.</p>
+<div class="card">
+<code>font-family: Pretendard, "Pretendard Fallback", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto, system-ui, sans-serif</code>
+<h3>Weight — 4단계만 사용</h3>
+<table><tr><th>Weight</th><th>용도</th><th>샘플</th></tr>
+<tr><td><code>400</code> Regular</td><td>본문·설명 (전체의 약 88%)</td><td style="font-weight:400;font-size:16px">상담은 채널톡</td></tr>
+<tr><td><code>500</code> Medium</td><td>보조 라벨</td><td style="font-weight:500;font-size:16px">상담은 채널톡</td></tr>
+<tr><td><code>600</code> SemiBold</td><td>제목 전체 · 강조 (Bold 대신 기본 강조)</td><td style="font-weight:600;font-size:16px">상담은 채널톡</td></tr>
+<tr><td><code>700</code> Bold</td><td>극히 예외적 (3곳)</td><td style="font-weight:700;font-size:16px">상담은 채널톡</td></tr></table>
+<div class="note"><b>특징:</b> 700을 거의 쓰지 않고 <b>600으로 모든 위계</b>를 만듭니다. 굵기보다 <b>사이즈 + 자간</b>으로 위계를 표현하는 전략.</div>
+</div>
+
+<h2><span class="n">2</span>타입 스케일</h2>
+<p class="d">핵심 스텝은 <b>10 · 12 · 14 · 15 · 16 · 18 · 21 · 24 · 35 · 40 · 44 · 65px</b>. 큰 사이즈일수록 음수 자간이 강해지는 <b>optical sizing</b> 규칙이 일관됩니다.</p>
+<div class="card">
+<div class="tspec"><span class="lbl">65px / 1.08</span><span style="font-size:38px;font-weight:600;letter-spacing:-.02em;line-height:1.1">Hero Display</span><span class="lbl">w600 · ls -1.3px</span></div>
+<div class="tspec"><span class="lbl">44px / 70px</span><span style="font-size:32px;font-weight:600;letter-spacing:-.88px">H1 페이지 타이틀</span><span class="lbl">ls -0.88px</span></div>
+<div class="tspec"><span class="lbl">40px / 56px</span><span style="font-size:30px;font-weight:600;letter-spacing:-.8px;color:#111115">H2 섹션 타이틀</span><span class="lbl">ls -0.8px</span></div>
+<div class="tspec"><span class="lbl">24px / 32px</span><span style="font-size:24px;font-weight:600;letter-spacing:-.4px">H3 서브 타이틀</span><span class="lbl">ls -0.4px</span></div>
+<div class="tspec"><span class="lbl">18px / 28px</span><span style="font-size:18px;font-weight:600;letter-spacing:-.18px">카드 제목 · 버튼 라벨</span><span class="lbl">ls -0.18px</span></div>
+<div class="tspec"><span class="lbl">16px / 25px</span><span style="font-size:16px;letter-spacing:-.16px">본문 기본 — 읽기 편한 1.56 행간</span><span class="lbl">ls -0.16px</span></div>
+<div class="tspec"><span class="lbl">14px / 22px</span><span style="font-size:14px;letter-spacing:-.14px">보조 텍스트 · 캡션</span><span class="lbl">ls -0.14px</span></div>
+<div class="tspec"><span class="lbl">12px / 18px</span><span style="font-size:12px;color:rgba(0,0,0,.6)">메타 · 라벨 · 각주</span><span class="lbl">ls -0.1px</span></div>
+<table style="margin-top:20px"><tr><th>규칙</th><th>값</th></tr>
+<tr><td>행간(line-height) 스텝</td><td><code>14 · 16 · 18 · 20 · 22 · 24 · 25 · 26 · 28 · 30 · 32 · 56 · 70px</code> — px 고정값 사용 (배수 아님)</td></tr>
+<tr><td>자간 공식</td><td>대략 <b>font-size × -1%</b> (16px→-0.16px, 40px→-0.8px, 44px→-0.88px)</td></tr>
+<tr><td>본문 행간 비율</td><td>16px → 25px (<b>1.56</b>) / 14px → 22px (1.57) / 18px → 28px (1.55)</td></tr>
+</table>
+</div>
+
+<h2><span class="n">3</span>컬러 시스템</h2>
+<p class="d">3계층 구조: <b>Primitive(hue+scale)</b> → <b>Semantic(bg/txt/bdr/shdw)</b> → <b>Role(color-text / icon / fill / border / surface / state / elevation)</b></p>
+
+<h3>Brand & Status</h3>
+<div class="grid">
+<div class="ct"><div class="bar" style="background:#6157ea"></div><div class="m"><b>Action (브랜드 인디고)</b><span>#6157EA</span></div></div>
+<div class="ct"><div class="bar" style="background:#20ab55"></div><div class="m"><b>Success</b><span>#20AB55</span></div></div>
+<div class="ct"><div class="bar" style="background:#3292e3"></div><div class="m"><b>Highlight</b><span>#3292E3</span></div></div>
+<div class="ct"><div class="bar" style="background:#e67f2b"></div><div class="m"><b>Warning</b><span>#E67F2B</span></div></div>
+<div class="ct"><div class="bar" style="background:#e1535d"></div><div class="m"><b>Critical</b><span>#E1535D</span></div></div>
+<div class="ct"><div class="bar" style="background:#242428"></div><div class="m"><b>Grey Darkest (CTA)</b><span>#242428</span></div></div>
+</div>
+
+<h3>Accent — 11 hue × 5 step</h3>
+<p class="d">각 hue마다 <code>dark / normal / light(4D) / lighter(33) / lightest(1A)</code> 5단계. 알파값이 <b>4D→33→1A</b>로 고정 규격화되어 있습니다.</p>
+<div class="grid">
+<div class="ct"><div class="bar" style="background:#5E56F0"></div><div class="m"><b>blue</b><span>#5E56F0</span></div></div>
+<div class="ct"><div class="bar" style="background:#329BE7"></div><div class="m"><b>cobalt</b><span>#329BE7</span></div></div>
+<div class="ct"><div class="bar" style="background:#0FB3A3"></div><div class="m"><b>teal</b><span>#0FB3A3</span></div></div>
+<div class="ct"><div class="bar" style="background:#31A552"></div><div class="m"><b>green</b><span>#31A552</span></div></div>
+<div class="ct"><div class="bar" style="background:#A0A540"></div><div class="m"><b>olive</b><span>#A0A540</span></div></div>
+<div class="ct"><div class="bar" style="background:#EDBC40"></div><div class="m"><b>yellow</b><span>#EDBC40</span></div></div>
+<div class="ct"><div class="bar" style="background:#F4800B"></div><div class="m"><b>orange</b><span>#F4800B</span></div></div>
+<div class="ct"><div class="bar" style="background:#E94E58"></div><div class="m"><b>red</b><span>#E94E58</span></div></div>
+<div class="ct"><div class="bar" style="background:#CB48AD"></div><div class="m"><b>pink</b><span>#CB48AD</span></div></div>
+<div class="ct"><div class="bar" style="background:#915CE0"></div><div class="m"><b>purple</b><span>#915CE0</span></div></div>
+<div class="ct"><div class="bar" style="background:#3A4F8D"></div><div class="m"><b>navy</b><span>#3A4F8D</span></div></div>
+</div>
+<h3>단계 예시 — blue</h3>
+<div class="ramp">
+<div style="background:#4E40C9">dark</div><div style="background:#5E56F0">normal</div>
+<div style="background:#5E56F04D;color:#333">light 4D</div><div style="background:#5E56F033;color:#333">lighter 33</div><div style="background:#5E56F01A;color:#333">lightest 1A</div></div>
+
+<h3>Text — 중성 4단계 (알파 기반)</h3>
+<div class="card"><table>
+<tr><th>토큰</th><th>값</th><th>용도</th></tr>
+<tr><td><code>--color-text-neutral-heaviest</code></td><td><span class="sw" style="background:#000"></span>#000000</td><td>최상위 제목</td></tr>
+<tr><td><code>--color-text-neutral</code></td><td><span class="sw" style="background:#000000d9"></span>#000000<b>D9</b> (85%)</td><td><b>본문 기본색</b> — 가장 많이 쓰임</td></tr>
+<tr><td><code>--color-text-neutral-light</code></td><td><span class="sw" style="background:#00000099"></span>#000000<b>99</b> (60%)</td><td>보조 설명</td></tr>
+<tr><td><code>--color-text-neutral-lighter</code></td><td><span class="sw" style="background:#00000066"></span>#000000<b>66</b> (40%)</td><td>placeholder · disabled</td></tr>
+</table>
+<div class="note"><b>특징:</b> 순수 검정을 본문에 쓰지 않고 <b>85% 알파(#000000D9)</b>를 기본 텍스트로 사용 → 눈의 피로 감소 + 어떤 배경 위에서도 자연스럽게 녹아듭니다.</div>
+</div>
+
+<h3>Background / Surface</h3>
+<div class="card"><table>
+<tr><th>토큰</th><th>값</th><th>비고</th></tr>
+<tr><td><code>--bg-white-normal</code> / <code>--color-surface</code></td><td><span class="sw" style="background:#fff"></span>#FFFFFF</td><td>카드·기본 면</td></tr>
+<tr><td><code>--bg-grey-lightest</code></td><td><span class="sw" style="background:#FCFCFC"></span>#FCFCFC</td><td>페이지 바닥</td></tr>
+<tr><td><code>--bg-grey-lighter</code></td><td><span class="sw" style="background:#F7F7F8"></span>#F7F7F8</td><td>섹션 구분 배경</td></tr>
+<tr><td><code>--bg-grey-light</code></td><td><span class="sw" style="background:#EFEFF0"></span>#EFEFF0</td><td>입력 필드 · 비활성</td></tr>
+<tr><td><code>--bg-grey-darkest</code></td><td><span class="sw" style="background:#242428"></span>#242428</td><td>다크 섹션 · CTA 버튼</td></tr>
+<tr><td><code>--color-surface-glass</code></td><td>#FFFFFF<b>E6</b> (90%)</td><td>글래스모피즘 — <code>backdrop-filter: blur(20px) saturate(180%)</code></td></tr>
+<tr><td>Black 오버레이 6단</td><td>99 / 66 / 26 / 14 / 0D / 08</td><td>darkest→lightest, hover·dim·구분선에 재사용</td></tr>
+</table>
+<p class="d" style="margin:14px 0 0">실제 페이지에서 가장 많이 관측된 배경은 <code>#F7F6F3</code>(웜 그레이 히어로)와 <code>#242428</code>(다크 섹션)로, 토큰 팔레트 위에 캠페인성 웜톤이 얹혀 있습니다.</p>
+</div>
+
+<h3>Border · Shadow · Elevation</h3>
+<div class="card"><table>
+<tr><th>Border</th><th></th><th>Shadow (5 elevation)</th><th></th></tr>
+<tr><td><code>--color-border-neutral</code></td><td>#00000014 (8%)</td><td><code>--shdw-base</code></td><td>#0000000D</td></tr>
+<tr><td><code>--color-border-neutral-heavy</code></td><td>#00000026 (15%)</td><td><code>--shdw-small</code></td><td>#00000014</td></tr>
+<tr><td><code>--color-border-neutral-heavier</code></td><td>#00000066 (40%)</td><td><code>--shdw-medium</code></td><td>#00000026</td></tr>
+<tr><td><code>--bdr-grey-light</code></td><td>#EFEFF0</td><td><code>--shdw-large</code></td><td>#00000038</td></tr>
+<tr><td>실제 border-width</td><td><b>0.571px</b> (얇은 헤어라인)</td><td><code>--shdw-xlarge</code></td><td>#0000004D</td></tr>
+</table>
+<div class="note"><b>특징:</b> 그림자를 <b>색상 토큰만</b> 정의하고 offset/blur는 컴포넌트가 조립합니다. 실사용 그림자는 매우 옅음 — <code>0 2px 6px rgba(0,0,0,.08)</code>, <code>0 0 4px rgba(0,0,0,.03)</code>. 경계는 그림자보다 <b>얇은 보더 + 배경 톤 차이</b>로 표현.</div>
+</div>
+
+<h3>Chart 팔레트 (10색)</h3>
+<div class="ramp" style="border-radius:10px">
+<div style="background:#7c72fd">01</div><div style="background:#81dfdd;color:#333">02</div><div style="background:#fc9783;color:#333">03</div>
+<div style="background:#b1596a">04</div><div style="background:#fe71ba">05</div><div style="background:#c971ec">06</div>
+<div style="background:#4a75e3">07</div><div style="background:#80b6fd;color:#333">08</div><div style="background:#fb90f1;color:#333">09</div><div style="background:#b4d6e5;color:#333">10</div></div>
+
+<h2><span class="n">4</span>다크 모드</h2>
+<div class="card">
+<p class="d" style="margin:0 0 14px">라이트 토큰 전체를 <code>--inverted-*</code> 접두사로 <b>1:1 미러링</b>(275개). 색을 재정의하지 않고 <b>이름을 유지한 채 값만 교체</b>하는 구조 — 컴포넌트 코드 변경 없이 테마 전환.</p>
+<table><tr><th>라이트</th><th></th><th>다크 (inverted)</th><th></th></tr>
+<tr><td><code>--bg-white-normal</code></td><td><span class="sw" style="background:#fff"></span>#FFFFFF</td><td><code>--inverted-bg-white-normal</code></td><td><span class="sw" style="background:#242428"></span>#242428</td></tr>
+<tr><td><code>--bg-white-high</code></td><td><span class="sw" style="background:#fff"></span>#FFFFFF</td><td><code>--inverted-bg-white-high</code></td><td><span class="sw" style="background:#464748"></span>#464748</td></tr>
+<tr><td><code>--bg-white-low</code></td><td><span class="sw" style="background:#fff"></span>#FFFFFF</td><td><code>--inverted-bg-white-low</code></td><td><span class="sw" style="background:#313234"></span>#313234</td></tr>
+<tr><td><code>--bg-black-dark</code></td><td>#00000026</td><td><code>--inverted-bg-black-dark</code></td><td>#FFFFFF33 <i>(검정→흰색 반전)</i></td></tr>
+</table>
+<p class="d" style="margin:14px 0 0">다크 표면 계층: <b>#242428(base) → #313234(low) → #464748(high)</b>. 라이트는 3단계가 모두 흰색이고 <b>보더로만</b> 계층을 표현하는 반면, 다크는 <b>명도로</b> 계층을 만듭니다.</p>
+</div>
+
+<h2><span class="n">5</span>스페이싱 — 4px 그리드</h2>
+<div class="card">
+<h3>Gap (실측 빈도순)</h3>
+<p class="d"><code>2 · 4 · 6 · 7 · 8 · 10 · 11 · 12 · 14 · 16 · 18 · 20 · 25 · 26 · 30 · 34 · 45 · 60px</code> — <b>4px 배수가 지배적</b>, 4px가 최다 사용.</p>
+<h3>Padding 패턴</h3>
+<table><tr><th>값</th><th>용도</th></tr>
+<tr><td><code>5px 12px</code></td><td>작은 태그 · 배지</td></tr>
+<tr><td><code>10px 22px</code></td><td>버튼 (기본)</td></tr>
+<tr><td><code>6px 35px</code></td><td>pill 버튼 (좌우 넉넉)</td></tr>
+<tr><td><code>30px 35px</code></td><td>카드 내부</td></tr>
+<tr><td><code>60px 28px</code></td><td>섹션 블록 (상하 여백 큼)</td></tr>
+<tr><td><code>18px 24px</code></td><td>리스트 아이템 · 아코디언</td></tr>
+</table>
+<div class="note"><b>특징:</b> margin 사용이 거의 없습니다(<code>0px 10px</code> 정도만). 간격은 대부분 <b>flex/grid + gap</b>과 <b>부모 padding</b>으로 처리 — margin collapse 문제를 구조적으로 회피하는 모던 레이아웃 방식.</div>
+</div>
+
+<h2><span class="n">6</span>Border Radius</h2>
+<div class="card">
+<div class="rad">
+<figure><i style="border-radius:4px"></i><figcaption>4px<br>태그</figcaption></figure>
+<figure><i style="border-radius:8px"></i><figcaption>8px<br>기본 요소</figcaption></figure>
+<figure><i style="border-radius:12px"></i><figcaption>12px<br>작은 카드</figcaption></figure>
+<figure><i style="border-radius:14px"></i><figcaption>14px<br>입력</figcaption></figure>
+<figure><i style="border-radius:20px"></i><figcaption>20px<br>카드</figcaption></figure>
+<figure><i style="border-radius:35px"></i><figcaption>35px ★<br>대형 카드</figcaption></figure>
+<figure><i style="border-radius:999px"></i><figcaption>999px<br>pill·아바타</figcaption></figure>
+</div>
+<p class="d" style="margin-top:18px">사용 빈도 1·2위가 <b>35px</b>와 <b>999px</b>. 소형 요소는 4/8px, 컨테이너는 20/35px, 버튼·태그는 완전 pill(999px, 9999px)로 <b>부드럽고 둥근 인상</b>을 만드는 것이 이 사이트의 가장 큰 시각적 특징입니다.</p>
+</div>
+
+<h2><span class="n">7</span>레이아웃 & 헤더</h2>
+<div class="card"><table>
+<tr><th>항목</th><th>값</th></tr>
+<tr><td>컨테이너 max-width</td><td><b>1320px</b> (주) · 1160px · 1376px · 1440px</td></tr>
+<tr><td>GNB 높이</td><td><code>--gnbHeight: 68px</code></td></tr>
+<tr><td>헤더 배경</td><td><code>--header-bg: #fff</code> · float 시 <code>#FFFFFFE6</code></td></tr>
+<tr><td>헤더 블러</td><td><code>--header-backdrop-filter: blur(20px) saturate(180%)</code></td></tr>
+<tr><td>헤더 hover</td><td><code>rgba(36,36,40,0.05)</code></td></tr>
+<tr><td>CTA 버튼</td><td>기본 <code>#242428</code> → hover <code>#3A3A3F</code> · 텍스트 #fff · 모바일 <code>#000</code></td></tr>
+<tr><td>검색 박스</td><td>bg <code>rgba(0,0,0,.03)</code> → hover <code>.08</code> · border <code>rgba(0,0,0,.08)</code> · 단축키 라벨 <code>rgba(0,0,0,.4)</code></td></tr>
+<tr><td>focus outline</td><td><code>#242428</code></td></tr>
+</table></div>
+
+<h2><span class="n">8</span>모션</h2>
+<div class="card"><table>
+<tr><th>Duration</th><th>Easing</th><th>용도</th></tr>
+<tr><td><b>0.15s</b></td><td><code>cubic-bezier(.3, 0, 0, 1)</code></td><td><b>시그니처 이징</b> — 즉각 반응 후 부드럽게 감속 (hover, 상태 변화)</td></tr>
+<tr><td>0.15s</td><td><code>ease</code></td><td>단순 컬러 전환</td></tr>
+<tr><td>0.2s / 0.3s</td><td><code>ease</code>, <code>linear</code></td><td>드롭다운 · 패널</td></tr>
+<tr><td>0.35s / 0.5s</td><td><code>ease</code></td><td>섹션 진입 · 스크롤 애니메이션</td></tr>
+</table>
+<div class="note"><b>특징:</b> <code>cubic-bezier(.3,0,0,1)</code>은 시작 가속이 거의 없고 끝에서 길게 감속하는 커브로, "빠르게 반응하지만 급하지 않은" 느낌을 만듭니다. 이 시스템의 인터랙션 톤을 결정하는 핵심 값.</div>
+</div>
+
+<h2><span class="n">9</span>커스텀 스크롤바</h2>
+<div class="card"><table>
+<tr><th>토큰</th><th>값</th></tr>
+<tr><td><code>--os-size</code></td><td>10px</td></tr>
+<tr><td><code>--os-handle-border-radius</code></td><td>10px</td></tr>
+<tr><td><code>--os-handle-bg</code> / hover / active</td><td><code>#ffffff70</code> → <code>#ffffff8c</code> → <code>#ffffffa8</code></td></tr>
+<tr><td><code>--os-handle-min-size</code></td><td>33px</td></tr>
+<tr><td>track</td><td>배경·보더 모두 <code>none</code> (핸들만 노출)</td></tr>
+</table>
+<p class="d" style="margin:12px 0 0">OverlayScrollbars 라이브러리 기반. 트랙을 숨기고 반투명 흰 핸들만 띄우는 오버레이 방식.</p>
+</div>
+
+<h2><span class="n">10</span>시스템의 특징 정리</h2>
+<div class="card">
+<table>
+<tr><th style="width:170px">축</th><th>관찰</th></tr>
+<tr><td><b>토큰 아키텍처</b></td><td>Primitive → Semantic(<code>bg/bgtxt/txt/bdr/shdw</code>) → Role(<code>color-text/icon/fill/border/surface/state/elevation</code>) 3계층. 역할별로 같은 색이 별도 토큰으로 존재해 의미를 잃지 않습니다.</td></tr>
+<tr><td><b>알파 내장 hex</b></td><td>모든 색이 8자리 hex. 투명도 단계가 <code>D9/99/66/4D/33/1A/0D/08/03</code>로 규격화 → 새 색을 추가할 때 단계 값만 붙이면 됩니다.</td></tr>
+<tr><td><b>완전 대칭 다크모드</b></td><td>275개 <code>--inverted-*</code>가 라이트 토큰과 1:1 대응. 컴포넌트는 테마를 몰라도 됩니다.</td></tr>
+<tr><td><b>절제된 굵기, 정교한 자간</b></td><td>weight는 400/600 위주, 대신 font-size × -1% 자간 규칙으로 큰 타이틀의 시각 밀도를 잡습니다. 한글 서체(Pretendard)에서 특히 중요한 처리.</td></tr>
+<tr><td><b>둥근 형태 언어</b></td><td>35px·999px radius가 최다. 브랜드 인상이 "친근하고 부드러운 SaaS".</td></tr>
+<tr><td><b>가벼운 depth</b></td><td>그림자 알파 최대 0.08 수준. 계층은 0.571px 헤어라인 보더 + 그레이 배경 톤(#FCFCFC/#F7F7F8/#EFEFF0)으로 표현.</td></tr>
+<tr><td><b>글래스 표면</b></td><td>헤더·GNB·라운지에 <code>E6/CC</code> 알파 + <code>blur(20px) saturate(180%)</code>. saturate로 배경색이 살아나는 iOS 스타일.</td></tr>
+<tr><td><b>gap-first 레이아웃</b></td><td>margin 거의 미사용, 4px 그리드 기반 flex/grid gap으로 간격 관리.</td></tr>
+<tr><td><b>확장 토큰 그룹</b></td><td><code>--agentation-*</code>(iOS 시스템컬러 계열: #FF383C, #6155F5, #34C759 등), <code>--agd-*</code>(오렌지 #F97316 기반 다크 대시보드), <code>--color-chart-theme-default-01~10</code> — 신규 AI/에이전트 제품 라인이 별도 팔레트로 붙어 있습니다.</td></tr>
+</table>
+</div>
+
+<footer>channel.io/kr 런타임 CSS 추출 · 2026-08-18 · 값은 게시된 스타일시트와 실제 렌더 계산값(computed style) 기준. 페이지 업데이트 시 변동될 수 있습니다.</footer>
+</div></body></html>

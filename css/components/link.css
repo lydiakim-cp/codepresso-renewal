@@ -1,0 +1,26 @@
+/*
+ * Component: Link Underline
+ * 밑줄이 왼쪽에서 오른쪽으로 채워지며 드러나는 hover 효과.
+ * motion-demo.css의 .motion-link에서 쓰던 것과 같은 로직(0%→100% 배경 확장)을
+ * 공용 유틸리티로 승격해, 색상이 다른 링크(.motion-link, .hero-link 등)가
+ * 함께 재사용한다. 색상은 각 컴포넌트가 정하고, 이 클래스는 밑줄 애니메이션만 맡는다.
+ */
+
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1.5px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  padding-bottom: 2px;
+  transition: background-size var(--duration-hover) var(--ease-hover);
+}
+
+.link-underline:hover {
+  background-size: 100% 1.5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link-underline {
+    transition-duration: 0.001ms;
+  }
+}

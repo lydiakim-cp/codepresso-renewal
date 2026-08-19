@@ -1,0 +1,38 @@
+/*
+ * Component: Color Tile
+ * 컬러/스케일 데모용 타일 카드(.grid 안에서 사용).
+ */
+
+.color-tile {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: box-shadow var(--duration-hover);
+}
+
+.color-tile:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.color-tile-bar {
+  height: 56px;
+}
+
+.color-tile-meta {
+  padding: 10px 12px;
+  font-size: var(--text-label);
+  line-height: 1.5;
+}
+
+.color-tile-meta strong {
+  display: block;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
+  font-size: var(--text-body-muted);
+}
+
+.color-tile-meta span {
+  color: var(--color-ink-lighter);
+  font-family: var(--font-family-mono);
+}

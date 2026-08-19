@@ -1,0 +1,50 @@
+/*
+ * Component: Button
+ * 코드프레소 공용 버튼. Primary(브랜드 블루 필박스) / Ghost(외곽선 없는 보조 버튼) 2종.
+ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 var(--space-20);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-body-muted);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-body-muted);
+  white-space: nowrap;
+  transition: background-color var(--duration-hover) var(--ease-hover),
+    box-shadow var(--duration-hover) var(--ease-hover),
+    border-color var(--duration-hover) var(--ease-hover);
+}
+
+.btn-primary {
+  background: var(--color-brand);
+  color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: color-mix(in srgb, var(--color-brand) 80%, white);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-ghost {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  border: 1px solid var(--color-line-heavy);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.btn-lg {
+  height: 52px;
+  padding: 0 var(--space-24);
+  border-radius: var(--radius-md);
+  font-size: var(--text-body);
+  letter-spacing: var(--tracking-body);
+}

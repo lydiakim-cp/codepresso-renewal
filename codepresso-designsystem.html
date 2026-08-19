@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>코드프레소 디자인 시스템 리뉴얼안</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <div class="wrap">
+
+    <section>
+      <h1>코드프레소 디자인 시스템 리뉴얼안</h1>
+      <p class="sub">기존 코드프레소 디자인 시스템 기반 · 채널톡(channel.io) 벤치마킹 반영 · 2026-08-18 · "폰트가 작다"는 피드백을 핵심 개선축으로 삼아 본문 16px 체계는
+        유지하고 상위 위계 사이즈만 확대했습니다.</p>
+
+      <div class="card">
+        <h3>한눈에 보기 — 무엇을 살리고, 무엇을 바꿨나</h3>
+        <div class="flex-row">
+          <span class="pill pill-key">Pretendard 유지</span><span class="pill pill-key">본문 16px 유지</span><span
+            class="pill pill-key">상위 스텝 확대</span>
+          <span class="pill pill-key">브랜드 블루 단색 유지</span><span class="pill pill-key">6px 스페이싱 스텝 유지</span><span
+            class="pill pill-key">라운드 6/8/12 유지</span>
+          <span class="pill pill-key">블루 섀도우 유지</span><span class="pill pill-key">Swiper 테마색 수정</span><span
+            class="pill pill-key">본문 텍스트색 4→1 통일</span>
+        </div>
+        <p class="description">기존 코드프레소 시스템의 뼈대(폰트·컬러·스페이싱·라운드·섀도우·모션)는 이미 견고합니다. 리뉴얼은 <b>새 시스템을
+            만드는 것이 아니라, 위계 표현력이 약한 지점만 정밀 보정</b>하는 방향입니다. 채널톡에서 가져온 것은 톤(다채로운 액센트, 큰 라운드)이 아니라 <b>구조(자간 공식, 3단 텍스트 위계,
+            gap-first 레이아웃)</b>입니다.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="heading-number">1</span>폰트 시스템</h2>
+      <p class="description">서체는 그대로 <b>Pretendard 단일 스택</b>을 유지합니다. 변경하는 것은 서체가 아니라 <b>스케일의 상단부</b>입니다.</p>
+      <div class="card">
+        <code>font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Malgun Gothic", sans-serif</code>
+        <h3>Weight — 3단계 유지</h3>
+        <table>
+          <tr>
+            <th>Weight</th>
+            <th>용도</th>
+            <th>샘플</th>
+          </tr>
+          <tr>
+            <td><code>400</code> Regular</td>
+            <td>본문·설명</td>
+            <td style="font-weight:400;font-size:16px">코드프레소와 함께 성장하는 개발자</td>
+          </tr>
+          <tr>
+            <td><code>500</code> Medium</td>
+            <td>보조 라벨 · 네비게이션</td>
+            <td style="font-weight:500;font-size:16px">코드프레소와 함께 성장하는 개발자</td>
+          </tr>
+          <tr>
+            <td><code>600</code> SemiBold</td>
+            <td>제목 전체 · 강조 (Bold 미사용 원칙 유지)</td>
+            <td style="font-weight:600;font-size:16px">코드프레소와 함께 성장하는 개발자</td>
+          </tr>
+        </table>
+        <div class="callout callout-good"><b>유지 결정:</b> Bold(700)를 쓰지 않는 절제된 톤은 코드프레소다움의 핵심이라 그대로 둡니다. 위계는 굵기가 아니라
+          <b>사이즈
+            확대</b>로 만듭니다 — 이번 리뉴얼의 핵심 변경점입니다.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="heading-number">2</span>타입 스케일 — 실측 시스템 반영 (Heading / Body)</h2>
+      <p class="description">코드프레소 실제 타이포그래피 시스템은 <b>Heading 9단</b> + <b>Body 4단(각 2~3 weight)</b>으로 이미 세분화되어 있습니다. 이전
+        초안의
+        "28/32/40/64" 4단 추정 스케일을 걷어내고, 이 실측 스케일로 교체합니다. 서체는 Pretendard(EN/KR) + Pretendard JP(일본어) 폴백을 병행 지원합니다.</p>
+
+      <h3>Heading — 9단, Semibold(600) 고정</h3>
+      <div class="card">
+        <div class="type-spec-row"><span class="label">64 / 74px</span><span
+            style="font-size:38px;font-weight:600;letter-spacing:-.5px;line-height:1.16">Codepresso
+            Typography</span><span class="label">ls -0.5px</span></div>
+        <div class="type-spec-row"><span class="label">56 / 66px</span><span
+            style="font-size:34px;font-weight:600;letter-spacing:-.5px">Codepresso Typography</span><span
+            class="label">ls
+            -0.5px</span></div>
+        <div class="type-spec-row"><span class="label">40 / 50px</span><span
+            style="font-size:30px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피</span><span class="label">ls
+            -0.1px</span></div>
+        <div class="type-spec-row"><span class="label">36 / 48px</span><span
+            style="font-size:27px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피</span><span class="label">ls
+            -0.1px</span></div>
+        <div class="type-spec-row"><span class="label">32 / 42px</span><span
+            style="font-size:24px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피</span><span class="label">ls
+            -0.1px</span></div>
+        <div class="type-spec-row"><span class="label">26 / 36px</span><span
+            style="font-size:22px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피</span><span class="label">ls
+            -0.1px</span></div>
+        <div class="type-spec-row"><span class="label">24 / 32px</span><span
+            style="font-size:20px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피</span><span class="label">ls
+            -0.1px</span></div>
+        <div class="type-spec-row"><span class="label">20 / 28px</span><span
+            style="font-size:18px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피</span><span class="label">ls
+            -0.1px</span></div>
+        <div class="type-spec-row"><span class="label">18 / 26px</span><span
+            style="font-size:16px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피</span><span class="label">ls
+            -0.1px</span></div>
+      </div>
+
+      <h3>Body — 4단 × Weight(Regular 400 / Medium 500 / Semibold 600)</h3>
+      <div class="card">
+        <div class="type-spec-row"><span class="label">16 / 24px</span><span
+            style="font-size:16px;font-weight:400;letter-spacing:-.1px">코드프레소 타이포그래피 — Regular</span><span
+            class="label">본문 최소 권장 크기</span></div>
+        <div class="type-spec-row"><span class="label">16 / 24px</span><span
+            style="font-size:16px;font-weight:500;letter-spacing:-.1px">코드프레소 타이포그래피 — Medium</span><span
+            class="label">ls
+            -0.1px</span></div>
+        <div class="type-spec-row"><span class="label">16 / 24px</span><span
+            style="font-size:16px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피 — Semibold</span><span
+            class="label">ls -0.1px</span></div>
+        <div class="type-spec-row"><span class="label">14 / 22px</span><span
+            style="font-size:14px;font-weight:400;letter-spacing:0">코드프레소 타이포그래피 — Regular</span><span class="label">ls
+            0px · 최소 이용 권장</span></div>
+        <div class="type-spec-row"><span class="label">14 / 22px</span><span
+            style="font-size:14px;font-weight:500;letter-spacing:0">코드프레소 타이포그래피 — Medium</span><span class="label">ls
+            0px</span></div>
+        <div class="type-spec-row"><span class="label">14 / 22px</span><span
+            style="font-size:14px;font-weight:600;letter-spacing:0">코드프레소 타이포그래피 — Semibold</span><span class="label">ls
+            0px</span></div>
+        <div class="type-spec-row"><span class="label">13 / 20px</span><span
+            style="font-size:13px;font-weight:400;letter-spacing:0;color:var(--ink-light)">코드프레소 타이포그래피 —
+            Regular</span><span class="label">ls 0px</span></div>
+        <div class="type-spec-row"><span class="label">12 / 18px</span><span
+            style="font-size:12px;font-weight:400;letter-spacing:0;color:var(--ink-lighter)">코드프레소 타이포그래피 —
+            Regular</span><span class="label">ls 0px · 메타/라벨</span></div>
+        <div class="type-spec-row"><span class="label">12 / 18px</span><span
+            style="font-size:12px;font-weight:500;letter-spacing:0;color:var(--ink-lighter)">코드프레소 타이포그래피 —
+            Medium</span><span class="label">ls 0px · 배지/캡션</span></div>
+      </div>
+
+      <table style="margin-top:6px">
+        <tr>
+          <th>규칙</th>
+          <th>값</th>
+        </tr>
+        <tr>
+          <td>Heading 스케일</td>
+          <td><code>18 · 20 · 24 · 26 · 32 · 36 · 40 · 56 · 64px</code> — 전 구간 Semibold(600) 고정, Bold 미사용 원칙 그대로 유지</td>
+        </tr>
+        <tr>
+          <td>Heading 자간</td>
+          <td>40px 이하 <b>-0.1px 고정</b>, 56/64px 구간만 <b>-0.5px</b>로 확대 — channel.io식 비례 자간 대신 코드프레소는 <b>2단 고정값</b> 사용
+          </td>
+        </tr>
+        <tr>
+          <td>Body 스케일</td>
+          <td><code>12 · 13 · 14 · 16px</code>, 각 Regular/Medium/(Semibold) 조합 — 12/13/14px은 자간 <b>0px</b>, 16px만
+            <b>-0.1px</b>
+          </td>
+        </tr>
+        <tr>
+          <td>행간(line-height)</td>
+          <td>Heading은 폰트 대비 약 <b>1.15~1.3배</b>, Body는 <b>1.5배</b> 고정(16→24, 14→22, 13→20, 12→18)</td>
+        </tr>
+        <tr>
+          <td>다국어 지원</td>
+          <td><code>Pretendard</code>(한/영/숫자) + <code>Pretendard JP</code>(일본어) 이원화 — 언어별 별도 폰트 스택으로 렌더링</td>
+        </tr>
+        <tr>
+          <td>최소 크기 가이드</td>
+          <td>본문은 <b>16px을 기본 최소 권장</b>, 부득이한 경우 14px까지 허용 — "작다" 피드백은 이 최소 기준 미준수 구간(12~13px 남용)에서 발생했을 가능성이 높음</td>
+        </tr>
+      </table>
+
+      <div class="callout callout-note"><b>이전 초안 정정:</b> 앞서 "11·12·14·16·18·28·32·40·64" 4단 추정 스케일 및 자간 비례식(-1%)은 실측과
+        달랐습니다. 실제로는 <b>Heading 9단 + Body 4단(× weight)</b>의 훨씬 촘촘한 체계이며, 자간도 비례식이 아니라 <b>-0.1px / -0.5px 2단 고정값</b>입니다.
+        "폰트가 작다"는 피드백은 스케일 자체보다 <b>본문에서 16px 미만(12~13px) 사용 빈도</b>를 줄이는 방향으로 접근해야 합니다.</div>
+    </section>
+
+    <section>
+      <h2><span class="heading-number">3</span>컬러 시스템</h2>
+      <p class="description">채널톡의 11-hue 액센트 시스템은 도입하지 않습니다. 코드프레소는 <b>단일 브랜드 블루(#1A61EA)에서 파생한 단색 팔레트</b>가 정체성이므로 그대로
+        유지하고, 기능상 꼭 필요한 <b>상태색 3종만 최소 추가</b>합니다.</p>
+
+      <h3>기본 — Primary / Secondary (실측값 확정)</h3>
+      <div class="card">
+        <table>
+          <tr>
+            <th>역할</th>
+            <th>색상</th>
+            <th>값</th>
+            <th>용도</th>
+          </tr>
+          <tr>
+            <td>Primary</td>
+            <td><span class="swatch" style="background:#1A61EA"></span></td>
+            <td><code>#1A61EA</code> · R26 G97 B234</td>
+            <td>주 강조 버튼</td>
+          </tr>
+          <tr>
+            <td>Secondary</td>
+            <td><span class="swatch" style="background:#0D33A3"></span></td>
+            <td><code>#0D33A3</code> · R13 G51 B163</td>
+            <td>보조 버튼</td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>BG Color — 로그인 전/후 · 다크모드 (실측값 확정)</h3>
+      <div class="grid">
+        <div class="color-tile">
+          <div class="color-tile-bar" style="background:#F5F8FF"></div>
+          <div class="color-tile-meta"><b>Light — 로그인 전</b><span>#F5F8FF</span></div>
+        </div>
+        <div class="color-tile">
+          <div class="color-tile-bar" style="background:#EAECF3"></div>
+          <div class="color-tile-meta"><b>Light — 로그인 후</b><span>#EAECF3</span></div>
+        </div>
+        <div class="color-tile">
+          <div class="color-tile-bar" style="background:#04091A"></div>
+          <div class="color-tile-meta"><b style="color:#fff">Dark Mode BG</b><span>#04091A</span></div>
+        </div>
+      </div>
+      <div class="callout callout-note"><b>반영:</b> 실제 서비스에서는 배경색이 <b>로그인 전/후로 분리</b>되어 있고(메인·서브페이지 <code>#F5F8FF</code>,
+        로그인 후 <code>#EAECF3</code>), 다크모드 배경은 <code>#04091A</code>로 별도 정의되어 있습니다. 이전 초안의
+        <code>--brand-dark:#124BC2</code>는 실측값이 아니었으므로 <code>#0D33A3</code>(Secondary)로 정정합니다.
+      </div>
+
+      <h3>파생 스케일 — Primary 틴트 (참고용)</h3>
+      <div class="grid">
+        <div class="color-tile">
+          <div class="color-tile-bar" style="background:#07153D"></div>
+          <div class="color-tile-meta"><b>ink-heaviest</b><span>#07153D</span></div>
+        </div>
+        <div class="color-tile">
+          <div class="color-tile-bar" style="background:#0D33A3"></div>
+          <div class="color-tile-meta"><b>brand-dark (Secondary)</b><span>#0D33A3</span></div>
+        </div>
+        <div class="color-tile">
+          <div class="color-tile-bar" style="background:#1A61EA"></div>
+          <div class="color-tile-meta"><b>brand (Primary)</b><span>#1A61EA</span></div>
+        </div>
+        <div class="color-tile">
+          <div class="color-tile-bar" style="background:#E9EFFF"></div>
+          <div class="color-tile-meta"><b>brand-tint-2</b><span>#E9EFFF</span></div>
+        </div>
+        <div class="color-tile">
+          <div class="color-tile-bar" style="background:#F7F9FF"></div>
+          <div class="color-tile-meta"><b>brand-tint-1</b><span>#F7F9FF</span></div>
+        </div>
+      </div>
+
+      <h3>상태색 — 신규 추가 (기능 목적 한정)</h3>
+      <div class="grid">
+        <div class="color-tile">
+          <div class="color-tile-bar" style="background:#1C9A6C"></div>
+          <div class="color-tile-meta"><b>Success</b><span>#1C9A6C</span></div>
+        </div>
+        <div class="color-tile">
+          <div class="color-tile-bar" style="background:#D98A1B"></div>
+          <div class="color-tile-meta"><b>Warning</b><span>#D98A1B</span></div>
+        </div>
+        <div class="color-tile">
+          <div class="color-tile-bar" style="background:#E1435A"></div>
+          <div class="color-tile-meta"><b>Critical</b><span>#E1435A</span></div>
+        </div>
+      </div>
+      <div class="callout callout-note"><b>절충 원칙:</b> 상태색은 폼 검증, 알림 배지, 진행 상태 표시 등 <b>기능이 색을 요구하는 곳에만</b> 씁니다. 마케팅/랜딩
+        영역의
+        장식적 강조는 계속 브랜드 블루 톤 안에서 명도만 조절해 해결합니다. 이렇게 하면 "다채로워 보이지만 정체성이 흐려진 팔레트"를 피할 수 있습니다.</div>
+
+      <h3>뉴트럴 — Cool Gray (유지)</h3>
+      <div class="card">
+        <table>
+          <tr>
+            <th>토큰</th>
+            <th>값</th>
+            <th>용도</th>
+          </tr>
+          <tr>
+            <td><code>--ink-heaviest</code></td>
+            <td><span class="swatch" style="background:#07153D"></span>#07153D</td>
+            <td>최상위 제목</td>
+          </tr>
+          <tr>
+            <td><code>--ink</code></td>
+            <td><span class="swatch" style="background:#0E1B3D"></span>#0E1B3D</td>
+            <td><b>본문 기본색 — 신규 통일</b></td>
+          </tr>
+          <tr>
+            <td><code>--ink-light</code></td>
+            <td><span class="swatch" style="background:#41496B"></span>#41496B</td>
+            <td>보조 설명</td>
+          </tr>
+          <tr>
+            <td><code>--ink-lighter</code></td>
+            <td><span class="swatch" style="background:#7C88A3"></span>#7C88A3</td>
+            <td>메타 · placeholder · 비활성</td>
+          </tr>
+          <tr>
+            <td><code>--line-heavy</code></td>
+            <td><span class="swatch" style="background:#D3D6E0"></span>#D3D6E0</td>
+            <td>강조 보더 · 구분선</td>
+          </tr>
+        </table>
+        <div class="callout callout-note"><b>발견된 이슈 수정:</b> 기존 사이트에서 본문 텍스트 색이 4종(#000, #333, #222, rgba 혼용)으로 혼재해 있던 것을
+          <code>--ink</code> 한 값으로 통일합니다. cool gray 계열(순회색 아님) 원칙은 그대로 유지합니다.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="heading-number">4</span>스페이싱 — 4px 그리드 + 6px 하이브리드 (유지)</h2>
+      <div class="card">
+        <p class="description">기존 스텝 <b>2 · 4 · 6 · 8 · 12 · 24 · 48px</b>을 그대로 유지합니다. 6px을 정식 스텝에 포함시킨 하이브리드 구조가
+          코드프레소만의
+          촘촘한 리듬을 만들기 때문에 4px 배수로 강제 정렬하지 않습니다.</p>
+        <div class="spacing-row"><span class="label">2px</span>
+          <div class="bar" style="width:2px"></div>
+        </div>
+        <div class="spacing-row"><span class="label">4px</span>
+          <div class="bar" style="width:4px"></div>
+        </div>
+        <div class="spacing-row"><span class="label">6px</span>
+          <div class="bar" style="width:6px"></div>
+        </div>
+        <div class="spacing-row"><span class="label">8px</span>
+          <div class="bar" style="width:8px"></div>
+        </div>
+        <div class="spacing-row"><span class="label">12px</span>
+          <div class="bar" style="width:12px"></div>
+        </div>
+        <div class="spacing-row"><span class="label">24px</span>
+          <div class="bar" style="width:24px"></div>
+        </div>
+        <div class="spacing-row"><span class="label">48px</span>
+          <div class="bar" style="width:48px"></div>
+        </div>
+        <table style="margin-top:20px">
+          <tr>
+            <th>컨테이너</th>
+            <th>값</th>
+          </tr>
+          <tr>
+            <td>Wide (랜딩 풀블리드)</td>
+            <td><code>1480px</code></td>
+          </tr>
+          <tr>
+            <td>Default (본문 컨테이너)</td>
+            <td><code>1200px</code></td>
+          </tr>
+          <tr>
+            <td>Narrow (폼 · 상세 콘텐츠)</td>
+            <td><code>960px</code></td>
+          </tr>
+        </table>
+        <div class="callout callout-note"><b>신규 도입:</b> 채널톡의 gap-first 레이아웃 원칙을 참고해, margin 중첩 대신 <b>flex/grid +
+            gap</b>으로
+          간격을 관리하는 규칙을 컴포넌트 신규 개발 시 적용합니다. 기존 값 자체는 바꾸지 않고 적용 방식만 개선합니다.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="heading-number">5</span>Border Radius (유지)</h2>
+      <div class="card">
+        <div class="radius-list">
+          <figure><i style="border-radius:6px"></i>
+            <figcaption>6px<br>컨트롤 · 버튼</figcaption>
+          </figure>
+          <figure><i style="border-radius:8px"></i>
+            <figcaption>8px<br>카드</figcaption>
+          </figure>
+          <figure><i style="border-radius:12px"></i>
+            <figcaption>12px<br>블록 · 모달</figcaption>
+          </figure>
+          <figure><i style="border-radius:999px"></i>
+            <figcaption>full<br>배지 · 아바타</figcaption>
+          </figure>
+        </div>
+        <p class="description" style="margin-top:18px">채널톡의 35px/999px 같은 큰 라운드는 도입하지 않습니다. 6/8/12px의 절제된 라운드가 코드프레소의
+          "신뢰감
+          있는 기술 브랜드" 톤을 만드는 요소이므로 그대로 유지합니다.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="heading-number">6</span>Shadow — 블루 섀도우 (유지)</h2>
+      <div class="card">
+        <table>
+          <tr>
+            <th>레벨</th>
+            <th>값</th>
+            <th>용도</th>
+          </tr>
+          <tr>
+            <td>기본</td>
+            <td><code>0 2px 6px rgba(26,97,234,.04)</code></td>
+            <td>카드 기본 상태</td>
+          </tr>
+          <tr>
+            <td>hover</td>
+            <td><code>0 6px 16px rgba(26,97,234,.12)</code></td>
+            <td>hover · 포커스</td>
+          </tr>
+        </table>
+        <div class="callout callout-note"><b>유지 결정:</b> 검정 대신 브랜드 블루를 그림자 색으로 쓰는 방식은 코드프레소만의 시각적 서명입니다. blur 6→16px,
+          alpha
+          0.04→0.12의 2단 규칙 그대로 유지합니다.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="heading-number">7</span>모션 (유지 + 예시 추가)</h2>
+      <div class="card">
+        <table>
+          <tr>
+            <th>Duration</th>
+            <th>용도</th>
+          </tr>
+          <tr>
+            <td><b>0.1s</b></td>
+            <td>hover · 상태 전환 — 즉각 반응</td>
+          </tr>
+          <tr>
+            <td><b>0.5s</b></td>
+            <td>스크롤 진입 페이드</td>
+          </tr>
+        </table>
+        <p class="description" style="margin:14px 0 0">즉각적인 hover와 느긋한 스크롤 페이드의 이중 리듬을 그대로 유지합니다. 채널톡의
+          <code>cubic-bezier(.3,0,0,1)</code> 이징은 톤이 다르므로(더 유들유들한 SaaS 느낌) 도입하지 않고, 기존 easing 그대로 갑니다.
+        </p>
+      </div>
+
+      <h3>Hover — 0.1s, 즉각 반응</h3>
+      <div class="card">
+        <p class="description">버튼 · 카드 · 링크 등 인터랙션 가능한 요소는 마우스를 올리는 즉시 반응해야 합니다. 아래 예시에 실제로 마우스를 올려보세요.</p>
+        <div class="motion-grid">
+          <div class="motion-item">
+            <button class="motion-button" type="button">버튼 hover</button>
+            <span class="motion-caption">background 밝게 + shadow · 0.1s</span>
+          </div>
+          <div class="motion-item">
+            <div class="motion-card">카드 hover</div>
+            <span class="motion-caption">shadow + border · 0.1s</span>
+          </div>
+          <div class="motion-item">
+            <a class="motion-link link-underline" href="#">밑줄 링크 hover</a>
+            <span class="motion-caption">underline reveal · 0.1s</span>
+          </div>
+          <div class="motion-item">
+            <label class="motion-toggle">
+              <input type="checkbox">
+              <span class="motion-track" aria-hidden="true"></span>
+              <span>토글 스위치</span>
+            </label>
+            <span class="motion-caption">state 전환 · 0.1s</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>클릭 — Segmented Control, 인디케이터 슬라이딩</h3>
+      <div class="card">
+        <p class="description">탭 중 하나를 선택하면 검정 인디케이터가 클릭한 위치로 이동합니다. hover 배경은 --duration-hover(0.1s)로
+          즉각 반응하고, 인디케이터 이동은 --duration-indicator(0.25s)로 살짝 더 여유를 둡니다.</p>
+        <div class="segmented-control" data-segmented-control role="tablist">
+          <span class="segmented-control-indicator" data-segmented-indicator aria-hidden="true"></span>
+          <button class="segmented-control-item" type="button" role="tab" aria-selected="false">SkillCertify</button>
+          <button class="segmented-control-item" type="button" role="tab" aria-selected="false">SkillMonitor</button>
+          <button class="segmented-control-item" type="button" role="tab" aria-selected="false">SkillAdvance</button>
+          <button class="segmented-control-item" type="button" role="tab" aria-selected="true">TalentGetGo</button>
+        </div>
+      </div>
+
+      <h3>스크롤 진입 페이드 — 0.5s, 느긋하게</h3>
+      <div class="card">
+        <p class="description">섹션·카드가 뷰포트에 들어올 때 아래에서 살짝 떠오르며 페이드인됩니다. 아래로 스크롤해 다시 올려보면 재생됩니다.</p>
+        <div class="motion-grid">
+          <div class="motion-item" style="background:transparent;border:none;padding:0">
+            <div class="motion-fade" data-scroll-fade>스크롤하면 나타납니다 — 1</div>
+          </div>
+          <div class="motion-item" style="background:transparent;border:none;padding:0">
+            <div class="motion-fade" data-scroll-fade>스크롤하면 나타납니다 — 2</div>
+          </div>
+          <div class="motion-item" style="background:transparent;border:none;padding:0">
+            <div class="motion-fade" data-scroll-fade>스크롤하면 나타납니다 — 3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-note"><b>구현 가이드:</b> hover 계열은 CSS <code>transition</code>만으로 구현하고(JS 불필요), 스크롤
+        페이드는 <code>IntersectionObserver</code>로 <code>.is-visible</code> 클래스를 토글해 <code>prefers-reduced-motion</code>
+        사용자에게는 모션을 생략합니다. 토큰은 <code>--duration-hover</code> / <code>--duration-scroll</code> /
+        <code>--ease-hover</code> / <code>--ease-scroll</code>을 그대로 참조합니다.
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="heading-number">8</span>컴포넌트 — Feature 카드</h2>
+      <div class="card">
+        <p class="description">아이콘 + 제목 + 화살표 + 설명으로 구성된 기능 소개 카드. 평소엔 배경/테두리 없이 배경과 자연스럽게 섞여 있다가,
+          마우스를 올리면 옅은 회색 배경(<code>--color-surface-sunken</code>)만 나타납니다. 카드가 튀어나오거나 그림자가 생기지 않는
+          절제된 반응이 원칙이며, 전환 속도는 hover 리듬과 동일한 <code>--duration-hover(0.1s)</code>를 사용합니다.</p>
+        <div class="feature-card-grid">
+          <article class="feature-card">
+            <span class="feature-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 3v18M5 4h12l-2.5 3.5L17 11H5" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <div class="feature-card-heading">
+              <h3 class="feature-card-title">01 · 진단</h3>
+              <span class="feature-card-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+            <p class="feature-card-description">교육 전, 출발점을 숫자로 확인합니다</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 3v18M5 4h12l-2.5 3.5L17 11H5" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <div class="feature-card-heading">
+              <h3 class="feature-card-title">02 · 교육</h3>
+              <span class="feature-card-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+            <p class="feature-card-description">부족한 역량만 골라 정확하게 키웁니다</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 3v18M5 4h12l-2.5 3.5L17 11H5" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <div class="feature-card-heading">
+              <h3 class="feature-card-title">03 · 재진단</h3>
+              <span class="feature-card-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+            <p class="feature-card-description">교육이 통했는지, 다시 숫자로 증명합니다</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2><span class="heading-number">8-2</span>컴포넌트2 — 트랜지션</h2>
+      <div class="card">
+        <p class="description">아이콘 + 제목 + 화살표 + 설명으로 구성된 기능 소개 카드. 평소엔 배경/테두리 없이 배경과 자연스럽게 섞여 있다가,
+          마우스를 올리면 옅은 회색 배경(<code>--color-surface-sunken</code>)만 나타납니다. 카드가 튀어나오거나 그림자가 생기지 않는
+          절제된 반응이 원칙이며, 전환 속도는 hover 리듬과 동일한 <code>--duration-hover(0.1s)</code>를 사용합니다.</p>
+        <div class="feature-card-grid">
+          <article class="feature-card">
+            <span class="feature-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 3v18M5 4h12l-2.5 3.5L17 11H5" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <div class="feature-card-heading">
+              <h3 class="feature-card-title">01 · 진단</h3>
+              <span class="feature-card-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+            <p class="feature-card-description">교육 전, 출발점을 숫자로 확인합니다</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 3v18M5 4h12l-2.5 3.5L17 11H5" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <div class="feature-card-heading">
+              <h3 class="feature-card-title">02 · 교육</h3>
+              <span class="feature-card-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+            <p class="feature-card-description">부족한 역량만 골라 정확하게 키웁니다</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 3v18M5 4h12l-2.5 3.5L17 11H5" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <div class="feature-card-heading">
+              <h3 class="feature-card-title">03 · 재진단</h3>
+              <span class="feature-card-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+            <p class="feature-card-description">교육이 통했는지, 다시 숫자로 증명합니다</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2><span class="heading-number">9</span>최종 정리 — 유지 vs 변경</h2>
+      <div class="card">
+        <table>
+          <tr>
+            <th style="width:170px">항목</th>
+            <th>결정</th>
+          </tr>
+          <tr>
+            <td><b>서체</b></td>
+            <td>Pretendard 단일 스택 — <b>완전 유지</b></td>
+          </tr>
+          <tr>
+            <td><b>본문 사이즈</b></td>
+            <td>16px — <b>완전 유지</b> (피드백은 상위 위계 문제였음)</td>
+          </tr>
+          <tr>
+            <td><b>헤딩 스케일</b></td>
+            <td>18/20/24/26/32/36/40/56/64px 9단, Semibold 고정 — 실측값 <b>확정 반영</b> (자간 -0.1px / -0.5px 2단)</td>
+          </tr>
+          <tr>
+            <td><b>본문 스케일</b></td>
+            <td>12/13/14/16px × Regular/Medium/Semibold — 실측값 <b>확정 반영</b>, 16px 미만 사용처 축소가 "작다" 피드백의 실질 해법</td>
+          </tr>
+          <tr>
+            <td><b>웨이트</b></td>
+            <td>400/500/600, Bold 미사용 — <b>완전 유지</b></td>
+          </tr>
+          <tr>
+            <td><b>컬러</b></td>
+            <td>Primary #1A61EA · Secondary #0D33A3 · BG 3종(로그인전 #F5F8FF / 로그인후 #EAECF3 / 다크 #04091A) — 실측값 <b>확정
+                반영</b>,
+              상태색 3종만 <b>추가</b></td>
+          </tr>
+          <tr>
+            <td><b>스페이싱</b></td>
+            <td>2/4/6/8/12/24/48 하이브리드 — <b>완전 유지</b></td>
+          </tr>
+          <tr>
+            <td><b>라운드</b></td>
+            <td>6/8/12/full — <b>완전 유지</b> (채널톡 대형 라운드 미도입)</td>
+          </tr>
+          <tr>
+            <td><b>섀도우</b></td>
+            <td>블루 섀도우 2단 — <b>완전 유지</b></td>
+          </tr>
+          <tr>
+            <td><b>모션</b></td>
+            <td>hover 0.1s + 스크롤 0.5s — <b>완전 유지</b></td>
+          </tr>
+          <tr>
+            <td><b>레이아웃 원칙</b></td>
+            <td>gap-first 간격 관리 — 채널톡에서 <b>신규 도입</b></td>
+          </tr>
+          <tr>
+            <td><b>버그 수정</b></td>
+            <td>Swiper 색상, 텍스트색 통일, Noto Sans KR 제거 — <b>즉시 수정</b></td>
+          </tr>
+          <tr>
+            <td><b>버튼</b></td>
+            <td>Primary/Ghost + <code>btn-lg</code> — 랜딩 작업 중 <b>신규 등록</b> (아래 10번 참고)</td>
+          </tr>
+          <tr>
+            <td><b>헤더 &amp; 네비게이션</b></td>
+            <td>고정 GNB, 스크롤 연동 숨김/등장 — <b>신규 등록</b> (아래 11번 참고)</td>
+          </tr>
+          <tr>
+            <td><b>Hero &amp; 설문 카드</b></td>
+            <td>상단 배너, 그라디언트+glow dot 진행바, 밝은 톤 옵션 선택 — <b>신규 등록</b> (아래 12번 참고)</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="heading-number">10</span>컴포넌트 — 버튼</h2>
+      <div class="card">
+        <p class="description">Primary(브랜드 블루 필박스) / Ghost(외곽선 보조 버튼) 2종. 크기는 기본(40px) / <code>btn-lg</code>(52px, CTA
+          전용) 2단. hover는 <code>--duration-hover</code>(0.1s)로 즉각 반응하며, Primary hover는 <b>더 어두운 색이 아니라 브랜드 블루에
+          흰색을 섞은 더 밝은 색</b>(<code>color-mix(in srgb, var(--color-brand) 80%, white)</code>)으로 전환한다 — 눌렀을 때 무거워지는
+          느낌 대신 가벼워지는 느낌을 준다.</p>
+        <div class="flex-row" style="gap:12px;align-items:center">
+          <button class="btn btn-primary" type="button">Primary</button>
+          <button class="btn btn-ghost" type="button">Ghost</button>
+          <button class="btn btn-primary btn-lg" type="button">Primary Large</button>
+        </div>
+        <table style="margin-top:18px">
+          <tr>
+            <th>클래스</th>
+            <th>용도</th>
+          </tr>
+          <tr>
+            <td><code>.btn.btn-primary</code></td>
+            <td>주 강조 버튼 — 배경 <code>--color-brand</code>, hover 시 <code>color-mix()</code>로 밝게</td>
+          </tr>
+          <tr>
+            <td><code>.btn.btn-ghost</code></td>
+            <td>보조 버튼 — 배경 없음, border만, hover 시 텍스트/보더가 브랜드 컬러로</td>
+          </tr>
+          <tr>
+            <td><code>.btn-lg</code></td>
+            <td>modifier — 높이 52px, 랜딩 CTA 등 강조가 필요한 자리에 <code>.btn-primary</code>와 함께 사용</td>
+          </tr>
+        </table>
+        <div class="callout callout-note"><b>재사용 원칙:</b> 새 버튼이 필요할 때 색상을 새로 정의하지 않는다. Primary/Ghost 중 역할이 맞는 쪽을 그대로 쓰고,
+          크기만 <code>.btn-lg</code> 유무로 조절한다.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="heading-number">11</span>컴포넌트 — 헤더 &amp; 네비게이션</h2>
+      <div class="card">
+        <p class="description">고정(fixed) GNB. 로고 + 1depth 네비게이션(드롭다운 트리거 포함) + 로그인/CTA 버튼 3단 구성. 배경은 투명하게 두어 아래
+          <code>main</code> 콘텐츠가 그대로 비치고, 테두리(<code>border-bottom</code>)만으로 경계를 표시한다. 스크롤을 내리면 위로 슬라이드아웃되어
+          숨고, 올리면 다시 슬라이드다운되어 나타난다(<code>--duration-scroll</code>/<code>--ease-scroll</code>).</p>
+        <table>
+          <tr>
+            <th>규칙</th>
+            <th>값</th>
+          </tr>
+          <tr>
+            <td>전체 높이</td>
+            <td><code>75px</code> (padding 16px 위아래)</td>
+          </tr>
+          <tr>
+            <td>1depth 네비게이션</td>
+            <td>드롭다운이 있는 항목은 <code>&lt;a class="nav-trigger"&gt;</code>(+ chevron), 단순 링크는 <code>&lt;a
+                class="nav-link"&gt;</code> — 둘 다 이동 가능한 요소이므로 <code>button</code> 대신 <code>a</code> 사용</td>
+          </tr>
+          <tr>
+            <td>hover</td>
+            <td>텍스트 컬러만 <code>--color-brand</code>로 전환 · <code>--duration-hover</code>(0.1s)</td>
+          </tr>
+          <tr>
+            <td>show/hide 모션</td>
+            <td><code>transform: translateY()</code> 기반, <code>.header.is-hidden</code> 토글로 제어(JS: <code>js/header-scroll.js</code>)</td>
+          </tr>
+        </table>
+        <div class="callout callout-note"><b>재사용 원칙:</b> 헤더의 CTA 버튼은 새 스타일을 만들지 않고 위 10번 버튼 컴포넌트(<code>.btn.btn-primary</code> /
+          <code>.btn.btn-ghost</code>)를 그대로 가져와 쓴다.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="heading-number">12</span>컴포넌트 — Hero &amp; 설문 카드</h2>
+      <div class="card">
+        <p class="description">랜딩 첫 화면. 상단 중앙 배너(<code>.hero-banner</code>) + 좌(카피/CTA) 우(설문 폼, 글래스모피즘) 2단 구성. 설문 카드는
+          본문 흐름과 독립적인 보조 콘텐츠이므로 <code>&lt;aside&gt;</code>로 마크업한다.</p>
+
+        <h3>상단 배너</h3>
+        <p class="description"><code>.hero-banner</code> — 반투명 흰 필박스(<code>rgba(255,255,255,.6)</code>), hover 시
+          <code>--color-surface</code>로 밝아지며 <code>--shadow-md</code>로 살짝 떠오른다. 부모가 flex 컨테이너가 아니어도 자체를
+          <code>display:flex; width:fit-content; margin-inline:auto;</code>로 정중앙 정렬한다.</p>
+
+        <h3>설문 카드 — 진행 표시</h3>
+        <p class="description"><code>.hero-survey-progress</code>는 <b>그라디언트 채움 + 진행 끝 발광(glow) dot</b> 패턴이다. 바는
+          <code>linear-gradient(90deg, var(--color-brand-dark), var(--color-brand))</code>로 채우고, dot(8px)은 흰 테두리
+          1.5px + 브랜드 컬러 glow로 은은하게 pulse한다. 뒤로가기 버튼(<code>.hero-survey-back</code>)은 배경·테두리 없는 순수 chevron
+          아이콘이며, <b>2번째 문항부터만</b> 노출된다.</p>
+        <div class="callout callout-note"><b>재사용 원칙:</b> 이후 진행률 표시가 필요한 다른 폼(멀티스텝 폼, 온보딩 등)에도 이 그라디언트+glow dot 패턴을 그대로
+          재사용한다. 새로운 progress bar 스타일을 만들기 전에 이 패턴으로 충분한지 먼저 검토한다.</div>
+
+        <h3>설문 카드 — 옵션 선택</h3>
+        <p class="description"><code>.hero-survey-option</code>이 선택되면(<code>.is-selected</code>) 배경이
+          <code>linear-gradient(120deg, var(--color-brand-tint-2), color-mix(in srgb, var(--color-brand) 22%,
+            var(--color-brand-tint-2)))</code>로 <b>밝은</b> 톤으로 채워지고, 우측에 절대 위치(<code>position:absolute</code>)로
+          체크 아이콘이 겹쳐 나타난다. 선택하지 않은 나머지 옵션은 <code>opacity:.45</code>로 흐려져 시선을 모은다. 클릭 시
+          <code>hero-survey-option-bubble</code> 애니메이션(scale 1 → 1.025 → 1)으로 물방울처럼 은은하게 반응하고, 잠시 후 질문/옵션
+          블록 전체가 페이드+8px 슬라이드로 다음 문항으로 전환된다. survey 내부 트랜지션은 전역 <code>--duration-scroll</code>보다 50% 빠른
+          로컬 토큰 <code>--survey-duration</code>을 쓴다.</p>
+        <div class="callout callout-note"><b>재사용 원칙:</b> 옵션 선택형 UI(체크박스형 카드, 멀티 초이스 등)를 새로 만들 때 이 밝은 그라디언트 채움 + dim +
+          bubble 모션 패턴을 우선 검토한다. 배경을 어둡게(<code>--color-brand-dark</code> 단색) 채우는 방식은 이 프로젝트의 선택 피드백 톤과 맞지 않으므로
+          지양한다.</div>
+      </div>
+    </section>
+
+    <footer>코드프레소 디자인 시스템 리뉴얼안 · 최초 작성: 2026-08-18 · 수정 작성: 2026-08-19</footer>
+  </div>
+
+  <script>
+    // 모션 섹션 예시 전용: Segmented Control 인디케이터를 선택된 탭 위치로 슬라이딩
+    document.querySelectorAll("[data-segmented-control]").forEach((control) => {
+      const indicator = control.querySelector("[data-segmented-indicator]");
+      const items = Array.from(control.querySelectorAll(".segmented-control-item"));
+
+      const moveIndicatorTo = (item) => {
+        indicator.style.width = item.offsetWidth + "px";
+        indicator.style.transform = `translateX(${item.offsetLeft - items[0].offsetLeft}px)`;
+      };
+
+      const selectItem = (target) => {
+        items.forEach((item) => item.setAttribute("aria-selected", String(item === target)));
+        moveIndicatorTo(target);
+      };
+
+      moveIndicatorTo(items.find((item) => item.getAttribute("aria-selected") === "true") || items[0]);
+      items.forEach((item) => item.addEventListener("click", () => selectItem(item)));
+      window.addEventListener("resize", () => {
+        const selected = items.find((item) => item.getAttribute("aria-selected") === "true");
+        if (selected) moveIndicatorTo(selected);
+      });
+    });
+
+    // 모션 섹션 예시 전용: 스크롤 진입 시 .motion-fade에 .is-visible 부여
+    const fadeTargets = document.querySelectorAll("[data-scroll-fade]");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      fadeTargets.forEach((el) => el.classList.add("is-visible"));
+    } else if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            entry.target.classList.toggle("is-visible", entry.isIntersecting);
+          });
+        },
+        { threshold: 0.3 }
+      );
+      fadeTargets.forEach((el) => observer.observe(el));
+    } else {
+      fadeTargets.forEach((el) => el.classList.add("is-visible"));
+    }
+  </script>
+</body>
+
+</html>

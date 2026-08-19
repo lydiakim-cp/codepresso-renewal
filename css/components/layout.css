@@ -1,0 +1,76 @@
+/*
+ * Component: Layout
+ * 문서 컨테이너, 카드, 그리드 wrapper 등 반복되는 레이아웃 단위.
+ */
+
+.wrap {
+  max-width: var(--container-medium);
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+.section-wrap{
+  max-width: var(--container-medium);
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.sub {
+  color: var(--color-ink-lighter);
+  font-size: var(--text-body);
+
+}
+
+section{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+main{
+  
+}
+
+.description {
+  color: var(--color-ink-light);
+  font-size: var(--text-body-muted);
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 28px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+.flex-row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.before-after {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-24);
+  margin-top: 14px;
+}
+
+/* 페이지 전체 폭 기준 반응형이므로 Media Query 사용 (컴포넌트 단위 반응형은 Container Query 우선 원칙과 별개) */
+@media (max-width: 640px) {
+  .before-after {
+    grid-template-columns: 1fr;
+  }
+}

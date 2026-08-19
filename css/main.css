@@ -1,0 +1,28 @@
+/*
+ * Main Entry
+ * Reset → Design Tokens → Base → Components 순서로 계층을 로드한다.
+ * Cascade Layer로 우선순위를 명시해 specificity 경쟁을 방지한다.
+ */
+
+@layer reset, tokens, base, components;
+
+@import url("./reset.css") layer(reset);
+@import url("./tokens.css") layer(tokens);
+@import url("./base.css") layer(base);
+
+@import url("./components/layout.css") layer(components);
+@import url("./components/link.css") layer(components);
+@import url("./components/badge.css") layer(components);
+@import url("./components/callout.css") layer(components);
+@import url("./components/color-tile.css") layer(components);
+@import url("./components/color-ramp.css") layer(components);
+@import url("./components/type-spec.css") layer(components);
+@import url("./components/scale-demo.css") layer(components);
+@import url("./components/before-after.css") layer(components);
+@import url("./components/motion-demo.css") layer(components);
+@import url("./components/segmented-control.css") layer(components);
+@import url("./components/feature-card.css") layer(components);
+@import url("./components/button.css") layer(components);
+@import url("./components/header.css") layer(components);
+@import url("./components/main-content.css") layer(components);
+@import url("./components/hero.css") layer(components);

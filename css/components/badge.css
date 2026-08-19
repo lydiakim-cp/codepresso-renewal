@@ -1,0 +1,54 @@
+/*
+ * Component: Badge / Pill / Tag / Swatch
+ * 숫자 뱃지(h2 내 번호), pill 라벨, 얕은 radius 태그, 컬러 스와치.
+ */
+
+.heading-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--color-brand-tint-2);
+  color: var(--color-brand);
+  font-size: var(--text-body-muted);
+  font-weight: var(--font-weight-semibold);
+  margin-right: var(--space-12);
+  flex: none;
+}
+
+.pill {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-label);
+  font-weight: var(--font-weight-medium);
+  margin: 0 6px 6px 0;
+}
+
+.pill-key {
+  background: var(--color-brand-tint-2);
+  color: var(--color-brand-dark);
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: var(--radius-md);
+  background: var(--color-brand-tint-2);
+  color: var(--color-brand-dark);
+  font-size: var(--text-label);
+  font-weight: var(--font-weight-semibold);
+  line-height: 140%;
+}
+
+.swatch {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-line-heavy);
+  vertical-align: -6px;
+  margin-right: var(--space-8);
+}
