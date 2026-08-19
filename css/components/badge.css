@@ -34,12 +34,12 @@
 
 .tag {
   display: inline-block;
+  width: fit-content;
   padding: 4px 8px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   background: var(--color-brand-tint-2);
-  color: var(--color-brand-dark);
+  color: var(--color-brand);
   font-size: var(--text-label);
-  font-weight: var(--font-weight-semibold);
   line-height: 140%;
 }
 

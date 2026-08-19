@@ -24,6 +24,4 @@
 @import url("./components/feature-card.css") layer(components);
 @import url("./components/button.css") layer(components);
 @import url("./components/header.css") layer(components);
-@import url("./components/main-content.css") layer(components);
 @import url("./components/hero.css") layer(components);
-@import url("./components/section-title.css") layer(components);

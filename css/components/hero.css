@@ -6,9 +6,6 @@
 
 .hero {
   background: var(--color-bg-login-pre) url("../../images/main-bg.png") center / cover no-repeat;
-  /* fixed header(75px)에 콘텐츠가 가리지 않도록 상단 여백에 header 높이를 더한다.
-     배경 이미지는 header 뒤까지 그대로 이어져 비친다. */
-  padding-block: 96px;
   gap: 48px;
   /* .hero-clients-marquee가 100vw 트랙을 쓰므로 가로 스크롤바가 생기지 않도록 막는다 */
   overflow-x: hidden;

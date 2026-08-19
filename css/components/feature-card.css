@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+  height: 320px;
   padding: var(--space-35);
   border-radius: var(--radius-lg);
   background: transparent;
@@ -23,7 +23,37 @@
 }
 
 .feature-card:hover {
-  background: var(--color-surface-sunken);
+  background: rgba(0,0,0,0.03);
+}
+
+.feature-card-icon-row {
+  flex-shrink: 0;
+  height: var(--space-48);
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: height var(--duration-scroll) var(--ease-scroll),
+    margin var(--duration-scroll) var(--ease-scroll);
+}
+
+.feature-card:hover .feature-card-icon-row {
+  height: 0;
+  margin-bottom: 0;
+}
+
+.feature-card-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  transform: translateY(0);
+  transition: transform var(--duration-scroll) var(--ease-scroll);
+}
+
+.feature-card:hover .feature-card-body {
+  /* icon-row가 접히며 68px(아이콘 48px + gap 20px)만큼 밀어 올리는 것을
+     34px만큼 아래로 되돌려서, 최종 체감 이동량을 34px로 맞춘다. */
+  transform: translateY(34px);
 }
 
 .feature-card-icon {
@@ -32,10 +62,20 @@
   justify-content: center;
   width: var(--space-48);
   height: var(--space-48);
+  border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
   color: var(--color-ink-lighter);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--duration-scroll) var(--ease-scroll),
+    transform var(--duration-scroll) var(--ease-scroll);
+}
+
+.feature-card:hover .feature-card-icon {
+  opacity: 0;
+  transform: translateY(calc(-1 * var(--motion-rise)));
 }
 
 .feature-card-icon svg {
@@ -48,6 +88,7 @@
   align-items: center;
   gap: 10px;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .feature-card-title {
@@ -74,16 +115,46 @@
   transform: translateX(2px);
 }
 
-.feature-card-description {
-  font-size: var(--text-body-16);
-  line-height: var(--leading-body-16);
-  letter-spacing: var(--tracking-body-tight);
-  color: var(--color-ink-light);
+.feature-card-sub {
+  margin-bottom: 16px;
 }
+
+.feature-card-desc-row {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.feature-card-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(calc(-1 * var(--motion-rise)));
+  transition: opacity var(--duration-scroll) var(--ease-scroll),
+    transform var(--duration-scroll) var(--ease-scroll);
+}
+.feature-card-desc p{
+  color: var(--color-ink-light);
+}  
+
+.feature-card:hover .feature-card-desc {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   .feature-card,
-  .feature-card-arrow {
+  .feature-card-arrow,
+  .feature-card-icon,
+  .feature-card-heading,
+  .feature-card-sub,
+  .feature-card-desc {
     transition-duration: 0.001ms;
   }
 }
