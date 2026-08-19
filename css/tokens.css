@@ -64,6 +64,7 @@
   --text-heading-32: 32px; --leading-heading-32: 42px;
   --text-heading-36: 36px; --leading-heading-36: 48px;
   --text-heading-40: 40px; --leading-heading-40: 50px;
+  --text-heading-44: 44px; --leading-heading-44: 54px;
   --text-heading-56: 56px; --leading-heading-56: 66px;
   --text-heading-64: 64px; --leading-heading-64: 74px;
 
@@ -76,6 +77,7 @@
   --text-body-13: 13px; --leading-body-13: 20px;
   --text-body-14: 14px; --leading-body-14: 22px;
   --text-body-16: 16px; --leading-body-16: 24px;
+  --text-body-18: 18px; --leading-body-18: 28px;
 
   /* Typography — Body 자간: 16px만 -0.1px, 12/13/14px은 0px */
   --tracking-body-tight: -0.1px;
@@ -86,12 +88,12 @@
   --leading-hero: var(--leading-heading-56);
   --tracking-hero: var(--tracking-heading-wide);
 
-  --text-h1: var(--text-heading-40);
-  --leading-h1: var(--leading-heading-40);
-  --tracking-h1: var(--tracking-heading-tight);
+  --text-h1: var(--text-heading-56);
+  --leading-h1: var(--leading-heading-56);
+  --tracking-h1: var(--tracking-heading-wide);
 
-  --text-h2: var(--text-heading-32);
-  --leading-h2: var(--leading-heading-32);
+  --text-h2: var(--text-heading-44);
+  --leading-h2: var(--leading-heading-44);
   --tracking-h2: var(--tracking-heading-tight);
 
   --text-h3: var(--text-heading-24);

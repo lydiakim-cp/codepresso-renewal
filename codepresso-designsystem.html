@@ -794,6 +794,53 @@
         <div class="callout callout-note"><b>재사용 원칙:</b> 옵션 선택형 UI(체크박스형 카드, 멀티 초이스 등)를 새로 만들 때 이 밝은 그라디언트 채움 + dim +
           bubble 모션 패턴을 우선 검토한다. 배경을 어둡게(<code>--color-brand-dark</code> 단색) 채우는 방식은 이 프로젝트의 선택 피드백 톤과 맞지 않으므로
           지양한다.</div>
+
+        <h3>함께하는 기업 로고 — 무한 가로 스크롤</h3>
+        <p class="description"><code>.hero-clients</code>는 hero 배경 위, <code>.section-wrap</code> 바깥에 이어 배치되어
+          hero의 그라디언트 배경을 그대로 공유한다. <code>.hero-clients-marquee</code>는
+          <code>.section-wrap</code>과 동일한 <code>max-width</code>로 폭을 맞추고, 로고 목록(<code>.hero-clients-track</code>)을
+          동일한 내용으로 2벌 나란히 두어 <code>translateX(-100%)</code> 애니메이션이 이음매 없이 반복되게 한다. 좌우 끝은
+          <code>mask-image</code> 그라디언트로 자연스럽게 페이드아웃시킨다.</p>
+        <div class="callout callout-note"><b>재사용 원칙:</b> 로고/뱃지 등을 무한 스크롤로 나열해야 할 때 새 마퀴 구현을 만들지 않고 이 트랙 2벌 +
+          <code>mask-image</code> 패턴을 그대로 재사용한다.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="heading-number">13</span>컴포넌트 — 섹션 타이틀</h2>
+      <div class="card">
+        <p class="description">메인페이지 각 섹션 상단에 반복되는 라벨 + 타이틀 + 설명 3단 블록. <code>.title</code> 안에
+          <code>.label</code>(16px, 브랜드 컬러) → <code>h2</code>(44px, 전역 스타일 그대로 상속) → <code>.desc</code>(18px) 순으로
+          쌓인다. 기본 정렬은 중앙이며, 좌측 정렬이 필요하면 <code>h2</code>에 <code>.text-left</code> modifier를 추가한다.</p>
+        <div class="title" style="margin-bottom:24px">
+          <p class="label">How it works</p>
+          <h2 class="text-left">교육으로 바꾸고, <br>진단으로 증명합니다</h2>
+          <p class="desc">핵심은 교육입니다. 외부 채용 대신, 내부 직원을 사내 FDE로 키우고, 진단이 숫자로 확인합니다.</p>
+        </div>
+        <table>
+          <tr>
+            <th>클래스</th>
+            <th>용도</th>
+          </tr>
+          <tr>
+            <td><code>.title .label</code></td>
+            <td>16px, <code>--text-body-16</code> · <code>--color-brand</code></td>
+          </tr>
+          <tr>
+            <td><code>.title h2</code></td>
+            <td>44px, <code>--text-h2</code>(<code>--text-heading-44</code>) — base.css 전역 h2 스타일을 그대로 상속</td>
+          </tr>
+          <tr>
+            <td><code>.title h2.text-left</code></td>
+            <td>modifier — 기본 중앙 정렬을 좌측 정렬로 전환</td>
+          </tr>
+          <tr>
+            <td><code>.title .desc</code></td>
+            <td>18px, <code>--text-body-18</code> · <code>--color-ink-light</code></td>
+          </tr>
+        </table>
+        <div class="callout callout-note"><b>재사용 원칙:</b> 새 섹션을 추가할 때 타이틀 블록을 새로 만들지 않고 이 <code>.title</code> 마크업
+          구조를 그대로 복사해 텍스트만 바꾼다. h1(56px)은 페이지당 1회, 이 섹션 타이틀은 h2(44px)로 위계를 구분한다.</div>
       </div>
     </section>
 

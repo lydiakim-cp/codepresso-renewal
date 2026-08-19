@@ -15,4 +15,8 @@ main {
     color-mix(in srgb, var(--color-bg-login-pre) calc((1 - var(--scroll-progress)) * 100%), var(--color-surface)) 0%,
     var(--color-surface) 640px
   );
+
+      display: flex;
+    flex-direction: column;
+    gap: 100px;
 }
