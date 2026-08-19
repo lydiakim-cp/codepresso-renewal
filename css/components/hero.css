@@ -10,7 +10,8 @@
      배경 이미지는 header 뒤까지 그대로 이어져 비친다. */
   padding-block: 96px;
   gap: 48px;
-  
+  /* .hero-clients-marquee가 100vw 트랙을 쓰므로 가로 스크롤바가 생기지 않도록 막는다 */
+  overflow-x: hidden;
 }
 
 /* 상단 중앙 배너 */
@@ -428,5 +429,64 @@
   .hero-survey-question,
   .hero-survey-options {
     transition: none;
+  }
+}
+
+/* 함께하는 기업 로고 — hero 배경 위에서 이어지는 무한 가로 스크롤 */
+.hero-clients {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-24);
+  padding-block: 40px;
+}
+
+.hero-clients-title {
+  font-size: var(--text-body-muted);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink-light);
+  text-align: center;
+}
+
+/* .section-wrap과 동일한 폭으로 제한하고, 좌우 끝은 배경색으로 자연스럽게 페이드아웃시킨다 */
+.hero-clients-marquee {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: var(--container-medium);
+  width: 100%;
+  height: 60px;
+  margin-inline: auto;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+
+.hero-clients-track {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--space-48);
+  padding-inline: var(--space-24);
+  animation: hero-clients-scroll 28s linear infinite;
+}
+
+@keyframes hero-clients-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.hero-clients-item {
+  flex-shrink: 0;
+  font-size: var(--text-heading-20);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-heading-tight);
+  color: var(--color-ink-lighter);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-clients-track {
+    animation: none;
   }
 }

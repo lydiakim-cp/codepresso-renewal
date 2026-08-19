@@ -6,7 +6,11 @@
  * prefers-reduced-motion 사용자에게는 bubble 애니메이션과 전환 애니메이션을 생략하고 즉시 갱신한다.
  */
 (() => {
-  const survey = document.querySelector(".hero-survey");
+  // 시안 비교 페이지처럼 .hero-survey가 여러 개 있을 수 있으므로,
+  // 이 스크립트가 다루는 전체 마크업(뒤로가기 버튼까지 포함)을 갖춘 첫 요소를 찾는다.
+  const survey = Array.from(document.querySelectorAll(".hero-survey")).find(
+    (el) => el.querySelector(".hero-survey-back")
+  );
   if (!survey) return;
 
   const optionsList = survey.querySelector(".hero-survey-options");
