@@ -1,0 +1,77 @@
+/*
+ * Component: Proof Card
+ * 고객사 도입 성과를 로고 + 강조 지표 + 인용문으로 보여주는 카드.
+ * .card 셸을 기반으로 하며, 2열 그리드로 배치한다.
+ */
+
+.proof-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-24);
+}
+
+.proof-card {
+  gap: var(--space-20);
+  background: var(--color-brand-tint-1);
+  border-color: var(--color-brand-tint-2);
+}
+
+.proof-card-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-48);
+  height: var(--space-48);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-brand-tint-2);
+  overflow: hidden;
+}
+
+.proof-card-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.proof-card-metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.proof-card-metric-value {
+  font-size: var(--text-heading-32);
+  line-height: var(--leading-heading-32);
+  letter-spacing: var(--tracking-heading-tight);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-brand);
+}
+
+.proof-card-metric-label {
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  color: var(--color-ink-lighter);
+}
+
+.proof-card-quote-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-20);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-surface) 78%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-surface) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.proof-card-quote {
+  color: var(--color-ink-light);
+}
+
+.proof-card-source {
+  color: var(--color-ink-lighter);
+  font-size: var(--text-body-14);
+}
+

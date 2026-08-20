@@ -11,19 +11,38 @@
   gap: var(--space-24);
 }
 
+.feature-card-progress {
+  display: block;
+  flex-shrink: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: var(--color-line);
+  overflow: hidden;
+}
+
+.feature-card-progress-bar {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: var(--radius-full);
+  background: var(--color-ink-heaviest);
+}
+
+.feature-card-progress-bar.is-animating {
+  transition: width linear var(--duration-cycle, 5s);
+}
+
 .feature-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 320px;
+  height: 380px;
   padding: var(--space-35);
   border-radius: var(--radius-lg);
   background: transparent;
   transition: background var(--duration-hover) var(--ease-hover);
-}
-
-.feature-card:hover {
-  background: rgba(0,0,0,0.03);
 }
 
 .feature-card-icon-row {
@@ -35,25 +54,14 @@
     margin var(--duration-scroll) var(--ease-scroll);
 }
 
-.feature-card:hover .feature-card-icon-row {
-  height: 0;
-  margin-bottom: 0;
-}
-
 .feature-card-body {
   display: flex;
   flex-direction: column;
   width: 100%;
   min-height: 0;
   flex: 1;
-  transform: translateY(0);
-  transition: transform var(--duration-scroll) var(--ease-scroll);
-}
-
-.feature-card:hover .feature-card-body {
-  /* icon-row가 접히며 68px(아이콘 48px + gap 20px)만큼 밀어 올리는 것을
-     34px만큼 아래로 되돌려서, 최종 체감 이동량을 34px로 맞춘다. */
-  transform: translateY(34px);
+  /* 우측 중앙에 절대 위치한 화살표(18px)와 겹치지 않도록 여백을 둔다. */
+  padding-right: 32px;
 }
 
 .feature-card-icon {
@@ -73,11 +81,6 @@
     transform var(--duration-scroll) var(--ease-scroll);
 }
 
-.feature-card:hover .feature-card-icon {
-  opacity: 0;
-  transform: translateY(calc(-1 * var(--motion-rise)));
-}
-
 .feature-card-icon svg {
   width: 20px;
   height: 20px;
@@ -92,15 +95,14 @@
 }
 
 .feature-card-title {
-  font-size: var(--text-heading-25);
-  line-height: var(--leading-heading-25);
-  letter-spacing: var(--tracking-heading-tight);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-ink-heaviest);
+  
 }
 
 .feature-card-arrow {
-  margin-left: auto;
+  position: absolute;
+  top: 50%;
+  right: var(--space-35);
+  transform: translateY(-50%);
   color: var(--color-ink-lighter);
   transition: transform var(--duration-hover) var(--ease-hover);
 }
@@ -111,12 +113,13 @@
   height: 18px;
 }
 
-.feature-card:hover .feature-card-arrow {
-  transform: translateX(2px);
-}
-
 .feature-card-sub {
   margin-bottom: 16px;
+  font-size: var(--text-heading-25);
+  line-height: var(--leading-heading-25);
+  letter-spacing: var(--tracking-heading-tight);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-heaviest);
 }
 
 .feature-card-desc-row {
@@ -126,6 +129,7 @@
   width: 100%;
   min-height: 0;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .feature-card-desc {
@@ -140,18 +144,46 @@
 }
 .feature-card-desc p{
   color: var(--color-ink-light);
-}  
+}
 
-.feature-card:hover .feature-card-desc {
+/*
+ * Active State (.feature-card.is-active)
+ * hover 또는 자동 순환(feature-card-cycle.js)에 의해 activate된 카드의 상태.
+ * 아이콘이 fade+상승하며 사라지고, 화살표(카드 우측 중앙에 절대 위치)가
+ * 살짝 오른쪽으로 이동하며, 설명(desc)이 fade-in된다.
+ */
+.feature-card.is-active {
+  background: var(--color-surface-sunken);
+}
+
+.feature-card.is-active .feature-card-icon-row {
+  height: 0;
+  margin-bottom: 0;
+}
+
+.feature-card.is-active .feature-card-icon {
+  opacity: 0;
+  transform: translateY(calc(-1 * var(--motion-rise)));
+}
+
+.feature-card.is-active .feature-card-title {
+  color: var(--color-brand);
+}
+
+.feature-card.is-active .feature-card-arrow {
+  transform: translateY(-50%) translateX(2px);
+}
+
+.feature-card.is-active .feature-card-desc {
   opacity: 1;
   transform: translateY(0);
 }
-
 
 @media (prefers-reduced-motion: reduce) {
   .feature-card,
   .feature-card-arrow,
   .feature-card-icon,
+  .feature-card-icon-row,
   .feature-card-heading,
   .feature-card-sub,
   .feature-card-desc {

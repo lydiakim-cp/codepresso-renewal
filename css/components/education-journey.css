@@ -1,0 +1,273 @@
+/*
+ * Component: Education Journey
+ * PART 1 · 교육 섹션. 좌측 카피+단계 인디케이터는 sticky로 고정되고,
+ * 우측은 01~03 단계가 세로로 쌓인 스토리 블록으로 스크롤된다.
+ * 좌측 인디케이터는 우측 스크롤 위치에 따라 활성 단계가 바뀐다(journey-scroll.js).
+ */
+
+/* 연한 브랜드 블루 그라디언트 배경 — hero의 톤을 이어받아 섹션 전환이 자연스럽게 느껴지게 한다.
+   tint-1→tint-2만으로는 색 차이가 옅어 티가 잘 안 나서, 종료 지점에 브랜드 컬러를 살짝 섞어
+   대비를 확보한다. */
+.education-journey {
+  background: linear-gradient(160deg,
+      var(--color-brand-tint-1) 0%,
+      color-mix(in srgb, var(--color-brand) 18%, var(--color-brand-tint-2)) 100%);
+}
+
+.education-journey-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: var(--space-48);
+}
+
+@media (max-width: 900px) {
+  .education-journey-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.education-journey-sticky {
+  position: sticky;
+  top: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+}
+
+/* 좌측 하단 단계 인디케이터. 스크롤에 따라 .is-active가 옮겨 다니며
+   지금 우측 어느 단계를 보고 있는지 알려준다. */
+.journey-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.journey-step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-12) 0;
+  border-left: 2px solid var(--color-line);
+  padding-left: var(--space-20);
+  transition: border-color var(--duration-scroll) var(--ease-scroll);
+}
+
+.journey-step-index {
+  font-size: var(--text-body-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-lighter);
+  transition: color var(--duration-scroll) var(--ease-scroll);
+}
+
+.journey-step-label {
+  font-size: var(--text-body-muted);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink-lighter);
+  transition: color var(--duration-scroll) var(--ease-scroll);
+}
+
+.journey-step.is-active {
+  border-color: var(--color-brand);
+}
+
+.journey-step.is-active .journey-step-index,
+.journey-step.is-active .journey-step-label {
+  color: var(--color-brand);
+}
+
+/* 우측 스크롤 컬럼. 블록 사이를 넉넉히 띄워 한 화면에 한 단계씩 읽히게 한다. */
+.education-journey-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+}
+
+.journey-block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  min-height: 320px;
+  padding: var(--space-48);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  box-shadow: var(--shadow-sm);
+  scroll-margin-top: 120px;
+}
+
+/* 큰 배경 숫자 — 지금 몇 번째 단계를 보고 있는지 시각적으로도 바로 인지되게 한다. */
+.journey-block-index {
+  position: absolute;
+  top: var(--space-24);
+  right: var(--space-24);
+  font-size: var(--text-heading-56);
+  line-height: 1;
+  letter-spacing: var(--tracking-heading-wide);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-brand-tint-2);
+}
+
+/* 헤드라인 그룹 — "0N. 라벨"(좌측 sticky 인디케이터와 동일한 문구) + 짧은 핵심 문장.
+   배경의 큰 숫자(.journey-block-index)는 장식이고, 이 라벨이 실제로 읽히는 단계 이름이다. */
+.journey-block-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  max-width: 80%;
+}
+
+.journey-block-label {
+  font-size: var(--text-body-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand);
+}
+
+/* h3 전역 스타일(semibold, --color-ink)보다 한 단계 큰 스케일이 필요해
+   태그를 h3로 유지하되 시각 스타일은 컴포넌트 클래스로 새로 정의한다. */
+.journey-block-title {
+  font-size: var(--text-heading-32);
+  line-height: var(--leading-heading-32);
+  letter-spacing: var(--tracking-heading-tight);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-heaviest);
+}
+
+.journey-block-sublabel {
+  font-size: var(--text-body-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-lighter);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-line);
+}
+
+.journey-block-desc {
+  font-size: var(--text-body-18);
+  line-height: var(--leading-body-18);
+  color: var(--color-ink-light);
+}
+
+/* 01 단계 — 교육 프로그램 쇼케이스. 좌측 썸네일 미리보기 + 우측 프로그램 리스트를
+   절반씩 나눠 배치하고, 리스트 항목을 hover하거나 자동 순환(journey-program-cycle.js)이
+   activate하면 좌측 썸네일이 함께 전환된다. */
+.journey-program-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-24);
+  align-items: stretch;
+}
+
+@media (max-width: 640px) {
+  .journey-program-showcase {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 좌측 썸네일 미리보기 — 실제 프로그램 이미지가 들어가기 전까지의 임시 표현.
+   activate된 썸네일만 보이고 나머지는 겹쳐서 숨어있다가 fade로 전환된다. */
+.journey-program-preview {
+  position: relative;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.journey-program-thumb {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(120% 140% at 15% 0%, rgba(255, 255, 255, .16) 0%, transparent 55%),
+    linear-gradient(155deg, #2b2f3a 0%, #14161c 55%, #05060a 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08),
+    inset 0 -24px 40px rgba(0, 0, 0, .35);
+  opacity: 0;
+  transition: opacity var(--duration-scroll) var(--ease-scroll);
+}
+
+.journey-program-thumb.is-active {
+  opacity: 1;
+}
+
+.journey-program-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  border-top: 1px solid var(--color-line);
+}
+
+.journey-program-list li:not(:last-child) {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.journey-program {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-20);
+  margin-inline: calc(-1 * var(--space-20));
+  padding: var(--space-12) var(--space-20);
+  border-radius: var(--radius-md);
+  transition: background var(--duration-hover) var(--ease-hover);
+}
+
+.journey-program:hover,
+.journey-program.is-active {
+  background: var(--color-surface-sunken);
+}
+
+.journey-program:hover .journey-program-icon,
+.journey-program.is-active .journey-program-icon {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.journey-program-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--space-48);
+  height: var(--space-48);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-brand);
+  transition: border-color var(--duration-hover) var(--ease-hover),
+    color var(--duration-hover) var(--ease-hover);
+}
+
+.journey-program-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.journey-program-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.journey-program-name {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: var(--text-card-title);
+  line-height: var(--leading-card-title);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-heaviest);
+}
+
+.journey-program-desc {
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  color: var(--color-ink-lighter);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-program-thumb {
+    transition-duration: 0.001ms;
+  }
+}
+

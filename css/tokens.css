@@ -13,6 +13,7 @@
   --color-brand-dark: #0D33A3;
   --color-brand-tint-1: #F7F9FF;
   --color-brand-tint-2: #E9EFFF;
+  --color-accent-tint-beige: #F1EBDE;
 
   /* Color — Background (로그인 전/후, 다크모드) */
   --color-bg-login-pre: #F5F8FF;
@@ -33,6 +34,7 @@
   --color-surface: #FFFFFF;
   --color-surface-sunken: #F7F9FF;
   --color-surface-page: #FBFCFF;
+  --color-surface-mist: #EEF0F3;
 
   /* Color — State (기능 목적 한정 사용) */
   --color-success: #1C9A6C;
@@ -53,6 +55,8 @@
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
+  /* Bold — 3단 원칙의 예외. proof-card 강조 지표처럼 semibold보다 강한 강조가 필요한 자리에서만 사용 */
+  --font-weight-bold: 700;
 
   /* Typography — Heading Scale (9단, Semibold 고정)
    * 표기: --text-heading-{size}px / 대응 line-height --leading-heading-{size}px */
@@ -162,6 +166,7 @@
   --duration-hover: 0.1s;
   --duration-indicator: 0.25s;
   --duration-scroll: 0.5s;
+  --duration-cycle: 5s;
   --ease-hover: ease-out;
   --ease-scroll: ease-out;
 
