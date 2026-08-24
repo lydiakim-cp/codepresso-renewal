@@ -1,6 +1,6 @@
 ---
 name: html-css-architecture
-description: Modern HTML & CSS Architecture 가이드. Semantic HTML, Lightweight Reset, Design Token, Component화, Tailwind 사용 원칙, Container Query, Accessibility 등 마크업/스타일링 작업 시 기본으로 참고해야 하는 설계 원칙. HTML 작성, CSS 작성, 컴포넌트 스타일링, Tailwind class 정리, 반응형 구현, 접근성 개선 등의 작업을 할 때 항상 먼저 로드해서 따른다.
+description: Modern HTML & CSS Architecture 가이드. Semantic HTML, Lightweight Reset, Design Token, Component화, Tailwind 사용 원칙, Container Query, Accessibility, 중복·무효 선언 정리(태그 전역 스타일과 겹치는 폰트 재정의, 공용 유틸리티와 중복된 클래스, 무효한 display:flex 삭제) 등 마크업/스타일링 작업 시 기본으로 참고해야 하는 설계 원칙. HTML 작성, CSS 작성, 컴포넌트 스타일링, Tailwind class 정리, 반응형 구현, 접근성 개선, CSS 중복 제거·리팩터링 등의 작업을 할 때 항상 먼저 로드해서 따른다.
 ---
 
 # Modern HTML & CSS Architecture
@@ -20,6 +20,7 @@ description: Modern HTML & CSS Architecture 가이드. Semantic HTML, Lightweigh
 - Container Query로 컴포넌트 단위 반응형을 구현한다.
 - Accessibility는 설계 단계부터 고려한다.
 - AI가 생성한 코드도 사람이 읽고 유지보수 가능해야 한다.
+- 이미 상속되는 값을 다시 선언하지 않는다 — 마크업/CSS를 만질 때마다 중복·무효 선언을 걷어낸다(12번).
 
 ## CSS Architecture 계층
 
@@ -294,13 +295,83 @@ breakpoint를 과도하게 늘리지 않고 `clamp()`, `min()`, `max()`, `calc()
 - **파일명**: `sample/` 폴더 안에 있어도 파일명 자체는 그 페이지가 다루는 대상을 설명해야 한다 — `sample-1.html`, `demo-page.html` (X) → `survey-progress-sample.html`처럼 "무엇의 무엇"인지 드러나는 이름 (O). `sample`이라는 단어를 꼭 넣어야 한다면 접두사가 아니라 맥락을 설명하는 단어 뒤에 접미사로만 둔다.
 - 이미 있는 `demo-*`/`sample-*` 이름을 발견하면 그 자리에서 의미 있는 이름으로 정리한다.
 
-## 12. 최종 품질 체크리스트
+## 12. 중복·무효 선언 정리 (마크업/CSS 작업마다 필수)
+
+HTML·CSS를 **작성하거나 수정할 때마다** 아래 4종 중복을 점검하고 정리한다. 사용자가 따로 요청하지 않아도 항상 수행하는 상시 작업이며, "이번엔 몇 줄만 고치는 작업"이라는 이유로 건너뛰지 않는다.
+
+정리는 **값이 같은지 실제로 확인한 뒤에만** 한다. 토큰(`var(--text-h2)`)은 이름이 달라도 최종 값이 같을 수 있으므로, 토큰 체인을 끝까지 펼쳐 실제 값(`44px`)으로 비교한다. 이름만 보고 "다르겠지"라고 넘기지 않는다.
+
+### (1) 태그 전역 스타일과 중복된 폰트 재정의
+
+`base.css`가 `h1~h6`·`p` 등에 이미 주는 값을 컴포넌트 클래스가 다시 선언하는 경우.
+
+```css
+/* base.css: h2 { font-size: 44px; line-height: 54px; font-weight: 600; ... } */
+
+/* 나쁨 — h2에 붙는 클래스가 기본값을 그대로 재선언 */
+.section-title h2 { font-size: var(--text-h2); line-height: var(--leading-h2); font-weight: 600; text-align: center; }
+
+/* 좋음 — 값이 다른 속성만 남긴다 */
+.section-title h2 { text-align: center; }
+```
+
+- 클래스가 붙은 **실제 태그를 마크업에서 확인**하고, 그 태그의 `base.css` 기본값과 `font-size`/`line-height`/`font-weight`/`letter-spacing`/`color`를 하나씩 비교한다.
+- 겹치는 속성만 지우고, 다른 값은 남긴다.
+- **전부 겹쳐서 규칙이 비면** 규칙과 클래스명을 모두 삭제하고 태그만 남긴다(`<h1 class="hero-title">` → `<h1>`).
+- 반응형 단계에서 기본값과 우연히 같아지는 경우(예: 26px → 24px → 20px 사다리의 중간이 h3 기본값과 일치)는 **의도된 스케일 변화이므로 중복이 아니다.** 지우지 않는다.
+
+### (2) 같은 요소의 공용 유틸리티와 중복된 클래스
+
+마크업에서 공용 유틸리티 클래스와 나란히 붙어 있으면서 같은 값을 또 선언하는 컴포넌트 클래스.
+
+```html
+<!-- .text-caption이 이미 14px/22px/ink-lighter를 주는데 -->
+<span class="journey-program-desc text-caption">온라인 이러닝</span>
+```
+
+- 고유 속성이 하나도 없이 **유틸리티와 100% 동일하면** → CSS 규칙과 마크업의 클래스명을 **둘 다** 삭제한다.
+- 고유 속성이 있으면 → 겹치는 선언만 지우고 클래스는 유지한다.
+- 삭제 전 반드시 `js/`와 `css/` 전체에서 그 클래스명을 검색해 **JS 훅이나 다른 셀렉터가 참조하지 않는지 확인**한다. 참조가 있으면 마크업의 클래스는 남기고 CSS 선언만 정리한다.
+
+### (3) modifier가 base 규칙을 되풀이하는 경우
+
+```css
+/* 나쁨 — padding/border-radius가 base와 동일 */
+.summary-banner { padding: var(--space-48); border-radius: var(--radius-lg); background: A; }
+.summary-banner.stats { padding: var(--space-48); border-radius: var(--radius-lg); background: B; }
+
+/* 좋음 — 달라지는 값만 */
+.summary-banner.stats { background: B; }
+```
+
+부모에서 상속되는 속성(`color`, `font-family`, `letter-spacing` 등)을 자식 셀렉터가 같은 값으로 다시 선언하는 것도 같이 정리한다. 단 `::before`/`::after`는 상속받지 않는 속성(`position`, `border-radius` 등)을 다시 써야 하는 경우가 많으므로 **상속 여부를 확인한 뒤** 판단한다.
+
+### (4) 무효한 `display: flex` / layout 선언
+
+- `display:flex`인데 `gap`·`flex-direction`·`align-items`·`justify-content`·`flex-wrap`·`flex-*` 중 아무것도 쓰지 않으면 → `display` 선언 삭제.
+- **자식이 1개**라서 `flex-direction`·`gap`이 아무 일도 하지 않으면 → 그 선언들을 삭제한다(`.difference-cycle`처럼 `<ol>` 하나만 감싸는 wrapper).
+- **단, 자식이 1개여도 정렬이 실제로 동작하는 경우는 삭제하지 않는다** — `align-items`+`justify-content`로 아이콘/텍스트를 중앙 정렬하는 아이콘 박스, `.btn` 같은 컨트롤은 flex가 제 역할을 한다.
+- 자식 수는 **마크업을 직접 열어 확인**한다. self-closing SVG(`<path/>`)나 void 태그 때문에 자동 카운트가 틀리기 쉬우므로, 스크립트 결과만 믿고 지우지 않는다.
+
+### 점검 범위 — 한 요소에서 멈추지 않는다
+
+한 곳에서 이 중복을 발견하면 **같은 패턴이 있을 다른 곳을 프로젝트 전체에서 한 번에 훑고 같은 방식으로 정리한다.** 파일 하나만 고치고 끝내면 나머지가 계속 남아 다음 작업에서 또 갈라진다.
+
+### 정리 후 확인
+
+1. 각 HTML이 쓰는 class 전체가 그 페이지가 로드하는 CSS에 정의돼 있는지 확인한다. **정리 전에도 미정의였던 클래스**(JS 훅, 섹션 식별자 등)와 이번 작업으로 새로 깨진 것을 구분해서 보고한다 — 기존 것을 회귀로 착각하지 않는다.
+2. CSS 중괄호 균형과 `@import` 경로/순서(`@import`는 모든 규칙보다 앞)를 확인한다.
+3. 지운 것과 **의도적으로 남긴 것(및 그 이유)** 을 함께 보고한다. 남긴 판단이 더 중요한 정보다.
+
+## 13. 최종 품질 체크리스트
 
 작업 완료 후 아래를 확인한다.
 
 **HTML**: Semantic HTML 적절히 사용 / div 대체 가능한 native element 미사용 / heading hierarchy 정상 / link·button 역할 명확
 
-**CSS**: Reset 적용 / Design Token 사용 / raw color·arbitrary value 불필요 반복 없음 / 긴 utility class 없음 / 반복 UI가 Component로 추출됨 / specificity 과도하지 않음 / 컴포넌트 텍스트 스타일이 base.css의 h1~h6·p 전역 스타일과 값이 같은데 다른 태그·중복 선언으로 만들어지지 않았는지 확인
+**CSS**: Reset 적용 / Design Token 사용 / raw color·arbitrary value 불필요 반복 없음 / 긴 utility class 없음 / 반복 UI가 Component로 추출됨 / specificity 과도하지 않음
+
+**중복·무효 선언 (12번 항목 — 매 작업 필수)**: 태그 전역 스타일과 겹치는 폰트 재선언 없음 / 같은 요소의 공용 유틸리티와 100% 중복된 클래스 없음(있으면 CSS·마크업 양쪽에서 제거) / modifier가 base 값을 되풀이하지 않음 / 상속되는 속성을 자식이 같은 값으로 재선언하지 않음 / flex 기능을 쓰지 않거나 자식 1개로 무효한 `display:flex`·`gap`·`flex-direction` 없음 / 값 비교는 토큰 체인을 펼친 실제 값으로 했는지 / 같은 패턴을 프로젝트 전체에서 훑었는지 / 삭제한 클래스가 `js/`·`css/`에서 참조되지 않는지 확인했는지
 
 **Responsive**: 모바일 정상 동작 / breakpoint 불필요하게 많지 않음 / 재사용 Component에 Container Query 검토됨 / `clamp()`/`min()`/`max()` 활용 가능 영역 검토
 
