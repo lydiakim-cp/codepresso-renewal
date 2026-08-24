@@ -1,6 +1,6 @@
 /*
  * Difference Reveal
- * [data-difference-reveal] 안의 .difference-card를 스크롤 진입 시 fade-up시킨다.
+ * [data-difference-reveal] 안의 .difference-block를 스크롤 진입 시 fade-up시킨다.
  * - stat-reveal.js와 동일한 리듬(IntersectionObserver + stagger)을 공유한다.
  * - 한 번 나타난 카드는 다시 숨기지 않는다(관찰 해제).
  * - prefers-reduced-motion 사용자에게는 애니메이션 없이 바로 최종 상태로 보이게 둔다.
@@ -14,7 +14,7 @@
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   groups.forEach((group) => {
-    const cards = Array.from(group.querySelectorAll('.difference-card'));
+    const cards = Array.from(group.querySelectorAll('.difference-block'));
     if (!cards.length) return;
 
     if (prefersReducedMotion || !('IntersectionObserver' in window)) {

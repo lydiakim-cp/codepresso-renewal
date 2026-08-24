@@ -22,7 +22,7 @@
   margin: 0 auto;
   /* 뒤에 겹쳐 쌓인 카드가 잘리지 않게 하고, 아래로 삐져나올 여유를 준다. */
   overflow: visible;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 
 .proof-card-deck-list {
@@ -95,12 +95,12 @@
   margin-right: var(--space-8);
 }
 
+/* h3 전역 스타일보다 크고 두꺼운 스케일이 필요한 자리. color는 h3 기본값을 상속한다. */
 .proof-card h3 {
   font-size: var(--text-heading-26);
   line-height: var(--leading-heading-26);
   letter-spacing: var(--tracking-heading-wide);
   font-weight: var(--font-weight-bold);
-  color: var(--color-ink);
 }
 
 .proof-card blockquote {

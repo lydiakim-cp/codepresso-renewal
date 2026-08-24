@@ -39,8 +39,8 @@
   border-radius: var(--radius-sm);
   background: var(--color-brand-tint-2);
   color: var(--color-brand);
-  font-size: var(--text-label);
-  line-height: 140%;
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
 }
 
 .swatch {

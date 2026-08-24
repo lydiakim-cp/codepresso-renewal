@@ -72,13 +72,9 @@
   gap: var(--space-18);
 }
 
-.hero-title {
-  font-size: var(--text-heading-56);
-  line-height: var(--leading-heading-56);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--tracking-heading-wide);
-  color: var(--color-ink-heaviest);
-}
+/* hero 제목은 <h1> 태그 그대로 둔다 — base.css의 h1 전역 스타일
+   (56px / 66px / semibold / -0.5px / ink-heaviest)이 그대로 필요한 값이라
+   클래스도 타이포 선언도 두지 않는다. */
 
 .hero-description {
   font-size: var(--text-heading-20);

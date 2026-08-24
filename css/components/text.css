@@ -1,0 +1,57 @@
+/*
+ * Component: Text Utilities
+ * 섹션이 달라도 같은 크기·굵기·색으로 반복되는 텍스트 역할을 공용 클래스로 묶는다.
+ * 색만 다른 경우는 별도 클래스를 새로 만들지 않고 modifier로 붙인다.
+ */
+
+/* 소제목 라벨 — "01. 설계", "진단 제품"처럼 상위 그룹을 가리키는 14px 브랜드 컬러 라벨. */
+.text-label-brand {
+  font-size: var(--text-body-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand);
+}
+
+/* 캡션 — 리스트 항목의 보조 설명문(14px, ink-lighter). .strong은 숫자 인디케이터처럼
+   같은 크기·색이지만 더 두껍게 강조해야 하는 자리에 쓴다. */
+.text-caption {
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  color: var(--color-ink-lighter);
+}
+
+.text-caption.strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-caption.medium {
+  font-weight: var(--font-weight-medium);
+}
+
+/* 리스트 아이템 타이틀 — 프로그램·제품명처럼 20px semibold로 강조하는 항목명. */
+.list-item-title {
+  font-size: var(--text-card-title);
+  line-height: var(--leading-card-title);
+  letter-spacing: var(--tracking-card-title);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-heaviest);
+}
+
+/* 섹션 설명문뿐 아니라 education-journey의 블록 설명(journey-block-desc)에서도
+   재사용하는 공용 텍스트 스타일이라 전역 클래스로 둔다. */
+.desc {
+  font-size: var(--text-body-18);
+  line-height: var(--leading-body-18);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-ink-light);
+}
+
+/* 카탈로그 문서에서 쓰는 보조 설명 텍스트 2종.
+   .sub은 크기를 p 기본값(16px)에서 바꾸지 않고 색만 낮춘다. */
+.sub {
+  color: var(--color-ink-lighter);
+}
+
+.description {
+  color: var(--color-ink-light);
+  font-size: var(--text-body-muted);
+}

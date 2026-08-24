@@ -53,17 +53,10 @@
   transition: border-color var(--duration-scroll) var(--ease-scroll);
 }
 
-.journey-step-index {
-  font-size: var(--text-body-14);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-ink-lighter);
-  transition: color var(--duration-scroll) var(--ease-scroll);
-}
-
+/* 텍스트 스타일은 .text-caption.strong(숫자)과 .text-caption.medium(라벨) 공용 클래스가
+   담당하고, 여기서는 스크롤 활성 상태 전환만 추가한다. */
+.journey-step-index,
 .journey-step-label {
-  font-size: var(--text-body-muted);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-ink-lighter);
   transition: color var(--duration-scroll) var(--ease-scroll);
 }
 
@@ -118,19 +111,11 @@
   max-width: 80%;
 }
 
-.journey-block-label {
-  font-size: var(--text-body-14);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-brand);
-}
-
 /* h3 전역 스타일(semibold, --color-ink)보다 한 단계 큰 스케일이 필요해
    태그를 h3로 유지하되 시각 스타일은 컴포넌트 클래스로 새로 정의한다. */
 .journey-block-title {
   font-size: var(--text-heading-32);
   line-height: var(--leading-heading-32);
-  letter-spacing: var(--tracking-heading-tight);
-  font-weight: var(--font-weight-semibold);
   color: var(--color-ink-heaviest);
 }
 
@@ -140,12 +125,6 @@
   color: var(--color-ink-lighter);
   padding-top: var(--space-8);
   border-top: 1px solid var(--color-line);
-}
-
-.journey-block-desc {
-  font-size: var(--text-body-18);
-  line-height: var(--leading-body-18);
-  color: var(--color-ink-light);
 }
 
 /* 01 단계 — 교육 프로그램 쇼케이스. 좌측 썸네일 미리보기 + 우측 프로그램 리스트를
@@ -251,20 +230,11 @@
   gap: var(--space-6);
 }
 
+/* 텍스트 스타일은 .list-item-title 공용 클래스가 담당한다. */
 .journey-program-name {
   display: flex;
   align-items: center;
   gap: var(--space-8);
-  font-size: var(--text-card-title);
-  line-height: var(--leading-card-title);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-ink-heaviest);
-}
-
-.journey-program-desc {
-  font-size: var(--text-body-14);
-  line-height: var(--leading-body-14);
-  color: var(--color-ink-lighter);
 }
 
 @media (prefers-reduced-motion: reduce) {

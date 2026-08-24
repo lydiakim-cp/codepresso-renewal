@@ -76,7 +76,11 @@
   --tracking-heading-tight: -0.1px;
   --tracking-heading-wide: -0.5px;
 
-  /* Typography — Body Scale (4단 × weight) */
+  /* Typography — Body Scale (4단 × weight)
+   * 메인페이지(index.html)의 최소 폰트 사이즈는 14px이다.
+   * --text-body-12 / --text-body-13은 메인페이지에서 쓰지 않는다
+   * (13px은 codepresso-designsystem.html 카탈로그 문서 chrome 전용).
+   * 12px은 현재 사용처가 없으며, 새로 쓰지 않는다. */
   --text-body-12: 12px; --leading-body-12: 18px;
   --text-body-13: 13px; --leading-body-13: 20px;
   --text-body-14: 14px; --leading-body-14: 22px;

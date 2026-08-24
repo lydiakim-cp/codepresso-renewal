@@ -1,0 +1,38 @@
+/*
+ * Page: index.html (메인 랜딩)
+ * main.css(reset → tokens → base → 공통 컴포넌트) 위에 얹는 메인페이지 전용 계층.
+ * 여기에는 메인페이지에서만 쓰는 컴포넌트와 페이지 고유 스타일만 둔다.
+ * 다른 페이지에서도 쓰일 컴포넌트가 생기면 css/components/로 올리고 main.css에 등록한다.
+ *
+ * @import는 CSS 규칙보다 먼저 와야 하므로 페이지 고유 스타일은 파일 하단에 둔다.
+ */
+
+@import url("../components/hero.css") layer(components);
+@import url("../components/proof-card.css") layer(components);
+@import url("../components/part-nav.css") layer(components);
+@import url("../components/education-journey.css") layer(components);
+@import url("../components/diagnosis-showcase.css") layer(components);
+@import url("../components/difference.css") layer(components);
+
+@layer components {
+  /* 스크롤에 따라 상단 하늘색이 흰색으로 옅어지는 페이지 배경.
+     --scroll-progress는 js/scroll-progress 계열 스크립트가 갱신한다. */
+  main {
+    --scroll-progress: 0;
+    background-color: var(--color-surface);
+    background-image: linear-gradient(180deg,
+        color-mix(in srgb, var(--color-bg-login-pre) calc((1 - var(--scroll-progress)) * 100%), var(--color-surface)) 0%,
+        var(--color-surface) 640px);
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 메인페이지 최소 폰트 사이즈는 14px — 12px는 쓰지 않고 13px도 두지 않는다.
+     base.css의 footer는 카탈로그 문서 기준 13px(--text-label)이므로
+     메인페이지에서만 14px로 올린다(카탈로그는 그대로 13px 유지). */
+  footer {
+    font-size: var(--text-body-14);
+    line-height: var(--leading-body-14);
+  }
+}

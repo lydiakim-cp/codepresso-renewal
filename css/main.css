@@ -1,7 +1,12 @@
 /*
- * Main Entry
- * Reset → Design Tokens → Base → Components 순서로 계층을 로드한다.
+ * Main Entry (모든 페이지 공통)
+ * Reset → Design Tokens → Base → 공통 Components 순서로 계층을 로드한다.
  * Cascade Layer로 우선순위를 명시해 specificity 경쟁을 방지한다.
+ *
+ * 여기에는 "여러 페이지가 함께 쓰는" 것만 둔다.
+ * 특정 페이지 전용 컴포넌트는 css/pages/{page}.css에서 따로 로드한다.
+ *   - index.html               → main.css + css/pages/index.css
+ *   - codepresso-designsystem  → main.css + css/pages/designsystem.css
  */
 
 @layer reset, tokens, base, components;
@@ -10,23 +15,14 @@
 @import url("./tokens.css") layer(tokens);
 @import url("./base.css") layer(base);
 
+/* 레이아웃 뼈대 · 텍스트 유틸리티 */
 @import url("./components/layout.css") layer(components);
+@import url("./components/text.css") layer(components);
+
+/* 공통 UI 컴포넌트 */
+@import url("./components/button.css") layer(components);
 @import url("./components/link.css") layer(components);
 @import url("./components/badge.css") layer(components);
-@import url("./components/callout.css") layer(components);
-@import url("./components/color-tile.css") layer(components);
-@import url("./components/color-ramp.css") layer(components);
-@import url("./components/type-spec.css") layer(components);
-@import url("./components/scale-demo.css") layer(components);
-@import url("./components/before-after.css") layer(components);
-@import url("./components/motion-demo.css") layer(components);
-@import url("./components/segmented-control.css") layer(components);
-@import url("./components/feature-card.css") layer(components);
-@import url("./components/button.css") layer(components);
 @import url("./components/header.css") layer(components);
-@import url("./components/hero.css") layer(components);
-@import url("./components/proof-card.css") layer(components);
-@import url("./components/education-journey.css") layer(components);
-@import url("./components/part-nav.css") layer(components);
-@import url("./components/diagnosis-showcase.css") layer(components);
-@import url("./components/difference.css") layer(components);
+@import url("./components/feature-card.css") layer(components);
+@import url("./components/summary-banner.css") layer(components);
