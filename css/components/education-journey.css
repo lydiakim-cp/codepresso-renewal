@@ -5,13 +5,23 @@
  * 좌측 인디케이터는 우측 스크롤 위치에 따라 활성 단계가 바뀐다(journey-scroll.js).
  */
 
-/* 연한 브랜드 블루 그라디언트 배경 — hero의 톤을 이어받아 섹션 전환이 자연스럽게 느껴지게 한다.
-   tint-1→tint-2만으로는 색 차이가 옅어 티가 잘 안 나서, 종료 지점에 브랜드 컬러를 살짝 섞어
-   대비를 확보한다. */
-.education-journey {
+/* PART 1(교육) + PART 2(진단)를 감싸는 묶음. 두 파트가 하나의 영역으로 읽히도록
+   연한 브랜드 블루 그라디언트 배경을 여기서 한 번만 그린다 — 섹션마다 따로 칠하면
+   경계에서 색이 끊긴다. hero의 톤을 이어받아 섹션 전환이 자연스럽게 느껴지고,
+   종료 지점에 브랜드 컬러를 살짝 섞어 대비를 확보한다. */
+.parts-group {
   background: linear-gradient(160deg,
       var(--color-brand-tint-1) 0%,
-      color-mix(in srgb, var(--color-brand) 18%, var(--color-brand-tint-2)) 100%);
+      color-mix(in srgb, var(--color-brand) 22%, var(--color-brand-tint-2)) 100%);
+}
+
+/* 묶음 안에서는 두 섹션이 맞닿는 지점의 상하 여백을 줄여, 하나의 영역처럼 이어지게 한다. */
+.parts-group .education-journey {
+  padding-bottom: var(--space-48);
+}
+
+.parts-group .diagnosis-showcase {
+  padding-top: var(--space-48);
 }
 
 .education-journey-layout {

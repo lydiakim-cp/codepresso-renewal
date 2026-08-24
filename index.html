@@ -395,188 +395,192 @@
     </section>
 
 
-    <section class="education-journey" id="part1-education">
-      <div class="section-wrap education-journey-layout">
-        <div class="education-journey-sticky">
-          <div class="section-title">
-            <nav class="part-nav" data-part-nav aria-label="교육·진단 섹션 이동">
-              <span class="part-nav-indicator" data-part-nav-indicator aria-hidden="true"></span>
-              <a class="part-nav-item" href="#part1-education" data-part-nav-item="part1-education">PART 1 · 교육</a>
-              <a class="part-nav-item" href="#part2-diagnosis" data-part-nav-item="part2-diagnosis">PART 2 · 진단</a>
-            </nav>
-            <h2 class="text-left">업무를 아는 직원을,<br>AI로 일하는 인재로 키웁니다</h2>
-            <p class="desc">코드프레소의 중심은 교육입니다. 개발 직군부터 비개발 직군까지, <br> 수준과 직무에 맞는 방식으로 전 직원의 AI 활용 역량을 키웁니다.
-             <br>  일회성 특강이 아니라, 현장 적용까지 이어지는 사내 FDE 양성 여정입니다.</p>
+    <!-- PART 1(교육) + PART 2(진단) 묶음 — 두 파트가 하나의 흐름으로 읽히도록
+         배경 그라디언트를 이 래퍼가 한 번만 소유한다. -->
+    <div class="parts-group">
+      <section class="education-journey" id="part1-education">
+        <div class="section-wrap education-journey-layout">
+          <div class="education-journey-sticky">
+            <div class="section-title">
+              <nav class="part-nav" data-part-nav aria-label="교육·진단 섹션 이동">
+                <span class="part-nav-indicator" data-part-nav-indicator aria-hidden="true"></span>
+                <a class="part-nav-item" href="#part1-education" data-part-nav-item="part1-education">PART 1 · 교육</a>
+                <a class="part-nav-item" href="#part2-diagnosis" data-part-nav-item="part2-diagnosis">PART 2 · 진단</a>
+              </nav>
+              <h2 class="text-left">업무를 아는 직원을,<br>AI로 일하는 인재로 키웁니다</h2>
+              <p class="desc">코드프레소의 중심은 교육입니다. 개발 직군부터 비개발 직군까지, <br> 수준과 직무에 맞는 방식으로 전 직원의 AI 활용 역량을 키웁니다.
+               <br>  일회성 특강이 아니라, 현장 적용까지 이어지는 사내 FDE 양성 여정입니다.</p>
+            </div>
+
+            <ol class="journey-steps" data-journey-steps>
+              <li class="journey-step" data-journey-step="0">
+                <span class="journey-step-index text-caption strong">01</span>
+                <span class="journey-step-label text-caption medium">설계</span>
+              </li>
+              <li class="journey-step" data-journey-step="1">
+                <span class="journey-step-index text-caption strong">02</span>
+                <span class="journey-step-label text-caption medium">교육</span>
+              </li>
+              <li class="journey-step" data-journey-step="2">
+                <span class="journey-step-index text-caption strong">03</span>
+                <span class="journey-step-label text-caption medium">현장 적용</span>
+              </li>
+            </ol>
           </div>
 
-          <ol class="journey-steps" data-journey-steps>
-            <li class="journey-step" data-journey-step="0">
-              <span class="journey-step-index text-caption strong">01</span>
-              <span class="journey-step-label text-caption medium">설계</span>
-            </li>
-            <li class="journey-step" data-journey-step="1">
-              <span class="journey-step-index text-caption strong">02</span>
-              <span class="journey-step-label text-caption medium">교육</span>
-            </li>
-            <li class="journey-step" data-journey-step="2">
-              <span class="journey-step-index text-caption strong">03</span>
-              <span class="journey-step-label text-caption medium">현장 적용</span>
-            </li>
-          </ol>
-        </div>
-
-        <div class="education-journey-scroll" data-journey-scroll>
-          <article class="journey-block" data-journey-target="0">
-            <p class="journey-block-index">01</p>
-            <header class="journey-block-head">
-              <p class="text-label-brand">01. 설계</p>
-              <h3 class="journey-block-title">진단 결과에 맞춘<br>교육 과정 설계</h3>
-            </header>
-
-            <div class="journey-program-showcase" data-program-showcase data-interval="3200">
-              <div class="journey-program-preview">
-                <span class="journey-program-thumb is-active" data-program-thumb="0" aria-hidden="true"></span>
-                <span class="journey-program-thumb" data-program-thumb="1" aria-hidden="true"></span>
-                <span class="journey-program-thumb" data-program-thumb="2" aria-hidden="true"></span>
+          <div class="education-journey-scroll" data-journey-scroll>
+            <article class="journey-block" data-journey-target="0">
+              <p class="journey-block-index">01</p>
+              <div class="journey-block-head">
+                <p class="text-label-brand">01. 설계</p>
+                <h3 class="journey-block-title">진단 결과에 맞춘<br>교육 과정 설계</h3>
               </div>
 
-              <ul class="journey-program-list">
+              <div class="journey-program-showcase" data-program-showcase data-interval="3200">
+                <div class="journey-program-preview">
+                  <span class="journey-program-thumb is-active" data-program-thumb="0" aria-hidden="true"></span>
+                  <span class="journey-program-thumb" data-program-thumb="1" aria-hidden="true"></span>
+                  <span class="journey-program-thumb" data-program-thumb="2" aria-hidden="true"></span>
+                </div>
+
+                <ul class="journey-program-list">
+                  <li>
+                    <a class="journey-program is-active" href="#" data-program-item="0">
+                      <span class="journey-program-icon" aria-hidden="true">
+                        <img src="images/icon/skillpath-icon-glass-v1.png" alt="">
+                      </span>
+                      <span class="journey-program-body">
+                        <span class="journey-program-name list-item-title">SkillPath <span class="tag">온라인</span></span>
+                        <span class="text-caption">온라인 이러닝</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="journey-program" href="#" data-program-item="1">
+                      <span class="journey-program-icon" aria-hidden="true">
+                        <img src="images/icon/skillcamp-icon-glass-90.png" alt="">
+                      </span>
+                      <span class="journey-program-body">
+                        <span class="journey-program-name list-item-title">SkillCamp <span class="tag">라이브</span></span>
+                        <span class="text-caption">강사 주도형 교육</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="journey-program" href="#" data-program-item="2">
+                      <span class="journey-program-icon" aria-hidden="true">
+                        <img src="images/icon/skillfit-icon-glass-v2.png" alt="">
+                      </span>
+                      <span class="journey-program-body">
+                        <span class="journey-program-name list-item-title">SkillFit <span class="tag">적응형</span></span>
+                        <span class="text-caption">AI 기반 적응형 학습</span>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <a href="#" class="btn btn-primary">교육 과정 자세히 보기 →</a>
+            </article>
+
+            <article class="journey-block" data-journey-target="1">
+              <p class="journey-block-index">02</p>
+              <div class="journey-block-head">
+                <p class="text-label-brand">02. 교육</p>
+                <h3 class="journey-block-title">직무·수준별<br>실무 중심 학습</h3>
+              </div>
+
+              <p class="desc">전 직원이 같은 내용을 배우지 않습니다. <br> 개발·비개발, 초급·중급·고급으로 나누어
+                각자의 업무에 바로 쓸 수 있는 실무형 커리큘럼으로 진행합니다.</p>
+            </article>
+
+            <article class="journey-block" data-journey-target="2">
+              <p class="journey-block-index">03</p>
+              <div class="journey-block-head">
+                <p class="text-label-brand">03. 현장 적용</p>
+                <h3 class="journey-block-title">배운 것을 <br> 실제 업무에 바로 적용</h3>
+              </div>
+
+              <p class="desc">교육으로 끝내지 않습니다. <br> 재진단과 사내 공유 문화까지 설계해, 키운 역량이 조직에 남게 합니다.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="diagnosis-showcase" id="part2-diagnosis">
+        <div class="section-wrap diagnosis-layout">
+          <div class="diagnosis-sticky">
+            <div class="section-title">
+              <nav class="part-nav" data-part-nav aria-label="교육·진단 섹션 이동">
+                <span class="part-nav-indicator" data-part-nav-indicator aria-hidden="true"></span>
+                <a class="part-nav-item" href="#part1-education" data-part-nav-item="part1-education">PART 1 · 교육</a>
+                <a class="part-nav-item" href="#part2-diagnosis" data-part-nav-item="part2-diagnosis">PART 2 · 진단</a>
+              </nav>
+              <h2 class="text-left">교육이 잘 됐는지,<br>궁금하지 않으세요?</h2>
+              <p class="desc">그래서 코드프레소는 교육 앞뒤에 진단을 붙입니다. <br>
+                시작 전엔 무엇을 가르칠지 정하고, 끝난 뒤엔 얼마나 늘었는지 증명합니다. <br>
+                측정할 수 있어야 관리할 수 있습니다.</p>
+            </div>
+
+            <div class="diagnosis-products">
+              <p class="text-label-brand">진단 제품</p>
+
+              <ul class="diagnosis-product-list">
                 <li>
-                  <a class="journey-program is-active" href="#" data-program-item="0">
-                    <span class="journey-program-icon" aria-hidden="true">
-                      <img src="images/icon/skillpath-icon-glass-v1.png" alt="">
+                  <a class="diagnosis-product" href="#">
+                    <span class="diagnosis-product-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3l2.4 5.6 5.6.5-4.2 3.9 1.2 5.9L12 16l-5 2.9 1.2-5.9L4 9.1l5.6-.5L12 3z"
+                          stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
                     </span>
-                    <span class="journey-program-body">
-                      <span class="journey-program-name list-item-title">SkillPath <span class="tag">온라인</span></span>
-                      <span class="text-caption">온라인 이러닝</span>
+                    <span class="diagnosis-product-body">
+                      <span class="list-item-title">AI Fluent</span>
+                      <span class="text-caption">전 직군 AI 활용 역량 진단</span>
                     </span>
+                    <svg class="diagnosis-product-arrow" viewBox="0 0 24 24" fill="none"
+                      xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
                   </a>
                 </li>
                 <li>
-                  <a class="journey-program" href="#" data-program-item="1">
-                    <span class="journey-program-icon" aria-hidden="true">
-                      <img src="images/icon/skillcamp-icon-glass-90.png" alt="">
+                  <a class="diagnosis-product" href="#">
+                    <span class="diagnosis-product-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.5 12.5l4 4 11-11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                        <path d="M20 12.5v5.5a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h7" stroke="currentColor"
+                          stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
                     </span>
-                    <span class="journey-program-body">
-                      <span class="journey-program-name list-item-title">SkillCamp <span class="tag">라이브</span></span>
-                      <span class="text-caption">강사 주도형 교육</span>
+                    <span class="diagnosis-product-body">
+                      <span class="list-item-title">SkillCertify</span>
+                      <span class="text-caption">개발자 IT 실무 역량 평가</span>
                     </span>
-                  </a>
-                </li>
-                <li>
-                  <a class="journey-program" href="#" data-program-item="2">
-                    <span class="journey-program-icon" aria-hidden="true">
-                      <img src="images/icon/skillfit-icon-glass-v2.png" alt="">
-                    </span>
-                    <span class="journey-program-body">
-                      <span class="journey-program-name list-item-title">SkillFit <span class="tag">적응형</span></span>
-                      <span class="text-caption">AI 기반 적응형 학습</span>
-                    </span>
+                    <svg class="diagnosis-product-arrow" viewBox="0 0 24 24" fill="none"
+                      xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
                   </a>
                 </li>
               </ul>
             </div>
 
-            <a href="#" class="btn btn-primary">교육 과정 자세히 보기 →</a>
-          </article>
-
-          <article class="journey-block" data-journey-target="1">
-            <p class="journey-block-index">02</p>
-            <header class="journey-block-head">
-              <p class="text-label-brand">02. 교육</p>
-              <h3 class="journey-block-title">직무·수준별<br>실무 중심 학습</h3>
-            </header>
-
-            <p class="desc">전 직원이 같은 내용을 배우지 않습니다. <br> 개발·비개발, 초급·중급·고급으로 나누어
-              각자의 업무에 바로 쓸 수 있는 실무형 커리큘럼으로 진행합니다.</p>
-          </article>
-
-          <article class="journey-block" data-journey-target="2">
-            <p class="journey-block-index">03</p>
-            <header class="journey-block-head">
-              <p class="text-label-brand">03. 현장 적용</p>
-              <h3 class="journey-block-title">배운 것을 <br> 실제 업무에 바로 적용</h3>
-            </header>
-
-            <p class="desc">교육으로 끝내지 않습니다. <br> 재진단과 사내 공유 문화까지 설계해, 키운 역량이 조직에 남게 합니다.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="diagnosis-showcase" id="part2-diagnosis">
-      <div class="section-wrap diagnosis-layout">
-        <div class="diagnosis-sticky">
-          <div class="section-title">
-            <nav class="part-nav" data-part-nav aria-label="교육·진단 섹션 이동">
-              <span class="part-nav-indicator" data-part-nav-indicator aria-hidden="true"></span>
-              <a class="part-nav-item" href="#part1-education" data-part-nav-item="part1-education">PART 1 · 교육</a>
-              <a class="part-nav-item" href="#part2-diagnosis" data-part-nav-item="part2-diagnosis">PART 2 · 진단</a>
-            </nav>
-            <h2 class="text-left">교육이 잘 됐는지,<br>궁금하지 않으세요?</h2>
-            <p class="desc">그래서 코드프레소는 교육 앞뒤에 진단을 붙입니다. <br>
-              시작 전엔 무엇을 가르칠지 정하고, 끝난 뒤엔 얼마나 늘었는지 증명합니다. <br>
-              측정할 수 있어야 관리할 수 있습니다.</p>
+            <a href="#" class="btn btn-primary btn-lg diagnosis-cta">역량 진단 자세히 보기</a>
           </div>
 
-          <div class="diagnosis-products">
-            <p class="text-label-brand">진단 제품</p>
-
-            <ul class="diagnosis-product-list">
-              <li>
-                <a class="diagnosis-product" href="#">
-                  <span class="diagnosis-product-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 3l2.4 5.6 5.6.5-4.2 3.9 1.2 5.9L12 16l-5 2.9 1.2-5.9L4 9.1l5.6-.5L12 3z"
-                        stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </span>
-                  <span class="diagnosis-product-body">
-                    <span class="list-item-title">AI Fluent</span>
-                    <span class="text-caption">전 직군 AI 활용 역량 진단</span>
-                  </span>
-                  <svg class="diagnosis-product-arrow" viewBox="0 0 24 24" fill="none"
-                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a class="diagnosis-product" href="#">
-                  <span class="diagnosis-product-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M4.5 12.5l4 4 11-11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                      <path d="M20 12.5v5.5a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h7" stroke="currentColor"
-                        stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </span>
-                  <span class="diagnosis-product-body">
-                    <span class="list-item-title">SkillCertify</span>
-                    <span class="text-caption">개발자 IT 실무 역량 평가</span>
-                  </span>
-                  <svg class="diagnosis-product-arrow" viewBox="0 0 24 24" fill="none"
-                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <a href="#" class="btn btn-primary btn-lg diagnosis-cta">역량 진단 자세히 보기</a>
-        </div>
-
-        <div class="diagnosis-preview">
-          <div class="diagnosis-preview-panel">
-            <img class="diagnosis-preview-image" src="images/skillcertify-sample.svg"
-              alt="SkillCertify AI 활용 역량 진단 리포트 화면">
+          <div class="diagnosis-preview">
+            <div class="diagnosis-preview-panel">
+              <img class="diagnosis-preview-image" src="images/skillcertify-sample.svg"
+                alt="SkillCertify AI 활용 역량 진단 리포트 화면">
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <section class="difference" id="part3-difference">
       <div class="section-wrap difference-layout">
@@ -585,7 +589,7 @@
         <div class="section-header">
           <div class="section-title">
             <p class="tag">03 · The Difference</p>
-            <h2 class="text-left">다른 교육 회사와 다른 <strong>세 가지</strong>가 있습니다</h2>
+            <h2 class="text-left">다른 교육 회사와 다른 세 가지가 있습니다</h2>
             <p class="desc">진단·재진단으로 교육을 정량적으로 관리하고,
               공유 허브와 라이브러리로 문화 정착까지 설계합니다. <br>
               그리고 우리는 FDE 현장을 직접 뛰는 회사입니다.</p>
@@ -600,67 +604,74 @@
 
           <!-- ① 정량적 관리 — 같은 잣대로 두 번 재는 구조를 가로 타임라인으로 -->
           <article class="difference-block">
-            <header class="difference-block-head">
-              <h3 class="difference-block-title">01 · 정량적 관리</h3>
+            <div class="difference-block-head">
+              <h3 class="difference-block-title">정량적 관리</h3>
               <p class="difference-block-desc">교육 전후 역량을 같은 기준으로 재서 무엇이 얼마나 늘었는지 보고할 수 있게 만듭니다.</p>
-            </header>
-
-            <div class="difference-cycle">
-              <ol class="difference-cycle-track">
-                <li class="difference-cycle-stage">
-                  <span class="difference-cycle-tick" aria-hidden="true"></span>
-                  <span class="difference-cycle-when">교육 전</span>
-                  <span class="difference-cycle-name">진단</span>
-                  <span class="difference-cycle-note">IT·AI 실무 역량 확인</span>
-                </li>
-                <li class="difference-cycle-stage is-core">
-                  <span class="difference-cycle-tick" aria-hidden="true"></span>
-                  <span class="difference-cycle-when">교육 중</span>
-                  <span class="difference-cycle-name">교육</span>
-                  <span class="difference-cycle-note">수준과 직무에 맞는 학습 제공</span>
-                </li>
-                <li class="difference-cycle-stage">
-                  <span class="difference-cycle-tick" aria-hidden="true"></span>
-                  <span class="difference-cycle-when">교육 후</span>
-                  <span class="difference-cycle-name">재진단</span>
-                  <span class="difference-cycle-note">교육 전후 역량 변화 확인</span>
-                </li>
-              </ol>
             </div>
+
+            <ol class="difference-track has-flow">
+              <li class="difference-track-step">
+                <span class="difference-track-label">교육 전</span>
+                <span class="difference-track-name">진단</span>
+                <span class="difference-track-note">IT·AI 실무 역량 확인</span>
+              </li>
+              <li class="difference-track-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </li>
+              <li class="difference-track-step is-core">
+                <span class="difference-track-label">교육 중</span>
+                <span class="difference-track-name">교육</span>
+                <span class="difference-track-note">수준과 직무에 맞는 학습 제공</span>
+              </li>
+              <li class="difference-track-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </li>
+              <li class="difference-track-step">
+                <span class="difference-track-label">교육 후</span>
+                <span class="difference-track-name">재진단</span>
+                <span class="difference-track-note">교육 전후 역량 변화 확인</span>
+              </li>
+            </ol>
           </article>
 
           <!-- ② 문화 정착 — 쌓여서 넓어지는 구조를 계단형 3단으로 -->
           <article class="difference-block">
-            <header class="difference-block-head">
-              <h3 class="difference-block-title">02 · 문화 정착</h3>
+            <div class="difference-block-head">
+              <h3 class="difference-block-title">문화 정착</h3>
               <p class="difference-block-desc">검증된 에이전트와 프롬프트가 사내에 공유되고 축적되면서, 한 팀의 역량이 조직 전체의 기본기가 됩니다.</p>
-            </header>
+            </div>
 
-            <ol class="difference-stack">
-              <li class="difference-stack-step">
-                <span class="difference-stack-scope">개인 → 팀</span>
-                <span class="difference-stack-name">공유 허브</span>
-                <p class="difference-stack-note">에이전트·프롬프트를 사내에 공유</p>
+            <ol class="difference-track">
+              <li class="difference-track-step">
+                <span class="difference-track-label">개인 → 팀</span>
+                <span class="difference-track-name">공유 허브</span>
+                <p class="difference-track-note">에이전트·프롬프트를 사내에 공유</p>
               </li>
-              <li class="difference-stack-step">
-                <span class="difference-stack-scope">팀 → 자산</span>
-                <span class="difference-stack-name">라이브러리</span>
-                <p class="difference-stack-note">검증된 자산을 차곡차곡 축적</p>
+              <li class="difference-track-step">
+                <span class="difference-track-label">팀 → 자산</span>
+                <span class="difference-track-name">라이브러리</span>
+                <p class="difference-track-note">검증된 자산을 차곡차곡 축적</p>
               </li>
-              <li class="difference-stack-step">
-                <span class="difference-stack-scope">자산 → 조직</span>
-                <span class="difference-stack-name">전사 확산</span>
-                <p class="difference-stack-note">팀을 넘어 조직 전체의 문화로</p>
+              <li class="difference-track-step">
+                <span class="difference-track-label">자산 → 조직</span>
+                <span class="difference-track-name">전사 확산</span>
+                <p class="difference-track-note">팀을 넘어 조직 전체의 문화로</p>
               </li>
             </ol>
           </article>
 
           <!-- ③ 현장 검증 — 결론. 다크 배경으로 종착점을 만든다. -->
           <article class="difference-block is-dark">
-            <header class="difference-block-head">
-              <h3 class="difference-block-title">03 · 현장 검증</h3>
+            <div class="difference-block-head">
+              <h3 class="difference-block-title">현장 검증</h3>
               <p class="difference-block-desc"> 우리는 AXMOS 얼라이언스와 함께 FDE 현장을 직접 뜁니다. <strong>현장에서 검증한 것만 가르칩니다.</strong></p>
-            </header>
+            </div>
           </article>
 
         </div>

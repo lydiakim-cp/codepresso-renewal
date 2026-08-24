@@ -1,19 +1,12 @@
 /*
  * Component: Diagnosis Showcase
- * PART 2 · 진단 섹션. education-journey(PART 1)와 같은 sticky 2단 뼈대와
- * 브랜드 그라디언트 배경을 공유해 두 파트가 하나의 흐름으로 읽히게 한다.
+ * PART 2 · 진단 섹션. education-journey(PART 1)와 같은 sticky 2단 뼈대를 쓰고,
+ * 배경 그라디언트는 두 파트를 감싸는 .parts-group이 통째로 소유한다
+ * (education-journey.css 참조) — 두 파트가 하나의 영역으로 읽히게 하기 위함.
  * 좌측: part-nav + 카피 + 진단 제품 리스트 + CTA (sticky)
  * 우측: 진단 리포트 프리뷰 — hero-survey와 같은 코드프레소 시각 서명
  *       (그라디언트 글로우 프레임 + 글래스 카드 + 블루 섀도우)을 따른다.
  */
-
-/* PART 1의 그라디언트를 역방향으로 이어받아, 스크롤이 내려갈수록
-   브랜드 컬러가 옅어지며 다음 섹션(흰 배경)으로 자연스럽게 빠진다. */
-.diagnosis-showcase {
-  background: linear-gradient(160deg,
-      color-mix(in srgb, var(--color-brand) 18%, var(--color-brand-tint-2)) 0%,
-      var(--color-brand-tint-1) 100%);
-}
 
 /* 우측 프리뷰가 좌측 컬럼 높이를 꽉 채우도록 stretch를 기본값으로 둔다
    (좌측 sticky 컬럼만 align-self: start로 되돌린다 — stretch되면 sticky가 무력화된다). */
