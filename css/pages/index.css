@@ -14,6 +14,7 @@
 @import url("../components/diagnosis-showcase.css") layer(components);
 @import url("../components/difference.css") layer(components);
 @import url("../components/insight.css") layer(components);
+@import url("../components/cta-final.css") layer(components);
 
 @layer components {
   /* 스크롤에 따라 상단 하늘색이 흰색으로 옅어지는 페이지 배경.

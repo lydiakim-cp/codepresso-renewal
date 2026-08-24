@@ -4,9 +4,17 @@
  * 색만 다른 경우는 별도 클래스를 새로 만들지 않고 modifier로 붙인다.
  */
 
-/* 소제목 라벨 — "01. 설계", "진단 제품"처럼 상위 그룹을 가리키는 14px 브랜드 컬러 라벨. */
-.text-label-brand {
+/* 공용 라벨 — 14px medium, ink-light. 통계·소제목처럼 짧게 값을 짚어주는 자리에 쓴다.
+   색/굵기가 다른 라벨은 modifier로 덮어쓴다(.brand, .strong 등). */
+.text-label {
   font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink-light);
+}
+
+/* 소제목 라벨 — "01. 설계", "진단 제품"처럼 상위 그룹을 가리키는 브랜드 컬러 라벨. */
+.text-label.brand {
   font-weight: var(--font-weight-semibold);
   color: var(--color-brand);
 }

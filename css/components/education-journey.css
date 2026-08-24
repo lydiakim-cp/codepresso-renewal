@@ -129,14 +129,6 @@
   color: var(--color-ink-heaviest);
 }
 
-.journey-block-sublabel {
-  font-size: var(--text-body-14);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-ink-lighter);
-  padding-top: var(--space-8);
-  border-top: 1px solid var(--color-line);
-}
-
 /* 01 단계 — 교육 프로그램 쇼케이스. 좌측 썸네일 미리보기 + 우측 프로그램 리스트를
    절반씩 나눠 배치하고, 리스트 항목을 hover하거나 자동 순환(journey-program-cycle.js)이
    activate하면 좌측 썸네일이 함께 전환된다. */

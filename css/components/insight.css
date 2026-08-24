@@ -56,7 +56,7 @@
 .insight-card-body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-12);
+  gap: var(--space-48);
   /* 카드 높이가 달라도 메타(카테고리·날짜)는 아래에 붙는다. */
   flex: 1;
 }

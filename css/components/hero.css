@@ -214,11 +214,9 @@
   color: var(--color-brand-dark);
 }
 
-/* 설문 카드 — 문항마다 텍스트 길이가 달라도 높이가 흔들리지 않도록 480px로 고정한다. */
+/* 진단 카드 — as-is(제자리 응답형)에서 to-be(시작하기 → 새 탭 이동)로 전환.
+   카드 전체가 hover 시 떠오르며 하나의 클릭 유도 단위로 동작한다. */
 .hero-survey {
-  /* survey 내부 트랜지션/애니메이션 전용 속도. 전역 --duration-scroll보다 50% 빠르게 진행한다. */
-  --survey-duration: calc(var(--duration-scroll) * .5);
-
   position: relative;
   background: rgba(255, 255, 255, .82);
   border: 1px solid rgba(255, 255, 255, .9);
@@ -226,101 +224,22 @@
   box-shadow: var(--shadow-md);
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
-  padding: 28px 28px 26px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-18);
-  width: 420px;
-  height: 480px;
-  overflow-y: auto;
-  margin: 0 auto;
-}
-
-/* 뒤로가기 버튼 + 진행 바를 한 줄에 배치. 버튼이 없을 때(index 0)와 높이가 같도록 고정한다. */
-.hero-survey-nav {
-  display: flex;
-  align-items: center;
   gap: var(--space-12);
-  height: 16px;
+  width: 420px;
+  margin: 0 auto;
+  transition: transform var(--duration-hover) var(--ease-hover),
+    box-shadow var(--duration-hover) var(--ease-hover),
+    border-color var(--duration-hover) var(--ease-hover);
 }
 
-/* 뒤로가기 버튼 — 배경/테두리 없는 순수 chevron. 2번째 문항부터만 노출(JS에서 hidden 토글) */
-.hero-survey-back {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 0;
-  background: none;
-  border: none;
-  padding: 0;
-  color: var(--color-ink-light);
-  cursor: pointer;
-  transition: color var(--duration-hover) var(--ease-hover);
-}
-
-.hero-survey-back svg {
-  width: 16px;
-  height: 16px;
-}
-
-.hero-survey-back:hover {
-  color: var(--color-brand);
-}
-
-.hero-survey-back[hidden] {
-  display: none;
-}
-
-/* 진행 바 — 그라디언트 채움 + 진행 끝 발광 dot */
-.hero-survey-progress {
-  position: relative;
-  flex: 1;
-  height: 6px;
-  border-radius: var(--radius-full);
-  background: var(--color-line);
-  overflow: visible;
-}
-
-.hero-survey-progress-bar {
-  position: absolute;
-  inset: 0 auto 0 0;
-  display: block;
-  height: 100%;
-  border-radius: var(--radius-full);
-  background: linear-gradient(90deg, var(--color-brand-dark), var(--color-brand));
-  transition: width var(--survey-duration) var(--ease-scroll);
-}
-
-.hero-survey-progress-dot {
-  position: absolute;
-  top: 50%;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--color-brand);
-  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .9),
-    0 0 12px 3px color-mix(in srgb, var(--color-brand) 70%, transparent);
-  transform: translate(-50%, -50%);
-  transition: left var(--survey-duration) var(--ease-scroll);
-  animation: hero-survey-dot-pulse 1.6s ease-out infinite;
-}
-
-@keyframes hero-survey-dot-pulse {
-  0%, 100% {
-    box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .9),
-      0 0 12px 3px color-mix(in srgb, var(--color-brand) 70%, transparent);
-  }
-  50% {
-    box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .9),
-      0 0 18px 6px color-mix(in srgb, var(--color-brand) 85%, transparent);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-survey-progress-dot {
-    animation: none;
-  }
+/* 카드를 hover하면(버튼에 직접 올리지 않아도) 살짝 떠오르며 클릭 가능함을 암시한다 */
+.hero-survey:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 16px 32px rgba(26, 97, 234, .16);
 }
 
 /* font-size/weight/line-height/letter-spacing은 base.css의 h3 전역 스타일을 그대로 상속한다.
@@ -329,100 +248,36 @@
   color: var(--color-ink-heaviest);
 }
 
-.hero-survey-options {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.hero-survey-option {
-  width: 100%;
-  position: relative;
-  display: block;
-  text-align: left;
-  background: rgba(255, 255, 255, .7);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-md);
-  padding: var(--space-12) var(--space-20);
-  padding-right: 44px;
+.hero-survey-desc {
   font-size: var(--text-body-muted);
   line-height: var(--leading-body-muted);
-  color: var(--color-ink);
-  cursor: pointer;
-  transition: opacity var(--duration-hover) var(--ease-hover),
-    border-color var(--duration-hover) var(--ease-hover),
-    background var(--survey-duration) var(--ease-scroll),
-    color var(--survey-duration) var(--ease-scroll),
-    box-shadow var(--duration-hover) var(--ease-hover);
+  color: var(--color-ink-light);
 }
 
-.hero-survey-option:hover {
-  border-color: var(--color-brand);
-  box-shadow: var(--shadow-sm);
+.hero-survey-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8) var(--space-18);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink-light);
 }
 
-/* 옵션 하나를 선택하면 나머지는 살짝 흐려져 선택된 항목에 시선이 모인다 */
-.hero-survey-options.has-selection .hero-survey-option:not(.is-selected) {
-  opacity: .45;
+.hero-survey-cta {
+  width: 100%;
+  gap: var(--space-8);
+  margin-top: var(--space-12);
 }
 
-.hero-survey-option.is-selected {
-  border-color: transparent;
-  color: var(--color-ink-heaviest);
-  background: linear-gradient(120deg, var(--color-brand-tint-2), color-mix(in srgb, var(--color-brand) 22%, var(--color-brand-tint-2)));
-  box-shadow: var(--shadow-sm);
+.hero-survey-cta svg {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--duration-hover) var(--ease-hover);
 }
 
-/* 클릭 시 물방울처럼 아주 은은하게 부풀었다가 되돌아오는 모션 */
-.hero-survey-option.is-bubbling {
-  animation: hero-survey-option-bubble var(--survey-duration) var(--ease-scroll);
-}
-
-@keyframes hero-survey-option-bubble {
-  0% { transform: scale(1); }
-  40% { transform: scale(1.025); }
-  100% { transform: scale(1); }
-}
-
-.hero-survey-option-check {
-  position: absolute;
-  top: 50%;
-  right: var(--space-20);
-  width: 18px;
-  height: 18px;
-  color: var(--color-brand);
-  opacity: 0;
-  transform: translateY(-50%) scale(.6);
-  transition: opacity var(--duration-hover) var(--ease-hover),
-    transform var(--duration-hover) var(--ease-hover);
-}
-
-.hero-survey-option.is-selected .hero-survey-option-check {
-  opacity: 1;
-  transform: translateY(-50%) scale(1);
-}
-
-/* 다음 문항으로 넘어갈 때 질문/옵션 블록이 페이드 + 슬라이드로 전환된다 */
-.hero-survey-question,
-.hero-survey-options {
-  transition: opacity var(--survey-duration) var(--ease-scroll),
-    transform var(--survey-duration) var(--ease-scroll);
-}
-
-.hero-survey.is-transitioning .hero-survey-question,
-.hero-survey.is-transitioning .hero-survey-options {
-  opacity: 0;
-  transform: translateY(8px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-survey-option.is-bubbling {
-    animation: none;
-  }
-  .hero-survey-question,
-  .hero-survey-options {
-    transition: none;
-  }
+.hero-survey:hover .hero-survey-cta svg {
+  transform: translateX(3px);
 }
 
 /* 함께하는 기업 로고 — hero 배경 위에서 이어지는 무한 가로 스크롤 */

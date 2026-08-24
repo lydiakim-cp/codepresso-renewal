@@ -1,0 +1,104 @@
+/*
+ * Component: CTA Final
+ * 페이지 최하단 마지막 전환 유도 섹션. 어두운 배경 위 화이트 타이포 + 2버튼 + 보조 링크.
+ * 배경은 bg-line.png를 우측 상단 영역만 확대해 질감으로 깔고, 짙은 브랜드 톤 오버레이로 덮는다.
+ */
+
+.cta-final {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-ink-heaviest);
+}
+
+.cta-final::before {
+  content: "";
+  position: absolute;
+  /* blur 반경만큼 바깥으로 여유를 둬서, 블러가 실제 박스 경계 밖(여백)에서
+     일어나게 한다. inset: 0으로 딱 맞춰두면 blur가 경계 바로 안쪽 픽셀을
+     투명한 바깥과 섞어버려 가장자리가 어둡게 죽는 문제가 생긴다. */
+  inset: -20px;
+  background-image: url("../../images/bg-line2.png");
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-size: 180%;
+  filter: blur(7px);
+}
+
+.cta-final::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--color-ink-heaviest) 92%, transparent) 0%,
+      color-mix(in srgb, var(--color-brand-dark) 70%, var(--color-ink-heaviest)) 100%);
+    opacity: 0.5;
+}
+
+.cta-final-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-24);
+  text-align: center;
+}
+
+.cta-final-title {
+  color: var(--color-surface);
+}
+
+.cta-final-desc {
+  font-size: var(--text-heading-20);
+  line-height: var(--leading-heading-20);
+  font-weight: var(--font-weight-regular);
+  color: color-mix(in srgb, var(--color-surface) 82%, transparent);
+}
+
+.cta-final-actions {
+  display: flex;
+  gap: var(--space-12);
+  margin-top: var(--space-12);
+}
+
+/* 메인 CTA("도입 상담하기")의 원형 아이콘을 코드프레소 프라이머리 컬러로 채워 시선을 모은다. */
+.cta-final-actions .btn-pill:first-child .btn-pill-icon {
+  background: var(--color-brand);
+}
+
+/* 어두운 CTA 배경 위의 두 번째 Pill 버튼은 화이트 필박스 대신 outline으로 눌러준다. */
+.cta-final-actions .btn-pill + .btn-pill {
+  background: transparent;
+  color: var(--color-surface);
+  border: 1px solid color-mix(in srgb, var(--color-surface) 40%, transparent);
+  box-shadow: none;
+}
+
+.cta-final-actions .btn-pill + .btn-pill .btn-pill-icon {
+  background: color-mix(in srgb, var(--color-surface) 16%, transparent);
+  color: var(--color-surface);
+}
+
+.cta-final-actions .btn-pill + .btn-pill:hover {
+  border-color: var(--color-surface);
+  box-shadow: none;
+}
+
+.cta-final-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--text-body-muted);
+  font-weight: var(--font-weight-medium);
+  color: color-mix(in srgb, var(--color-surface) 82%, transparent);
+  transition: color var(--duration-hover) var(--ease-hover);
+}
+
+.cta-final-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+.cta-final-link:hover {
+  color: var(--color-surface);
+}

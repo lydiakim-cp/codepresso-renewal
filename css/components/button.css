@@ -48,3 +48,47 @@
   font-size: var(--text-body);
   letter-spacing: var(--tracking-body);
 }
+
+/*
+ * Pill CTA — 흰색 캡슐 배경 + 우측 원형 화살표 아이콘.
+ * 그라디언트/이미지 배경 위에 떠 있는 강조 CTA(플로팅 버튼)에 사용.
+ */
+.btn-pill {
+  gap: var(--space-12);
+  height: 56px;
+  padding: 0 var(--space-8) 0 var(--space-24);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  box-shadow: 0 7px 29px 0 rgba(68, 68, 68, .24);
+  transition: all 0.5s ease;
+}
+
+.btn-pill:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 34px 0 rgba(68, 68, 68, .3);
+}
+
+.btn-pill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--color-ink);
+  color: var(--color-surface);
+}
+
+.btn-pill-icon svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-pill {
+    transition-duration: 0.001ms;
+  }
+}

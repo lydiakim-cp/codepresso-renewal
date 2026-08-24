@@ -48,13 +48,6 @@
   font-size: var(--text-body);
 }
 
-.summary-banner-label {
-  flex-shrink: 0;
-  font-size: var(--text-body-14);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-ink-lighter);
-}
-
 /* 배너 안에서 통계 항목을 3열로 나열한다. 항목 수가 늘어도 자동 줄바꿈된다.
    토스 스타일: 카드 구획 없이 세로 divider(border-right)만으로 열을 구분한다. */
 .summary-banner-stats {
@@ -88,13 +81,6 @@
 .summary-banner-stat.is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-.summary-banner-stat-label {
-  font-size: var(--text-body-14);
-  line-height: var(--leading-body-14);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-ink-light);
 }
 
 /* 숫자 + 단위를 baseline 정렬로 나란히 둔다. 단위는 숫자보다 한 단 작게. */
@@ -161,6 +147,77 @@
 
   .summary-banner-stat-bar-fill {
     transition-duration: 0.001ms;
+  }
+}
+
+/* .summary-banner.stats-light — 도트 패턴 아이콘과 함께 카드 2개를 나열하는 modifier.
+   .stats(다크 3열 버전)와 달리 옅은 회색 배경의 개별 카드 셸을 쓴다. */
+.summary-banner.stats-light {
+  padding: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.summary-banner.stats-light .summary-banner-stats {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-24);
+}
+
+.summary-banner.stats-light .summary-banner-stat {
+  position: relative;
+  gap: var(--space-8);
+  padding: var(--space-35) var(--space-24);
+  border-right: none;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-neutral);
+  overflow: hidden;
+}
+
+.summary-banner.stats-light .summary-banner-stat-number {
+  font-size: var(--text-heading-40);
+  line-height: var(--leading-heading-40);
+  color: var(--color-ink-heaviest);
+}
+
+.summary-banner.stats-light .text-label {
+  color: var(--color-ink-lighter);
+}
+
+/* 카드 우측에 자리하는 도트 패턴 아이콘. radial-gradient 반복으로 halftone 질감을 내고,
+   clip-path로 통계 의미에 맞는 실루엣(사람/달력)을 잘라낸다.
+   --rise(재구매율)만 계단식으로 커지는 도트를 직접 그린 인라인 SVG를 쓴다. */
+.stat-icon {
+  position: absolute;
+  right: var(--space-20);
+  bottom: 50%;
+  width: 84px;
+  height: 84px;
+  transform: translateY(50%);
+  background-image: radial-gradient(circle, currentColor 1.4px, transparent 1.6px);
+  background-size: 7px 7px;
+}
+
+.stat-icon--person {
+  color: var(--color-brand);
+  /* 머리(원) + 어깨(반타원)를 하나의 실루엣으로 합친 사람 아이콘 */
+  clip-path: path("M42 4a16 16 0 1 0 0.01 0ZM6 82c0-22 16-38 36-38s36 16 36 38v2H6Z");
+}
+
+.stat-icon--calendar {
+  color: var(--color-brand);
+  /* 상단 고리 2개 + 몸통(라운드 사각형)의 달력 실루엣 */
+  clip-path: path("M12 10h6V4a4 4 0 0 1 8 0v6h28V4a4 4 0 0 1 8 0v6h6a8 8 0 0 1 8 8v58a8 8 0 0 1-8 8H12a8 8 0 0 1-8-8V18a8 8 0 0 1 8-8Z");
+}
+
+.stat-icon--rise {
+  background-image: none;
+  color: var(--color-brand);
+}
+
+@media (max-width: 720px) {
+  .stat-icon {
+    width: 64px;
+    height: 64px;
   }
 }
 

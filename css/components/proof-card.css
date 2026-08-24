@@ -10,9 +10,7 @@
   padding: 48px 112px;
   border-radius: var(--radius-xl);
   /* 원색 브랜드 블루 대신 틴트로 옅게 — 카드 뒤 배경이 쨍하지 않게 한다. */
-  background: linear-gradient(180deg,
-      color-mix(in srgb, var(--color-brand) 55%, var(--color-surface)) 0%,
-      color-mix(in srgb, var(--color-brand-dark) 45%, var(--color-surface)) 100%);
+  background: color-mix(in srgb, var(--color-brand) 12%, var(--color-surface));
 }
 
 .proof-card-deck {
