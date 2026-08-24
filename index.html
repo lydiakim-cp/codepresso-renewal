@@ -5,14 +5,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>코드프레소 — 코드프레소와 함께 성장하는 개발자</title>
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/index-page.css">
 </head>
 
 <body>
   <header class="header">
     <div class="header-inner">
       <a class="logo" href="/">
-        <img src="images/codepresso_logo_(primary).png" alt="코드프레소 로고" width="156">
+        <img src="images/codepresso_logo/codepresso_logo_(primary).png" alt="코드프레소 로고" width="156">
       </a>
 
       <nav class="nav" aria-label="주요 메뉴">
@@ -207,7 +207,7 @@
       </div>
     </section>
 
-    <section>
+    <section class="how-it-works">
       <div class="section-wrap content">
         <div class="section-title center">
           <p class="tag">How it works</p>
@@ -319,53 +319,45 @@
 
     <div class="dot-line"></div>
 
-    <section>
+    <section class="proof">
       <div class="section-wrap content">
         <div class="section-header">
           <div class="section-title">
-          <p class="tag">02 · Proof</p>
-          <h2 class="text-left">도입한 기업에서는 이렇게 달라졌습니다</h2>
-          <p class="desc">역량을 진단하고 키운 조직은 채용과 교육의 낭비가 줄었고, <br>
-            업무를 자동화한 조직은 실행 속도가 빨라졌습니다.</p>
-            </div>
+            <p class="tag">02 · Proof</p>
+            <h2 class="text-left">도입한 기업에서는 이렇게 달라졌습니다</h2>
+            <p class="desc">역량을 진단하고 키운 조직은 채용과 교육의 낭비가 줄었고, <br>
+              업무를 자동화한 조직은 실행 속도가 빨라졌습니다.</p>
+          </div>
           <div class="section-cta">
             <a href="#" class="btn btn-ghost">고객 사례 더 보기</a>
             <a href="#" class="btn btn-primary">도입 상담하기</a>
           </div>
         </div>
         <div class="section-content">
-          <div class="proof-card-grid">
-            <article class="card proof-card">
-              <span class="proof-card-logo">
-                <img src="images/logos/logo-cj.jpg" alt="CJ올리브네트웍스 로고">
-              </span>
-              <div class="proof-card-metric">
-                <p class="proof-card-metric-value">검증 비용 1/3</p>
-                <span class="proof-card-metric-label">서류 150명 → 최종 3명</span>
+          <div class="proof-card-stage">
+            <div class="proof-card-deck" data-proof-deck>
+              <button type="button" class="proof-card-nav" aria-label="다른 사례 보기">&#8249;</button>
+              <div class="proof-card-deck-list">
+                <article class="proof-card">
+                  <img src="images/logos/logo-cj.svg" alt="CJ올리브네트웍스 로고">
+                  <h3>검증 비용이 1/3로 줄어든 채용</h3>
+                  <blockquote>"서류 합격 150명을 실기 평가로 검증해 30명, 최종 3명을 선발했습니다.<br>
+                    채용 검증에 들던 비용은 1/3로 줄었습니다."</blockquote>
+                  <cite>CJ올리브네트웍스 | SkillCertify 채용 검증</cite>
+                </article>
+                <article class="proof-card">
+                  <img src="images/logos/logo-translink.svg" alt="트랜스링크인베스트먼트 로고">
+                  <h3>심사 소요 시간 3~5일 → 1시간</h3>
+                  <blockquote>"3~5일 걸리던 기업 실사가 1시간으로 줄었습니다.<br>
+                    의사결정 속도가 완전히 달라졌습니다."</blockquote>
+                  <cite>트랜스링크인베스트먼트 | 박희덕 대표</cite>
+                </article>
               </div>
-              <div class="proof-card-quote-box">
-                <p class="proof-card-quote">"서류 합격 150명을 실기 평가로 검증해 30명, 최종 3명을 선발했습니다.<br>
-                  채용 검증에 들던 비용은 1/3로 줄었습니다."</p>
-                <span class="proof-card-source">CJ올리브네트웍스 | SkillCertify 채용 검증</span>
-              </div>
-            </article>
-            <article class="card proof-card">
-              <span class="proof-card-logo">
-                <img src="images/logos/logo-translink.svg" alt="트랜스링크인베스트먼트 로고">
-              </span>
-              <div class="proof-card-metric">
-                <p class="proof-card-metric-value">3~5일 → 1시간</p>
-                <span class="proof-card-metric-label">심사 소요 시간</span>
-              </div>
-              <div class="proof-card-quote-box">
-                <p class="proof-card-quote">"3~5일 걸리던 기업 실사가 1시간으로 줄었습니다.<br>
-                  의사결정 속도가 완전히 달라졌습니다."</p>
-                <span class="proof-card-source">트랜스링크인베스트먼트 | 박희덕 대표</span>
-              </div>
-            </article>
+              <button type="button" class="proof-card-nav" aria-label="다음 사례 보기">&#8250;</button>
+            </div>
           </div>
 
-          <div class="summary-banner stats">
+          <div class="summary-banner stats dark">
             <div class="summary-banner-stats" data-stat-reveal>
               <div class="summary-banner-stat">
                 <p class="summary-banner-stat-label">누적 수강</p>
@@ -402,11 +394,15 @@
     </section>
 
 
-    <section class="education-journey">
+    <section class="education-journey" id="part1-education">
       <div class="section-wrap education-journey-layout">
         <div class="education-journey-sticky">
           <div class="section-title">
-            <p class="tag">PART 1 · 교육</p>
+            <nav class="part-nav" data-part-nav aria-label="교육·진단 섹션 이동">
+              <span class="part-nav-indicator" data-part-nav-indicator aria-hidden="true"></span>
+              <a class="part-nav-item" href="#part1-education" data-part-nav-item="part1-education">PART 1 · 교육</a>
+              <a class="part-nav-item" href="#part2-diagnosis" data-part-nav-item="part2-diagnosis">PART 2 · 진단</a>
+            </nav>
             <h2 class="text-left">업무를 아는 직원을,<br>AI로 일하는 인재로 키웁니다</h2>
             <p class="desc">코드프레소의 중심은 교육입니다. 개발 직군부터 비개발 직군까지, <br> 수준과 직무에 맞는 방식으로 전 직원의 AI 활용 역량을 키웁니다.
              <br>  일회성 특강이 아니라, 현장 적용까지 이어지는 사내 FDE 양성 여정입니다.</p>
@@ -414,16 +410,16 @@
 
           <ol class="journey-steps" data-journey-steps>
             <li class="journey-step" data-journey-step="0">
-              <span class="journey-step-index">01</span>
-              <span class="journey-step-label">설계</span>
+              <span class="journey-step-index text-caption strong">01</span>
+              <span class="journey-step-label text-caption medium">설계</span>
             </li>
             <li class="journey-step" data-journey-step="1">
-              <span class="journey-step-index">02</span>
-              <span class="journey-step-label">교육</span>
+              <span class="journey-step-index text-caption strong">02</span>
+              <span class="journey-step-label text-caption medium">교육</span>
             </li>
             <li class="journey-step" data-journey-step="2">
-              <span class="journey-step-index">03</span>
-              <span class="journey-step-label">현장 적용</span>
+              <span class="journey-step-index text-caption strong">03</span>
+              <span class="journey-step-label text-caption medium">현장 적용</span>
             </li>
           </ol>
         </div>
@@ -432,7 +428,7 @@
           <article class="journey-block" data-journey-target="0">
             <p class="journey-block-index">01</p>
             <header class="journey-block-head">
-              <p class="journey-block-label">01. 설계</p>
+              <p class="journey-block-label text-label-brand">01. 설계</p>
               <h3 class="journey-block-title">진단 결과에 맞춘<br>교육 과정 설계</h3>
             </header>
 
@@ -447,50 +443,33 @@
                 <li>
                   <a class="journey-program is-active" href="#" data-program-item="0">
                     <span class="journey-program-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 19.5V6a2 2 0 0 1 2-2h11.5a1 1 0 0 1 1 1v13" stroke="currentColor" stroke-width="1.6"
-                          stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M4 19.5A2 2 0 0 0 6 21.5h11.5" stroke="currentColor" stroke-width="1.6"
-                          stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
+                      <img src="images/icon/skillpath-icon-glass-v1.png" alt="">
                     </span>
                     <span class="journey-program-body">
-                      <span class="journey-program-name">SkillPath <span class="tag">온라인</span></span>
-                      <span class="journey-program-desc">온라인 이러닝</span>
+                      <span class="journey-program-name list-item-title">SkillPath <span class="tag">온라인</span></span>
+                      <span class="journey-program-desc text-caption">온라인 이러닝</span>
                     </span>
                   </a>
                 </li>
                 <li>
                   <a class="journey-program" href="#" data-program-item="1">
                     <span class="journey-program-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6" />
-                        <path d="M3 20c0-3 2.7-5.5 6-5.5s6 2.5 6 5.5M16 8.5a3 3 0 1 0 0-6" stroke="currentColor"
-                          stroke-width="1.6" stroke-linecap="round" />
-                        <path d="M18 14.5c2 .5 3 2 3 5.5" stroke="currentColor" stroke-width="1.6"
-                          stroke-linecap="round" />
-                      </svg>
+                      <img src="images/icon/skillcamp-icon-glass-90.png" alt="">
                     </span>
                     <span class="journey-program-body">
-                      <span class="journey-program-name">SkillCamp <span class="tag">라이브</span></span>
-                      <span class="journey-program-desc">강사 주도형 교육</span>
+                      <span class="journey-program-name list-item-title">SkillCamp <span class="tag">라이브</span></span>
+                      <span class="journey-program-desc text-caption">강사 주도형 교육</span>
                     </span>
                   </a>
                 </li>
                 <li>
                   <a class="journey-program" href="#" data-program-item="2">
                     <span class="journey-program-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="6" cy="6" r="2" stroke="currentColor" stroke-width="1.6" />
-                        <circle cx="18" cy="6" r="2" stroke="currentColor" stroke-width="1.6" />
-                        <circle cx="12" cy="18" r="2" stroke="currentColor" stroke-width="1.6" />
-                        <path d="M7.6 7.2 10.6 16M16.4 7.2 13.4 16M8 6h8" stroke="currentColor" stroke-width="1.6"
-                          stroke-linecap="round" />
-                      </svg>
+                      <img src="images/icon/skillfit-icon-glass-v2.png" alt="">
                     </span>
                     <span class="journey-program-body">
-                      <span class="journey-program-name">SkillFit <span class="tag">적응형</span></span>
-                      <span class="journey-program-desc">AI 기반 적응형 학습</span>
+                      <span class="journey-program-name list-item-title">SkillFit <span class="tag">적응형</span></span>
+                      <span class="journey-program-desc text-caption">AI 기반 적응형 학습</span>
                     </span>
                   </a>
                 </li>
@@ -503,23 +482,288 @@
           <article class="journey-block" data-journey-target="1">
             <p class="journey-block-index">02</p>
             <header class="journey-block-head">
-              <p class="journey-block-label">02. 교육</p>
+              <p class="journey-block-label text-label-brand">02. 교육</p>
               <h3 class="journey-block-title">직무·수준별<br>실무 중심 학습</h3>
             </header>
 
-            <p class="journey-block-desc">전 직원이 같은 내용을 배우지 않습니다. <br> 개발·비개발, 초급·중급·고급으로 나누어 
+            <p class="journey-block-desc desc">전 직원이 같은 내용을 배우지 않습니다. <br> 개발·비개발, 초급·중급·고급으로 나누어
               각자의 업무에 바로 쓸 수 있는 실무형 커리큘럼으로 진행합니다.</p>
           </article>
 
           <article class="journey-block" data-journey-target="2">
             <p class="journey-block-index">03</p>
             <header class="journey-block-head">
-              <p class="journey-block-label">03. 현장 적용</p>
+              <p class="journey-block-label text-label-brand">03. 현장 적용</p>
               <h3 class="journey-block-title">배운 것을 <br> 실제 업무에 바로 적용</h3>
             </header>
 
-            <p class="journey-block-desc">교육으로 끝내지 않습니다. <br> 재진단과 사내 공유 문화까지 설계해, 키운 역량이 조직에 남게 합니다.</p>
+            <p class="journey-block-desc desc">교육으로 끝내지 않습니다. <br> 재진단과 사내 공유 문화까지 설계해, 키운 역량이 조직에 남게 합니다.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="diagnosis-showcase" id="part2-diagnosis">
+      <div class="section-wrap diagnosis-layout">
+        <div class="diagnosis-sticky">
+          <div class="section-title">
+            <nav class="part-nav" data-part-nav aria-label="교육·진단 섹션 이동">
+              <span class="part-nav-indicator" data-part-nav-indicator aria-hidden="true"></span>
+              <a class="part-nav-item" href="#part1-education" data-part-nav-item="part1-education">PART 1 · 교육</a>
+              <a class="part-nav-item" href="#part2-diagnosis" data-part-nav-item="part2-diagnosis">PART 2 · 진단</a>
+            </nav>
+            <h2 class="text-left">교육이 잘 됐는지,<br>궁금하지 않으세요?</h2>
+            <p class="desc">그래서 코드프레소는 교육 앞뒤에 진단을 붙입니다. <br>
+              시작 전엔 무엇을 가르칠지 정하고, 끝난 뒤엔 얼마나 늘었는지 증명합니다. <br>
+              측정할 수 있어야 관리할 수 있습니다.</p>
+          </div>
+
+          <div class="diagnosis-products">
+            <p class="diagnosis-products-label text-label-brand">진단 제품</p>
+
+            <ul class="diagnosis-product-list">
+              <li>
+                <a class="diagnosis-product" href="#">
+                  <span class="diagnosis-product-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 3l2.4 5.6 5.6.5-4.2 3.9 1.2 5.9L12 16l-5 2.9 1.2-5.9L4 9.1l5.6-.5L12 3z"
+                        stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="diagnosis-product-body">
+                    <span class="diagnosis-product-name list-item-title">AI Fluent</span>
+                    <span class="diagnosis-product-desc text-caption">전 직군 AI 활용 역량 진단</span>
+                  </span>
+                  <svg class="diagnosis-product-arrow" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a class="diagnosis-product" href="#">
+                  <span class="diagnosis-product-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.5 12.5l4 4 11-11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                      <path d="M20 12.5v5.5a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h7" stroke="currentColor"
+                        stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="diagnosis-product-body">
+                    <span class="diagnosis-product-name list-item-title">SkillCertify</span>
+                    <span class="diagnosis-product-desc text-caption">개발자 IT 실무 역량 평가</span>
+                  </span>
+                  <svg class="diagnosis-product-arrow" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <a href="#" class="btn btn-primary btn-lg diagnosis-cta">역량 진단 자세히 보기</a>
+        </div>
+
+        <div class="diagnosis-preview">
+          <div class="diagnosis-preview-frame">
+            <span class="diagnosis-preview-glow" aria-hidden="true"></span>
+
+            <div class="diagnosis-preview-card">
+              <header class="diagnosis-preview-head">
+                <p class="diagnosis-preview-title">AI 활용 역량 진단 리포트</p>
+                <span class="diagnosis-preview-badge">교육 후 재진단</span>
+              </header>
+
+              <div class="diagnosis-preview-score">
+                <div class="diagnosis-preview-score-main">
+                  <span class="diagnosis-preview-score-label text-fine">종합 역량 점수</span>
+                  <p class="diagnosis-preview-score-value">82<span class="unit">점</span></p>
+                </div>
+                <span class="diagnosis-preview-delta">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  교육 전 대비 +27
+                </span>
+              </div>
+
+              <ul class="diagnosis-preview-skills">
+                <li class="diagnosis-preview-skill">
+                  <span class="diagnosis-preview-skill-name text-fine is-light">프롬프트 설계</span>
+                  <span class="diagnosis-preview-skill-track">
+                    <span class="diagnosis-preview-skill-fill" style="--skill-percent: 88%"></span>
+                  </span>
+                  <span class="diagnosis-preview-skill-value">88</span>
+                </li>
+                <li class="diagnosis-preview-skill">
+                  <span class="diagnosis-preview-skill-name text-fine is-light">업무 자동화</span>
+                  <span class="diagnosis-preview-skill-track">
+                    <span class="diagnosis-preview-skill-fill" style="--skill-percent: 76%"></span>
+                  </span>
+                  <span class="diagnosis-preview-skill-value">76</span>
+                </li>
+                <li class="diagnosis-preview-skill">
+                  <span class="diagnosis-preview-skill-name text-fine is-light">데이터 해석</span>
+                  <span class="diagnosis-preview-skill-track">
+                    <span class="diagnosis-preview-skill-fill" style="--skill-percent: 64%"></span>
+                  </span>
+                  <span class="diagnosis-preview-skill-value">64</span>
+                </li>
+                <li class="diagnosis-preview-skill">
+                  <span class="diagnosis-preview-skill-name text-fine is-light">AI 윤리·보안</span>
+                  <span class="diagnosis-preview-skill-track">
+                    <span class="diagnosis-preview-skill-fill" style="--skill-percent: 52%"></span>
+                  </span>
+                  <span class="diagnosis-preview-skill-value">52</span>
+                </li>
+              </ul>
+
+              <footer class="diagnosis-preview-foot text-fine">
+                다음 교육 추천 · <strong>데이터 해석 실무 과정</strong>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="difference" id="part3-difference">
+      <div class="section-wrap content difference-layout">
+        <div class="section-header">
+          <div class="section-title">
+            <p class="tag">03 · The Difference</p>
+            <h2 class="text-left">다른 교육 회사와,<br>다른 세 가지가 있습니다</h2>
+            <p class="desc">진단·재진단으로 교육을 정량적으로 관리하고, <br>
+              공유 허브와 라이브러리로 문화 정착까지 설계합니다. <br>
+              그리고 우리는 FDE 현장을 직접 뛰는 회사입니다.</p>
+          </div>
+          <div class="section-cta">
+            <a href="#" class="btn btn-primary">코드프레소의 차별점 보기</a>
+          </div>
+        </div>
+
+        <div class="section-content">
+          <div class="difference-grid" data-difference-reveal>
+            <article class="card difference-card">
+              <div class="difference-card-head">
+                <span class="difference-card-num" aria-hidden="true">1</span>
+                <h3 class="difference-card-title">정량적 관리</h3>
+              </div>
+              <p class="difference-card-desc">감으로 끝나던 교육을 숫자로 남깁니다. 교육 전후 역량을 같은 기준으로 재서,
+                무엇이 얼마나 늘었는지 보고할 수 있게 만듭니다.</p>
+
+              <div class="difference-flow">
+                <div class="difference-flow-step">
+                  <span class="difference-flow-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6" />
+                      <path d="M5 20c0-3.3 3.1-5.4 7-5.4s7 2.1 7 5.4" stroke="currentColor" stroke-width="1.6"
+                        stroke-linecap="round" />
+                    </svg>
+                  </span>
+                  <span class="difference-flow-name">진단</span>
+                  <span class="difference-flow-note text-fine">IT·AI 실무<br>역량 확인</span>
+                </div>
+                <span class="difference-flow-link" aria-hidden="true"></span>
+                <div class="difference-flow-step">
+                  <span class="difference-flow-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 7.2C10.6 6 8.8 5.4 6.6 5.4H4v12h2.6c2.2 0 4 .6 5.4 1.8 1.4-1.2 3.2-1.8 5.4-1.8H20v-12h-2.6c-2.2 0-4 .6-5.4 1.8z"
+                        stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                      <path d="M12 7.2v11.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                    </svg>
+                  </span>
+                  <span class="difference-flow-name">교육</span>
+                  <span class="difference-flow-note text-fine">수준과 직무에<br>맞는 학습 제공</span>
+                </div>
+                <span class="difference-flow-link" aria-hidden="true"></span>
+                <div class="difference-flow-step">
+                  <span class="difference-flow-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4 16.5l5-5 3.5 3.5L20 7.5" stroke="currentColor" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                      <path d="M15 7.5h5v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="difference-flow-name">재진단</span>
+                  <span class="difference-flow-note text-fine">교육 전후<br>역량 변화 확인</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="card difference-card">
+              <div class="difference-card-head">
+                <span class="difference-card-num" aria-hidden="true">2</span>
+                <h3 class="difference-card-title">문화 정착</h3>
+              </div>
+              <p class="difference-card-desc">교육이 끝나도 남는 것을 만듭니다. 잘 쓴 에이전트와 프롬프트가 사내에 공유되고
+                쌓이면서, 한 팀의 역량이 조직 전체의 기본기가 됩니다.</p>
+
+              <div class="difference-flow">
+                <div class="difference-flow-step">
+                  <span class="difference-flow-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="4" y="7" width="16" height="12" rx="3" stroke="currentColor" stroke-width="1.6" />
+                      <path d="M12 4v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                      <circle cx="9.2" cy="12.4" r="1.1" fill="currentColor" />
+                      <circle cx="14.8" cy="12.4" r="1.1" fill="currentColor" />
+                      <path d="M9.5 15.8h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                    </svg>
+                  </span>
+                  <span class="difference-flow-name">공유 허브</span>
+                  <span class="difference-flow-note text-fine">에이전트·프롬프트를<br>사내에 공유</span>
+                </div>
+                <span class="difference-flow-link" aria-hidden="true"></span>
+                <div class="difference-flow-step">
+                  <span class="difference-flow-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 19v-6M12 19V8M18 19v-9" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" />
+                      <path d="M4 19h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                    </svg>
+                  </span>
+                  <span class="difference-flow-name">라이브러리</span>
+                  <span class="difference-flow-note text-fine">검증된 자산을<br>차곡차곡 축적</span>
+                </div>
+                <span class="difference-flow-link" aria-hidden="true"></span>
+                <div class="difference-flow-step">
+                  <span class="difference-flow-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="7.6" stroke="currentColor" stroke-width="1.6" />
+                      <circle cx="12" cy="12" r="3.6" stroke="currentColor" stroke-width="1.6" />
+                      <circle cx="12" cy="12" r="1.2" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <span class="difference-flow-name">전사 확산</span>
+                  <span class="difference-flow-note text-fine">팀을 넘어 조직<br>전체의 문화로</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="card difference-card is-dark">
+              <div class="difference-dark-body">
+                <div class="difference-card-head">
+                  <span class="difference-card-num" aria-hidden="true">3</span>
+                  <h3 class="difference-card-title">현장에서 검증한 것만 가르칩니다</h3>
+                </div>
+                <p class="difference-card-desc">우리는 강의만 하는 회사가 아닙니다.<br>
+                  AXMOS 얼라이언스와 함께 <strong>FDE 현장을 직접 뜁니다.</strong><br>
+                  그래서 교재가 아니라, 현장에서 통한 방법을 전합니다.</p>
+              </div>
+
+              <div class="difference-alliance">
+                <span class="difference-alliance-chip">AXMOS 얼라이언스</span>
+                <span class="difference-alliance-chip">FDE 현장 투입</span>
+                <span class="difference-alliance-chip">실전 검증 커리큘럼</span>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -531,9 +775,12 @@
   <script src="js/header-scroll.js"></script>
   <script src="js/hero-survey.js"></script>
   <script src="js/feature-card-cycle.js"></script>
+  <script src="js/proof-card-slider.js"></script>
   <script src="js/stat-reveal.js"></script>
   <script src="js/journey-scroll.js"></script>
   <script src="js/journey-program-cycle.js"></script>
+  <script src="js/part-nav.js"></script>
+  <script src="js/difference-reveal.js"></script>
 </body>
 
 </html>

@@ -27,3 +27,6 @@
 @import url("./components/hero.css") layer(components);
 @import url("./components/proof-card.css") layer(components);
 @import url("./components/education-journey.css") layer(components);
+@import url("./components/part-nav.css") layer(components);
+@import url("./components/diagnosis-showcase.css") layer(components);
+@import url("./components/difference.css") layer(components);

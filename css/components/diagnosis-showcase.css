@@ -1,0 +1,401 @@
+/*
+ * Component: Diagnosis Showcase
+ * PART 2 · 진단 섹션. education-journey(PART 1)와 같은 sticky 2단 뼈대와
+ * 브랜드 그라디언트 배경을 공유해 두 파트가 하나의 흐름으로 읽히게 한다.
+ * 좌측: part-nav + 카피 + 진단 제품 리스트 + CTA (sticky)
+ * 우측: 진단 리포트 프리뷰 — hero-survey와 같은 코드프레소 시각 서명
+ *       (그라디언트 글로우 프레임 + 글래스 카드 + 블루 섀도우)을 따른다.
+ */
+
+/* PART 1의 그라디언트를 역방향으로 이어받아, 스크롤이 내려갈수록
+   브랜드 컬러가 옅어지며 다음 섹션(흰 배경)으로 자연스럽게 빠진다. */
+.diagnosis-showcase {
+  background: linear-gradient(160deg,
+      color-mix(in srgb, var(--color-brand) 18%, var(--color-brand-tint-2)) 0%,
+      var(--color-brand-tint-1) 100%);
+}
+
+/* 우측 프리뷰가 좌측 컬럼 높이를 꽉 채우도록 stretch를 기본값으로 둔다
+   (좌측 sticky 컬럼만 align-self: start로 되돌린다 — stretch되면 sticky가 무력화된다). */
+.diagnosis-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  gap: var(--space-48);
+}
+
+@media (max-width: 900px) {
+  .diagnosis-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* education-journey-sticky와 동일한 sticky 오프셋/간격을 쓴다. */
+.diagnosis-sticky {
+  position: sticky;
+  top: 96px;
+  /* grid의 stretch를 상속하면 sticky가 동작하지 않으므로 자기 높이만 차지하게 한다. */
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-48);
+}
+
+/* ---------------------------------------------
+ * 좌측 — 진단 제품 리스트
+ * journey-program-list와 같은 "구분선만으로 나누는" 리스트 언어를 공유하되,
+ * 진단 제품은 2개뿐이라 아이콘 + 화살표로 클릭 가능함을 명확히 한다.
+ * --------------------------------------------- */
+.diagnosis-products {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  width: 100%;
+}
+
+.diagnosis-products-label {
+  font-size: var(--text-body-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand);
+}
+
+.diagnosis-product-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  border-top: 1px solid var(--color-line);
+}
+
+.diagnosis-product-list li:not(:last-child) {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.diagnosis-product {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-20);
+  margin-inline: calc(-1 * var(--space-20));
+  padding: var(--space-18) var(--space-20);
+  border-radius: var(--radius-md);
+  transition: background var(--duration-hover) var(--ease-hover);
+}
+
+.diagnosis-product:hover {
+  background: rgba(255, 255, 255, .6);
+}
+
+.diagnosis-product-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--space-48);
+  height: var(--space-48);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-brand);
+  transition: border-color var(--duration-hover) var(--ease-hover),
+    box-shadow var(--duration-hover) var(--ease-hover);
+}
+
+.diagnosis-product-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.diagnosis-product:hover .diagnosis-product-icon {
+  border-color: var(--color-brand);
+  box-shadow: var(--shadow-md);
+}
+
+.diagnosis-product-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.diagnosis-product-name {
+  font-size: var(--text-card-title);
+  line-height: var(--leading-card-title);
+  letter-spacing: var(--tracking-card-title);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-heaviest);
+}
+
+.diagnosis-product-desc {
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  color: var(--color-ink-lighter);
+}
+
+/* 우측 화살표 — feature-card와 같은 "hover 시 2px 밀려나는" 모션 언어. */
+.diagnosis-product-arrow {
+  width: 18px;
+  height: 18px;
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--color-ink-lighter);
+  transition: transform var(--duration-hover) var(--ease-hover),
+    color var(--duration-hover) var(--ease-hover);
+}
+
+.diagnosis-product:hover .diagnosis-product-arrow {
+  transform: translateX(2px);
+  color: var(--color-brand);
+}
+
+.diagnosis-cta {
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------
+ * 우측 — 진단 리포트 프리뷰
+ * hero-survey-frame과 같은 구성: 그라디언트 글로우 패널 위에 글래스 카드가 뜬다.
+ * 실제 진단 UI 캡처가 준비되면 .diagnosis-preview-card 내부를 <img>로 교체한다.
+ * --------------------------------------------- */
+.diagnosis-preview {
+  display: flex;
+  justify-content: center;
+  /* 좌측 컬럼 높이를 그대로 받아 프레임까지 전달한다. */
+  height: 100%;
+}
+
+.diagnosis-preview-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  /* 좌측이 짧아도 프리뷰가 납작해지지 않도록 최소 높이를 확보한다. */
+  min-height: 520px;
+  padding: 32px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+/* hero-survey-glow와 같은 언어 — 은은한 그라디언트 배경 + 유영하는 블롭 2개. */
+.diagnosis-preview-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--color-brand-tint-1) 0%, var(--color-brand-tint-2) 100%);
+}
+
+.diagnosis-preview-glow::before,
+.diagnosis-preview-glow::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(10px);
+  will-change: transform;
+}
+
+.diagnosis-preview-glow::before {
+  top: -18%;
+  right: -12%;
+  width: 58%;
+  height: 58%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-brand) 50%, white) 0%, transparent 70%);
+  animation: diagnosis-glow-drift-1 9s var(--ease-scroll) infinite;
+}
+
+.diagnosis-preview-glow::after {
+  bottom: -32%;
+  left: -28%;
+  width: 110%;
+  height: 110%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-brand-dark) 40%, white) 0%, transparent 70%);
+  animation: diagnosis-glow-drift-2 11s var(--ease-scroll) infinite;
+}
+
+@keyframes diagnosis-glow-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  35% { transform: translate(-20%, 24%) scale(1.18); }
+  70% { transform: translate(14%, 12%) scale(0.88); }
+}
+
+@keyframes diagnosis-glow-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(24%, -18%) scale(1.22); }
+  72% { transform: translate(-12%, -8%) scale(0.82); }
+}
+
+/* 글래스 카드 — hero-survey와 동일한 반투명 흰 배경 + blur + 블루 섀도우. */
+.diagnosis-preview-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, .82);
+  border: 1px solid rgba(255, 255, 255, .9);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+}
+
+.diagnosis-preview-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.diagnosis-preview-title {
+  font-size: var(--text-body-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
+}
+
+.diagnosis-preview-badge {
+  flex-shrink: 0;
+  padding: var(--space-4) var(--space-10);
+  border-radius: var(--radius-full);
+  background: var(--color-brand-tint-2);
+  font-size: var(--text-body-12);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-brand-dark);
+}
+
+/* 종합 점수 — 큰 숫자 + 상승폭 뱃지를 baseline으로 나란히 둔다. */
+.diagnosis-preview-score {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-12);
+  padding-bottom: var(--space-24);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.diagnosis-preview-score-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.diagnosis-preview-score-label {
+  font-size: var(--text-body-12);
+  color: var(--color-ink-lighter);
+}
+
+.diagnosis-preview-score-value {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--text-heading-44);
+  line-height: 1;
+  letter-spacing: var(--tracking-heading-wide);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink-heaviest);
+  font-variant-numeric: tabular-nums;
+}
+
+.diagnosis-preview-score-value .unit {
+  font-size: var(--text-heading-18);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-lighter);
+}
+
+.diagnosis-preview-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-10);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-success) 12%, white);
+  font-size: var(--text-body-12);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-success);
+  white-space: nowrap;
+}
+
+.diagnosis-preview-delta svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* 세부 역량 — 이름 / 바 / 점수 3열 고정 그리드로 눈금이 맞게 정렬한다. */
+.diagnosis-preview-skills {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.diagnosis-preview-skill {
+  display: grid;
+  grid-template-columns: 84px 1fr 24px;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.diagnosis-preview-skill-name {
+  font-size: var(--text-body-12);
+  color: var(--color-ink-light);
+  white-space: nowrap;
+}
+
+.diagnosis-preview-skill-track {
+  display: block;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-line);
+  overflow: hidden;
+}
+
+.diagnosis-preview-skill-fill {
+  display: block;
+  width: var(--skill-percent, 60%);
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--color-brand-dark), var(--color-brand));
+}
+
+.diagnosis-preview-skill-value {
+  font-size: var(--text-body-12);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 진단이 다음 교육으로 이어진다는 것 — PART 1↔2의 순환 구조를 카드 안에서 한 번 더 짚는다. */
+.diagnosis-preview-foot {
+  padding-top: var(--space-18);
+  border-top: 1px solid var(--color-line);
+  font-size: var(--text-body-12);
+  color: var(--color-ink-lighter);
+}
+
+.diagnosis-preview-foot strong {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand);
+}
+
+/* 1단으로 쌓이는 폭에서는 좌측 높이를 따라갈 이유가 없으므로
+   sticky와 최소 높이를 모두 해제해 내용 높이만 차지하게 한다. */
+@media (max-width: 900px) {
+  .diagnosis-sticky {
+    position: static;
+  }
+
+  .diagnosis-preview-frame {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diagnosis-preview-glow::before,
+  .diagnosis-preview-glow::after {
+    animation: none;
+  }
+}

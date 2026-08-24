@@ -238,9 +238,11 @@
     color var(--duration-hover) var(--ease-hover);
 }
 
-.journey-program-icon svg {
+.journey-program-icon svg,
+.journey-program-icon img {
   width: 22px;
   height: 22px;
+  object-fit: contain;
 }
 
 .journey-program-body {
