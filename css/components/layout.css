@@ -117,3 +117,29 @@ section {
   flex-wrap: wrap;
   gap: 4px;
 }
+
+/*
+ * Component: Fade Up
+ * 스크롤로 화면에 들어올 때 아래에서 위로 올라오며 나타나는 공통 진입 모션.
+ * JS(IntersectionObserver 등)에서 대상 요소를 관찰하다 뷰포트에 들어오는 순간
+ * .is-visible을 붙이면 된다. summary-banner-stat에서 쓰던 패턴을 공통화했다.
+ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(var(--motion-rise));
+  transition: opacity var(--duration-scroll) var(--ease-scroll),
+    transform var(--duration-scroll) var(--ease-scroll);
+}
+
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

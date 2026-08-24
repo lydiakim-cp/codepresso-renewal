@@ -169,7 +169,8 @@
   padding: var(--space-35) var(--space-24);
   border-right: none;
   border-radius: var(--radius-lg);
-  background: var(--color-surface-neutral);
+  background: var(--color-surface-sunken);
+  text-align: left;
   overflow: hidden;
 }
 
@@ -183,41 +184,91 @@
   color: var(--color-ink-lighter);
 }
 
-/* 카드 우측에 자리하는 도트 패턴 아이콘. radial-gradient 반복으로 halftone 질감을 내고,
-   clip-path로 통계 의미에 맞는 실루엣(사람/달력)을 잘라낸다.
-   --rise(재구매율)만 계단식으로 커지는 도트를 직접 그린 인라인 SVG를 쓴다. */
+/* 카드 우측에 자리하는 아이콘 자리. 위치 지정만 담당하는 wrapper —
+   실제 아이콘(.stat-icon-svg)과 호버 시 나타나는 원(.stat-icon-glow)이
+   이 안에 같은 중심으로 겹쳐 쌓인다. */
 .stat-icon {
   position: absolute;
   right: var(--space-20);
   bottom: 50%;
-  width: 84px;
-  height: 84px;
+  width: 100px;
+  height: 100px;
   transform: translateY(50%);
-  background-image: radial-gradient(circle, currentColor 1.4px, transparent 1.6px);
-  background-size: 7px 7px;
 }
 
-.stat-icon--person {
-  color: var(--color-brand);
-  /* 머리(원) + 어깨(반타원)를 하나의 실루엣으로 합친 사람 아이콘 */
-  clip-path: path("M42 4a16 16 0 1 0 0.01 0ZM6 82c0-22 16-38 36-38s36 16 36 38v2H6Z");
+/* images/icon의 원본 SVG를 인라인으로 가져와 fill을 브랜드 블루 톤
+   (--color-brand-tint-2 / --color-brand / --color-brand-dark)으로 재매핑했다.
+   wrapper를 꽉 채우고, 뒤에 깔리는 원보다 위 레이어에 둔다. */
+.stat-icon-svg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
 }
 
-.stat-icon--calendar {
-  color: var(--color-brand);
-  /* 상단 고리 2개 + 몸통(라운드 사각형)의 달력 실루엣 */
-  clip-path: path("M12 10h6V4a4 4 0 0 1 8 0v6h28V4a4 4 0 0 1 8 0v6h6a8 8 0 0 1 8 8v58a8 8 0 0 1-8 8H12a8 8 0 0 1-8-8V18a8 8 0 0 1 8-8Z");
+/* 아이콘 뒤에서 은은하게 나타나는 두 겹의 원 — 실제 DOM 요소(span)라
+   SVG 의사요소 미지원 문제 없이 확실하게 렌더링된다. 화이트 글래스모피즘
+   (반투명 흰색 + blur + 옅은 하이라이트 테두리)으로 카드 배경 위에 유리판이
+   떠 있는 느낌을 낸다. 카드 자체가 overflow:hidden이라, 원을 카드보다 훨씬
+   크게 잡아 우측·하단이 카드 경계에 잘리게 둔다 — "화면 밖에서 번져 들어오는"
+   느낌. 평소엔 투명하게 숨어 있다가, 카드에 호버하면 살짝 아래에서 위로
+   fade-up 되며 떠오른다. 두 원은 크기·딜레이를 다르게 줘서 겹쳐 퍼지는
+   깊이감을 만든다. */
+.stat-icon-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-surface) 55%, transparent);
+  box-shadow: inset 0 1px 1px color-mix(in srgb, var(--color-surface) 60%, transparent);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  transform: translate(-50%, calc(-50% + var(--motion-rise)));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-scroll) var(--ease-scroll),
+    transform var(--duration-scroll) var(--ease-scroll);
 }
 
-.stat-icon--rise {
-  background-image: none;
-  color: var(--color-brand);
+.stat-icon-glow:first-of-type {
+  width: 220px;
+  height: 220px;
+}
+
+.stat-icon-glow:last-of-type {
+  width: 320px;
+  height: 320px;
+  background: color-mix(in srgb, var(--color-surface) 35%, transparent);
+  transition-delay: .08s;
+}
+
+.summary-banner-stat:hover .stat-icon-glow {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 720px) {
+  .stat-icon-glow:first-of-type {
+    width: 140px;
+    height: 140px;
+  }
+
+  .stat-icon-glow:last-of-type {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 @media (max-width: 720px) {
   .stat-icon {
     width: 64px;
     height: 64px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-icon-glow {
+    transition-duration: 0.001ms;
   }
 }
 

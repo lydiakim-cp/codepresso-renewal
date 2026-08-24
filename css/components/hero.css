@@ -314,7 +314,7 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  gap: var(--space-48);
+  gap: 72px;
   padding-inline: var(--space-24);
   animation: hero-clients-scroll 28s linear infinite;
 }
@@ -325,12 +325,14 @@
 }
 
 .hero-clients-item {
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
-  font-size: var(--text-heading-20);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--tracking-heading-tight);
-  color: var(--color-ink-lighter);
-  white-space: nowrap;
+}
+
+.hero-clients-item img {
+  width: 183px;
+  height: 36px;
 }
 
 @media (prefers-reduced-motion: reduce) {

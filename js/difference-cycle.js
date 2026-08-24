@@ -18,6 +18,7 @@
   groups.forEach((group) => {
     const tabs = Array.from(group.querySelectorAll('[data-difference-tab]'));
     const panels = Array.from(group.querySelectorAll('[data-difference-panel]'));
+    const indicator = group.querySelector('[data-difference-indicator]');
     if (tabs.length !== panels.length || !tabs.length) return;
 
     const interval = Number(group.dataset.interval) || 3000;
@@ -25,6 +26,15 @@
     let activeIndex = 0;
     let isPaused = false;
     let timerId = null;
+
+    // part-nav와 같은 방식 — 인디케이터를 활성 탭의 실제 크기·위치로 옮긴다.
+    // part-nav는 transition 없이 즉시 옮기지만, 여기는 CSS의 transition으로
+    // 3초 자동 순환이 부드럽게 미끄러지듯 보이게 한다.
+    function moveIndicator(tab) {
+      if (!indicator) return;
+      indicator.style.width = `${tab.offsetWidth}px`;
+      indicator.style.transform = `translateX(${tab.offsetLeft - tabs[0].offsetLeft}px)`;
+    }
 
     function activate(index) {
       activeIndex = index;
@@ -35,6 +45,7 @@
         tab.setAttribute('aria-selected', String(isActive));
         // tablist 안에서는 활성 탭만 Tab 키 순서에 남긴다.
         tab.tabIndex = isActive ? 0 : -1;
+        if (isActive) moveIndicator(tab);
       });
 
       panels.forEach((panel, i) => {
@@ -96,5 +107,8 @@
 
     activate(0);
     startTimer();
+
+    // 리사이즈로 탭 폭이 바뀌면 인디케이터도 같은 자리를 다시 계산한다(part-nav와 동일).
+    window.addEventListener('resize', () => moveIndicator(tabs[activeIndex]));
   });
 })();

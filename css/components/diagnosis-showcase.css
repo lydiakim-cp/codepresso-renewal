@@ -94,9 +94,11 @@
     box-shadow var(--duration-hover) var(--ease-hover);
 }
 
-.diagnosis-product-icon svg {
+.diagnosis-product-icon svg,
+.diagnosis-product-icon img {
   width: 22px;
   height: 22px;
+  object-fit: contain;
 }
 
 .diagnosis-product:hover .diagnosis-product-icon {

@@ -2,12 +2,12 @@
  * Part Nav
  * PART 1 · 교육 / PART 2 · 진단 두 섹션을 아우르는 상위 앵커 내비게이션.
  * 두 파트 각각의 sticky 컬럼 안에 같은 nav가 하나씩 놓여 있으므로,
- * 스크롤 위치가 바뀌면 두 인스턴스의 활성 표시를 동시에 같은 파트로 맞춘다.
+ * 클릭 시 두 인스턴스의 활성 표시를 동시에 같은 파트로 맞춘다.
  *
  * tab이 아니라 <a href="#id">로 해당 섹션까지 이동하는 링크다(콘텐츠는 클릭
  * 여부와 무관하게 항상 전부 노출돼 있다). 인디케이터는 슬라이딩하지 않고
  * 즉시 자리를 옮기며(part-nav.css), 이동감은 클릭 시의 부드러운 페이지
- * 스크롤이 담당한다.
+ * 스크롤이 담당한다. 활성 표시는 스크롤 위치와 무관하게 클릭으로만 바뀐다.
  */
 (() => {
   const navs = Array.from(document.querySelectorAll('[data-part-nav]'));
@@ -109,12 +109,6 @@
     requestAnimationFrame(step);
   };
 
-  /* 클릭으로 시작한 스크롤이 진행되는 동안에는 아래 IntersectionObserver가
-     지나치는 섹션마다 활성 표시를 바꿔버려 깜빡이므로, 목적지에 도착할 때까지
-     observer의 갱신을 무시한다. 애니메이션을 직접 돌리므로 해제 시점도
-     타이머 추측 없이 완료 콜백으로 정확히 맞춘다. */
-  let lockedId = null;
-
   // 클릭하면 기본 앵커 점프(즉시 이동)를 막고 페이지를 부드럽게 스크롤한다.
   instances.forEach(({ items }) => {
     items.forEach((item) => {
@@ -135,32 +129,10 @@
           return;
         }
 
-        // 이동이 끝날 때까지 observer의 활성 표시 갱신을 잠근다.
-        lockedId = partId;
-        animateScrollTo(targetY, () => {
-          lockedId = null;
-        });
+        animateScrollTo(targetY);
       });
     });
   });
 
   window.addEventListener('resize', () => activate(activeId));
-
-  // 사용자가 직접 스크롤할 때는 뷰포트 중앙에 걸린 섹션을 기준으로 동기화한다.
-  const sections = partIds.map((id) => document.getElementById(id)).filter(Boolean);
-
-  if (sections.length && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          if (lockedId && entry.target.id !== lockedId) return;
-          activate(entry.target.id);
-        });
-      },
-      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-  }
 })();
