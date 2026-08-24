@@ -91,7 +91,7 @@ section {
  */
 .dot-line {
   width: 100%;
-  border-top: 3px dashed rgba(0, 0, 0, 0.09);
+  border-top: 1px dashed rgba(0, 0, 0, 0.09);
 }
 
 .card {

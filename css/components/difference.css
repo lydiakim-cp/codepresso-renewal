@@ -4,21 +4,32 @@
  *
  * 기획 의도:
  *   B2B SaaS 구매 담당자가 이 섹션에서 얻어야 하는 답은 "왜 다른 교육사가 아니라 여기냐"다.
- *   세 가지를 순서대로 쌓아 번호가 곧 읽는 순서가 되게 한다.
+ *   세 가지를 아래로 쌓으면 스크롤이 길어지고 마지막 주장이 묻히므로,
+ *   한 스테이지에 겹쳐두고 탭으로 갈아 끼운다 — 세 주장이 같은 무게로 읽힌다.
  *     ① 정량적 관리 — "같은 잣대로 두 번 잰다" → 진단 → 교육 → 재진단 (시간 흐름)
  *     ② 문화 정착   — "쌓여서 넓어진다"        → 개인 → 팀 → 조직   (범위 확장)
- *     ③ 현장 검증   — 결론                     → 다크 밴드로 종착점
- *   ①②는 "3단계가 한 방향으로 진행된다"는 같은 논리라서 .difference-track 하나로
- *   합치고, 화살표가 끼는지(.has-flow)로만 분기한다. 좌우 2단(카피 | 증거) 배치도 공유한다.
+ *     ③ 현장 검증   — "검증한 것만 가르친다"   → 현장 → 검증 허브 → 교육 (관계도)
+ *   패널은 모두 [좌: 카피 | 우: 비주얼] 2단을 공유해 탭을 넘겨도 눈이 흔들리지 않는다.
+ *
+ * 클래스 설계 — 세 패널이 "판 + 3개 항목"이라는 같은 뼈대를 쓴다는 사실을 클래스에 반영한다.
+ * 패널마다 클래스를 새로 만들지 않고, 같은 역할에 같은 이름을 쓴다.
+ *   .difference-grid  — 항목을 늘어놓는 그리드. 칸 구성만 modifier로 분기:
+ *                       기본(균등 3칸) / .has-flow(화살표 5칸) / .is-relay(관계도 3칸)
+ *   .difference-card  — 항목 하나의 셸. ①②의 단계 카드와 ③의 결과물·출발 판이 같은 판이다.
+ *                       배경만 modifier로 분기: .is-core(브랜드 틴트) / .is-dark(다크 판)
+ *   .difference-label — 카드 맨 위 작은 브랜드 라벨(시점·범위·영문 태그)
+ *   .difference-name  — 카드의 이름 줄
+ *   .difference-note  — 이름 아래 부연 설명(여러 줄이면 .difference-note-list)
+ *
+ * 전환 규칙 (js/difference-cycle.js):
+ *   3초 자동 순환 · 쇼케이스 hover/focus 시 일시정지 · 탭 클릭·방향키로 직접 전환.
+ *   journey-program-cycle과 같은 리듬을 공유한다.
  *
  * 디자인 언어 (B2B SaaS):
  *   - 영역 구분은 border가 아니라 background + 안쪽 hairline(inset box-shadow)으로 한다.
- *     실제 border를 겹쳐 이중 테두리를 만들지 않는다.
- *   - 여백이 신뢰를 만든다 — 블록 padding 60px, 카피와 증거 사이 48px로 넉넉히 띄운다.
+ *   - 여백이 신뢰를 만든다 — 스테이지 padding 60px, 카피와 비주얼 사이 48px.
  *   - 강조는 채도가 아니라 위계로 한다. 브랜드 컬러는 라벨·핵심 단어에만 점처럼 쓴다.
- *   - hover는 feature-card와 같은 "튀어나오지 않는" 무자극 원칙.
- *   - 진입 모션은 stat-reveal과 동일한 fade-up + stagger(--motion-rise / --duration-scroll).
- *   - 타이포는 base.css 전역 스타일을 상속하고, 값이 다른 속성만 override한다.
+ *   - 타이포는 base.css 전역 스타일을 상속하고, 값이 다른 속성(주로 color)만 override한다.
  */
 
 .difference {
@@ -26,7 +37,7 @@
 }
 
 /* ---------------------------------------------
- * 상하 레이아웃 — 상단 헤더(타이틀 + CTA) / 하단 증거 스택
+ * 상하 레이아웃 — 상단 헤더(타이틀 + CTA) / 하단 증거 쇼케이스
  * --------------------------------------------- */
 .difference-layout {
   display: flex;
@@ -39,43 +50,81 @@
 }
 
 /* ---------------------------------------------
- * 증거 스택 — ①②③를 위에서 아래로 순서대로 쌓는다.
+ * 쇼케이스 — 탭 + 스테이지
  * --------------------------------------------- */
-.difference-proofs {
+.difference-showcase {
   display: flex;
   flex-direction: column;
   gap: var(--space-24);
 }
 
-/* 블록 공통 — 배경 + 안쪽 hairline으로 영역을 나눈다(실제 border 없음).
-   ①은 브랜드 틴트, ②는 뉴트럴 미스트로 두 주장의 성격 차이를 톤으로 구분한다. */
-.difference-block {
+/* 탭 줄 — 캡슐형 .segmented-control이 아니라 밑줄형이다.
+   여기 탭은 "설정을 고르는 컨트롤"이 아니라 세 주장의 목차이므로,
+   판을 만들지 않고 텍스트 + 밑줄 인디케이터만으로 가볍게 둔다. */
+.difference-tabs {
   display: flex;
-  flex-direction: column;
   gap: var(--space-24);
+  /* 탭 아래 얇은 기준선 — 활성 탭의 인디케이터가 이 선 위를 덮는 구조. */
+  box-shadow: inset 0 -1px 0 var(--color-line);
+
+  @media (max-width: 640px) {
+    gap: var(--space-18);
+    /* 좁은 폭에서는 세 탭이 줄바꿈되지 않고 옆으로 밀리게 둔다. */
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.difference-tab {
+  position: relative;
+  padding: var(--space-12) var(--space-4) var(--space-18);
+  border: none;
+  background: none;
+  color: var(--color-ink-lighter);
+  white-space: nowrap;
+  transition: color var(--duration-hover) var(--ease-hover);
+
+  /* 인디케이터 — 활성 탭 아래로 자라나는 브랜드 컬러 밑줄. */
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 2px;
+    border-radius: var(--radius-full);
+    background: var(--color-brand);
+    transform: scaleX(0);
+    transition: transform var(--duration-indicator) var(--ease-hover);
+  }
+
+  &:hover {
+    color: var(--color-ink);
+  }
+
+  &.is-active {
+    color: var(--color-ink-heaviest);
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* 스테이지 — 세 패널이 번갈아 놓이는 판. 배경·radius·hairline은 여기서 한 번만 준다
+   (패널마다 셸을 반복하지 않는다). */
+.difference-stage {
   padding: var(--space-60);
   /* radius-xl(36px)은 hero-survey-frame·proof-card-stage 같은 스테이지 컨테이너 전용.
-     증거 블록은 feature-card·journey-block·summary-banner와 같은 콘텐츠 판이므로
+     증거 스테이지도 그 계열이지만 안에 카드(radius-md)가 붙는 콘텐츠 판이므로
      프로젝트 공통값인 radius-lg를 쓴다. */
   border-radius: var(--radius-lg);
   background: var(--color-brand-tint-1);
   /* B2B SaaS 톤 — 테두리 대신 안쪽 hairline으로 판의 경계만 아주 옅게 잡는다. */
   box-shadow: inset 0 0 0 1px rgba(26, 97, 234, .06);
-  /* 진입 애니메이션 시작 상태 — .is-visible이 붙으면 제자리로 올라온다. */
-  opacity: 0;
-  transform: translateY(var(--motion-rise));
-  transition: opacity var(--duration-scroll) var(--ease-scroll),
-    transform var(--duration-scroll) var(--ease-scroll);
-
-  &.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ② 블록은 뉴트럴 미스트로 — 색이 아니라 톤으로 ①과 구분한다. */
-  & + .difference-block:not(.is-dark) {
-    background: var(--color-surface-mist);
-  }
 
   @media (max-width: 1080px) {
     padding: var(--space-48);
@@ -86,73 +135,98 @@
   }
 }
 
-.difference-block-head {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-24);
-  max-width: 62ch;
+/* 패널 — 좌: 카피 / 우: 비주얼. 세 패널이 같은 컬럼 비율을 공유한다.
+   기본은 숨김이고 .is-active만 펼친다 — JS가 붙기 전에도(또는 실패해도)
+   첫 패널만 보이도록 마크업에서 첫 패널에 .is-active를 미리 박아둔다.
+   display를 그리드로 켜므로 [hidden]만으로는 숨겨지지 않는다. */
+.difference-panel {
+  display: none;
 }
 
-/* ①② 블록은 좌우 배치 — 왼쪽 카피, 오른쪽 증거 트랙.
-   :has()로 "안에 증거 트랙이 있는 블록"만 골라, 트랙이 없는
-   ③(다크 결론 밴드)은 세로 쌓기로 남긴다. */
-.difference-block:has(.difference-track) {
+.difference-panel.is-active {
   display: grid;
-  /* 카피는 필요한 만큼만 — padding 60px으로 좁아진 폭을 증거 트랙에 양보한다. */
+  /* 카피는 필요한 만큼만 — 남는 폭은 증거 비주얼에 양보한다. */
   grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
   align-items: center;
   gap: var(--space-48);
-
-  /* 좌우로 나뉘면 카피 폭은 컬럼이 정하므로 62ch 제한은 필요 없다. */
-  .difference-block-head {
-    max-width: none;
-  }
+  /* 세 패널(진단→교육→재진단 / 개인→팀→조직 / FDE 현장 관계도)은 콘텐츠 구성이 달라
+     실제 높이도 제각각이다(1440px 기준 175px~245px). 탭 전환마다 이 차이만큼 스테이지가
+     늘었다 줄었다 하면 페이지 스크롤이 흔들리므로, 구간별 세 패널 중 가장 큰 높이를
+     min-height로 고정해 전환 중에도 스테이지 높이가 흔들리지 않게 한다. */
+  min-height: 245px;
+  /* 탭 전환 시 fade-up — stat-reveal과 같은 진입 리듬을 짧게 재사용한다. */
+  animation: difference-panel-in var(--duration-scroll) var(--ease-scroll);
 
   @media (max-width: 1080px) {
     grid-template-columns: 1fr;
     align-items: start;
     gap: var(--space-24);
+    /* 1단 레이아웃으로 바뀌며 세로로 쌓이는 구간 — 이 폭에서의 최대 패널 높이(349px)로 고정. */
+    min-height: 349px;
+  }
+
+  @media (max-width: 900px) {
+    /* 텍스트가 리플로우되며 높이가 크게 늘어나는 구간 — 최대 패널 높이(741px) 기준으로 고정. */
+    min-height: 741px;
+  }
+
+  @media (max-width: 640px) {
+    /* 가장 좁은 구간까지 포함해 최대 패널 높이(790px) 기준으로 고정. */
+    min-height: 790px;
   }
 }
 
-/* 라벨은 공용 .tag(브랜드 틴트 필박스)를 그대로 쓴다.
-   .tag가 이미 크기·색·라운드를 다 갖고 있으므로 여기서는 굵기만 한 단 올린다. */
-.difference-block-label {
-  font-weight: var(--font-weight-semibold);
+@keyframes difference-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-rise));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* 타이틀 — base.css의 h3 전역 스타일(--text-h3, 24px)보다 한 단 키워
-   좌측 카피 컬럼이 우측 증거 트랙과 시각적 무게를 맞추게 한다.
-   text-wrap: balance로 "01 · 정량적 관리"가 어색하게 끊기지 않게 둔다. */
-.difference-block-title {
-  font-size: var(--text-heading-26);
-  line-height: var(--leading-heading-26);
+/* ---------------------------------------------
+ * 좌측 카피
+ * --------------------------------------------- */
+.difference-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.difference-title {
   color: var(--color-ink-heaviest);
   text-wrap: balance;
 }
 
-.difference-block-desc {
+.difference-desc {
   color: var(--color-ink-light);
   text-wrap: pretty;
+
+  /* 핵심 주장 한 문장만 브랜드 컬러로 — 다크 배너 strong 글로우의 라이트 버전. */
+  & strong {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-brand);
+  }
 }
 
 /* ---------------------------------------------
- * 증거 트랙 (①② 공용)
- * ①은 "진단 → 교육 → 재진단"의 시간 흐름, ②는 "개인 → 팀 → 조직"의 범위 확장.
- * 둘 다 "3단계가 한 방향으로 진행된다"는 같은 논리라서 카드 셸·텍스트 역할·
- * 그리드를 하나로 합치고, 차이나는 지점만 modifier로 분기한다.
- *   .difference-track.has-flow — ① 카드 사이에 화살표 칸이 끼는 5칸 그리드
- *   .difference-track(기본)    — ② 균등 3칸 그리드
+ * 증거 그리드 — 세 패널이 공유하는 항목 배치판.
+ * 세 패널 모두 "3개 항목이 한 방향으로 진행된다"는 같은 논리라서 그리드를 하나로 합치고,
+ * 칸 구성만 modifier로 분기한다.
+ *   기본       — ② 균등 3칸 (개인 → 팀 → 조직)
+ *   .has-flow  — ① 카드 사이에 화살표 칸이 끼는 5칸 (진단 → 교육 → 재진단)
+ *   .is-relay  — ③ [출발 판 | 허브 | 결과 목록] 3칸 관계도
  * --------------------------------------------- */
-.difference-track {
+.difference-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: stretch;
   /* 카드끼리는 확실히 떨어뜨려 3단계가 "개별 단위"로 읽히게 한다. */
   gap: var(--space-12);
-  margin: 0;
-  padding: 0;
-  list-style: none;
 
   /* ① 카드 - 화살표 - 카드 - 화살표 - 카드. 화살표 칸은 내용 폭만 차지한다.
      화살표가 카드 사이에 끼므로 gap을 한 단 더 벌려 "카드 → 화살표 → 카드"가
@@ -162,51 +236,86 @@
     gap: var(--space-18);
   }
 
+  /* ③ 관계도 — 허브는 원형이라 내용 폭만, 좌측 출발 판은 설명이 길어 조금 더 넓게.
+     position: relative는 허브 양옆 연결선의 좌표계 기준이 된다. */
+  &.is-relay {
+    position: relative;
+    grid-template-columns: minmax(0, 1.1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-24);
+  }
+
   /* 좁은 폭에서는 한 줄에 하나씩 쌓고, ①의 화살표는 아래를 향하게 돌린다. */
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
 
-    &.has-flow {
+    &.has-flow,
+    &.is-relay {
       grid-template-columns: 1fr;
     }
 
-    .difference-track-arrow svg {
+    .difference-arrow svg {
       transform: rotate(90deg);
     }
   }
 }
 
-/* 단계 카드 — ①②가 공유하는 카드 셸.
-   B2B SaaS 톤: 두께 있는 테두리 대신 옅은 hairline + 아주 얕은 그림자로
-   "판이 떠 있다"는 느낌만 주고, hover에서도 튀어나오지 않는다. */
-.difference-track-step {
+/* ---------------------------------------------
+ * 카드 — 세 패널의 항목이 공유하는 셸.
+ * ①② 단계 카드와 ③ 출발 판·결과물 카드가 같은 판이므로 한 클래스로 합치고,
+ * 배경이 다른 자리만 modifier로 분기한다.
+ * B2B SaaS 톤: 두께 있는 테두리 대신 옅은 hairline + 아주 얕은 그림자로
+ * "판이 떠 있다"는 느낌만 준다.
+ * --------------------------------------------- */
+.difference-card {
   display: flex;
   flex-direction: column;
-  /* 카드 안은 두 층으로 읽힌다 — [라벨 + 이름](이 단계가 무엇인가) / [설명](부연).
-     기본 gap은 붙는 쪽(4px)에 맞추고, 층이 바뀌는 설명문 앞에서만 벌린다.
-     (gap을 크게 두고 음수 margin으로 되돌리지 않는다 — 토큰을 바꾸면 깨진다.) */
+  /* 카드 안은 두 층으로 읽힌다 — [라벨 + 이름](이 항목이 무엇인가) / [설명](부연).
+     기본 gap은 붙는 쪽(4px)에 맞추고, 층이 바뀌는 설명문 앞에서만 벌린다. */
   gap: var(--space-4);
   padding: var(--space-24);
   border-radius: var(--radius-md);
   background: var(--color-surface);
   box-shadow: 0 1px 2px rgba(26, 97, 234, .04),
     inset 0 0 0 1px rgba(26, 97, 234, .06);
-  transition: box-shadow var(--duration-hover) var(--ease-hover);
 
   /* ① 교육(가운데)만 브랜드 틴트 — 코드프레소의 중심은 교육이라는 위계를 배경으로 준다. */
   &.is-core {
     background: var(--color-brand-tint-2);
     box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-brand) 18%, transparent);
 
-    .difference-track-name {
+    .difference-name {
       color: var(--color-brand);
+    }
+  }
+
+  /* ③ FDE 현장 — 이 섹션의 유일한 다크 판이라 "출발점"이 한눈에 잡힌다.
+     summary-banner.stats.dark와 같은 네이비 그라디언트를 계승한다. */
+  &.is-dark {
+    background:
+      radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, var(--color-brand) 26%, transparent), transparent 60%),
+      linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-ink-heaviest) 100%);
+    box-shadow: var(--shadow-md);
+    color: var(--color-surface);
+
+    /* 다크 판 위에서는 세 텍스트 역할의 밝기를 모두 뒤집는다. */
+    .difference-name {
+      color: var(--color-surface);
+    }
+
+    .difference-label {
+      color: color-mix(in srgb, var(--color-brand) 55%, white);
+    }
+
+    .difference-note {
+      color: color-mix(in srgb, var(--color-surface) 72%, transparent);
     }
   }
 }
 
 /* ② 계단 — 2·3단은 브랜드 틴트를 한 단씩 올려, 확산되며 진해지는 흐름을 만든다.
-   ①은 .is-core로 가운데만 강조하므로 이 규칙에서 제외한다. */
-.difference-track:not(.has-flow) .difference-track-step {
+   ①은 .is-core로 가운데만, ③은 .is-dark로 첫 칸만 강조하므로 이 규칙에서 제외한다. */
+.difference-grid:not(.has-flow, .is-relay) .difference-card {
   &:nth-child(2) {
     background: var(--color-brand-tint-1);
   }
@@ -217,7 +326,7 @@
 }
 
 /* 카드 사이 화살표 — 단계가 한 방향으로 흐른다는 신호. */
-.difference-track-arrow {
+.difference-arrow {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -229,105 +338,124 @@
   }
 }
 
-/* 단계 라벨 — ①은 시점("교육 전"), ②는 범위("개인 → 팀").
-   둘 다 카드 맨 위의 작은 브랜드 컬러 라벨이라는 같은 역할이다.
-   B2B SaaS 톤: 자간을 조금 넓혀 "지표 라벨"처럼 읽히게 한다. */
-.difference-track-label {
-  font-size: var(--text-body-14);
-  line-height: var(--leading-body-14);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: .3px;
+/* ---------------------------------------------
+ * 카드 안 텍스트 3역할 — 세 패널이 같은 이름을 공유한다.
+ *   label — 맨 위 작은 브랜드 라벨 (①시점 "교육 전" / ②범위 "개인 → 팀" / ③영문 태그)
+ *   name  — 항목 이름
+ *   note  — 이름 아래 부연 설명
+ * font-size·weight는 base.css 전역 타이포를 상속하고 색만 여기서 정한다.
+ * --------------------------------------------- */
+.difference-label {
   color: var(--color-brand);
 }
 
-.difference-track-name {
-  font-size: var(--text-body-18);
-  line-height: var(--leading-body-18);
-  letter-spacing: var(--tracking-body-tight);
-  font-weight: var(--font-weight-semibold);
+.difference-name {
   color: var(--color-ink-heaviest);
 }
 
 /* 설명문 — 위 [라벨 + 이름] 덩어리와 층이 갈리는 지점이라 여기서 한 번 크게 띄운다.
    카드 gap(4px)에 이 margin이 더해져 두 층 사이는 총 24px로 벌어진다. */
-.difference-track-note {
+.difference-note {
   margin-top: var(--space-20);
-  font-size: var(--text-body-14);
-  line-height: var(--leading-body-14);
   color: var(--color-ink-light);
 }
 
+/* 여러 줄짜리 note는 목록으로 — 도트 리스트.
+   위 여백은 .difference-note와 함께 붙어 상속받는다. */
+.difference-note-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+
+  & li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  & li::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-brand) 60%, white);
+  }
+}
+
 /* ---------------------------------------------
- * ③ 현장 검증 — 다크 결론 밴드
- * summary-banner.stats.dark와 같은 네이비 그라디언트를 계승해
- * 섹션의 종착점임을 밝기 대비로 알린다.
+ * ③ 검증 허브 — 두 판을 잇는 관문을 발광하는 원형 노드로 만든다.
+ * hero-survey·proof-card-stage와 같은 코드프레소 시각 서명(다크 판 + 브랜드 글로우).
  * --------------------------------------------- */
-.difference-block.is-dark {
-  background:
-    radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, var(--color-brand) 22%, transparent), transparent 60%),
-    linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-ink-heaviest) 100%);
-  box-shadow: var(--shadow-md);
+.difference-hub {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-ink-heaviest) 100%);
+  /* 브랜드 글로우 링 — hairline + 바깥으로 두 겹 퍼지는 빛. */
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-brand) 45%, transparent),
+    0 0 0 6px color-mix(in srgb, var(--color-brand) 8%, transparent),
+    0 0 28px color-mix(in srgb, var(--color-brand) 35%, transparent);
+  color: color-mix(in srgb, var(--color-brand) 60%, white);
 
-  /* 다크 배경에서는 .tag의 밝은 브랜드 틴트 배경이 뜨므로,
-     얼라이언스 칩과 같은 반투명 흰 배경으로 바꿔 톤을 맞춘다. */
-  .difference-block-label {
-    background: rgba(255, 255, 255, .08);
-    color: color-mix(in srgb, var(--color-brand) 55%, white);
+  /* 허브도 다크 판이므로 안쪽 이름은 허브의 발광 컬러를 그대로 물려받는다. */
+  .difference-name {
+    color: inherit;
   }
 
-  .difference-block-title {
-    color: var(--color-surface);
+  /* 허브 양옆으로 뻗는 연결선 — 관계도의 "→"를 선으로만 표현한다. */
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: var(--space-24);
+    height: 1px;
+    background: color-mix(in srgb, var(--color-brand) 40%, transparent);
   }
 
-  .difference-block-desc {
-    color: color-mix(in srgb, var(--color-surface) 72%, transparent);
+  &::before {
+    right: 100%;
+  }
 
-    /* 다크 배너의 strong 글로우와 같은 언어 — 핵심 주장만 브랜드 컬러로 빛나게 둔다. */
-    & strong {
-      font-weight: var(--font-weight-semibold);
-      color: color-mix(in srgb, var(--color-brand) 70%, white);
-      text-shadow: 0 0 1px currentColor, 0 0 18px currentColor;
+  &::after {
+    left: 100%;
+  }
+
+  & svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  @media (max-width: 900px) {
+    /* 1단으로 쌓이면 좌우 연결선이 맥락을 잃으므로 지우고 허브만 가운데 둔다. */
+    justify-self: center;
+
+    &::before,
+    &::after {
+      content: none;
     }
   }
 }
 
-/* 얼라이언스 칩 — 다크 배경 위 글래스 칩. 배경만으로 구분하고 테두리는 쓰지 않는다. */
-.difference-alliance {
+/* ③ 결과물 목록 — 카드 3개를 세로로 쌓는다. 카드 셸은 .difference-card가 준다. */
+.difference-stack {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-8);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.difference-alliance-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-8);
-  padding: var(--space-10) var(--space-18);
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, .08);
-  font-size: var(--text-body-14);
-  line-height: var(--leading-body-14);
-  font-weight: var(--font-weight-medium);
-  color: color-mix(in srgb, var(--color-surface) 88%, transparent);
-
-  /* 칩 앞의 작은 브랜드 도트 — 다크 배경에서 은은하게 발광한다. */
-  &::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: color-mix(in srgb, var(--color-brand) 60%, white);
-    box-shadow: 0 0 10px color-mix(in srgb, var(--color-brand) 70%, transparent);
-  }
+  flex-direction: column;
+  gap: var(--space-12);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .difference-block {
-    opacity: 1;
-    transform: none;
+  .difference-panel {
+    animation: none;
+  }
+
+  .difference-tab::after {
     transition-duration: 0.001ms;
   }
 }

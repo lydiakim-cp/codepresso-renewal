@@ -858,6 +858,54 @@
       </div>
     </section>
 
+    <section>
+      <h2><span class="heading-number">14</span>컴포넌트 — 인사이트 카드 &amp; 슬라이더</h2>
+      <div class="card">
+        <p class="description">블로그·뉴스 글을 가로 슬라이드로 노출하는 카드. <b>border를 쓰지 않고 배경색만으로 영역을 구분</b>하는 것이 이 컴포넌트의 원칙이다 —
+          카드는 <code>--color-surface-sunken</code>, 썸네일 자리는 한 단계 진한 <code>--color-surface-mist</code>, hover 시
+          <code>--color-brand-tint-2</code>로 올라간다. 썸네일은 가로형(16:9) 고정이며, 트랙은
+          <code>--container-medium</code> 폭을 그대로 채우고 좌우 화살표만 <code>position:absolute</code>로 그 바깥 여백에 놓인다.</p>
+        <table>
+          <tr>
+            <th>클래스</th>
+            <th>용도</th>
+          </tr>
+          <tr>
+            <td><code>.insight-slider</code></td>
+            <td>화살표의 <code>position:relative</code> 기준점. <code>data-insight-slider</code> 훅을 함께 붙인다</td>
+          </tr>
+          <tr>
+            <td><code>.insight-track-viewport</code> / <code>.insight-track</code></td>
+            <td>넘치는 카드를 잘라내는 창 / <code>translateX</code>로 밀리는 flex 트랙(gap <code>--space-24</code>)</td>
+          </tr>
+          <tr>
+            <td><code>.insight-card</code></td>
+            <td>한 화면 3장(<code>1023px</code> 이하 2장, <code>780px</code> 이하 1장). 배경 <code>--color-surface-sunken</code>,
+              radius <code>--radius-lg</code></td>
+          </tr>
+          <tr>
+            <td><code>.insight-card-thumb</code></td>
+            <td>가로형 썸네일 자리. <code>aspect-ratio:16/9</code> · 배경 <code>--color-surface-mist</code>로 이미지가 없어도 영역 유지</td>
+          </tr>
+          <tr>
+            <td><code>.insight-card-title</code></td>
+            <td><code>h3</code>에 붙는다 — 카드 안에서는 body 위계라 <code>--text-body-18</code>(18px)로 축소, 3줄 <code>line-clamp</code></td>
+          </tr>
+          <tr>
+            <td><code>.insight-card-meta</code></td>
+            <td>카테고리 <code>.tag</code> + 날짜 <code>time.text-caption</code>. <code>margin-top:auto</code>로 카드 하단 정렬</td>
+          </tr>
+          <tr>
+            <td><code>.insight-nav.prev</code> / <code>.next</code></td>
+            <td>48px 원형 버튼. 선 대신 흰 배경 + <code>--shadow-md</code>로 구분하고, 끝에 닿으면 <code>:disabled</code></td>
+          </tr>
+        </table>
+        <div class="callout callout-note"><b>재사용 원칙:</b> 카테고리 라벨과 날짜는 새 클래스를 만들지 않고 공용 <code>.tag</code>·<code>.text-caption</code>을
+          그대로 쓴다. 제목(<code>h3</code>)은 카드 안에서 축소된 위계이므로 <code>--text-body-18</code> 토큰으로 override하며, 임의의
+          px 값을 직접 넣지 않는다.</div>
+      </div>
+    </section>
+
     <footer>코드프레소 디자인 시스템 리뉴얼안 · 최초 작성: 2026-08-18 · 수정 작성: 2026-08-19</footer>
   </div>
 

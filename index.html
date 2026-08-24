@@ -599,81 +599,259 @@
           </div>
         </div>
 
-        <!-- 우측 증거 스택 — ①②③가 서로 다른 레이아웃으로 각자의 논리를 증명한다. -->
-        <div class="difference-proofs" data-difference-reveal>
+        <!-- 증거 쇼케이스 — 세 가지 차이를 탭으로 전환한다.
+             탭 = 각 차이의 이름, 패널 = [좌: 카피 / 우: 증거 비주얼].
+             3초마다 자동 전환되고, 마우스를 올리면 멈춘다(js/difference-cycle.js). -->
+        <div class="difference-showcase" data-difference-showcase data-interval="3000">
 
-          <!-- ① 정량적 관리 — 같은 잣대로 두 번 재는 구조를 가로 타임라인으로 -->
-          <article class="difference-block">
-            <div class="difference-block-head">
-              <h3 class="difference-block-title">정량적 관리</h3>
-              <p class="difference-block-desc">교육 전후 역량을 같은 기준으로 재서 무엇이 얼마나 늘었는지 보고할 수 있게 만듭니다.</p>
+          <div class="difference-tabs" role="tablist" aria-label="코드프레소의 세 가지 차이">
+            <button class="difference-tab is-active" type="button" role="tab" id="difference-tab-0"
+              aria-controls="difference-panel-0" aria-selected="true" data-difference-tab>정량적 관리</button>
+            <button class="difference-tab" type="button" role="tab" id="difference-tab-1"
+              aria-controls="difference-panel-1" aria-selected="false" tabindex="-1" data-difference-tab>문화 정착</button>
+            <button class="difference-tab" type="button" role="tab" id="difference-tab-2"
+              aria-controls="difference-panel-2" aria-selected="false" tabindex="-1" data-difference-tab>현장 검증</button>
+          </div>
+
+          <div class="difference-stage">
+
+            <!-- ① 정량적 관리 — 같은 잣대로 두 번 재는 시간 흐름 -->
+            <article class="difference-panel is-active" role="tabpanel" id="difference-panel-0"
+              aria-labelledby="difference-tab-0" data-difference-panel>
+              <div class="difference-head">
+                <h3 class="difference-title">정량적 관리</h3>
+                <p class="difference-desc">교육 전후 역량을 같은 기준으로 재서 무엇이 얼마나 늘었는지 보고할 수 있게 만듭니다.</p>
+              </div>
+
+              <ol class="difference-grid has-flow">
+                <li class="difference-card">
+                  <span class="difference-label">교육 전</span>
+                  <span class="difference-name">진단</span>
+                  <p class="difference-note">IT·AI 실무 역량 확인</p>
+                </li>
+                <li class="difference-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </li>
+                <li class="difference-card is-core">
+                  <span class="difference-label">교육 중</span>
+                  <span class="difference-name">교육</span>
+                  <p class="difference-note">수준과 직무에 맞는 학습 제공</p>
+                </li>
+                <li class="difference-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </li>
+                <li class="difference-card">
+                  <span class="difference-label">교육 후</span>
+                  <span class="difference-name">재진단</span>
+                  <p class="difference-note">교육 전후 역량 변화 확인</p>
+                </li>
+              </ol>
+            </article>
+
+            <!-- ② 문화 정착 — 개인에서 조직으로 넓어지는 범위 확장 -->
+            <article class="difference-panel" role="tabpanel" id="difference-panel-1"
+              aria-labelledby="difference-tab-1" data-difference-panel hidden>
+              <div class="difference-head">
+                <h3 class="difference-title">문화 정착</h3>
+                <p class="difference-desc">검증된 에이전트와 프롬프트가 사내에 공유되고 축적되면서, 한 팀의 역량이 조직 전체의 기본기가 됩니다.</p>
+              </div>
+
+              <ol class="difference-grid">
+                <li class="difference-card">
+                  <span class="difference-label">개인 → 팀</span>
+                  <span class="difference-name">공유 허브</span>
+                  <p class="difference-note">에이전트·프롬프트를 사내에 공유</p>
+                </li>
+                <li class="difference-card">
+                  <span class="difference-label">팀 → 자산</span>
+                  <span class="difference-name">라이브러리</span>
+                  <p class="difference-note">검증된 자산을 차곡차곡 축적</p>
+                </li>
+                <li class="difference-card">
+                  <span class="difference-label">자산 → 조직</span>
+                  <span class="difference-name">전사 확산</span>
+                  <p class="difference-note">팀을 넘어 조직 전체의 문화로</p>
+                </li>
+              </ol>
+            </article>
+
+            <!-- ③ 현장 검증 — 현장(FDE)에서 검증된 것만 교육으로 들어온다는 관계도 -->
+            <article class="difference-panel" role="tabpanel" id="difference-panel-2"
+              aria-labelledby="difference-tab-2" data-difference-panel hidden>
+              <div class="difference-head">
+                <h3 class="difference-title">현장 검증</h3>
+                <p class="difference-desc">우리는 AXMOS 얼라이언스와 함께 FDE 현장을 직접 뜁니다.
+                  <strong>현장에서 검증한 것만 가르칩니다.</strong>
+                </p>
+              </div>
+
+              <!-- 관계도 — [FDE 현장] → (검증) → [교육 콘텐츠] -->
+              <div class="difference-grid is-relay">
+                <div class="difference-card is-dark">
+                  <span class="difference-label">Forward Deployed Engineering</span>
+                  <span class="difference-name">FDE 현장</span>
+                  <ul class="difference-note difference-note-list">
+                    <li>실무 과제 투입</li>
+                    <li>에이전트 직접 구축</li>
+                    <li>성과로 검증</li>
+                  </ul>
+                </div>
+
+                <div class="difference-hub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12.5l2.2 2.2L15.5 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.4" />
+                  </svg>
+                  <span class="difference-name">현장 검증</span>
+                </div>
+
+                <ul class="difference-stack">
+                  <li class="difference-card">검증된 커리큘럼</li>
+                  <li class="difference-card">현업 강사진</li>
+                  <li class="difference-card">AXMOS 얼라이언스</li>
+                </ul>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="dot-line"></div>
+
+    <section class="insight" id="insight">
+      <div class="section-wrap content">
+        <div class="section-title center">
+          <p class="tag">Insight</p>
+          <h2>최근 인사이트</h2>
+          <p class="desc">AI 역량 진단과 교육, 업무 자동화에 관한 <br>
+            코드프레소의 최신 사례와 분석을 확인하세요.</p>
+        </div>
+
+        <div class="section-content">
+          <!-- 트랙은 컨테이너 폭을 그대로 채우고, 좌우 버튼은 이 래퍼 기준으로 그 바깥에 놓인다. -->
+          <div class="insight-slider" data-insight-slider>
+            <button type="button" class="insight-nav prev" aria-label="이전 인사이트 보기">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.5 5.5L8 12l6.5 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+
+            <div class="insight-track-viewport">
+              <ul class="insight-track">
+                <li class="insight-card">
+                  <a href="https://www.yna.co.kr/view/RPR20260610006600353">
+                    <div class="insight-card-thumb">
+                      <img src="images/insight-thumb.svg" alt="">
+                    </div>
+                  </a>
+                  <div class="insight-card-body">
+                    <h3 class="insight-card-title"><a href="https://www.yna.co.kr/view/RPR20260610006600353">코드프레소 이동훈 대표, KBS 뉴스9 출연… AI 역량평가 중요성 &lt;AI Fluent&gt;로 조명</a>
+                    </h3>
+                    <div class="insight-card-meta">
+                      <span class="tag">뉴스</span>
+                      <time class="text-caption" datetime="2026-07-03">2026-07-03</time>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="insight-card">
+                  <a href="https://www.etoday.co.kr/news/view/2576115">
+                    <div class="insight-card-thumb">
+                      <img src="https://img.etoday.co.kr/pto_db/2026/04/20260415173028_2322177_1200_900.jpg" alt="">
+                    </div>
+                  </a>
+                  <div class="insight-card-body">
+                    <h3 class="insight-card-title"><a href="https://www.etoday.co.kr/news/view/2576115">코드프레소, GITEX AI ASIA '슈퍼노바' 본상…한국 스타트업 최초 수상</a></h3>
+                    <div class="insight-card-meta">
+                      <span class="tag">뉴스</span>
+                      <time class="text-caption" datetime="2026-04-15">2026-04-15</time>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="insight-card">
+                  <a href="https://www.newsis.com/view/ALSX20260629_0000006828">
+                    <div class="insight-card-thumb">
+                      <img src="https://mmx.prnasia.com/media/MS1873716/e7f99217463f4f01ad4a757a51402cc6.jpg?id=OA2738334&p=medium600" alt="">
+                    </div>
+                  </a>
+                  <div class="insight-card-body">
+                    <h3 class="insight-card-title"><a href="https://www.newsis.com/view/ALSX20260629_0000006828">AXMOS 컨소시엄, 부산정보산업진흥원•부산벤처기업협회와 'AX 사업협력' MOU 체결</a></h3>
+                    <div class="insight-card-meta">
+                      <span class="tag">뉴스</span>
+                      <time class="text-caption" datetime="2026-06-29">2026-06-29</time>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="insight-card">
+                  <a href="https://www.hankyung.com/newswire/article/4970127_KO70127_9">
+                    <div class="insight-card-thumb">
+                      <img src="https://mma.prnasia.com/media2/2989783/AI.jpg?p=medium600" alt="">
+                    </div>
+                  </a>
+                  <div class="insight-card-body">
+                    <h3 class="insight-card-title"><a href="https://www.hankyung.com/newswire/article/4970127_KO70127_9">코드프레소, 6월 6일 가족 'AI 동화책' 원데이 클래스 개최</a></h3>
+                    <div class="insight-card-meta">
+                      <span class="tag">뉴스</span>
+                      <time class="text-caption" datetime="2026-05-29">2026-05-29</time>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="insight-card">
+                  <a href="https://www.asiae.co.kr/article/2026043014334321346">
+                    <div class="insight-card-thumb">
+                      <img src="https://cphoto.asiae.co.kr/listimglink/1/2026042216465136593_1776844012.jpg" alt="">
+                    </div>
+                  </a>
+                  <div class="insight-card-body">
+                    <h3 class="insight-card-title"><a href="https://www.asiae.co.kr/article/2026043014334321346">"AI 역량 평가 글로벌 표준 만들 것" — 코드프레소 대표 인터뷰</a></h3>
+                    <div class="insight-card-meta">
+                      <span class="tag">뉴스</span>
+                      <time class="text-caption" datetime="2026-05-03">2026-05-03</time>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="insight-card">
+                  <a href="https://www.etnews.com/20260415000104">
+                    <div class="insight-card-thumb">
+                      <img src="https://img.etnews.com/news/article/2026/04/15/news-p.v1.20260415.855ca01c646146d6852c419894074ce7_P1.jpeg" alt="">
+                    </div>
+                  </a>
+                  <div class="insight-card-body">
+                    <h3 class="insight-card-title"><a href="https://www.etnews.com/20260415000104">비개발자도 AI로 앱 만든다 — 우먼 인 바이브코딩 글로벌 이벤트</a></h3>
+                    <div class="insight-card-meta">
+                      <span class="tag">뉴스</span>
+                      <time class="text-caption" datetime="2026-04-15">2026-04-15</time>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
 
-            <ol class="difference-track has-flow">
-              <li class="difference-track-step">
-                <span class="difference-track-label">교육 전</span>
-                <span class="difference-track-name">진단</span>
-                <span class="difference-track-note">IT·AI 실무 역량 확인</span>
-              </li>
-              <li class="difference-track-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-              </li>
-              <li class="difference-track-step is-core">
-                <span class="difference-track-label">교육 중</span>
-                <span class="difference-track-name">교육</span>
-                <span class="difference-track-note">수준과 직무에 맞는 학습 제공</span>
-              </li>
-              <li class="difference-track-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-              </li>
-              <li class="difference-track-step">
-                <span class="difference-track-label">교육 후</span>
-                <span class="difference-track-name">재진단</span>
-                <span class="difference-track-note">교육 전후 역량 변화 확인</span>
-              </li>
-            </ol>
-          </article>
+            <button type="button" class="insight-nav next" aria-label="다음 인사이트 보기">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.5 5.5L16 12l-6.5 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
 
-          <!-- ② 문화 정착 — 쌓여서 넓어지는 구조를 계단형 3단으로 -->
-          <article class="difference-block">
-            <div class="difference-block-head">
-              <h3 class="difference-block-title">문화 정착</h3>
-              <p class="difference-block-desc">검증된 에이전트와 프롬프트가 사내에 공유되고 축적되면서, 한 팀의 역량이 조직 전체의 기본기가 됩니다.</p>
-            </div>
-
-            <ol class="difference-track">
-              <li class="difference-track-step">
-                <span class="difference-track-label">개인 → 팀</span>
-                <span class="difference-track-name">공유 허브</span>
-                <p class="difference-track-note">에이전트·프롬프트를 사내에 공유</p>
-              </li>
-              <li class="difference-track-step">
-                <span class="difference-track-label">팀 → 자산</span>
-                <span class="difference-track-name">라이브러리</span>
-                <p class="difference-track-note">검증된 자산을 차곡차곡 축적</p>
-              </li>
-              <li class="difference-track-step">
-                <span class="difference-track-label">자산 → 조직</span>
-                <span class="difference-track-name">전사 확산</span>
-                <p class="difference-track-note">팀을 넘어 조직 전체의 문화로</p>
-              </li>
-            </ol>
-          </article>
-
-          <!-- ③ 현장 검증 — 결론. 다크 배경으로 종착점을 만든다. -->
-          <article class="difference-block is-dark">
-            <div class="difference-block-head">
-              <h3 class="difference-block-title">현장 검증</h3>
-              <p class="difference-block-desc"> 우리는 AXMOS 얼라이언스와 함께 FDE 현장을 직접 뜁니다. <strong>현장에서 검증한 것만 가르칩니다.</strong></p>
-            </div>
-          </article>
-
+          <div class="insight-more">
+            <a href="#" class="btn btn-primary">인사이트 더보기 +</a>
+          </div>
         </div>
       </div>
     </section>
@@ -690,7 +868,8 @@
   <script src="js/journey-scroll.js"></script>
   <script src="js/journey-program-cycle.js"></script>
   <script src="js/part-nav.js"></script>
-  <script src="js/difference-reveal.js"></script>
+  <script src="js/difference-cycle.js"></script>
+  <script src="js/insight-slider.js"></script>
 </body>
 
 </html>

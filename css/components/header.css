@@ -1,7 +1,7 @@
 /*
  * Component: Site Header
  * 랜딩 페이지 상단 GNB. 로고 + 1depth 네비게이션 + 로그인/CTA 버튼으로 구성.
- * 배경은 브랜드 틴트 계열의 옅은 그라디언트로 처리한다.
+ * hero(최상단)에서는 배경 없이 투명하게 두고, 스크롤을 내리면 반투명 배경 + blur로 전환한다.
  */
 
 .header {
@@ -9,9 +9,22 @@
   inset-block-start: 0;
   inset-inline: 0;
   z-index: 100;
-  border-bottom: 1px solid var(--color-line);
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
   transform: translateY(0);
-  transition: transform var(--duration-scroll) var(--ease-scroll);
+  transition:
+    transform var(--duration-scroll) var(--ease-scroll),
+    background-color var(--duration-scroll) var(--ease-scroll),
+    border-color var(--duration-scroll) var(--ease-scroll),
+    backdrop-filter var(--duration-scroll) var(--ease-scroll);
+}
+
+/* 스크롤 시: 본문과 겹쳐도 읽히도록 반투명 배경 + blur */
+.header.is-scrolled {
+    background-color: rgb(255 255 255 / 0.3);
+    border-bottom-color: rgb(255 255 255 / 0.3);
+    backdrop-filter: saturate(100%) blur(10px);
+  -webkit-backdrop-filter: saturate(100%) blur(10px);
 }
 
 .header.is-hidden {

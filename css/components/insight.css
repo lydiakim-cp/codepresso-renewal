@@ -1,0 +1,149 @@
+/*
+ * Component: Insight
+ * 블로그·뉴스 인사이트 글을 가로 슬라이드로 보여주는 섹션.
+ * border 대신 배경색(surface-sunken 카드 / mist 썸네일)만으로 영역을 구분한다.
+ * 트랙은 --container-medium 폭을 그대로 채우고, 좌우 화살표는 그 바깥 여백에
+ * position:absolute로 띄운다.
+ */
+
+/* 화살표의 기준점. 트랙은 컨테이너 폭, 버튼은 그 밖이므로
+   기준을 section-wrap이 아니라 이 래퍼가 갖는다. */
+.insight-slider {
+  position: relative;
+}
+
+/* 트랙은 넘치는 카드를 잘라내고, JS가 translateX로 밀어 움직인다. */
+.insight-track-viewport {
+  overflow: hidden;
+}
+
+.insight-track {
+  display: flex;
+  gap: var(--space-24);
+  transition: transform var(--duration-scroll) var(--ease-scroll);
+}
+
+/* 한 화면에 3장 — gap 2칸을 뺀 나머지를 3등분한다. */
+.insight-card {
+  flex: 0 0 calc((100% - var(--space-24) * 2) / 3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-18);
+  padding: var(--space-18);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-sunken);
+  transition: background var(--duration-hover) var(--ease-hover);
+}
+
+.insight-card:hover {
+  background: var(--color-brand-tint-2);
+}
+
+/* 썸네일 — 가로형 16:9 고정. 이미지가 없어도 배경색으로 영역이 유지된다. */
+.insight-card-thumb {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-mist);
+  overflow: hidden;
+}
+
+.insight-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.insight-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  /* 카드 높이가 달라도 메타(카테고리·날짜)는 아래에 붙는다. */
+  flex: 1;
+}
+
+/* 제목은 h3 전역 스타일(24px)보다 한 단계 낮은 18px로 — 카드 안에서는 body 텍스트에 가까운 위계라 축소한다.
+   3줄을 넘기면 자른다. */
+.insight-card-title {
+  font-size: var(--text-body-18);
+  line-height: var(--leading-body-18);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.insight-card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin-top: auto;
+}
+
+/* 좌우 이동 버튼 — 트랙 바깥 여백에 떠 있는 원형 버튼. 선 대신 흰 배경 + 섀도우로 구분. */
+.insight-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-md);
+  transition: background var(--duration-hover) var(--ease-hover),
+    color var(--duration-hover) var(--ease-hover);
+}
+
+.insight-nav:hover {
+  background: var(--color-brand);
+  color: var(--color-surface);
+}
+
+.insight-nav svg {
+  width: 20px;
+  height: 20px;
+}
+
+.insight-nav.prev {
+  right: calc(100% + var(--space-24));
+}
+
+.insight-nav.next {
+  left: calc(100% + var(--space-24));
+}
+
+/* 컨테이너 밖에 버튼을 둘 자리가 없어지는 폭부터는 트랙 안쪽 위로 겹쳐 올린다. */
+@media (max-width: 1479px) {
+  .insight-nav.prev {
+    right: auto;
+    left: var(--space-12);
+  }
+
+  .insight-nav.next {
+    left: auto;
+    right: var(--space-12);
+  }
+}
+
+@media (max-width: 1023px) {
+  .insight-card {
+    flex-basis: calc((100% - var(--space-24)) / 2);
+  }
+}
+
+@media (max-width: 780px) {
+  .insight-card {
+    flex-basis: 82%;
+  }
+}
+
+/* 슬라이더 하단, 섹션 폭 안에서 가운데 배치되는 더보기 버튼. */
+.insight-more {
+  display: flex;
+  justify-content: center;
+}
