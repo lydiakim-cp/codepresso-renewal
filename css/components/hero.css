@@ -125,12 +125,12 @@
   position: relative;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  padding: 32px;
+  padding: var(--space-60);
   min-height: 520px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 640px;
+  width: min(100%, 640px);
 }
 
 .hero-survey-glow {
@@ -190,12 +190,22 @@
 }
 
 
+/* 필박스 + 카드가 같은 폭으로 정렬되는 세로 스택.
+   두 요소의 width를 각각 고정하지 않고 stack에서 한 번만 지정한다. */
+.hero-survey-stack {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  width: 360px;
+}
+
 .hero-survey-pill {
-  display: inline-flex;
-  margin-bottom: 10px;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-8);
-  width: fit-content;
   padding: var(--space-12) var(--space-24);
   border-radius: var(--radius-full);
   background: rgba(255, 255, 255, .55);
@@ -212,9 +222,11 @@
   width: 18px;
   height: 18px;
   color: var(--color-brand-dark);
+  flex: none;
 }
 
 /* 진단 카드 — as-is(제자리 응답형)에서 to-be(시작하기 → 새 탭 이동)로 전환.
+   설문 폼처럼 읽히도록 질문 블록 / 라벨 줄 / 액션 줄을 구분선으로 나눈다.
    카드 전체가 hover 시 떠오르며 하나의 클릭 유도 단위로 동작한다. */
 .hero-survey {
   position: relative;
@@ -224,12 +236,10 @@
   box-shadow: var(--shadow-md);
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
-  padding: 32px;
+  padding: var(--space-35);
   display: flex;
   flex-direction: column;
-  gap: var(--space-12);
-  width: 420px;
-  margin: 0 auto;
+  gap: var(--space-24);
   transition: transform var(--duration-hover) var(--ease-hover),
     box-shadow var(--duration-hover) var(--ease-hover),
     border-color var(--duration-hover) var(--ease-hover);
@@ -240,6 +250,13 @@
   transform: translateY(-4px);
   border-color: rgba(255, 255, 255, 1);
   box-shadow: 0 16px 32px rgba(26, 97, 234, .16);
+}
+
+/* 질문 + 설명. 두 줄 사이 간격을 카드 블록 간격보다 좁게 유지해 하나의 묶음으로 읽히게 한다. */
+.hero-survey-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-18);
 }
 
 /* font-size/weight/line-height/letter-spacing은 base.css의 h3 전역 스타일을 그대로 상속한다.
@@ -254,30 +271,158 @@
   color: var(--color-ink-light);
 }
 
+/* 설문 스펙(문항 수/소요 시간/결과)을 공용 .pill 라벨로 노출한다.
+   상단 구분선으로 질문 블록과 분리해 폼의 메타 영역처럼 읽히게 한다. */
 .hero-survey-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-8) var(--space-18);
-  font-size: var(--text-label);
-  line-height: var(--leading-label);
-  font-weight: var(--font-weight-medium);
+  gap: var(--space-8);
+  padding-top: var(--space-24);
+  border-top: 1px solid var(--color-line);
+}
+
+.hero-survey-meta .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin: 0;
+  background: rgba(255, 255, 255, .7);
+  border: 1px solid var(--color-line);
   color: var(--color-ink-light);
 }
 
+.hero-survey-meta .pill svg {
+  width: 14px;
+  height: 14px;
+  color: var(--color-brand);
+  flex: none;
+}
+
+/* CTA + 하단 유도 말풍선. 말풍선이 카드 밖으로 떠 있어야 하므로 여백을 확보한다. */
+.hero-survey-action {
+  position: relative;
+  padding-top: var(--space-8);
+  padding-bottom: 52px;
+}
+
+/* .btn-pill과 동일한 플로팅 CTA 거동(scale 1.03 + 깊은 shadow)을 따른다.
+   단 트리거는 버튼 자신이 아니라 카드 전체 hover다 — 설문 영역 어디에 올려도
+   버튼이 반응해 클릭 대상임을 알린다. */
 .hero-survey-cta {
   width: 100%;
-  gap: var(--space-8);
-  margin-top: var(--space-12);
+  box-shadow: 0 7px 29px 0 rgba(26, 97, 234, .24);
+  transition: all 0.5s ease;
 }
 
-.hero-survey-cta svg {
-  width: 16px;
-  height: 16px;
-  transition: transform var(--duration-hover) var(--ease-hover);
+.hero-survey:hover .hero-survey-cta {
+  transform: scale(1.03);
+  box-shadow: 0 10px 34px 0 rgba(26, 97, 234, .3);
 }
 
+/* 크기/transition은 button.css의 `.btn > svg` 공통 규칙을 따른다.
+   여기서는 버튼이 아닌 카드 전체 hover에 반응하도록 트리거만 확장한다. */
 .hero-survey:hover .hero-survey-cta svg {
   transform: translateX(3px);
+}
+
+/* 시작하기 버튼 하단 중앙에 떠 있는 반투명 glass 말풍선.
+   translateX(-50%)로 중앙 정렬한 뒤, 위아래로 천천히 부유하며 시선을 끈다. */
+.hero-survey-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-8) var(--space-18);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, .6);
+  border: 1px solid transparent;
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: 0 6px 18px rgba(26, 97, 234, .14);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-dark);
+  white-space: nowrap;
+  animation: hero-survey-hint-float 2.4s var(--ease-scroll) infinite;
+}
+
+/* 말풍선 꼬리 — 버튼을 향해 위쪽을 가리키는 삼각형.
+   회전 사각형 대신 clip-path 삼각형을 써서 아래쪽 변이 생기지 않게 한다.
+   ::before/::after가 모두 쓰인 상태라 테두리만 남길 세 번째 레이어가 없으므로,
+   꼬리는 본체 링과 같은 --hint-angle 그라디언트로 속을 채워 링과 이어지게 한다. */
+.hero-survey-hint::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 14px;
+  height: 7px;
+  transform: translateX(-50%);
+  background: conic-gradient(from var(--hint-angle),
+      #7FB2FF 0deg,
+      #9E8BFF 70deg,
+      var(--color-brand) 140deg,
+      #4FD8E8 210deg,
+      #A9C4FF 280deg,
+      #7FB2FF 360deg);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  animation: hero-survey-hint-shimmer 3s linear infinite;
+}
+
+/* 반짝이는 무지개빛 테두리 — 파란 계열 안에서 색조만 흐르는 conic 그라디언트 링.
+   말풍선 본체의 transform은 float 애니메이션이 쓰고 있으므로,
+   테두리는 ::after 레이어에 그리고 각도(--hint-angle)만 애니메이션한다. */
+.hero-survey-hint::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--hint-angle),
+      #7FB2FF 0deg,
+      #9E8BFF 70deg,
+      var(--color-brand) 140deg,
+      #4FD8E8 210deg,
+      #A9C4FF 280deg,
+      #7FB2FF 360deg);
+  /* 링 형태 — padding 영역(1px)만 남기고 내부를 잘라낸다 */
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  animation: hero-survey-hint-shimmer 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes hero-survey-hint-float {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -5px); }
+}
+
+/* 커스텀 속성을 각도 타입으로 등록해야 conic-gradient의 from 값이 보간된다 */
+@property --hint-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes hero-survey-hint-shimmer {
+  to { --hint-angle: 360deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-survey-hint,
+  .hero-survey-hint::before,
+  .hero-survey-hint::after {
+    animation: none;
+  }
+
+  .hero-survey-cta {
+    transition-duration: 0.001ms;
+  }
 }
 
 /* 함께하는 기업 로고 — hero 배경 위에서 이어지는 무한 가로 스크롤 */

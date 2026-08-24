@@ -52,6 +52,8 @@
   gap: var(--space-48);
 }
 
+/* 배경은 .surface-glass 유틸리티(diagnosis-preview-panel과 동일한 glass 표면)로 얹는다 —
+   .parts-group 그라디언트 위에서 두 파트의 카드가 같은 재질로 읽히게 한다. */
 .journey-block {
   position: relative;
   display: flex;
@@ -60,9 +62,6 @@
   min-height: 320px;
   padding: var(--space-48);
   border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  border: 1px solid var(--color-line);
-  box-shadow: var(--shadow-sm);
   scroll-margin-top: 120px;
 }
 

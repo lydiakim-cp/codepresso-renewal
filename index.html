@@ -464,7 +464,7 @@
           </div>
 
           <div class="education-journey-scroll" data-journey-scroll>
-            <article class="journey-block" data-journey-target="0">
+            <article class="journey-block surface-glass" data-journey-target="0">
               <p class="journey-block-index">01</p>
               <div class="journey-block-head">
                 <p class="text-label brand">01. 설계</p>
@@ -475,7 +475,7 @@
                 가장 적합한 방식을 골라 과정을 설계합니다.</p>
             </article>
 
-            <article class="journey-block" data-journey-target="1">
+            <article class="journey-block surface-glass" data-journey-target="1">
               <p class="journey-block-index">02</p>
               <div class="journey-block-head">
                 <p class="text-label brand">02. 교육</p>
@@ -486,7 +486,7 @@
                 각자의 업무에 바로 쓸 수 있는 실무형 커리큘럼으로 진행합니다.</p>
             </article>
 
-            <article class="journey-block" data-journey-target="2">
+            <article class="journey-block surface-glass" data-journey-target="2">
               <p class="journey-block-index">03</p>
               <div class="journey-block-head">
                 <p class="text-label brand">03. 현장 적용</p>
@@ -557,7 +557,7 @@
           </div>
 
           <div class="diagnosis-preview">
-            <div class="diagnosis-preview-panel">
+            <div class="diagnosis-preview-panel surface-glass">
               <img class="diagnosis-preview-image" src="images/skillcertify-sample.svg"
                 alt="SkillCertify AI 활용 역량 진단 리포트 화면">
             </div>
@@ -566,172 +566,153 @@
       </section>
     </div>
 
+    <!-- PART 3 · 차별점. education-journey(PART 1)와 같은 뼈대 —
+         좌측 카피는 sticky로 붙어 있고, 우측에서 ①②③ 근거가 순서대로 스크롤된다.
+         우측 블록은 위에서 아래로 읽으면 "정량적 관리 → 문화 정착 → 현장 검증"
+         순으로 차이를 학습하게 되는 순서다. -->
     <section class="difference fade-up" id="part3-difference">
       <div class="section-wrap difference-layout">
-        <!-- 섹션 헤더 — 타이틀과 CTA를 좌우로 두고, 아래에 세 가지 증거를 상하로 쌓는다. -->
-        <div class="section-header">
+
+        <!-- 좌측 — 스크롤 내내 붙어 있는 섹션 카피 + CTA -->
+        <div class="difference-sticky">
           <div class="section-title">
             <p class="tag">03 · The Difference</p>
-            <h2 class="text-left">다른 교육 회사와 다른 세 가지가 있습니다</h2>
-            <p class="desc">진단·재진단으로 교육을 정량적으로 관리하고,
-              공유 허브와 라이브러리로 문화 정착까지 설계합니다. <br>
+            <h2 class="text-left">다른 교육 회사와,<br>다른 세 가지가 있습니다</h2>
+            <p class="desc">진단·재진단으로 교육을 정량적으로 관리하고,<br>
+              공유 허브와 라이브러리로 문화 정착까지 설계합니다.<br>
               그리고 우리는 FDE 현장을 직접 뛰는 회사입니다.</p>
           </div>
-          <div class="section-cta">
-            <a href="#" class="btn btn-primary">코드프레소의 차별점 보기</a>
-          </div>
+
+          <a href="#" class="btn btn-primary">코드프레소의 차별점 보기</a>
         </div>
 
-        <!-- 증거 쇼케이스 — 세 가지 차이를 [위: 화면 목업 / 아래: 카피 선택 바]로 보여준다.
-             전체 높이는 590px로 고정한다(목업 430 + gap 24 + 선택 바 136).
-             바를 누르면 위 목업이 갈아 끼워지고, 3초마다 자동 전환된다(js/difference-cycle.js). -->
-        <div class="difference-showcase" data-difference-showcase data-interval="3000">
+        <!-- 우측 — 순서대로 읽는 근거 블록 -->
+        <div class="difference-scroll">
 
-          <!-- ① 정량적 관리 — 진단 → 교육 → 재진단 역량 리포트 화면 -->
-          <article class="difference-panel is-active" role="tabpanel" id="difference-panel-0"
-            aria-labelledby="difference-tab-0" data-difference-panel>
-            <div class="difference-mock">
-              <!-- 창 상단 바 — 신호등 점 + 주소. 실제 화면이라는 신호만 주는 장식. -->
-              <div class="difference-mock-chrome" aria-hidden="true">
-                <span class="difference-mock-dots"><i></i><i></i><i></i></span>
-                <span class="difference-mock-address">skillcertify.codepresso.io / report</span>
-              </div>
+          <!-- ① 정량적 관리 — 같은 잣대로 두 번 재는 시간 흐름.
+               가운데(교육)만 브랜드 판으로 채워 코드프레소의 중심을 위계로 보여준다. -->
+          <article class="difference-block surface-glass">
+            <p class="text-label brand">① 정량적 관리</p>
 
-              <div class="difference-mock-screen">
-                <!-- 좌측 — 세 단계를 위에서 아래로 읽는 타임라인 -->
-                <ol class="difference-flow">
-                  <li class="difference-flow-step">
-                    <span class="difference-label">교육 전</span>
-                    <strong class="difference-name">진단</strong>
-                    <p class="difference-note">IT·AI 실무 역량 확인</p>
-                  </li>
-                  <li class="difference-flow-step is-core">
-                    <span class="difference-label">교육 중</span>
-                    <strong class="difference-name">교육</strong>
-                    <p class="difference-note">수준과 직무에 맞는 학습 제공</p>
-                  </li>
-                  <li class="difference-flow-step">
-                    <span class="difference-label">교육 후</span>
-                    <strong class="difference-name">재진단</strong>
-                    <p class="difference-note">교육 전후 역량 변화 확인</p>
-                  </li>
-                </ol>
+            <ol class="difference-steps">
+              <li class="difference-step">
+                <span class="difference-step-icon" aria-hidden="true">
+                  <!-- 체크리스트 — 역량을 항목별로 확인한다 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 5h9M9 12h9M9 19h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                    <path d="M3.5 5.2l1.4 1.4 2.2-2.4M3.5 12.2l1.4 1.4 2.2-2.4M3.5 19.2l1.4 1.4 2.2-2.4"
+                      stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <strong class="difference-step-name">진단</strong>
+                <p class="text-caption">IT·AI 실무<br>역량 확인</p>
+              </li>
 
-                <!-- 우측 — 같은 잣대로 두 번 잰 결과. 전후 평균을 큰 숫자 + 막대로. -->
-                <div class="difference-metrics" aria-hidden="true">
-                  <div class="difference-metric">
-                    <span class="difference-label">교육 전 평균</span>
-                    <strong class="difference-metric-value">48점</strong>
-                    <span class="difference-metric-track"><i style="width: 48%"></i></span>
-                  </div>
-                  <div class="difference-metric is-core">
-                    <span class="difference-label">교육 후 평균</span>
-                    <strong class="difference-metric-value">81점</strong>
-                    <span class="difference-metric-track"><i style="width: 81%"></i></span>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <li class="difference-step is-core">
+                <span class="difference-step-icon" aria-hidden="true">
+                  <!-- 상승 그래프 — 역량이 올라간다 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 20h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                    <path d="M4 15.5l5-5 4 3.5 6.5-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M15.5 7h4.5v4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <strong class="difference-step-name">교육</strong>
+                <p class="text-caption">수준과 직무에<br>맞는 학습 제공</p>
+              </li>
+
+              <li class="difference-step">
+                <span class="difference-step-icon" aria-hidden="true">
+                  <!-- 다시 재는 계기판 — 같은 잣대로 두 번째 측정 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.5 12a8.5 8.5 0 1 0-3.1 6.6" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" />
+                    <path d="M20.5 7v5h-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M12 8.5v4l2.5 1.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <strong class="difference-step-name">재진단</strong>
+                <p class="text-caption">교육 전후<br>역량 변화 확인</p>
+              </li>
+            </ol>
           </article>
 
-          <!-- ② 문화 정착 — 공유 허브 · 라이브러리 화면. 범위가 넓어지는 세 단계. -->
-          <article class="difference-panel" role="tabpanel" id="difference-panel-1"
-            aria-labelledby="difference-tab-1" data-difference-panel hidden>
-            <div class="difference-mock">
-              <div class="difference-mock-chrome" aria-hidden="true">
-                <span class="difference-mock-dots"><i></i><i></i><i></i></span>
-                <span class="difference-mock-address">hub.codepresso.io / library</span>
-              </div>
+          <!-- ② 문화 정착 — 개인에서 조직으로 넓어지는 확산.
+               카드 폭이 아래로 갈수록 넓어져 "범위가 커진다"를 형태로 보여준다. -->
+          <article class="difference-block surface-glass">
+            <p class="text-label brand">② 문화 정착</p>
 
-              <div class="difference-mock-screen">
-                <!-- 개인 → 팀 → 조직. 아래로 갈수록 카드가 넓어지며 범위 확장을 보여준다. -->
-                <ol class="difference-scale">
-                  <li class="difference-scale-row" data-scale-row="individual">
-                    <span class="difference-label">개인 → 팀</span>
-                    <strong class="difference-name">공유 허브</strong>
-                    <p class="difference-note">에이전트·프롬프트를 사내에 공유</p>
-                  </li>
-                  <li class="difference-scale-row" data-scale-row="team">
-                    <span class="difference-label">팀 → 자산</span>
-                    <strong class="difference-name">라이브러리</strong>
-                    <p class="difference-note">검증된 자산을 차곡차곡 축적</p>
-                  </li>
-                  <li class="difference-scale-row" data-scale-row="org">
-                    <span class="difference-label">자산 → 조직</span>
-                    <strong class="difference-name">전사 확산</strong>
-                    <p class="difference-note">팀을 넘어 조직 전체의 문화로</p>
-                  </li>
-                </ol>
-              </div>
-            </div>
+            <ol class="difference-spread">
+              <li class="difference-spread-row">
+                <span class="difference-step-icon" aria-hidden="true">
+                  <!-- 공유 노드 — 한 곳에서 여러 곳으로 퍼진다 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="6" cy="12" r="2.6" stroke="currentColor" stroke-width="1.6" />
+                    <circle cx="18" cy="6" r="2.6" stroke="currentColor" stroke-width="1.6" />
+                    <circle cx="18" cy="18" r="2.6" stroke="currentColor" stroke-width="1.6" />
+                    <path d="M8.3 10.8l7.4-3.6M8.3 13.2l7.4 3.6" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" />
+                  </svg>
+                </span>
+                <strong class="difference-step-name">공유 허브</strong>
+                <p class="text-caption">에이전트·프롬프트를<br>사내에 공유</p>
+              </li>
+
+              <li class="difference-spread-row">
+                <span class="difference-step-icon" aria-hidden="true">
+                  <!-- 쌓이는 층 — 자산이 축적된다 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 8l8-4 8 4-8 4-8-4z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M4 12.5l8 4 8-4M4 17l8 4 8-4" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <strong class="difference-step-name">라이브러리</strong>
+                <p class="text-caption">검증된 자산을<br>차곡차곡 축적</p>
+              </li>
+
+              <li class="difference-spread-row">
+                <span class="difference-step-icon" aria-hidden="true">
+                  <!-- 조직 전체 — 여러 사람이 함께 쓴다 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="7" r="2.8" stroke="currentColor" stroke-width="1.6" />
+                    <path d="M6.5 20a5.5 5.5 0 0 1 11 0" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" />
+                    <path d="M4 15.5a4 4 0 0 1 2.6-2.3M20 15.5a4 4 0 0 0-2.6-2.3" stroke="currentColor"
+                      stroke-width="1.6" stroke-linecap="round" />
+                    <circle cx="4.6" cy="9.4" r="1.9" stroke="currentColor" stroke-width="1.6" />
+                    <circle cx="19.4" cy="9.4" r="1.9" stroke="currentColor" stroke-width="1.6" />
+                  </svg>
+                </span>
+                <strong class="difference-step-name">전사 확산</strong>
+                <p class="text-caption">팀을 넘어 조직<br>전체의 문화로</p>
+              </li>
+            </ol>
           </article>
 
-          <!-- ③ 현장 검증 — FDE 현장에서 검증한 것만 교육으로 들어온다 -->
-          <article class="difference-panel" role="tabpanel" id="difference-panel-2"
-            aria-labelledby="difference-tab-2" data-difference-panel hidden>
-            <div class="difference-mock">
-              <div class="difference-mock-chrome" aria-hidden="true">
-                <span class="difference-mock-dots"><i></i><i></i><i></i></span>
-                <span class="difference-mock-address">axmos.codepresso.io / validation</span>
-              </div>
+          <!-- ③ 현장 검증 — 카드로 나누지 않는 마무리 선언.
+               이 섹션의 유일한 다크 판이라 세 근거의 결론으로 읽힌다. -->
+          <article class="difference-block is-closing">
+            <span class="difference-closing-mark" aria-hidden="true">
+              <!-- 방패 안 체크 — 현장에서 검증됐다는 보증 -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.8l7.2 2.7v6.1c0 4.3-2.9 8.2-7.2 9.6-4.3-1.4-7.2-5.3-7.2-9.6V5.5L12 2.8z"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M8.8 12.2l2.3 2.3 4.1-4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
 
-              <div class="difference-mock-screen">
-                <div class="difference-relay">
-                  <!-- 출발 판 — 이 섹션의 유일한 다크 판이라 출발점이 한눈에 잡힌다. -->
-                  <div class="difference-relay-origin">
-                    <span class="difference-label">Forward Deployed Engineering</span>
-                    <strong class="difference-name">FDE 현장</strong>
-                    <ul class="difference-note-list">
-                      <li>실무 과제 투입</li>
-                      <li>에이전트 직접 구축</li>
-                      <li>성과로 검증</li>
-                    </ul>
-                  </div>
-
-                  <!-- 검증 관문 — 두 판을 잇는 발광 노드 -->
-                  <div class="difference-hub">
-                    <span class="difference-hub-mark" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 12.5l2.2 2.2L15.5 10" stroke="currentColor" stroke-width="1.8"
-                          stroke-linecap="round" stroke-linejoin="round" />
-                        <circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.4" />
-                      </svg>
-                    </span>
-                    <strong class="difference-name">현장 검증</strong>
-                  </div>
-
-                  <!-- 통과한 것만 교육으로 — 결과물 목록 -->
-                  <ul class="difference-relay-result">
-                    <li>검증된 커리큘럼</li>
-                    <li>현업 강사진</li>
-                    <li>AXMOS 얼라이언스</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <p class="difference-closing-text">③ 그리고 우리는 AXMOS 얼라이언스와 함께 FDE 현장을 직접 뜁니다.
+              <strong>현장에서 검증한 것만 가르칩니다.</strong>
+            </p>
           </article>
 
-          <!-- 하단 선택 바 — 세 가지 차이의 카피. 선택된 하나만 흰 판으로 떠오른다. -->
-          <div class="difference-tabs" role="tablist" aria-label="코드프레소의 세 가지 차이">
-            <button class="difference-tab is-active" type="button" role="tab" id="difference-tab-0"
-              aria-controls="difference-panel-0" aria-selected="true" data-difference-tab>
-              <span class="difference-tab-rule" aria-hidden="true"></span>
-              <span class="difference-tab-title">정량적 관리</span>
-              <span class="difference-tab-desc">교육 전후 역량을 같은 기준으로 재서 무엇이 얼마나 늘었는지 보고할 수 있게 만듭니다.</span>
-            </button>
-            <button class="difference-tab" type="button" role="tab" id="difference-tab-1"
-              aria-controls="difference-panel-1" aria-selected="false" tabindex="-1" data-difference-tab>
-              <span class="difference-tab-rule" aria-hidden="true"></span>
-              <span class="difference-tab-title">문화 정착</span>
-              <span class="difference-tab-desc">검증된 에이전트와 프롬프트가 사내에 공유되고 축적되면서, 한 팀의 역량이 조직 전체의 기본기가 됩니다.</span>
-            </button>
-            <button class="difference-tab" type="button" role="tab" id="difference-tab-2"
-              aria-controls="difference-panel-2" aria-selected="false" tabindex="-1" data-difference-tab>
-              <span class="difference-tab-rule" aria-hidden="true"></span>
-              <span class="difference-tab-title">현장 검증</span>
-              <span class="difference-tab-desc">AXMOS 얼라이언스와 함께 FDE 현장을 직접 뜁니다. <strong>현장에서 검증한 것만 가르칩니다.</strong></span>
-            </button>
-          </div>
         </div>
       </div>
     </section>
@@ -912,7 +893,6 @@
   <script src="js/proof-card-slider.js"></script>
   <script src="js/stat-reveal.js"></script>
   <script src="js/part-nav.js"></script>
-  <script src="js/difference-cycle.js"></script>
   <script src="js/insight-slider.js"></script>
 </body>
 

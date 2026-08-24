@@ -8,6 +8,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-8);
   height: 40px;
   padding: 0 var(--space-20);
   border-radius: var(--radius-sm);
@@ -40,6 +41,23 @@
 .btn-ghost:hover {
   border-color: var(--color-brand);
   color: var(--color-brand);
+}
+
+/*
+ * 버튼 우측 방향 아이콘 공통 규칙.
+ * 텍스트 화살표(→, +, ->)를 직접 쓰지 않고 항상 이 SVG를 쓴다.
+ * path는 `M9 5l7 7-7 7`(chevron →) 하나로 통일하며, 크기는 16px 고정.
+ */
+.btn > svg {
+  display: block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  transition: transform var(--duration-hover) var(--ease-hover);
+}
+
+.btn:hover > svg {
+  transform: translateX(3px);
 }
 
 .btn-lg {

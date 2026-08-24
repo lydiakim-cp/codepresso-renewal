@@ -61,12 +61,12 @@
   margin-top: var(--space-12);
 }
 
-/* 메인 CTA("도입 상담하기")의 원형 아이콘을 코드프레소 프라이머리 컬러로 채워 시선을 모은다. */
+/* 메인 CTA("도입 상담하기")의 아이콘 블록을 코드프레소 프라이머리 컬러로 채워 시선을 모은다. */
 .cta-final-actions .btn-pill:first-child .btn-pill-icon {
   background: var(--color-brand);
 }
 
-/* 어두운 CTA 배경 위의 두 번째 Pill 버튼은 화이트 필박스 대신 outline으로 눌러준다. */
+/* 어두운 CTA 배경 위의 두 번째 버튼은 화이트 박스 대신 outline으로 눌러준다. */
 .cta-final-actions .btn-pill + .btn-pill {
   background: transparent;
   color: var(--color-surface);
