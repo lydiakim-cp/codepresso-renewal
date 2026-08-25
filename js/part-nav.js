@@ -7,7 +7,12 @@
  * tab이 아니라 <a href="#id">로 해당 섹션까지 이동하는 링크다(콘텐츠는 클릭
  * 여부와 무관하게 항상 전부 노출돼 있다). 인디케이터는 슬라이딩하지 않고
  * 즉시 자리를 옮기며(part-nav.css), 이동감은 클릭 시의 부드러운 페이지
- * 스크롤이 담당한다. 활성 표시는 스크롤 위치와 무관하게 클릭으로만 바뀐다.
+ * 스크롤이 담당한다.
+ *
+ * 활성 표시는 클릭뿐 아니라 스크롤 위치로도 갱신된다 — 지금 화면에 보이는 파트와
+ * nav의 표시가 어긋나면 nav가 현재 위치를 알려주는 역할을 못 한다.
+ * 같은 판정으로 좌측 카피 컬럼의 교차 페이드도 함께 제어한다(.is-leaving):
+ * 자기 구간을 벗어난 파트의 카피는 fade out 되고 다음 파트의 카피가 fade in 된다.
  */
 (() => {
   const navs = Array.from(document.querySelectorAll('[data-part-nav]'));
@@ -109,6 +114,53 @@
     requestAnimationFrame(step);
   };
 
+  /*
+   * 스크롤 위치 → 활성 파트 판정.
+   * 각 파트 섹션의 화면 점유를 보고, 뷰포트 중앙선을 품은 섹션을 활성으로 잡는다.
+   * (중앙선 기준이면 활성 섹션이 항상 최대 1개라 경계에서 두 파트가 다투지 않는다 —
+   *  journey-stage.js가 스텝을 고르는 것과 같은 방식이다.)
+   */
+  const parts = partIds
+    .map((id) => ({
+      id,
+      section: document.getElementById(id),
+      sticky: document.getElementById(id)?.querySelector('[data-part-copy]'),
+    }))
+    .filter(({ section }) => section);
+
+  const syncToScroll = () => {
+    const line = window.innerHeight / 2;
+
+    const current = parts.find(({ section }) => {
+      const { top, bottom } = section.getBoundingClientRect();
+      return top <= line && bottom > line;
+    });
+
+    /* 두 파트 구간을 모두 벗어난 위치(앞뒤 다른 섹션)에서는 마지막 상태를 유지한다 —
+       지나온 파트의 카피를 굳이 지울 이유가 없고, 깜빡임만 생긴다. */
+    if (!current) return;
+
+    if (current.id !== activeId) activate(current.id);
+
+    parts.forEach(({ id, sticky }) => {
+      if (sticky) sticky.classList.toggle('is-leaving', id !== current.id);
+    });
+  };
+
+  /* 스크롤마다 getBoundingClientRect를 부르므로 프레임당 한 번으로 묶는다. */
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      syncToScroll();
+    });
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  syncToScroll();
+
   // 클릭하면 기본 앵커 점프(즉시 이동)를 막고 페이지를 부드럽게 스크롤한다.
   instances.forEach(({ items }) => {
     items.forEach((item) => {
@@ -134,5 +186,8 @@
     });
   });
 
-  window.addEventListener('resize', () => activate(activeId));
+  window.addEventListener('resize', () => {
+    activate(activeId);
+    syncToScroll();
+  });
 })();
