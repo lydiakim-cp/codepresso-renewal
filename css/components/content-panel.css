@@ -1,0 +1,50 @@
+/*
+ * Component: Content Panel
+ * 위쪽 설명 영역과 아래쪽 큰 시각 영역을 한 박스 안에 쌓는 범용 프레임.
+ * journey처럼 콘텐츠가 교체되는 경우에도 같은 padding, 간격, 시각 비율을 유지한다.
+ *
+ * Markup API
+ * .content-panel
+ *   .content-panel__item (교체되는 한 장; 단일 콘텐츠면 생략 가능)
+ *     .content-panel__intro (eyebrow/title/description)
+ *     .content-panel__visual (이미지, 목업, 차트 등)
+ *
+ * 컴포넌트는 내부 구조만 담당한다. sticky, grid 중첩, 전환 상태는 사용하는 페이지가 맡는다.
+ */
+.content-panel {
+  --content-panel-padding: var(--space-48);
+  --content-panel-gap: var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-panel-gap);
+  padding: var(--content-panel-padding);
+  border-radius: var(--radius-lg);
+}
+
+.content-panel__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-panel-gap);
+  min-width: 0;
+}
+
+.content-panel__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.content-panel__visual {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.content-panel--compact {
+  --content-panel-padding: var(--space-24);
+  --content-panel-gap: var(--space-16);
+}
+
+@media (max-width: 720px) {
+  .content-panel { --content-panel-padding: var(--space-24); }
+}

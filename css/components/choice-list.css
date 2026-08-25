@@ -1,0 +1,56 @@
+/*
+ * Component: Choice List
+ * 아이콘 + 텍스트 + 우측 chevron으로 구성하는 탐색형 목록.
+ * 제품, 교육 과정, 설정 메뉴처럼 한 항목 전체가 클릭되는 경우에 사용한다.
+ *
+ * .choice-list > li > .choice-list__item
+ *   .choice-list__icon + .choice-list__body + .choice-list__arrow
+ * .is-active는 현재 선택된 항목을 나타낸다.
+ */
+.choice-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  border-top: 1px solid var(--color-line);
+}
+
+.choice-list > li:not(:last-child) { border-bottom: 1px solid var(--color-line); }
+
+.choice-list__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-20);
+  margin-inline: calc(-1 * var(--space-20));
+  padding: var(--space-18) var(--space-20);
+  border-radius: var(--radius-md);
+  transition: background var(--duration-hover) var(--ease-hover);
+}
+
+.choice-list__item:hover,
+.choice-list__item.is-active { background: rgba(255, 255, 255, .6); }
+
+.choice-list__icon {
+  flex-shrink: 0;
+  width: var(--space-48);
+  height: var(--space-48);
+}
+
+.choice-list__icon img { width: 100%; height: 100%; object-fit: contain; }
+.choice-list__body { display: flex; flex-direction: column; gap: var(--space-4); }
+
+.choice-list__arrow {
+  width: 16px;
+  height: 16px;
+  margin-inline-start: auto;
+  flex-shrink: 0;
+  color: var(--color-ink-lighter);
+  transition: transform var(--duration-hover) var(--ease-hover), color var(--duration-hover) var(--ease-hover);
+}
+
+.choice-list__item:hover .choice-list__arrow,
+.choice-list__item.is-active .choice-list__arrow {
+  transform: translateX(3px);
+  color: var(--color-brand);
+}
+

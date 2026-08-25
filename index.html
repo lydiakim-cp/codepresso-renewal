@@ -345,59 +345,34 @@
             </div>
           </div>
 
-          <div class="hero-survey-frame">
-            <span class="hero-survey-glow" aria-hidden="true"></span>
-
-            <div class="hero-survey-stack">
-              <span class="hero-survey-pill">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
-                  <path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9s1.3-6.5 3.8-9Z"
-                    stroke="currentColor" stroke-width="1.6" />
-                </svg>
+          <aside class="assessment-card-frame" aria-label="AI 리터러시 자가진단">
+            <span class="assessment-card-frame__glow" aria-hidden="true"></span>
+            <div class="assessment-card-stack">
+              <span class="assessment-card-eyebrow">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9S9.5 5.5 12 3Z" stroke="currentColor" stroke-width="1.6"/></svg>
                 AI 리터러시 자가 진단 (1분 소요)
               </span>
 
-              <article class="hero-survey">
-                <div class="hero-survey-head">
-                  <h3 class="hero-survey-question">당신은 AI를 쓰는 사람인가요, <br> 다루는 사람인가요?</h3>
-                  <p class="hero-survey-desc">AI를 쓰는 사람과 다루는 사람은 다릅니다. <br>지금 나의 AI 활용 수준을 확인해보세요.</p>
+              <article class="assessment-card">
+                <div class="assessment-card__head">
+                  <h3 class="assessment-card__title">당신은 AI를 쓰는 사람인가요,<br>다루는 사람인가요?</h3>
+                  <p class="assessment-card__description">AI를 쓰는 사람과 다루는 사람은 다릅니다.<br>지금 나의 AI 활용 수준을 확인해보세요.</p>
                 </div>
 
-                <ul class="hero-survey-meta">
-                  <li class="pill">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                      <path d="M7 4h7l4 4v12H7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
-                      <path d="M10 12h5M10 16h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-                    </svg>
-                    11문항
-                  </li>
-                  <li class="pill">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                      <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6" />
-                      <path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-                    </svg>
-                    약 1분
-                  </li>
-                  <li class="pill">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                      <path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="1.8"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    즉시 결과
-                  </li>
+                <ul class="assessment-card__meta" aria-label="진단 정보">
+                  <li class="pill"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 4h7l4 4v12H7zM10 12h5M10 16h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>11문항</li>
+                  <li class="pill"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>약 1분</li>
+                  <li class="pill"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>즉시 결과</li>
                 </ul>
 
-                <div class="hero-survey-action">
-                  <a class="btn btn-primary btn-lg hero-survey-cta" href="#" target="_blank" rel="noopener">
-                    AI 역량 진단 시작하기
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </a>
-                  <span class="hero-survey-hint" aria-hidden="true">지금 AI 진단을 시작해 보세요</span>
+                <div class="assessment-card__action">
+                  <a class="btn btn-primary btn-lg assessment-card__cta" href="#">AI 역량 진단 시작하기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                  <span class="assessment-card__hint"><span class="assessment-card__hint-tail" aria-hidden="true"></span><span class="assessment-card__hint-text">지금 AI 진단을 시작해 보세요</span></span>
                 </div>
               </article>
             </div>
-          </div>
+          </aside>
+
         </div>
       </div>
 
@@ -548,15 +523,15 @@
         <div class="section-content">
           <div class="summary-banner stats-light">
             <div class="summary-banner-stats" data-stat-reveal>
-              <div class="summary-banner-stat">
-                <div class="summary-banner-stat-number">
+              <article class="metric-card">
+                <div class="metric-card__value">
                   <span class="num" data-target="39355">0</span><span class="unit">명</span>
                 </div>
-                <p class="text-label">누적 수강</p>
-                <div class="stat-icon">
-                  <span class="stat-icon-glow"></span>
-                  <span class="stat-icon-glow"></span>
-                  <svg class="stat-icon-svg stat-icon--team" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <p class="metric-card__label text-label">누적 수강</p>
+                <div class="metric-card__visual" aria-hidden="true">
+                  <span class="metric-card__glow"></span>
+                  <span class="metric-card__glow"></span>
+                  <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
                     <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
                     <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
                     <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
@@ -565,16 +540,16 @@
                     <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)" />
                   </svg>
                 </div>
-              </div>
-              <div class="summary-banner-stat">
-                <div class="summary-banner-stat-number">
+              </article>
+              <article class="metric-card">
+                <div class="metric-card__value">
                   <span class="num" data-target="1531">0</span><span class="unit">회</span>
                 </div>
-                <p class="text-label">교육 운영</p>
-                <div class="stat-icon">
-                  <span class="stat-icon-glow"></span>
-                  <span class="stat-icon-glow"></span>
-                  <svg class="stat-icon-svg stat-icon--calendar" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <p class="metric-card__label text-label">교육 운영</p>
+                <div class="metric-card__visual" aria-hidden="true">
+                  <span class="metric-card__glow"></span>
+                  <span class="metric-card__glow"></span>
+                  <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
                     <path d="M19.5 4.01953H4.5C3.39543 4.01953 2.5 4.91496 2.5 6.01953V19.0195C2.5 20.1241 3.39543 21.0195 4.5 21.0195H19.5C20.6046 21.0195 21.5 20.1241 21.5 19.0195V6.01953C21.5 4.91496 20.6046 4.01953 19.5 4.01953Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
                     <path d="M8.48001 3.01953H7.5C7.22386 3.01953 7 3.24339 7 3.51953V5.51953C7 5.79567 7.22386 6.01953 7.5 6.01953H8.48001C8.75615 6.01953 8.98001 5.79567 8.98001 5.51953V3.51953C8.98001 3.24339 8.75615 3.01953 8.48001 3.01953Z" fill="var(--color-brand)" />
                     <path d="M8.74023 9.5H7.24023C6.96409 9.5 6.74023 9.72386 6.74023 10V11.5C6.74023 11.7761 6.96409 12 7.24023 12H8.74023C9.01638 12 9.24023 11.7761 9.24023 11.5V10C9.24023 9.72386 9.01638 9.5 8.74023 9.5Z" fill="var(--color-surface)" />
@@ -586,22 +561,22 @@
                     <path d="M16.7598 14H15.2598C14.9836 14 14.7598 14.2239 14.7598 14.5V16C14.7598 16.2761 14.9836 16.5 15.2598 16.5H16.7598C17.0359 16.5 17.2598 16.2761 17.2598 16V14.5C17.2598 14.2239 17.0359 14 16.7598 14Z" fill="var(--color-surface)" />
                   </svg>
                 </div>
-              </div>
-              <div class="summary-banner-stat">
-                <div class="summary-banner-stat-number">
+              </article>
+              <article class="metric-card">
+                <div class="metric-card__value">
                   <span class="num" data-target="80">0</span><span class="unit">%</span>
                 </div>
-                <p class="text-label">재구매율</p>
-                <div class="stat-icon">
-                  <span class="stat-icon-glow"></span>
-                  <span class="stat-icon-glow"></span>
-                  <svg class="stat-icon-svg stat-icon--rise" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <p class="metric-card__label text-label">재구매율</p>
+                <div class="metric-card__visual" aria-hidden="true">
+                  <span class="metric-card__glow"></span>
+                  <span class="metric-card__glow"></span>
+                  <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
                     <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
                     <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)" />
                     <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)" />
                   </svg>
                 </div>
-              </div>
+              </article>
             </div>
           </div>
 
@@ -653,41 +628,41 @@
             <div class="diagnosis-products">
               <p class="text-label brand">교육 프로그램</p>
 
-              <ul class="diagnosis-product-list">
+              <ul class="choice-list diagnosis-product-list">
                 <li>
-                  <a class="diagnosis-product" href="#" data-journey-program="0">
-                    <span class="diagnosis-product-icon" aria-hidden="true">
+                  <a class="choice-list__item diagnosis-product" href="#" data-journey-program="0">
+                    <span class="choice-list__icon diagnosis-product-icon" aria-hidden="true">
                       <img src="images/icon/ic_skillPath.svg" alt="">
                     </span>
-                    <span class="diagnosis-product-body">
+                    <span class="choice-list__body diagnosis-product-body">
                       <span class="list-item-title">SkillPath </span>
                       <span class="text-caption">온라인 이러닝</span>
                     </span>
-                    <svg class="diagnosis-product-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg class="choice-list__arrow diagnosis-product-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </a>
                 </li>
                 <li>
-                  <a class="diagnosis-product" href="#" data-journey-program="1">
-                    <span class="diagnosis-product-icon" aria-hidden="true">
+                  <a class="choice-list__item diagnosis-product" href="#" data-journey-program="1">
+                    <span class="choice-list__icon diagnosis-product-icon" aria-hidden="true">
                       <img src="images/icon/ic_edu.svg" alt="">
                     </span>
-                    <span class="diagnosis-product-body">
+                    <span class="choice-list__body diagnosis-product-body">
                       <span class="list-item-title">SkillCamp </span>
                       <span class="text-caption">강사 주도형 교육</span>
                     </span>
-                    <svg class="diagnosis-product-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg class="choice-list__arrow diagnosis-product-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </a>
                 </li>
                 <li>
-                  <a class="diagnosis-product" href="#" data-journey-program="2">
-                    <span class="diagnosis-product-icon" aria-hidden="true">
+                  <a class="choice-list__item diagnosis-product" href="#" data-journey-program="2">
+                    <span class="choice-list__icon diagnosis-product-icon" aria-hidden="true">
                       <img src="images/icon/ic_skillFit.svg" alt="">
                     </span>
-                    <span class="diagnosis-product-body">
+                    <span class="choice-list__body diagnosis-product-body">
                       <span class="list-item-title">SkillFit</span>
                       <span class="text-caption">AI 기반 적응형 학습</span>
                     </span>
-                    <svg class="diagnosis-product-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg class="choice-list__arrow diagnosis-product-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </a>
                 </li>
               </ul>
@@ -707,16 +682,16 @@
 
             <!-- 판은 하나로 고정되고, 안의 내용만 교차 페이드된다.
                  PART 2의 diagnosis-preview-panel과 같은 glass 판(.surface-glass)을 쓴다. -->
-            <div class="journey-viewport surface-glass">
-              <article class="journey-step is-active" data-journey-step="0">
-                <div class="journey-step-head">
+            <div class="content-panel journey-viewport surface-glass">
+              <article class="content-panel__item journey-step is-active" data-journey-step="0">
+                <div class="content-panel__intro journey-step-head">
                   <p class="text-label brand">SkillPath · 온라인 이러닝</p>
                   <h3 class="stage-step-title">각자의 속도로,기초부터 탄탄하게</h3>
                   <p class="desc">직무별 커리큘럼을 온라인으로 학습합니다. <br> 진도와 이수율이 자동으로 기록되어 관리자가 한눈에 봅니다.</p>
                 </div>
 
                 <!-- 목업: 수강 중인 커리큘럼 진도 화면 -->
-                <div class="journey-mock" aria-hidden="true">
+                <div class="content-panel__visual preview-frame journey-mock" aria-hidden="true">
                   <div class="journey-mock-head">
                     <span class="journey-mock-title">업무 자동화 기초 과정</span>
                     <span class="journey-mock-badge">수강 중</span>
@@ -747,15 +722,15 @@
                 </div>
               </article>
 
-              <article class="journey-step" data-journey-step="1">
-                <div class="journey-step-head">
+              <article class="content-panel__item journey-step" data-journey-step="1">
+                <div class="content-panel__intro journey-step-head">
                   <p class="text-label brand">SkillCamp · 라이브 교육</p>
                   <h3 class="stage-step-title">현업 전문가와 실전처럼 부딪힙니다</h3>
                   <p class="desc">강사 주도 라이브 세션에서 실제 업무 과제로 프로젝트를 수행합니다. <br> 질문하고, 막히고, 해결하며 배웁니다.</p>
                 </div>
 
                 <!-- 목업: 라이브 세션 중 강사-수강생 대화 화면 -->
-                <div class="journey-mock" aria-hidden="true">
+                <div class="content-panel__visual preview-frame journey-mock" aria-hidden="true">
                   <div class="journey-mock-head">
                     <span class="journey-mock-title">실전 프로젝트 세션</span>
                     <span class="journey-mock-badge is-live">LIVE</span>
@@ -779,8 +754,8 @@
                 </div>
               </article>
 
-              <article class="journey-step" data-journey-step="2">
-                <div class="journey-step-head">
+              <article class="content-panel__item journey-step" data-journey-step="2">
+                <div class="content-panel__intro journey-step-head">
                   <p class="text-label brand">SkillFit · AI 적응형 학습</p>
                   <h3 class="stage-step-title">실력에 맞춘 난이도가 따라옵니다</h3>
                   <p class="desc">진단 결과와 학습 데이터에 맞추어 <br> AI가 문제 난이도와 경로를 실시간으로 조정합니다. </p>
@@ -789,7 +764,7 @@
                 <!-- 목업: 실제 SkillFit 학습 화면(아이콘 레일 · 스킬 목록 · 레슨 · AI 튜터)을
                      핵심만 남겨 확대한 형태. 본문 텍스트는 스켈레톤 바로 단순화하고,
                      강조할 것(트랙·진행률·실무 시나리오·튜터 대화)만 실제 내용으로 둔다. -->
-                <div class="journey-mock journey-app" aria-hidden="true">
+                <div class="content-panel__visual preview-frame journey-mock journey-app" aria-hidden="true">
                   <!-- 최좌측 — 아이콘 메뉴 레일. 실제 앱의 좌측 네비를 그대로 옮긴다. -->
                   <div class="journey-app-rail">
                     <span class="journey-app-rail-logo"></span>
@@ -868,7 +843,7 @@
                     <p class="journey-app-eyebrow">LESSON 4</p>
                     <p class="journey-app-lesson">AI의 기억력에도<br>끝이 있을까?</p>
 
-                    <div class="skeleton-block">
+                    <div class="skeleton-stack">
                       <span class="skeleton-line"></span>
                       <span class="skeleton-line"></span>
                       <span class="skeleton-line is-short"></span>
@@ -923,29 +898,29 @@
             <div class="diagnosis-products">
               <p class="text-label brand">진단 제품</p>
 
-              <ul class="diagnosis-product-list">
+              <ul class="choice-list diagnosis-product-list">
                 <li>
-                  <a class="diagnosis-product" href="#" data-diagnosis-program="0">
-                    <span class="diagnosis-product-icon" aria-hidden="true">
+                  <a class="choice-list__item diagnosis-product" href="#" data-diagnosis-program="0">
+                    <span class="choice-list__icon diagnosis-product-icon" aria-hidden="true">
                       <img src="images/icon/ic_aiFluent.svg" alt="">
                     </span>
-                    <span class="diagnosis-product-body">
+                    <span class="choice-list__body diagnosis-product-body">
                       <span class="list-item-title">AI Fluent</span>
                       <span class="text-caption">전 직군 AI 활용 역량 진단</span>
                     </span>
-                    <svg class="diagnosis-product-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg class="choice-list__arrow diagnosis-product-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </a>
                 </li>
                 <li>
-                  <a class="diagnosis-product" href="#" data-diagnosis-program="1">
-                    <span class="diagnosis-product-icon" aria-hidden="true">
+                  <a class="choice-list__item diagnosis-product" href="#" data-diagnosis-program="1">
+                    <span class="choice-list__icon diagnosis-product-icon" aria-hidden="true">
                       <img src="images/icon/ic_skillCertify.svg" alt="">
                     </span>
-                    <span class="diagnosis-product-body">
+                    <span class="choice-list__body diagnosis-product-body">
                       <span class="list-item-title">SkillCertify</span>
                       <span class="text-caption">개발자 IT 실무 역량 평가</span>
                     </span>
-                    <svg class="diagnosis-product-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg class="choice-list__arrow diagnosis-product-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </a>
                 </li>
               </ul>
@@ -1017,11 +992,11 @@
         <div class="difference-mock" aria-hidden="true">
           <!-- 하늘색 배경 위에 흰 브라우저 창이 떠 있는 형태.
                배경은 바깥 .difference-mock이, 창은 안쪽 .difference-window가 그린다. -->
-          <div class="difference-window">
+          <div class="preview-frame preview-frame--flush difference-window">
 
             <!-- 창 상단 바 — 실제 제품 화면이라는 신호만 준다. -->
-            <div class="difference-mock-bar">
-              <span class="difference-mock-dots"><i></i><i></i><i></i></span>
+            <div class="preview-frame__bar difference-mock-bar">
+              <span class="preview-frame__dots difference-mock-dots"><i></i><i></i><i></i></span>
             </div>
 
             <!-- 3화면 스테이지. 같은 그리드 셀에 겹쳐두고 교차 페이드한다. -->
@@ -1379,59 +1354,59 @@
         <div class="section-content">
           <div class="insight-layout">
             <!-- 가장 최근 기사 — 큰 썸네일로 좌측 절반을 차지한다. -->
-            <a class="insight-feature" href="https://www.newsis.com/view/ALSX20260629_0000006828" target="_blank" rel="noopener">
-              <div class="insight-feature-thumb">
+            <a class="media-card insight-feature" href="https://www.newsis.com/view/ALSX20260629_0000006828" target="_blank" rel="noopener">
+              <div class="media-card__media insight-feature-thumb">
                 <img src="https://mmx.prnasia.com/media/MS1873716/e7f99217463f4f01ad4a757a51402cc6.jpg?id=OA2738334&p=medium600" alt="">
               </div>
-              <div class="insight-feature-body">
-                <div class="insight-feature-meta">
+              <div class="media-card__body insight-feature-body">
+                <div class="media-card__meta insight-feature-meta">
                   <span class="tag">뉴스</span>
                   <time class="text-caption" datetime="2026-06-29">2026-06-29</time>
                 </div>
-                <h3 class="insight-feature-title">AXMOS 컨소시엄, 부산정보산업진흥원•부산벤처기업협회와 'AX 사업협력' MOU 체결</h3>
+                <h3 class="media-card__title insight-feature-title">AXMOS 컨소시엄, 부산정보산업진흥원•부산벤처기업협회와 'AX 사업협력' MOU 체결</h3>
               </div>
             </a>
 
             <!-- 나머지 기사 — 우측에서 제목·썸네일 한 줄씩 상하로 쌓인다. -->
             <ul class="insight-list">
               <li>
-                <a class="insight-row" href="https://www.etoday.co.kr/news/view/2576115" target="_blank" rel="noopener">
-                  <div class="insight-row-body">
-                    <div class="insight-row-meta">
+                <a class="media-card insight-row" href="https://www.etoday.co.kr/news/view/2576115" target="_blank" rel="noopener">
+                  <div class="media-card__body insight-row-body">
+                    <div class="media-card__meta insight-row-meta">
                       <span class="tag">뉴스</span>
                       <time class="text-caption" datetime="2026-04-15">2026-04-15</time>
                     </div>
-                    <h3 class="insight-row-title">코드프레소, GITEX AI ASIA '슈퍼노바' 본상…한국 스타트업 최초 수상</h3>
+                    <h3 class="media-card__title insight-row-title">코드프레소, GITEX AI ASIA '슈퍼노바' 본상…한국 스타트업 최초 수상</h3>
                   </div>
-                  <div class="insight-row-thumb">
+                  <div class="media-card__media insight-row-thumb">
                     <img src="https://img.etoday.co.kr/pto_db/2026/04/20260415173028_2322177_1200_900.jpg" alt="">
                   </div>
                 </a>
               </li>
               <li>
-                <a class="insight-row" href="https://www.hankyung.com/newswire/article/4970127_KO70127_9" target="_blank" rel="noopener">
-                  <div class="insight-row-body">
-                    <div class="insight-row-meta">
+                <a class="media-card insight-row" href="https://www.hankyung.com/newswire/article/4970127_KO70127_9" target="_blank" rel="noopener">
+                  <div class="media-card__body insight-row-body">
+                    <div class="media-card__meta insight-row-meta">
                       <span class="tag">뉴스</span>
                       <time class="text-caption" datetime="2026-05-29">2026-05-29</time>
                     </div>
-                    <h3 class="insight-row-title">코드프레소, 6월 6일 가족 'AI 동화책' 원데이 클래스 개최</h3>
+                    <h3 class="media-card__title insight-row-title">코드프레소, 6월 6일 가족 'AI 동화책' 원데이 클래스 개최</h3>
                   </div>
-                  <div class="insight-row-thumb">
+                  <div class="media-card__media insight-row-thumb">
                     <img src="https://mma.prnasia.com/media2/2989783/AI.jpg?p=medium600" alt="">
                   </div>
                 </a>
               </li>
               <li>
-                <a class="insight-row" href="https://www.asiae.co.kr/article/2026043014334321346" target="_blank" rel="noopener">
-                  <div class="insight-row-body">
-                    <div class="insight-row-meta">
+                <a class="media-card insight-row" href="https://www.asiae.co.kr/article/2026043014334321346" target="_blank" rel="noopener">
+                  <div class="media-card__body insight-row-body">
+                    <div class="media-card__meta insight-row-meta">
                       <span class="tag">인터뷰</span>
                       <time class="text-caption" datetime="2026-05-03">2026-05-03</time>
                     </div>
-                    <h3 class="insight-row-title">"AI 역량 평가 글로벌 표준 만들 것" — 코드프레소 대표 인터뷰</h3>
+                    <h3 class="media-card__title insight-row-title">"AI 역량 평가 글로벌 표준 만들 것" — 코드프레소 대표 인터뷰</h3>
                   </div>
-                  <div class="insight-row-thumb">
+                  <div class="media-card__media insight-row-thumb">
                     <img src="https://cphoto.asiae.co.kr/listimglink/1/2026042216465136593_1776844012.jpg" alt="">
                   </div>
                 </a>
@@ -1440,11 +1415,11 @@
                    기사가 추가되면 위 .insight-row 구조로 교체한다. -->
               <li class="insight-row-empty" aria-hidden="true">
                 <div class="insight-row-body">
-                  <span class="insight-skeleton is-tag"></span>
-                  <span class="insight-skeleton is-title"></span>
-                  <span class="insight-skeleton is-title is-short"></span>
+                  <span class="skeleton-block is-tag"></span>
+                  <span class="skeleton-block is-title"></span>
+                  <span class="skeleton-block is-title is-short"></span>
                 </div>
-                <div class="insight-skeleton is-thumb"></div>
+                <div class="skeleton-block is-thumbnail insight-row-thumb"></div>
               </li>
             </ul>
           </div>
@@ -1478,9 +1453,6 @@
       </div>
     </section>
   </main>
-
-  <footer>
-  </footer>
 
   <script src="js/fade-up.js"></script>
   <script src="js/header-scroll.js"></script>

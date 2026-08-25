@@ -33,39 +33,14 @@
   flex: 0 0 auto;
   min-height: 0;
   border-radius: var(--radius-lg);
-  background: var(--color-surface-mist);
-  overflow: hidden;
-}
-
-.insight-feature-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--duration-hover) var(--ease-hover);
-}
-
-.insight-feature:hover .insight-feature-thumb img {
-  transform: scale(1.03);
 }
 
 .insight-feature-body {
-  display: flex;
-  flex-direction: column;
   gap: var(--space-12);
-}
-
-/* h3 전역(24px)을 그대로 쓰되 hover 색만 바뀐다. */
-.insight-feature:hover .insight-feature-title {
-  color: var(--color-brand);
 }
 
 .insight-feature-title {
   /* 썸네일 높이(354px)가 본문 2줄을 전제로 계산돼 있어, 넘치면 잘라 높이를 지킨다. */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  transition: color var(--duration-hover) var(--ease-hover);
 }
 
 /* 우측 — 상하로 쌓이는 기사 목록. 행 사이는 구분선 하나로만 나눈다. */
@@ -93,16 +68,6 @@
 }
 
 .insight-row-body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-}
-
-/* 카테고리·날짜 한 줄. 좌측 피처의 meta와 같은 배치라 규칙을 공유한다. */
-.insight-feature-meta,
-.insight-row-meta {
-  display: flex;
-  align-items: center;
   gap: var(--space-8);
 }
 
@@ -111,15 +76,6 @@
 .insight-row-title {
   font-size: var(--text-body-18);
   line-height: var(--leading-body-18);
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  transition: color var(--duration-hover) var(--ease-hover);
-}
-
-.insight-row:hover .insight-row-title {
-  color: var(--color-brand);
 }
 
 .insight-row-thumb {
@@ -129,14 +85,6 @@
   height: 96px;
   aspect-ratio: 4 / 3;
   border-radius: var(--radius-md);
-  background: var(--color-surface-mist);
-  overflow: hidden;
-}
-
-.insight-row-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 /* 목록 하단, 섹션 폭 안에서 가운데 배치되는 더보기 버튼. */
@@ -147,37 +95,10 @@
 }
 
 /* 기사가 4건에 못 미칠 때 남는 자리를 채우는 빈 스켈레톤 행.
-   modifier는 education-journey의 전역 .skeleton-line(8px 목업 선)과 충돌하지 않도록
-   .insight-skeleton 아래 is-* 로만 둔다.
+   공통 .skeleton-block modifier로 실제 콘텐츠와 동일한 자리를 잡는다.
    레이아웃 높이(480px)를 유지해 아래 더보기 버튼이 위로 딸려 올라오지 않게 한다. */
 .insight-row-empty .insight-row-body {
   flex: 1;
 }
 
-.insight-skeleton {
-  display: block;
-  border-radius: var(--radius-sm);
-  background: var(--color-surface-sunken);
-}
-
-.insight-skeleton.is-tag {
-  /* .tag와 같은 크기(14px 본문 + 상하 4px 패딩)로 자리를 맞춘다. */
-  width: 56px;
-  height: 30px;
-}
-
-.insight-skeleton.is-title {
-  /* 제목 한 줄(18/28) 자리. */
-  height: 28px;
-}
-
-.insight-skeleton.is-title.is-short {
-  width: 60%;
-}
-
-.insight-skeleton.is-thumb {
-  flex: 0 0 auto;
-  height: 96px;
-  aspect-ratio: 4 / 3;
-  border-radius: var(--radius-md);
-}
+.insight-row-empty .skeleton-block.is-thumbnail { flex: 0 0 auto; height: 96px; }

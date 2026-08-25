@@ -1,6 +1,6 @@
 /*
  * Stat Reveal
- * [data-stat-reveal] 안의 .summary-banner-stat 카드를 스크롤 진입 시 fade-up시킨다.
+ * [data-stat-reveal] 안의 .metric-card를 스크롤 진입 시 fade-up시킨다.
  * - 화면에 들어오는 순간 .is-visible이 붙어 아래에서 위로 올라오며 나타난다.
  * - 카드끼리 순차 지연(stagger)을 줘서 왼쪽에서 오른쪽으로 차례로 등장한다.
  * - 동시에 숫자(.num)는 0에서 목표값까지 카운트업되고, progress bar는 실측 달성률까지 채워진다.
@@ -45,14 +45,10 @@
       }
     }
 
-    const barFill = card.querySelector('.summary-banner-stat-bar-fill');
-    if (barFill) {
-      barFill.style.width = `${barFill.dataset.percent}%`;
-    }
   };
 
   groups.forEach((group) => {
-    const cards = Array.from(group.querySelectorAll('.summary-banner-stat'));
+    const cards = Array.from(group.querySelectorAll('.metric-card'));
     if (!cards.length) return;
 
     // 모션을 원하지 않는 사용자, 또는 IntersectionObserver가 없는 환경에서는

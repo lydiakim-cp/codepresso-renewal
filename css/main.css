@@ -27,3 +27,10 @@
 @import url("./components/header.css") layer(components);
 @import url("./components/feature-card.css") layer(components);
 @import url("./components/summary-banner.css") layer(components);
+@import url("./components/metric-card.css") layer(components);
+@import url("./components/content-panel.css") layer(components);
+@import url("./components/choice-list.css") layer(components);
+@import url("./components/media-card.css") layer(components);
+@import url("./components/preview-frame.css") layer(components);
+@import url("./components/skeleton.css") layer(components);
+@import url("./components/assessment-card.css") layer(components);

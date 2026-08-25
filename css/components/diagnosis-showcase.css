@@ -4,7 +4,7 @@
  * 배경 그라디언트는 두 파트를 감싸는 .parts-group이 통째로 소유한다
  * (education-journey.css 참조) — 두 파트가 하나의 영역으로 읽히게 하기 위함.
  * 좌측: part-nav + 카피 + 진단 제품 리스트 + CTA (sticky)
- * 우측: 진단 리포트 프리뷰 — hero-survey와 같은 코드프레소 시각 서명
+ * 우측: 진단 리포트 프리뷰 — 반투명 패널 위에 제품 화면을 배치한 코드프레소 시각 서명
  *       (그라디언트 글로우 프레임 + 글래스 카드 + 블루 섀도우)을 따른다.
  */
 
@@ -75,67 +75,6 @@
   flex-direction: column;
   gap: var(--space-12);
   width: 100%;
-}
-
-.diagnosis-product-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  border-top: 1px solid var(--color-line);
-}
-
-.diagnosis-product-list li:not(:last-child) {
-  border-bottom: 1px solid var(--color-line);
-}
-
-.diagnosis-product {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--space-20);
-  margin-inline: calc(-1 * var(--space-20));
-  padding: var(--space-18) var(--space-20);
-  border-radius: var(--radius-md);
-  transition: background var(--duration-hover) var(--ease-hover);
-}
-
-.diagnosis-product:hover {
-  background: rgba(255, 255, 255, .6);
-}
-
-/* 아이콘 SVG가 자체 배경 박스를 포함하므로 래퍼는 크기만 잡는다. */
-.diagnosis-product-icon {
-  flex-shrink: 0;
-  width: var(--space-48);
-  height: var(--space-48);
-}
-
-.diagnosis-product-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.diagnosis-product-body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-/* 행 우측 끝 chevron — 크기·hover 이동폭은 .btn > svg와 같은 16px / 3px 기준을 따른다. */
-.diagnosis-product-arrow {
-  width: 16px;
-  height: 16px;
-  margin-inline-start: auto;
-  flex-shrink: 0;
-  color: var(--color-ink-lighter);
-  transition: transform var(--duration-hover) var(--ease-hover),
-    color var(--duration-hover) var(--ease-hover);
-}
-
-.diagnosis-product:hover .diagnosis-product-arrow {
-  transform: translateX(3px);
-  color: var(--color-brand);
 }
 
 /* ---------------------------------------------

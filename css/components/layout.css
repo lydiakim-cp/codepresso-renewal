@@ -122,7 +122,7 @@ section {
  * Component: Fade Up
  * 스크롤로 화면에 들어올 때 아래에서 위로 올라오며 나타나는 공통 진입 모션.
  * JS(IntersectionObserver 등)에서 대상 요소를 관찰하다 뷰포트에 들어오는 순간
- * .is-visible을 붙이면 된다. summary-banner-stat에서 쓰던 패턴을 공통화했다.
+ * .is-visible을 붙이면 된다. 여러 카드의 진입 모션에서 공유하는 패턴이다.
  */
 .fade-up {
   opacity: 0;

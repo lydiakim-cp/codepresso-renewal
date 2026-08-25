@@ -1,0 +1,233 @@
+/*
+ * Component: Assessment Card
+ * Hero나 캠페인 영역에서 자가진단으로 진입시키는 정적 CTA 카드.
+ * 실제 설문 문항과 상태 전환은 포함하지 않으며, 제목·메타정보·CTA 슬롯만 제공한다.
+ */
+.assessment-card-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 640px);
+  min-height: 520px;
+  padding: var(--space-60);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.assessment-card-frame__glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 10%, color-mix(in srgb, var(--color-brand) 45%, white), transparent 48%),
+    radial-gradient(circle at 90% 90%, color-mix(in srgb, var(--color-brand-dark) 35%, white), transparent 58%),
+    linear-gradient(160deg, var(--color-brand-tint-1), var(--color-brand-tint-2));
+}
+
+.assessment-card-stack {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  width: 360px;
+}
+
+.assessment-card-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  padding: var(--space-12) var(--space-24);
+  border: 1px solid rgba(255, 255, 255, .7);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, .55);
+  backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--text-body-muted);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-heaviest);
+}
+
+.assessment-card-eyebrow svg { width: 18px; height: 18px; flex: none; color: var(--color-brand-dark); }
+
+.assessment-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  padding: var(--space-35);
+  border: 1px solid rgba(255, 255, 255, .9);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, .82);
+  backdrop-filter: blur(24px) saturate(160%);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--duration-hover) var(--ease-hover), box-shadow var(--duration-hover) var(--ease-hover);
+}
+
+.assessment-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(26, 97, 234, .16); }
+.assessment-card__head { display: flex; flex-direction: column; gap: var(--space-18); }
+.assessment-card__title { color: var(--color-ink-heaviest); }
+.assessment-card__description { font-size: var(--text-body-muted); line-height: var(--leading-body-muted); color: var(--color-ink-light); }
+
+.assessment-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  padding-top: var(--space-24);
+  border-top: 1px solid var(--color-line);
+}
+
+.assessment-card__meta .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin: 0;
+  border: 1px solid var(--color-line);
+  background: rgba(255, 255, 255, .7);
+  color: var(--color-ink-light);
+}
+
+.assessment-card__meta .pill svg { width: 14px; height: 14px; flex: none; color: var(--color-brand); }
+.assessment-card__action {
+  position: relative;
+  padding-top: var(--space-8);
+  padding-bottom: 52px;
+}
+
+.assessment-card__cta {
+  width: 100%;
+  box-shadow: 0 7px 29px rgba(26, 97, 234, .24);
+  transition: all .5s ease;
+}
+.assessment-card:hover .assessment-card__cta { transform: scale(1.03); box-shadow: 0 10px 34px rgba(26, 97, 234, .3); }
+.assessment-card:hover .assessment-card__cta svg { transform: translateX(3px); }
+
+/* CTA 아래에 떠 있는 glass 말풍선. 최신 Hero 카드의 꼬리·회전 링·부유 모션을 유지한다. */
+.assessment-card__hint {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-8) var(--space-18);
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  background: #fff;
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: 0 6px 18px rgba(26, 97, 234, .14);
+  font-size: var(--text-label);
+  line-height: var(--leading-label);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-dark);
+  white-space: nowrap;
+  isolation: isolate;
+  animation: assessment-card-hint-float 2.4s var(--ease-scroll) infinite;
+}
+
+/*
+ * 말풍선 꼬리 외곽. 본체와 같은 회전 그라데이션을 사용하지만 독립 span으로 분리한다.
+ * 꼬리 전체를 음수 레이어로 내리지 않고, 접합부만 별도 덮개가 가리도록 한다.
+ */
+.assessment-card__hint-tail {
+  position: absolute;
+  z-index: 0;
+  /* 높이 7px 중 마지막 1px을 본체 안으로 넣어 삼각형 밑변을 말풍선 border가 덮게 한다. */
+  top: -7px;
+  left: 50%;
+  width: 14px;
+  height: 7px;
+  transform: translateX(-50%);
+  background: conic-gradient(from var(--assessment-hint-angle),
+      #7FB2FF 0deg,
+      #9E8BFF 70deg,
+      var(--color-brand) 140deg,
+      #4FD8E8 210deg,
+      #A9C4FF 280deg,
+      #7FB2FF 360deg);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  animation: assessment-card-hint-shimmer 3s linear infinite;
+  pointer-events: none;
+}
+
+/* 삼각형 밑변이 닿는 중앙 14px만 glass 배경으로 덮는다. 꼬리 전체는 선명하게 유지된다. */
+.assessment-card__hint::before {
+  content: "";
+    position: absolute;
+    z-index: 999;
+    top: -6px;
+    left: 50%;
+    width: 12px;
+    height: 6px;
+    transform: translateX(-50%);
+    background: rgb(255 255 255);
+    pointer-events: none;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.assessment-card__hint-text {
+  position: relative;
+  z-index: 3;
+}
+
+/* 꼬리 내부. 외곽보다 사방 1px 작게 겹쳐 삼각형의 면은 glass 색으로 비운다. */
+.assessment-card__hint-tail::after {
+  content: "";
+  position: absolute;
+  top: 1.5px;
+  left: 1px;
+  width: 12px;
+  height: 6px;
+  background: rgba(255, 255, 255, .72);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.assessment-card__hint::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--assessment-hint-angle),
+      #7FB2FF 0deg,
+      #9E8BFF 70deg,
+      var(--color-brand) 140deg,
+      #4FD8E8 210deg,
+      #A9C4FF 280deg,
+      #7FB2FF 360deg);
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  animation: assessment-card-hint-shimmer 3s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes assessment-card-hint-float {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -5px); }
+}
+
+@property --assessment-hint-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes assessment-card-hint-shimmer {
+  to { --assessment-hint-angle: 360deg; }
+}
+
+@media (max-width: 720px) {
+  .assessment-card-frame { min-height: auto; padding: var(--space-24); }
+  .assessment-card-stack { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .assessment-card__hint,
+  .assessment-card__hint-tail,
+  .assessment-card__hint::after { animation: none; }
+  .assessment-card__cta { transition-duration: .001ms; }
+}
