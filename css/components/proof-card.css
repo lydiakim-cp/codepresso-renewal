@@ -122,12 +122,23 @@
   z-index: 4;
   border: 0;
   background: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: var(--space-8);
   color: var(--color-surface);
-  font-size: 28px;
-  line-height: 1;
   cursor: pointer;
   transition: transform var(--duration-hover) var(--ease-hover);
+}
+
+/* 좌우 모두 chevron-right 하나를 쓰고, 좌향만 수평 반전한다. */
+.proof-card-nav > svg {
+  width: 28px;
+  height: 28px;
+}
+
+.proof-card-nav:first-of-type > svg {
+  transform: scaleX(-1);
 }
 
 .proof-card-nav:hover {

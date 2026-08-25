@@ -45,8 +45,10 @@
 
 /*
  * 버튼 우측 방향 아이콘 공통 규칙.
- * 텍스트 화살표(→, +, ->)를 직접 쓰지 않고 항상 이 SVG를 쓴다.
- * path는 `M9 5l7 7-7 7`(chevron →) 하나로 통일하며, 크기는 16px 고정.
+ * 텍스트 화살표(→, +, ‹, ›)를 직접 쓰지 않고 항상 이 chevron SVG를 쓴다.
+ * path는 images/icon/chevron-right.svg와 동일한 `M9 18L15 12L9 6` 하나로 통일한다
+ * (좌향은 같은 path에 transform: scaleX(-1), 하향은 chevron-down.svg의 `M6 9L12 15L18 9`).
+ * stroke-width는 2, 버튼 안에서의 크기는 16px 고정.
  */
 .btn > svg {
   display: block;

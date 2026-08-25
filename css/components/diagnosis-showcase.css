@@ -117,11 +117,11 @@
   gap: var(--space-4);
 }
 
-/* 우측 화살표 — feature-card와 같은 "hover 시 2px 밀려나는" 모션 언어. */
+/* 행 우측 끝 chevron — 크기·hover 이동폭은 .btn > svg와 같은 16px / 3px 기준을 따른다. */
 .diagnosis-product-arrow {
-  width: 18px;
-  height: 18px;
-  margin-left: auto;
+  width: 16px;
+  height: 16px;
+  margin-inline-start: auto;
   flex-shrink: 0;
   color: var(--color-ink-lighter);
   transition: transform var(--duration-hover) var(--ease-hover),
@@ -129,7 +129,7 @@
 }
 
 .diagnosis-product:hover .diagnosis-product-arrow {
-  transform: translateX(2px);
+  transform: translateX(3px);
   color: var(--color-brand);
 }
 

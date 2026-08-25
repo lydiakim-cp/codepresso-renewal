@@ -748,10 +748,7 @@
           <button class="btn btn-pill" type="button">
             무료로 체험하기
             <span class="btn-pill-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
           </button>
         </div>
@@ -770,7 +767,50 @@
           </tr>
         </table>
         <div class="callout callout-note"><b>재사용 원칙:</b> 텍스트+화살표 조합의 플로팅 CTA가 필요하면 새 pill 버튼을 만들지 않고
-          <code>.btn.btn-pill</code>을 그대로 쓴다. 아이콘 SVG는 위 예시의 <code>M7 17L17 7M9 7h8v8</code>(↗ 방향)를 재사용한다.</div>
+          <code>.btn.btn-pill</code>을 그대로 쓴다. 아이콘 SVG는 아래 "방향 아이콘" 규칙의 chevron 하나를 재사용한다.</div>
+
+        <h3 style="margin-top:32px">방향 아이콘 — chevron 단일화</h3>
+        <p class="description">버튼·링크의 방향 표시는 <b>텍스트 화살표(→, +, ‹, ›)나 HTML 엔티티를 쓰지 않고</b> 항상 아래 chevron SVG 하나만 쓴다.
+          path는 <code>images/icon/chevron-right.svg</code>와 동일한 <code>M9 18L15 12L9 6</code>, <code>stroke-width</code>는 2로 고정한다.
+          좌향 화살표는 별도 path를 만들지 않고 같은 SVG에 <code>transform: scaleX(-1)</code>을 준다.
+          하향(드롭다운)은 <code>images/icon/chevron-down.svg</code>의 <code>M6 9L12 15L18 9</code>를 쓴다.</p>
+        <table style="margin-top:18px">
+          <tr>
+            <th>맥락</th>
+            <th>크기</th>
+            <th>규칙</th>
+          </tr>
+          <tr>
+            <td><code>.btn &gt; svg</code></td>
+            <td>16px</td>
+            <td>hover 시 <code>translateX(3px)</code>. "…보기 / 알아보기"처럼 <b>이동을 뜻하는 CTA에만</b> 붙이고,
+              "도입 문의 / 상담하기 / 로그인" 같은 종결 액션에는 붙이지 않는다</td>
+          </tr>
+          <tr>
+            <td><code>.link-arrow &gt; svg</code></td>
+            <td>14px</td>
+            <td>본문 크기 보조 링크</td>
+          </tr>
+          <tr>
+            <td><code>.btn-pill-icon svg</code></td>
+            <td>16px</td>
+            <td>원형 배지 안에 중앙 정렬</td>
+          </tr>
+        </table>
+
+        <h3 style="margin-top:32px">보조 링크 — <code>.link-arrow</code></h3>
+        <p class="description">"텍스트 + 우측 chevron" 형태의 보조 링크. 버튼만큼 무겁지 않은 부가 동선에 쓴다.
+          배치·크기는 <code>.link-arrow</code>가 맡고 색상은 modifier가 정한다 —
+          밝은 배경은 <code>.link-arrow-ink</code>, 어두운/브랜드 배경은 <code>.link-arrow-inverse</code>.
+          밑줄 hover가 필요하면 텍스트를 <code>&lt;span class="link-underline"&gt;</code>으로 감싼다.</p>
+        <div class="flex-row" style="gap:24px;align-items:center">
+          <a class="link-arrow link-arrow-ink" href="#"><span class="link-underline">우리 조직에 맞는 교육이 궁금하신가요?</span><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="flex-row" style="gap:24px;align-items:center;margin-top:12px;padding:20px;border-radius:12px;background:var(--color-ink)">
+          <a class="link-arrow link-arrow-inverse" href="#"><span class="link-underline">3분 AI 진단 시작하기</span><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="callout callout-note"><b>재사용 원칙:</b> 화살표가 붙은 텍스트 링크가 필요하면 컴포넌트마다
+          <code>display:inline-flex</code> + gap + 폰트를 새로 정의하지 말고 <code>.link-arrow</code>에 색상 modifier만 붙여 쓴다.</div>
       </div>
     </section>
 

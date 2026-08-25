@@ -84,21 +84,3 @@
   box-shadow: none;
 }
 
-.cta-final-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-4);
-  font-size: var(--text-body-muted);
-  font-weight: var(--font-weight-medium);
-  color: color-mix(in srgb, var(--color-surface) 82%, transparent);
-  transition: color var(--duration-hover) var(--ease-hover);
-}
-
-.cta-final-link svg {
-  width: 14px;
-  height: 14px;
-}
-
-.cta-final-link:hover {
-  color: var(--color-surface);
-}

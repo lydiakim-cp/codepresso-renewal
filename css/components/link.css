@@ -2,7 +2,7 @@
  * Component: Link Underline
  * 밑줄이 왼쪽에서 오른쪽으로 채워지며 드러나는 hover 효과.
  * motion-demo.css의 .motion-link에서 쓰던 것과 같은 로직(0%→100% 배경 확장)을
- * 공용 유틸리티로 승격해, 색상이 다른 링크(.motion-link, .hero-link 등)가
+ * 공용 유틸리티로 승격해, 색상이 다른 링크(.motion-link, .link-arrow 등)가
  * 함께 재사용한다. 색상은 각 컴포넌트가 정하고, 이 클래스는 밑줄 애니메이션만 맡는다.
  */
 
@@ -23,4 +23,45 @@
   .link-underline {
     transition-duration: 0.001ms;
   }
+}
+
+/*
+ * Component: Link Arrow
+ * "텍스트 + 우측 chevron" 보조 링크. hero와 cta-final의 보조 링크가
+ * 구조·크기·gap이 동일한 채 색상만 달라 각자 정의하고 있던 것을 하나로 합쳤다.
+ * 색상은 modifier가 정하고, 이 클래스는 배치와 chevron 크기만 맡는다.
+ */
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: fit-content;
+  font-size: var(--text-body-muted);
+  font-weight: var(--font-weight-medium);
+  transition: color var(--duration-hover) var(--ease-hover);
+}
+
+.link-arrow > svg {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+/* 밝은 배경 위 (hero) */
+.link-arrow-ink {
+  color: var(--color-ink-light);
+}
+
+.link-arrow-ink:hover {
+  color: var(--color-brand);
+}
+
+/* 어두운/브랜드 배경 위 (cta-final) */
+.link-arrow-inverse {
+  color: color-mix(in srgb, var(--color-surface) 82%, transparent);
+}
+
+.link-arrow-inverse:hover {
+  color: var(--color-surface);
 }

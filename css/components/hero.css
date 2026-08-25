@@ -100,26 +100,6 @@
   gap: var(--space-12);
 }
 
-.hero-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-4);
-  width: fit-content;
-  font-size: var(--text-body-muted);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-ink-light);
-  transition: color var(--duration-hover) var(--ease-hover);
-}
-
-.hero-link svg {
-  width: 14px;
-  height: 14px;
-}
-
-.hero-link:hover {
-  color: var(--color-brand);
-}
-
 /* 우측 설문 영역 — 다채로운 그라디언트 패널 위에 필박스 + 설문 카드가 겹쳐 뜬다 */
 .hero-survey-frame {
   position: relative;
