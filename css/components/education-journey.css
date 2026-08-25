@@ -160,13 +160,14 @@
   white-space: nowrap;
 }
 
-/* 진행 중인 라이브 세션 표시 — 브랜드 블루와 구분되도록 붉은 계열로 둔다. */
+/* 진행 중인 라이브 세션 표시 — 브랜드 블루와 구분되도록 붉은 계열(state critical)로 둔다.
+   배경은 같은 토큰을 흰색과 섞어 옅게 파생시킨다. */
 .journey-mock-badge.is-live {
   display: flex;
   align-items: center;
   gap: var(--space-6);
-  background: #FFEAEA;
-  color: #E03B3B;
+  background: color-mix(in srgb, var(--color-critical) 12%, var(--color-surface));
+  color: var(--color-critical);
 }
 
 .journey-mock-badge.is-live::before {

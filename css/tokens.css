@@ -13,11 +13,9 @@
   --color-brand-dark: #0D33A3;
   --color-brand-tint-1: #F5F8FF;
   --color-brand-tint-2: #E9EFFF;
-  --color-accent-tint-beige: #F1EBDE;
 
-  /* Color — Background (로그인 전/후, 다크모드) */
+  /* Color — Background */
   --color-bg-login-pre: #F5F8FF;
-  --color-bg-login-post: #EAECF3;
   --color-bg-dark: #04091A;
 
   /* Color — Ink (Cool Gray, 본문 텍스트는 --color-ink 한 토큰으로 통일) */
@@ -35,9 +33,8 @@
   --color-surface-sunken: #F5F8FF;
   --color-surface-page: #FBFCFF;
   --color-surface-mist: #EEF0F3;
-  --color-surface-neutral: #e8ecf8;
 
-  /* Color — State (기능 목적 한정 사용) */
+  /* Color — State (기능 목적 한정 사용. success/warning은 아직 사용처가 없는 예비 토큰) */
   --color-success: #1C9A6C;
   --color-warning: #D98A1B;
   --color-critical: #E1435A;
@@ -75,18 +72,18 @@
   --tracking-heading-tight: -0.1px;
   --tracking-heading-wide: -0.5px;
 
-  /* Typography — Body Scale (4단 × weight)
-   * 메인페이지(index.html)의 최소 폰트 사이즈는 14px이다.
-   * --text-body-12 / --text-body-13은 메인페이지에서 쓰지 않는다
+  /* Typography — Body Scale
+   * 서비스 페이지(index.html 및 서브페이지)의 최소 폰트 사이즈는 14px이다.
+   * --text-body-13은 서비스 페이지에서 쓰지 않는다
    * (13px은 codepresso-designsystem.html 카탈로그 문서 chrome 전용).
-   * 12px은 현재 사용처가 없으며, 새로 쓰지 않는다. */
-  --text-body-12: 12px; --leading-body-12: 18px;
+   * 12px은 사용처가 없어 스케일에서 제거했다 — 필요해지면 그때 되살린다.
+   * 주의: .text-label 클래스(text.css)는 14px이고, --text-label 토큰은 13px이다. */
   --text-body-13: 13px; --leading-body-13: 20px;
   --text-body-14: 14px; --leading-body-14: 22px;
   --text-body-16: 16px; --leading-body-16: 24px;
   --text-body-18: 18px; --leading-body-18: 28px;
 
-  /* Typography — Body 자간: 16px만 -0.1px, 12/13/14px은 0px */
+  /* Typography — Body 자간: 16px만 -0.1px, 13/14px은 0px */
   --tracking-body-tight: -0.1px;
   --tracking-body-normal: 0px;
 
@@ -139,18 +136,19 @@
   --space-8: 8px;
   --space-10: 10px;
   --space-12: 12px;
+  --space-16: 16px;
   --space-18: 18px;
   --space-20: 20px;
   --space-24: 24px;
+  --space-28: 28px;
   --space-35: 35px;
+  --space-40: 40px;
   --space-48: 48px;
   --space-60: 60px;
 
-  /* Container widths */
+  /* Container widths — wide는 GNB, medium은 섹션 본문 폭 */
   --container-wide: 1480px;
   --container-medium: 1320px;
-  --container-default: 1200px;
-  --container-narrow: 960px;
 
   /* ---------------------------------------------
    * Radius

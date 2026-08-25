@@ -4,11 +4,14 @@
  * 비개발자도 코드보다 예시와 목적을 먼저 읽을 수 있게 구성한다.
  */
 
+/* 문서의 컴포넌트·모션 예시가 메인과 똑같이 렌더링되도록,
+   메인 전용 컴포넌트 CSS도 그대로 불러 쓴다(스타일을 다시 만들지 않는다). */
 @import url("../components/insight.css") layer(components);
 @import url("../components/part-nav.css") layer(components);
 @import url("../components/hero.css") layer(components);
 @import url("../components/education-journey.css") layer(components);
 @import url("../components/difference.css") layer(components);
+@import url("../components/proof-card.css") layer(components);
 
 .design-guide { background: #f4f7fc; color: var(--color-ink); }
 .guide-topbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; height: 72px; padding: 0 40px; background: #071326; color: #fff; }
@@ -34,12 +37,6 @@
 .guide-section { max-width: 1120px; margin: 0 auto; padding: 96px 0; border-bottom: 1px solid var(--color-line); }
 .guide-hero { padding-top: 112px; }
 .guide-hero h1 { margin: 16px 0 20px; font-size: clamp(44px, 5vw, 68px); line-height: 1.12; letter-spacing: -.055em; color: var(--color-ink-heaviest); }
-.guide-intro { margin: 0; color: var(--color-ink-light); font-size: 19px; line-height: 1.7; }
-.guide-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
-.guide-summary-grid article { padding: 26px; border: 1px solid var(--color-line); border-radius: 16px; background: #fbfcff; }
-.guide-summary-grid strong { display: block; color: var(--color-brand); font-size: 36px; line-height: 1; }
-.guide-summary-grid span { display: block; margin-top: 10px; font-weight: var(--font-weight-semibold); }
-.guide-summary-grid p { margin: 6px 0 0; color: var(--color-ink-light); font-size: 14px; }
 .guide-inventory { margin-top: var(--space-48); padding: var(--space-28); border: 1px solid var(--color-line); border-radius: var(--radius-lg); background: var(--color-surface); }.guide-inventory h4 { margin: var(--space-24) 0 var(--space-12); color: var(--color-ink-heaviest); font-size: var(--text-heading-20); }.guide-inventory-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-12); }.guide-inventory-grid article { padding: var(--space-16); border-radius: var(--radius-md); background: var(--color-surface-sunken); }.guide-inventory-grid.is-reference article { background: var(--color-brand-tint-1); }.guide-inventory-grid h5 { margin: 0; color: var(--color-ink-heaviest); font-size: var(--text-body-16); }.guide-inventory-grid p { margin: var(--space-6) 0 0; color: var(--color-ink-light); font-size: var(--text-body-14); line-height: var(--leading-body-14); }.guide-inventory-grid code { display: inline-block; margin-top: var(--space-12); color: var(--color-brand-dark); font-family: var(--font-family-mono); font-size: var(--text-label); }.guide-inventory-note { margin: var(--space-20) 0 0; color: var(--color-ink-light); font-size: var(--text-body-14); line-height: var(--leading-body-14); }
 
 .guide-section-head { max-width: 700px; margin-bottom: 40px; }
@@ -57,45 +54,101 @@
 .guide-two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
 .guide-type-list > div { display: grid; grid-template-columns: 94px 1fr 130px; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--color-line); }.guide-type-list > div:last-child { border-bottom: 0; }.guide-type-list span, .guide-type-list p { color: var(--color-ink-lighter); font-size: 13px; }.guide-type-list p { margin: 0; }.guide-type-list strong { color: var(--color-ink-heaviest); }.guide-type-56 { font-size: var(--text-heading-56); line-height: 1; }.guide-type-44 { font-size: var(--text-heading-44); line-height: 1; }.guide-type-40 { font-size: var(--text-heading-40); line-height: 1; }.guide-type-36 { font-size: var(--text-heading-36); line-height: 1; }.guide-type-32 { font-size: var(--text-heading-32); line-height: 1; }.guide-type-24 { font-size: var(--text-heading-24); }.guide-type-20 { font-size: var(--text-heading-20); }.guide-type-18 { font-size: var(--text-body-18); }.guide-type-16 { font-size: var(--text-body-16); }.guide-type-14 { font-size: var(--text-body-14); }
 .guide-spacing-list { display: grid; gap: 16px; margin-top: 22px; }.guide-spacing-list div { display: grid; grid-template-columns: 84px 1fr 42px; align-items: center; gap: 12px; }.guide-spacing-list span, .guide-spacing-list b { font-size: 13px; }.guide-spacing-list span { color: var(--color-ink-light); }.guide-spacing-list i { display: block; height: 10px; border-radius: 99px; background: var(--color-brand); }
-.guide-radius-list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--color-line); }.guide-radius-list > p { grid-column: 1 / -1; margin: 0; }.guide-radius-list div { min-width: 0; }.guide-radius-list span { display: block; height: 34px; background: var(--color-brand-tint-2); border: 1px solid var(--color-brand); }.guide-radius-list b { display: block; margin-top: 7px; font-size: 11px; color: var(--color-ink-light); white-space: nowrap; }
+/* radius·shadow 견본 — 실제 토큰을 그대로 참조해 값이 어긋나지 않게 한다. */
+.guide-radius-list,
+.guide-shadow-list { display: grid; gap: var(--space-10); margin-top: var(--space-28); padding-top: var(--space-20); border-top: 1px solid var(--color-line); }
+.guide-radius-list { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.guide-shadow-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.guide-radius-list > p,
+.guide-shadow-list > p { grid-column: 1 / -1; margin: 0; }
+.guide-radius-list div,
+.guide-shadow-list div { min-width: 0; }
+.guide-radius-list span { display: block; height: 34px; background: var(--color-brand-tint-2); border: 1px solid var(--color-brand); }
+.guide-radius-list .is-sm { border-radius: var(--radius-sm); }
+.guide-radius-list .is-md { border-radius: var(--radius-md); }
+.guide-radius-list .is-lg { border-radius: var(--radius-lg); }
+.guide-radius-list .is-xl { border-radius: var(--radius-xl); }
+.guide-radius-list .is-full { border-radius: var(--radius-full); }
+/* 흰 카드 위에서 흰 견본이 묻히지 않게 옅은 바닥을 깔고 그 위에 띄운다. */
+.guide-shadow-list div { padding: var(--space-12); border-radius: var(--radius-md); background: var(--color-surface-sunken); }
+.guide-shadow-list span { display: block; height: 44px; border-radius: var(--radius-md); background: var(--color-surface); }
+.guide-shadow-list .is-sm { box-shadow: var(--shadow-sm); }
+.guide-shadow-list .is-md { box-shadow: var(--shadow-md); }
+.guide-radius-list b,
+.guide-shadow-list b { display: block; margin-top: 7px; font-size: 11px; color: var(--color-ink-light); white-space: nowrap; }
 
 .guide-layout-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }.guide-layout-card { padding: 20px; border: 1px solid var(--color-line); border-radius: 16px; background: #fff; }.guide-layout-card > .tag { margin-top: 16px; }.guide-layout-card h3 { margin: 10px 0 8px; color: var(--color-ink-heaviest); font-size: 20px; }.guide-layout-card > p:not(.tag) { margin: 0; color: var(--color-ink-light); font-size: 14px; line-height: 1.6; }.guide-layout-card > code, .guide-component-row > div:last-child > code { display: inline-block; margin-top: 16px; padding: 5px 8px; border-radius: 6px; background: #eef3fc; color: var(--color-brand-dark); font-family: var(--font-family-mono); font-size: 12px; }
 .guide-layout-preview { display: flex; gap: 7px; height: 126px; padding: 14px; border-radius: 10px; background: #f3f6fb; }.guide-layout-preview i { display: block; border-radius: 6px; background: #cddafa; }.guide-layout-preview.is-stack { flex-direction: column; }.guide-layout-preview.is-stack i:first-child { height: 25px; background: var(--color-brand); }.guide-layout-preview.is-columns i { flex: 1; }.guide-layout-preview.is-columns i:first-child, .guide-layout-preview.is-sticky i:first-child { background: #9ab9ff; }.guide-layout-preview.is-sticky i:first-child { width: 38%; }.guide-layout-preview.is-sticky i:last-child { flex: 1; background: #d6e3ff; }
 .guide-callout { display: flex; gap: 16px; margin-top: 20px; padding: 20px 24px; border-radius: 12px; background: #edf3ff; color: var(--color-ink-light); font-size: 15px; line-height: 1.6; }.guide-callout strong { flex: 0 0 auto; color: var(--color-brand-dark); }.guide-callout code { font-family: var(--font-family-mono); color: var(--color-brand-dark); }
+/* 블록 안에 들어가는 작은 주의 문구. guide-callout보다 한 단계 작다. */
+.guide-inline-note { display: grid; gap: var(--space-4); margin-top: var(--space-20); padding: var(--space-16); border-radius: var(--radius-md); background: var(--color-brand-tint-1); }
+.guide-inline-note strong { color: var(--color-brand-dark); font-size: var(--text-body-14); }
+.guide-inline-note span { color: var(--color-ink-light); font-size: var(--text-body-14); line-height: var(--leading-body-14); }
+.guide-inline-note code { font-family: var(--font-family-mono); color: var(--color-brand-dark); }
 
 .guide-component-list { display: grid; grid-template-columns: 1fr; gap: 20px; }.guide-component-row { display: grid; grid-template-columns: minmax(520px, 640px) 1fr; gap: 36px; align-items: center; padding: 32px; border: 1px solid var(--color-line); border-radius: 16px; background: #fff; }.guide-component-row > div:last-child > .tag { margin-bottom: 9px; }.guide-component-row h3 { margin: 0 0 7px; color: var(--color-ink-heaviest); font-size: 24px; }.guide-component-row > div:last-child > p:not(.tag) { max-width: 520px; margin: 0; color: var(--color-ink-light); font-size: 16px; line-height: 1.65; }
 .guide-component-row > div:last-child > p code { padding: 2px 4px; border-radius: 4px; background: var(--color-brand-tint-1); color: var(--color-brand-dark); font-family: var(--font-family-mono); font-size: .85em; }
 .guide-component-demo { position: relative; display: flex; align-items: center; justify-content: center; gap: var(--space-24); min-height: 180px; padding: var(--space-24); overflow: hidden; border-radius: var(--radius-lg); background: var(--color-surface-sunken); }
 .guide-part-nav-variants { display: grid; gap: var(--space-24); width: 100%; }.guide-part-nav-variants .text-label { margin: 0 0 var(--space-8); }
+/* 데모 안에서 폭을 꽉 채워야 하는 컴포넌트들. 마크업에 인라인 style을 두지 않는다. */
+.guide-component-demo > .section-title,
+.guide-component-demo > .preview-frame,
+.guide-component-demo > .content-panel { width: 100%; }
+/* 수치 카드 한 장의 실제 폭 — 메인 Proof의 3열 기준
+   (container-medium 1320px - 좌우 패딩 40px - gap 48px) / 3 ≈ 411px */
+.guide-metric-sample { width: calc((var(--container-medium) - 88px) / 3); max-width: 100%; }
+/* Skeleton 견본 — 본문 스택과 썸네일 자리를 나란히 보여준다(메인 Insight의 빈 기사 자리 구성). */
+.guide-skeleton-sample { display: grid; grid-template-columns: minmax(0, 1fr) 132px; gap: var(--space-20); align-items: start; width: 100%; }
+.guide-skeleton-sample .skeleton-block.is-thumbnail { width: 100%; }
 
 /* Motion inventory: 실제 페이지에서 구동되는 모션의 목적과 담당 클래스를 함께 보여준다. */
 .guide-motion-list { display: grid; grid-template-columns: 1fr; gap: 20px; }
-.guide-motion-list article { display: grid; grid-template-columns: minmax(136px, .75fr) minmax(0, 1.25fr); gap: 16px 24px; align-items: start; padding: 24px; border: 1px solid var(--color-line); border-radius: var(--radius-lg); background: var(--color-surface); }
+.guide-motion-item { display: grid; grid-template-columns: minmax(136px, .75fr) minmax(0, 1.25fr); gap: 16px 24px; align-items: start; padding: 24px; border: 1px solid var(--color-line); border-radius: var(--radius-lg); background: var(--color-surface); }
 .guide-motion-list .tag { margin-bottom: 10px; }
 .guide-motion-list h3 { margin: 0; color: var(--color-ink-heaviest); font-size: var(--text-heading-20); line-height: var(--leading-heading-20); }
-.guide-motion-list article > p { margin: 0; color: var(--color-ink-light); font-size: var(--text-body-14); line-height: 1.65; }
+.guide-motion-item > p { margin: 0; color: var(--color-ink-light); font-size: var(--text-body-14); line-height: 1.65; }
 .guide-motion-list code { grid-column: 1 / -1; padding-top: 14px; border-top: 1px solid var(--color-line); color: var(--color-brand-dark); font-family: var(--font-family-mono); font-size: 12px; }
-.guide-motion-inline-preview { grid-column: 1 / -1; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--space-16); min-width: 0; min-height: 174px; padding: var(--space-16); overflow: hidden; border-radius: var(--radius-md); background: var(--color-surface-sunken); }
-.guide-motion-inline-preview .btn { align-self: start; }
-.guide-motion-inline-preview .section-title { width: 100%; }
-.guide-motion-inline-preview .section-title h2 { font-size: var(--text-heading-32); line-height: var(--leading-heading-32); }
-.guide-motion-inline-preview .summary-banner { width: 100%; min-width: 0; }
-.guide-motion-inline-preview .summary-banner-stats { grid-template-columns: 1fr; width: 100%; }
-.guide-motion-inline-preview .metric-card { width: 100%; }
+/* 실제 스크립트가 구동되는 미리보기(live)와, 정지 상태만 보여주는 미리보기(static). */
+.guide-motion-live-preview,
 .guide-motion-static-preview { grid-column: 1 / -1; min-width: 0; overflow: hidden; border-radius: var(--radius-md); background: var(--color-surface-sunken); }
-.guide-motion-static-preview .feature-card { height: 280px; padding: var(--space-24); }
-.guide-motion-static-preview .proof-card { min-height: 220px; padding: var(--space-24); }
-.guide-motion-static-preview .difference-mock { padding: var(--space-16); }
-.guide-motion-static-preview .difference-screen { padding: var(--space-16); }
+.guide-motion-live-preview { display: grid; gap: var(--space-16); padding: var(--space-20); }
+.guide-motion-live-preview > .btn { justify-self: start; }
+.guide-motion-live-preview .section-title h2 { font-size: var(--text-heading-32); line-height: var(--leading-heading-32); }
+.guide-motion-live-preview .summary-banner { width: 100%; min-width: 0; }
+/* 문서 폭에서는 3열 통계가 눌리므로 카드 최소폭을 낮춘다. */
+.guide-motion-live-preview .summary-banner-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.guide-motion-live-preview .metric-card__value { font-size: var(--text-heading-32); }
+/* 3열 카드가 문서 폭에 들어가도록 높이를 낮춘다(메인은 380px).
+   메인처럼 hover 시 설명이 펼쳐질 여유는 필요 없어 제목까지만 보여준다. */
+.guide-motion-live-preview .feature-card { height: 240px; }
+.guide-motion-live-preview .proof-card-stage { padding: var(--space-24) var(--space-48); }
+.guide-motion-live-preview .proof-card { min-height: 240px; padding: var(--space-24); }
+.guide-motion-live-preview .proof-card-nav:first-of-type { left: -32px; }
+.guide-motion-live-preview .proof-card-nav:last-of-type { right: -32px; }
+.guide-motion-static-preview { padding: var(--space-20); }
 .guide-motion-static-preview .difference-screen-body { min-height: 120px; }
 .guide-motion-static-preview .content-panel { width: 100%; }
-.guide-motion-static-preview .hero-clients-track { gap: var(--space-24); padding-inline: var(--space-16); }
 .guide-motion-static-preview .hero-clients-item img { width: 120px; }
+
+/* 06 RULES — 네이밍·상태·화면 폭 규칙 */
+.guide-rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-20); }
+.guide-rule-list { display: grid; gap: var(--space-20); margin-top: var(--space-20); }
+.guide-rule-list > div { display: grid; gap: var(--space-4); }
+.guide-rule-list b { color: var(--color-ink-heaviest); font-size: var(--text-body-16); }
+.guide-rule-list p { margin: 0; color: var(--color-ink-light); font-size: var(--text-body-14); line-height: var(--leading-body-14); }
+.guide-rule-list code,
+.guide-rule-list p code { padding: 2px 6px; border-radius: var(--radius-sm); background: var(--color-brand-tint-1); color: var(--color-brand-dark); font-family: var(--font-family-mono); font-size: var(--text-body-13); }
+.guide-rule-list > div > code { justify-self: start; margin-top: var(--space-4); }
+.guide-breakpoint-block { margin-top: var(--space-20); }
+.guide-breakpoint-list { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-20); margin-top: var(--space-20); }
+.guide-breakpoint-list > div { padding: var(--space-16); border-radius: var(--radius-md); background: var(--color-surface-sunken); }
+.guide-breakpoint-list b { display: block; color: var(--color-brand-dark); font-size: var(--text-body-16); }
+.guide-breakpoint-list p { margin: var(--space-6) 0 0; color: var(--color-ink-light); font-size: var(--text-body-14); line-height: var(--leading-body-14); }
 
 .guide-steps { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--color-line); }.guide-steps li { display: grid; grid-template-columns: 86px 1fr; gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--color-line); }.guide-steps > li > span { color: var(--color-brand); font-family: var(--font-family-mono); font-size: 14px; font-weight: var(--font-weight-semibold); }.guide-steps h3 { margin: 0; color: var(--color-ink-heaviest); font-size: 20px; }.guide-steps p { margin: 8px 0 0; color: var(--color-ink-light); font-size: 15px; }
 .guide-usage { margin-top: 48px; padding: 64px; border: 0; border-radius: 24px; background: #071b40; color: #fff; }.guide-usage h2 { color: #fff; }.guide-usage .guide-kicker { color: #9ab9ff; }.guide-footer { padding: 32px 0 0; color: var(--color-ink-lighter); font-size: 13px; text-align: center; }
 .guide-usage-intro { max-width: 720px; margin: 0; color: rgba(255,255,255,.76); font-size: 17px; line-height: 1.7; }.guide-prompt-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 18px; margin-top: 36px; }.guide-prompt-card { padding: 24px; border: 1px solid rgba(255,255,255,.16); border-radius: 12px; background: rgba(255,255,255,.06); }.guide-prompt-card ol { display: grid; gap: 16px; margin: 22px 0 0; padding: 0; list-style: none; }.guide-prompt-card li { display: grid; gap: 3px; }.guide-prompt-card li b { color: #fff; font-size: 15px; }.guide-prompt-card li span { color: rgba(255,255,255,.64); font-size: 13px; }.guide-prompt-card.is-example { background: rgba(154,185,255,.11); }.guide-prompt-text { margin: 20px 0 0; color: rgba(255,255,255,.9); font-size: 16px; line-height: 1.8; }.guide-prompt-text strong { color: #9ab9ff; font-weight: var(--font-weight-semibold); }
 
 @media (max-width: 1100px) { .guide-main { padding-inline: 40px; }.guide-component-row { grid-template-columns: 1fr; }.guide-sidebar { padding-inline: 20px; } }
-@media (max-width: 800px) { .guide-topbar { height: 60px; padding: 0 20px; }.guide-topbar > p, .guide-brand em { display: none; }.guide-shell { display: block; }.guide-sidebar { position: static; min-height: auto; padding: 16px 20px; border-right: 0; border-bottom: 1px solid var(--color-line); }.guide-sidebar-label, .guide-sidebar-note { display: none; }.guide-nav { flex-direction: row; overflow-x: auto; margin: 0; }.guide-nav a { flex: 0 0 auto; padding: 8px 10px; font-size: 13px; }.guide-main { padding: 0 20px 56px; }.guide-section { padding: 64px 0; }.guide-hero { padding-top: 72px; }.guide-summary-grid, .guide-color-grid, .guide-layout-grid, .guide-component-list, .guide-prompt-grid, .guide-motion-list, .guide-inventory-grid { grid-template-columns: 1fr; }.guide-two-column { grid-template-columns: 1fr; }.guide-component-row { gap: 20px; padding: 20px; }.guide-component-row > div:last-child > p:not(.tag) { max-width: none; }.guide-usage { padding: 36px 24px; }.guide-section-head h2, .guide-usage h2 { font-size: 31px; } }
-@media (max-width: 520px) { .guide-hero h1 { font-size: 42px; }.guide-summary-grid { gap: 10px; }.guide-summary-grid article { padding: 18px; }.guide-color-grid { grid-template-columns: 1fr 1fr; }.guide-component-row { grid-template-columns: 1fr; }.guide-component-demo { min-height: 112px; }.guide-type-list > div { grid-template-columns: 75px 1fr; }.guide-type-list p { grid-column: 2; }.guide-block-head { display: block; }.guide-block-head span { display: block; margin-top: 6px; }.guide-motion-list article, .guide-motion-inline-preview { grid-template-columns: 1fr; }.guide-motion-list code { grid-column: 1; }.guide-motion-inline-preview .btn { justify-self: start; }.guide-steps li { grid-template-columns: 48px 1fr; gap: 12px; } }
+@media (max-width: 800px) { .guide-topbar { height: 60px; padding: 0 20px; }.guide-topbar > p, .guide-brand em { display: none; }.guide-shell { display: block; }.guide-sidebar { position: static; min-height: auto; padding: 16px 20px; border-right: 0; border-bottom: 1px solid var(--color-line); }.guide-sidebar-label, .guide-sidebar-note { display: none; }.guide-nav { flex-direction: row; overflow-x: auto; margin: 0; }.guide-nav a { flex: 0 0 auto; padding: 8px 10px; font-size: 13px; }.guide-main { padding: 0 20px 56px; }.guide-section { padding: 64px 0; }.guide-hero { padding-top: 72px; }.guide-color-grid, .guide-layout-grid, .guide-component-list, .guide-prompt-grid, .guide-motion-list, .guide-inventory-grid, .guide-rule-grid, .guide-breakpoint-list { grid-template-columns: 1fr; }.guide-two-column { grid-template-columns: 1fr; }.guide-component-row { gap: 20px; padding: 20px; }.guide-component-row > div:last-child > p:not(.tag) { max-width: none; }.guide-usage { padding: 36px 24px; }.guide-section-head h2, .guide-usage h2 { font-size: 31px; } }
+@media (max-width: 520px) { .guide-hero h1 { font-size: 42px; }.guide-color-grid { grid-template-columns: 1fr 1fr; }.guide-component-row { grid-template-columns: 1fr; }.guide-component-demo { min-height: 112px; }.guide-type-list > div { grid-template-columns: 75px 1fr; }.guide-type-list p { grid-column: 2; }.guide-block-head { display: block; }.guide-block-head span { display: block; margin-top: 6px; }.guide-motion-item { grid-template-columns: 1fr; }.guide-motion-list code { grid-column: 1; }.guide-steps li { grid-template-columns: 48px 1fr; gap: 12px; } }
