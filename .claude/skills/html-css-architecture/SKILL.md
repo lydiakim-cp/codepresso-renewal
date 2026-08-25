@@ -1,54 +1,87 @@
 ---
 name: html-css-architecture
-description: 코드프레소 리뉴얼 사이트의 HTML/CSS 작업 규범. Semantic HTML, Design Token과 승격 기준, 고정 타이포 제약(메인 최소 14px·weight 3단), 컴포넌트화, 페이지/섹션 구조 관례, 에셋 네이밍(images/ 단일 루트·ic_ camelCase·버전 접미사 금지), 중복·무효 선언 정리, 마크업·CSS·JS 3자 정합성 확인, 커밋 메시지 규칙, 접근성. HTML 작성, CSS 작성, 컴포넌트 스타일링, 섹션 추가·리디자인, 아이콘/이미지 교체, 반응형, CSS 중복 제거·리팩터링, 커밋 작업을 할 때 항상 먼저 로드해서 따른다.
+description: 코드프레소 리뉴얼 사이트의 HTML/CSS 작업 규범. 제1규칙은 "새로 만들지 말고 기존 컴포넌트·토큰·패턴을 찾아 그대로 재사용" — 중복 CSS를 만들지 않는다. 순수 HTML/CSS 프로젝트(Tailwind·React 없음). Semantic HTML, 실제 Design Token(--color-brand/--color-ink 계열), 고정 타이포 제약(서비스 페이지 최소 14px·weight 3단), 클래스 네이밍(공용 BEM·페이지전용 하이픈·is- 상태·data- 훅), 페이지/섹션 구조, 새 서브페이지 제작 절차(subpage-guide.md), 컴포넌트 인벤토리(component-inventory.md), 실제 CSS 관용구(css-patterns.md — color-mix 색 파생·chevron SVG·hover 리듬·prefers-reduced-motion·breakpoint 900/720), 에셋 네이밍, 중복·무효 선언 정리, 마크업·CSS·JS 3자 정합성, 커밋 규칙, 접근성. HTML 작성, CSS 작성, 컴포넌트 스타일링, 섹션 추가·리디자인, 새 서브페이지 만들기, 아이콘/이미지 교체, 반응형, CSS 중복 제거·리팩터링, 커밋 작업을 할 때 항상 먼저 로드해서 따른다.
 ---
 
 # Modern HTML & CSS Architecture
 
-새로운 웹사이트/페이지/컴포넌트의 HTML과 CSS를 작성하거나 수정할 때 이 스킬을 로드하고, 아래 원칙에 따라 마크업과 스타일을 설계한다. 이 스킬은 프로젝트의 기본 마크업 규범이며, 별도 지시가 없어도 HTML/CSS/JSX 작업 시 항상 적용한다.
+새로운 웹사이트/페이지/컴포넌트의 HTML과 CSS를 작성하거나 수정할 때 이 스킬을 로드하고, 아래 원칙에 따라 마크업과 스타일을 설계한다. 이 스킬은 프로젝트의 기본 마크업 규범이며, 별도 지시가 없어도 HTML/CSS 작업 시 항상 적용한다.
+
+## 0. 제1규칙 — 새로 만들지 말고, 있는 것을 찾아 그대로 쓴다
+
+**이것이 이 프로젝트의 가장 중요한 규칙이다.** 아래 모든 항목보다 먼저 적용하고, 사용자가 따로 말하지 않아도 항상 수행한다. 버튼 하나, 카드 하나, 섹션 하나를 만들 때도 예외 없다.
+
+> **디자인·마크업·CSS를 새로 만들기 전에, 이미 같은 역할을 하는 것이 프로젝트 안에 있는지 먼저 찾는다. 있으면 그 클래스와 토큰을 그대로 가져와 쓴다. 비슷한 CSS를 다시 쓰지 않는다.**
+
+### 새 CSS를 한 줄이라도 쓰기 전에 밟는 순서
+
+1. **[component-inventory.md](component-inventory.md)를 먼저 열어본다** — 만들려는 UI(카드·리스트·배너·버튼·프레임·내비 등)와 같은 역할의 컴포넌트가 이미 있는지 확인한다. 겉모습이 조금 달라 보여도 **역할이 같으면 그것을 쓴다.**
+2. **`codepresso-designsystem.html`(컴포넌트 카탈로그)을 확인한다** — 문서화된 컴포넌트면 그 마크업 예시를 그대로 복사해서 내용만 바꾼다.
+3. **`css/tokens.css`에서 쓸 토큰을 찾는다** — 색·간격·radius·폰트는 반드시 기존 토큰으로 표현한다. 새 값을 만들기 전에 스케일에 이미 있는지 본다.
+4. **[css-patterns.md](css-patterns.md)의 관용구를 따른다** — hover·트랜지션·아이콘·색 파생(`color-mix`)·상태 클래스·유리 질감 등은 이미 정해진 방식이 있다. 새로 고안하지 않는다.
+5. **위 어디에도 없을 때만 새로 만든다.** 그때도 새 파일부터 만들지 않고, 성격이 맞는 기존 파일에 합칠 수 있는지 먼저 본다(6번 "CSS 파일 분리 기준").
+
+### 판단이 흔들릴 때의 기준
+
+- **"비슷한데 좀 다르다" → 기존 것을 쓰고 다른 점만 modifier로 덮는다.** 새 클래스를 병렬로 만들지 않는다. (예: 색만 다르면 `.text-label.brand`처럼 modifier를 붙인다 — `.text-label-blue`를 새로 만들지 않는다.)
+- **"이 페이지 전용이니 새로 만들어도 되지 않나" → 아니다.** 페이지가 달라도 역할이 같으면 같은 컴포넌트를 쓴다. 페이지 전용 CSS는 그 컴포넌트를 **배치**하는 코드만 담는다.
+- **같은 값(색·간격·radius·폰트)을 두 번째로 쓰게 되면 그 자리에서 토큰/공용 클래스로 올린다.** 복사해서 두 곳에 두지 않는다(4번 "토큰 승격 기준").
+- **애매하면 새로 만들지 말고 사용자에게 묻는다.** "기존 X를 재사용할지, 새로 만들지" 선택지를 제시한다. 임의로 새로 만들어 놓고 나중에 정리하는 것이 가장 비싸다.
+
+### 작업을 마칠 때 반드시 확인
+
+- 이번에 추가한 CSS 중 **기존 컴포넌트·토큰·유틸리티와 값이 겹치는 선언이 없는지** 확인하고, 겹치면 지운다(12번 "중복·무효 선언 정리").
+- 새로 만든 것이 있으면 **왜 기존 것으로 안 됐는지** 보고에 한 줄 남긴다. 근거 없이 새로 만든 것은 정리 대상이다.
+- 새로 만든 컴포넌트가 범용이면 `codepresso-designsystem.html`과 [component-inventory.md](component-inventory.md)에 등록해, 다음에 또 새로 만들지 않게 한다.
 
 ## 핵심 원칙
 
 > **HTML은 의미를 표현하고, Component는 UI의 의미를 표현하며, CSS는 표현과 동작 상태를 담당한다.**
 
+- **있는 것을 먼저 찾아 재사용한다(0번) — 다른 모든 규칙보다 우선한다.**
+
 - Semantic HTML로 콘텐츠와 UI의 의미를 명확히 표현한다.
 - 브라우저 기본 스타일은 Lightweight Reset으로 정규화한다.
-- Design Token을 CSS 변수로 관리한다.
+- Design Token을 CSS 변수로 관리한다 — raw 값을 직접 쓰지 않는다.
 - 반복되는 UI는 Semantic Component로 추상화한다.
-- Tailwind CSS는 utility를 제한적으로 사용한다.
-- HTML/JSX의 `class`가 지나치게 길어지지 않게 한다.
-- Container Query로 컴포넌트 단위 반응형을 구현한다.
+- `class` 속성이 지나치게 길어지지 않게 한다.
 - Accessibility는 설계 단계부터 고려한다.
 - AI가 생성한 코드도 사람이 읽고 유지보수 가능해야 한다.
 - 이미 상속되는 값을 다시 선언하지 않는다 — 마크업/CSS를 만질 때마다 중복·무효 선언을 걷어낸다(12번).
 - 마크업 · CSS · JS는 항상 함께 움직인다 — 한쪽만 고치고 끝내지 않는다(12번 "정리 후 확인").
 - 이미 확정된 프로젝트 제약(타이포·구조·에셋 네이밍)은 임의로 깨지 않고 확인받는다.
 
+## 이 프로젝트의 기술 스택
+
+**순수 HTML + CSS + 바닐라 JS 프로젝트다.** 빌드 도구·프레임워크·전처리기를 쓰지 않는다.
+
+- **Tailwind CSS를 쓰지 않는다.** `flex items-center gap-4` 같은 utility 클래스는 이 프로젝트에 존재하지 않는다. 레이아웃은 컴포넌트 CSS로 작성한다.
+- **React/JSX를 쓰지 않는다.** `.jsx`/`.tsx` 파일이 없다. 컴포넌트는 "CSS 클래스 + 마크업 패턴"으로 존재하며, 재사용은 마크업을 복사해 내용만 바꾸는 방식이다.
+- **CSS는 손으로 쓴 표준 CSS다.** Sass/PostCSS 문법(`$변수`, `@mixin`, 중첩 `&`)을 쓰지 않는다. 변수는 CSS 커스텀 프로퍼티(`var(--...)`)를 쓴다.
+
 ## CSS Architecture 계층
 
 ```
-HTML / React Component
-        ↓
-Semantic HTML → Reset → Base Styles → Design Tokens → Utilities → Component Styles → Page-specific Styles
+Semantic HTML → Reset → Design Tokens → Base Styles → 공통 Components → Page-specific Styles
 ```
 
-권장 파일 구조:
+실제 파일 구조:
 
 ```
-src/styles/
-├── reset.css
-├── tokens.css
-├── base.css
-├── utilities.css
-└── components/
-    ├── button.css
-    ├── card.css
-    ├── input.css
-    ├── badge.css
-    └── modal.css
+css/
+├── main.css          모든 페이지가 로드. 아래를 @layer 순서로 @import 한다
+├── reset.css         브라우저 기본값 정규화
+├── tokens.css        Design Token (색·타이포·spacing·radius·motion)
+├── base.css          h1~h3, p, table, code, footer 등 태그 전역 스타일
+├── components/       공통 컴포넌트 (main.css가 로드) + 페이지 전용 컴포넌트
+└── pages/
+    ├── index.css     메인페이지 전용 — 전용 컴포넌트를 @import + 페이지 고유 스타일
+    └── designsystem.css
 ```
 
-작은 프로젝트는 파일을 통합해도 되지만 **역할의 분리**는 유지한다.
+- `@layer reset, tokens, base, components;` 로 우선순위를 명시한다 — specificity 경쟁(`.a .b .c .d`)으로 해결하지 않는다.
+- **페이지는 CSS를 정확히 2개만 링크한다**: `css/main.css` + `css/pages/{페이지}.css`. 자세한 규칙은 11번 "페이지 · 섹션 구조 관례" 참고.
+- `components/` 안에는 공통 컴포넌트와 페이지 전용 컴포넌트가 함께 있다. 어느 쪽인지는 **누가 `@import`하는가**로 갈린다(`main.css` → 공통, `pages/*.css` → 그 페이지 전용). [component-inventory.md](component-inventory.md)에 전체 목록이 있다.
 
 ## 1. Semantic HTML
 
@@ -95,31 +128,41 @@ a { color: inherit; text-decoration: none; }
 h1, h2, h3, h4, h5, h6, p { margin: 0; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
 textarea { resize: vertical; }
-:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 2px; }
 ```
 
 ## 3. Base Styles
 
-Reset 이후 글로벌 기본 스타일(배경, 텍스트 색상, 폰트, line-height 등)을 Design Token 기반으로 정의한다.
+Reset 이후 글로벌 기본 스타일을 Design Token 기반으로 정의한다. **`css/base.css`가 이미 아래를 담당하고 있으므로, 컴포넌트에서 같은 값을 다시 선언하지 않는다**(12번 (1)항).
 
 ```css
+/* css/base.css 실제 내용 (요약) */
 body {
-  background: var(--color-background);
-  color: var(--color-text);
   font-family: var(--font-family-sans);
-  font-size: var(--text-base);
-  line-height: var(--leading-normal);
+  background: var(--color-surface-page);
+  color: var(--color-ink);
+  letter-spacing: var(--tracking-base);
+  line-height: 1.6;
+  font-size: var(--text-body);
 }
+
+h1 { font-size: var(--text-h1); /* 56px */ font-weight: 600; color: var(--color-ink-heaviest); … }
+h2 { font-size: var(--text-h2); /* 44px */ font-weight: 600; color: var(--color-ink-heaviest); … }
+h3 { font-size: var(--text-h3); /* 24px */ font-weight: 600; color: var(--color-ink); … }
+p  { font-size: var(--text-body); line-height: var(--leading-body); }
 ```
+
+즉 `<h2>`를 쓰면 **44px Semibold가 자동으로 적용된다.** 제목에 크기·굵기를 다시 쓰지 말고, 색이나 정렬처럼 다른 값만 컴포넌트에서 덮는다.
 
 ### 이 프로젝트의 고정 타이포 제약 (협의 없이 깨지 않는다)
 
 아래는 이 프로젝트에서 이미 확정된 제약이다. `css/tokens.css`에 주석으로도 남아 있지만, 새 컴포넌트를 만들 때 **먼저 알고 시작해야 하는 값**이라 여기에도 둔다. 바꿔야 할 이유가 생기면 임의로 예외를 만들지 말고 사용자에게 확인받는다.
 
-- **메인페이지(`index.html`) 최소 폰트는 14px이다.** `--text-body-12`/`--text-body-13`을 메인페이지에서 쓰지 않는다. 작아 보이게 하고 싶으면 크기를 줄이는 대신 `color`(`--color-ink-lighter`)나 weight로 위계를 낮춘다.
+- **메인페이지(`index.html`)와 서브페이지의 최소 폰트는 14px이다.** `--text-body-13`(과 그것을 참조하는 `--text-label` **토큰**)을 서비스 페이지에서 쓰지 않는다. 작아 보이게 하고 싶으면 크기를 줄이는 대신 `color`(`--color-ink-lighter`)나 weight로 위계를 낮춘다.
   - 13px은 `codepresso-designsystem.html` 카탈로그 문서의 chrome(캡션·주석) 전용이다.
-  - 12px은 현재 사용처가 없다. 새로 쓰지 않는다.
-- **Font weight는 3단(400 Regular / 500 Medium / 600 Semibold)이 원칙이다.** 700 Bold는 예외 — `proof-card`의 강조 지표처럼 Semibold로 부족한 자리에만 쓰고, 새로 쓸 때는 왜 Semibold로 안 되는지 근거를 남긴다.
+  - 12px은 사용처가 없어 스케일에서 제거했다.
+  - **주의 — 이름이 같은 둘을 혼동하지 않는다.** `--text-label` **토큰**은 13px이지만, `.text-label` **클래스**(`css/components/text.css`)는 **14px**이다. 서비스 페이지의 라벨에는 `.text-label` 클래스를 쓰면 되고, `var(--text-label)` 토큰을 직접 쓰면 13px이 되어 제약을 깬다.
+- **Font weight는 3단(400 Regular / 500 Medium / 600 Semibold)이 원칙이다.** 700 Bold는 예외 — 현재 전 프로젝트에서 `metric-card`의 큰 수치 하나만 쓴다. Semibold로 부족한 자리에만 쓰고, 새로 쓸 때는 왜 Semibold로 안 되는지 근거를 남긴다.
 - **Heading(`h1~h3`)은 Semibold(600) 고정이다.** heading에 Regular·Medium·Bold를 섞지 않는다.
 - **자간은 스케일이 정한다** — heading은 40px 이하 `-0.1px` / 56px 이상 `-0.5px`, body는 16px만 `-0.1px`이고 14px 이하는 `0`. 개별 컴포넌트에서 임의 자간을 새로 정하지 않는다.
 
@@ -136,35 +179,70 @@ body {
 
 ## 4. Design Tokens
 
-색상, spacing, radius, shadow, typography 등 반복 값은 CSS 변수로 관리한다.
+색상, spacing, radius, shadow, typography 등 반복 값은 CSS 변수로 관리한다. **이 프로젝트의 실제 토큰은 `css/tokens.css`에 있다** — 아래는 자주 쓰는 것만 옮긴 것이고, 쓰기 전에 `tokens.css`를 열어 확인한다.
 
 ```css
-:root {
-  --color-primary: #3274fc;
-  --color-on-primary: #ffffff;
-  --color-background: #ffffff;
-  --color-surface: #f8fafc;
-  --color-text: #0f172a;
-  --color-text-muted: #64748b;
-  --color-border: #e2e8f0;
-  --color-focus: #3274fc;
+/* Color — 브랜드 */
+--color-brand: #1A61EA;        /* 주요 행동·강조 */
+--color-brand-dark: #0D33A3;   /* 강조 텍스트 */
+--color-brand-tint-1: #F5F8FF; /* 아주 옅은 배경 */
+--color-brand-tint-2: #E9EFFF; /* 선택 상태·태그 배경 */
 
-  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
-  --space-5: 20px; --space-6: 24px; --space-8: 32px;
+/* Color — 텍스트(Ink). --color-text가 아니라 --color-ink 계열이다 */
+--color-ink-heaviest: #04091A; /* 큰 제목 */
+--color-ink: #0E1B3D;          /* 기본 본문 */
+--color-ink-light: #41496B;    /* 본문 설명 */
+--color-ink-lighter: #7C88A3;  /* 보조 정보 */
 
-  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px; --radius-xl: 24px;
+/* Color — 면과 선 */
+--color-surface: #FFFFFF;        /* 카드 배경 */
+--color-surface-sunken: #F5F8FF; /* 옅게 가라앉은 영역 */
+--color-surface-page: #FBFCFF;   /* 페이지 배경 */
+--color-line: #EAECF3;           /* 구분선 */
+--color-line-heavy: #D3D6E0;     /* 진한 경계 */
 
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 5%);
-  --shadow-md: 0 4px 12px rgb(0 0 0 / 8%);
-  --shadow-lg: 0 10px 30px rgb(0 0 0 / 12%);
+/* Shadow — 2단뿐이다(lg 없음). 블루 틴트가 코드프레소의 시각적 서명 */
+--shadow-sm: 0 2px 6px rgba(26, 97, 234, .04);
+--shadow-md: 0 6px 16px rgba(26, 97, 234, .12);
 
-  --text-sm: 14px; --text-base: 16px; --text-lg: 18px; --text-xl: 20px;
-  --font-weight-regular: 400; --font-weight-medium: 500;
-  --font-weight-semibold: 600; --font-weight-bold: 700;
-}
+/* Spacing — 숫자가 곧 px다. --space-6은 6px이지 24px이 아니다 */
+--space-2 --space-4 --space-6 --space-8 --space-10 --space-12
+--space-18 --space-20 --space-24 --space-35 --space-48 --space-60
+
+/* Radius */
+--radius-sm: 6px; --radius-md: 8px; --radius-lg: 12px;
+--radius-xl: 36px; --radius-full: 999px;
+
+/* Typography — 용도별 시맨틱 토큰을 먼저 쓴다 */
+--text-hero / --text-h1 (56px) · --text-h2 (44px) · --text-h3 (24px)
+--text-card-title (20px) · --text-body (16px) · --text-body-muted (14px)
+/* 원시 스케일: --text-heading-18~64, --text-body-14/16/18 (+ 대응 --leading-*) */
+
+--font-weight-regular: 400; --font-weight-medium: 500; --font-weight-semibold: 600;
+
+/* Motion — 즉각적 hover(0.1s)와 느긋한 스크롤(0.5s)의 이중 리듬 */
+--duration-hover: 0.1s; --duration-scroll: 0.5s; --duration-cycle: 5s;
+--ease-hover: ease-out; --ease-scroll: ease-out;
 ```
 
-**원칙: raw 값을 직접 쓰지 않는다.** `background: #3274fc;` (X) → `background: var(--color-primary);` (O)
+**원칙: raw 값을 직접 쓰지 않는다.** `background: #1A61EA;` (X) → `background: var(--color-brand);` (O)
+
+**주의 — 토큰 이름을 추측하지 않는다.** 이 프로젝트는 흔한 관례와 다른 이름을 쓴다. `--color-primary`, `--color-text`, `--color-border`, `--color-focus`, `--text-sm`, `--text-base`, `--shadow-lg`는 **존재하지 않는다.** 없는 변수를 쓰면 그 속성이 조용히 무시되어 스타일이 깨진 것도 모르고 넘어간다. 반드시 `tokens.css`에서 실제 이름을 확인하고 쓴다.
+
+### 기존 색에서 파생시키는 방법 — `color-mix()`
+
+옅은 배경, hover 색, 반투명 경계선처럼 **기존 색의 변형이 필요할 때 새 hex를 만들지 않고** 기존 토큰에서 파생시킨다. 이 프로젝트의 정착된 패턴이다.
+
+```css
+/* hover — 브랜드색을 흰색과 섞어 밝게 */
+background: color-mix(in srgb, var(--color-brand) 80%, white);
+
+/* 옅은 틴트 배경 — 원색이 쨍하지 않게 */
+background: color-mix(in srgb, var(--color-brand) 12%, var(--color-surface));
+
+/* 반투명 경계선 */
+border: 1px solid color-mix(in srgb, var(--color-surface) 40%, transparent);
+```
 
 ### 토큰 승격 기준 — 무엇을 토큰으로 올리고, 무엇을 컴포넌트에 두는가
 
@@ -193,51 +271,78 @@ body {
 
 **애매하면 컴포넌트에 두고 주석을 남긴다.** 토큰 파일이 1회성 값으로 불어나는 것이, 컴포넌트에 근거 있는 수치가 남는 것보다 나쁘다. 나중에 두 번째 사용처가 생기면 그때 승격한다.
 
-## 5. Tailwind CSS 사용 원칙
+## 5. 클래스 네이밍 규칙
 
-Tailwind는 제거 대상이 아니라 **역할을 제한**해서 쓴다.
+이 프로젝트에는 실제로 정착된 네이밍 규칙이 있다. **새 컴포넌트를 만들 때 이 방식을 그대로 따른다** — 다른 방식을 새로 도입하지 않는다.
 
-- **Utility 사용 적합**: 단순/일회성 layout — `flex items-center gap-4`, `grid grid-cols-2 gap-6`, `text-sm`, `mx-auto w-full max-w-6xl`
-- **Component class로 추출해야 하는 경우**: ① 스타일 반복 ② class가 지나치게 김 ③ hover/focus/disabled 등 상태 복잡 ④ 접근성 관련 스타일 ⑤ 의미 있는 이름이 더 이해하기 쉬움 ⑥ 재사용 가능성 높음
+### 블록·요소 이름 — 두 방식이 역할에 따라 갈린다
+
+| 방식 | 쓰는 대상 | 예시 |
+|---|---|---|
+| **BEM (`__`)** | **여러 페이지가 공유하는 범용 컴포넌트** (`main.css`가 로드하고 카탈로그에 문서화된 것) | `metric-card__value`, `choice-list__item`, `assessment-card__title`, `content-panel__intro`, `media-card__body`, `preview-frame__bar` |
+| **하이픈 (`-`)** | **한 페이지의 특정 섹션 전용 컴포넌트** (`pages/*.css`가 로드하는 것) | `hero-banner-text`, `proof-card-nav`, `journey-mock-head`, `cta-final-title`, `insight-row-thumb` |
+
+- **범용 컴포넌트를 만들면** BEM으로 쓰고, 파일 상단에 "Markup API" 주석으로 구조를 남긴다(`metric-card.css` 상단이 표준 예시).
+- **페이지 전용 섹션을 만들면** 하이픈으로 쓴다.
+- 판단이 애매하면 [component-inventory.md](component-inventory.md)에서 그 컴포넌트가 A/B(공용)인지 C(페이지 전용)인지 보고 맞춘다.
+
+### Modifier — BEM `--`를 쓰지 않고 별도 클래스를 병기한다
+
+이 프로젝트는 `--modifier` 표기를 쓰지 않는다(`part-nav--compact` 하나만 예외적으로 존재). **변형은 클래스를 나란히 붙여 표현한다.**
 
 ```html
-<!-- 지양: 긴 utility chain -->
-<a class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] ...">본문으로 이동</a>
-
-<!-- 권장: semantic component class -->
-<a href="#main-content" class="skip-link">본문으로 이동</a>
+<!-- 이 프로젝트 방식 -->
+<p class="summary-banner dark">…</p>
+<p class="text-label brand">…</p>
+<span class="text-caption strong">…</span>
 ```
 
-**기준**: utility 3~5개 이상이 결합되어 의미 있는 UI 패턴을 표현하면 component class 추출을 검토한다. 단, 단순 layout에는 강제하지 않는다.
+```css
+.summary-banner { /* 공통 */ }
+.summary-banner.dark { background: …; }   /* 달라지는 값만 */
+```
 
-### Arbitrary Value 제한
+### 상태 클래스 — `is-` 접두사
 
-`w-[317px]`, `mt-[13px]`, `bg-[#3274FC]` 같은 arbitrary value는 지양한다. Design Token/Tailwind 기존 scale 사용(`mt-4`, `bg-primary`). 반복적으로 필요한 값은 Design Token으로 승격한다.
+JS가 토글하는 상태는 **반드시 `is-` 접두사**를 쓴다. `active`, `selected`, `open` 같은 접두사 없는 이름을 쓰지 않는다.
+
+현재 쓰이는 것: `is-active`, `is-visible`, `is-open`, `is-current`, `is-scrolled`, `is-hidden`, `is-sticky`, `is-waiting`, `is-exiting`, `is-animating`, `is-done`, `is-live` 등.
+
+- 새 상태가 필요하면 위 목록에서 **같은 의미의 것을 먼저 찾아 재사용**한다(0번 제1규칙). 예: "현재 선택됨"은 `is-active`가 이미 있으므로 `is-selected`를 새로 만들지 않는다.
+- 어떤 JS가 그 클래스를 붙이는지 컴포넌트 CSS 상단에 한 줄 주석으로 남긴다(`metric-card.css` 예시: `상태 클래스 .is-visible은 stat-reveal.js가 붙인다`).
+
+### JS 훅 — `data-*` 속성
+
+JS가 요소를 찾을 때는 클래스가 아니라 `data-*` 속성을 쓴다. 스타일용 클래스와 동작용 훅을 분리해, CSS를 정리해도 JS가 깨지지 않게 한다.
+
+```html
+<div class="feature-card-grid" data-feature-cycle data-interval="5000">
+```
+
+- 명명은 `data-{기능}` 또는 `data-{기능}-{부분}` (`data-journey-stage`, `data-journey-track-step`).
+- **`data-*` 속성을 지우거나 이름을 바꿀 때는 `js/`에서 반드시 검색해 확인**한다(12번 "정리 후 확인").
 
 ## 6. Component Architecture
 
-반복 UI는 재사용 가능한 Component로 만든다.
+반복 UI는 재사용 가능한 컴포넌트로 만든다. 이 프로젝트에서 "컴포넌트"는 **CSS 클래스 + 정해진 마크업 구조**를 뜻하며, 재사용은 마크업을 복사해 내용만 바꾸는 방식이다.
 
-```
-components/
-├── ui/ (Button, Card, Badge, Input, Modal)
-├── navigation/ (Header, Sidebar, SkipLink)
-└── domain/ (도메인별 Card, ProgressBar 등)
-```
+페이지는 마크업만 봐도 구조와 의미를 이해할 수 있어야 한다:
 
-페이지는 markup만 봐도 구조와 의미를 이해할 수 있어야 한다:
-
-```tsx
-<main>
-  <PageHeader title="..." description="..." />
-  <TrackGrid>
-    <TrackCard />
-    <TrackCard />
-  </TrackGrid>
-</main>
+```html
+<section class="pricing fade-up">
+  <div class="section-wrap col">
+    <div class="section-title text-center">
+      <p class="tag">Pricing</p>
+      <h2>필요한 만큼만 선택하세요</h2>
+    </div>
+    <div class="section-content">
+      <ul class="choice-list">…</ul>
+    </div>
+  </div>
+</section>
 ```
 
-Variant가 있는 컴포넌트는 의미 있는 API 제공: `<Button variant="primary">`, `<Button variant="danger">` — 페이지마다 긴 utility chain을 반복하지 않는다.
+클래스 이름은 그 요소가 **무엇인지** 말해야 한다 — `box`, `blue`, `big`, `wrap2` 같은 이름을 쓰지 않는다.
 
 ### CSS 파일 분리 기준 — 무분별한 파일 증식 방지
 
@@ -252,51 +357,50 @@ Variant가 있는 컴포넌트는 의미 있는 API 제공: `<Button variant="pr
 
 ### 이 프로젝트의 현재 단계 — 데스크톱 확정 우선
 
-**현재 이 프로젝트는 데스크톱(1440px 기준) 디자인을 확정하는 단계다.** 아직 반응형 대응은 착수하지 않았다. 따라서:
+**이 프로젝트는 데스크톱(1440px 기준) 디자인을 확정하는 단계다.** 본격적인 반응형 설계는 아직 착수하지 않았지만, **일부 컴포넌트에는 이미 미디어 쿼리가 들어가 있다**(레이아웃이 깨지는 것을 막는 최소 대응). 따라서:
 
-- **요청받지 않은 반응형 작업을 임의로 추가하지 않는다.** 새 컴포넌트를 만들면서 미디어 쿼리 3단을 함께 깔지 않는다 — 데스크톱 레이아웃이 확정되기 전의 반응형은 대부분 재작업이 된다.
-- **다만 지금 해두면 나중에 재작업이 없는 것은 지금부터 적용한다** — 아래 Fluid Design(`clamp()`/`min()`/`max()`)과 Logical Properties, 그리고 재사용 컴포넌트의 `container-type` 선언. 이것들은 데스크톱 단독 렌더링을 바꾸지 않으면서 반응형 착수 비용을 낮춘다.
+- **요청받지 않은 반응형 작업을 임의로 확대하지 않는다.** 새 컴포넌트를 만들면서 미디어 쿼리 3단을 함께 깔지 않는다 — 데스크톱 레이아웃이 확정되기 전의 반응형은 대부분 재작업이 된다.
 - **고정 px 레이아웃을 쓸 때는 그것이 임시임을 드러낸다** — 폭·높이를 픽셀로 못 박아야 한다면 한 줄 주석으로 근거를 남겨(“1440 기준, 반응형 착수 시 재검토”) 나중에 찾을 수 있게 한다.
-- 반응형은 **별도 요청으로 착수**한다. 그때 아래 원칙(Container Query 우선, breakpoint 최소화)을 적용한다.
+- 전면 반응형은 **별도 요청으로 착수**한다.
 
-### 착수 시 원칙
+### 이미 쓰이는 breakpoint — 새 값을 만들지 않는다
 
-- **페이지 전체 레이아웃** → Media Query
-- **재사용 가능한 Component** → Container Query 우선 검토
+기존 컴포넌트가 실제로 쓰는 breakpoint는 사실상 2단으로 수렴해 있다. 반응형을 손볼 일이 생기면 **이 두 값을 쓰고, 새 숫자를 만들지 않는다.**
+
+| breakpoint | 쓰는 곳 |
+|---|---|
+| `max-width: 900px` | 2단 레이아웃(`section-wrap.row`)이 1단으로 접히는 지점 — `layout.css`, `hero.css`, `education-journey.css`, `diagnosis-showcase.css`, `difference.css` |
+| `max-width: 720px` | 카드 내부가 재배치되는 지점 — `assessment-card.css`, `content-panel.css`, `metric-card.css` |
+
+(`proof-card.css`만 `1023px`/`780px`을 쓰는 예외다. 이 컴포넌트를 손볼 때 900/720으로 맞출지 사용자에게 확인한다.)
+
+### 모션 축소 설정 대응 — 애니메이션을 넣으면 반드시 함께 넣는다
+
+**이 프로젝트에서 예외 없이 지켜지는 규칙이다**(현재 13개 컴포넌트 파일에 적용돼 있다). `transition`이나 `animation`을 새로 추가하면 같은 파일 맨 아래에 이 블록을 함께 둔다 — 빠뜨리면 접근성 설정을 켠 사용자에게 어지러운 화면이 그대로 나간다.
 
 ```css
-.track-grid {
-  container-type: inline-size;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
+@media (prefers-reduced-motion: reduce) {
+  .my-component {
+    transition: none;   /* 또는 animation: none / transition-duration: 0.001ms */
+  }
 }
-@container (min-width: 640px) { .track-grid { grid-template-columns: repeat(2, 1fr); } }
-@container (min-width: 960px) { .track-grid { grid-template-columns: repeat(3, 1fr); } }
 ```
 
-### Fluid Design
+### Fluid Design · 논리 속성 (권장, 강제 아님)
 
-breakpoint를 과도하게 늘리지 않고 `clamp()`, `min()`, `max()`, `calc()`를 적극 활용한다.
-
-```css
-.page-title { font-size: clamp(2rem, 5vw, 4rem); }
-.section { padding-block: clamp(48px, 8vw, 120px); }
-.container { width: min(100% - 32px, 1200px); margin-inline: auto; }
-```
-
-### Logical Properties
-
-글로벌/다국어 서비스를 고려해 논리 속성을 사용한다: `margin-inline-start`, `padding-inline-end` (물리 속성 `margin-left`, `padding-right` 대신).
+- `clamp()`, `min()`, `max()`, `calc()`로 breakpoint를 늘리지 않고 유연하게 대응할 수 있다. 다만 **현재 컴포넌트에서 거의 쓰이지 않으므로**, 기존 컴포넌트를 수정할 때 이 방식으로 임의 전환하지 않는다. 새로 만드는 것에만 적용을 검토한다.
+- 논리 속성(`margin-inline`, `padding-block`)은 좌우/상하를 한 번에 줄 때 쓰면 편하다. 현재 코드는 물리 속성(`margin-top` 등)이 더 많으므로, **주변 코드의 방식을 따르는 것을 우선**한다. 기존 물리 속성을 논리 속성으로 바꾸는 리팩터링을 요청 없이 하지 않는다.
 
 ## 8. Accessibility
 
 설계 단계부터 고려하며 별도 마무리 작업으로 미루지 않는다.
 
 - Native HTML 우선: `<button>저장</button>` > `<div role="button">저장</div>`. ARIA는 native semantic으로 부족할 때 보완적으로만 사용.
-- 모든 interactive element에 `:focus-visible` 스타일 제공 (`:focus`보다 우선).
-- 접근성 유틸리티는 중앙 관리: `.sr-only`, `.skip-link` 등을 semantic component/utility로 정의.
-- 이미지 `alt`, form label 연결, keyboard navigation 지원 필수.
+- **`:focus-visible`은 `reset.css`가 전역으로 처리한다**(`outline: 2px solid var(--color-brand)`). 컴포넌트에서 따로 쓸 필요는 없고, 캡슐형(`radius-full`)처럼 사각 outline이 형상과 안 맞는 경우에만 그 컴포넌트에 별도로 정의한다.
+- **장식용 SVG·아이콘에는 `aria-hidden="true"`** 를 붙인다(현재 프로젝트가 일관되게 지키는 규칙).
+- 이미지 `alt`, form label 연결, keyboard navigation 지원 필수. 의미 없는 장식 이미지는 `alt=""`.
+- 애니메이션을 넣으면 `prefers-reduced-motion` 대응을 함께 넣는다(7번 참고).
+- `.sr-only`, `.skip-link` 같은 스크린리더 유틸리티는 **아직 이 프로젝트에 없다.** 필요해지면 임의로 만들지 말고 사용자에게 확인한 뒤 `css/components/text.css`에 함께 둔다(별도 `utilities.css`를 새로 만들지 않는다).
 
 ## 9. 모던 CSS 기능 활용
 
@@ -308,7 +412,7 @@ breakpoint를 과도하게 늘리지 않고 `clamp()`, `min()`, `max()`, `calc()
 ## 10. 피해야 할 패턴
 
 - 거대한 class attribute (반복/복잡 UI는 Component CSS로 추출)
-- Arbitrary value 남발 (`top-[17px]`, `bg-[#3274FC]`)
+- 근거 주석 없는 매직넘버 (`height: 320px`만 덜렁 남기기)
 - 색상/spacing 직접 입력 (Design Token 사용)
 - 의미 없는 class 이름 (`box blue big` 대신 `track-card`)
 - CSS specificity 경쟁 (`.page .main .card .content .title`)
@@ -329,6 +433,13 @@ breakpoint를 과도하게 늘리지 않고 `clamp()`, `min()`, `max()`, `calc()
 5. 복잡한 interaction/state가 있는가? → **Component CSS 사용**
 
 이 판단 순서는 매번 작은 요청(버튼 하나, 컴포넌트 하나 수정)에도 적용한다 — "이미 있는 페이지에 몇 줄만 고치는 작업"이라도 디자인 시스템 문서와의 일치 여부를 확인하지 않고 넘어가지 않는다.
+
+### 새 서브페이지를 만들 때
+
+`index.html` 외에 새 페이지(가격, 회사소개 등)를 처음부터 만드는 작업은 아래 두 문서를 **이 SKILL.md와 함께** 순서대로 참고한다. 이 문서 하나만으로는 "페이지 전체"를 어떻게 조립하는지 다루지 않는다.
+
+1. **[component-inventory.md](component-inventory.md)** — 지금 프로젝트에 실제로 존재하는 모든 컴포넌트의 전체 목록. `codepresso-designsystem.html` 카탈로그에 없는 `index.html` 전용 대형 컴포넌트까지 포함한다. 새 UI를 만들기 전에 여기서 먼저 찾는다.
+2. **[subpage-guide.md](subpage-guide.md)** — 새 페이지 파일을 처음 만들 때 GNB를 어떻게 붙이고, CSS를 어떻게 2단으로 로드하고, `js/`의 어떤 스크립트가 공용이고 어떤 게 페이지 전용인지, 완성 후 무엇을 체크하는지까지의 실전 절차.
 
 ### 페이지 · 섹션 구조 관례
 
@@ -530,9 +641,11 @@ HTML·CSS를 **작성하거나 수정할 때마다** 아래 4종 중복을 점�
 
 작업 완료 후 아래를 확인한다.
 
+**재사용 (0번 제1규칙 — 가장 먼저 확인)**: 새로 만든 컴포넌트·클래스가 있다면 [component-inventory.md](component-inventory.md)와 `codepresso-designsystem.html`에서 같은 역할의 것을 먼저 찾아봤는가 / 기존 것으로 안 된 이유를 보고에 남겼는가 / 기존 컴포넌트와 값(색·간격·radius·폰트·hover)이 겹치는 선언을 새로 쓰지 않았는가 / 같은 값을 두 번째로 쓰게 됐을 때 토큰·공용 클래스로 올렸는가 / [css-patterns.md](css-patterns.md)의 관용구(color-mix·chevron·트랜지션 리듬)를 따랐는가 / 새로 만든 범용 컴포넌트를 카탈로그와 인벤토리에 등록했는가
+
 **HTML**: Semantic HTML 적절히 사용 / div 대체 가능한 native element 미사용 / heading hierarchy 정상 / link·button 역할 명확 / `<header>`는 GNB 하나뿐인가(섹션 상단 블록은 `div`) / 새 섹션이 `<section class="{이름} fade-up">` + 안쪽 `.section-wrap` 구조를 따르는가
 
-**CSS**: Reset 적용 / Design Token 사용 / raw color·arbitrary value 불필요 반복 없음 / 긴 utility class 없음 / 반복 UI가 Component로 추출됨 / specificity 과도하지 않음 / 새 컴포넌트 CSS가 `main.css` 또는 `css/pages/*.css`에 `@import`됐는가(HTML에 세 번째 `<link>`를 붙이지 않았는가)
+**CSS**: Design Token 사용(존재하는 이름인지 `tokens.css`에서 확인) / raw color 하드코딩 없음(필요하면 `color-mix`로 파생) / 반복 UI가 Component로 추출됨 / specificity 과도하지 않음(`@layer` 활용) / 새 컴포넌트 CSS가 `main.css` 또는 `css/pages/*.css`에 `@import`됐는가(HTML에 세 번째 `<link>`를 붙이지 않았는가) / 컴포넌트 파일 안에 `@layer`를 직접 쓰지 않았는가 / 애니메이션을 넣었다면 `prefers-reduced-motion` 대응을 함께 넣었는가
 
 **타이포 제약 (3번 항목)**: 메인페이지에 14px 미만 폰트가 없는가 / heading이 Semibold(600) 고정인가 / 700 Bold를 새로 썼다면 근거가 있는가 / 자간을 컴포넌트에서 임의로 새로 정하지 않았는가
 
@@ -548,7 +661,7 @@ HTML·CSS를 **작성하거나 수정할 때마다** 아래 4종 중복을 점�
 
 **Accessibility**: keyboard navigation 가능 / `:focus-visible` 제공 / 이미지 `alt` 적절 / form label 연결 / screen reader 유틸리티 적용
 
-**Maintainability**: HTML/JSX만 읽어도 구조 이해 가능 / 스타일 복사 없음 / 기존 Component 재사용 우선 / 프로젝트 CSS Architecture 준수
+**Maintainability**: HTML만 읽어도 구조 이해 가능 / 스타일 복사 없음 / 기존 Component 재사용 우선(0번) / 프로젝트 CSS Architecture 준수
 
 **Design System 동기화**: 새 컴포넌트를 만들기 전 `codepresso-designsystem.html`에 이미 있는지 확인했는가 / 있으면 그 컴포넌트를 재사용했는가(색상·spacing·radius·shadow가 기존 값과 통일됨) / 새로 만든 컴포넌트를 `codepresso-designsystem.html`에도 추가했는가
 
@@ -562,4 +675,6 @@ Semantic HTML + Lightweight Reset + Design Tokens
 + Container-based Responsive Design + Accessibility
 ```
 
-목표는 CSS를 최소화하는 것이 아니라, **AI가 생성해도 사람이 읽고 이해할 수 있고, 반복 UI를 안정적으로 재사용하며, 디자인 시스템이 일관되게 유지되는 구조**를 만드는 것이다. Tailwind를 쓰더라도 Tailwind 자체가 목표가 아니다 — **Utility는 도구, Component와 Design System이 구조의 중심**이다.
+목표는 CSS를 최소화하는 것이 아니라, **AI가 생성해도 사람이 읽고 이해할 수 있고, 반복 UI를 안정적으로 재사용하며, 디자인 시스템이 일관되게 유지되는 구조**를 만드는 것이다.
+
+그래서 이 스킬의 결론은 하나로 돌아온다 — **새로 만들기 전에 먼저 찾아본다(0번).** 이미 있는 것을 그대로 쓰는 것이 가장 빠르고, 가장 일관되고, 가장 오래 유지된다.
