@@ -95,6 +95,7 @@
               <div><span>기본 padding</span><i style="width:100px"></i><b>48px</b></div>
               <div><span>섹션 간격</span><i style="width:150px"></i><b>96px</b></div>
             </div>
+            <div class="guide-radius-list"><p class="text-label">Border radius</p><div><span style="border-radius:4px"></span><b>4px · radius-sm</b></div><div><span style="border-radius:8px"></span><b>8px · radius-md</b></div><div><span style="border-radius:16px"></span><b>16px · radius-lg</b></div><div><span style="border-radius:24px"></span><b>24px · radius-xl</b></div><div><span style="border-radius:999px"></span><b>999px · radius-full</b></div></div>
           </div>
         </div>
       </section>
@@ -206,34 +207,25 @@
           <p>움직임은 정보를 더 잘 읽게 만드는 경우에만 사용합니다. 아래 목록은 메인 페이지에서 실제로 구동되는 모션과 이를 담당하는 컴포넌트입니다.</p>
         </div>
         <div class="guide-motion-list">
-          <article><div><p class="tag">스크롤 진입</p><h3>Fade Up</h3></div><p>섹션이 화면에 들어오면 아래에서 자연스럽게 나타납니다. sticky 섹션은 위치가 깨지지 않도록 opacity만 전환합니다.</p><code>fade-up · fade-up.js</code></article>
-          <article><div><p class="tag">자동 순환</p><h3>Feature Card Cycle</h3></div><p>How it works 카드의 활성 항목을 순환하며 아이콘·설명·진행 바를 전환합니다. 마우스를 올리면 해당 항목을 바로 볼 수 있습니다.</p><code>feature-card · feature-card-cycle.js</code></article>
-          <article><div><p class="tag">수치 공개</p><h3>Stat Reveal</h3></div><p>Proof의 수치 카드는 화면 진입 후 순서대로 나타나고, 숫자가 목표 값까지 카운트됩니다.</p><code>metric-card · stat-reveal.js</code></article>
-          <article><div><p class="tag">카드 덱</p><h3>Proof Card Slider</h3></div><p>고객 사례 카드를 자동·수동으로 넘기며, 이전 카드는 위로 사라지고 다음 카드는 앞으로 올라옵니다.</p><code>proof-card · proof-card-slider.js</code></article>
-          <article><div><p class="tag">스크롤 연동</p><h3>Journey Stage</h3></div><p>교육 여정과 진단 화면은 스크롤 위치에 맞춰 활성 단계와 오른쪽 목업을 교체합니다.</p><code>journey-step · journey-stage.js</code></article>
-          <article><div><p class="tag">화면 순환</p><h3>Difference Cycle</h3></div><p>세 개의 차이점 화면과 하단 진행 표시를 자동으로 순환하고, 사용자가 항목을 선택하면 그 화면으로 전환합니다.</p><code>difference-screen · difference-cycle.js</code></article>
-          <article><div><p class="tag">파트 이동</p><h3>Part Nav</h3></div><p>현재 파트를 표시하고, 다른 파트로 부드럽게 이동합니다. 디자인 가이드에서는 인디케이터 이동까지 확인할 수 있습니다.</p><code>part-nav · part-nav.js</code></article>
-          <article><div><p class="tag">헤더 상태</p><h3>Header &amp; Menu</h3></div><p>스크롤 방향에 따라 헤더를 숨기거나 다시 보이고, 메뉴는 hover·focus 상태에서 패널을 열고 닫습니다.</p><code>header · header-scroll.js · nav-menu.js</code></article>
-          <article><div><p class="tag">연속 흐름</p><h3>Client Marquee</h3></div><p>Hero의 고객사 로고는 끊기지 않고 옆으로 흐릅니다. 움직임 줄이기 설정에서는 정지합니다.</p><code>hero-clients-track · hero.css</code></article>
-        </div>
-        <div class="guide-motion-lab">
-          <div class="guide-block-head"><h3>움직임 미리보기</h3><span>버튼을 눌러 실제 상태 전환을 확인하세요.</span></div>
-          <div class="guide-motion-preview-grid">
-            <article class="guide-motion-preview">
-              <div class="guide-motion-preview-head"><div><p class="tag">스크롤 진입</p><h3>Fade Up</h3></div><button class="btn btn-ghost" type="button" data-motion-play="fade-up">미리보기</button></div>
-              <div class="guide-motion-stage" aria-live="polite">
-                <div class="section-title text-left fade-up" data-motion-target="fade-up">
-                  <p class="tag">NEW SECTION</p><h2>아래에서 위로<br>자연스럽게 나타납니다</h2><p class="desc">실제 섹션 진입에 쓰는 동일한 모션입니다.</p>
-                </div>
-              </div>
-            </article>
-            <article class="guide-motion-preview">
-              <div class="guide-motion-preview-head"><div><p class="tag">수치 공개</p><h3>Stat Reveal</h3></div><button class="btn btn-ghost" type="button" data-motion-play="stat-reveal">미리보기</button></div>
-              <div class="guide-motion-stage">
-                <div class="summary-banner stats-light" style="width: 100%;"><div class="summary-banner-stats"><article class="metric-card" data-motion-target="stat-reveal"><div class="metric-card__value"><span class="num" data-motion-number="39355">0</span><span class="unit">명</span></div><p class="metric-card__label text-label">누적 수강</p><div class="metric-card__visual" aria-hidden="true"><span class="metric-card__glow"></span><span class="metric-card__glow"></span><img class="metric-card__icon" src="images/icon/ic_barChart.svg" alt=""></div></article></div></div>
-              </div>
-            </article>
-          </div>
+          <article class="guide-motion-item">
+            <div><p class="tag">스크롤 진입</p><h3>Fade Up</h3></div>
+            <p>섹션이 화면에 들어오면 아래에서 자연스럽게 나타납니다. sticky 섹션은 위치가 깨지지 않도록 opacity만 전환합니다.</p>
+            <div class="guide-motion-inline-preview" aria-live="polite"><button class="btn btn-ghost" type="button" data-motion-play="fade-up">미리보기</button><div class="section-title text-left fade-up" data-motion-target="fade-up"><p class="tag">NEW SECTION</p><h2>아래에서 위로<br>자연스럽게 나타납니다</h2><p class="desc">실제 섹션 진입에 쓰는 동일한 모션입니다.</p></div></div>
+            <code>fade-up · fade-up.js</code>
+          </article>
+          <article><div><p class="tag">자동 순환</p><h3>Feature Card Cycle</h3></div><p>How it works 카드의 활성 항목을 순환하며 아이콘·설명·진행 바를 전환합니다. 마우스를 올리면 해당 항목을 바로 볼 수 있습니다.</p><div class="guide-motion-static-preview"><article class="feature-card is-active"><div class="feature-card-icon-row"><span class="feature-card-icon">AI</span></div><div class="section-body"><p class="section-body-title">AI 교육 설계</p><div class="feature-card-desc-row"><div class="section-body-description"><p>활성 카드의 설명이 나타납니다.</p></div></div></div></article></div><code>feature-card · feature-card-cycle.js</code></article>
+          <article class="guide-motion-item">
+            <div><p class="tag">수치 공개</p><h3>Stat Reveal</h3></div>
+            <p>Proof의 수치 카드는 화면 진입 후 순서대로 나타나고, 숫자가 목표 값까지 카운트됩니다.</p>
+            <div class="guide-motion-inline-preview"><button class="btn btn-ghost" type="button" data-motion-play="stat-reveal">미리보기</button><div class="summary-banner stats-light"><div class="summary-banner-stats"><article class="metric-card" data-motion-target="stat-reveal"><div class="metric-card__value"><span class="num" data-motion-number="39355">0</span><span class="unit">명</span></div><p class="metric-card__label text-label">누적 수강</p><div class="metric-card__visual" aria-hidden="true"><span class="metric-card__glow"></span><span class="metric-card__glow"></span><img class="metric-card__icon" src="images/icon/ic_barChart.svg" alt=""></div></article></div></div></div>
+            <code>metric-card · stat-reveal.js</code>
+          </article>
+          <article><div><p class="tag">카드 덱</p><h3>Proof Card Slider</h3></div><p>고객 사례 카드를 자동·수동으로 넘기며, 이전 카드는 위로 사라지고 다음 카드는 앞으로 올라옵니다.</p><div class="guide-motion-static-preview"><div class="proof-card-deck"><div class="proof-card-deck-list"><article class="proof-card is-active"><h3>검증 비용이 줄어든 채용</h3><blockquote>전환되는 카드 덱의 실제 상태 예시입니다.</blockquote></article></div></div></div><code>proof-card · proof-card-slider.js</code></article>
+          <article><div><p class="tag">스크롤 연동</p><h3>Journey Stage</h3></div><p>교육 여정과 진단 화면은 스크롤 위치에 맞춰 활성 단계와 오른쪽 목업을 교체합니다.</p><div class="guide-motion-static-preview"><div class="content-panel content-panel--compact surface-glass"><div class="content-panel__item journey-step is-active"><div class="content-panel__intro"><p class="tag">SkillPath</p><p class="section-body-title">학습 화면이 교체됩니다</p></div><div class="content-panel__visual"><div class="preview-frame preview-frame--quiet"><div class="skeleton-stack"><span class="skeleton-block is-title"></span><span class="skeleton-line"></span></div></div></div></div></div></div><code>journey-step · journey-stage.js</code></article>
+          <article><div><p class="tag">화면 순환</p><h3>Difference Cycle</h3></div><p>세 개의 차이점 화면과 하단 진행 표시를 자동으로 순환하고, 사용자가 항목을 선택하면 그 화면으로 전환합니다.</p><div class="guide-motion-static-preview"><div class="difference-mock"><div class="preview-frame preview-frame--flush"><div class="difference-screens"><div class="difference-screen is-active"><div class="difference-screen-head"><span class="difference-screen-title">역량 변화 리포트</span></div><div class="difference-screen-body"><div class="difference-card"></div><div class="difference-card"></div><div class="difference-card"></div></div></div></div></div></div></div><code>difference-screen · difference-cycle.js</code></article>
+          <article><div><p class="tag">파트 이동</p><h3>Part Nav</h3></div><p>현재 파트를 표시하고, 다른 파트로 부드럽게 이동합니다. 디자인 가이드에서는 인디케이터 이동까지 확인할 수 있습니다.</p><div class="guide-motion-static-preview"><nav class="part-nav"><span class="part-nav-indicator" style="width:128px" aria-hidden="true"></span><span class="part-nav-item is-active">PART 1 · 교육</span><span class="part-nav-item">PART 2 · 진단</span></nav></div><code>part-nav · part-nav.js</code></article>
+          <article><div><p class="tag">헤더 상태</p><h3>Header &amp; Menu</h3></div><p>스크롤 방향에 따라 헤더를 숨기거나 다시 보이고, 메뉴는 hover·focus 상태에서 패널을 열고 닫습니다.</p><div class="guide-motion-static-preview"><div class="preview-frame preview-frame--quiet"><button class="nav-trigger" type="button" aria-expanded="true">Platform <span class="nav-chevron">⌄</span></button><div class="skeleton-stack"><span class="skeleton-line"></span><span class="skeleton-line is-short"></span></div></div></div><code>header · header-scroll.js · nav-menu.js</code></article>
+          <article><div><p class="tag">연속 흐름</p><h3>Client Marquee</h3></div><p>Hero의 고객사 로고는 끊기지 않고 옆으로 흐릅니다. 움직임 줄이기 설정에서는 정지합니다.</p><div class="guide-motion-static-preview guide-motion-marquee"><div class="hero-clients-track"><span class="hero-clients-item"><img src="images/logos/logo_1_삼성_(h36).svg" alt="삼성"></span><span class="hero-clients-item"><img src="images/logos/logo_2_기획재정부_(h36).svg" alt="기획재정부"></span></div></div><code>hero-clients-track · hero.css</code></article>
         </div>
         <div class="guide-callout"><strong>접근성</strong><span>모든 자동 모션은 <code>prefers-reduced-motion</code> 환경에서 멈추거나 즉시 표시됩니다. 새 모션도 같은 기준을 따라야 합니다.</span></div>
       </section>
