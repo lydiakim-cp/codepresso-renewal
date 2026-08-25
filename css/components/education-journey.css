@@ -1,8 +1,9 @@
 /*
  * Component: Education Journey
- * PART 1 · 교육 섹션. 좌측 카피+단계 인디케이터는 sticky로 고정되고,
- * 우측은 01~03 단계가 세로로 쌓인 스토리 블록으로 스크롤된다.
- * 좌측 인디케이터는 우측 스크롤 위치에 따라 활성 단계가 바뀐다(journey-scroll.js).
+ * PART 1 · 교육 섹션. 좌측 카피+교육 프로그램 리스트는 sticky로 고정되고,
+ * 우측 glass 판에서는 SkillPath·SkillCamp·SkillFit 제품 화면 목업이
+ * 스크롤에 따라 교차 페이드로 교체된다(js/journey-stage.js).
+ * 지금 보이는 프로그램은 좌측 리스트에서도 활성 표시된다.
  */
 
 /* PART 1(교육) + PART 2(진단)를 감싸는 묶음. 두 파트가 하나의 영역으로 읽히도록
@@ -45,55 +46,375 @@
   gap: var(--space-48);
 }
 
-/* 우측 스크롤 컬럼. 블록 사이를 넉넉히 띄워 한 화면에 한 단계씩 읽히게 한다. */
-.education-journey-scroll {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-48);
+/*
+ * 우측 — 스크롤로 넘기는 목업 스테이지.
+ * 판(.journey-viewport)은 sticky로 한 자리에 고정되고, 스크롤이 진행되면 안의
+ * .journey-step이 교차 페이드로 교체된다. 예전처럼 카드가 통째로 스크롤되지
+ * 않으므로 좌측 sticky 컬럼과 시선이 갈리지 않는다.
+ *
+ * 스크롤 길이는 보이지 않는 .journey-track이 만든다 — viewport를 sticky로
+ * 붙여둘 구간이 필요한데, 콘텐츠가 교차 페이드되면 그 높이가 생기지 않는다.
+ */
+/* 트랙과 판을 같은 그리드 셀에 겹쳐 둔다 — 세로로 나란히 쌓으면 판이 트랙
+   '다음'에 놓여, sticky로 붙어 있을 스크롤 구간이 트랙에 남지 않는다. */
+.education-journey-stage {
+  display: grid;
 }
 
-/* 배경은 .surface-glass 유틸리티(diagnosis-preview-panel과 동일한 glass 표면)로 얹는다 —
-   .parts-group 그라디언트 위에서 두 파트의 카드가 같은 재질로 읽히게 한다. */
-.journey-block {
-  position: relative;
+.education-journey-stage > * {
+  grid-area: 1 / 1;
+}
+
+/* 3단계 × 1화면. 이보다 짧으면 한 단계를 읽기 전에 다음으로 넘어간다. */
+.journey-track-step {
+  height: 100vh;
+}
+
+/* PART 2의 .diagnosis-preview-panel과 같은 glass 판(.surface-glass 유틸리티)에
+   스텝을 가둔다 — 두 파트의 우측 영역이 같은 재질로 읽히게 하기 위함. */
+.journey-viewport {
+  position: sticky;
+  top: 96px;
+  /* 겹쳐진 그리드 셀에서 트랙 높이만큼 늘어나면 sticky가 동작하지 않는다. */
+  align-self: start;
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  /* 내용이 가장 긴 SkillFit 스텝(564px) + 상하 padding 48px. 스텝이 absolute로
+     겹쳐 쌓여 판 높이를 만들지 못하므로 여기서 고정하지 않으면 목업이 판 밖으로
+     넘치고, 전환할 때마다 판이 들썩인다. */
+  min-height: 612px;
+}
+
+/* 스텝은 같은 자리에 겹쳐두고 opacity로만 교체한다. */
+/* inset이 아니라 padding 안쪽 박스를 채우도록 잡는다 — inset:0은 판의
+   padding을 무시해 콘텐츠가 glass 테두리에 붙는다. */
+.journey-step {
+  position: absolute;
+  inset: var(--space-24);
   display: flex;
   flex-direction: column;
   gap: var(--space-24);
-  min-height: 320px;
-  padding: var(--space-48);
-  border-radius: var(--radius-lg);
-  scroll-margin-top: 120px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition:
+    opacity var(--duration-scroll) var(--ease-scroll),
+    transform var(--duration-scroll) var(--ease-scroll),
+    visibility 0s linear var(--duration-scroll);
 }
 
-/* 큰 배경 숫자 — 지금 몇 번째 단계를 보고 있는지 시각적으로도 바로 인지되게 한다. */
-.journey-block-index {
-  position: absolute;
-  top: var(--space-24);
-  right: var(--space-24);
-  font-size: var(--text-heading-56);
-  line-height: 1;
-  letter-spacing: var(--tracking-heading-wide);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-brand-tint-2);
+.journey-step.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
 }
 
-/* 헤드라인 그룹 — "0N. 라벨"(좌측 sticky 인디케이터와 동일한 문구) + 짧은 핵심 문장.
-   배경의 큰 숫자(.journey-block-index)는 장식이고, 이 라벨이 실제로 읽히는 단계 이름이다. */
-.journey-block-head {
+@media (prefers-reduced-motion: reduce) {
+  .journey-step {
+    transition-duration: 0s;
+    transform: none;
+  }
+}
+
+.journey-step-head {
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
-  max-width: 80%;
 }
 
 /* h3 전역 스타일(semibold, --color-ink)보다 한 단계 큰 스케일이 필요해
    태그를 h3로 유지하되 시각 스타일은 컴포넌트 클래스로 새로 정의한다. */
-.journey-block-title {
+.journey-step-title {
   font-size: var(--text-heading-32);
   line-height: var(--leading-heading-32);
   color: var(--color-ink-heaviest);
 }
 
-/* 01 단계 — 교육 프로그램 리스트. diagnosis-showcase.css의 .diagnosis-products /
-   .diagnosis-product-list 스타일을 그대로 공유해서 쓴다 (마크업도 동일 클래스). */
+/*
+ * 제품 화면 목업 — 각 프로그램이 실제로 어떤 화면인지 보여주는 공통 창.
+ * .parts-group 그라디언트 위지만 .surface-glass(반투명)를 쓰지 않는다 —
+ * 스텝이 겹쳐 쌓여 있어 반투명이면 전환 중 다음 스텝이 비쳐 보인다.
+ */
+.journey-mock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-brand-tint-2);
+  box-shadow: var(--shadow-md);
+}
 
+.journey-mock-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.journey-mock-title {
+  font-size: var(--text-body-18);
+  line-height: var(--leading-body-18);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-heaviest);
+}
+
+.journey-mock-badge {
+  padding: var(--space-4) var(--space-10);
+  border-radius: var(--radius-full);
+  background: var(--color-brand-tint-2);
+  color: var(--color-brand);
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+
+/* 진행 중인 라이브 세션 표시 — 브랜드 블루와 구분되도록 붉은 계열로 둔다. */
+.journey-mock-badge.is-live {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  background: #FFEAEA;
+  color: #E03B3B;
+}
+
+.journey-mock-badge.is-live::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+}
+
+/* --- SkillPath: 진도 --- */
+.journey-mock-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.journey-mock-progress-bar {
+  flex: 1;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-tint-2);
+  overflow: hidden;
+}
+
+.journey-mock-progress-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-brand);
+}
+
+/* --- 공용 항목 리스트(SkillPath 커리큘럼 · SkillFit 학습 경로) --- */
+.journey-mock-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.journey-mock-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-12);
+  border-radius: var(--radius-md);
+  background: var(--color-brand-tint-1);
+}
+
+.journey-mock-item.is-current {
+  background: var(--color-brand-tint-2);
+}
+
+.journey-mock-item-name {
+  flex: 1;
+  font-size: var(--text-body-16);
+  line-height: var(--leading-body-16);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink);
+}
+
+/* 이수 체크 — 완료는 채운 원 + 체크, 진행 중은 브랜드 테두리만. */
+.journey-mock-check {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-brand-tint-2);
+  background: var(--color-surface);
+}
+
+.journey-mock-item.is-done .journey-mock-check {
+  border-color: var(--color-brand);
+  background:
+    var(--color-brand)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")
+    center / 12px no-repeat;
+}
+
+.journey-mock-item.is-current .journey-mock-check {
+  border-color: var(--color-brand);
+}
+
+/* --- SkillFit: 난이도 레벨 칩 --- */
+.journey-mock-level {
+  min-width: 44px;
+  padding: var(--space-2) var(--space-8);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  border: 1px solid var(--color-brand-tint-2);
+  color: var(--color-ink-lighter);
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+}
+
+.journey-mock-level.is-current {
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: var(--color-surface);
+}
+
+.journey-mock-metric {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-8);
+}
+
+.journey-mock-metric-value {
+  font-size: var(--text-heading-32);
+  line-height: var(--leading-heading-32);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand);
+}
+
+.journey-mock-metric-delta {
+  margin-inline-start: auto;
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-brand);
+}
+
+/* --- SkillCamp: 라이브 세션 --- */
+.journey-mock-speaker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.journey-mock-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand);
+  color: var(--color-surface);
+  font-size: var(--text-body-16);
+  line-height: var(--leading-body-16);
+  font-weight: var(--font-weight-semibold);
+}
+
+.journey-mock-speaker-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.journey-mock-chat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* 말풍선 — 강사/동료 발화는 좌측 틴트, 내 발화(.is-mine)는 우측 브랜드 틴트. */
+.journey-mock-bubble {
+  max-width: 82%;
+  padding: var(--space-10) var(--space-12);
+  border-radius: var(--radius-lg);
+  background: var(--color-brand-tint-1);
+  color: var(--color-ink);
+  font-size: var(--text-body-16);
+  line-height: var(--leading-body-16);
+}
+
+.journey-mock-bubble.is-mine {
+  align-self: flex-end;
+  background: var(--color-brand-tint-2);
+  color: var(--color-brand-dark);
+}
+
+.journey-mock-foot {
+  text-align: center;
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-brand);
+}
+
+/* 1단으로 접히면 좌우로 나란히 놓일 자리가 없어 sticky 고정이 의미를 잃는다.
+   스텝을 그냥 세로로 쌓아 순서대로 읽히게 한다. */
+@media (max-width: 900px) {
+  .journey-track {
+    display: none;
+  }
+
+  .journey-viewport {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-48);
+    min-height: 0;
+  }
+
+  .journey-step {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+}
+
+/*
+ * 좌측 교육 프로그램 리스트 ↔ 우측 스텝 동기화.
+ * 우측에 보이는 프로그램의 항목만 hover와 같은 상태로 켜두고, 나머지는 흐리게
+ * 낮춰 "지금 무엇을 보고 있는지"를 좌우가 같이 가리키게 한다.
+ * 활성 배경은 .diagnosis-product:hover와 같은 값을 쓴다(별도 색을 새로 만들지 않는다).
+ */
+.education-journey [data-journey-program] {
+  transition: background var(--duration-hover) var(--ease-hover),
+    opacity var(--duration-scroll) var(--ease-scroll);
+}
+
+.education-journey [data-journey-program].is-active {
+  background: rgba(255, 255, 255, .6);
+}
+
+.education-journey [data-journey-program].is-active .diagnosis-product-arrow {
+  transform: translateX(2px);
+  color: var(--color-brand);
+}
+
+/* 비활성 항목은 숨기지 않고 낮추기만 한다 — 세 프로그램이 나란히 있다는 사실은
+   계속 읽혀야 하고, 대비만 낮춰 시선을 활성 항목으로 모은다. */
+.education-journey [data-journey-program]:not(.is-active) {
+  opacity: .45;
+}
+
+/* 마우스를 올리면 활성 여부와 무관하게 원래 대비로 돌아온다(직접 탐색 우선). */
+.education-journey [data-journey-program]:hover,
+.education-journey [data-journey-program]:focus-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .education-journey [data-journey-program] {
+    transition-duration: 0s;
+  }
+}

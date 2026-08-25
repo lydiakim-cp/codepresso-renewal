@@ -181,7 +181,7 @@
             <li class="hero-clients-item"><img src="images/logos/logo_2_기획재정부_(h36).svg" alt="기획재정부"></li>
             <li class="hero-clients-item"><img src="images/logos/logo_3_롯데_(h36).svg" alt="롯데"></li>
           </ul>
-          <ul class="hero-clients-track" aria-hidden="true">
+          <ul class="hero-cliㅇents-track" aria-hidden="true">
             <li class="hero-clients-item"><img src="images/logos/logo_4_현대_(h36).svg" alt="현대"></li>
             <li class="hero-clients-item"><img src="images/logos/logo_5_벡터_(h36).svg" alt="벡터"></li>
             <li class="hero-clients-item"><img src="images/logos/logo_6_서강대_(h36).svg" alt="서강대"></li>
@@ -433,12 +433,12 @@
 
               <ul class="diagnosis-product-list">
                 <li>
-                  <a class="diagnosis-product" href="#">
+                  <a class="diagnosis-product" href="#" data-journey-program="0">
                     <span class="diagnosis-product-icon" aria-hidden="true">
                       <img src="images/icon/ic_skillPath.svg" alt="">
                     </span>
                     <span class="diagnosis-product-body">
-                      <span class="list-item-title">SkillPath <span class="tag">온라인</span></span>
+                      <span class="list-item-title">SkillPath </span>
                       <span class="text-caption">온라인 이러닝</span>
                     </span>
                     <svg class="diagnosis-product-arrow" viewBox="0 0 24 24" fill="none"
@@ -449,12 +449,12 @@
                   </a>
                 </li>
                 <li>
-                  <a class="diagnosis-product" href="#">
+                  <a class="diagnosis-product" href="#" data-journey-program="1">
                     <span class="diagnosis-product-icon" aria-hidden="true">
                       <img src="images/icon/ic_edu.svg" alt="">
                     </span>
                     <span class="diagnosis-product-body">
-                      <span class="list-item-title">SkillCamp <span class="tag">라이브</span></span>
+                      <span class="list-item-title">SkillCamp </span>
                       <span class="text-caption">강사 주도형 교육</span>
                     </span>
                     <svg class="diagnosis-product-arrow" viewBox="0 0 24 24" fill="none"
@@ -465,12 +465,12 @@
                   </a>
                 </li>
                 <li>
-                  <a class="diagnosis-product" href="#">
+                  <a class="diagnosis-product" href="#" data-journey-program="2">
                     <span class="diagnosis-product-icon" aria-hidden="true">
                       <img src="images/icon/ic_skillFit.svg" alt="">
                     </span>
                     <span class="diagnosis-product-body">
-                      <span class="list-item-title">SkillFit <span class="tag">적응형</span></span>
+                      <span class="list-item-title">SkillFit</span>
                       <span class="text-caption">AI 기반 적응형 학습</span>
                     </span>
                     <svg class="diagnosis-product-arrow" viewBox="0 0 24 24" fill="none"
@@ -486,38 +486,129 @@
             <a href="#" class="btn btn-primary">교육 과정 자세히 보기 →</a>
           </div>
 
-          <div class="education-journey-scroll" data-journey-scroll>
-            <article class="journey-block surface-glass" data-journey-target="0">
-              <p class="journey-block-index">01</p>
-              <div class="journey-block-head">
-                <p class="text-label brand">01. 설계</p>
-                <h3 class="journey-block-title">진단 결과에 맞춘<br>교육 과정 설계</h3>
-              </div>
+          <div class="education-journey-stage" data-journey-stage>
+            <!-- 스크롤 길이를 만드는 트랙. 각 구간에 진입하면 같은 index의
+                 .journey-step이 활성화된다(js/journey-stage.js). -->
+            <div class="journey-track" data-journey-track>
+              <div class="journey-track-step" data-journey-track-step="0"></div>
+              <div class="journey-track-step" data-journey-track-step="1"></div>
+              <div class="journey-track-step" data-journey-track-step="2"></div>
+            </div>
 
-              <p class="desc">사전 진단으로 조직의 현재 역량 수준을 먼저 확인합니다. <br> 그 결과를 바탕으로 SkillPath·SkillCamp·SkillFit 중
-                가장 적합한 방식을 골라 과정을 설계합니다.</p>
-            </article>
+            <!-- 판은 하나로 고정되고, 안의 내용만 교차 페이드된다.
+                 PART 2의 diagnosis-preview-panel과 같은 glass 판(.surface-glass)을 쓴다. -->
+            <div class="journey-viewport surface-glass">
+              <article class="journey-step is-active" data-journey-step="0">
+                <div class="journey-step-head">
+                  <p class="text-label brand">SkillPath · 온라인 이러닝</p>
+                  <h3 class="journey-step-title">각자의 속도로,<br>기초부터 탄탄하게</h3>
+                  <p class="desc">직무별 커리큘럼을 온라인으로 학습합니다. <br> 진도와 이수율이 자동으로 기록되어 관리자가 한눈에 봅니다.</p>
+                </div>
 
-            <article class="journey-block surface-glass" data-journey-target="1">
-              <p class="journey-block-index">02</p>
-              <div class="journey-block-head">
-                <p class="text-label brand">02. 교육</p>
-                <h3 class="journey-block-title">직무·수준별<br>실무 중심 학습</h3>
-              </div>
+                <!-- 목업: 수강 중인 커리큘럼 진도 화면 -->
+                <div class="journey-mock" aria-hidden="true">
+                  <div class="journey-mock-head">
+                    <span class="journey-mock-title">업무 자동화 기초 과정</span>
+                    <span class="journey-mock-badge">수강 중</span>
+                  </div>
 
-              <p class="desc">전 직원이 같은 내용을 배우지 않습니다. <br> 개발·비개발, 초급·중급·고급으로 나누어
-                각자의 업무에 바로 쓸 수 있는 실무형 커리큘럼으로 진행합니다.</p>
-            </article>
+                  <div class="journey-mock-progress">
+                    <div class="journey-mock-progress-bar"><span style="width: 68%"></span></div>
+                    <span class="text-caption strong">68%</span>
+                  </div>
 
-            <article class="journey-block surface-glass" data-journey-target="2">
-              <p class="journey-block-index">03</p>
-              <div class="journey-block-head">
-                <p class="text-label brand">03. 현장 적용</p>
-                <h3 class="journey-block-title">배운 것을 <br> 실제 업무에 바로 적용</h3>
-              </div>
+                  <ul class="journey-mock-list">
+                    <li class="journey-mock-item is-done">
+                      <span class="journey-mock-check"></span>
+                      <span class="journey-mock-item-name">AI 도구 이해하기</span>
+                      <span class="text-caption">12분</span>
+                    </li>
+                    <li class="journey-mock-item is-done">
+                      <span class="journey-mock-check"></span>
+                      <span class="journey-mock-item-name">프롬프트 작성 기본</span>
+                      <span class="text-caption">18분</span>
+                    </li>
+                    <li class="journey-mock-item is-current">
+                      <span class="journey-mock-check"></span>
+                      <span class="journey-mock-item-name">반복 업무 자동화 실습</span>
+                      <span class="text-caption">24분</span>
+                    </li>
+                  </ul>
+                </div>
+              </article>
 
-              <p class="desc">교육으로 끝내지 않습니다. <br> 재진단과 사내 공유 문화까지 설계해, 키운 역량이 조직에 남게 합니다.</p>
-            </article>
+              <article class="journey-step" data-journey-step="1">
+                <div class="journey-step-head">
+                  <p class="text-label brand">SkillCamp · 라이브 교육</p>
+                  <h3 class="journey-step-title">현업 전문가와<br>실전처럼 부딪힙니다</h3>
+                  <p class="desc">강사 주도 라이브 세션에서 실제 업무 과제로 프로젝트를 수행합니다. <br> 질문하고, 막히고, 해결하며 배웁니다.</p>
+                </div>
+
+                <!-- 목업: 라이브 세션 중 강사-수강생 대화 화면 -->
+                <div class="journey-mock" aria-hidden="true">
+                  <div class="journey-mock-head">
+                    <span class="journey-mock-title">실전 프로젝트 세션</span>
+                    <span class="journey-mock-badge is-live">LIVE</span>
+                  </div>
+
+                  <div class="journey-mock-speaker">
+                    <span class="journey-mock-avatar">김</span>
+                    <span class="journey-mock-speaker-body">
+                      <span class="journey-mock-item-name">김강사 · 현직 FDE</span>
+                      <span class="text-caption">보고서 자동화 에이전트 만들기</span>
+                    </span>
+                  </div>
+
+                  <ul class="journey-mock-chat">
+                    <li class="journey-mock-bubble">방금 만든 에이전트, 실제 업무에 바로 써봐도 되나요?</li>
+                    <li class="journey-mock-bubble is-mine">네, 지금 화면 공유로 같이 붙여볼게요</li>
+                    <li class="journey-mock-bubble">저희 팀 주간보고에 적용했더니 30분 걸리던 게 3분이에요</li>
+                  </ul>
+
+                  <p class="journey-mock-foot">참여 24명 · 실습 진행 중</p>
+                </div>
+              </article>
+
+              <article class="journey-step" data-journey-step="2">
+                <div class="journey-step-head">
+                  <p class="text-label brand">SkillFit · AI 적응형 학습</p>
+                  <h3 class="journey-step-title">실력에 맞춰<br>난이도가 따라옵니다</h3>
+                  <p class="desc">진단 결과와 학습 데이터에 맞춰 <br> AI가 문제 난이도와 경로를 실시간으로 조정합니다. <br> 쉬우면 올리고, 막히면 낮춥니다.</p>
+                </div>
+
+                <!-- 목업: 정답률에 따라 난이도가 조정되는 화면 -->
+                <div class="journey-mock" aria-hidden="true">
+                  <div class="journey-mock-head">
+                    <span class="journey-mock-title">적응형 학습 경로</span>
+                    <span class="journey-mock-badge">난이도 자동 조정</span>
+                  </div>
+
+                  <div class="journey-mock-metric">
+                    <span class="text-caption">최근 정답률</span>
+                    <span class="journey-mock-metric-value">92%</span>
+                    <span class="journey-mock-metric-delta">난이도 ↑ 상향</span>
+                  </div>
+
+                  <ul class="journey-mock-list">
+                    <li class="journey-mock-item is-done">
+                      <span class="journey-mock-level">기초</span>
+                      <span class="journey-mock-item-name">프롬프트 구조화</span>
+                      <span class="text-caption">완료</span>
+                    </li>
+                    <li class="journey-mock-item is-current">
+                      <span class="journey-mock-level is-current">심화</span>
+                      <span class="journey-mock-item-name">업무 데이터 연결 실습</span>
+                      <span class="text-caption">학습 중</span>
+                    </li>
+                    <li class="journey-mock-item">
+                      <span class="journey-mock-level">응용</span>
+                      <span class="journey-mock-item-name">사내 에이전트 설계</span>
+                      <span class="text-caption">예정</span>
+                    </li>
+                  </ul>
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -916,6 +1007,7 @@
   <script src="js/proof-card-slider.js"></script>
   <script src="js/stat-reveal.js"></script>
   <script src="js/part-nav.js"></script>
+  <script src="js/journey-stage.js"></script>
   <script src="js/insight-slider.js"></script>
 </body>
 
