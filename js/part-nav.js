@@ -11,8 +11,6 @@
  *
  * 활성 표시는 클릭뿐 아니라 스크롤 위치로도 갱신된다 — 지금 화면에 보이는 파트와
  * nav의 표시가 어긋나면 nav가 현재 위치를 알려주는 역할을 못 한다.
- * 같은 판정으로 좌측 카피 컬럼의 교차 페이드도 함께 제어한다(.is-leaving):
- * 자기 구간을 벗어난 파트의 카피는 fade out 되고 다음 파트의 카피가 fade in 된다.
  */
 (() => {
   const navs = Array.from(document.querySelectorAll('[data-part-nav]'));
@@ -121,14 +119,13 @@
    *  journey-stage.js가 스텝을 고르는 것과 같은 방식이다.)
    */
   const parts = partIds
-    .map((id) => ({
-      id,
-      section: document.getElementById(id),
-      sticky: document.getElementById(id)?.querySelector('[data-part-copy]'),
-    }))
+    .map((id) => ({ id, section: document.getElementById(id) }))
     .filter(({ section }) => section);
 
   const syncToScroll = () => {
+    /* 뷰포트 중앙선을 품은 섹션을 활성으로 잡는다 — 중앙선 기준이면 활성 섹션이
+       항상 최대 1개라 경계에서 두 파트가 다투지 않는다(journey-stage.js가
+       스텝을 고르는 것과 같은 방식). */
     const line = window.innerHeight / 2;
 
     const current = parts.find(({ section }) => {
@@ -137,14 +134,10 @@
     });
 
     /* 두 파트 구간을 모두 벗어난 위치(앞뒤 다른 섹션)에서는 마지막 상태를 유지한다 —
-       지나온 파트의 카피를 굳이 지울 이유가 없고, 깜빡임만 생긴다. */
+       지나온 파트의 표시를 굳이 지울 이유가 없고, 깜빡임만 생긴다. */
     if (!current) return;
 
     if (current.id !== activeId) activate(current.id);
-
-    parts.forEach(({ id, sticky }) => {
-      if (sticky) sticky.classList.toggle('is-leaving', id !== current.id);
-    });
   };
 
   /* 스크롤마다 getBoundingClientRect를 부르므로 프레임당 한 번으로 묶는다. */

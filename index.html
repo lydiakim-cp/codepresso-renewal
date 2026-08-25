@@ -416,7 +416,7 @@
     <div class="parts-group">
       <section class="education-journey fade-up" id="part1-education">
         <div class="section-wrap education-journey-layout">
-          <div class="education-journey-sticky" data-part-copy>
+          <div class="education-journey-sticky">
             <div class="section-title">
               <nav class="part-nav" data-part-nav aria-label="교육·진단 섹션 이동">
                 <span class="part-nav-indicator" data-part-nav-indicator aria-hidden="true"></span>
@@ -572,8 +572,8 @@
               <article class="journey-step" data-journey-step="2">
                 <div class="journey-step-head">
                   <p class="text-label brand">SkillFit · AI 적응형 학습</p>
-                  <h3 class="journey-step-title">실력에 맞춰<br>난이도가 따라옵니다</h3>
-                  <p class="desc">진단 결과와 학습 데이터에 맞춰 <br> AI가 문제 난이도와 경로를 실시간으로 조정합니다. <br> 쉐우면 올리고, 막히면 낮춥니다.</p>
+                  <h3 class="journey-step-title">실력에 맞춘 난이도가 따라옵니다</h3>
+                  <p class="desc">진단 결과와 학습 데이터에 맞추어 <br> AI가 문제 난이도와 경로를 실시간으로 조정합니다. </p>
                 </div>
 
                 <!-- 목업: 실제 SkillFit 학습 화면(아이콘 레일 · 스킬 목록 · 레슨 · AI 튜터)을
@@ -696,7 +696,7 @@
 
       <section class="diagnosis-showcase fade-up" id="part2-diagnosis">
         <div class="section-wrap diagnosis-layout">
-          <div class="diagnosis-sticky" data-part-copy>
+          <div class="diagnosis-sticky">
             <div class="section-title">
               <nav class="part-nav" data-part-nav aria-label="교육·진단 섹션 이동">
                 <span class="part-nav-indicator" data-part-nav-indicator aria-hidden="true"></span>
@@ -776,154 +776,380 @@
       </section>
     </div>
 
-    <!-- PART 3 · 차별점. education-journey(PART 1)와 같은 뼈대 —
-         좌측 카피는 sticky로 붙어 있고, 우측에서 ①②③ 근거가 순서대로 스크롤된다.
-         우측 블록은 위에서 아래로 읽으면 "정량적 관리 → 문화 정착 → 현장 검증"
-         순으로 차이를 학습하게 되는 순서다. -->
+    <!-- PART 3 · 차별점. 좌우 2단 sticky가 아니라 상하 배치다 —
+         상단에 섹션 카피 + CTA, 가운데에 세 가지 차이를 한 화면에 담은 제품 목업,
+         하단에 그 화면을 ①②③로 풀어 읽는 설명 3열.
+         목업 안의 본문은 스켈레톤 바로 접고, 세 가지 차이를 증명하는 수치·라벨만
+         실제 텍스트로 남긴다 — 읽을 것을 줄여야 무엇을 보라는 건지 전달된다. -->
     <section class="difference fade-up" id="part3-difference">
       <div class="section-wrap difference-layout">
 
-        <!-- 좌측 — 스크롤 내내 붙어 있는 섹션 카피 + CTA -->
-        <div class="difference-sticky">
+        <!-- 상단 헤더 — proof 섹션과 같은 구성. 타이틀·설명은 좌, CTA는 우. -->
+        <div class="section-header">
           <div class="section-title">
             <p class="tag">03 · The Difference</p>
             <h2 class="text-left">다른 교육 회사와,<br>다른 세 가지가 있습니다</h2>
-            <p class="desc">진단·재진단으로 교육을 정량적으로 관리하고,<br>
-              공유 허브와 라이브러리로 문화 정착까지 설계합니다.<br>
+            <p class="desc">진단·재진단으로 교육을 정량적으로 관리하고, 공유 허브와 라이브러리로 문화 정착까지 설계합니다. <br>
               그리고 우리는 FDE 현장을 직접 뛰는 회사입니다.</p>
           </div>
-
-          <a href="#" class="btn btn-primary">코드프레소의 차별점 보기</a>
+          <div class="section-cta">
+            <a href="#" class="btn btn-primary">코드프레소의 차별점 보기</a>
+          </div>
         </div>
 
-        <!-- 우측 — 순서대로 읽는 근거 블록 -->
-        <div class="difference-scroll">
+        <!-- 세 가지 차이를 각각 한 화면씩 보여주는 목업.
+             5초마다 화면이 교차 페이드로 바뀌고(js/difference-cycle.js), 아래 legend가
+             지금 몇 번째 화면인지 알려주는 인디케이터를 겸한다.
+             장식이라 스크린리더에는 숨기고, legend가 같은 내용을 글로 전달한다. -->
+        <div class="difference-mock" aria-hidden="true">
+          <!-- 하늘색 배경 위에 흰 브라우저 창이 떠 있는 형태.
+               배경은 바깥 .difference-mock이, 창은 안쪽 .difference-window가 그린다. -->
+          <div class="difference-window">
 
-          <!-- ① 정량적 관리 — 같은 잣대로 두 번 재는 시간 흐름.
-               가운데(교육)만 브랜드 판으로 채워 코드프레소의 중심을 위계로 보여준다. -->
-          <article class="difference-block surface-glass">
-            <p class="text-label brand">① 정량적 관리</p>
+            <!-- 창 상단 바 — 실제 제품 화면이라는 신호만 준다. -->
+            <div class="difference-mock-bar">
+              <span class="difference-mock-dots"><i></i><i></i><i></i></span>
+            </div>
 
-            <ol class="difference-steps">
-              <li class="difference-step">
-                <span class="difference-step-icon" aria-hidden="true">
-                  <!-- 체크리스트 — 역량을 항목별로 확인한다 -->
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 5h9M9 12h9M9 19h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-                    <path d="M3.5 5.2l1.4 1.4 2.2-2.4M3.5 12.2l1.4 1.4 2.2-2.4M3.5 19.2l1.4 1.4 2.2-2.4"
-                      stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <strong class="difference-step-name">진단</strong>
-                <p class="text-caption">IT·AI 실무<br>역량 확인</p>
-              </li>
+            <!-- 3화면 스테이지. 같은 그리드 셀에 겹쳐두고 교차 페이드한다. -->
+            <div class="difference-screens" data-difference-screens>
 
-              <li class="difference-step is-core">
-                <span class="difference-step-icon" aria-hidden="true">
-                  <!-- 상승 그래프 — 역량이 올라간다 -->
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 20h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-                    <path d="M4 15.5l5-5 4 3.5 6.5-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                    <path d="M15.5 7h4.5v4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <strong class="difference-step-name">교육</strong>
-                <p class="text-caption">수준과 직무에<br>맞는 학습 제공</p>
-              </li>
+              <!-- ① 정량적 관리 — 교육 전후를 같은 잣대로 두 번 잰 리포트 화면. -->
+              <div class="difference-screen is-active" data-difference-screen="0">
+                <div class="difference-screen-head">
+                  <span class="difference-screen-title">역량 변화 리포트</span>
+                  <span class="difference-chip is-brand">2분기 · 개발본부 128명</span>
+                </div>
 
-              <li class="difference-step">
-                <span class="difference-step-icon" aria-hidden="true">
-                  <!-- 다시 재는 계기판 — 같은 잣대로 두 번째 측정 -->
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20.5 12a8.5 8.5 0 1 0-3.1 6.6" stroke="currentColor" stroke-width="1.6"
-                      stroke-linecap="round" />
-                    <path d="M20.5 7v5h-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                    <path d="M12 8.5v4l2.5 1.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <strong class="difference-step-name">재진단</strong>
-                <p class="text-caption">교육 전후<br>역량 변화 확인</p>
-              </li>
-            </ol>
-          </article>
+                <div class="difference-screen-body is-report">
 
-          <!-- ② 문화 정착 — 개인에서 조직으로 넓어지는 확산.
-               카드 폭이 아래로 갈수록 넓어져 "범위가 커진다"를 형태로 보여준다. -->
-          <article class="difference-block surface-glass">
-            <p class="text-label brand">② 문화 정착</p>
+                  <!-- 좌 — 총점 카드. 이 화면의 결론(+37점)을 가장 크게 둔다. -->
+                  <div class="difference-card is-score">
+                    <span class="difference-card-label">평균 역량 점수</span>
+                    <span class="difference-score">
+                      <strong>78</strong>
+                      <span class="difference-score-unit">점</span>
+                    </span>
+                    <span class="difference-delta">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      37점
+                    </span>
+                    <span class="difference-gauge-bar"><span style="width: 78%"></span></span>
+                    <span class="difference-card-foot">교육 전 41점 → 교육 후 78점</span>
+                  </div>
 
-            <ol class="difference-spread">
-              <li class="difference-spread-row">
-                <span class="difference-step-icon" aria-hidden="true">
-                  <!-- 공유 노드 — 한 곳에서 여러 곳으로 퍼진다 -->
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="6" cy="12" r="2.6" stroke="currentColor" stroke-width="1.6" />
-                    <circle cx="18" cy="6" r="2.6" stroke="currentColor" stroke-width="1.6" />
-                    <circle cx="18" cy="18" r="2.6" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8.3 10.8l7.4-3.6M8.3 13.2l7.4 3.6" stroke="currentColor" stroke-width="1.6"
-                      stroke-linecap="round" />
-                  </svg>
-                </span>
-                <strong class="difference-step-name">공유 허브</strong>
-                <p class="text-caption">에이전트·프롬프트를<br>사내에 공유</p>
-              </li>
+                  <!-- 중 — 영역별 진단/재진단 쌍. 막대 두 줄이 곧 "같은 잣대로 두 번" -->
+                  <div class="difference-card">
+                    <span class="difference-card-label">영역별 변화</span>
 
-              <li class="difference-spread-row">
-                <span class="difference-step-icon" aria-hidden="true">
-                  <!-- 쌓이는 층 — 자산이 축적된다 -->
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 8l8-4 8 4-8 4-8-4z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                    <path d="M4 12.5l8 4 8-4M4 17l8 4 8-4" stroke="currentColor" stroke-width="1.6"
-                      stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <strong class="difference-step-name">라이브러리</strong>
-                <p class="text-caption">검증된 자산을<br>차곡차곡 축적</p>
-              </li>
+                    <ul class="difference-bars">
+                      <li class="difference-bar-row">
+                        <span class="difference-bar-name">프롬프트 설계</span>
+                        <span class="difference-bar-pair">
+                          <span class="difference-gauge-bar is-sm"><span style="width: 44%"></span></span>
+                          <span class="difference-gauge-bar is-sm is-after"><span style="width: 86%"></span></span>
+                        </span>
+                        <span class="difference-bar-value">+42</span>
+                      </li>
+                      <li class="difference-bar-row">
+                        <span class="difference-bar-name">에이전트 구축</span>
+                        <span class="difference-bar-pair">
+                          <span class="difference-gauge-bar is-sm"><span style="width: 32%"></span></span>
+                          <span class="difference-gauge-bar is-sm is-after"><span style="width: 71%"></span></span>
+                        </span>
+                        <span class="difference-bar-value">+39</span>
+                      </li>
+                      <li class="difference-bar-row">
+                        <span class="difference-bar-name">데이터 분석</span>
+                        <span class="difference-bar-pair">
+                          <span class="difference-gauge-bar is-sm"><span style="width: 48%"></span></span>
+                          <span class="difference-gauge-bar is-sm is-after"><span style="width: 74%"></span></span>
+                        </span>
+                        <span class="difference-bar-value">+26</span>
+                      </li>
+                    </ul>
 
-              <li class="difference-spread-row">
-                <span class="difference-step-icon" aria-hidden="true">
-                  <!-- 조직 전체 — 여러 사람이 함께 쓴다 -->
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="7" r="2.8" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M6.5 20a5.5 5.5 0 0 1 11 0" stroke="currentColor" stroke-width="1.6"
-                      stroke-linecap="round" />
-                    <path d="M4 15.5a4 4 0 0 1 2.6-2.3M20 15.5a4 4 0 0 0-2.6-2.3" stroke="currentColor"
-                      stroke-width="1.6" stroke-linecap="round" />
-                    <circle cx="4.6" cy="9.4" r="1.9" stroke="currentColor" stroke-width="1.6" />
-                    <circle cx="19.4" cy="9.4" r="1.9" stroke="currentColor" stroke-width="1.6" />
-                  </svg>
-                </span>
-                <strong class="difference-step-name">전사 확산</strong>
-                <p class="text-caption">팀을 넘어 조직<br>전체의 문화로</p>
-              </li>
-            </ol>
-          </article>
+                    <span class="difference-legend-key">
+                      <span class="difference-key"><i></i>교육 전 진단</span>
+                      <span class="difference-key is-brand"><i></i>교육 후 재진단</span>
+                    </span>
+                  </div>
 
-          <!-- ③ 현장 검증 — 카드로 나누지 않는 마무리 선언.
-               이 섹션의 유일한 다크 판이라 세 근거의 결론으로 읽힌다. -->
-          <article class="difference-block is-closing">
-            <span class="difference-closing-mark" aria-hidden="true">
-              <!-- 방패 안 체크 — 현장에서 검증됐다는 보증 -->
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2.8l7.2 2.7v6.1c0 4.3-2.9 8.2-7.2 9.6-4.3-1.4-7.2-5.3-7.2-9.6V5.5L12 2.8z"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M8.8 12.2l2.3 2.3 4.1-4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </span>
+                  <!-- 우 — 분포 곡선. 조직 전체가 통째로 오른쪽으로 밀렸다는 그림. -->
+                  <div class="difference-card">
+                    <span class="difference-card-label">점수 분포 이동</span>
 
-            <p class="difference-closing-text">③ 그리고 우리는 AXMOS 얼라이언스와 함께 FDE 현장을 직접 뜁니다.
-              <strong>현장에서 검증한 것만 가르칩니다.</strong>
-            </p>
-          </article>
+                    <svg class="difference-curve" viewBox="0 0 200 96" fill="none"
+                      xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                      <!-- 격자 -->
+                      <path d="M0 24h200M0 48h200M0 72h200" stroke="currentColor" stroke-width="1"
+                        class="difference-curve-grid" />
+                      <!-- 교육 전 — 왼쪽에 몰려 있다 -->
+                      <path d="M0 88c24 0 34-38 56-38s30 30 52 30 34-14 56-14 26 8 36 8v14H0V88Z"
+                        class="difference-curve-before" />
+                      <!-- 교육 후 — 오른쪽으로 이동 -->
+                      <path d="M0 92c30 0 46-8 68-8s28-40 50-40 32 34 54 34 28 6 28 6v4H0v4Z"
+                        class="difference-curve-after" />
+                    </svg>
 
+                    <span class="difference-card-foot">하위 구간이 줄고 상위 구간이 두꺼워졌습니다</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ② 문화 정착 — 검증된 자산이 사내에 공유·축적되는 라이브러리 화면. -->
+              <div class="difference-screen" data-difference-screen="1">
+                <div class="difference-screen-head">
+                  <span class="difference-screen-title">사내 자산 라이브러리</span>
+                  <span class="difference-chip is-brand">누적 438건</span>
+                </div>
+
+                <div class="difference-screen-body is-library">
+
+                  <!-- 좌 — 확산 범위. 행 폭이 넓어지며 개인 → 팀 → 전사로 커진다. -->
+                  <div class="difference-card">
+                    <span class="difference-card-label">확산 범위</span>
+
+                    <ul class="difference-spread">
+                      <li class="difference-spread-row">
+                        <span class="difference-spread-icon">
+                          <!-- 사람 하나 — 개인 -->
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7" />
+                            <path d="M5.5 19.5a6.5 6.5 0 0 1 13 0" stroke="currentColor" stroke-width="1.7"
+                              stroke-linecap="round" />
+                          </svg>
+                        </span>
+                        <span class="difference-spread-name">공유 허브</span>
+                        <span class="difference-spread-count">12</span>
+                      </li>
+                      <li class="difference-spread-row">
+                        <span class="difference-spread-icon">
+                          <!-- 쌓이는 층 — 축적 -->
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 8l8-4 8 4-8 4-8-4z" stroke="currentColor" stroke-width="1.7"
+                              stroke-linejoin="round" />
+                            <path d="M4 12.5l8 4 8-4M4 17l8 4 8-4" stroke="currentColor" stroke-width="1.7"
+                              stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </span>
+                        <span class="difference-spread-name">라이브러리</span>
+                        <span class="difference-spread-count">86</span>
+                      </li>
+                      <li class="difference-spread-row is-core">
+                        <span class="difference-spread-icon">
+                          <!-- 여러 노드 — 전사 -->
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="6" cy="12" r="2.4" stroke="currentColor" stroke-width="1.7" />
+                            <circle cx="18" cy="6" r="2.4" stroke="currentColor" stroke-width="1.7" />
+                            <circle cx="18" cy="18" r="2.4" stroke="currentColor" stroke-width="1.7" />
+                            <path d="M8.2 10.9l7.5-3.7M8.2 13.1l7.5 3.7" stroke="currentColor" stroke-width="1.7"
+                              stroke-linecap="round" />
+                          </svg>
+                        </span>
+                        <span class="difference-spread-name">전사 확산</span>
+                        <span class="difference-spread-count">340</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- 중 — 실제 공유된 자산 카드들. 라이브러리라는 게 눈에 보이게 한다. -->
+                  <div class="difference-card">
+                    <span class="difference-card-label">최근 공유된 자산</span>
+
+                    <ul class="difference-assets">
+                      <li class="difference-asset">
+                        <span class="difference-asset-icon">
+                          <!-- 대화 — 프롬프트 -->
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 15a3 3 0 0 1-3 3H8l-4 3V6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v9Z"
+                              stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+                          </svg>
+                        </span>
+                        <span class="difference-asset-body">
+                          <span class="difference-asset-name">주간보고 자동 요약</span>
+                          <span class="skeleton-line is-short"></span>
+                        </span>
+                        <span class="difference-chip">프롬프트</span>
+                      </li>
+                      <li class="difference-asset">
+                        <span class="difference-asset-icon">
+                          <!-- 톱니 — 에이전트 -->
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7" />
+                            <path
+                              d="M12 3v2.5m0 13V21M3 12h2.5m13 0H21M5.6 5.6l1.8 1.8m9.2 9.2 1.8 1.8M18.4 5.6l-1.8 1.8m-9.2 9.2-1.8 1.8"
+                              stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                          </svg>
+                        </span>
+                        <span class="difference-asset-body">
+                          <span class="difference-asset-name">계약서 리스크 검토</span>
+                          <span class="skeleton-line is-short"></span>
+                        </span>
+                        <span class="difference-chip">에이전트</span>
+                      </li>
+                      <li class="difference-asset">
+                        <span class="difference-asset-icon">
+                          <!-- 표 — 데이터 워크플로 -->
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3.5" y="4.5" width="17" height="15" rx="2.5" stroke="currentColor"
+                              stroke-width="1.7" />
+                            <path d="M3.5 9.5h17M9.5 9.5v10" stroke="currentColor" stroke-width="1.7" />
+                          </svg>
+                        </span>
+                        <span class="difference-asset-body">
+                          <span class="difference-asset-name">매출 데이터 파이프라인</span>
+                          <span class="skeleton-line is-short"></span>
+                        </span>
+                        <span class="difference-chip">워크플로</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- 우 — 누적 그래프. 시간이 갈수록 쌓인다는 것이 이 화면의 요점. -->
+                  <div class="difference-card">
+                    <span class="difference-card-label">분기별 누적</span>
+
+                    <div class="difference-columns">
+                      <span class="difference-column" style="--col: 22%"><i></i></span>
+                      <span class="difference-column" style="--col: 38%"><i></i></span>
+                      <span class="difference-column" style="--col: 51%"><i></i></span>
+                      <span class="difference-column" style="--col: 70%"><i></i></span>
+                      <span class="difference-column is-core" style="--col: 100%"><i></i></span>
+                    </div>
+
+                    <span class="difference-card-foot">검증된 자산 <strong>438건</strong> 누적</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ③ 현장 검증 — 다크 판. 이 섹션의 결론이라 화면 전체를 어둡게 쓴다. -->
+              <div class="difference-screen is-dark" data-difference-screen="2">
+                <div class="difference-screen-head">
+                  <span class="difference-screen-title">AXMOS 얼라이언스 · FDE 현장</span>
+                  <span class="difference-chip is-brand">검증 완료</span>
+                </div>
+
+                <div class="difference-screen-body is-field">
+
+                  <!-- 좌 — 보증 마크와 결론 한 문장. -->
+                  <div class="difference-card is-seal">
+                    <span class="difference-closing-mark">
+                      <!-- 방패 안 체크 — 현장에서 검증됐다는 보증 -->
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.8l7.2 2.7v6.1c0 4.3-2.9 8.2-7.2 9.6-4.3-1.4-7.2-5.3-7.2-9.6V5.5L12 2.8z"
+                          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M8.8 12.2l2.3 2.3 4.1-4.4" stroke="currentColor" stroke-width="1.8"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                    <p class="difference-closing-text">현장에서 검증한 것만<br><strong>교육으로 만듭니다</strong></p>
+                  </div>
+
+                  <!-- 중 — 실제 투입 현장 목록. 검증 배지가 붙어 있다. -->
+                  <div class="difference-card">
+                    <span class="difference-card-label">FDE 투입 현장</span>
+
+                    <ul class="difference-verified">
+                      <li class="difference-verified-row">
+                        <span class="difference-asset-icon">
+                          <!-- 공장 — 제조 -->
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 20V10l5 3V10l5 3V6l6 3v11H4Z" stroke="currentColor" stroke-width="1.7"
+                              stroke-linejoin="round" />
+                          </svg>
+                        </span>
+                        <span class="difference-asset-body">
+                          <span class="difference-asset-name">제조 · 품질 검사 자동화</span>
+                          <span class="skeleton-line is-short"></span>
+                        </span>
+                        <span class="difference-verified-mark">검증</span>
+                      </li>
+                      <li class="difference-verified-row">
+                        <span class="difference-asset-icon">
+                          <!-- 카드 — 금융 -->
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor"
+                              stroke-width="1.7" />
+                            <path d="M3 10.5h18" stroke="currentColor" stroke-width="1.7" />
+                          </svg>
+                        </span>
+                        <span class="difference-asset-body">
+                          <span class="difference-asset-name">금융 · 여신 심사 보조</span>
+                          <span class="skeleton-line is-short"></span>
+                        </span>
+                        <span class="difference-verified-mark">검증</span>
+                      </li>
+                      <li class="difference-verified-row">
+                        <span class="difference-asset-icon">
+                          <!-- 카트 — 유통 -->
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 4h2.2l2.3 10.5h9.6L19 7H6" stroke="currentColor" stroke-width="1.7"
+                              stroke-linecap="round" stroke-linejoin="round" />
+                            <circle cx="9" cy="19" r="1.4" stroke="currentColor" stroke-width="1.7" />
+                            <circle cx="17" cy="19" r="1.4" stroke="currentColor" stroke-width="1.7" />
+                          </svg>
+                        </span>
+                        <span class="difference-asset-body">
+                          <span class="difference-asset-name">유통 · 수요 예측</span>
+                          <span class="skeleton-line is-short"></span>
+                        </span>
+                        <span class="difference-verified-mark">검증</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- 우 — 현장에서 교육으로 되돌아오는 순환. 이 회사가 왜 다른지의 근거. -->
+                  <div class="difference-card">
+                    <span class="difference-card-label">현장 → 교육 반영</span>
+
+                    <ol class="difference-flow">
+                      <li class="difference-flow-step">
+                        <span class="difference-flow-dot"></span>
+                        <span class="difference-asset-name">현장 투입</span>
+                      </li>
+                      <li class="difference-flow-step">
+                        <span class="difference-flow-dot"></span>
+                        <span class="difference-asset-name">문제 해결</span>
+                      </li>
+                      <li class="difference-flow-step is-core">
+                        <span class="difference-flow-dot"></span>
+                        <span class="difference-asset-name">교육 콘텐츠화</span>
+                      </li>
+                    </ol>
+
+                    <span class="difference-card-foot">현장 사례 <strong>52건</strong>이 커리큘럼에 반영</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
+
+        <!-- 목업을 글로 푸는 설명 3열이자, 지금 몇 번째 화면인지 알려주는 인디케이터.
+             활성 항목만 브랜드 컬러 + 진행바가 차오르고 나머지는 흐려진다. -->
+        <ol class="difference-legend" data-difference-legend>
+          <li class="difference-legend-item is-active" data-difference-legend-item="0">
+            <span class="difference-legend-progress"><span class="difference-legend-progress-bar"></span></span>
+            <strong class="difference-legend-title">정량적 관리</strong>
+            <p class="desc">교육 전후 역량을 같은 문항·같은 기준으로 두 번 잽니다. 무엇이 얼마나 늘었는지 점수로 보고할 수 있습니다.</p>
+          </li>
+          <li class="difference-legend-item" data-difference-legend-item="1">
+            <span class="difference-legend-progress"><span class="difference-legend-progress-bar"></span></span>
+            <strong class="difference-legend-title">문화 정착</strong>
+            <p class="desc">검증된 에이전트와 프롬프트가 사내에 공유·축적됩니다. 한 팀의 역량이 조직 전체의 기본기가 됩니다.</p>
+          </li>
+          <li class="difference-legend-item" data-difference-legend-item="2">
+            <span class="difference-legend-progress"><span class="difference-legend-progress-bar"></span></span>
+            <strong class="difference-legend-title">현장 검증</strong>
+            <p class="desc">우리는 AXMOS 얼라이언스와 함께 FDE 현장을 직접 뜁니다. 현장에서 검증한 것만 가르칩니다.</p>
+          </li>
+        </ol>
+
       </div>
     </section>
 
@@ -934,125 +1160,84 @@
         <div class="section-title center">
           <p class="tag">Insight</p>
           <h2>최근 인사이트</h2>
-          <p class="desc">AI 역량 진단과 교육, 업무 자동화에 관한 <br>
-            코드프레소의 최신 사례와 분석을 확인하세요.</p>
+          <p class="desc">AI 역량 진단과 교육, 업무 자동화에 관한 코드프레소의 최신 사례와 분석을 확인하세요.</p>
         </div>
 
         <div class="section-content">
-          <!-- 트랙은 컨테이너 폭을 그대로 채우고, 좌우 버튼은 이 래퍼 기준으로 그 바깥에 놓인다. -->
-          <div class="insight-slider" data-insight-slider>
-            <button type="button" class="insight-nav prev" aria-label="이전 인사이트 보기">
-              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14.5 5.5L8 12l6.5 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </button>
+          <div class="insight-layout">
+            <!-- 가장 최근 기사 — 큰 썸네일로 좌측 절반을 차지한다. -->
+            <a class="insight-feature" href="https://www.newsis.com/view/ALSX20260629_0000006828" target="_blank" rel="noopener">
+              <div class="insight-feature-thumb">
+                <img src="https://mmx.prnasia.com/media/MS1873716/e7f99217463f4f01ad4a757a51402cc6.jpg?id=OA2738334&p=medium600" alt="">
+              </div>
+              <div class="insight-feature-body">
+                <div class="insight-feature-meta">
+                  <span class="tag">뉴스</span>
+                  <time class="text-caption" datetime="2026-06-29">2026-06-29</time>
+                </div>
+                <h3 class="insight-feature-title">AXMOS 컨소시엄, 부산정보산업진흥원•부산벤처기업협회와 'AX 사업협력' MOU 체결</h3>
+              </div>
+            </a>
 
-            <div class="insight-track-viewport">
-              <ul class="insight-track">
-                <li class="insight-card">
-                  <a href="https://www.yna.co.kr/view/RPR20260610006600353">
-                    <div class="insight-card-thumb">
-                      <img src="images/insight-thumb.svg" alt="">
-                    </div>
-                  </a>
-                  <div class="insight-card-body">
-                    <h3 class="insight-card-title"><a href="https://www.yna.co.kr/view/RPR20260610006600353">코드프레소 이동훈 대표, KBS 뉴스9 출연… AI 역량평가 중요성 &lt;AI Fluent&gt;로 조명</a>
-                    </h3>
-                    <div class="insight-card-meta">
-                      <span class="tag">뉴스</span>
-                      <time class="text-caption" datetime="2026-07-03">2026-07-03</time>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="insight-card">
-                  <a href="https://www.etoday.co.kr/news/view/2576115">
-                    <div class="insight-card-thumb">
-                      <img src="https://img.etoday.co.kr/pto_db/2026/04/20260415173028_2322177_1200_900.jpg" alt="">
-                    </div>
-                  </a>
-                  <div class="insight-card-body">
-                    <h3 class="insight-card-title"><a href="https://www.etoday.co.kr/news/view/2576115">코드프레소, GITEX AI ASIA '슈퍼노바' 본상…한국 스타트업 최초 수상</a></h3>
-                    <div class="insight-card-meta">
+            <!-- 나머지 기사 — 우측에서 제목·썸네일 한 줄씩 상하로 쌓인다. -->
+            <ul class="insight-list">
+              <li>
+                <a class="insight-row" href="https://www.etoday.co.kr/news/view/2576115" target="_blank" rel="noopener">
+                  <div class="insight-row-body">
+                    <div class="insight-row-meta">
                       <span class="tag">뉴스</span>
                       <time class="text-caption" datetime="2026-04-15">2026-04-15</time>
                     </div>
+                    <h3 class="insight-row-title">코드프레소, GITEX AI ASIA '슈퍼노바' 본상…한국 스타트업 최초 수상</h3>
                   </div>
-                </li>
-
-                <li class="insight-card">
-                  <a href="https://www.newsis.com/view/ALSX20260629_0000006828">
-                    <div class="insight-card-thumb">
-                      <img src="https://mmx.prnasia.com/media/MS1873716/e7f99217463f4f01ad4a757a51402cc6.jpg?id=OA2738334&p=medium600" alt="">
-                    </div>
-                  </a>
-                  <div class="insight-card-body">
-                    <h3 class="insight-card-title"><a href="https://www.newsis.com/view/ALSX20260629_0000006828">AXMOS 컨소시엄, 부산정보산업진흥원•부산벤처기업협회와 'AX 사업협력' MOU 체결</a></h3>
-                    <div class="insight-card-meta">
-                      <span class="tag">뉴스</span>
-                      <time class="text-caption" datetime="2026-06-29">2026-06-29</time>
-                    </div>
+                  <div class="insight-row-thumb">
+                    <img src="https://img.etoday.co.kr/pto_db/2026/04/20260415173028_2322177_1200_900.jpg" alt="">
                   </div>
-                </li>
-
-                <li class="insight-card">
-                  <a href="https://www.hankyung.com/newswire/article/4970127_KO70127_9">
-                    <div class="insight-card-thumb">
-                      <img src="https://mma.prnasia.com/media2/2989783/AI.jpg?p=medium600" alt="">
-                    </div>
-                  </a>
-                  <div class="insight-card-body">
-                    <h3 class="insight-card-title"><a href="https://www.hankyung.com/newswire/article/4970127_KO70127_9">코드프레소, 6월 6일 가족 'AI 동화책' 원데이 클래스 개최</a></h3>
-                    <div class="insight-card-meta">
+                </a>
+              </li>
+              <li>
+                <a class="insight-row" href="https://www.hankyung.com/newswire/article/4970127_KO70127_9" target="_blank" rel="noopener">
+                  <div class="insight-row-body">
+                    <div class="insight-row-meta">
                       <span class="tag">뉴스</span>
                       <time class="text-caption" datetime="2026-05-29">2026-05-29</time>
                     </div>
+                    <h3 class="insight-row-title">코드프레소, 6월 6일 가족 'AI 동화책' 원데이 클래스 개최</h3>
                   </div>
-                </li>
-
-                <li class="insight-card">
-                  <a href="https://www.asiae.co.kr/article/2026043014334321346">
-                    <div class="insight-card-thumb">
-                      <img src="https://cphoto.asiae.co.kr/listimglink/1/2026042216465136593_1776844012.jpg" alt="">
-                    </div>
-                  </a>
-                  <div class="insight-card-body">
-                    <h3 class="insight-card-title"><a href="https://www.asiae.co.kr/article/2026043014334321346">"AI 역량 평가 글로벌 표준 만들 것" — 코드프레소 대표 인터뷰</a></h3>
-                    <div class="insight-card-meta">
-                      <span class="tag">뉴스</span>
+                  <div class="insight-row-thumb">
+                    <img src="https://mma.prnasia.com/media2/2989783/AI.jpg?p=medium600" alt="">
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a class="insight-row" href="https://www.asiae.co.kr/article/2026043014334321346" target="_blank" rel="noopener">
+                  <div class="insight-row-body">
+                    <div class="insight-row-meta">
+                      <span class="tag">인터뷰</span>
                       <time class="text-caption" datetime="2026-05-03">2026-05-03</time>
                     </div>
+                    <h3 class="insight-row-title">"AI 역량 평가 글로벌 표준 만들 것" — 코드프레소 대표 인터뷰</h3>
                   </div>
-                </li>
-
-                <li class="insight-card">
-                  <a href="https://www.etnews.com/20260415000104">
-                    <div class="insight-card-thumb">
-                      <img src="https://img.etnews.com/news/article/2026/04/15/news-p.v1.20260415.855ca01c646146d6852c419894074ce7_P1.jpeg" alt="">
-                    </div>
-                  </a>
-                  <div class="insight-card-body">
-                    <h3 class="insight-card-title"><a href="https://www.etnews.com/20260415000104">비개발자도 AI로 앱 만든다 — 우먼 인 바이브코딩 글로벌 이벤트</a></h3>
-                    <div class="insight-card-meta">
-                      <span class="tag">뉴스</span>
-                      <time class="text-caption" datetime="2026-04-15">2026-04-15</time>
-                    </div>
+                  <div class="insight-row-thumb">
+                    <img src="https://cphoto.asiae.co.kr/listimglink/1/2026042216465136593_1776844012.jpg" alt="">
                   </div>
-                </li>
-              </ul>
-            </div>
-
-            <button type="button" class="insight-nav next" aria-label="다음 인사이트 보기">
-              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.5 5.5L16 12l-6.5 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </button>
+                </a>
+              </li>
+              <!-- 4번째 자리 — 기사가 3건뿐이라 빈 스켈레톤으로 자리를 잡아둔다.
+                   기사가 추가되면 위 .insight-row 구조로 교체한다. -->
+              <li class="insight-row-empty" aria-hidden="true">
+                <div class="insight-row-body">
+                  <span class="insight-skeleton is-tag"></span>
+                  <span class="insight-skeleton is-title"></span>
+                  <span class="insight-skeleton is-title is-short"></span>
+                </div>
+                <div class="insight-skeleton is-thumb"></div>
+              </li>
+            </ul>
           </div>
 
           <div class="insight-more">
-            <a href="#" class="btn btn-primary">인사이트 더보기 +</a>
+            <a href="https://www.codepresso.kr/news" class="btn btn-primary" target="_blank" rel="noopener">인사이트 더보기 +</a>
           </div>
         </div>
       </div>
@@ -1104,7 +1289,7 @@
   <script src="js/stat-reveal.js"></script>
   <script src="js/part-nav.js"></script>
   <script src="js/journey-stage.js"></script>
-  <script src="js/insight-slider.js"></script>
+  <script src="js/difference-cycle.js"></script>
 </body>
 
 </html>

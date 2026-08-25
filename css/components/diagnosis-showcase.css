@@ -8,6 +8,8 @@
  *       (그라디언트 글로우 프레임 + 글래스 카드 + 블루 섀도우)을 따른다.
  */
 
+/* education-journey-layout과 같은 이유로 start — sticky 요소가 자기 그리드
+   영역보다 작아야 그 안에서 움직일 여지가 생긴다(stretch면 travel 거리가 0). */
 .diagnosis-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -139,19 +141,17 @@
  * --------------------------------------------- */
 
 /* 트랙과 판을 같은 그리드 셀에 겹쳐 둔다 — 세로로 쌓으면 판이 트랙 '다음'에
-   놓여, sticky로 붙어 있을 스크롤 구간이 트랙에 남지 않는다. */
+   놓여, sticky로 붙어 있을 스크롤 구간이 트랙에 남지 않는다.
+   판 높이 = 이미지(600px 폭 × 616:480 비율) + 상하 padding 48px — 트랙 길이
+   계산과 중앙 정렬 offset이 같은 값을 써야 해서 변수로 묶는다.
+   (align-items: start를 레이아웃에서 이미 주므로 align-self는 필요 없다.) */
 .diagnosis-preview {
+  --diagnosis-panel-height: calc(600px * 480 / 616 + var(--space-48));
   display: grid;
 }
 
 .diagnosis-preview > * {
   grid-area: 1 / 1;
-}
-
-/* 판 높이 = 이미지(600px 폭 × 616:480 비율) + 상하 padding 48px.
-   트랙 길이 계산과 중앙 정렬 offset이 같은 값을 써야 해서 변수로 묶는다. */
-.diagnosis-preview {
-  --diagnosis-panel-height: calc(600px * 480 / 616 + var(--space-48));
 }
 
 /* 2단계 × 1화면. PART 1의 journey-track-step과 같은 척도. */

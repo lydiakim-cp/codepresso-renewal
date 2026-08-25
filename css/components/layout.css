@@ -131,9 +131,23 @@ section {
     transform var(--duration-scroll) var(--ease-scroll);
 }
 
+/* translateY(0)이 아니라 none으로 되돌린다 — translateY(0)도 엄연히 transform이라
+   그 요소가 자손의 containing block이 되고, 그러면 안쪽 position: sticky가
+   뷰포트가 아니라 이 섹션을 기준으로 붙어 페이지와 함께 밀려 올라간다. */
 .fade-up.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+}
+
+/* 안에 sticky 컬럼을 품은 섹션은 진입 모션에서 transform을 아예 쓰지 않는다.
+   위의 .is-visible이 transform을 없애 주지만, 그것이 붙기 전까지(= 화면에
+   들어오기 전) 섹션에 transform이 남아 있어 그동안 sticky가 죽는다. 이 섹션들은
+   화면 아래에서 스크롤로 진입하므로 바로 그 구간이 문제가 된다.
+   opacity만으로 진입시키면 containing block이 생기지 않는다. */
+.fade-up.education-journey,
+.fade-up.diagnosis-showcase,
+.fade-up.difference {
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
