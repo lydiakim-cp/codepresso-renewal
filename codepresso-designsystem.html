@@ -1,1152 +1,322 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>코드프레소 디자인 시스템 리뉴얼안</title>
+  <title>Codepresso Design Guide</title>
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pages/designsystem.css">
 </head>
+<body class="design-guide">
+  <header class="guide-topbar">
+    <a class="guide-brand" href="#overview" aria-label="Codepresso Design Guide 처음으로">
+      <span class="guide-brand-mark">C</span>
+      <span>CODEPRESSO</span><em>Design Guide</em>
+    </a>
+    <p>누구나 같은 화면을 만들 수 있도록 정리한 기준</p>
+  </header>
 
-<body>
-  <div class="wrap">
-
-    <section>
-      <h1>코드프레소 디자인 시스템 리뉴얼안</h1>
-      <p class="sub">기존 코드프레소 디자인 시스템 기반 · 채널톡(channel.io) 벤치마킹 반영 · 2026-08-18 · "폰트가 작다"는 피드백을 핵심 개선축으로 삼아 본문 16px 체계는
-        유지하고 상위 위계 사이즈만 확대했습니다.</p>
-
-      <div class="card">
-        <h3>한눈에 보기 — 무엇을 살리고, 무엇을 바꿨나</h3>
-        <div class="flex-row">
-          <span class="pill pill-key">Pretendard 유지</span><span class="pill pill-key">본문 16px 유지</span><span
-            class="pill pill-key">상위 스텝 확대</span>
-          <span class="pill pill-key">브랜드 블루 단색 유지</span><span class="pill pill-key">6px 스페이싱 스텝 유지</span><span
-            class="pill pill-key">라운드 6/8/12 유지</span>
-          <span class="pill pill-key">블루 섀도우 유지</span><span class="pill pill-key">Swiper 테마색 수정</span><span
-            class="pill pill-key">본문 텍스트색 4→1 통일</span>
-        </div>
-        <p class="description">기존 코드프레소 시스템의 뼈대(폰트·컬러·스페이싱·라운드·섀도우·모션)는 이미 견고합니다. 리뉴얼은 <b>새 시스템을
-            만드는 것이 아니라, 위계 표현력이 약한 지점만 정밀 보정</b>하는 방향입니다. 채널톡에서 가져온 것은 톤(다채로운 액센트, 큰 라운드)이 아니라 <b>구조(자간 공식, 3단 텍스트 위계,
-            gap-first 레이아웃)</b>입니다.</p>
+  <div class="guide-shell">
+    <aside class="guide-sidebar" aria-label="디자인 가이드 목차">
+      <p class="guide-sidebar-label">GUIDE</p>
+      <nav class="guide-nav">
+        <a class="is-active" href="#overview"><span>01</span>처음 보기</a>
+        <a href="#foundation"><span>02</span>기본 규칙</a>
+        <a href="#layout"><span>03</span>섹션 구성</a>
+        <a href="#components"><span>04</span>자주 쓰는 카드</a>
+        <a href="#motion"><span>05</span>움직임과 전환</a>
+        <a href="#patterns"><span>06</span>화면 패턴</a>
+        <a href="#usage"><span>07</span>컴포넌트 활용법</a>
+      </nav>
+      <div class="guide-sidebar-note">
+        <strong>현재 버전</strong>
+        <span>2026.08</span>
+        <p>새 화면을 만들기 전, 이 가이드의 구조를 먼저 확인하세요.</p>
       </div>
-    </section>
+    </aside>
 
-    <section>
-      <h2><span class="heading-number">C6</span>컴포넌트 — Section Body</h2>
-      <div class="card">
-        <p class="description">카드나 패널 안의 텍스트 배치를 공통 슬롯으로 제공한다. 기본 구조는 재사용하고, 사용처별 색상과 상태만 스코프를 좁혀 재정의한다.</p>
-        <div class="section-body" style="max-width:420px;margin:24px auto;padding:24px;border:1px solid var(--color-line);border-radius:12px">
-          <div class="section-body-heading"><p class="section-body-title">01 · 예시 라벨</p><span class="tag">공통</span></div>
-          <p class="section-body-subtitle">큰 보조 제목을 배치합니다</p>
-          <div class="section-body-description"><p class="desc">설명과 CTA를 이어 붙일 수 있는 텍스트 영역입니다.</p></div>
+    <main class="guide-main">
+      <section class="guide-section guide-hero" id="overview">
+        <p class="guide-eyebrow">CODEPRESSO DESIGN SYSTEM</p>
+        <h1>일관된 화면을<br>더 빠르게 만듭니다.</h1>
+        <p class="guide-intro">개발 지식이 없어도 이해할 수 있도록, 화면을 만드는 데 필요한 기준과 자주 쓰는 디자인 조각을 한곳에 모았습니다.</p>
+        <div class="guide-summary-grid">
+          <article><strong>6</strong><span>핵심 가이드</span><p>색상부터 화면 구성까지</p></article>
+          <article><strong>12</strong><span>공통 컴포넌트</span><p>반복되는 UI를 재사용</p></article>
+          <article><strong>1</strong><span>일관된 원칙</span><p>같은 목적에는 같은 모양</p></article>
         </div>
-        <div class="callout callout-note"><b>변형 원칙:</b> 색상 변경은 <code>.how-it-works .section-body-title</code>처럼 사용처 범위에서 선언하고, 공통 컴포넌트에는 특정 페이지 색상을 넣지 않는다.</div>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h2><span class="heading-number">C1</span>컴포넌트 — Choice List</h2>
-      <div class="card">
-        <p class="description">제품이나 과정을 선택하는 목록이다. 아이콘, 두 줄 텍스트, chevron을 고정 슬롯으로 두며 hover와 활성 상태를 공통 제공한다.</p>
-        <ul class="choice-list" style="max-width:620px;margin:24px auto;width:100%">
-          <li><a class="choice-list__item is-active" href="#"><span class="choice-list__icon" style="display:grid;place-items:center;border-radius:12px;background:var(--color-brand-tint-2);color:var(--color-brand)">AI</span><span class="choice-list__body"><strong>AI Fluent</strong><span class="text-body-muted">전 직군 생성형 AI 활용 역량 진단</span></span><svg class="choice-list__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"/></svg></a></li>
-          <li><a class="choice-list__item" href="#"><span class="choice-list__icon" style="display:grid;place-items:center;border-radius:12px;background:var(--color-brand-tint-2);color:var(--color-brand)">AX</span><span class="choice-list__body"><strong>SkillCertify</strong><span class="text-body-muted">개발·IT 직무 실무 역량 평가</span></span><svg class="choice-list__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"/></svg></a></li>
-        </ul>
-        <div class="callout callout-note"><b>재사용 원칙:</b> 목록 항목 전체가 이동하거나 선택될 때만 사용한다. 단순 정보 행에는 chevron과 hover 이동을 넣지 않는다.</div>
-      </div>
-    </section>
+      <section class="guide-section" id="foundation">
+        <div class="guide-section-head">
+          <p class="guide-kicker">02 · FOUNDATION</p>
+          <h2>기본 규칙</h2>
+          <p>모든 화면의 분위기를 결정하는 가장 작은 약속입니다. 새 색상이나 임의의 간격을 추가하기 전에 아래 기준을 먼저 사용합니다.</p>
+        </div>
 
-    <section>
-      <h2><span class="heading-number">C2</span>컴포넌트 — Media Card</h2>
-      <div class="card">
-        <p class="description">썸네일, 카테고리·날짜, 제목을 묶는 콘텐츠 링크다. 크기와 방향은 섹션이 정하고 이미지 확대와 제목 색상 변화는 컴포넌트가 담당한다.</p>
-        <a class="media-card" href="#" style="display:grid;grid-template-columns:220px 1fr;gap:24px;max-width:680px;margin:24px auto">
-          <div class="media-card__media" style="aspect-ratio:4/3;border-radius:12px"><div style="height:100%;background:linear-gradient(135deg,var(--color-brand-tint-2),var(--color-brand))"></div></div>
-          <div class="media-card__body" style="gap:12px;justify-content:center"><div class="media-card__meta"><span class="tag">CASE</span><time class="text-caption">2026-08-25</time></div><h3 class="media-card__title">진단과 교육을 연결해 조직의 AI 역량을 높인 사례</h3></div>
-        </a>
-        <div class="callout callout-note"><b>재사용 원칙:</b> 이미지 비율과 카드 방향만 사용하는 페이지에서 정한다. object-fit, hover, 제목 말줄임은 다시 선언하지 않는다.</div>
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">C3</span>컴포넌트 — Preview Frame</h2>
-      <div class="card">
-        <p class="description">제품 화면과 차트를 실제 소프트웨어처럼 보여주는 표면이다. 기본형, 여백 없는 브라우저형, 조용한 보조형을 제공한다.</p>
-        <div class="preview-frame preview-frame--flush" style="max-width:680px;margin:24px auto">
-          <div class="preview-frame__bar"><span class="preview-frame__dots"><i></i><i></i><i></i></span><span class="text-caption">Product preview</span></div>
-          <div style="min-height:260px;padding:24px;display:grid;grid-template-columns:160px 1fr;gap:16px;background:var(--color-surface-sunken)"><div style="border-radius:8px;background:var(--color-brand-tint-1)"></div><div style="padding:20px;border-radius:8px;background:white"><span class="skeleton-line"></span><br><span class="skeleton-line is-short"></span></div></div>
-        </div>
-        <div class="callout callout-note"><b>재사용 원칙:</b> 프레임 내부의 제품 UI는 페이지 컴포넌트가 담당한다. 공통 프레임에는 특정 서비스의 색이나 데이터 구조를 넣지 않는다.</div>
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">C4</span>컴포넌트 — Skeleton</h2>
-      <div class="card">
-        <p class="description">텍스트를 식별하지 않아도 되는 목업이나 비어 있는 콘텐츠 자리를 표현한다. 선형과 블록형을 공통 제공한다.</p>
-        <div class="preview-frame preview-frame--quiet" style="max-width:540px;margin:24px auto;display:flex;flex-direction:column;gap:16px"><span class="skeleton-block is-tag"></span><span class="skeleton-block is-title"></span><span class="skeleton-block is-title is-short"></span><span class="skeleton-block is-thumbnail" style="width:180px"></span></div>
-        <div class="callout callout-note"><b>접근성:</b> 실제 비동기 로딩에 사용한다면 부모에 <code>aria-busy="true"</code>를 제공하고, 장식용 목업에서는 <code>aria-hidden="true"</code>를 사용한다.</div>
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">C5</span>컴포넌트 — Section Layout</h2>
-      <div class="card">
-        <p class="description"><code>.section-wrap</code>은 흐름(<code>row</code>/<code>col</code>)과 sticky 여부를 담당하고, 텍스트 정렬은 내부 <code>.section-title</code>에 지정한다. <code>row</code>는 좌우, <code>col</code>은 위아래라는 CSS 표준 축 의미를 따른다.</p>
-        <table>
-          <tr><th>조합</th><th>사용 유형</th></tr>
-          <tr><td><code>section-wrap col</code> + <code>section-title text-center</code></td><td>How it works, Insight처럼 위아래 흐름 + 제목 중앙 정렬</td></tr>
-          <tr><td><code>section-wrap col</code> + <code>section-title text-left</code></td><td>Proof, Difference처럼 위아래 흐름 + 제목 좌측 정렬</td></tr>
-          <tr><td><code>section-wrap row</code></td><td>일반 좌우 2컬럼, sticky 없음</td></tr>
-          <tr><td><code>section-wrap row is-sticky</code></td><td>Education Journey, Diagnosis처럼 좌우 2컬럼 + <code>.section-aside</code> sticky</td></tr>
-        </table>
-        <div class="section-wrap row is-sticky" style="min-height:300px;margin-top:24px;border-radius:12px;background:var(--color-surface-sunken)">
-          <div class="section-aside"><div class="section-title text-left"><span class="tag">STICKY ASIDE</span><h3>왼쪽 설명 영역</h3><p class="desc">제목, 설명, 선택 목록과 CTA를 배치합니다.</p></div></div>
-          <div class="preview-frame" style="min-height:260px"><span class="skeleton-line"></span><br><span class="skeleton-line is-short"></span></div>
-        </div>
-        <div class="callout callout-note"><b>명명 기준:</b> <code>row</code>는 좌우, <code>col</code>은 위아래 배치다. sticky는 <code>is-sticky</code>로, 제목 정렬은 <code>.section-title</code>의 <code>text-center</code>/<code>text-left</code>로 명시한다.</div>
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">1</span>폰트 시스템</h2>
-      <p class="description">서체는 그대로 <b>Pretendard 단일 스택</b>을 유지합니다. 변경하는 것은 서체가 아니라 <b>스케일의 상단부</b>입니다.</p>
-      <div class="card">
-        <code>font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Malgun Gothic", sans-serif</code>
-        <h3>Weight — 3단계 유지</h3>
-        <table>
-          <tr>
-            <th>Weight</th>
-            <th>용도</th>
-            <th>샘플</th>
-          </tr>
-          <tr>
-            <td><code>400</code> Regular</td>
-            <td>본문·설명</td>
-            <td style="font-weight:400;font-size:16px">코드프레소와 함께 성장하는 개발자</td>
-          </tr>
-          <tr>
-            <td><code>500</code> Medium</td>
-            <td>보조 라벨 · 네비게이션</td>
-            <td style="font-weight:500;font-size:16px">코드프레소와 함께 성장하는 개발자</td>
-          </tr>
-          <tr>
-            <td><code>600</code> SemiBold</td>
-            <td>제목 전체 · 강조 (Bold 미사용 원칙 유지)</td>
-            <td style="font-weight:600;font-size:16px">코드프레소와 함께 성장하는 개발자</td>
-          </tr>
-        </table>
-        <div class="callout callout-good"><b>유지 결정:</b> Bold(700)를 쓰지 않는 절제된 톤은 코드프레소다움의 핵심이라 그대로 둡니다. 위계는 굵기가 아니라
-          <b>사이즈
-            확대</b>로 만듭니다 — 이번 리뉴얼의 핵심 변경점입니다.
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">2</span>타입 스케일 — 실측 시스템 반영 (Heading / Body)</h2>
-      <p class="description">코드프레소 실제 타이포그래피 시스템은 <b>Heading 9단</b> + <b>Body 4단(각 2~3 weight)</b>으로 이미 세분화되어 있습니다. 이전
-        초안의
-        "28/32/40/64" 4단 추정 스케일을 걷어내고, 이 실측 스케일로 교체합니다. 서체는 Pretendard(EN/KR) + Pretendard JP(일본어) 폴백을 병행 지원합니다.</p>
-
-      <h3>Heading — 9단, Semibold(600) 고정</h3>
-      <div class="card">
-        <div class="type-spec-row"><span class="label">64 / 74px</span><span
-            style="font-size:38px;font-weight:600;letter-spacing:-.5px;line-height:1.16">Codepresso
-            Typography</span><span class="label">ls -0.5px</span></div>
-        <div class="type-spec-row"><span class="label">56 / 66px</span><span
-            style="font-size:34px;font-weight:600;letter-spacing:-.5px">Codepresso Typography</span><span
-            class="label">ls
-            -0.5px</span></div>
-        <div class="type-spec-row"><span class="label">40 / 50px</span><span
-            style="font-size:30px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피</span><span class="label">ls
-            -0.1px</span></div>
-        <div class="type-spec-row"><span class="label">36 / 48px</span><span
-            style="font-size:27px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피</span><span class="label">ls
-            -0.1px</span></div>
-        <div class="type-spec-row"><span class="label">32 / 42px</span><span
-            style="font-size:24px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피</span><span class="label">ls
-            -0.1px</span></div>
-        <div class="type-spec-row"><span class="label">26 / 36px</span><span
-            style="font-size:22px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피</span><span class="label">ls
-            -0.1px</span></div>
-        <div class="type-spec-row"><span class="label">24 / 32px</span><span
-            style="font-size:20px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피</span><span class="label">ls
-            -0.1px</span></div>
-        <div class="type-spec-row"><span class="label">20 / 28px</span><span
-            style="font-size:18px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피</span><span class="label">ls
-            -0.1px</span></div>
-        <div class="type-spec-row"><span class="label">18 / 26px</span><span
-            style="font-size:16px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피</span><span class="label">ls
-            -0.1px</span></div>
-      </div>
-
-      <h3>Body — 4단 × Weight(Regular 400 / Medium 500 / Semibold 600)</h3>
-      <div class="card">
-        <div class="type-spec-row"><span class="label">16 / 24px</span><span
-            style="font-size:16px;font-weight:400;letter-spacing:-.1px">코드프레소 타이포그래피 — Regular</span><span
-            class="label">본문 최소 권장 크기</span></div>
-        <div class="type-spec-row"><span class="label">16 / 24px</span><span
-            style="font-size:16px;font-weight:500;letter-spacing:-.1px">코드프레소 타이포그래피 — Medium</span><span
-            class="label">ls
-            -0.1px</span></div>
-        <div class="type-spec-row"><span class="label">16 / 24px</span><span
-            style="font-size:16px;font-weight:600;letter-spacing:-.1px">코드프레소 타이포그래피 — Semibold</span><span
-            class="label">ls -0.1px</span></div>
-        <div class="type-spec-row"><span class="label">14 / 22px</span><span
-            style="font-size:14px;font-weight:400;letter-spacing:0">코드프레소 타이포그래피 — Regular</span><span class="label">ls
-            0px · 최소 이용 권장</span></div>
-        <div class="type-spec-row"><span class="label">14 / 22px</span><span
-            style="font-size:14px;font-weight:500;letter-spacing:0">코드프레소 타이포그래피 — Medium</span><span class="label">ls
-            0px</span></div>
-        <div class="type-spec-row"><span class="label">14 / 22px</span><span
-            style="font-size:14px;font-weight:600;letter-spacing:0">코드프레소 타이포그래피 — Semibold</span><span class="label">ls
-            0px</span></div>
-        <div class="type-spec-row"><span class="label">13 / 20px</span><span
-            style="font-size:13px;font-weight:400;letter-spacing:0;color:var(--ink-light)">코드프레소 타이포그래피 —
-            Regular</span><span class="label">ls 0px</span></div>
-        <div class="type-spec-row"><span class="label">12 / 18px</span><span
-            style="font-size:12px;font-weight:400;letter-spacing:0;color:var(--ink-lighter)">코드프레소 타이포그래피 —
-            Regular</span><span class="label">ls 0px · 메타/라벨</span></div>
-        <div class="type-spec-row"><span class="label">12 / 18px</span><span
-            style="font-size:12px;font-weight:500;letter-spacing:0;color:var(--ink-lighter)">코드프레소 타이포그래피 —
-            Medium</span><span class="label">ls 0px · 배지/캡션</span></div>
-      </div>
-
-      <table style="margin-top:6px">
-        <tr>
-          <th>규칙</th>
-          <th>값</th>
-        </tr>
-        <tr>
-          <td>Heading 스케일</td>
-          <td><code>18 · 20 · 24 · 26 · 32 · 36 · 40 · 56 · 64px</code> — 전 구간 Semibold(600) 고정, Bold 미사용 원칙 그대로 유지</td>
-        </tr>
-        <tr>
-          <td>Heading 자간</td>
-          <td>40px 이하 <b>-0.1px 고정</b>, 56/64px 구간만 <b>-0.5px</b>로 확대 — channel.io식 비례 자간 대신 코드프레소는 <b>2단 고정값</b> 사용
-          </td>
-        </tr>
-        <tr>
-          <td>Body 스케일</td>
-          <td><code>12 · 13 · 14 · 16px</code>, 각 Regular/Medium/(Semibold) 조합 — 12/13/14px은 자간 <b>0px</b>, 16px만
-            <b>-0.1px</b>
-          </td>
-        </tr>
-        <tr>
-          <td>행간(line-height)</td>
-          <td>Heading은 폰트 대비 약 <b>1.15~1.3배</b>, Body는 <b>1.5배</b> 고정(16→24, 14→22, 13→20, 12→18)</td>
-        </tr>
-        <tr>
-          <td>다국어 지원</td>
-          <td><code>Pretendard</code>(한/영/숫자) + <code>Pretendard JP</code>(일본어) 이원화 — 언어별 별도 폰트 스택으로 렌더링</td>
-        </tr>
-        <tr>
-          <td>최소 크기 가이드</td>
-          <td>본문은 <b>16px을 기본 최소 권장</b>, 부득이한 경우 14px까지 허용 — "작다" 피드백은 이 최소 기준 미준수 구간(12~13px 남용)에서 발생했을 가능성이 높음</td>
-        </tr>
-      </table>
-
-      <div class="callout callout-note"><b>이전 초안 정정:</b> 앞서 "11·12·14·16·18·28·32·40·64" 4단 추정 스케일 및 자간 비례식(-1%)은 실측과
-        달랐습니다. 실제로는 <b>Heading 9단 + Body 4단(× weight)</b>의 훨씬 촘촘한 체계이며, 자간도 비례식이 아니라 <b>-0.1px / -0.5px 2단 고정값</b>입니다.
-        "폰트가 작다"는 피드백은 스케일 자체보다 <b>본문에서 16px 미만(12~13px) 사용 빈도</b>를 줄이는 방향으로 접근해야 합니다.</div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">3</span>컬러 시스템</h2>
-      <p class="description">채널톡의 11-hue 액센트 시스템은 도입하지 않습니다. 코드프레소는 <b>단일 브랜드 블루(#1A61EA)에서 파생한 단색 팔레트</b>가 정체성이므로 그대로
-        유지하고, 기능상 꼭 필요한 <b>상태색 3종만 최소 추가</b>합니다.</p>
-
-      <h3>기본 — Primary / Secondary (실측값 확정)</h3>
-      <div class="card">
-        <table>
-          <tr>
-            <th>역할</th>
-            <th>색상</th>
-            <th>값</th>
-            <th>용도</th>
-          </tr>
-          <tr>
-            <td>Primary</td>
-            <td><span class="swatch" style="background:#1A61EA"></span></td>
-            <td><code>#1A61EA</code> · R26 G97 B234</td>
-            <td>주 강조 버튼</td>
-          </tr>
-          <tr>
-            <td>Secondary</td>
-            <td><span class="swatch" style="background:#0D33A3"></span></td>
-            <td><code>#0D33A3</code> · R13 G51 B163</td>
-            <td>보조 버튼</td>
-          </tr>
-        </table>
-      </div>
-
-      <h3>BG Color — 로그인 전/후 · 다크모드 (실측값 확정)</h3>
-      <div class="grid">
-        <div class="color-tile">
-          <div class="color-tile-bar" style="background:#F5F8FF"></div>
-          <div class="color-tile-meta"><b>Light — 로그인 전</b><span>#F5F8FF</span></div>
-        </div>
-        <div class="color-tile">
-          <div class="color-tile-bar" style="background:#EAECF3"></div>
-          <div class="color-tile-meta"><b>Light — 로그인 후</b><span>#EAECF3</span></div>
-        </div>
-        <div class="color-tile">
-          <div class="color-tile-bar" style="background:#04091A"></div>
-          <div class="color-tile-meta"><b style="color:#fff">Dark Mode BG</b><span>#04091A</span></div>
-        </div>
-      </div>
-      <div class="callout callout-note"><b>반영:</b> 실제 서비스에서는 배경색이 <b>로그인 전/후로 분리</b>되어 있고(메인·서브페이지 <code>#F5F8FF</code>,
-        로그인 후 <code>#EAECF3</code>), 다크모드 배경은 <code>#04091A</code>로 별도 정의되어 있습니다. 이전 초안의
-        <code>--brand-dark:#124BC2</code>는 실측값이 아니었으므로 <code>#0D33A3</code>(Secondary)로 정정합니다.
-      </div>
-
-      <h3>파생 스케일 — Primary 틴트 (참고용)</h3>
-      <div class="grid">
-        <div class="color-tile">
-          <div class="color-tile-bar" style="background:#07153D"></div>
-          <div class="color-tile-meta"><b>ink-heaviest</b><span>#07153D</span></div>
-        </div>
-        <div class="color-tile">
-          <div class="color-tile-bar" style="background:#0D33A3"></div>
-          <div class="color-tile-meta"><b>brand-dark (Secondary)</b><span>#0D33A3</span></div>
-        </div>
-        <div class="color-tile">
-          <div class="color-tile-bar" style="background:#1A61EA"></div>
-          <div class="color-tile-meta"><b>brand (Primary)</b><span>#1A61EA</span></div>
-        </div>
-        <div class="color-tile">
-          <div class="color-tile-bar" style="background:#E9EFFF"></div>
-          <div class="color-tile-meta"><b>brand-tint-2</b><span>#E9EFFF</span></div>
-        </div>
-        <div class="color-tile">
-          <div class="color-tile-bar" style="background:#F7F9FF"></div>
-          <div class="color-tile-meta"><b>brand-tint-1</b><span>#F7F9FF</span></div>
-        </div>
-        <div class="color-tile">
-          <div class="color-tile-bar" style="background:#F1EBDE"></div>
-          <div class="color-tile-meta"><b>accent-tint-beige</b><span>#F1EBDE</span></div>
-        </div>
-        <div class="color-tile">
-          <div class="color-tile-bar" style="background:#EEF0F3"></div>
-          <div class="color-tile-meta"><b>surface-mist</b><span>#EEF0F3</span></div>
-        </div>
-      </div>
-      <div class="callout callout-note"><b>신규 추가:</b> <code>--color-accent-tint-beige</code>(#F1EBDE)는
-        <code>--color-brand-tint-2</code>와 동일한 명도·채도 레벨의 그레이시 베이지로, 하늘색 계열 영역과 나란히 배치되는
-        <b>섹션 배경 전용</b> 색입니다. 완전 뉴트럴이 아닌 살짝 웜톤이라 쿨톤 블루 옆에서 과하지 않은 대비를 만듭니다.
-        <code>--color-surface-mist</code>(#EEF0F3)는 <code>--color-line</code> 계열과 같은 축의 라이트 쿨그레이로, 하늘색·베이지
-        두 배경 사이에서 중립적으로 쉬어가는 <b>섹션 배경 전용</b> 색입니다.</div>
-
-      <h3>상태색 — 신규 추가 (기능 목적 한정)</h3>
-      <div class="grid">
-        <div class="color-tile">
-          <div class="color-tile-bar" style="background:#1C9A6C"></div>
-          <div class="color-tile-meta"><b>Success</b><span>#1C9A6C</span></div>
-        </div>
-        <div class="color-tile">
-          <div class="color-tile-bar" style="background:#D98A1B"></div>
-          <div class="color-tile-meta"><b>Warning</b><span>#D98A1B</span></div>
-        </div>
-        <div class="color-tile">
-          <div class="color-tile-bar" style="background:#E1435A"></div>
-          <div class="color-tile-meta"><b>Critical</b><span>#E1435A</span></div>
-        </div>
-      </div>
-      <div class="callout callout-note"><b>절충 원칙:</b> 상태색은 폼 검증, 알림 배지, 진행 상태 표시 등 <b>기능이 색을 요구하는 곳에만</b> 씁니다. 마케팅/랜딩
-        영역의
-        장식적 강조는 계속 브랜드 블루 톤 안에서 명도만 조절해 해결합니다. 이렇게 하면 "다채로워 보이지만 정체성이 흐려진 팔레트"를 피할 수 있습니다.</div>
-
-      <h3>뉴트럴 — Cool Gray (유지)</h3>
-      <div class="card">
-        <table>
-          <tr>
-            <th>토큰</th>
-            <th>값</th>
-            <th>용도</th>
-          </tr>
-          <tr>
-            <td><code>--ink-heaviest</code></td>
-            <td><span class="swatch" style="background:#07153D"></span>#07153D</td>
-            <td>최상위 제목</td>
-          </tr>
-          <tr>
-            <td><code>--ink</code></td>
-            <td><span class="swatch" style="background:#0E1B3D"></span>#0E1B3D</td>
-            <td><b>본문 기본색 — 신규 통일</b></td>
-          </tr>
-          <tr>
-            <td><code>--ink-light</code></td>
-            <td><span class="swatch" style="background:#41496B"></span>#41496B</td>
-            <td>보조 설명</td>
-          </tr>
-          <tr>
-            <td><code>--ink-lighter</code></td>
-            <td><span class="swatch" style="background:#7C88A3"></span>#7C88A3</td>
-            <td>메타 · placeholder · 비활성</td>
-          </tr>
-          <tr>
-            <td><code>--line-heavy</code></td>
-            <td><span class="swatch" style="background:#D3D6E0"></span>#D3D6E0</td>
-            <td>강조 보더 · 구분선</td>
-          </tr>
-        </table>
-        <div class="callout callout-note"><b>발견된 이슈 수정:</b> 기존 사이트에서 본문 텍스트 색이 4종(#000, #333, #222, rgba 혼용)으로 혼재해 있던 것을
-          <code>--ink</code> 한 값으로 통일합니다. cool gray 계열(순회색 아님) 원칙은 그대로 유지합니다.
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">4</span>스페이싱 — 4px 그리드 + 6px 하이브리드 (유지)</h2>
-      <div class="card">
-        <p class="description">기존 스텝 <b>2 · 4 · 6 · 8 · 12 · 24 · 48px</b>을 그대로 유지합니다. 6px을 정식 스텝에 포함시킨 하이브리드 구조가
-          코드프레소만의
-          촘촘한 리듬을 만들기 때문에 4px 배수로 강제 정렬하지 않습니다.</p>
-        <div class="spacing-row"><span class="label">2px</span>
-          <div class="bar" style="width:2px"></div>
-        </div>
-        <div class="spacing-row"><span class="label">4px</span>
-          <div class="bar" style="width:4px"></div>
-        </div>
-        <div class="spacing-row"><span class="label">6px</span>
-          <div class="bar" style="width:6px"></div>
-        </div>
-        <div class="spacing-row"><span class="label">8px</span>
-          <div class="bar" style="width:8px"></div>
-        </div>
-        <div class="spacing-row"><span class="label">12px</span>
-          <div class="bar" style="width:12px"></div>
-        </div>
-        <div class="spacing-row"><span class="label">24px</span>
-          <div class="bar" style="width:24px"></div>
-        </div>
-        <div class="spacing-row"><span class="label">48px</span>
-          <div class="bar" style="width:48px"></div>
-        </div>
-        <table style="margin-top:20px">
-          <tr>
-            <th>컨테이너</th>
-            <th>값</th>
-          </tr>
-          <tr>
-            <td>Wide (랜딩 풀블리드)</td>
-            <td><code>1480px</code></td>
-          </tr>
-          <tr>
-            <td>Default (본문 컨테이너)</td>
-            <td><code>1200px</code></td>
-          </tr>
-          <tr>
-            <td>Narrow (폼 · 상세 콘텐츠)</td>
-            <td><code>960px</code></td>
-          </tr>
-        </table>
-        <div class="callout callout-note"><b>신규 도입:</b> 채널톡의 gap-first 레이아웃 원칙을 참고해, margin 중첩 대신 <b>flex/grid +
-            gap</b>으로
-          간격을 관리하는 규칙을 컴포넌트 신규 개발 시 적용합니다. 기존 값 자체는 바꾸지 않고 적용 방식만 개선합니다.</div>
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">5</span>Border Radius (유지)</h2>
-      <div class="card">
-        <div class="radius-list">
-          <figure><i style="border-radius:6px"></i>
-            <figcaption>6px<br>컨트롤 · 버튼</figcaption>
-          </figure>
-          <figure><i style="border-radius:8px"></i>
-            <figcaption>8px<br>카드</figcaption>
-          </figure>
-          <figure><i style="border-radius:12px"></i>
-            <figcaption>12px<br>블록 · 모달</figcaption>
-          </figure>
-          <figure><i style="border-radius:999px"></i>
-            <figcaption>full<br>배지 · 아바타</figcaption>
-          </figure>
-        </div>
-        <p class="description" style="margin-top:18px">채널톡의 35px/999px 같은 큰 라운드는 도입하지 않습니다. 6/8/12px의 절제된 라운드가 코드프레소의
-          "신뢰감
-          있는 기술 브랜드" 톤을 만드는 요소이므로 그대로 유지합니다.</p>
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">6</span>Shadow — 블루 섀도우 (유지)</h2>
-      <div class="card">
-        <table>
-          <tr>
-            <th>레벨</th>
-            <th>값</th>
-            <th>용도</th>
-          </tr>
-          <tr>
-            <td>기본</td>
-            <td><code>0 2px 6px rgba(26,97,234,.04)</code></td>
-            <td>카드 기본 상태</td>
-          </tr>
-          <tr>
-            <td>hover</td>
-            <td><code>0 6px 16px rgba(26,97,234,.12)</code></td>
-            <td>hover · 포커스</td>
-          </tr>
-        </table>
-        <div class="callout callout-note"><b>유지 결정:</b> 검정 대신 브랜드 블루를 그림자 색으로 쓰는 방식은 코드프레소만의 시각적 서명입니다. blur 6→16px,
-          alpha
-          0.04→0.12의 2단 규칙 그대로 유지합니다.</div>
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">7</span>모션 (유지 + 예시 추가)</h2>
-      <div class="card">
-        <table>
-          <tr>
-            <th>Duration</th>
-            <th>용도</th>
-          </tr>
-          <tr>
-            <td><b>0.1s</b></td>
-            <td>hover · 상태 전환 — 즉각 반응</td>
-          </tr>
-          <tr>
-            <td><b>0.5s</b></td>
-            <td>스크롤 진입 페이드</td>
-          </tr>
-        </table>
-        <p class="description" style="margin:14px 0 0">즉각적인 hover와 느긋한 스크롤 페이드의 이중 리듬을 그대로 유지합니다. 채널톡의
-          <code>cubic-bezier(.3,0,0,1)</code> 이징은 톤이 다르므로(더 유들유들한 SaaS 느낌) 도입하지 않고, 기존 easing 그대로 갑니다.
-        </p>
-      </div>
-
-      <h3>Hover — 0.1s, 즉각 반응</h3>
-      <div class="card">
-        <p class="description">버튼 · 카드 · 링크 등 인터랙션 가능한 요소는 마우스를 올리는 즉시 반응해야 합니다. 아래 예시에 실제로 마우스를 올려보세요.</p>
-        <div class="motion-grid">
-          <div class="motion-item">
-            <button class="motion-button" type="button">버튼 hover</button>
-            <span class="motion-caption">background 밝게 + shadow · 0.1s</span>
-          </div>
-          <div class="motion-item">
-            <div class="motion-card">카드 hover</div>
-            <span class="motion-caption">shadow + border · 0.1s</span>
-          </div>
-          <div class="motion-item">
-            <a class="motion-link link-underline" href="#">밑줄 링크 hover</a>
-            <span class="motion-caption">underline reveal · 0.1s</span>
-          </div>
-          <div class="motion-item">
-            <label class="motion-toggle">
-              <input type="checkbox">
-              <span class="motion-track" aria-hidden="true"></span>
-              <span>토글 스위치</span>
-            </label>
-            <span class="motion-caption">state 전환 · 0.1s</span>
+        <div class="guide-block">
+          <div class="guide-block-head"><h3>색상</h3><span>브랜드를 가장 빠르게 인식시키는 요소</span></div>
+          <div class="guide-color-grid">
+            <article class="guide-swatch brand"><span></span><strong>Brand</strong><small>#1A61EA · 주요 행동</small></article>
+            <article class="guide-swatch brand-dark"><span></span><strong>Brand Dark</strong><small>#0D33A3 · 강조 텍스트</small></article>
+            <article class="guide-swatch brand-tint"><span></span><strong>Brand Tint</strong><small>#E9EFFF · 선택 상태</small></article>
+            <article class="guide-swatch ink-heavy"><span></span><strong>Ink Heavy</strong><small>#04091A · 큰 제목</small></article>
+            <article class="guide-swatch ink"><span></span><strong>Ink</strong><small>#0E1B3D · 기본 텍스트</small></article>
+            <article class="guide-swatch ink-light"><span></span><strong>Ink Light</strong><small>#41496B · 본문 설명</small></article>
+            <article class="guide-swatch ink-lighter"><span></span><strong>Ink Lighter</strong><small>#7C88A3 · 보조 정보</small></article>
+            <article class="guide-swatch surface"><span></span><strong>Surface</strong><small>#FFFFFF · 카드 배경</small></article>
+            <article class="guide-swatch sunken"><span></span><strong>Sunken</strong><small>#F5F8FF · 옅은 영역</small></article>
+            <article class="guide-swatch page"><span></span><strong>Page</strong><small>#FBFCFF · 페이지 배경</small></article>
+            <article class="guide-swatch line"><span></span><strong>Line</strong><small>#EAECF3 · 구분선</small></article>
           </div>
         </div>
-      </div>
 
-      <h3>클릭 — Segmented Control, 인디케이터 슬라이딩</h3>
-      <div class="card">
-        <p class="description">탭 중 하나를 선택하면 검정 인디케이터가 클릭한 위치로 이동합니다. hover 배경은 --duration-hover(0.1s)로
-          즉각 반응하고, 인디케이터 이동은 --duration-indicator(0.25s)로 살짝 더 여유를 둡니다.</p>
-        <div class="segmented-control" data-segmented-control role="tablist">
-          <span class="segmented-control-indicator" data-segmented-indicator aria-hidden="true"></span>
-          <button class="segmented-control-item" type="button" role="tab" aria-selected="false">SkillCertify</button>
-          <button class="segmented-control-item" type="button" role="tab" aria-selected="false">SkillMonitor</button>
-          <button class="segmented-control-item" type="button" role="tab" aria-selected="false">SkillAdvance</button>
-          <button class="segmented-control-item" type="button" role="tab" aria-selected="true">TalentGetGo</button>
-        </div>
-      </div>
-
-      <h3>스크롤 진입 페이드 — 0.5s, 느긋하게</h3>
-      <div class="card">
-        <p class="description">섹션·카드가 뷰포트에 들어올 때 아래에서 살짝 떠오르며 페이드인됩니다. 아래로 스크롤해 다시 올려보면 재생됩니다.</p>
-        <div class="motion-grid">
-          <div class="motion-item" style="background:transparent;border:none;padding:0">
-            <div class="motion-fade" data-scroll-fade>스크롤하면 나타납니다 — 1</div>
+        <div class="guide-two-column">
+          <div class="guide-block">
+            <div class="guide-block-head"><h3>글자 크기</h3><span>읽는 순서가 보이도록</span></div>
+            <div class="guide-type-list">
+              <div><span>Hero</span><strong class="guide-type-56">56px</strong><p>첫 화면의 핵심 메시지</p></div>
+              <div><span>H1</span><strong class="guide-type-44">44px</strong><p>페이지 대표 제목</p></div>
+              <div><span>Metric</span><strong class="guide-type-40">40px</strong><p>핵심 수치</p></div>
+              <div><span>H2</span><strong class="guide-type-36">36px</strong><p>주요 섹션 제목</p></div>
+              <div><span>Stage</span><strong class="guide-type-32">32px</strong><p>제품 화면의 큰 제목</p></div>
+              <div><span>H3</span><strong class="guide-type-24">24px</strong><p>카드와 소단락 제목</p></div>
+              <div><span>List Title</span><strong class="guide-type-20">20px</strong><p>목록 항목의 제목</p></div>
+              <div><span>Body Large</span><strong class="guide-type-18">18px</strong><p>설명 강조 문장</p></div>
+              <div><span>Body</span><strong class="guide-type-16">16px</strong><p>기본 본문</p></div>
+              <div><span>Body Small</span><strong class="guide-type-14">14px</strong><p>버튼과 보조 안내</p></div>
+            </div>
           </div>
-          <div class="motion-item" style="background:transparent;border:none;padding:0">
-            <div class="motion-fade" data-scroll-fade>스크롤하면 나타납니다 — 2</div>
-          </div>
-          <div class="motion-item" style="background:transparent;border:none;padding:0">
-            <div class="motion-fade" data-scroll-fade>스크롤하면 나타납니다 — 3</div>
+          <div class="guide-block">
+            <div class="guide-block-head"><h3>여백</h3><span>답답하지 않게 구분하는 방법</span></div>
+            <div class="guide-spacing-list">
+              <div><span>작은 간격</span><i style="width:24px"></i><b>8px</b></div>
+              <div><span>기본 간격</span><i style="width:56px"></i><b>24px</b></div>
+              <div><span>기본 padding</span><i style="width:100px"></i><b>48px</b></div>
+              <div><span>섹션 간격</span><i style="width:150px"></i><b>96px</b></div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="callout callout-note"><b>구현 가이드:</b> hover 계열은 CSS <code>transition</code>만으로 구현하고(JS 불필요), 스크롤
-        페이드는 <code>IntersectionObserver</code>로 <code>.is-visible</code> 클래스를 토글해 <code>prefers-reduced-motion</code>
-        사용자에게는 모션을 생략합니다. 토큰은 <code>--duration-hover</code> / <code>--duration-scroll</code> /
-        <code>--ease-hover</code> / <code>--ease-scroll</code>을 그대로 참조합니다.
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">8</span>컴포넌트 — Feature 카드</h2>
-      <div class="card">
-        <p class="description">아이콘 + 제목 + 화살표 + 설명으로 구성된 기능 소개 카드. 평소엔 배경/테두리 없이 배경과 자연스럽게 섞여 있다가,
-          마우스를 올리면 옅은 회색 배경(<code>--color-surface-sunken</code>)만 나타납니다. 카드가 튀어나오거나 그림자가 생기지 않는
-          절제된 반응이 원칙이며, 전환 속도는 hover 리듬과 동일한 <code>--duration-hover(0.1s)</code>를 사용합니다.</p>
-        <div class="feature-card-grid">
-          <article class="feature-card">
-            <span class="feature-card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 3v18M5 4h12l-2.5 3.5L17 11H5" stroke="currentColor" stroke-width="1.6"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </span>
-            <div class="section-body-heading">
-              <h3 class="section-body-title">01 · 진단</h3>
-              <span class="feature-card-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-              </span>
-            </div>
-            <p class="section-body-subtitle">교육 전, 출발점을 숫자로 확인합니다</p>
+      <section class="guide-section" id="layout">
+        <div class="guide-section-head">
+          <p class="guide-kicker">03 · LAYOUT</p>
+          <h2>섹션을 구성하는 세 가지 방식</h2>
+          <p>내용의 성격에 따라 배치만 고르면 됩니다. 제목의 정렬과 sticky 여부는 별도의 옵션으로 조합합니다.</p>
+        </div>
+        <div class="guide-layout-grid">
+          <article class="guide-layout-card">
+            <div class="guide-layout-preview is-stack"><i></i><i></i><i></i></div>
+            <p class="tag">위아래 배치</p><h3>기본 소개형</h3>
+            <p>제목을 먼저 보여주고, 아래에 카드·목록·이미지를 이어 붙입니다.</p>
+            <code>section-wrap col</code>
           </article>
-          <article class="feature-card">
-            <span class="feature-card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 3v18M5 4h12l-2.5 3.5L17 11H5" stroke="currentColor" stroke-width="1.6"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </span>
-            <div class="section-body-heading">
-              <h3 class="section-body-title">02 · 교육</h3>
-              <span class="feature-card-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-              </span>
-            </div>
-            <p class="section-body-subtitle">부족한 역량만 골라 정확하게 키웁니다</p>
+          <article class="guide-layout-card">
+            <div class="guide-layout-preview is-columns"><i></i><i></i></div>
+            <p class="tag">좌우 배치</p><h3>설명 + 콘텐츠형</h3>
+            <p>왼쪽에는 설명을, 오른쪽에는 제품 화면이나 상세 콘텐츠를 둡니다.</p>
+            <code>section-wrap row</code>
           </article>
-          <article class="feature-card">
-            <span class="feature-card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 3v18M5 4h12l-2.5 3.5L17 11H5" stroke="currentColor" stroke-width="1.6"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </span>
-            <div class="section-body-heading">
-              <h3 class="section-body-title">03 · 재진단</h3>
-              <span class="feature-card-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-              </span>
-            </div>
-            <p class="section-body-subtitle">교육이 통했는지, 다시 숫자로 증명합니다</p>
+          <article class="guide-layout-card">
+            <div class="guide-layout-preview is-sticky"><i></i><i></i></div>
+            <p class="tag">스크롤 고정</p><h3>여정 안내형</h3>
+            <p>설명은 왼쪽에 남겨두고, 오른쪽 내용만 스크롤에 따라 보여줍니다.</p>
+            <code>row is-sticky</code>
           </article>
         </div>
-      </div>
-    </section>
-    <section>
-      <h2><span class="heading-number">8-2</span>컴포넌트2 — 트랜지션</h2>
-      <div class="card">
-        <p class="description">아이콘 + 제목 + 화살표 + 설명으로 구성된 기능 소개 카드. 평소엔 배경/테두리 없이 배경과 자연스럽게 섞여 있다가,
-          마우스를 올리면 옅은 회색 배경(<code>--color-surface-sunken</code>)만 나타납니다. 카드가 튀어나오거나 그림자가 생기지 않는
-          절제된 반응이 원칙이며, 전환 속도는 hover 리듬과 동일한 <code>--duration-hover(0.1s)</code>를 사용합니다.</p>
-        <div class="feature-card-grid">
-          <article class="feature-card">
-            <span class="feature-card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 3v18M5 4h12l-2.5 3.5L17 11H5" stroke="currentColor" stroke-width="1.6"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </span>
-            <div class="section-body-heading">
-              <h3 class="section-body-title">01 · 진단</h3>
-              <span class="feature-card-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-              </span>
-            </div>
-            <p class="section-body-subtitle">교육 전, 출발점을 숫자로 확인합니다</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 3v18M5 4h12l-2.5 3.5L17 11H5" stroke="currentColor" stroke-width="1.6"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </span>
-            <div class="section-body-heading">
-              <h3 class="section-body-title">02 · 교육</h3>
-              <span class="feature-card-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-              </span>
-            </div>
-            <p class="section-body-subtitle">부족한 역량만 골라 정확하게 키웁니다</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 3v18M5 4h12l-2.5 3.5L17 11H5" stroke="currentColor" stroke-width="1.6"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </span>
-            <div class="section-body-heading">
-              <h3 class="section-body-title">03 · 재진단</h3>
-              <span class="feature-card-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-              </span>
-            </div>
-            <p class="section-body-subtitle">교육이 통했는지, 다시 숫자로 증명합니다</p>
-          </article>
+        <div class="guide-callout"><strong>기억하기</strong><span>제목 정렬은 바깥 영역이 아니라 <code>section-title</code>에 적용합니다. 그래서 카드나 버튼의 정렬은 영향을 받지 않습니다.</span></div>
+      </section>
+
+      <section class="guide-section" id="components">
+        <div class="guide-section-head">
+          <p class="guide-kicker">04 · COMPONENTS</p>
+          <h2>자주 쓰는 카드와 정보 단위</h2>
+          <p>비슷한 정보를 보여줄 때는 이미 준비된 디자인을 사용합니다. 내용만 바꿔도 화면의 일관성이 유지됩니다.</p>
         </div>
-      </div>
-    </section>
-    <section>
-      <h2><span class="heading-number">9</span>최종 정리 — 유지 vs 변경</h2>
-      <div class="card">
-        <table>
-          <tr>
-            <th style="width:170px">항목</th>
-            <th>결정</th>
-          </tr>
-          <tr>
-            <td><b>서체</b></td>
-            <td>Pretendard 단일 스택 — <b>완전 유지</b></td>
-          </tr>
-          <tr>
-            <td><b>본문 사이즈</b></td>
-            <td>16px — <b>완전 유지</b> (피드백은 상위 위계 문제였음)</td>
-          </tr>
-          <tr>
-            <td><b>헤딩 스케일</b></td>
-            <td>18/20/24/26/32/36/40/56/64px 9단, Semibold 고정 — 실측값 <b>확정 반영</b> (자간 -0.1px / -0.5px 2단)</td>
-          </tr>
-          <tr>
-            <td><b>본문 스케일</b></td>
-            <td>12/13/14/16px × Regular/Medium/Semibold — 실측값 <b>확정 반영</b>, 16px 미만 사용처 축소가 "작다" 피드백의 실질 해법</td>
-          </tr>
-          <tr>
-            <td><b>웨이트</b></td>
-            <td>400/500/600, Bold 미사용 — <b>완전 유지</b></td>
-          </tr>
-          <tr>
-            <td><b>컬러</b></td>
-            <td>Primary #1A61EA · Secondary #0D33A3 · BG 3종(로그인전 #F5F8FF / 로그인후 #EAECF3 / 다크 #04091A) — 실측값 <b>확정
-                반영</b>,
-              상태색 3종만 <b>추가</b></td>
-          </tr>
-          <tr>
-            <td><b>스페이싱</b></td>
-            <td>2/4/6/8/12/24/48 하이브리드 — <b>완전 유지</b></td>
-          </tr>
-          <tr>
-            <td><b>라운드</b></td>
-            <td>6/8/12/full — <b>완전 유지</b> (채널톡 대형 라운드 미도입)</td>
-          </tr>
-          <tr>
-            <td><b>섀도우</b></td>
-            <td>블루 섀도우 2단 — <b>완전 유지</b></td>
-          </tr>
-          <tr>
-            <td><b>모션</b></td>
-            <td>hover 0.1s + 스크롤 0.5s — <b>완전 유지</b></td>
-          </tr>
-          <tr>
-            <td><b>레이아웃 원칙</b></td>
-            <td>gap-first 간격 관리 — 채널톡에서 <b>신규 도입</b></td>
-          </tr>
-          <tr>
-            <td><b>버그 수정</b></td>
-            <td>Swiper 색상, 텍스트색 통일, Noto Sans KR 제거 — <b>즉시 수정</b></td>
-          </tr>
-          <tr>
-            <td><b>버튼</b></td>
-            <td>Primary/Ghost + <code>btn-lg</code> — 랜딩 작업 중 <b>신규 등록</b> (아래 10번 참고)</td>
-          </tr>
-          <tr>
-            <td><b>헤더 &amp; 네비게이션</b></td>
-            <td>고정 GNB, 스크롤 연동 숨김/등장 — <b>신규 등록</b> (아래 11번 참고)</td>
-          </tr>
-          <tr>
-            <td><b>Hero &amp; 설문 카드</b></td>
-            <td>상단 배너, 그라디언트+glow dot 진행바, 밝은 톤 옵션 선택 — <b>신규 등록</b> (아래 12번 참고)</td>
-          </tr>
-        </table>
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">10</span>컴포넌트 — 버튼</h2>
-      <div class="card">
-        <p class="description">Primary(브랜드 블루 필박스) / Ghost(외곽선 보조 버튼) 2종. 크기는 기본(40px) / <code>btn-lg</code>(52px, CTA
-          전용) 2단. hover는 <code>--duration-hover</code>(0.1s)로 즉각 반응하며, Primary hover는 <b>더 어두운 색이 아니라 브랜드 블루에
-          흰색을 섞은 더 밝은 색</b>(<code>color-mix(in srgb, var(--color-brand) 80%, white)</code>)으로 전환한다 — 눌렀을 때 무거워지는
-          느낌 대신 가벼워지는 느낌을 준다.</p>
-        <div class="flex-row" style="gap:12px;align-items:center">
-          <button class="btn btn-primary" type="button">Primary</button>
-          <button class="btn btn-ghost" type="button">Ghost</button>
-          <button class="btn btn-primary btn-lg" type="button">Primary Large</button>
-        </div>
-        <table style="margin-top:18px">
-          <tr>
-            <th>클래스</th>
-            <th>용도</th>
-          </tr>
-          <tr>
-            <td><code>.btn.btn-primary</code></td>
-            <td>주 강조 버튼 — 배경 <code>--color-brand</code>, hover 시 <code>color-mix()</code>로 밝게</td>
-          </tr>
-          <tr>
-            <td><code>.btn.btn-ghost</code></td>
-            <td>보조 버튼 — 배경 없음, border만, hover 시 텍스트/보더가 브랜드 컬러로</td>
-          </tr>
-          <tr>
-            <td><code>.btn-lg</code></td>
-            <td>modifier — 높이 52px, 랜딩 CTA 등 강조가 필요한 자리에 <code>.btn-primary</code>와 함께 사용</td>
-          </tr>
-        </table>
-        <div class="callout callout-note"><b>재사용 원칙:</b> 새 버튼이 필요할 때 색상을 새로 정의하지 않는다. Primary/Ghost 중 역할이 맞는 쪽을 그대로 쓰고,
-          크기만 <code>.btn-lg</code> 유무로 조절한다.</div>
-
-        <p class="description" style="margin-top:24px">Pill CTA — 흰색 캡슐 배경 + 우측 원형 화살표 아이콘. 그라디언트/이미지 배경 위에 떠 있는
-          플로팅 CTA 버튼에 사용한다. hover 시 버튼 전체가 <code>scale(1.03)</code>으로 살짝 커진다.</p>
-        <div class="flex-row" style="gap:12px;align-items:center;padding:24px;border-radius:12px;background:linear-gradient(135deg,#8fd3a3,#7ec9c9)">
-          <button class="btn btn-pill" type="button">
-            무료로 체험하기
-            <span class="btn-pill-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </button>
-        </div>
-        <table style="margin-top:18px">
-          <tr>
-            <th>클래스</th>
-            <th>용도</th>
-          </tr>
-          <tr>
-            <td><code>.btn.btn-pill</code></td>
-            <td>흰색 캡슐형 CTA — 높이 56px, 그림자로 배경 위에 떠 보이게 함</td>
-          </tr>
-          <tr>
-            <td><code>.btn-pill-icon</code></td>
-            <td>버튼 우측 끝 원형 화살표 배지(40px, 잉크 컬러 배경) — 별도 애니메이션 없이 버튼 전체 scale에 따라 함께 커짐</td>
-          </tr>
-        </table>
-        <div class="callout callout-note"><b>재사용 원칙:</b> 텍스트+화살표 조합의 플로팅 CTA가 필요하면 새 pill 버튼을 만들지 않고
-          <code>.btn.btn-pill</code>을 그대로 쓴다. 아이콘 SVG는 아래 "방향 아이콘" 규칙의 chevron 하나를 재사용한다.</div>
-
-        <h3 style="margin-top:32px">방향 아이콘 — chevron 단일화</h3>
-        <p class="description">버튼·링크의 방향 표시는 <b>텍스트 화살표(→, +, ‹, ›)나 HTML 엔티티를 쓰지 않고</b> 항상 아래 chevron SVG 하나만 쓴다.
-          path는 <code>images/icon/chevron-right.svg</code>와 동일한 <code>M9 18L15 12L9 6</code>, <code>stroke-width</code>는 2로 고정한다.
-          좌향 화살표는 별도 path를 만들지 않고 같은 SVG에 <code>transform: scaleX(-1)</code>을 준다.
-          하향(드롭다운)은 <code>images/icon/chevron-down.svg</code>의 <code>M6 9L12 15L18 9</code>를 쓴다.</p>
-        <table style="margin-top:18px">
-          <tr>
-            <th>맥락</th>
-            <th>크기</th>
-            <th>규칙</th>
-          </tr>
-          <tr>
-            <td><code>.btn &gt; svg</code></td>
-            <td>16px</td>
-            <td>hover 시 <code>translateX(3px)</code>. "…보기 / 알아보기"처럼 <b>이동을 뜻하는 CTA에만</b> 붙이고,
-              "도입 문의 / 상담하기 / 로그인" 같은 종결 액션에는 붙이지 않는다</td>
-          </tr>
-          <tr>
-            <td><code>.link-arrow &gt; svg</code></td>
-            <td>14px</td>
-            <td>본문 크기 보조 링크</td>
-          </tr>
-          <tr>
-            <td><code>.btn-pill-icon svg</code></td>
-            <td>16px</td>
-            <td>원형 배지 안에 중앙 정렬</td>
-          </tr>
-        </table>
-
-        <h3 style="margin-top:32px">보조 링크 — <code>.link-arrow</code></h3>
-        <p class="description">"텍스트 + 우측 chevron" 형태의 보조 링크. 버튼만큼 무겁지 않은 부가 동선에 쓴다.
-          배치·크기는 <code>.link-arrow</code>가 맡고 색상은 modifier가 정한다 —
-          밝은 배경은 <code>.link-arrow-ink</code>, 어두운/브랜드 배경은 <code>.link-arrow-inverse</code>.
-          밑줄 hover가 필요하면 텍스트를 <code>&lt;span class="link-underline"&gt;</code>으로 감싼다.</p>
-        <div class="flex-row" style="gap:24px;align-items:center">
-          <a class="link-arrow link-arrow-ink" href="#"><span class="link-underline">우리 조직에 맞는 교육이 궁금하신가요?</span><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        </div>
-        <div class="flex-row" style="gap:24px;align-items:center;margin-top:12px;padding:20px;border-radius:12px;background:var(--color-ink)">
-          <a class="link-arrow link-arrow-inverse" href="#"><span class="link-underline">3분 AI 진단 시작하기</span><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        </div>
-        <div class="callout callout-note"><b>재사용 원칙:</b> 화살표가 붙은 텍스트 링크가 필요하면 컴포넌트마다
-          <code>display:inline-flex</code> + gap + 폰트를 새로 정의하지 말고 <code>.link-arrow</code>에 색상 modifier만 붙여 쓴다.</div>
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">11</span>컴포넌트 — 헤더 &amp; 네비게이션</h2>
-      <div class="card">
-        <p class="description">고정(fixed) GNB. 로고 + 1depth 네비게이션(드롭다운 트리거 포함) + 로그인/CTA 버튼 3단 구성. 배경은 투명하게 두어 아래
-          <code>main</code> 콘텐츠가 그대로 비치고, 테두리(<code>border-bottom</code>)만으로 경계를 표시한다. 스크롤을 내리면 위로 슬라이드아웃되어
-          숨고, 올리면 다시 슬라이드다운되어 나타난다(<code>--duration-scroll</code>/<code>--ease-scroll</code>).</p>
-        <table>
-          <tr>
-            <th>규칙</th>
-            <th>값</th>
-          </tr>
-          <tr>
-            <td>전체 높이</td>
-            <td><code>75px</code> (padding 16px 위아래)</td>
-          </tr>
-          <tr>
-            <td>1depth 네비게이션</td>
-            <td>드롭다운이 있는 항목은 <code>&lt;a class="nav-trigger"&gt;</code>(+ chevron), 단순 링크는 <code>&lt;a
-                class="nav-link"&gt;</code> — 둘 다 이동 가능한 요소이므로 <code>button</code> 대신 <code>a</code> 사용</td>
-          </tr>
-          <tr>
-            <td>hover</td>
-            <td>텍스트 컬러만 <code>--color-brand</code>로 전환 · <code>--duration-hover</code>(0.1s)</td>
-          </tr>
-          <tr>
-            <td>show/hide 모션</td>
-            <td><code>transform: translateY()</code> 기반, <code>.header.is-hidden</code> 토글로 제어(JS: <code>js/header-scroll.js</code>)</td>
-          </tr>
-        </table>
-        <div class="callout callout-note"><b>재사용 원칙:</b> 헤더의 CTA 버튼은 새 스타일을 만들지 않고 위 10번 버튼 컴포넌트(<code>.btn.btn-primary</code> /
-          <code>.btn.btn-ghost</code>)를 그대로 가져와 쓴다.</div>
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">12</span>컴포넌트 — Hero</h2>
-      <div class="card">
-        <p class="description">랜딩 첫 화면. 상단 중앙 배너 아래에 좌측 핵심 메시지·CTA와 우측 자가진단 진입 카드를 2열로 배치한다.
-          900px 이하에서는 한 열로 접혀 메시지 다음에 진단 카드가 이어진다.</p>
-
-        <h3>상단 배너</h3>
-        <p class="description"><code>.hero-banner</code> — 반투명 흰 필박스(<code>rgba(255,255,255,.6)</code>), hover 시
-          <code>--color-surface</code>로 밝아지며 <code>--shadow-md</code>로 살짝 떠오른다. 부모가 flex 컨테이너가 아니어도 자체를
-          <code>display:flex; width:fit-content; margin-inline:auto;</code>로 정중앙 정렬한다.</p>
-
-        <h3>AI 자가진단 진입 카드</h3>
-        <p class="description"><code>.assessment-card</code>는 실제 문항을 페이지 안에서 진행하는 설문이 아니라 진단 페이지로 이동시키는 정적 CTA다.
-          제목, 문항 수·소요 시간·결과 메타정보, 시작 버튼 슬롯으로 구성하며 <code>assessment-card.css</code>에서 독립 관리한다.</p>
-        <div class="callout callout-note"><b>재사용 원칙:</b> 캠페인별 진단명과 메타정보는 바꿀 수 있지만 카드 안에서 문항 상태나 답변 로직을 구현하지 않는다.</div>
-
-        <h3>함께하는 기업 로고 — 무한 가로 스크롤</h3>
-        <p class="description"><code>.hero-clients</code>는 hero 배경 위, <code>.section-wrap</code> 바깥에 이어 배치되어
-          hero의 그라디언트 배경을 그대로 공유한다. <code>.hero-clients-marquee</code>는
-          <code>.section-wrap</code>과 동일한 <code>max-width</code>로 폭을 맞추고, 로고 목록(<code>.hero-clients-track</code>)을
-          동일한 내용으로 2벌 나란히 두어 <code>translateX(-100%)</code> 애니메이션이 이음매 없이 반복되게 한다. 좌우 끝은
-          <code>mask-image</code> 그라디언트로 자연스럽게 페이드아웃시킨다.</p>
-        <div class="callout callout-note"><b>재사용 원칙:</b> 로고/뱃지 등을 무한 스크롤로 나열해야 할 때 새 마퀴 구현을 만들지 않고 이 트랙 2벌 +
-          <code>mask-image</code> 패턴을 그대로 재사용한다.</div>
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">13</span>컴포넌트 — Metric Card</h2>
-      <div class="card">
-        <p class="description">성과 숫자를 가장 먼저 읽게 만드는 KPI 카드다. 큰 값, 짧은 라벨, 우측 시각 요소의 세 슬롯만 규정하므로
-          수강 인원, 매출, 자동화 시간, 만족도 등 다른 데이터에도 그대로 사용할 수 있다.</p>
-        <div class="summary-banner-stats" style="margin:24px 0">
-          <article class="metric-card is-visible">
-            <div class="metric-card__value"><span class="num">39,355</span><span class="unit">명</span></div>
-            <p class="metric-card__label text-label">누적 수강</p>
-            <div class="metric-card__visual" aria-hidden="true">
-              <span class="metric-card__glow"></span><span class="metric-card__glow"></span>
-              <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="var(--color-brand)"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="color-mix(in srgb,var(--color-brand) 25%,white)"/></svg>
-            </div>
-          </article>
-          <article class="metric-card is-visible">
-            <div class="metric-card__value"><span class="num">1,531</span><span class="unit">회</span></div>
-            <p class="metric-card__label text-label">교육 운영</p>
-            <div class="metric-card__visual" aria-hidden="true">
-              <span class="metric-card__glow"></span><span class="metric-card__glow"></span>
-              <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="3" fill="color-mix(in srgb,var(--color-brand) 25%,white)"/><path d="M7 3v4M17 3v4M7 11h10M7 15h6" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-          </article>
-        </div>
-        <table>
-          <tr><th>슬롯</th><th>역할</th></tr>
-          <tr><td><code>.metric-card__value</code></td><td>핵심 수치와 단위. tabular number로 자릿수 변화를 안정적으로 표시</td></tr>
-          <tr><td><code>.metric-card__label</code></td><td>수치를 설명하는 한 줄 라벨</td></tr>
-          <tr><td><code>.metric-card__visual</code></td><td>SVG, 제품 이미지, 일러스트를 담는 100px 시각 슬롯</td></tr>
-        </table>
-        <div class="callout callout-note"><b>재사용 원칙:</b> 카드 안에 추가 문단이나 버튼을 넣지 않는다. 상세 설명이 필요하면 카드 바깥의 섹션 설명으로 이동해 숫자의 즉시성을 지킨다.</div>
-      </div>
-    </section>
-
-    <section>
-      <h2><span class="heading-number">14</span>컴포넌트 — Content Panel</h2>
-      <div class="card">
-        <p class="description">설명과 큰 이미지·제품 목업을 위아래로 배치하는 콘텐츠 프레임이다. Journey의 제품 화면뿐 아니라
-          기능 소개, 리포트 미리보기, 사례 상세 카드에서도 동일한 크기와 리듬을 재사용한다.</p>
-        <div class="content-panel surface-glass" style="max-width:640px;margin:24px auto">
-          <article class="content-panel__item">
-            <div class="content-panel__intro">
-              <p class="text-label brand">PRODUCT EXPERIENCE</p>
-              <h3>텍스트 영역은 짧고 명확하게</h3>
-              <p class="text-body-muted">아래 시각 자료를 이해하는 데 필요한 맥락만 두세 줄로 설명합니다.</p>
-            </div>
-            <div class="content-panel__visual" style="min-height:280px;padding:24px;border:1px solid var(--color-brand-tint-2);border-radius:var(--radius-lg);background:var(--color-surface);box-shadow:var(--shadow-md)">
-              <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:16px;height:100%">
-                <div style="border-radius:8px;background:var(--color-brand-tint-1)"></div>
-                <div style="display:flex;flex-direction:column;gap:12px"><span class="skeleton-line"></span><span class="skeleton-line is-short"></span><div style="flex:1;border-radius:8px;background:var(--color-surface-sunken)"></div></div>
+        <div class="guide-component-list">
+          <article class="guide-component-row">
+            <div class="guide-component-demo">
+              <div class="section-title text-left" style="width: 100%;">
+                <p class="tag">SECTION LABEL</p>
+                <h2>섹션의 핵심 메시지를<br>먼저 보여줍니다</h2>
+                <p class="desc">라벨, 제목, 설명을 일정한 간격으로 쌓아 읽는 순서를 만듭니다.</p>
               </div>
             </div>
+            <div><p class="tag">섹션 제목</p><h3>Section Title</h3><p>페이지의 각 큰 영역을 시작하는 제목 블록입니다. <code>text-left</code> 또는 <code>text-center</code>를 붙여 제목·설명만 정렬하고, 버튼이나 카드 배치에는 영향을 주지 않습니다.</p><code>section-title · text-left · text-center</code></div>
+          </article>
+          <article class="guide-component-row">
+            <div class="guide-component-demo">
+              <!-- 메인 Proof 섹션의 3열 기준: (1320px - 좌우 40px - gap 48px) / 3 = 약 411px -->
+              <div class="summary-banner stats-light" style="width: calc((var(--container-medium) - 88px) / 3); max-width: 100%;">
+                <div class="summary-banner-stats">
+                  <article class="metric-card is-visible">
+                    <div class="metric-card__value"><span class="num">39,355</span><span class="unit">명</span></div>
+                    <p class="metric-card__label text-label">누적 수강</p>
+                    <div class="metric-card__visual" aria-hidden="true">
+                      <span class="metric-card__glow"></span><span class="metric-card__glow"></span>
+                      <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                        <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                        <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                        <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                        <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)" />
+                        <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)" />
+                      </svg>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+            <div><p class="tag">수치 카드</p><h3>Metric Card</h3><p>성과, 인원, 비율처럼 가장 중요한 숫자를 보여줄 때 사용합니다.</p><code>metric-card</code></div>
+          </article>
+          <article class="guide-component-row"><div class="guide-component-demo"><ul class="choice-list diagnosis-product-list"><li><a class="choice-list__item diagnosis-product" href="#components"><span class="choice-list__icon diagnosis-product-icon" aria-hidden="true"><img src="images/icon/ic_skillPath.svg" alt=""></span><span class="choice-list__body diagnosis-product-body"><span class="section-body-title">SkillPath</span><span class="text-caption">온라인 이러닝</span></span><svg class="choice-list__arrow diagnosis-product-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a class="choice-list__item diagnosis-product" href="#components"><span class="choice-list__icon diagnosis-product-icon" aria-hidden="true"><img src="images/icon/ic_edu.svg" alt=""></span><span class="choice-list__body diagnosis-product-body"><span class="section-body-title">SkillCamp</span><span class="text-caption">강사 주도형 교육</span></span><svg class="choice-list__arrow diagnosis-product-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a class="choice-list__item diagnosis-product" href="#components"><span class="choice-list__icon diagnosis-product-icon" aria-hidden="true"><img src="images/icon/ic_skillFit.svg" alt=""></span><span class="choice-list__body diagnosis-product-body"><span class="section-body-title">SkillFit</span><span class="text-caption">AI 기반 적응형 학습</span></span><svg class="choice-list__arrow diagnosis-product-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul></div><div><p class="tag">선택 목록</p><h3>Choice List</h3><p>제품이나 프로그램처럼 여러 항목 중 하나를 선택하게 할 때 사용합니다. 각 항목에 마우스를 올리면 배경과 우측 화살표가 기존 규칙대로 반응합니다.</p><code>choice-list</code></div></article>
+          <article class="guide-component-row"><div class="guide-component-demo"><div class="preview-frame" style="width:100%"><div class="preview-frame__bar"><span class="preview-frame__dots"><i></i><i></i><i></i></span></div><div class="skeleton-stack"><span class="skeleton-block is-tag"></span><span class="skeleton-block is-title"></span><span class="skeleton-block is-title is-short"></span><span class="skeleton-line"></span><span class="skeleton-line is-short"></span></div></div></div><div><p class="tag">제품 화면</p><h3>Preview Frame</h3><p>서비스 화면, 리포트, 교육 콘텐츠 등 실제 화면의 느낌을 보여줄 때 사용합니다.</p><code>preview-frame</code></div></article>
+          <article class="guide-component-row"><div class="guide-component-demo"><a class="media-card insight-feature" href="#components"><div class="media-card__media insight-feature-thumb"><img src="images/bg-line2.png" alt=""></div><div class="media-card__body insight-feature-body"><div class="media-card__meta insight-feature-meta"><span class="tag">INSIGHT</span></div><h3 class="media-card__title insight-feature-title">AI 역량을 높이는 조직의 변화</h3><span class="text-caption">2026.08.25</span></div></a></div><div><p class="tag">콘텐츠 카드</p><h3>Media Card</h3><p>메인 Insight와 동일한 가로형 4:3 이미지 비율을 사용합니다. 뉴스, 사례, 블로그처럼 이미지와 제목을 함께 보여줄 때 사용합니다.</p><code>media-card · insight-feature-thumb</code></div></article>
+          <article class="guide-component-row"><div class="guide-component-demo"><a class="btn btn-primary" href="#components">주요 행동<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/></svg></a><a class="btn btn-ghost" href="#components">보조 행동</a><a class="link-arrow link-arrow-ink" href="#components"><span class="link-underline">자세히 보기</span></a></div><div><p class="tag">버튼과 링크</p><h3>Button &amp; Link</h3><p>주요 행동에는 Primary, 보조 행동에는 Ghost와 밑줄 링크를 사용합니다.</p><code>btn · link-arrow</code></div></article>
+          <article class="guide-component-row"><div class="guide-component-demo"><span class="tag">AI 역량 진단</span><span class="tag">교육 프로그램</span><span class="tag">고객 사례</span></div><div><p class="tag">분류 라벨</p><h3>Tag</h3><p>콘텐츠의 종류나 짧은 상태를 표시할 때 사용합니다. 제목보다 먼저 보여주되, 가장 중요한 정보처럼 보이지 않게 유지합니다.</p><code>tag</code></div></article>
+          <article class="guide-component-row"><div class="guide-component-demo"><div class="guide-part-nav-variants"><div><p class="text-label">최대 radius · 기본</p><nav class="part-nav part-nav--animated" data-guide-part-nav aria-label="캡슐형 Part Nav"><span class="part-nav-indicator" aria-hidden="true"></span><a class="part-nav-item is-active" href="#components">PART 1 · 교육</a><a class="part-nav-item" href="#components">PART 2 · 진단</a></nav></div><div><p class="text-label">최소 radius · compact</p><nav class="part-nav part-nav--compact part-nav--animated" data-guide-part-nav aria-label="사각형 Part Nav"><span class="part-nav-indicator" aria-hidden="true"></span><a class="part-nav-item is-active" href="#components">PART 1 · 교육</a><a class="part-nav-item" href="#components">PART 2 · 진단</a></nav></div></div></div><div><p class="tag">파트 이동</p><h3>Part Nav</h3><p>코드프레소의 기본은 부드러운 캡슐형입니다. 더 정돈된 제품 UI에는 8px compact 변형을 사용합니다. 각 예시를 클릭하면 실제처럼 활성 표시가 움직입니다.</p><code>part-nav · part-nav--compact</code></div></article>
+          <article class="guide-component-row"><div class="guide-component-demo"><div class="assessment-card-frame"><span class="assessment-card-frame__glow" aria-hidden="true"></span><div class="assessment-card-stack"><span class="assessment-card-eyebrow">AI 리터러시 자가 진단</span><article class="assessment-card"><div class="assessment-card__head"><h3 class="assessment-card__title">당신은 AI를 쓰는 사람인가요,<br>다루는 사람인가요?</h3><p class="assessment-card__description">지금 나의 AI 활용 수준을 확인해보세요.</p></div><ul class="assessment-card__meta"><li class="pill">11문항</li><li class="pill">약 1분</li><li class="pill">즉시 결과</li></ul><div class="assessment-card__action"><a class="btn btn-primary btn-lg assessment-card__cta" href="#components">AI 역량 진단 시작하기</a></div></article></div></div></div><div><p class="tag">자가 진단 CTA</p><h3>Assessment Card</h3><p>Hero나 캠페인 화면에서 진단 시작을 유도할 때 사용합니다. 카드 자체 hover와 CTA hover도 실제 서비스 규칙을 그대로 따릅니다.</p><code>assessment-card</code></div></article>
+          <article class="guide-component-row"><div class="guide-component-demo"><div class="preview-frame"><div class="skeleton-stack"><span class="skeleton-block is-tag"></span><span class="skeleton-block is-title"></span><span class="skeleton-block is-title is-short"></span><span class="skeleton-line"></span><span class="skeleton-line is-short"></span></div></div></div><div><p class="tag">콘텐츠 대기 상태</p><h3>Skeleton</h3><p>텍스트를 읽을 필요가 없는 목업 또는 데이터를 기다리는 영역을 표현할 때 사용합니다.</p><code>skeleton-block · skeleton-line</code></div></article>
+          <article class="guide-component-row">
+            <div class="guide-component-demo">
+              <div class="content-panel content-panel--compact surface-glass">
+                <div class="content-panel__item">
+                  <div class="content-panel__intro">
+                    <p class="tag">AI LEARNING</p>
+                    <p class="section-body-title">설명과 시각 영역을 한 판에</p>
+                  </div>
+                  <div class="content-panel__visual">
+                    <div class="preview-frame preview-frame--quiet">
+                      <div class="skeleton-stack"><span class="skeleton-block is-title"></span><span class="skeleton-line"></span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div><p class="tag">콘텐츠 패널</p><h3>Content Panel</h3><p>소개 문구와 제품 화면·차트처럼 큰 시각 요소를 함께 담습니다.</p><code>content-panel</code></div>
           </article>
         </div>
-        <table>
-          <tr><th>레이어</th><th>책임</th></tr>
-          <tr><td><code>content-panel.css</code></td><td>48px padding, 24px 수직 간격, intro/visual 슬롯과 반응형 축소</td></tr>
-          <tr><td>페이지 컴포넌트 CSS</td><td>sticky 위치, 화면 전환, 제품별 목업과 데이터 표현</td></tr>
-        </table>
-        <div class="callout callout-note"><b>재사용 원칙:</b> 프레임의 padding과 슬롯 간격은 페이지에서 다시 선언하지 않는다. 변형이 필요하면 <code>.content-panel--compact</code>를 사용한다.</div>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h2><span class="heading-number">15</span>컴포넌트 — 섹션 타이틀</h2>
-      <div class="card">
-        <p class="description">메인페이지 각 섹션 상단에 반복되는 라벨 + 타이틀 + 설명 3단 블록. <code>.title</code> 안에
-          <code>.label</code>(16px, 브랜드 컬러) → <code>h2</code>(44px, 전역 스타일 그대로 상속) → <code>.desc</code>(18px) 순으로
-          쌓인다. 기본 정렬은 중앙이며, 좌측 정렬이 필요하면 <code>h2</code>에 <code>.text-left</code> modifier를 추가한다.</p>
-        <div class="title" style="margin-bottom:24px">
-          <p class="label">How it works</p>
-          <h2 class="text-left">교육으로 바꾸고, <br>진단으로 증명합니다</h2>
-          <p class="desc">핵심은 교육입니다. 외부 채용 대신, 내부 직원을 사내 FDE로 키우고, 진단이 숫자로 확인합니다.</p>
+      <section class="guide-section" id="motion">
+        <div class="guide-section-head">
+          <p class="guide-kicker">05 · MOTION</p>
+          <h2>현재 화면에 사용 중인 움직임</h2>
+          <p>움직임은 정보를 더 잘 읽게 만드는 경우에만 사용합니다. 아래 목록은 메인 페이지에서 실제로 구동되는 모션과 이를 담당하는 컴포넌트입니다.</p>
         </div>
-        <table>
-          <tr>
-            <th>클래스</th>
-            <th>용도</th>
-          </tr>
-          <tr>
-            <td><code>.title .label</code></td>
-            <td>16px, <code>--text-body-16</code> · <code>--color-brand</code></td>
-          </tr>
-          <tr>
-            <td><code>.title h2</code></td>
-            <td>44px, <code>--text-h2</code>(<code>--text-heading-44</code>) — base.css 전역 h2 스타일을 그대로 상속</td>
-          </tr>
-          <tr>
-            <td><code>.title h2.text-left</code></td>
-            <td>modifier — 기본 중앙 정렬을 좌측 정렬로 전환</td>
-          </tr>
-          <tr>
-            <td><code>.title .desc</code></td>
-            <td>18px, <code>--text-body-18</code> · <code>--color-ink-light</code></td>
-          </tr>
-        </table>
-        <div class="callout callout-note"><b>재사용 원칙:</b> 새 섹션을 추가할 때 타이틀 블록을 새로 만들지 않고 이 <code>.title</code> 마크업
-          구조를 그대로 복사해 텍스트만 바꾼다. h1(56px)은 페이지당 1회, 이 섹션 타이틀은 h2(44px)로 위계를 구분한다.</div>
-      </div>
-    </section>
+        <div class="guide-motion-list">
+          <article><div><p class="tag">스크롤 진입</p><h3>Fade Up</h3></div><p>섹션이 화면에 들어오면 아래에서 자연스럽게 나타납니다. sticky 섹션은 위치가 깨지지 않도록 opacity만 전환합니다.</p><code>fade-up · fade-up.js</code></article>
+          <article><div><p class="tag">자동 순환</p><h3>Feature Card Cycle</h3></div><p>How it works 카드의 활성 항목을 순환하며 아이콘·설명·진행 바를 전환합니다. 마우스를 올리면 해당 항목을 바로 볼 수 있습니다.</p><code>feature-card · feature-card-cycle.js</code></article>
+          <article><div><p class="tag">수치 공개</p><h3>Stat Reveal</h3></div><p>Proof의 수치 카드는 화면 진입 후 순서대로 나타나고, 숫자가 목표 값까지 카운트됩니다.</p><code>metric-card · stat-reveal.js</code></article>
+          <article><div><p class="tag">카드 덱</p><h3>Proof Card Slider</h3></div><p>고객 사례 카드를 자동·수동으로 넘기며, 이전 카드는 위로 사라지고 다음 카드는 앞으로 올라옵니다.</p><code>proof-card · proof-card-slider.js</code></article>
+          <article><div><p class="tag">스크롤 연동</p><h3>Journey Stage</h3></div><p>교육 여정과 진단 화면은 스크롤 위치에 맞춰 활성 단계와 오른쪽 목업을 교체합니다.</p><code>journey-step · journey-stage.js</code></article>
+          <article><div><p class="tag">화면 순환</p><h3>Difference Cycle</h3></div><p>세 개의 차이점 화면과 하단 진행 표시를 자동으로 순환하고, 사용자가 항목을 선택하면 그 화면으로 전환합니다.</p><code>difference-screen · difference-cycle.js</code></article>
+          <article><div><p class="tag">파트 이동</p><h3>Part Nav</h3></div><p>현재 파트를 표시하고, 다른 파트로 부드럽게 이동합니다. 디자인 가이드에서는 인디케이터 이동까지 확인할 수 있습니다.</p><code>part-nav · part-nav.js</code></article>
+          <article><div><p class="tag">헤더 상태</p><h3>Header &amp; Menu</h3></div><p>스크롤 방향에 따라 헤더를 숨기거나 다시 보이고, 메뉴는 hover·focus 상태에서 패널을 열고 닫습니다.</p><code>header · header-scroll.js · nav-menu.js</code></article>
+          <article><div><p class="tag">연속 흐름</p><h3>Client Marquee</h3></div><p>Hero의 고객사 로고는 끊기지 않고 옆으로 흐릅니다. 움직임 줄이기 설정에서는 정지합니다.</p><code>hero-clients-track · hero.css</code></article>
+        </div>
+        <div class="guide-motion-lab">
+          <div class="guide-block-head"><h3>움직임 미리보기</h3><span>버튼을 눌러 실제 상태 전환을 확인하세요.</span></div>
+          <div class="guide-motion-preview-grid">
+            <article class="guide-motion-preview">
+              <div class="guide-motion-preview-head"><div><p class="tag">스크롤 진입</p><h3>Fade Up</h3></div><button class="btn btn-ghost" type="button" data-motion-play="fade-up">미리보기</button></div>
+              <div class="guide-motion-stage" aria-live="polite">
+                <div class="section-title text-left fade-up" data-motion-target="fade-up">
+                  <p class="tag">NEW SECTION</p><h2>아래에서 위로<br>자연스럽게 나타납니다</h2><p class="desc">실제 섹션 진입에 쓰는 동일한 모션입니다.</p>
+                </div>
+              </div>
+            </article>
+            <article class="guide-motion-preview">
+              <div class="guide-motion-preview-head"><div><p class="tag">수치 공개</p><h3>Stat Reveal</h3></div><button class="btn btn-ghost" type="button" data-motion-play="stat-reveal">미리보기</button></div>
+              <div class="guide-motion-stage">
+                <div class="summary-banner stats-light" style="width: 100%;"><div class="summary-banner-stats"><article class="metric-card" data-motion-target="stat-reveal"><div class="metric-card__value"><span class="num" data-motion-number="39355">0</span><span class="unit">명</span></div><p class="metric-card__label text-label">누적 수강</p><div class="metric-card__visual" aria-hidden="true"><span class="metric-card__glow"></span><span class="metric-card__glow"></span><img class="metric-card__icon" src="images/icon/ic_barChart.svg" alt=""></div></article></div></div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="guide-callout"><strong>접근성</strong><span>모든 자동 모션은 <code>prefers-reduced-motion</code> 환경에서 멈추거나 즉시 표시됩니다. 새 모션도 같은 기준을 따라야 합니다.</span></div>
+      </section>
 
-    <section>
-      <h2><span class="heading-number">16</span>컴포넌트 — 인사이트 카드 &amp; 슬라이더</h2>
-      <div class="card">
-        <p class="description">블로그·뉴스 글을 가로 슬라이드로 노출하는 카드. <b>border를 쓰지 않고 배경색만으로 영역을 구분</b>하는 것이 이 컴포넌트의 원칙이다 —
-          카드는 <code>--color-surface-sunken</code>, 썸네일 자리는 한 단계 진한 <code>--color-surface-mist</code>, hover 시
-          <code>--color-brand-tint-2</code>로 올라간다. 썸네일은 가로형(16:9) 고정이며, 트랙은
-          <code>--container-medium</code> 폭을 그대로 채우고 좌우 화살표만 <code>position:absolute</code>로 그 바깥 여백에 놓인다.</p>
-        <table>
-          <tr>
-            <th>클래스</th>
-            <th>용도</th>
-          </tr>
-          <tr>
-            <td><code>.insight-slider</code></td>
-            <td>화살표의 <code>position:relative</code> 기준점. <code>data-insight-slider</code> 훅을 함께 붙인다</td>
-          </tr>
-          <tr>
-            <td><code>.insight-track-viewport</code> / <code>.insight-track</code></td>
-            <td>넘치는 카드를 잘라내는 창 / <code>translateX</code>로 밀리는 flex 트랙(gap <code>--space-24</code>)</td>
-          </tr>
-          <tr>
-            <td><code>.insight-card</code></td>
-            <td>한 화면 3장(<code>1023px</code> 이하 2장, <code>780px</code> 이하 1장). 배경 <code>--color-surface-sunken</code>,
-              radius <code>--radius-lg</code></td>
-          </tr>
-          <tr>
-            <td><code>.insight-card-thumb</code></td>
-            <td>가로형 썸네일 자리. <code>aspect-ratio:16/9</code> · 배경 <code>--color-surface-mist</code>로 이미지가 없어도 영역 유지</td>
-          </tr>
-          <tr>
-            <td><code>.insight-card-title</code></td>
-            <td><code>h3</code>에 붙는다 — 카드 안에서는 body 위계라 <code>--text-body-18</code>(18px)로 축소, 3줄 <code>line-clamp</code></td>
-          </tr>
-          <tr>
-            <td><code>.insight-card-meta</code></td>
-            <td>카테고리 <code>.tag</code> + 날짜 <code>time.text-caption</code>. <code>margin-top:auto</code>로 카드 하단 정렬</td>
-          </tr>
-          <tr>
-            <td><code>.insight-nav.prev</code> / <code>.next</code></td>
-            <td>48px 원형 버튼. 선 대신 흰 배경 + <code>--shadow-md</code>로 구분하고, 끝에 닿으면 <code>:disabled</code></td>
-          </tr>
-        </table>
-        <div class="callout callout-note"><b>재사용 원칙:</b> 카테고리 라벨과 날짜는 새 클래스를 만들지 않고 공용 <code>.tag</code>·<code>.text-caption</code>을
-          그대로 쓴다. 제목(<code>h3</code>)은 카드 안에서 축소된 위계이므로 <code>--text-body-18</code> 토큰으로 override하며, 임의의
-          px 값을 직접 넣지 않는다.</div>
-      </div>
-    </section>
+      <section class="guide-section" id="patterns">
+        <div class="guide-section-head">
+          <p class="guide-kicker">06 · PATTERNS</p>
+          <h2>화면을 만들 때의 순서</h2>
+          <p>처음부터 예쁜 화면을 만들려고 하기보다, 정보의 순서와 필요한 패턴을 먼저 고르면 훨씬 빠릅니다.</p>
+        </div>
+        <ol class="guide-steps">
+          <li><span>01</span><div><h3>무엇을 가장 먼저 보여줄지 정합니다</h3><p>이 화면에서 사용자가 가장 먼저 알아야 할 한 문장을 고릅니다.</p></div></li>
+          <li><span>02</span><div><h3>내용에 맞는 섹션 배치를 고릅니다</h3><p>소개형, 좌우형, 스크롤 고정형 중 정보의 흐름에 가장 맞는 방식을 선택합니다.</p></div></li>
+          <li><span>03</span><div><h3>기존 컴포넌트에 내용을 넣습니다</h3><p>새 카드부터 만들기보다 Metric, Choice List, Preview 같은 공통 디자인을 먼저 사용합니다.</p></div></li>
+          <li><span>04</span><div><h3>색상은 강조가 필요한 한 곳에만 씁니다</h3><p>브랜드 블루는 행동을 유도하거나 중요한 변화를 보여줄 때만 사용합니다.</p></div></li>
+        </ol>
+      </section>
 
-    <footer>코드프레소 디자인 시스템 · 컴포넌트 라이브러리 · 최종 갱신: 2026-08-25</footer>
+      <section class="guide-section guide-usage" id="usage">
+        <p class="guide-kicker">07 · COMPONENT USAGE</p>
+        <h2>AI에게 이렇게 요청하면 됩니다.</h2>
+        <p class="guide-usage-intro">새 화면을 만들 때 처음부터 디자인을 설명하지 않아도 됩니다. 위에서 확인한 컴포넌트 이름과 넣을 내용, 배치 방식만 함께 전달하세요.</p>
+        <div class="guide-prompt-grid">
+          <article class="guide-prompt-card">
+            <p class="tag">요청에 꼭 넣을 정보</p>
+            <ol>
+              <li><b>사용할 컴포넌트</b><span>예: Metric Card, Choice List, Preview Frame</span></li>
+              <li><b>배치 방식</b><span>예: section-wrap row is-sticky</span></li>
+              <li><b>실제 콘텐츠</b><span>제목, 설명, 버튼 문구, 수치, 이미지</span></li>
+            </ol>
+          </article>
+          <article class="guide-prompt-card is-example">
+            <p class="tag">그대로 복사해 쓰는 요청 예시</p>
+            <p class="guide-prompt-text">“<strong>Choice List</strong>와 <strong>Preview Frame</strong>을 활용한 교육 프로그램 소개 섹션을 만들어줘. <strong>section-wrap row is-sticky</strong> 구조로, 왼쪽에는 ‘우리 조직에 맞는 AI 교육’이라는 제목과 세 개의 프로그램 목록을 넣고, 오른쪽에는 각 프로그램의 화면 예시를 보여줘. 기존 컴포넌트 CSS와 hover 효과를 그대로 사용해줘.”</p>
+          </article>
+        </div>
+      </section>
+      <footer class="guide-footer">Codepresso Design Guide · 마지막 업데이트 2026.08</footer>
+    </main>
   </div>
-
   <script>
-    // 모션 섹션 예시 전용: Segmented Control 인디케이터를 선택된 탭 위치로 슬라이딩
-    document.querySelectorAll("[data-segmented-control]").forEach((control) => {
-      const indicator = control.querySelector("[data-segmented-indicator]");
-      const items = Array.from(control.querySelectorAll(".segmented-control-item"));
-
-      const moveIndicatorTo = (item) => {
-        indicator.style.width = item.offsetWidth + "px";
-        indicator.style.transform = `translateX(${item.offsetLeft - items[0].offsetLeft}px)`;
-      };
-
-      const selectItem = (target) => {
-        items.forEach((item) => item.setAttribute("aria-selected", String(item === target)));
-        moveIndicatorTo(target);
-      };
-
-      moveIndicatorTo(items.find((item) => item.getAttribute("aria-selected") === "true") || items[0]);
-      items.forEach((item) => item.addEventListener("click", () => selectItem(item)));
-      window.addEventListener("resize", () => {
-        const selected = items.find((item) => item.getAttribute("aria-selected") === "true");
-        if (selected) moveIndicatorTo(selected);
-      });
+    document.querySelectorAll('[data-guide-part-nav]').forEach((nav) => {
+      const indicator = nav.querySelector('.part-nav-indicator');
+      const items = [...nav.querySelectorAll('.part-nav-item')];
+      const move = (item) => { indicator.style.width = `${item.offsetWidth}px`; indicator.style.transform = `translateX(${item.offsetLeft - items[0].offsetLeft}px)`; };
+      move(items[0]);
+      items.forEach((item) => item.addEventListener('click', (event) => { event.preventDefault(); items.forEach((link) => link.classList.toggle('is-active', link === item)); move(item); }));
+      window.addEventListener('resize', () => move(nav.querySelector('.part-nav-item.is-active') || items[0]));
     });
 
-    // 모션 섹션 예시 전용: 스크롤 진입 시 .motion-fade에 .is-visible 부여
-    const fadeTargets = document.querySelectorAll("[data-scroll-fade]");
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // 가이드의 미리보기는 서비스와 같은 상태 클래스(.is-visible)를 다시 적용해 모션을 재생한다.
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const motionFrames = new Map();
+    const revealStat = (card) => {
+      const number = card.querySelector('[data-motion-number]');
+      const target = Number(number.dataset.motionNumber);
+      const start = performance.now();
+      const duration = 700;
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        number.textContent = Math.round(target * progress).toLocaleString('ko-KR');
+        if (progress < 1) motionFrames.set(card, requestAnimationFrame(tick));
+      };
+      motionFrames.set(card, requestAnimationFrame(tick));
+    };
 
-    if (prefersReducedMotion) {
-      fadeTargets.forEach((el) => el.classList.add("is-visible"));
-    } else if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            entry.target.classList.toggle("is-visible", entry.isIntersecting);
-          });
-        },
-        { threshold: 0.3 }
-      );
-      fadeTargets.forEach((el) => observer.observe(el));
-    } else {
-      fadeTargets.forEach((el) => el.classList.add("is-visible"));
-    }
+    document.querySelectorAll('[data-motion-play]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const name = button.dataset.motionPlay;
+        const target = document.querySelector(`[data-motion-target="${name}"]`);
+        if (!target) return;
+        if (motionFrames.has(target)) cancelAnimationFrame(motionFrames.get(target));
+        target.classList.remove('is-visible');
+        if (name === 'stat-reveal') target.querySelector('[data-motion-number]').textContent = '0';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          target.classList.add('is-visible');
+          if (name === 'stat-reveal') {
+            if (prefersReducedMotion) target.querySelector('[data-motion-number]').textContent = Number(target.querySelector('[data-motion-number]').dataset.motionNumber).toLocaleString('ko-KR');
+            else revealStat(target);
+          }
+        }));
+      });
+    });
   </script>
 </body>
-
 </html>

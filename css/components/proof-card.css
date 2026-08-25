@@ -93,12 +93,12 @@
   margin-right: var(--space-8);
 }
 
-/* h3 전역 스타일보다 크고 두꺼운 스케일이 필요한 자리. color는 h3 기본값을 상속한다. */
+/* 카드 제목은 프로젝트 공통 h3 위계를 따른다. color는 h3 기본값을 상속한다. */
 .proof-card h3 {
-  font-size: var(--text-heading-26);
-  line-height: var(--leading-heading-26);
-  letter-spacing: var(--tracking-heading-wide);
-  font-weight: var(--font-weight-bold);
+  font-size: var(--text-h3);
+  line-height: var(--leading-h3);
+  letter-spacing: var(--tracking-h3);
+  font-weight: var(--font-weight-semibold);
 }
 
 .proof-card blockquote {

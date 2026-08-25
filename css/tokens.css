@@ -11,7 +11,7 @@
    * --------------------------------------------- */
   --color-brand: #1A61EA;
   --color-brand-dark: #0D33A3;
-  --color-brand-tint-1: #F7F9FF;
+  --color-brand-tint-1: #F5F8FF;
   --color-brand-tint-2: #E9EFFF;
   --color-accent-tint-beige: #F1EBDE;
 
@@ -21,18 +21,18 @@
   --color-bg-dark: #04091A;
 
   /* Color — Ink (Cool Gray, 본문 텍스트는 --color-ink 한 토큰으로 통일) */
-  --color-ink-heaviest: #07153D;
+  --color-ink-heaviest: #04091A;
   --color-ink: #0E1B3D;
   --color-ink-light: #41496B;
   --color-ink-lighter: #7C88A3;
 
   /* Color — Line */
-  --color-line: #E3E7F0;
+  --color-line: #EAECF3;
   --color-line-heavy: #D3D6E0;
 
   /* Color — Surface */
   --color-surface: #FFFFFF;
-  --color-surface-sunken: #F7F9FF;
+  --color-surface-sunken: #F5F8FF;
   --color-surface-page: #FBFCFF;
   --color-surface-mist: #EEF0F3;
   --color-surface-neutral: #e8ecf8;
@@ -62,10 +62,8 @@
   /* Typography — Heading Scale (9단, Semibold 고정)
    * 표기: --text-heading-{size}px / 대응 line-height --leading-heading-{size}px */
   --text-heading-18: 18px; --leading-heading-18: 26px;
-  --text-heading-25: 25px; --leading-heading-25: 34px;
   --text-heading-20: 20px; --leading-heading-20: 28px;
   --text-heading-24: 24px; --leading-heading-24: 32px;
-  --text-heading-26: 26px; --leading-heading-26: 36px;
   --text-heading-32: 32px; --leading-heading-32: 42px;
   --text-heading-36: 36px; --leading-heading-36: 48px;
   --text-heading-40: 40px; --leading-heading-40: 50px;

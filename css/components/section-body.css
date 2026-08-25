@@ -27,9 +27,9 @@
 
 .section-body-subtitle {
   margin: 0;
-  font-size: var(--text-heading-25);
-  line-height: var(--leading-heading-25);
-  letter-spacing: var(--tracking-heading-tight);
+  font-size: var(--text-h3);
+  line-height: var(--leading-h3);
+  letter-spacing: var(--tracking-h3);
   font-weight: var(--font-weight-semibold);
 }
 
