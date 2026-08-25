@@ -104,3 +104,218 @@
   gap: var(--space-12);
   flex-shrink: 0;
 }
+
+/* ---------------------------------------------
+ * 2depth Mega Panel
+ * nav-trigger에 hover/focus하면 header 아래에 폭 100%로 펼쳐지는 패널.
+ * 안쪽은 "인트로 컬럼(좌) + 메뉴 그룹 그리드(우)" 2단 구성이다.
+ * 패널은 .nav-item에 붙지만 폭이 100vw라 트리거 위치와 무관하게 화면 전체를 덮는다.
+ * --------------------------------------------- */
+
+.nav-item {
+  position: relative;
+}
+
+.nav-panel {
+  position: fixed;
+  /* header-inner 높이(75px)에 맞춰 GNB 바로 아래에서 시작한다 */
+  inset-block-start: 75px;
+  inset-inline: 0;
+  background: var(--color-surface);
+  border-block-start: 1px solid var(--color-line);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition:
+    opacity var(--duration-hover) var(--ease-hover),
+    transform var(--duration-hover) var(--ease-hover);
+}
+
+/* hidden 속성이 붙어 있어도 열림 상태에서는 그려야 하므로 display를 되살린다 */
+.nav-panel[hidden] {
+  display: block;
+}
+
+.nav-item.is-open .nav-panel {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* 메뉴별 항목 수가 달라도 패널 높이가 들쭉날쭉하지 않게 300px로 고정한다.
+ * 항목이 이보다 많아지면 늘리지 말고 그룹 구성을 줄이는 쪽으로 조정한다. */
+.nav-panel-inner {
+  max-width: var(--container-wide);
+  height: 300px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: var(--space-24) 40px;
+  display: grid;
+  /* 좌측 인트로 컬럼은 고정폭, 나머지 폭을 메뉴 그룹이 나눠 갖는다 */
+  grid-template-columns: 300px 1fr;
+  gap: var(--space-60);
+}
+
+/* 좌측 인트로 컬럼 */
+.nav-panel-intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding-inline-end: var(--space-48);
+  border-inline-end: 1px solid var(--color-line);
+}
+
+.nav-panel-eyebrow {
+  font-size: var(--text-body-muted);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand);
+}
+
+.nav-panel-title {
+  font-size: var(--text-heading-24);
+  line-height: var(--leading-heading-24);
+}
+
+.nav-panel-desc {
+  font-size: var(--text-body-muted);
+  line-height: var(--leading-body-muted);
+  letter-spacing: var(--tracking-body-muted);
+  color: var(--color-ink-lighter);
+}
+
+.nav-panel-intro .link-arrow {
+  margin-block-start: var(--space-12);
+}
+
+/* 우측 메뉴 그룹 그리드
+ * min-height:0 + overflow:hidden — 300px 고정 높이라 항목이 늘면 패널 밖으로
+ * 삐져나가는 대신 안에서 잘리게 한다(레이아웃이 깨지는 것보다 낫다). */
+.nav-panel-groups {
+  min-height: 0;
+  overflow: hidden;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: var(--space-24);
+  align-items: start;
+}
+
+.nav-group-title {
+  font-size: var(--text-body-muted);
+  line-height: var(--leading-body-muted);
+  letter-spacing: var(--tracking-body-muted);
+  color: var(--color-ink-lighter);
+  margin-block-end: var(--space-12);
+}
+
+.nav-group-list {
+  display: grid;
+  gap: var(--space-2);
+}
+
+/* 2depth 항목 — 아이콘 + 이름 + 설명 */
+.nav-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12);
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-md);
+  transition: background-color var(--duration-hover) var(--ease-hover);
+}
+
+.nav-entry:hover {
+  background: var(--color-brand-tint-1);
+}
+
+.nav-entry-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--color-brand-tint-2);
+}
+
+.nav-entry-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-entry-body {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.nav-entry-name {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
+  transition: color var(--duration-hover) var(--ease-hover);
+}
+
+.nav-entry:hover .nav-entry-name {
+  color: var(--color-brand);
+}
+
+.nav-entry-desc {
+  font-size: var(--text-body-muted);
+  line-height: var(--leading-body-muted);
+  letter-spacing: var(--tracking-body-muted);
+  color: var(--color-ink-lighter);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-panel {
+    transition-duration: 0.001ms;
+    transform: none;
+  }
+}
+
+/* 최근 소식 컬럼 — 메뉴 항목이 아니라 콘텐츠라서 좌측 구분선으로 성격을 나눈다 */
+.nav-news {
+  padding-inline-start: var(--space-24);
+  border-inline-start: 1px solid var(--color-line);
+}
+
+/* 아이콘 없이 날짜·분류 메타 + 제목만 쌓는다 */
+.nav-news-list {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.nav-news-item {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-md);
+  transition: background-color var(--duration-hover) var(--ease-hover);
+}
+
+.nav-news-item:hover {
+  background: var(--color-brand-tint-1);
+}
+
+.nav-news-meta {
+  font-size: var(--text-body-muted);
+  line-height: var(--leading-body-muted);
+  letter-spacing: var(--tracking-body-muted);
+  color: var(--color-ink-lighter);
+}
+
+.nav-news-title {
+  font-size: var(--text-body-muted);
+  line-height: var(--leading-body-muted);
+  letter-spacing: var(--tracking-body-muted);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink);
+  transition: color var(--duration-hover) var(--ease-hover);
+}
+
+.nav-news-item:hover .nav-news-title {
+  color: var(--color-brand);
+}
