@@ -1,0 +1,356 @@
+/*
+ * Page: ax-build.html (AX Build 제품 소개)
+ * main.css(reset → tokens → base → 공통 컴포넌트) 위에 얹는 이 페이지 전용 계층.
+ * 공용 컴포넌트로 표현되지 않는 hero와 성과 비교 표시만 여기서 정의한다.
+ *
+ * @import는 CSS 규칙보다 먼저 와야 하므로 페이지 고유 스타일은 파일 하단에 둔다.
+ */
+
+@import url("../components/cta-final.css") layer(components);
+
+@layer components {
+  /* 페이지 바탕은 흰색으로 두고, 색은 각 섹션이 직접 칠한다.
+     (메인처럼 main에 그라디언트를 깔면 섹션 배경이 그것을 가려버려
+      스크롤 연동이 보이지 않는다 — 이 페이지는 섹션 배경 리듬을 택했다.) */
+  .ax-build-main {
+    background: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /*
+   * Hero — 제품 한 줄 정의 + CTA + 핵심 조건 3개.
+   * GNB가 fixed 75px이므로 상단 여백으로 그만큼을 비운다.
+   */
+  .ax-build-hero {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 배경 질감 — bg-line2를 크게 확대해 선 패턴의 일부만 쓰고, blur로 흘려
+     본문 가독성을 해치지 않게 한다(cta-final과 같은 방식).
+     blur 반경만큼 바깥으로 여유를 둬서 블러가 경계 밖에서 일어나게 한다. */
+  .ax-build-hero::before {
+    content: "";
+    position: absolute;
+    inset: -40px;
+    background-image: url("../../images/bg-line2.png");
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 160%;
+    filter: blur(10px);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  /* 위쪽은 배경이 비치고 아래로 갈수록 흰색으로 덮여, 다음 섹션과 이어진다. */
+  .ax-build-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        transparent 0%,
+        color-mix(in srgb, var(--color-surface) 70%, transparent) 60%,
+        var(--color-surface) 100%);
+    pointer-events: none;
+  }
+
+  .ax-build-hero .section-wrap {
+    position: relative;
+    z-index: 1;
+    padding-top: 152px;
+    padding-bottom: var(--space-60);
+  }
+
+  .ax-build-hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-20);
+    text-align: center;
+  }
+
+  /* hero는 fade-up.js(스크롤 진입) 대상이 아니라 첫 화면이므로,
+     로드 직후 아래에서 위로 한 번 올라오는 애니메이션을 CSS로 직접 준다.
+     라벨 → 제목 → 설명 → 버튼 순으로 조금씩 늦게 들어와 읽는 순서를 만든다. */
+  .ax-build-hero-copy > * {
+    animation: ax-build-rise var(--duration-scroll) var(--ease-scroll) both;
+  }
+
+  .ax-build-hero-copy > :nth-child(2) { animation-delay: .08s; }
+  .ax-build-hero-copy > :nth-child(3) { animation-delay: .16s; }
+  .ax-build-hero-copy > :nth-child(4) { animation-delay: .24s; }
+
+  @keyframes ax-build-rise {
+    from { opacity: 0; transform: translateY(var(--motion-rise)); }
+    to { opacity: 1; transform: none; }
+  }
+
+  .ax-build-hero-title {
+    /* hero 스케일(56px)을 쓰되 제품명 라벨과 한 덩어리로 읽히게 위 여백을 줄인다. */
+    color: var(--color-ink-heaviest);
+  }
+
+  .ax-build-hero-desc {
+    font-size: var(--text-body-18);
+    line-height: var(--leading-body-18);
+    color: var(--color-ink-light);
+  }
+
+  .ax-build-hero-actions {
+    margin-top: var(--space-12);
+  }
+
+  /* 20일 / AI Agent / 3개월 — 제품의 핵심 약속.
+     메인 Proof와 같은 metric-card를 그대로 쓰고, 여기서는 hero 안에서의
+     위치·진입 타이밍과 배경 질감 위에 놓이기 위한 표면만 조정한다. */
+  .ax-build-hero-facts {
+    margin-top: var(--space-48);
+    animation: ax-build-rise var(--duration-scroll) var(--ease-scroll) .32s both;
+  }
+
+  /* 배경 질감 위에 놓이는 자리라 sunken 단색 대신 반투명 유리로 띄운다. */
+  .ax-build-hero-facts .metric-card {
+    background: color-mix(in srgb, var(--color-surface) 78%, transparent);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--duration-hover) var(--ease-hover),
+      transform var(--duration-hover) var(--ease-hover);
+  }
+
+  .ax-build-hero-facts .metric-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  /* "AI Agent"는 숫자가 아니라 텍스트라 40px에서는 카드 폭을 넘친다.
+     세 카드의 값 높이를 맞추기 위해 한 단계 낮춘다. */
+  .ax-build-hero-facts .metric-card__value {
+    font-size: var(--text-heading-32);
+    line-height: var(--leading-heading-32);
+  }
+
+  /*
+   * Best Fit — 메인 How it works와 같은 feature-card 자동 순환을 쓴다.
+   * 카드 디자인·모션은 feature-card.css와 feature-card-cycle.js가 전부 담당하고,
+   * 여기서는 이 섹션의 옅은 배경 위에서만 필요한 차이를 둔다.
+   * 활성 카드 배경을 흰색으로 올려 sunken 바탕과 구분한다
+   * (메인은 흰 바탕 위라 활성 배경이 sunken이었다).
+   */
+  .ax-build-fit .feature-card.is-active {
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* 워크플로 보드 아래 보조 안내 — 목록에 없는 업무도 가능하다는 문장. */
+  .ax-build-catalog-note {
+    margin-top: var(--space-20);
+    color: var(--color-ink-lighter);
+    text-align: center;
+  }
+
+  /*
+   * Deliverables — 20일 뒤 남는 산출물 4개.
+   * 아이콘 없이 제목+설명만 반복되는 목록이라 2열로 눕힌다.
+   */
+  .ax-build-deliverable-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-20);
+  }
+
+  .ax-build-deliverable-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--space-48) minmax(0, 1fr);
+    gap: var(--space-6) var(--space-20);
+    padding: var(--space-28);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-sunken);
+    overflow: hidden;
+    transition: background var(--duration-hover) var(--ease-hover);
+  }
+
+  .ax-build-deliverable-item:hover {
+    background: var(--color-brand-tint-2);
+  }
+
+  .ax-build-deliverable-icon {
+    grid-row: 1 / span 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--space-48);
+    height: var(--space-48);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    color: var(--color-brand);
+    transition: transform var(--duration-hover) var(--ease-hover);
+  }
+
+  .ax-build-deliverable-icon svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  .ax-build-deliverable-item:hover .ax-build-deliverable-icon {
+    transform: scale(1.06);
+  }
+
+  .ax-build-deliverable-desc {
+    color: var(--color-ink-light);
+  }
+
+  /*
+   * Real Outcomes — 고객별 "이전 → 이후" 소요 시간 비교.
+   * proof-card는 인용문 중심의 카드 덱이라 수치 대비가 주인공인 이 자리와 맞지 않다.
+   */
+  .ax-build-outcome-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-24);
+  }
+
+  .ax-build-outcome-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    padding: var(--space-35) var(--space-28);
+    border: 1px solid var(--color-brand-tint-2);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--duration-hover) var(--ease-hover),
+      transform var(--duration-hover) var(--ease-hover);
+  }
+
+  .ax-build-outcome-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  .ax-build-outcome-client {
+    color: var(--color-ink-heaviest);
+    font-size: var(--text-card-title);
+    line-height: var(--leading-card-title);
+    letter-spacing: var(--tracking-card-title);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* 이전 값 → 이후 값. 이후 값만 브랜드 색으로 올려 개선 방향을 드러낸다. */
+  .ax-build-outcome-shift {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-10);
+    flex-wrap: wrap;
+  }
+
+  .ax-build-outcome-before {
+    color: var(--color-ink-lighter);
+    font-size: var(--text-body-18);
+    text-decoration: line-through;
+  }
+
+  /* 텍스트 화살표(→) 대신 공통 chevron SVG를 쓴다(css-patterns.md 규칙).
+     hover 시 오른쪽으로 밀려 개선 방향을 한 번 더 짚어준다. */
+  .ax-build-outcome-arrow {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-line-heavy);
+    transition: transform var(--duration-hover) var(--ease-hover),
+      color var(--duration-hover) var(--ease-hover);
+  }
+
+  .ax-build-outcome-arrow svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+  }
+
+  .ax-build-outcome-item:hover .ax-build-outcome-arrow {
+    color: var(--color-brand);
+    transform: translateX(3px);
+  }
+
+  .ax-build-outcome-after {
+    font-size: var(--text-heading-24);
+    line-height: var(--leading-heading-24);
+    letter-spacing: var(--tracking-heading-tight);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-brand);
+  }
+
+  .ax-build-outcome-detail {
+    padding-top: var(--space-16);
+    border-top: 1px solid var(--color-line);
+    color: var(--color-ink-light);
+  }
+
+  /*
+   * 섹션 배경 리듬 — 흰 바탕만 이어지면 단조로워서, 옅은 면과 흰 면을 번갈아 둔다.
+   * 영역 구분은 border가 아니라 background 차이로 처리하는 것이 이 프로젝트의 기본이다.
+   *
+   *   hero          배경 질감(bg-line2) + 흰색으로 풀림
+   *   01 What       흰색      — 두 판(compare-panel)이 주인공이라 바탕은 비운다
+   *   02 Best Fit   옅은 블루  — 활성 카드가 흰색으로 떠오르며 순환한다
+   *   03 Catalog    흰색      — 대시보드 목업이 그림자로 떠 있어야 한다
+   *   04 Process    옅은 블루  — 타임라인만 있는 섹션이라 면으로 묶어준다
+   *   05 Deliver    흰색      — 카드가 sunken이라 바탕은 흰색이어야 대비가 산다
+   *   06 Outcomes   짙은 틴트  — 성과 구간을 시각적으로 강조
+   *   07 FAQ        흰색
+   */
+  .ax-build-fit,
+  .ax-build-process {
+    background: var(--color-surface-sunken);
+  }
+
+  /* 성과 섹션만 한 단계 진한 틴트로 올려, 페이지에서 가장 강조되는 구간임을 알린다. */
+  .ax-build-outcomes {
+    background: var(--color-brand-tint-1);
+  }
+
+  /* 최하단 CTA — 공용 cta-final을 쓰되, 메인과 같은 자리만 보이면 지루하므로
+     배경 이미지의 다른 구역(우측 하단)을 확대해 쓴다. */
+  .cta-final::before {
+    background-position: bottom right;
+    background-size: 220%;
+  }
+
+  /*
+   * Catalog Board — 워크플로 보드가 화면에 들어올 때 판 자체도 살짝 떠오르게.
+   * .fade-up은 섹션 전체에 걸려 있으므로, 안쪽 보드는 지연을 줘 순서를 만든다.
+   */
+  .ax-build-catalog .preview-frame {
+    transition: box-shadow var(--duration-scroll) var(--ease-scroll);
+  }
+
+  .ax-build-catalog.is-visible .preview-frame {
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ax-build-hero-copy > *,
+    .ax-build-hero-facts { animation: none; }
+
+    .ax-build-hero-facts .metric-card,
+    .ax-build-deliverable-item,
+    .ax-build-deliverable-icon,
+    .ax-build-outcome-item,
+    .ax-build-outcome-arrow,
+    .ax-build-catalog .preview-frame { transition-duration: 0.001ms; }
+  }
+
+  /* 1440 기준 3열 배치. 반응형 착수 시 재검토 — 지금은 좌우 2단이 접히는
+     900px과 카드 내부가 재배치되는 720px 두 지점만 대응한다. */
+  @media (max-width: 900px) {
+    .ax-build-outcome-list,
+    .ax-build-deliverable-list { grid-template-columns: 1fr; }
+    .ax-build-hero .section-wrap { padding-top: 120px; }
+  }
+
+  /* 720px 이하는 metric-card·summary-banner-stats가 자체 규칙으로 접힌다.
+     이 페이지에서 추가로 손댈 것은 없다. */
+}

@@ -152,3 +152,57 @@
 @media (max-width: 1100px) { .guide-main { padding-inline: 40px; }.guide-component-row { grid-template-columns: 1fr; }.guide-sidebar { padding-inline: 20px; } }
 @media (max-width: 800px) { .guide-topbar { height: 60px; padding: 0 20px; }.guide-topbar > p, .guide-brand em { display: none; }.guide-shell { display: block; }.guide-sidebar { position: static; min-height: auto; padding: 16px 20px; border-right: 0; border-bottom: 1px solid var(--color-line); }.guide-sidebar-label, .guide-sidebar-note { display: none; }.guide-nav { flex-direction: row; overflow-x: auto; margin: 0; }.guide-nav a { flex: 0 0 auto; padding: 8px 10px; font-size: 13px; }.guide-main { padding: 0 20px 56px; }.guide-section { padding: 64px 0; }.guide-hero { padding-top: 72px; }.guide-color-grid, .guide-layout-grid, .guide-component-list, .guide-prompt-grid, .guide-motion-list, .guide-inventory-grid, .guide-rule-grid, .guide-breakpoint-list { grid-template-columns: 1fr; }.guide-two-column { grid-template-columns: 1fr; }.guide-component-row { gap: 20px; padding: 20px; }.guide-component-row > div:last-child > p:not(.tag) { max-width: none; }.guide-usage { padding: 36px 24px; }.guide-section-head h2, .guide-usage h2 { font-size: 31px; } }
 @media (max-width: 520px) { .guide-hero h1 { font-size: 42px; }.guide-color-grid { grid-template-columns: 1fr 1fr; }.guide-component-row { grid-template-columns: 1fr; }.guide-component-demo { min-height: 112px; }.guide-type-list > div { grid-template-columns: 75px 1fr; }.guide-type-list p { grid-column: 2; }.guide-block-head { display: block; }.guide-block-head span { display: block; margin-top: 6px; }.guide-motion-item { grid-template-columns: 1fr; }.guide-motion-list code { grid-column: 1; }.guide-steps li { grid-template-columns: 48px 1fr; gap: 12px; } }
+
+/* 08 MOCKUP MOTION — 목업 연출 5종의 뼈대.
+   움직임은 components/mock-motion.css가 담당하고, 여기서는 각 연출이 필요로 하는
+   레이아웃(브라우저 창 내부 2단, 카드 덱 겹침, 상세 2단, 통계/차트 배치)만 정의한다.
+   문서 폭(약 560px)에 맞춘 1회성 치수이므로 토큰으로 올리지 않는다. */
+.guide-motion-live-preview .mock-screen { height: auto; }
+.guide-motion-live-preview [data-mock-motion] .skeleton-line { height: 9px; }
+
+/* B replay — 브라우저 창 안의 2단 화면. 카메라가 확대해도 창 밖으로 새지 않도록 뷰포트가 자른다. */
+.mock-replay-viewport { position: relative; overflow: hidden; height: 240px; }
+.mock-replay-stage { display: flex; height: 100%; }
+.mock-replay-aside { display: flex; flex-direction: column; gap: var(--space-10); width: 124px; flex-shrink: 0; padding: var(--space-16) var(--space-12); border-right: 1px solid var(--color-line); background: var(--color-surface-page); }
+.mock-replay-main { display: flex; flex-direction: column; gap: var(--space-12); flex: 1; min-width: 0; padding: var(--space-16); }
+.mock-replay-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-10); }
+.mock-replay-grid .journey-mock-item { padding: var(--space-12); }
+.mock-replay-cursor { position: absolute; top: 0; left: 0; width: 18px; height: 18px; }
+
+/* C deck — 세 장을 같은 자리에 겹쳐 둔다. 겹침 순서는 문서 순서의 역순이라 z-index로 세운다. */
+.mock-deck { display: flex; flex-direction: column; gap: var(--space-18); }
+.mock-deck-stage { position: relative; height: 190px; }
+.mock-deck-card { position: absolute; inset: 0 auto auto 0; display: flex; flex-direction: column; gap: var(--space-12); width: 300px; padding: var(--space-20); border: 1px solid var(--color-brand-tint-2); border-radius: var(--radius-lg); background: var(--color-surface); }
+/* 덱의 계단 겹침은 기본 transform으로 둔다. keyframes에만 두면 정지 상태에서
+   세 장이 완전히 포개져 덱으로 보이지 않는다. */
+.mock-deck-card.is-deck-back { z-index: 1; transform: translate(74px, 44px) scale(.88); opacity: .3; }
+.mock-deck-card.is-deck-mid { z-index: 2; transform: translate(38px, 22px) scale(.94); opacity: .6; }
+.mock-deck-card.is-deck-front { z-index: 3; border-color: var(--color-brand); box-shadow: var(--shadow-md); }
+.mock-deck-card-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-10); }
+
+/* D detail — 좌측 목록 + 우측 상세 2단. */
+.mock-detail { display: flex; }
+.mock-detail-aside { display: flex; flex-direction: column; gap: var(--space-12); width: 190px; flex-shrink: 0; padding: var(--space-20) var(--space-12); border-right: 1px solid var(--color-line); background: var(--color-surface-page); }
+.mock-detail-list { display: flex; flex-direction: column; gap: var(--space-4); }
+.mock-detail-row { display: flex; align-items: center; gap: var(--space-10); padding: var(--space-10); border-radius: var(--radius-md); }
+.mock-detail-panel { display: flex; flex-direction: column; gap: var(--space-16); flex: 1; min-width: 0; padding: var(--space-20); }
+.mock-detail-head { display: flex; align-items: center; gap: var(--space-16); }
+.mock-detail-gauge { position: relative; width: 64px; height: 64px; flex-shrink: 0; }
+/* 게이지는 12시에서 시작해야 "채워진다"로 읽힌다 — SVG 기본 0도는 3시다. */
+.mock-detail-gauge svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.mock-detail-gauge b { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.mock-detail-head-body { display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
+
+/* E ticker — 통계 3열 + 막대 차트 + 갱신 피드. */
+.mock-ticker-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10); }
+.mock-ticker-stat { display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-12); border-radius: var(--radius-md); background: var(--color-brand-tint-1); }
+.mock-ticker-stat b { color: var(--color-ink-heaviest); font-size: var(--text-heading-24); line-height: var(--leading-heading-24); font-weight: var(--font-weight-semibold); }
+.mock-ticker-stat b.is-current { color: var(--color-brand); }
+.mock-ticker-stat em { font-size: var(--text-body-14); font-weight: var(--font-weight-medium); font-style: normal; color: var(--color-ink-lighter); }
+.mock-ticker-stat b.is-current em { color: inherit; }
+.mock-ticker-chart { display: flex; align-items: flex-end; gap: var(--space-8); height: 84px; }
+/* 높이는 마크업이 --mock-bar-h로 준다. 애니메이션이 없을 때도(모션 축소 설정)
+   막대가 형태를 유지하도록 기본값을 여기서 준다 — keyframes에만 두면 납작해진다. */
+.mock-ticker-chart span { flex: 1; height: var(--mock-bar-h, 50%); border-radius: var(--radius-sm) var(--radius-sm) 0 0; background: var(--color-brand-tint-2); }
+.mock-ticker-chart span.is-current { background: var(--color-brand); }
+.mock-ticker .journey-mock-avatar { width: 28px; height: 28px; font-size: var(--text-body-14); }

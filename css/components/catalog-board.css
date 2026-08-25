@@ -1,0 +1,191 @@
+/*
+ * Component: Catalog Board
+ * 여러 분류에 걸친 항목 묶음을 실제 관리 화면(대시보드)처럼 한 판에 보여주는 범용 보드.
+ * preview-frame 안에 넣어 쓰는 것을 전제로 하고, 보드는 내부 배치만 담당한다.
+ * 좌측 분류 레일에서 분야를 고르고, 우측에 그 분야의 항목이 깔린다.
+ *
+ * Markup API
+ * .catalog-board
+ *   .catalog-board__rail
+ *     button.catalog-board__category (+ .is-active)  ← data-catalog-category="{key}"
+ *       .catalog-board__category-name
+ *       .catalog-board__count
+ *   .catalog-board__main
+ *     .catalog-board__panel (+ .is-active)           ← data-catalog-panel="{key}"
+ *       .catalog-board__panel-desc
+ *       .catalog-board__items > .catalog-board__item
+ *
+ * 활성 전환은 catalog-board.js가 .is-active 토글로 처리한다.
+ */
+.catalog-board {
+  display: grid;
+  grid-template-columns: 224px minmax(0, 1fr);
+  min-height: 420px;
+}
+
+/* 좌측 분류 레일 — 실제 앱의 사이드 내비처럼 옅게 가라앉힌다. */
+.catalog-board__rail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-20);
+  border-right: 1px solid var(--color-line);
+  background: var(--color-surface-sunken);
+}
+
+.catalog-board__category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  padding: var(--space-12) var(--space-16);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-ink-light);
+  text-align: left;
+  transition: background var(--duration-hover) var(--ease-hover),
+    color var(--duration-hover) var(--ease-hover);
+}
+
+.catalog-board__category:hover { background: var(--color-brand-tint-1); }
+
+.catalog-board__category.is-active {
+  background: var(--color-surface);
+  color: var(--color-brand-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+.catalog-board__category-name {
+  font-size: var(--text-body-16);
+  font-weight: var(--font-weight-medium);
+}
+
+/* 항목 개수 배지. 분야별 규모가 한눈에 비교된다. */
+.catalog-board__count {
+  flex-shrink: 0;
+  min-width: 26px;
+  padding: 2px var(--space-8);
+  border-radius: var(--radius-full);
+  background: var(--color-brand-tint-2);
+  color: var(--color-brand);
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.catalog-board__category.is-active .catalog-board__count {
+  background: var(--color-brand);
+  color: var(--color-surface);
+}
+
+.catalog-board__main {
+  position: relative;
+  padding: var(--space-28);
+}
+
+/* 판을 겹쳐 두고 활성 판만 보여준다 — 분야를 바꿀 때 높이가 튀지 않는다. */
+.catalog-board__panel {
+  position: absolute;
+  inset: var(--space-28);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-hover) var(--ease-hover);
+}
+
+.catalog-board__panel.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 분야를 바꾸면 항목이 차례로 들어와 "목록이 갈렸다"는 것이 눈에 보인다.
+   판마다 처음부터 다시 재생되도록 애니메이션은 .is-active에만 건다. */
+.catalog-board__panel.is-active .catalog-board__item {
+  animation: catalog-board-item-in var(--duration-hover) var(--ease-hover) both;
+}
+
+.catalog-board__panel.is-active .catalog-board__item:nth-child(1) { animation-delay: 0s; }
+.catalog-board__panel.is-active .catalog-board__item:nth-child(2) { animation-delay: .03s; }
+.catalog-board__panel.is-active .catalog-board__item:nth-child(3) { animation-delay: .06s; }
+.catalog-board__panel.is-active .catalog-board__item:nth-child(4) { animation-delay: .09s; }
+.catalog-board__panel.is-active .catalog-board__item:nth-child(5) { animation-delay: .12s; }
+.catalog-board__panel.is-active .catalog-board__item:nth-child(6) { animation-delay: .15s; }
+.catalog-board__panel.is-active .catalog-board__item:nth-child(7) { animation-delay: .18s; }
+.catalog-board__panel.is-active .catalog-board__item:nth-child(8) { animation-delay: .21s; }
+
+@keyframes catalog-board-item-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.catalog-board__panel-desc {
+  color: var(--color-ink-light);
+}
+
+.catalog-board__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--space-12);
+  align-content: start;
+}
+
+/* 워크플로 한 건. 실제로 등록된 자동화 항목처럼 보이도록 카드로 세운다. */
+.catalog-board__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  padding: var(--space-12) var(--space-16);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  transition: border-color var(--duration-hover) var(--ease-hover),
+    background var(--duration-hover) var(--ease-hover),
+    box-shadow var(--duration-hover) var(--ease-hover),
+    transform var(--duration-hover) var(--ease-hover);
+}
+
+.catalog-board__item:hover {
+  border-color: var(--color-brand-tint-2);
+  background: var(--color-brand-tint-1);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 항목 앞의 상태 점 — 검증된 워크플로라는 신호. */
+.catalog-board__item::before {
+  content: "";
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand);
+}
+
+@media (max-width: 900px) {
+  .catalog-board { grid-template-columns: 1fr; min-height: 0; }
+  .catalog-board__rail {
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .catalog-board__category { flex-shrink: 0; }
+  /* 좁은 화면에서는 겹쳐 두지 않고 흐름에 따라 높이를 갖게 한다. */
+  .catalog-board__panel { position: static; inset: auto; display: none; }
+  .catalog-board__panel.is-active { display: flex; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .catalog-board__category,
+  .catalog-board__panel,
+  .catalog-board__item { transition-duration: 0.001ms; }
+  .catalog-board__panel.is-active .catalog-board__item { animation: none; }
+}

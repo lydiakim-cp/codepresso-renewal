@@ -151,7 +151,10 @@
   transform: translateY(calc(-1 * var(--motion-rise)));
 }
 
-.how-it-works .feature-card.is-active .section-body-title {
+/* 활성 카드의 라벨(01 · 진단 등)은 브랜드 색으로 올라간다.
+   원래 .how-it-works에만 걸려 있었으나, 이 카드를 쓰는 다른 페이지에서도
+   같은 동작이 필요해 컴포넌트 규칙으로 올렸다. */
+.feature-card.is-active .section-body-title {
   color: var(--color-brand);
 }
 

@@ -1,0 +1,95 @@
+/*
+ * Component: Compare Panel
+ * "지금(Before) → 바뀐 뒤(After)" 두 상태를 나란히 놓고 대비시키는 범용 패널.
+ * 왼쪽은 문제 상황(중립 회색), 오른쪽은 개선 결과(브랜드 톤)로 색이 갈려서
+ * 어느 쪽이 지향점인지 읽는 순간 드러난다.
+ *
+ * Markup API
+ * .compare-panel
+ *   .compare-panel__item (+ .is-after)
+ *     .compare-panel__label
+ *     .compare-panel__title
+ *     .compare-panel__desc
+ *   .compare-panel__arrow   ← 두 item 사이. 장식이라 aria-hidden.
+ */
+.compare-panel {
+  display: grid;
+  /* 가운데 화살표는 내용 폭만 차지하고, 양쪽 판이 남는 폭을 반씩 갖는다. */
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: var(--space-20);
+}
+
+.compare-panel__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-35);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  transition: box-shadow var(--duration-hover) var(--ease-hover),
+    border-color var(--duration-hover) var(--ease-hover);
+}
+
+/* After 판만 브랜드 톤으로 올려 시선이 오른쪽에 머물게 한다. */
+.compare-panel__item.is-after {
+  border-color: var(--color-brand-tint-2);
+  background: var(--color-brand-tint-1);
+  box-shadow: var(--shadow-sm);
+}
+
+.compare-panel__item:hover { box-shadow: var(--shadow-md); }
+.compare-panel__item:hover:not(.is-after) { border-color: var(--color-line-heavy); }
+
+.compare-panel__label {
+  color: var(--color-ink-lighter);
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  font-weight: var(--font-weight-semibold);
+}
+
+.compare-panel__item.is-after .compare-panel__label {
+  color: var(--color-brand);
+}
+
+/* h3 전역 스타일(24px semibold)을 그대로 쓰고 색만 맞춘다. */
+.compare-panel__title {
+  color: var(--color-ink-heaviest);
+}
+
+.compare-panel__desc {
+  color: var(--color-ink-light);
+}
+
+.compare-panel__arrow {
+  align-self: center;
+  color: var(--color-brand);
+  opacity: 0.55;
+}
+
+.compare-panel__arrow svg {
+  display: block;
+  width: 28px;
+  height: 28px;
+  /* Before → After 방향을 계속 짚어주는 미세한 왕복. 폭이 3px이라
+     주의를 빼앗지 않으면서 흐름만 읽히게 한다. */
+  animation: compare-panel-nudge 2.4s var(--ease-scroll) infinite;
+}
+
+@keyframes compare-panel-nudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .compare-panel__arrow svg { animation: none; }
+}
+
+@media (max-width: 900px) {
+  .compare-panel { grid-template-columns: 1fr; }
+  /* 세로로 접히면 화살표도 아래를 향해야 흐름이 끊기지 않는다.
+     회전은 감싼 span이 맡는다 — 안쪽 svg는 왕복 애니메이션으로
+     transform을 쓰고 있어서, 같은 요소에 주면 서로 덮어쓴다. */
+  .compare-panel__arrow { justify-self: center; transform: rotate(90deg); }
+}

@@ -34,4 +34,9 @@
 @import url("./components/media-card.css") layer(components);
 @import url("./components/preview-frame.css") layer(components);
 @import url("./components/skeleton.css") layer(components);
+@import url("./components/mock-motion.css") layer(components);
 @import url("./components/assessment-card.css") layer(components);
+@import url("./components/compare-panel.css") layer(components);
+@import url("./components/timeline.css") layer(components);
+@import url("./components/faq-list.css") layer(components);
+@import url("./components/catalog-board.css") layer(components);

@@ -25,6 +25,11 @@
 | Part Nav | `part-nav.css` | `.part-nav`, `-item`, `-indicator`, `--compact` | 두 파트를 잇는 캡슐형 세그먼트 내비 (`js/part-nav.js`와 짝) |
 | Assessment Card | `assessment-card.css` | `.assessment-card`, `__head`, `__title`, `__meta`, `__action` | 자가진단/설문 시작 유도 카드 |
 | Content Panel | `content-panel.css` | `.content-panel`, `__item`, `__intro`, `__visual`, `--compact` | 설명 + 큰 시각 요소를 한 판에 담는 패널 |
+| Compare Panel | `compare-panel.css` | `.compare-panel`, `__item`(+`.is-after`), `__label`, `__title`, `__desc`, `__arrow` | "지금 → 바뀐 뒤" 두 상태를 좌우로 대비 |
+| Timeline | `timeline.css` | `.timeline`, `__step`, `__marker`, `__term`, `__body`, `__title`, `__desc` | 기간이 있는 단계를 세로로 잇는 진행 흐름 |
+| FAQ List | `faq-list.css` | `.faq-list`, `__item`, `__question`, `__icon`, `__answer` | 질문을 눌러 답을 펼치는 아코디언 (`<details>` native) |
+| Catalog Board | `catalog-board.css` | `.catalog-board`, `__rail`, `__category`, `__count`, `__panel`, `__items`, `__item` | 여러 분류의 항목 묶음을 대시보드처럼 한 판에 (`js/catalog-board.js`와 짝) |
+| Mock Motion | `mock-motion.css` | `.mock-screen`, `[data-mock-motion]`(focus·replay·deck·detail·ticker), `.is-quiet`, `.is-focus`, `.is-pop`, `.is-shimmer` | 제품 화면 목업을 실제로 돌아가는 화면처럼 연출 (CSS만, JS 없음). 5종 사용법은 [mock-motion-guide.md](mock-motion-guide.md) |
 
 ## B. 레이아웃/텍스트 프리미티브 — 카탈로그에 없지만 전 페이지 공용
 
@@ -56,6 +61,8 @@
 | CTA Final | `cta-final.css` | `css/pages/index.css` | — |
 
 ## 판단 순서 (요약)
+
+> **표의 한 줄 설명만 보고 "구조가 안 맞다"고 판단하지 않는다.** 후보를 찾았으면 그 CSS 파일을 열어 상단의 Markup API 주석을 실제로 읽는다 — 대개 필요한 구조가 그 안에 이미 있다. (실패 사례: `metric-card`를 "큰 숫자 + 라벨"로만 보고 "값 + 설명 두 줄"에는 안 맞다고 판단해 새로 만들었으나, `__value` + `__label` + `__visual`이 정확히 같은 역할이었고 결국 교체했다. 새로 만든 쪽은 hover glow·stat-reveal 연동·반응형을 갖지 못했다.)
 
 1. 만들려는 UI가 **A(범용, 카탈로그됨)** 에 있는가 → 그대로 재사용.
 2. **B(레이아웃/텍스트 프리미티브)** 에 있는가 → 그대로 재사용.

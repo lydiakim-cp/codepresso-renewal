@@ -27,7 +27,8 @@
         <a href="#motion"><span>05</span>움직임과 전환</a>
         <a href="#rules"><span>06</span>이름과 상태 규칙</a>
         <a href="#patterns"><span>07</span>화면 패턴</a>
-        <a href="#usage"><span>08</span>컴포넌트 활용법</a>
+        <a href="#mockup-motion"><span>08</span>목업 연출</a>
+        <a href="#usage"><span>09</span>컴포넌트 활용법</a>
       </nav>
       <div class="guide-sidebar-note">
         <strong>현재 버전</strong>
@@ -44,7 +45,7 @@
           <div class="guide-block-head"><h3>전체 컴포넌트 인벤토리</h3><span>공용 UI와 메인 전용 참조 컴포넌트를 구분합니다.</span></div>
           <h4>공용 프리미티브 · 어떤 페이지에서도 재사용</h4>
           <div class="guide-inventory-grid">
-            <article><h5>Section Body</h5><p>카드 안의 제목·부제·설명 묶음</p><code>section-body</code></article><article><h5>Text Utilities</h5><p>라벨·캡션 등 보조 텍스트</p><code>text-label · text-caption</code></article><article><h5>Surface</h5><p>글래스 배경과 표면 처리</p><code>surface-glass</code></article><article><h5>Summary Banner</h5><p>강조 문장과 통계 묶음</p><code>summary-banner</code></article><article><h5>Feature Card</h5><p>아이콘·제목·설명·진행 상태</p><code>feature-card</code></article><article><h5>Card / Grid</h5><p>범용 카드·반복 항목 배치</p><code>card · grid · flex-row</code></article><article><h5>Dot Line</h5><p>섹션 사이의 점선 구분</p><code>dot-line</code></article><article><h5>Fade Up</h5><p>스크롤 진입 모션</p><code>fade-up</code></article><article><h5>Header / GNB</h5><p>전역 메뉴와 헤더 상태</p><code>header · nav</code></article>
+            <article><h5>Section Body</h5><p>카드 안의 제목·부제·설명 묶음</p><code>section-body</code></article><article><h5>Text Utilities</h5><p>라벨·캡션 등 보조 텍스트</p><code>text-label · text-caption</code></article><article><h5>Surface</h5><p>글래스 배경과 표면 처리</p><code>surface-glass</code></article><article><h5>Summary Banner</h5><p>강조 문장과 통계 묶음</p><code>summary-banner</code></article><article><h5>Feature Card</h5><p>아이콘·제목·설명·진행 상태</p><code>feature-card</code></article><article><h5>Card / Grid</h5><p>범용 카드·반복 항목 배치</p><code>card · grid · flex-row</code></article><article><h5>Dot Line</h5><p>섹션 사이의 점선 구분</p><code>dot-line</code></article><article><h5>Fade Up</h5><p>스크롤 진입 모션</p><code>fade-up</code></article><article><h5>Header / GNB</h5><p>전역 메뉴와 헤더 상태</p><code>header · nav</code></article><article><h5>Compare Panel</h5><p>지금 → 바뀐 뒤 좌우 대비</p><code>compare-panel</code></article><article><h5>Timeline</h5><p>기간이 있는 단계의 세로 흐름</p><code>timeline</code></article><article><h5>FAQ List</h5><p>질문을 눌러 답을 펼치는 목록</p><code>faq-list</code></article><article><h5>Catalog Board</h5><p>분류별 항목을 대시보드처럼</p><code>catalog-board</code></article><article><h5>Mock Motion</h5><p>목업을 돌아가는 화면처럼 연출</p><code>data-mock-motion</code></article>
           </div>
           <h4>메인 전용 참조 · 다른 페이지에서는 구조만 참고</h4>
           <div class="guide-inventory-grid is-reference">
@@ -310,6 +311,102 @@
               </div>
             </div>
             <div><p class="tag">콘텐츠 패널</p><h3>Content Panel</h3><p>소개 문구와 제품 화면·차트처럼 큰 시각 요소를 한 판에 담습니다. 여러 단계를 교차 페이드로 전환할 때는 판을 고정하고 안의 <code>content-panel__item</code>만 바꿉니다.</p><code>content-panel · content-panel--compact</code></div>
+          </article>
+          <article class="guide-component-row">
+            <div class="guide-component-demo">
+              <div class="compare-panel">
+                <div class="compare-panel__item">
+                  <p class="compare-panel__label">Before</p>
+                  <h3 class="compare-panel__title">사람이 자료를 모으고<br>보고서를 만듭니다</h3>
+                </div>
+                <span class="compare-panel__arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <div class="compare-panel__item is-after">
+                  <p class="compare-panel__label">After</p>
+                  <h3 class="compare-panel__title">Agent가 수행하고<br>사람은 결과를 확인합니다</h3>
+                </div>
+              </div>
+            </div>
+            <div><p class="tag">전후 대비</p><h3>Compare Panel</h3><p>"지금은 이렇지만, 바뀐 뒤에는 이렇습니다"를 좌우로 놓고 보여줍니다. 오른쪽(<code>is-after</code>)만 브랜드 톤으로 올라가 어느 쪽이 지향점인지 바로 읽힙니다.</p><code>compare-panel · compare-panel__item is-after</code></div>
+          </article>
+          <article class="guide-component-row">
+            <div class="guide-component-demo">
+              <ol class="timeline">
+                <li class="timeline__step">
+                  <span class="timeline__term">Day 1</span>
+                  <span class="timeline__marker" aria-hidden="true"></span>
+                  <div class="timeline__body">
+                    <h3 class="timeline__title">현장 진단</h3>
+                    <p class="timeline__desc">실제 업무를 관찰하고 자동화 목표를 찾습니다.</p>
+                  </div>
+                </li>
+                <li class="timeline__step">
+                  <span class="timeline__term">Day 2~5</span>
+                  <span class="timeline__marker" aria-hidden="true"></span>
+                  <div class="timeline__body">
+                    <h3 class="timeline__title">설계와 목표 합의</h3>
+                    <p class="timeline__desc">맡길 범위와 측정할 KPI를 함께 정합니다.</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+            <div><p class="tag">단계 흐름</p><h3>Timeline</h3><p>기간이 있는 단계를 위에서 아래로 잇습니다. 왼쪽에 기간, 가운데에 연결선과 점, 오른쪽에 내용이 옵니다. 단계를 추가하면 선이 자동으로 이어집니다.</p><code>timeline · timeline__step</code></div>
+          </article>
+          <article class="guide-component-row">
+            <div class="guide-component-demo">
+              <div class="faq-list">
+                <details class="faq-list__item" open>
+                  <summary class="faq-list__question">
+                    어떤 업무를 먼저 골라야 하나요?
+                    <span class="faq-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  </summary>
+                  <p class="faq-list__answer">반복되고, 결과가 맞았는지 판단할 기준이 분명한 업무가 첫 대상으로 적합합니다.</p>
+                </details>
+                <details class="faq-list__item">
+                  <summary class="faq-list__question">
+                    사내 개발팀이 없어도 가능한가요?
+                    <span class="faq-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  </summary>
+                  <p class="faq-list__answer">가능합니다. 구축은 FDE가 담당하고 현업은 결과 확인만 맡습니다.</p>
+                </details>
+              </div>
+            </div>
+            <div><p class="tag">질문과 답</p><h3>FAQ List</h3><p>질문을 눌러 답을 펼칩니다. <code>&lt;details&gt;</code> 기본 동작을 그대로 쓰기 때문에 여는 상태·키보드 조작·스크린리더 안내를 브라우저가 처리하고, 별도 스크립트가 필요하지 않습니다.</p><code>faq-list · faq-list__item</code></div>
+          </article>
+          <article class="guide-component-row">
+            <div class="guide-component-demo">
+              <div class="preview-frame preview-frame--flush">
+                <div class="catalog-board" data-catalog-board>
+                  <div class="catalog-board__rail">
+                    <button class="catalog-board__category is-active" type="button" data-catalog-category="guide-common">
+                      <span class="catalog-board__category-name">공통</span><span class="catalog-board__count">3</span>
+                    </button>
+                    <button class="catalog-board__category" type="button" data-catalog-category="guide-sales">
+                      <span class="catalog-board__category-name">영업</span><span class="catalog-board__count">2</span>
+                    </button>
+                  </div>
+                  <div class="catalog-board__main">
+                    <div class="catalog-board__panel is-active" data-catalog-panel="guide-common">
+                      <p class="catalog-board__panel-desc">전 부서가 함께 쓰는 자동화</p>
+                      <ul class="catalog-board__items">
+                        <li class="catalog-board__item">회의록 자동 작성</li>
+                        <li class="catalog-board__item">태스크 관리</li>
+                        <li class="catalog-board__item">다국어 번역</li>
+                      </ul>
+                    </div>
+                    <div class="catalog-board__panel" data-catalog-panel="guide-sales">
+                      <p class="catalog-board__panel-desc">리드 발굴부터 계약까지</p>
+                      <ul class="catalog-board__items">
+                        <li class="catalog-board__item">고객 데이터 관리</li>
+                        <li class="catalog-board__item">제안서 자동 작성</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div><p class="tag">분류별 목록</p><h3>Catalog Board</h3><p>항목이 많고 분류가 여러 개일 때, 실제 관리 화면처럼 한 판에 담습니다. 왼쪽에서 분야를 고르면 오른쪽 목록이 바뀝니다. <code>preview-frame--flush</code> 안에 넣어 제품 화면처럼 보여주는 것이 기본입니다.</p><code>catalog-board · catalog-board.js</code></div>
           </article>
         </div>
       </section>
@@ -617,8 +714,257 @@
         </ol>
       </section>
 
+      <section class="guide-section" id="mockup-motion">
+        <div class="guide-section-head">
+          <p class="guide-kicker">08 · MOCKUP MOTION</p>
+          <h2>목업을 살아 있는 화면으로</h2>
+          <p>제품 화면을 보여줄 때, 정지된 그림 대신 실제로 돌아가는 화면처럼 연출합니다. 읽어야 할 것만 텍스트로 남기고 나머지는 스켈레톤으로 가라앉힌 뒤, 확대·이동·pop으로 시선을 한 곳에 모읍니다. 다섯 가지 연출은 부모에 <code>data-mock-motion</code> 값만 바꿔 고릅니다.</p>
+        </div>
+        <div class="guide-motion-list">
+          <article class="guide-motion-item">
+            <div><p class="tag">A · 포커스</p><h3>현재 항목 확대 (focus)</h3></div>
+            <p>목록의 나머지 행은 스켈레톤으로 흐려지고, 지금 학습 중인 행 하나만 1.055배로 떠올라 텍스트가 드러납니다. 진도 막대도 함께 차오릅니다. 기존 목록형 목업에 클래스만 얹으면 되어 교체 비용이 가장 낮습니다.</p>
+            <div class="guide-motion-live-preview">
+                <div class="preview-frame mock-screen" data-mock-motion="focus" aria-hidden="true">
+                  <div class="journey-mock-head">
+                    <span class="journey-mock-title">업무 자동화 기초 과정</span>
+                    <span class="journey-mock-badge">수강 중</span>
+                  </div>
+                  <div class="journey-mock-progress">
+                    <div class="journey-mock-progress-bar"><span style="width: 68%"></span></div>
+                    <span class="text-caption strong">68%</span>
+                  </div>
+                  <ul class="journey-mock-list">
+                    <li class="journey-mock-item is-done is-quiet">
+                      <span class="journey-mock-check"></span>
+                      <span class="skeleton-line is-shimmer" style="width: 148px"></span>
+                      <span style="flex: 1"></span>
+                    </li>
+                    <li class="journey-mock-item is-done is-quiet">
+                      <span class="journey-mock-check"></span>
+                      <span class="skeleton-line is-shimmer" style="width: 186px; animation-delay: .3s"></span>
+                      <span style="flex: 1"></span>
+                    </li>
+                    <li class="journey-mock-item is-current is-focus">
+                      <span class="journey-mock-check"></span>
+                      <span class="journey-mock-item-name">반복 업무 자동화 실습</span>
+                      <span class="text-caption">24분</span>
+                    </li>
+                    <li class="journey-mock-item is-quiet">
+                      <span class="journey-mock-check"></span>
+                      <span class="skeleton-line is-shimmer" style="width: 132px; animation-delay: .6s"></span>
+                      <span style="flex: 1"></span>
+                    </li>
+                  </ul>
+                </div>
+            </div>
+            <code>data-mock-motion="focus" · is-quiet · is-focus · is-shimmer</code>
+          </article>
+          <article class="guide-motion-item">
+            <div><p class="tag">B · 리플레이</p><h3>브라우저 화면 확대 (replay)</h3></div>
+            <p>주소창과 사이드바까지 갖춘 실제 제품 화면입니다. 커서가 카드로 이동하면 화면 전체가 1.42배로 밀고 들어가고, 그 카드에만 브랜드 테두리와 텍스트가 켜집니다. "실제 운영 중인 화면"을 가장 정직하게 보여주는 연출입니다.</p>
+            <div class="guide-motion-live-preview">
+                <div class="preview-frame preview-frame--flush" data-mock-motion="replay" aria-hidden="true">
+                  <div class="preview-frame__bar">
+                    <span class="preview-frame__dots"><i></i><i></i><i></i></span>
+                    <span class="text-caption">skillpath.codepresso.io</span>
+                  </div>
+                  <div class="mock-replay-viewport">
+                    <div class="mock-replay-stage is-camera">
+                      <div class="mock-replay-aside">
+                        <span class="skeleton-line" style="width: 62px"></span>
+                        <span class="text-caption strong">내 학습</span>
+                        <span class="skeleton-line" style="width: 54px"></span>
+                        <span class="skeleton-line" style="width: 68px"></span>
+                      </div>
+                      <div class="mock-replay-main">
+                        <span class="skeleton-line" style="width: 118px"></span>
+                        <div class="mock-replay-grid">
+                        <article class="journey-mock-item is-focus" style="flex-direction: column; align-items: stretch; gap: var(--space-10); background: var(--color-surface); border: 1px solid var(--color-line)">
+                          <span class="journey-mock-item-name" style="flex: none">업무 자동화 기초</span>
+                          <span class="journey-mock-progress-bar"><span style="width: 68%"></span></span>
+                          <span class="text-caption strong">68% 이수</span>
+                        </article>
+                        <article class="journey-mock-item is-quiet" style="flex-direction: column; align-items: stretch; gap: var(--space-10); background: var(--color-surface); border: 1px solid var(--color-line)">
+                          <span class="skeleton-line" style="width: 76px"></span>
+                          <span class="journey-mock-progress-bar"><span style="width: 34%"></span></span>
+                          <span class="skeleton-line" style="width: 40px"></span>
+                        </article>
+                        <article class="journey-mock-item is-quiet" style="flex-direction: column; align-items: stretch; gap: var(--space-10); background: var(--color-surface); border: 1px solid var(--color-line)">
+                          <span class="skeleton-line" style="width: 88px"></span>
+                          <span class="journey-mock-progress-bar"><span style="width: 52%"></span></span>
+                          <span class="skeleton-line" style="width: 40px"></span>
+                        </article>
+                        <article class="journey-mock-item is-quiet" style="flex-direction: column; align-items: stretch; gap: var(--space-10); background: var(--color-surface); border: 1px solid var(--color-line)">
+                          <span class="skeleton-line" style="width: 70px"></span>
+                          <span class="journey-mock-progress-bar"><span style="width: 18%"></span></span>
+                          <span class="skeleton-line" style="width: 40px"></span>
+                        </article>
+                        </div>
+                      </div>
+                    </div>
+                    <svg class="mock-replay-cursor is-cursor" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M5 3l14 8.5-6.2 1.4L10 19.5 5 3z" fill="var(--color-ink-heaviest)" stroke="var(--color-surface)" stroke-width="1.4" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+            </div>
+            <code>data-mock-motion="replay" · is-camera · is-cursor · is-focus</code>
+          </article>
+          <article class="guide-motion-item">
+            <div><p class="tag">C · 카드 덱</p><h3>카드가 넘어간다 (deck)</h3></div>
+            <p>레슨 카드가 덱처럼 쌓여 있다가 맨 앞 카드가 좌상단으로 빠지고, 뒤 카드가 앞으로 당겨집니다. 빠지기 직전 "완료" 배지가 튀어나옵니다. 움직임이 가장 커서 스크롤 중 흘깃 봐도 진행되는 것이 읽힙니다.</p>
+            <div class="guide-motion-live-preview">
+                <div class="preview-frame mock-deck" data-mock-motion="deck" aria-hidden="true">
+                  <div class="journey-mock-head">
+                    <span class="journey-mock-title">업무 자동화 기초 과정</span>
+                    <span class="journey-mock-badge">3 / 12</span>
+                  </div>
+                  <div class="mock-deck-stage">
+                    <article class="mock-deck-card is-deck-back">
+                      <span class="skeleton-line" style="width: 64px"></span>
+                      <span class="skeleton-line" style="width: 176px"></span>
+                      <span class="journey-mock-progress-bar"><span style="width: 20%"></span></span>
+                    </article>
+                    <article class="mock-deck-card is-deck-mid">
+                      <span class="skeleton-line" style="width: 72px"></span>
+                      <span class="skeleton-line" style="width: 198px"></span>
+                      <span class="journey-mock-progress-bar"><span style="width: 40%"></span></span>
+                    </article>
+                    <article class="mock-deck-card is-deck-front">
+                      <div class="mock-deck-card-head">
+                        <span class="text-label brand">LESSON 03</span>
+                        <span class="journey-mock-badge is-pop">완료</span>
+                      </div>
+                      <p class="section-body-title">반복 업무 자동화 실습</p>
+                      <span class="journey-mock-progress-bar"><span style="width: 100%"></span></span>
+                      <span class="text-caption strong">24분 · 학습 완료</span>
+                    </article>
+                  </div>
+                </div>
+            </div>
+            <code>data-mock-motion="deck" · is-deck-front · is-deck-mid · is-deck-back · is-pop</code>
+          </article>
+          <article class="guide-motion-item">
+            <div><p class="tag">D · 상세 팝인</p><h3>고르면 상세가 열린다 (detail)</h3></div>
+            <p>좌측 목록은 스켈레톤으로 두고, 한 항목이 선택되면 우측 상세 패널이 밀려 들어옵니다. 도넛 게이지가 목표치까지 그려지고 하위 항목이 계단식으로 떠오릅니다. 정보 밀도와 연출의 균형이 가장 좋습니다.</p>
+            <div class="guide-motion-live-preview">
+                <div class="preview-frame preview-frame--flush mock-detail" data-mock-motion="detail" aria-hidden="true">
+                  <div class="mock-detail-aside">
+                    <span class="text-caption">커리큘럼</span>
+                    <ul class="mock-detail-list">
+                      <li class="mock-detail-row">
+                        <span class="journey-mock-check is-done"></span>
+                        <span class="skeleton-line" style="width: 118px"></span>
+                      </li>
+                      <li class="mock-detail-row">
+                        <span class="journey-mock-check is-done"></span>
+                        <span class="skeleton-line" style="width: 96px"></span>
+                      </li>
+                      <li class="mock-detail-row is-selected">
+                        <span class="journey-mock-check" style="border-color: var(--color-brand)"></span>
+                        <span class="journey-mock-item-name">반복 업무 자동화</span>
+                      </li>
+                      <li class="mock-detail-row">
+                        <span class="journey-mock-check"></span>
+                        <span class="skeleton-line" style="width: 108px"></span>
+                      </li>
+                      <li class="mock-detail-row">
+                        <span class="journey-mock-check"></span>
+                        <span class="skeleton-line" style="width: 84px"></span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="mock-detail-panel is-panel">
+                    <div class="mock-detail-head">
+                      <span class="mock-detail-gauge">
+                        <svg viewBox="0 0 64 64" aria-hidden="true">
+                          <circle cx="32" cy="32" r="28" fill="none" stroke="var(--color-brand-tint-2)" stroke-width="7"/>
+                          <circle class="is-gauge" cx="32" cy="32" r="28" fill="none" stroke="var(--color-brand)" stroke-width="7" stroke-linecap="round" stroke-dasharray="176" stroke-dashoffset="56"/>
+                        </svg>
+                        <b class="text-caption strong">68%</b>
+                      </span>
+                      <span class="mock-detail-head-body">
+                        <p class="section-body-title">반복 업무 자동화 실습</p>
+                        <span class="skeleton-line" style="width: 152px"></span>
+                      </span>
+                    </div>
+                    <ul class="journey-mock-list">
+                      <li class="journey-mock-item is-stagger">
+                        <span class="journey-mock-check is-done"></span>
+                        <span class="journey-mock-item-name">실습 과제 제출</span>
+                        <span class="text-caption strong">완료</span>
+                      </li>
+                      <li class="journey-mock-item is-stagger" style="animation-delay: .12s">
+                        <span class="journey-mock-check"></span>
+                        <span class="skeleton-line" style="width: 140px"></span>
+                        <span style="flex: 1"></span>
+                      </li>
+                      <li class="journey-mock-item is-stagger" style="animation-delay: .24s">
+                        <span class="journey-mock-check"></span>
+                        <span class="skeleton-line" style="width: 116px"></span>
+                        <span style="flex: 1"></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+            <code>data-mock-motion="detail" · is-selected · is-panel · is-gauge · is-stagger</code>
+          </article>
+          <article class="guide-motion-item">
+            <div><p class="tag">E · 실시간 티커</p><h3>숫자가 갱신된다 (ticker)</h3></div>
+            <p>관리자 시점의 대시보드입니다. 핵심 수치가 오버슈트로 튀어나오고, 막대가 바닥에서 자라고, 새 이수 기록이 위에서 밀려 들어오며 한 번 반짝인 뒤 가라앉습니다. 수치로 설득해야 하는 자리에 씁니다.</p>
+            <div class="guide-motion-live-preview">
+                <div class="preview-frame mock-screen mock-ticker" data-mock-motion="ticker" aria-hidden="true">
+                  <div class="journey-mock-head">
+                    <span class="journey-mock-title">이수 현황 대시보드</span>
+                    <span class="journey-mock-badge is-live"><i class="is-pulse"></i>실시간</span>
+                  </div>
+                  <div class="mock-ticker-stats">
+                    <article class="mock-ticker-stat">
+                      <span class="skeleton-line" style="width: 46px"></span>
+                      <b class="is-pop">248<em>명</em></b>
+                    </article>
+                    <article class="mock-ticker-stat">
+                      <span class="skeleton-line" style="width: 52px"></span>
+                      <b class="is-pop is-current" style="animation-delay: .1s">68<em>%</em></b>
+                    </article>
+                    <article class="mock-ticker-stat">
+                      <span class="skeleton-line" style="width: 40px"></span>
+                      <b class="is-pop" style="animation-delay: .2s">12<em>개</em></b>
+                    </article>
+                  </div>
+                  <div class="mock-ticker-chart">
+                      <span class="is-bar" style="--mock-bar-h: 42%; animation-delay: 0.36s"></span>
+                      <span class="is-bar" style="--mock-bar-h: 58%; animation-delay: 0.24s"></span>
+                      <span class="is-bar" style="--mock-bar-h: 36%; animation-delay: 0s"></span>
+                      <span class="is-bar" style="--mock-bar-h: 74%; animation-delay: 0.12s"></span>
+                      <span class="is-bar" style="--mock-bar-h: 62%; animation-delay: 0.48s"></span>
+                      <span class="is-bar is-current" style="--mock-bar-h: 88%; animation-delay: 0.42s"></span>
+                      <span class="is-bar" style="--mock-bar-h: 54%; animation-delay: 0s"></span>
+                      <span class="is-bar" style="--mock-bar-h: 30%; animation-delay: 0.18s"></span>
+                  </div>
+                  <ul class="journey-mock-list">
+                    <li class="journey-mock-item is-feed">
+                      <span class="journey-mock-avatar">이</span>
+                      <span class="journey-mock-item-name">이수 완료 · 업무 자동화 기초</span>
+                      <span class="text-caption strong">방금</span>
+                    </li>
+                    <li class="journey-mock-item">
+                      <span class="journey-mock-check"></span>
+                      <span class="skeleton-line" style="width: 224px"></span>
+                      <span style="flex: 1"></span>
+                    </li>
+                  </ul>
+                </div>
+            </div>
+            <code>data-mock-motion="ticker" · is-pop · is-bar · is-feed · is-pulse</code>
+          </article>
+        </div>
+        <div class="guide-callout"><strong>고르는 기준</strong><span>기존 목업을 크게 바꾸지 않고 생기만 더할 때는 <code>focus</code>, 실제 서비스 화면임을 보여야 할 때는 <code>replay</code>, 스크롤 중 눈에 띄어야 할 때는 <code>deck</code>, 정보를 함께 전달해야 할 때는 <code>detail</code>, 숫자로 설득할 때는 <code>ticker</code>를 씁니다. 연출은 CSS만으로 돌아가 별도 스크립트가 필요 없고, 움직임 줄이기 설정에서는 모두 완성된 화면으로 정지합니다.</span></div>
+      </section>
       <section class="guide-section guide-usage" id="usage">
-        <p class="guide-kicker">08 · COMPONENT USAGE</p>
+        <p class="guide-kicker">09 · COMPONENT USAGE</p>
         <h2>AI에게 이렇게 요청하면 됩니다.</h2>
         <p class="guide-usage-intro">새 화면을 만들 때 처음부터 디자인을 설명하지 않아도 됩니다. 위에서 확인한 컴포넌트 이름과 넣을 내용, 배치 방식만 함께 전달하세요.</p>
         <div class="guide-prompt-grid">
@@ -645,6 +991,7 @@
     - feature-card-cycle.js : [data-feature-cycle] 카드 자동 순환
     - stat-reveal.js        : [data-stat-reveal] 수치 카운트업
     - proof-card-slider.js  : [data-proof-deck] 카드 덱 전환
+    - catalog-board.js      : [data-catalog-board] 분류별 목록 전환
     part-nav.js는 실제 섹션 id로 페이지를 스크롤하므로 문서에서는 쓰지 않고,
     아래 인라인 스크립트가 인디케이터 이동만 재현한다.
   -->
@@ -652,6 +999,7 @@
   <script src="js/feature-card-cycle.js"></script>
   <script src="js/stat-reveal.js"></script>
   <script src="js/proof-card-slider.js"></script>
+  <script src="js/catalog-board.js"></script>
   <script>
     // Part Nav 견본 — 실제 part-nav.js는 앵커로 페이지를 이동시키므로,
     // 문서에서는 활성 표시가 옮겨가는 모습만 보여준다.

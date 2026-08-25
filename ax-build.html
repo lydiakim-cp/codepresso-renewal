@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AX Build — 매일 손으로 하던 업무, 20일 뒤에는 AI Agent가 합니다 | 코드프레소</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/ax-build.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a class="logo" href="/">
+        <img src="images/codepresso_logo/codepresso_logo_(primary).png" alt="코드프레소 로고" width="156">
+      </a>
+
+      <nav class="nav" aria-label="주요 메뉴">
+        <ul class="nav-list">
+          <li class="nav-item" data-nav-item>
+            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="nav-panel-capability">
+              역량 진단·교육
+              <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+
+            <div class="nav-panel" id="nav-panel-capability" data-nav-panel hidden>
+              <div class="nav-panel-inner">
+                <div class="nav-panel-intro">
+                  <p class="nav-panel-eyebrow">AI Capability Platform</p>
+                  <h2 class="nav-panel-title">AI 역량 진단·교육</h2>
+                  <p class="nav-panel-desc">진단부터 개인화 학습, 이러닝, 실시간 교육까지 조직의 AI 역량 성장을 지원합니다.</p>
+                  <a class="link-arrow link-arrow-ink" href="#">전체 보기<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                </div>
+
+                <ul class="nav-panel-groups">
+                  <li>
+                    <h3 class="nav-group-title">진단 · Assess</h3>
+                    <ul class="nav-group-list">
+                      <li>
+                        <a class="nav-entry" href="#">
+                          <span class="nav-entry-icon"><img src="images/icon/ic_aiFluent.svg" alt="" width="24" height="24"></span>
+                          <span class="nav-entry-body">
+                            <span class="nav-entry-name">AI Fluent</span>
+                            <span class="nav-entry-desc">전 직군의 생성형 AI 활용 역량 진단</span>
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-entry" href="#">
+                          <span class="nav-entry-icon"><img src="images/icon/ic_skillCertify.svg" alt="" width="24" height="24"></span>
+                          <span class="nav-entry-body">
+                            <span class="nav-entry-name">SkillCertify</span>
+                            <span class="nav-entry-desc">개발·IT 직무의 실무 역량 평가 및 인증</span>
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <h3 class="nav-group-title">교육 · Learn</h3>
+                    <ul class="nav-group-list">
+                      <li>
+                        <a class="nav-entry" href="#">
+                          <span class="nav-entry-icon"><img src="images/icon/ic_skillFit.svg" alt="" width="24" height="24"></span>
+                          <span class="nav-entry-body">
+                            <span class="nav-entry-name">SkillFit</span>
+                            <span class="nav-entry-desc">진단 결과에 따라 달라지는 개인화 학습</span>
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-entry" href="#">
+                          <span class="nav-entry-icon"><img src="images/icon/ic_skillPath.svg" alt="" width="24" height="24"></span>
+                          <span class="nav-entry-body">
+                            <span class="nav-entry-name">SkillPath</span>
+                            <span class="nav-entry-desc">직무와 수준에 맞춘 체계적인 온라인 학습 과정</span>
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-entry" href="#">
+                          <span class="nav-entry-icon"><img src="images/icon/ic_edu.svg" alt="" width="24" height="24"></span>
+                          <span class="nav-entry-body">
+                            <span class="nav-entry-name">SkillCamp</span>
+                            <span class="nav-entry-desc">강사와 함께하는 실시간·집중형 맞춤 교육</span>
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item" data-nav-item>
+            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="nav-panel-automation">
+              업무 자동화
+              <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+
+            <div class="nav-panel" id="nav-panel-automation" data-nav-panel hidden>
+              <div class="nav-panel-inner">
+                <div class="nav-panel-intro">
+                  <p class="nav-panel-eyebrow">AXpresso</p>
+                  <h2 class="nav-panel-title">업무 자동화 솔루션</h2>
+                  <p class="nav-panel-desc">구축(Build)과 내재화(Grow)로 완성하는 지속 가능한 업무 자동화</p>
+                  <a class="link-arrow link-arrow-ink" href="#">AXpresso 전체 보기<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                </div>
+
+                <ul class="nav-panel-groups">
+                  <li>
+                    <h3 class="nav-group-title">구축 · BUILD</h3>
+                    <ul class="nav-group-list">
+                      <li>
+                        <a class="nav-entry" href="ax-build.html">
+                          <span class="nav-entry-icon"><img src="images/icon/ic_axBuild.svg" alt="" width="24" height="24"></span>
+                          <span class="nav-entry-body">
+                            <span class="nav-entry-name">AX Build</span>
+                            <span class="nav-entry-desc">현장 분석부터 자동화 구축, 배포와 성과 측정까지</span>
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <h3 class="nav-group-title">내재화 · GROW</h3>
+                    <ul class="nav-group-list">
+                      <li>
+                        <a class="nav-entry" href="#">
+                          <span class="nav-entry-icon"><img src="images/icon/ic_axGrow.svg" alt="" width="24" height="24"></span>
+                          <span class="nav-entry-body">
+                            <span class="nav-entry-name">AX Grow</span>
+                            <span class="nav-entry-desc">현장 맞춤 교육과 공동 구축으로 자동화 역량을 조직 안에 내재화</span>
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item" data-nav-item>
+            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="nav-panel-why">
+              Why Codepresso
+              <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+
+            <div class="nav-panel" id="nav-panel-why" data-nav-panel hidden>
+              <div class="nav-panel-inner">
+                <div class="nav-panel-intro">
+                  <h2 class="nav-panel-title">왜 Codepresso인가</h2>
+                  <p class="nav-panel-desc">조직의 AI 전환을 진단, 교육, 자동화까지 연결하는 코드프레소의 차별성을 소개합니다</p>
+                  <a class="link-arrow link-arrow-ink" href="#">차별점 보기<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                </div>
+
+                <ul class="nav-panel-groups">
+                  <li>
+                    <h3 class="nav-group-title">차별성 · WHY</h3>
+                    <ul class="nav-group-list">
+                      <li>
+                        <a class="nav-entry" href="#">
+                          <span class="nav-entry-icon"><img src="images/icon/ic_structure.svg" alt="" width="24" height="24"></span>
+                          <span class="nav-entry-body">
+                            <span class="nav-entry-name">전환을 완성하는 구조</span>
+                            <span class="nav-entry-desc">진단, 교육, 자동화가 하나의 흐름으로 연결됩니다</span>
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <h3 class="nav-group-title">증거 · PROOF</h3>
+                    <ul class="nav-group-list">
+                      <li>
+                        <a class="nav-entry" href="#">
+                          <span class="nav-entry-icon"><img src="images/icon/ic_proof.svg" alt="" width="24" height="24"></span>
+                          <span class="nav-entry-body">
+                            <span class="nav-entry-name">고객 사례</span>
+                            <span class="nav-entry-desc">실명 고객과 수치로 증명하는 전환 사례</span>
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-entry" href="#">
+                          <span class="nav-entry-icon"><img src="images/icon/ic_companyProfile.svg" alt="" width="24" height="24"></span>
+                          <span class="nav-entry-body">
+                            <span class="nav-entry-name">회사 소개</span>
+                            <span class="nav-entry-desc">미션, 연혁, 인증과 수상으로 보는 코드프레소</span>
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item" data-nav-item>
+            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="nav-panel-insight">
+              인사이트
+              <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+
+            <div class="nav-panel" id="nav-panel-insight" data-nav-panel hidden>
+              <div class="nav-panel-inner">
+                <div class="nav-panel-intro">
+                  <h2 class="nav-panel-title">인사이트</h2>
+                  <p class="nav-panel-desc">블로그, 뉴스, 이벤트와 최신 소식을 한곳에서 확인할 수 있습니다</p>
+                  <a class="link-arrow link-arrow-ink" href="#">전체 보기<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                </div>
+
+                <ul class="nav-panel-groups">
+                  <li>
+                    <h3 class="nav-group-title">콘텐츠 · CONTENTS</h3>
+                    <ul class="nav-group-list">
+                      <li>
+                        <a class="nav-entry" href="#">
+                          <span class="nav-entry-icon"><img src="images/icon/ic_contents.svg" alt="" width="24" height="24"></span>
+                          <span class="nav-entry-body">
+                            <span class="nav-entry-name">AX.로그</span>
+                            <span class="nav-entry-desc">AX 활용 방법과 인사이트를 담은 블로그</span>
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-entry" href="#">
+                          <span class="nav-entry-icon"><img src="images/icon/ic_newsroom.svg" alt="" width="24" height="24"></span>
+                          <span class="nav-entry-body">
+                            <span class="nav-entry-name">뉴스룸</span>
+                            <span class="nav-entry-desc">언론 보도, 수상, 주요 소식을 모아봅니다</span>
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-entry" href="#">
+                          <span class="nav-entry-icon"><img src="images/icon/ic_meetup.svg" alt="" width="24" height="24"></span>
+                          <span class="nav-entry-body">
+                            <span class="nav-entry-name">이벤트</span>
+                            <span class="nav-entry-desc">세미나, 리더톡, 밋업, 웨비나 소식</span>
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="nav-news">
+                    <h3 class="nav-group-title">최근 소식</h3>
+                    <ul class="nav-news-list">
+                      <li>
+                        <a class="nav-news-item" href="#">
+                          <span class="nav-news-meta">2026-07-03 · 뉴스</span>
+                          <span class="nav-news-title">GITEX AI ASIA 슈퍼노바 챌린지 3위 입상</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-news-item" href="#">
+                          <span class="nav-news-meta">2026-07-03 · 뉴스</span>
+                          <span class="nav-news-title">이동훈 대표, KBS 뉴스9 출연. AI 역량평가의 중요성 조명</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-news-item" href="#">
+                          <span class="nav-news-meta">2026-04-15 · 이벤트</span>
+                          <span class="nav-news-title">비개발자도 AI로 앱 만든다, 우먼 인 바이브코딩 글로벌 이벤트</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">가격</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="#">로그인</a>
+        <a class="btn btn-primary" href="#">1분 AI 진단</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="ax-build-main">
+    <!-- Hero — 제품 한 줄 정의 + CTA + 핵심 조건 3개. 첫 화면이라 fade-up을 붙이지 않는다. -->
+    <section class="ax-build-hero">
+      <div class="section-wrap">
+        <div class="ax-build-hero-copy">
+          <p class="tag">AX Build</p>
+          <h1 class="ax-build-hero-title">매일 손으로 하던 업무,<br>20일 뒤에는 AI Agent가 합니다</h1>
+          <p class="ax-build-hero-desc">보고서나 시제품이 아니라, 현장에서 돌아가는 결과물이 남습니다.</p>
+          <div class="ax-build-hero-actions">
+            <a class="btn btn-primary btn-lg" href="#">
+              우리 업무 진단받기
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 제품의 핵심 약속 3개. 메인 Proof와 같은 metric-card를 그대로 쓴다.
+             숫자 카운트업이 필요 없는 자리라 data-stat-reveal 대신
+             .is-visible을 마크업에 직접 둬서 보이는 상태로 고정한다. -->
+        <div class="summary-banner stats-light ax-build-hero-facts">
+          <div class="summary-banner-stats">
+            <article class="metric-card is-visible">
+              <div class="metric-card__value"><span class="num">20</span><span class="unit">일</span></div>
+              <p class="metric-card__label text-label">현장 진단부터 운영 배포까지</p>
+              <div class="metric-card__visual" aria-hidden="true">
+                <span class="metric-card__glow"></span><span class="metric-card__glow"></span>
+                <!-- 캘린더 — ic_calendar.svg 기반, 하드코딩 색을 브랜드 톤으로 교체 -->
+                <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                  <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"/>
+                  <path d="M16.5 3H15.5C15.2239 3 15 3.22386 15 3.5V5.5C15 5.77614 15.2239 6 15.5 6H16.5C16.7761 6 17 5.77614 17 5.5V3.5C17 3.22386 16.7761 3 16.5 3Z" fill="var(--color-brand)"/>
+                  <path d="M2.5 9H21.5V10.5H2.5V9Z" fill="var(--color-brand)"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2 17.6L8.4 14.8L9.6 13.6L11.2 15.2L14.9 11.5L16.1 12.7L11.2 17.6Z" fill="var(--color-brand-dark)"/>
+                </svg>
+              </div>
+            </article>
+            <article class="metric-card is-visible">
+              <div class="metric-card__value"><span class="num">AI Agent</span></div>
+              <p class="metric-card__label text-label">실제 업무를 수행하는 결과물</p>
+              <div class="metric-card__visual" aria-hidden="true">
+                <span class="metric-card__glow"></span><span class="metric-card__glow"></span>
+                <!-- 자동화 구조 — ic_structure.svg 기반 -->
+                <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M10.75 16V7H13.25V16H10.75Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25 12.26V16H3.75V11.51C3.75 11.05 3.93 10.6 4.26 10.27C4.59 9.94 5.04 9.76 5.5 9.76H18.5C18.96 9.76 19.41 9.94 19.74 10.27C20.07 10.6 20.25 11.05 20.25 11.51V16H17.75V12.26H6.25Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                  <path d="M8 17H4C3.44772 17 3 17.4477 3 18V20C3 20.5523 3.44772 21 4 21H8C8.55228 21 9 20.5523 9 20V18C9 17.4477 8.55228 17 8 17Z" fill="var(--color-brand)"/>
+                  <path d="M20 17H16C15.4477 17 15 17.4477 15 18V20C15 20.5523 15.4477 21 16 21H20C20.5523 21 21 20.5523 21 20V18C21 17.4477 20.5523 17 20 17Z" fill="var(--color-brand)"/>
+                  <path d="M14 3H10C9.44772 3 9 3.44772 9 4V6C9 6.55228 9.44772 7 10 7H14C14.5523 7 15 6.55228 15 6V4C15 3.44772 14.5523 3 14 3Z" fill="var(--color-brand-dark)"/>
+                </svg>
+              </div>
+            </article>
+            <article class="metric-card is-visible">
+              <div class="metric-card__value"><span class="num">3</span><span class="unit">개월</span></div>
+              <p class="metric-card__label text-label">배포 이후 안정화 지원</p>
+              <div class="metric-card__visual" aria-hidden="true">
+                <span class="metric-card__glow"></span><span class="metric-card__glow"></span>
+                <!-- 방패 — ic_shield.svg 기반, 민트색(#7AD7B5)을 브랜드 색으로 교체 -->
+                <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21.5 5L12 1L2.5 5V9C2.49 12.02 3.39 14.97 5.09 17.47C6.78 19.96 9.19 21.89 12 23C14.81 21.89 17.22 19.96 18.91 17.47C20.61 14.97 21.51 12.02 21.5 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M11.41 11.52L15.24 7.7L17 9.47L11.33 15.13L7.7 11.18L9.54 9.49L11.41 11.52Z" fill="var(--color-brand)"/>
+                </svg>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 What It Is — Before/After 대비 -->
+    <section class="ax-build-what fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">01 · What It Is</p>
+          <h2>사람이 반복하던 업무를,<br>Agent의 일로 바꿉니다</h2>
+        </div>
+        <div class="section-content">
+          <div class="compare-panel">
+            <div class="compare-panel__item">
+              <p class="compare-panel__label">Before</p>
+              <h3 class="compare-panel__title">자료를 찾고, 분류하고, 옮기고,<br>보고서를 만듭니다</h3>
+              <p class="compare-panel__desc">업무는 반복되지만, 담당자의 판단과 손작업이 계속 필요합니다.</p>
+            </div>
+
+            <span class="compare-panel__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+
+            <div class="compare-panel__item is-after">
+              <p class="compare-panel__label">After · AX Build</p>
+              <h3 class="compare-panel__title">Agent가 업무를 수행하고,<br>사람은 결과를 확인합니다</h3>
+              <p class="compare-panel__desc">반복 실행은 Agent가 맡고, 담당자는 중요한 판단과 예외 처리에 집중합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 Best Fit -->
+    <section class="ax-build-fit fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">02 · Best Fit</p>
+          <h2>이런 팀이라면 AX Build가 맞습니다</h2>
+        </div>
+        <div class="section-content">
+          <!-- 메인 How it works와 같은 feature-card 자동 순환.
+               5초마다 활성 카드가 넘어가며 아이콘이 사라지고 설명이 펼쳐진다. -->
+          <div class="feature-card-grid" data-feature-cycle>
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 시계 — 반복 업무에 묶인 시간 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" fill="color-mix(in srgb, var(--color-brand) 20%, var(--color-surface))" />
+                    <path d="M12 6C12.5523 6 13 6.44772 13 7V11.586L15.707 14.293L14.293 15.707L11 12.414V7C11 6.44772 11.4477 6 12 6Z" fill="var(--color-brand)" />
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">01 · 반복</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle">핵심 인력의 시간이 <br> 반복 업무에 묶여 있습니다</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>정산, 분류, 조사, 보고처럼 매일 또는 매주 같은 형태로 돌아오는 업무가 많습니다.</p>
+                  </div>
+                </div>
+              </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 데이터 스택 — 자료는 있지만 결과까지 오래 걸리는 상태 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C7.58 2 4 3.34 4 5C4 6.66 7.58 8 12 8C16.42 8 20 6.66 20 5C20 3.34 16.42 2 12 2Z" fill="var(--color-brand)" />
+                    <path d="M4 8.5V12C4 13.66 7.58 15 12 15C16.42 15 20 13.66 20 12V8.5C18.3 9.7 15.4 10.4 12 10.4C8.6 10.4 5.7 9.7 4 8.5Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))" />
+                    <path d="M4 15.5V19C4 20.66 7.58 22 12 22C16.42 22 20 20.66 20 19V15.5C18.3 16.7 15.4 17.4 12 17.4C8.6 17.4 5.7 16.7 4 15.5Z" fill="color-mix(in srgb, var(--color-brand) 20%, var(--color-surface))" />
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">02 · 지연</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle">데이터는 있는데, <br> 결과를 만드는 데 오래 걸립니다</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>필요한 자료는 있지만 사람이 모으고 검토하고 정리해야 다음 단계로 넘어갑니다.</p>
+                  </div>
+                </div>
+              </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 성과 그래프 — PoC가 아닌 실제 운영 성과. ic_lineChart.svg 기반 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.88 3H5.12C3.95 3 3 3.9 3 5V19C3 20.1 3.95 21 5.12 21H18.88C20.05 21 21 20.1 21 19V5C21 3.9 20.05 3 18.88 3Z" fill="color-mix(in srgb, var(--color-brand) 18%, var(--color-surface))" />
+                    <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand-dark)" />
+                    <path d="M16.3 8.22L11 13.51L8 10.51L3 15.5V18.49L8 13.5L11 16.5L17.71 9.8L16.3 8.22Z" fill="var(--color-brand)" />
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">03 · 성과</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle">AI 실험보다 <br> 실제 운영 성과가 필요합니다</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>또 하나의 PoC가 아니라, 현업이 매일 쓰고 시간 절감 효과를 확인할 수 있는 결과물이 필요합니다.</p>
+                  </div>
+                </div>
+              </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 What Can Be Built — 37개 워크플로를 실제 관리 화면처럼 보여준다 -->
+    <section class="ax-build-catalog fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">03 · What Can Be Built</p>
+          <h2>어떤 업무부터 바꿀 수 있을까요?</h2>
+          <p class="desc">다섯 분야 37개의 검증된 워크플로 중에서,<br>자동화 가치가 크고 결과 기준이 분명한 업무부터 고릅니다.</p>
+        </div>
+        <div class="section-content">
+          <div class="preview-frame preview-frame--flush">
+            <div class="catalog-board" data-catalog-board>
+              <div class="catalog-board__rail" role="tablist" aria-label="자동화 분야">
+                <button class="catalog-board__category is-active" type="button" data-catalog-category="common">
+                  <span class="catalog-board__category-name">공통</span>
+                  <span class="catalog-board__count">7</span>
+                </button>
+                <button class="catalog-board__category" type="button" data-catalog-category="marketing">
+                  <span class="catalog-board__category-name">마케팅</span>
+                  <span class="catalog-board__count">7</span>
+                </button>
+                <button class="catalog-board__category" type="button" data-catalog-category="sales">
+                  <span class="catalog-board__category-name">영업</span>
+                  <span class="catalog-board__count">7</span>
+                </button>
+                <button class="catalog-board__category" type="button" data-catalog-category="management">
+                  <span class="catalog-board__category-name">경영관리</span>
+                  <span class="catalog-board__count">8</span>
+                </button>
+                <button class="catalog-board__category" type="button" data-catalog-category="rnd">
+                  <span class="catalog-board__category-name">R&amp;D</span>
+                  <span class="catalog-board__count">8</span>
+                </button>
+              </div>
+
+              <div class="catalog-board__main">
+                <div class="catalog-board__panel is-active" data-catalog-panel="common">
+                  <p class="catalog-board__panel-desc">전 부서가 함께 쓰는 인프라성 자동화</p>
+                  <ul class="catalog-board__items">
+                    <li class="catalog-board__item">회의록 자동 작성</li>
+                    <li class="catalog-board__item">태스크 관리</li>
+                    <li class="catalog-board__item">다국어 번역</li>
+                    <li class="catalog-board__item">문서 자동 정리·검색</li>
+                    <li class="catalog-board__item">이메일 분류·응답 초안</li>
+                    <li class="catalog-board__item">회의 준비 브리프</li>
+                    <li class="catalog-board__item">사내 Q&amp;A 어시스턴트</li>
+                  </ul>
+                </div>
+
+                <div class="catalog-board__panel" data-catalog-panel="marketing">
+                  <p class="catalog-board__panel-desc">콘텐츠 생산부터 채널 배포·캠페인 운영까지</p>
+                  <ul class="catalog-board__items">
+                    <li class="catalog-board__item">콘텐츠 자동 생성</li>
+                    <li class="catalog-board__item">랜딩 페이지 자동 생성</li>
+                    <li class="catalog-board__item">SEO·콘텐츠 캘린더</li>
+                    <li class="catalog-board__item">소셜 미디어 자동 배포</li>
+                    <li class="catalog-board__item">언론·평판 모니터링</li>
+                    <li class="catalog-board__item">이메일 캠페인</li>
+                    <li class="catalog-board__item">고객 사례·인터뷰 자동 정리</li>
+                  </ul>
+                </div>
+
+                <div class="catalog-board__panel" data-catalog-panel="sales">
+                  <p class="catalog-board__panel-desc">리드 발굴부터 계약 체결까지 한 흐름</p>
+                  <ul class="catalog-board__items">
+                    <li class="catalog-board__item">고객 데이터 관리(CRM)</li>
+                    <li class="catalog-board__item">잠재 고객 발굴</li>
+                    <li class="catalog-board__item">아웃리치 시퀀스</li>
+                    <li class="catalog-board__item">제안서·견적서 자동 작성</li>
+                    <li class="catalog-board__item">계약서 초안·리뷰</li>
+                    <li class="catalog-board__item">영업 통화 분석</li>
+                    <li class="catalog-board__item">파이프라인 리포트</li>
+                  </ul>
+                </div>
+
+                <div class="catalog-board__panel" data-catalog-panel="management">
+                  <p class="catalog-board__panel-desc">재무·인사·법무 세 축의 반복 업무</p>
+                  <ul class="catalog-board__items">
+                    <li class="catalog-board__item">근태·휴가 관리</li>
+                    <li class="catalog-board__item">경비·정산 처리</li>
+                    <li class="catalog-board__item">인보이스·수금</li>
+                    <li class="catalog-board__item">재무 대시보드</li>
+                    <li class="catalog-board__item">채용 프로세스</li>
+                    <li class="catalog-board__item">온보딩·오프보딩</li>
+                    <li class="catalog-board__item">성과 평가·1on1</li>
+                    <li class="catalog-board__item">계약서 라이프사이클</li>
+                  </ul>
+                </div>
+
+                <div class="catalog-board__panel" data-catalog-panel="rnd">
+                  <p class="catalog-board__panel-desc">기획부터 릴리스까지 제품 개발 전 과정</p>
+                  <ul class="catalog-board__items">
+                    <li class="catalog-board__item">PRD·기획서 자동 작성</li>
+                    <li class="catalog-board__item">이슈·버그 분류</li>
+                    <li class="catalog-board__item">코드 리뷰 보조</li>
+                    <li class="catalog-board__item">기술 문서 자동 작성</li>
+                    <li class="catalog-board__item">릴리스 노트 자동 생성</li>
+                    <li class="catalog-board__item">연구 자료 수집·요약</li>
+                    <li class="catalog-board__item">실험·A/B 테스트 운영</li>
+                    <li class="catalog-board__item">고객 피드백 → 백로그</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="ax-build-catalog-note">목록에 없는 업무도 진단 후 맞춤 설계할 수 있습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 20-Day Process — 세로 타임라인 -->
+    <section class="ax-build-process fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">04 · 20-Day Process</p>
+          <h2>진단부터 배포까지, 20일이면 충분합니다</h2>
+          <p class="desc">무엇을 만들지 합의한 뒤 구축하고, 실제 사용자와 함께 효과를 확인합니다.</p>
+        </div>
+        <div class="section-content">
+          <ol class="timeline">
+            <li class="timeline__step">
+              <span class="timeline__term">Day 1</span>
+              <span class="timeline__marker" aria-hidden="true"></span>
+              <div class="timeline__body">
+                <h3 class="timeline__title">현장 진단</h3>
+                <p class="timeline__desc">실제 업무를 관찰하고, 시간이 많이 드는 지점과 자동화 목표를 찾습니다.</p>
+              </div>
+            </li>
+            <li class="timeline__step">
+              <span class="timeline__term">Day 2~5</span>
+              <span class="timeline__marker" aria-hidden="true"></span>
+              <div class="timeline__body">
+                <h3 class="timeline__title">설계와 목표 합의</h3>
+                <p class="timeline__desc">Agent가 맡을 범위, 사람이 확인할 지점, 측정할 KPI를 함께 정합니다.</p>
+              </div>
+            </li>
+            <li class="timeline__step">
+              <span class="timeline__term">Day 6~15</span>
+              <span class="timeline__marker" aria-hidden="true"></span>
+              <div class="timeline__body">
+                <h3 class="timeline__title">Agent 구축</h3>
+                <p class="timeline__desc">FDE가 현업 담당자와 확인을 반복하며 실제 업무 흐름을 Agent로 구현합니다.</p>
+              </div>
+            </li>
+            <li class="timeline__step">
+              <span class="timeline__term">Day 16~20</span>
+              <span class="timeline__marker" aria-hidden="true"></span>
+              <div class="timeline__body">
+                <h3 class="timeline__title">배포와 성과 측정</h3>
+                <p class="timeline__desc">실사용 환경에 배포하고, 시간 절감과 처리 정확도를 기준으로 효과를 검증합니다.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 Deliverables -->
+    <section class="ax-build-deliverables fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">05 · Deliverables</p>
+          <h2>20일 뒤, 조직에 남는 것</h2>
+        </div>
+        <div class="section-content">
+          <ul class="ax-build-deliverable-list">
+            <li class="ax-build-deliverable-item">
+              <span class="ax-build-deliverable-icon" aria-hidden="true">
+                <!-- 진단 결과 문서 — ic_todo.svg 기반, 회색(#E7ECEF)을 브랜드 톤으로 교체 -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="currentColor" fill-opacity="0.14"/>
+                  <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="currentColor" fill-opacity="0.45"/>
+                  <path d="M10.5 14H6.51C6.23 14 6.01 14.22 6.01 14.5V15.53C6.01 15.81 6.23 16.03 6.51 16.03H10.5C10.78 16.03 11 15.81 11 15.53V14.5C11 14.22 10.78 14 10.5 14Z" fill="currentColor" fill-opacity="0.45"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M15 8.59L17.29 6.29L18.71 7.71L15 11.41L12.29 8.71L13.71 7.29L15 8.59Z" fill="currentColor"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M15 14.59L17.29 12.29L18.71 13.71L15 17.41L12.29 14.71L13.71 13.29L15 14.59Z" fill="currentColor"/>
+                </svg>
+              </span>
+              <h3>업무 진단 결과</h3>
+              <p class="ax-build-deliverable-desc">자동화 대상, 병목 구간, 목표 KPI가 정리된 실행 기준을 제공합니다.</p>
+            </li>
+            <li class="ax-build-deliverable-item">
+              <span class="ax-build-deliverable-icon" aria-hidden="true">
+                <!-- 배포된 Agent — ic_axBuild 계열의 구조를 브랜드 색으로 단순화 -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17 9H7C5.89543 9 5 9.89543 5 11V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V11C19 9.89543 18.1046 9 17 9Z" fill="currentColor" fill-opacity="0.16"/>
+                  <path d="M12 2C11.4477 2 11 2.44772 11 3V6H13V3C13 2.44772 12.5523 2 12 2Z" fill="currentColor"/>
+                  <path d="M15 6H9C7.89543 6 7 6.89543 7 8V9H17V8C17 6.89543 16.1046 6 15 6Z" fill="currentColor"/>
+                  <path d="M10 13C10.5523 13 11 13.4477 11 14V15C11 15.5523 10.5523 16 10 16C9.44772 16 9 15.5523 9 15V14C9 13.4477 9.44772 13 10 13Z" fill="currentColor"/>
+                  <path d="M14 13C14.5523 13 15 13.4477 15 14V15C15 15.5523 14.5523 16 14 16C13.4477 16 13 15.5523 13 15V14C13 13.4477 13.4477 13 14 13Z" fill="currentColor"/>
+                  <path d="M9.5 18H14.5V19.5H9.5V18Z" fill="currentColor"/>
+                </svg>
+              </span>
+              <h3>운영 가능한 AI Agent</h3>
+              <p class="ax-build-deliverable-desc">시연용 화면이 아니라, 현업의 실제 업무를 수행하는 Agent가 배포됩니다.</p>
+            </li>
+            <li class="ax-build-deliverable-item">
+              <span class="ax-build-deliverable-icon" aria-hidden="true">
+                <!-- 성과 리포트 — ic_lineChart.svg 기반, 연어색(#F57C75)을 브랜드 색으로 교체 -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.88 3H5.12C3.95 3 3 3.9 3 5V19C3 20.1 3.95 21 5.12 21H18.88C20.05 21 21 20.1 21 19V5C21 3.9 20.05 3 18.88 3Z" fill="currentColor" fill-opacity="0.14"/>
+                  <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="currentColor"/>
+                  <path d="M16.3 8.22L11 13.51L8 10.51L3 15.5V18.49L8 13.5L11 16.5L17.71 9.8L16.3 8.22Z" fill="currentColor"/>
+                </svg>
+              </span>
+              <h3>성과 측정 리포트</h3>
+              <p class="ax-build-deliverable-desc">도입 전후의 소요 시간과 처리량을 비교해 개선 효과를 확인합니다.</p>
+            </li>
+            <li class="ax-build-deliverable-item">
+              <span class="ax-build-deliverable-icon" aria-hidden="true">
+                <!-- 안정화 지원 — ic_handshaking 개념을 24px 그리드로 단순화 -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21.5 5L12 1L2.5 5V9C2.49 12.02 3.39 14.97 5.09 17.47C6.78 19.96 9.19 21.89 12 23C14.81 21.89 17.22 19.96 18.91 17.47C20.61 14.97 21.51 12.02 21.5 9V5Z" fill="currentColor" fill-opacity="0.16"/>
+                  <path d="M12 7C12.5523 7 13 7.44772 13 8V11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H13V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V13H8C7.44772 13 7 12.5523 7 12C7 11.4477 7.44772 11 8 11H11V8C11 7.44772 11.4477 7 12 7Z" fill="currentColor"/>
+                </svg>
+              </span>
+              <h3>3개월 안정화 지원</h3>
+              <p class="ax-build-deliverable-desc">실사용에서 발견되는 예외를 보완하고, 운영에 안착하도록 지원합니다.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 Real Outcomes -->
+    <section class="ax-build-outcomes fade-up">
+      <div class="section-wrap col">
+        <div class="section-header">
+          <div class="section-title text-left">
+            <p class="tag">06 · Real Outcomes</p>
+            <h2>실제 고객 업무는 이렇게 달라졌습니다</h2>
+          </div>
+          <div class="section-cta">
+            <a href="#" class="btn btn-ghost">
+              고객 사례 전체 보기
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="section-content">
+          <ul class="ax-build-outcome-list">
+            <li class="ax-build-outcome-item">
+              <span class="tag">금융·VC</span>
+              <p class="ax-build-outcome-client">트랜스링크인베스트먼트</p>
+              <p class="ax-build-outcome-shift">
+                <span class="ax-build-outcome-before">3~5일</span>
+                <span class="ax-build-outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="ax-build-outcome-after">1시간 이내</span>
+              </p>
+              <p class="ax-build-outcome-detail">100개 이상 포트폴리오사 실사 자동화 · 월 30시간 절감</p>
+            </li>
+            <li class="ax-build-outcome-item">
+              <span class="tag">물류·마케팅</span>
+              <p class="ax-build-outcome-client">체인로지스</p>
+              <p class="ax-build-outcome-shift">
+                <span class="ax-build-outcome-before">2~4시간</span>
+                <span class="ax-build-outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="ax-build-outcome-after">3분</span>
+              </p>
+              <p class="ax-build-outcome-detail">분류·게시 자동화 · 처리량 20배 향상</p>
+            </li>
+            <li class="ax-build-outcome-item">
+              <span class="tag">이커머스·정산</span>
+              <p class="ax-build-outcome-client">UHA Company</p>
+              <p class="ax-build-outcome-shift">
+                <span class="ax-build-outcome-before">2~3시간</span>
+                <span class="ax-build-outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="ax-build-outcome-after">30초</span>
+              </p>
+              <p class="ax-build-outcome-detail">주문 정산 자동화 · 월 60시간 절감</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 FAQ -->
+    <section class="ax-build-faq fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">07 · FAQ</p>
+          <h2>도입 전에 많이 묻는 질문</h2>
+        </div>
+        <div class="section-content">
+          <div class="faq-list">
+            <details class="faq-list__item">
+              <summary class="faq-list__question">
+                어떤 업무를 먼저 골라야 하나요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">매일 또는 매주 같은 형태로 반복되고, 결과가 맞았는지 판단할 기준이 분명한 업무가 첫 대상으로 적합합니다. Day 1 현장 진단에서 실제 업무를 관찰해 자동화 가치가 큰 순서로 후보를 정리해 드립니다.</p>
+            </details>
+            <details class="faq-list__item">
+              <summary class="faq-list__question">
+                사내 개발팀이 없어도 가능한가요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">가능합니다. 구축은 코드프레소 FDE가 담당하고, 현업 담당자는 업무 흐름을 알려주고 결과를 확인하는 역할만 맡습니다. 개발 인력이 없어도 진행에 지장이 없습니다.</p>
+            </details>
+            <details class="faq-list__item">
+              <summary class="faq-list__question">
+                20일이 끝나면 바로 사용할 수 있나요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">Day 16~20에 실사용 환경으로 배포하므로 20일 뒤에는 현업에서 바로 씁니다. 이후 3개월간 실사용에서 나오는 예외를 보완하며 운영에 안착하도록 지원합니다.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-final fade-up">
+      <div class="section-wrap col cta-final-inner">
+        <h2 class="cta-final-title">다음 달, 첫 자동화가<br>실제 업무에서 돌아갑니다</h2>
+        <p class="cta-final-desc">첫 미팅에서 자동화 후보 업무와 기대 효과부터 함께 확인합니다.</p>
+        <div class="cta-final-actions">
+          <a href="#" class="btn btn-primary btn-lg">
+            우리 업무 진단받기
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 공용 스크립트 — GNB(header-scroll·nav-menu), 섹션 진입 모션(fade-up),
+       Best Fit 카드 자동 순환(feature-card-cycle).
+       catalog-board.js는 이 페이지의 워크플로 보드 전용이다. -->
+  <script src="js/fade-up.js"></script>
+  <script src="js/header-scroll.js"></script>
+  <script src="js/nav-menu.js"></script>
+  <script src="js/feature-card-cycle.js"></script>
+  <script src="js/catalog-board.js"></script>
+</body>
+
+</html>
