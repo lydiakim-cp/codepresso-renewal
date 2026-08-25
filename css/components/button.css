@@ -1,6 +1,6 @@
 /*
  * Component: Button
- * 코드프레소 공용 버튼. Primary(브랜드 블루 필박스) / Ghost(외곽선 없는 보조 버튼) 2종.
+ * 코드프레소 공용 버튼. Primary(브랜드 블루) / Ghost(밝은 배경 보조) / Outline Inverse(어두운 배경 보조) / Pill(플로팅 CTA).
  */
 
 .btn {
@@ -41,6 +41,20 @@
 .btn-ghost:hover {
   border-color: var(--color-brand);
   color: var(--color-brand);
+}
+
+/*
+ * Outline Inverse — 어두운 배경 위 보조 버튼.
+ * 투명 배경 + 반투명 화이트 외곽선으로, 밝은 배경의 .btn-ghost와 같은 역할을 한다.
+ */
+.btn-outline-inverse {
+  background: transparent;
+  color: var(--color-surface);
+  border: 1px solid color-mix(in srgb, var(--color-surface) 40%, transparent);
+}
+
+.btn-outline-inverse:hover {
+  border-color: var(--color-surface);
 }
 
 /*
