@@ -8,12 +8,10 @@
  *       (그라디언트 글로우 프레임 + 글래스 카드 + 블루 섀도우)을 따른다.
  */
 
-/* 우측 프리뷰가 좌측 컬럼 높이를 꽉 채우도록 stretch를 기본값으로 둔다
-   (좌측 sticky 컬럼만 align-self: start로 되돌린다 — stretch되면 sticky가 무력화된다). */
 .diagnosis-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: stretch;
+  align-items: start;
   gap: var(--space-48);
 }
 
@@ -26,14 +24,35 @@
   .diagnosis-sticky {
     position: static;
   }
+
+  /* 좌우로 나란히 놓일 자리가 없으면 sticky 고정이 의미를 잃는다 —
+     리포트를 그냥 세로로 쌓아 순서대로 읽히게 한다(PART 1과 같은 처리). */
+  .diagnosis-track {
+    display: none;
+  }
+
+  .diagnosis-preview-panel {
+    position: static;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-48);
+  }
+
+  .diagnosis-preview-step,
+  .diagnosis-preview-step:not(:first-child) {
+    position: static;
+    inset: auto;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
 }
 
 /* education-journey-sticky와 동일한 sticky 오프셋/간격을 쓴다. */
 .diagnosis-sticky {
   position: sticky;
   top: 96px;
-  /* grid의 stretch를 상속하면 sticky가 동작하지 않으므로 자기 높이만 차지하게 한다. */
-  align-self: start;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -113,32 +132,82 @@
   color: var(--color-brand);
 }
 
-.diagnosis-cta {
-  flex-shrink: 0;
+/* ---------------------------------------------
+ * 우측 — 진단 리포트 프리뷰 스테이지
+ * PART 1의 education-journey-stage와 같은 구조를 쓴다: 보이지 않는 트랙이
+ * 스크롤 길이를 만들고, glass 판은 sticky로 한 자리에 고정된 채 안의 리포트
+ * 이미지만 교차 페이드로 교체된다(js/journey-stage.js).
+ * --------------------------------------------- */
+
+/* 트랙과 판을 같은 그리드 셀에 겹쳐 둔다 — 세로로 쌓으면 판이 트랙 '다음'에
+   놓여, sticky로 붙어 있을 스크롤 구간이 트랙에 남지 않는다. */
+.diagnosis-preview {
+  display: grid;
 }
 
-/* ---------------------------------------------
- * 우측 — 진단 리포트 프리뷰
- * 목업 없이 glass 패널(.surface-glass 유틸리티) 위에
- * 실제 화면 캡처를 그대로 보여준다.
- * --------------------------------------------- */
-.diagnosis-preview {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* 좌측 컬럼 높이를 그대로 받아 패널을 세로 중앙에 놓는다. */
-  height: 100%;
+.diagnosis-preview > * {
+  grid-area: 1 / 1;
+}
+
+/* 2단계 × 1화면. PART 1의 journey-track-step과 같은 척도. */
+.diagnosis-track-step {
+  height: 100vh;
 }
 
 .diagnosis-preview-panel {
+  position: sticky;
+  /* 판을 화면 세로 중앙에 놓는다 — 판 높이가 콘텐츠(리포트 이미지 비율)에 따라
+     달라지므로 고정 top 오프셋 대신 중앙 기준으로 잡는다. */
+  top: 50%;
+  transform: translateY(-50%);
+  /* 겹쳐진 그리드 셀에서 트랙 높이만큼 늘어나면 sticky가 동작하지 않는다. */
+  align-self: start;
   width: 100%;
-  max-width: 520px;
+  max-width: 600px;
+  margin-inline: auto;
   padding: var(--space-24);
   border-radius: var(--radius-lg);
 }
 
+/* 스텝은 같은 자리에 겹쳐두고 opacity로만 교체한다.
+   inset이 아니라 padding 안쪽 박스를 채우도록 잡는다 — inset:0은 판의
+   padding을 무시해 이미지가 glass 테두리에 붙는다. */
+.diagnosis-preview-step {
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition:
+    opacity var(--duration-scroll) var(--ease-scroll),
+    transform var(--duration-scroll) var(--ease-scroll),
+    visibility 0s linear var(--duration-scroll);
+}
+
+.diagnosis-preview-step:not(:first-child) {
+  position: absolute;
+  inset: var(--space-24);
+}
+
+.diagnosis-preview-step.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+/* 첫 스텝이 판 높이를 만들도록 흐름에 남겨두므로, 비활성일 때도 자리는 지킨다. */
+.diagnosis-preview-step:first-child:not(.is-active) {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diagnosis-preview-step {
+    transition-duration: 0s;
+    transform: none;
+  }
+}
+
 .diagnosis-preview-image {
-  display: block;
   width: 100%;
   height: auto;
   border-radius: var(--radius-md);
