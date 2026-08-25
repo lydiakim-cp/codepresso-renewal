@@ -50,6 +50,7 @@
 }
 
 .metric-card__label {
+  text-align: left;
   color: var(--color-ink-lighter);
 }
 

@@ -4,11 +4,4 @@
  * 문서용 데모 컴포넌트(스케일 시연, 모션 시연 등)만 둔다.
  */
 
-@import url("../components/callout.css") layer(components);
-@import url("../components/color-tile.css") layer(components);
-@import url("../components/color-ramp.css") layer(components);
-@import url("../components/type-spec.css") layer(components);
-@import url("../components/scale-demo.css") layer(components);
-@import url("../components/before-after.css") layer(components);
-@import url("../components/motion-demo.css") layer(components);
-@import url("../components/segmented-control.css") layer(components);
+@import url("./designsystem-demo.css") layer(components);

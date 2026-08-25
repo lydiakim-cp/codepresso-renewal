@@ -3,8 +3,8 @@
  * Reset → Design Tokens → Base → 공통 Components 순서로 계층을 로드한다.
  * Cascade Layer로 우선순위를 명시해 specificity 경쟁을 방지한다.
  *
- * 여기에는 "여러 페이지가 함께 쓰는" 것만 둔다.
- * 특정 페이지 전용 컴포넌트는 css/pages/{page}.css에서 따로 로드한다.
+ * 여기에는 서비스와 디자인 시스템이 함께 쓰는 Foundation·공통 UI를 둔다.
+ * 메인 랜딩의 큰 섹션 조합은 css/pages/{page}.css에서 따로 로드한다.
  *   - index.html               → main.css + css/pages/index.css
  *   - codepresso-designsystem  → main.css + css/pages/designsystem.css
  */
@@ -17,6 +17,7 @@
 
 /* 레이아웃 뼈대 · 텍스트 유틸리티 */
 @import url("./components/layout.css") layer(components);
+@import url("./components/section-body.css") layer(components);
 @import url("./components/text.css") layer(components);
 @import url("./components/surface.css") layer(components);
 

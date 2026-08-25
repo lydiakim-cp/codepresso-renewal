@@ -4,7 +4,11 @@
  * 반복되는 레이아웃 단위. 페이지 고유의 배경/간격은 각 페이지 CSS에서 정한다.
  */
 
-section {
+/* 최상위 콘텐츠 섹션만 공통 여백을 가진다.
+   컴포넌트 내부의 의미론적 section까지 전역으로 건드리지 않도록 범위를 제한한다. */
+.wrap > section,
+main > section,
+.parts-group > section {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -27,10 +31,42 @@ section {
   padding: 20px;
 }
 
-.section-wrap.content {
+/*
+ * Component: Section Layout
+ * CSS의 표준 축 의미를 따른다.
+ * col: 위→아래 단일 컬럼(section header → content).
+ * row: 좌→우 2컬럼. sticky 동작은 is-sticky modifier로 별도 선택한다.
+ * 텍스트 정렬은 자식 .section-title의 modifier가 담당하고,
+ * 섹션별 간격은 --section-gap으로 조정한다.
+ */
+.section-wrap.col {
+  --section-gap: 40px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: var(--section-gap);
+}
+
+.section-wrap.row {
+  --section-gap: var(--space-48);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--section-gap);
+}
+
+/* 방향과 동작을 분리한다. is-sticky가 있을 때만 좌측 aside를 고정한다. */
+.section-wrap.row.is-sticky > .section-aside {
+  position: sticky;
+  top: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-48);
+}
+
+@media (max-width: 900px) {
+  .section-wrap.row { grid-template-columns: 1fr; }
+  .section-wrap.row.is-sticky > .section-aside { position: static; }
 }
 
 /*
@@ -45,22 +81,11 @@ section {
   gap: 16px;
 }
 
-.section-title.center {
-  align-items: center;
-  text-align: center;
-}
+.section-title.text-center { align-items: center; text-align: center; }
+.section-title.text-center h2 { text-align: center; }
 
-.section-title h2 {
-  text-align: center;
-}
-
-.section-title h2.text-left {
-  text-align: left;
-}
-
-.section-title h2.text-center {
-  text-align: center;
-}
+.section-title.text-left { align-items: flex-start; text-align: left; }
+.section-title.text-left h2 { text-align: left; }
 
 .section-content {
   min-height: 200px;

@@ -39,6 +39,13 @@
 .choice-list__icon img { width: 100%; height: 100%; object-fit: contain; }
 .choice-list__body { display: flex; flex-direction: column; gap: var(--space-4); }
 
+/* 제품·프로그램 리스트의 제목은 공통 section-body 타이포그래피를 사용한다.
+   리스트에서만 필요한 강조 굵기와 색상을 이 컴포넌트 범위에서 덮어쓴다. */
+.choice-list .section-body-title {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-heaviest);
+}
+
 .choice-list__arrow {
   width: 16px;
   height: 16px;
@@ -53,4 +60,3 @@
   transform: translateX(3px);
   color: var(--color-brand);
 }
-

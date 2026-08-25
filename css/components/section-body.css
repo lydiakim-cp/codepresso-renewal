@@ -1,0 +1,38 @@
+/*
+ * Component: Section Body
+ * 카드·패널 안에서 반복되는 텍스트 묶음의 기본 배치.
+ * 색상과 상태 변화는 .how-it-works .section-body-title처럼 사용처에서 재정의한다.
+ */
+.section-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+}
+
+.section-body-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  width: 100%;
+}
+
+.section-body-title {
+  margin: 0;
+  font-size: var(--text-card-title);
+  line-height: var(--leading-card-title);
+  letter-spacing: var(--tracking-card-title);
+  font-weight: var(--font-weight-medium);
+}
+
+.section-body-subtitle {
+  margin: 0;
+  font-size: var(--text-heading-25);
+  line-height: var(--leading-heading-25);
+  letter-spacing: var(--tracking-heading-tight);
+  font-weight: var(--font-weight-semibold);
+}
+
+.section-body-description {
+  margin: 0;
+}

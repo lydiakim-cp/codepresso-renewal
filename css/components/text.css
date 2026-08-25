@@ -35,15 +35,6 @@
   font-weight: var(--font-weight-medium);
 }
 
-/* 리스트 아이템 타이틀 — 프로그램·제품명처럼 20px semibold로 강조하는 항목명. */
-.list-item-title {
-  font-size: var(--text-card-title);
-  line-height: var(--leading-card-title);
-  letter-spacing: var(--tracking-card-title);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-ink-heaviest);
-}
-
 /* 스테이지 스텝 타이틀 — PART 1 education-journey와 PART 2 diagnosis-showcase의
    교차 페이드 판 안에서 쓰는 32px 타이틀. h3 전역 스타일(semibold, --color-ink)보다
    한 단계 큰 스케일이 필요해 태그는 h3로 유지하고 시각 스타일만 여기서 정의한다.

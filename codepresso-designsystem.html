@@ -34,6 +34,19 @@
     </section>
 
     <section>
+      <h2><span class="heading-number">C6</span>컴포넌트 — Section Body</h2>
+      <div class="card">
+        <p class="description">카드나 패널 안의 텍스트 배치를 공통 슬롯으로 제공한다. 기본 구조는 재사용하고, 사용처별 색상과 상태만 스코프를 좁혀 재정의한다.</p>
+        <div class="section-body" style="max-width:420px;margin:24px auto;padding:24px;border:1px solid var(--color-line);border-radius:12px">
+          <div class="section-body-heading"><p class="section-body-title">01 · 예시 라벨</p><span class="tag">공통</span></div>
+          <p class="section-body-subtitle">큰 보조 제목을 배치합니다</p>
+          <div class="section-body-description"><p class="desc">설명과 CTA를 이어 붙일 수 있는 텍스트 영역입니다.</p></div>
+        </div>
+        <div class="callout callout-note"><b>변형 원칙:</b> 색상 변경은 <code>.how-it-works .section-body-title</code>처럼 사용처 범위에서 선언하고, 공통 컴포넌트에는 특정 페이지 색상을 넣지 않는다.</div>
+      </div>
+    </section>
+
+    <section>
       <h2><span class="heading-number">C1</span>컴포넌트 — Choice List</h2>
       <div class="card">
         <p class="description">제품이나 과정을 선택하는 목록이다. 아이콘, 두 줄 텍스트, chevron을 고정 슬롯으로 두며 hover와 활성 상태를 공통 제공한다.</p>
@@ -75,6 +88,25 @@
         <p class="description">텍스트를 식별하지 않아도 되는 목업이나 비어 있는 콘텐츠 자리를 표현한다. 선형과 블록형을 공통 제공한다.</p>
         <div class="preview-frame preview-frame--quiet" style="max-width:540px;margin:24px auto;display:flex;flex-direction:column;gap:16px"><span class="skeleton-block is-tag"></span><span class="skeleton-block is-title"></span><span class="skeleton-block is-title is-short"></span><span class="skeleton-block is-thumbnail" style="width:180px"></span></div>
         <div class="callout callout-note"><b>접근성:</b> 실제 비동기 로딩에 사용한다면 부모에 <code>aria-busy="true"</code>를 제공하고, 장식용 목업에서는 <code>aria-hidden="true"</code>를 사용한다.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="heading-number">C5</span>컴포넌트 — Section Layout</h2>
+      <div class="card">
+        <p class="description"><code>.section-wrap</code>은 흐름(<code>row</code>/<code>col</code>)과 sticky 여부를 담당하고, 텍스트 정렬은 내부 <code>.section-title</code>에 지정한다. <code>row</code>는 좌우, <code>col</code>은 위아래라는 CSS 표준 축 의미를 따른다.</p>
+        <table>
+          <tr><th>조합</th><th>사용 유형</th></tr>
+          <tr><td><code>section-wrap col</code> + <code>section-title text-center</code></td><td>How it works, Insight처럼 위아래 흐름 + 제목 중앙 정렬</td></tr>
+          <tr><td><code>section-wrap col</code> + <code>section-title text-left</code></td><td>Proof, Difference처럼 위아래 흐름 + 제목 좌측 정렬</td></tr>
+          <tr><td><code>section-wrap row</code></td><td>일반 좌우 2컬럼, sticky 없음</td></tr>
+          <tr><td><code>section-wrap row is-sticky</code></td><td>Education Journey, Diagnosis처럼 좌우 2컬럼 + <code>.section-aside</code> sticky</td></tr>
+        </table>
+        <div class="section-wrap row is-sticky" style="min-height:300px;margin-top:24px;border-radius:12px;background:var(--color-surface-sunken)">
+          <div class="section-aside"><div class="section-title text-left"><span class="tag">STICKY ASIDE</span><h3>왼쪽 설명 영역</h3><p class="desc">제목, 설명, 선택 목록과 CTA를 배치합니다.</p></div></div>
+          <div class="preview-frame" style="min-height:260px"><span class="skeleton-line"></span><br><span class="skeleton-line is-short"></span></div>
+        </div>
+        <div class="callout callout-note"><b>명명 기준:</b> <code>row</code>는 좌우, <code>col</code>은 위아래 배치다. sticky는 <code>is-sticky</code>로, 제목 정렬은 <code>.section-title</code>의 <code>text-center</code>/<code>text-left</code>로 명시한다.</div>
       </div>
     </section>
 
@@ -566,8 +598,8 @@
                   stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </span>
-            <div class="feature-card-heading">
-              <h3 class="feature-card-title">01 · 진단</h3>
+            <div class="section-body-heading">
+              <h3 class="section-body-title">01 · 진단</h3>
               <span class="feature-card-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -575,7 +607,7 @@
                 </svg>
               </span>
             </div>
-            <p class="feature-card-sub">교육 전, 출발점을 숫자로 확인합니다</p>
+            <p class="section-body-subtitle">교육 전, 출발점을 숫자로 확인합니다</p>
           </article>
           <article class="feature-card">
             <span class="feature-card-icon" aria-hidden="true">
@@ -584,8 +616,8 @@
                   stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </span>
-            <div class="feature-card-heading">
-              <h3 class="feature-card-title">02 · 교육</h3>
+            <div class="section-body-heading">
+              <h3 class="section-body-title">02 · 교육</h3>
               <span class="feature-card-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -593,7 +625,7 @@
                 </svg>
               </span>
             </div>
-            <p class="feature-card-sub">부족한 역량만 골라 정확하게 키웁니다</p>
+            <p class="section-body-subtitle">부족한 역량만 골라 정확하게 키웁니다</p>
           </article>
           <article class="feature-card">
             <span class="feature-card-icon" aria-hidden="true">
@@ -602,8 +634,8 @@
                   stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </span>
-            <div class="feature-card-heading">
-              <h3 class="feature-card-title">03 · 재진단</h3>
+            <div class="section-body-heading">
+              <h3 class="section-body-title">03 · 재진단</h3>
               <span class="feature-card-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -611,7 +643,7 @@
                 </svg>
               </span>
             </div>
-            <p class="feature-card-sub">교육이 통했는지, 다시 숫자로 증명합니다</p>
+            <p class="section-body-subtitle">교육이 통했는지, 다시 숫자로 증명합니다</p>
           </article>
         </div>
       </div>
@@ -630,8 +662,8 @@
                   stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </span>
-            <div class="feature-card-heading">
-              <h3 class="feature-card-title">01 · 진단</h3>
+            <div class="section-body-heading">
+              <h3 class="section-body-title">01 · 진단</h3>
               <span class="feature-card-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -639,7 +671,7 @@
                 </svg>
               </span>
             </div>
-            <p class="feature-card-sub">교육 전, 출발점을 숫자로 확인합니다</p>
+            <p class="section-body-subtitle">교육 전, 출발점을 숫자로 확인합니다</p>
           </article>
           <article class="feature-card">
             <span class="feature-card-icon" aria-hidden="true">
@@ -648,8 +680,8 @@
                   stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </span>
-            <div class="feature-card-heading">
-              <h3 class="feature-card-title">02 · 교육</h3>
+            <div class="section-body-heading">
+              <h3 class="section-body-title">02 · 교육</h3>
               <span class="feature-card-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -657,7 +689,7 @@
                 </svg>
               </span>
             </div>
-            <p class="feature-card-sub">부족한 역량만 골라 정확하게 키웁니다</p>
+            <p class="section-body-subtitle">부족한 역량만 골라 정확하게 키웁니다</p>
           </article>
           <article class="feature-card">
             <span class="feature-card-icon" aria-hidden="true">
@@ -666,8 +698,8 @@
                   stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </span>
-            <div class="feature-card-heading">
-              <h3 class="feature-card-title">03 · 재진단</h3>
+            <div class="section-body-heading">
+              <h3 class="section-body-title">03 · 재진단</h3>
               <span class="feature-card-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -675,7 +707,7 @@
                 </svg>
               </span>
             </div>
-            <p class="feature-card-sub">교육이 통했는지, 다시 숫자로 증명합니다</p>
+            <p class="section-body-subtitle">교육이 통했는지, 다시 숫자로 증명합니다</p>
           </article>
         </div>
       </div>

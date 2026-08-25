@@ -10,7 +10,7 @@
  * (js/difference-cycle.js). 화면당 공간이 넉넉해져 각 차이를 대시보드 수준으로
  * 자세히 그릴 수 있고, legend가 지금 무엇을 보고 있는지 항상 알려준다.
  *
- * 목업 안의 본문은 .skeleton-line(education-journey에서 정의한 공용 클래스)으로 접고,
+ * 목업 안의 본문은 skeleton.css의 공용 .skeleton-line으로 접고,
  * 차이를 증명하는 수치·라벨만 실제 텍스트로 남긴다 — 읽을 것을 줄여야
  * "무엇을 보라는 건지"가 전달된다.
  *
@@ -33,10 +33,7 @@
   /* 화면 순환 주기. legend 진행바의 transition과 js의 타이머가 이 값을
      함께 읽으므로, 주기를 바꿀 때 여기 한 곳만 고치면 된다. */
   --duration-cycle: 5s;
-
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-48);
+  --section-gap: var(--space-48);
 }
 
 /* ---------------------------------------------

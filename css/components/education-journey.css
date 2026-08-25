@@ -25,31 +25,7 @@
   padding-top: var(--space-48);
 }
 
-/* 두 컬럼 모두 start로 둔다 — sticky 요소는 자기 containing block(그리드 영역)
-   보다 작아야 그 안에서 움직일 여지가 생긴다. stretch로 늘리면 컬럼 높이가
-   행 높이(= 우측 트랙 전체)와 같아져 travel 거리가 0이 되고, sticky가 아예
-   동작하지 않는다. 영역 높이는 우측 트랙이 만들어 주므로 좌측은 자기 높이만
-   차지하면 충분하다. */
-.education-journey-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: start;
-  gap: var(--space-48);
-}
-
-@media (max-width: 900px) {
-  .education-journey-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-.education-journey-sticky {
-  position: sticky;
-  top: 96px;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-48);
-}
+/* 2컬럼·좌측 sticky 구조는 공통 .section-wrap.row.is-sticky가 담당한다. */
 
 /*
  * 우측 — 스크롤로 넘기는 목업 스테이지.
@@ -433,6 +409,7 @@
   padding: var(--space-12);
   border-radius: var(--radius-md);
   background: var(--color-brand-tint-1);
+  min-width: 0;
   /* 3단이 같은 높이로 맞춰져야 잘라낸 화면처럼 보인다. */
   height: 100%;
 }
@@ -513,6 +490,8 @@
   gap: var(--space-8);
   padding: var(--space-6);
   border-radius: var(--radius-sm);
+  min-width: 0;
+  overflow: hidden;
 }
 
 /* 지금 학습 중인 스킬만 흰 판으로 띄운다(실제 화면의 선택 상태). */
@@ -608,19 +587,18 @@
 /* 스킬 항목의 이름 자리 — 여기서만 남는 폭을 채운다. */
 .journey-app-skill .skeleton-line {
   flex: 1;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .journey-mock .skeleton-line {
-  /* 세로 스택(.skeleton-stack) 안에서 높이가 늘어나지 않게 고정한다.
-     가로 배치(스킬 항목)에서만 남는 폭을 채우게 한다. */
-  flex: none;
+  /* 목업 안에서는 브랜드 틴트로 공통 스켈레톤을 표현한다. */
   height: 8px;
   border-radius: var(--radius-full);
   background: var(--color-brand-tint-2);
 }
 
 .journey-mock .skeleton-line.is-short {
-  flex: none;
   width: 60%;
 }
 

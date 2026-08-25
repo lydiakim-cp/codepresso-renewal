@@ -37,11 +37,9 @@
 .cta-final-inner {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--space-24);
   text-align: center;
+  --section-gap: var(--space-24);
 }
 
 .cta-final-title {
