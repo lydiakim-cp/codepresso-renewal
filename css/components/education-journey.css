@@ -151,14 +151,6 @@
   gap: var(--space-8);
 }
 
-/* h3 전역 스타일(semibold, --color-ink)보다 한 단계 큰 스케일이 필요해
-   태그를 h3로 유지하되 시각 스타일은 컴포넌트 클래스로 새로 정의한다. */
-.journey-step-title {
-  font-size: var(--text-heading-32);
-  line-height: var(--leading-heading-32);
-  color: var(--color-ink-heaviest);
-}
-
 /*
  * 제품 화면 목업 — 각 프로그램이 실제로 어떤 화면인지 보여주는 공통 창.
  * .parts-group 그라디언트 위지만 .surface-glass(반투명)를 쓰지 않는다 —

@@ -44,6 +44,16 @@
   color: var(--color-ink-heaviest);
 }
 
+/* 스테이지 스텝 타이틀 — PART 1 education-journey와 PART 2 diagnosis-showcase의
+   교차 페이드 판 안에서 쓰는 32px 타이틀. h3 전역 스타일(semibold, --color-ink)보다
+   한 단계 큰 스케일이 필요해 태그는 h3로 유지하고 시각 스타일만 여기서 정의한다.
+   두 섹션이 함께 쓰므로 한쪽 컴포넌트 파일이 아니라 공용 텍스트로 둔다. */
+.stage-step-title {
+  font-size: var(--text-heading-32);
+  line-height: var(--leading-heading-32);
+  color: var(--color-ink-heaviest);
+}
+
 /* 섹션 설명문뿐 아니라 education-journey의 블록 설명(journey-block-desc)에서도
    재사용하는 공용 텍스트 스타일이라 전역 클래스로 둔다. */
 .desc {
