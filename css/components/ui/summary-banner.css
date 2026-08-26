@@ -44,4 +44,16 @@
 /* 모바일 — 48px 사방 여백이 좁은 화면에서 문구가 쓸 폭을 크게 깎는다. */
 @media (max-width: 560px) {
   .summary-banner { padding: var(--space-24); }
+
+  /* 카드 3장 중 첫 장(대표 수치)만 한 줄을 다 쓰고, 나머지 둘이 아래
+     한 줄을 나눠 갖는다. auto-fit minmax(220px)로 두면 360px 화면에서
+     셋 다 1열로 쌓여 스크롤만 세 화면이 된다 — 그렇다고 셋을 한 줄에
+     넣으면 칸이 100px 남짓이라 40px 수치가 들어가지 않는다.
+     1 + 2는 대표 수치의 무게를 지키면서 세로 길이를 3분의 2로 줄인다. */
+  .summary-banner-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-12);
+  }
+
+  .summary-banner-stats > :first-child { grid-column: 1 / -1; }
 }

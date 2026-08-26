@@ -107,7 +107,42 @@
 /* 카드 상하 35px은 데스크톱에서 큰 수치를 띄우려던 여백이다 —
    모바일에서는 카드가 세로로 쌓여 그만큼 스크롤만 늘어난다. */
 @media (max-width: 560px) {
-  .metric-card { padding: var(--space-24) var(--space-20); }
+  .metric-card {
+    min-height: 0;
+    padding: var(--space-24) var(--space-20);
+  }
+
+  /* 2단으로 나란히 놓이는 카드(summary-banner-stats의 2·3번째)는 카드 폭이
+     154px, 안쪽 가용 폭이 114px뿐이다. 수치를 32px로 줄여도 "1531회"가
+     92px이라, 우측에 놓인 아이콘과 가로 자리를 다툰다.
+     그래서 아이콘을 옆으로 밀지 않고 수치 뒤로 내린다 — 장식이므로 겹쳐도
+     되고, 흐리게 깔면 카드가 비어 보이지도 않는다. */
+  .summary-banner-stats > :not(:first-child) .metric-card__value {
+    font-size: var(--text-heading-32);
+    line-height: var(--leading-heading-32);
+  }
+
+  .summary-banner-stats > :not(:first-child) .metric-card__value .unit {
+    font-size: var(--text-heading-18);
+  }
+
+  .summary-banner-stats > :not(:first-child) .metric-card__visual {
+    right: calc(-1 * var(--space-6));
+    bottom: calc(-1 * var(--space-6));
+    width: 72px;
+    height: 72px;
+    transform: none;
+    /* 수치·라벨보다 뒤로. 카드가 flex라 형제 순서상 위에 오는 것을 되돌린다. */
+    z-index: 0;
+    opacity: .5;
+  }
+
+  /* 아이콘 위에 얹히므로 배경색을 등에 깔지 않아도 읽힌다. */
+  .summary-banner-stats > :not(:first-child) .metric-card__value,
+  .summary-banner-stats > :not(:first-child) .metric-card__label {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
