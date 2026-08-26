@@ -64,3 +64,12 @@
   color: var(--color-ink-light);
   font-size: var(--text-body-muted);
 }
+
+/* 모바일 — 32px는 목업 판 폭(566px 기준)에 맞춘 크기라 좁은 화면에서
+   과하다. h3 다음 단인 24px로 낮춘다. */
+@media (max-width: 560px) {
+  .stage-step-title {
+    font-size: var(--text-heading-24);
+    line-height: var(--leading-heading-24);
+  }
+}

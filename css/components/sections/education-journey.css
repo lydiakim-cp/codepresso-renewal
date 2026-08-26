@@ -457,7 +457,7 @@
  * 레이아웃은 그대로 두고 통째로 줄인다.
  * --------------------------------------------- */
 @media (max-width: 560px) {
-  .journey-viewport { gap: var(--space-24); }
+  .journey-viewport { gap: var(--space-40); }
 
   /* 판 padding(48px씩)이 zoom으로 함께 줄면 목업이 판 안에서 뜬다 —
      판은 실제 크기를 유지하고 목업만 줄인다. */

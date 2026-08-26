@@ -48,3 +48,9 @@
 @media (max-width: 720px) {
   .content-panel { --content-panel-padding: var(--space-24); }
 }
+
+@media (max-width: 560px) {
+  /* 라벨·타이틀·설명 사이 간격을 없앤다 — 요청에 따른 압축.
+     세 요소가 붙어 한 덩어리로 읽힌다. */
+  .content-panel__intro { gap: 0; }
+}
