@@ -62,8 +62,8 @@
   height: calc(100vh + 708px);
 }
 
-/* PART 2의 .diagnosis-preview-panel과 같은 glass 판(.surface-glass 유틸리티)에
-   스텝을 가둔다 — 두 파트의 우측 영역이 같은 재질로 읽히게 하기 위함. */
+/* PART 2의 진단 프리뷰와 같은 판이다 — 구조는 공용 .content-panel이,
+   재질은 .surface-glass가 담당하고 여기서는 sticky 배치만 더한다. */
 /* 판은 내용 높이를 따른다(fit-content).
    스텝을 absolute로 겹쳐 쌓으면 판 높이를 만들 수 없으므로, 스텝을 grid로
    같은 셀에 겹쳐 둔다 — 흐름에 남아 있어 가장 큰 스텝이 판 높이를 정하면서도

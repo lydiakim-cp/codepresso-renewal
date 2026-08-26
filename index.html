@@ -681,15 +681,10 @@
             </div>
 
             <!-- 판은 하나로 고정되고, 안의 내용만 교차 페이드된다.
-                 PART 2의 diagnosis-preview-panel과 같은 glass 판(.surface-glass)을 쓴다. -->
+                 PART 2의 진단 프리뷰와 같은 .content-panel + .surface-glass 조합이며,
+                 스텝 순서도 같다(목업 → 설명). -->
             <div class="content-panel journey-viewport surface-glass">
               <article class="content-panel__item journey-step is-active" data-journey-step="0">
-                <div class="content-panel__intro journey-step-head">
-                  <p class="text-label brand">SkillPath · 온라인 이러닝</p>
-                  <h3 class="stage-step-title">각자의 속도로, 기초부터 탄탄하게</h3>
-                  <p class="desc">직무별 커리큘럼을 온라인으로 학습합니다. <br> 진도와 이수율이 자동으로 기록되어 관리자가 한눈에 봅니다.</p>
-                </div>
-
                 <!-- 목업: 8개 분야 트랙 중 하나를 고르면 STEP 학습 경로가 펼쳐지는 화면.
                      연출은 공용 detail(mock-motion.css) — 좌측 트랙 목록에서 선택이 켜지고
                      우측 STEP 상세가 밀려 들어온다. -->
@@ -756,15 +751,15 @@
                     </ul>
                   </div>
                 </div>
+
+                <div class="content-panel__intro">
+                  <p class="text-label brand">SkillPath · 온라인 이러닝</p>
+                  <h3 class="stage-step-title">각자의 속도로, 기초부터 탄탄하게</h3>
+                  <p class="desc">직무별 커리큘럼을 온라인으로 학습합니다. <br> 진도와 이수율이 자동으로 기록되어 관리자가 한눈에 봅니다.</p>
+                </div>
               </article>
 
               <article class="content-panel__item journey-step" data-journey-step="1">
-                <div class="content-panel__intro journey-step-head">
-                  <p class="text-label brand">SkillCamp · 라이브 교육</p>
-                  <h3 class="stage-step-title">현업 전문가와 실전처럼 부딪힙니다</h3>
-                  <p class="desc">강사 주도 라이브 세션에서 실제 업무 과제로 프로젝트를 수행합니다. <br> 질문하고, 막히고, 해결하며 배웁니다.</p>
-                </div>
-
                 <!-- 목업: 강사가 슬라이드를 넘기며 진행하는 라이브 발표 화면.
                      연출은 공용 deck(mock-motion.css) — 맨 앞 슬라이드가 빠지면
                      뒤 슬라이드가 당겨진다. 두 장(SESSION 01·02)은 모두 실제
@@ -791,6 +786,12 @@
                       </div>
                       <span class="skeleton-line" style="width: 150px"></span>
                       <span class="skeleton-line" style="width: 104px"></span>
+
+                <div class="content-panel__intro">
+                  <p class="text-label brand">SkillCamp · 라이브 교육</p>
+                  <h3 class="stage-step-title">현업 전문가와 실전처럼 부딪힙니다</h3>
+                  <p class="desc">강사 주도 라이브 세션에서 실제 업무 과제로 프로젝트를 수행합니다. <br> 질문하고, 막히고, 해결하며 배웁니다.</p>
+                </div>
                     </article>
 
                     <!-- SESSION 02 — 앞장이 빠지면 이 슬라이드가 화면을 채운다.
@@ -861,12 +862,6 @@
               </article>
 
               <article class="content-panel__item journey-step" data-journey-step="2">
-                <div class="content-panel__intro journey-step-head">
-                  <p class="text-label brand">SkillFit · AI 적응형 학습</p>
-                  <h3 class="stage-step-title">실력에 맞춘 난이도가 따라옵니다</h3>
-                  <p class="desc">진단 결과와 학습 데이터에 맞추어 <br> AI가 문제 난이도와 경로를 실시간으로 조정합니다. </p>
-                </div>
-
                 <!-- 목업: 실제 SkillFit 학습 화면(아이콘 레일 · 스킬 목록 · 레슨 · AI 튜터)을
                      핵심만 남겨 확대한 형태. 본문 텍스트는 스켈레톤 바로 단순화하고,
                      강조할 것(트랙·진행률·실무 시나리오·튜터 대화)만 실제 내용으로 둔다. -->
@@ -980,6 +975,12 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="content-panel__intro">
+                  <p class="text-label brand">SkillFit · AI 적응형 학습</p>
+                  <h3 class="stage-step-title">실력에 맞춘 난이도가 따라옵니다</h3>
+                  <p class="desc">진단 결과와 학습 데이터에 맞추어 <br> AI가 문제 난이도와 경로를 실시간으로 조정합니다. </p>
+                </div>
               </article>
             </div>
           </div>
@@ -1044,21 +1045,21 @@
               <div class="diagnosis-track-step" data-diagnosis-track-step="1"></div>
             </div>
 
-            <div class="diagnosis-preview-panel surface-glass">
-              <figure class="diagnosis-preview-step is-active" data-diagnosis-step="0">
-                <img class="diagnosis-preview-image" src="images/aifluent-sample.svg"
+            <div class="content-panel diagnosis-preview-panel surface-glass">
+              <figure class="content-panel__item diagnosis-preview-step is-active" data-diagnosis-step="0">
+                <img class="content-panel__visual diagnosis-preview-image" src="images/aifluent-sample.svg"
                   alt="AI Fluent 전 직군 AI 활용 역량 진단 리포트 화면">
-                <figcaption class="diagnosis-preview-caption">
+                <figcaption class="content-panel__intro diagnosis-preview-caption">
                   <p class="text-label brand">AI Fluent</p>
                   <h3 class="stage-step-title">전 직원의 AI 활용 수준을 한눈에</h3>
                   <p class="desc">직군과 무관하게 모든 구성원의 AI 활용 역량을 <br> 레벨로 진단해 무엇을 가르칠지가 명확해집니다.</p>
                 </figcaption>
               </figure>
 
-              <figure class="diagnosis-preview-step" data-diagnosis-step="1">
-                <img class="diagnosis-preview-image" src="images/skillcertify-sample.svg"
+              <figure class="content-panel__item diagnosis-preview-step" data-diagnosis-step="1">
+                <img class="content-panel__visual diagnosis-preview-image" src="images/skillcertify-sample.svg"
                   alt="SkillCertify 개발자 IT 실무 역량 평가 리포트 화면">
-                <figcaption class="diagnosis-preview-caption">
+                <figcaption class="content-panel__intro diagnosis-preview-caption">
                   <p class="text-label brand">SkillCertify</p>
                   <h3 class="stage-step-title">이력서가 아니라 실기로 검증합니다</h3>
                   <p class="desc">실제 업무와 같은 환경에서 코드를 작성하고, <br> 실행 결과와 품질까지 채점해 채용과 배치가 정확해집니다.</p>
