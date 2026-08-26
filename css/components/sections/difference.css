@@ -1004,6 +1004,89 @@
   color: var(--color-brand);
 }
 
+/*
+ * 모바일(560px) 전용 대체 뷰 — 목업(.difference-mock)과 legend를 그대로
+ * 접어 줄이면 카드 3장이 세로로 길어지고 내용이 촘촘해 읽기 어렵다
+ * (사용자 확인). 순환·교차 페이드 없이 ①②의 9개 항목을 정적으로 나열하고,
+ * ③은 카드 대신 한 문단으로 요약한다. 기본은 숨김 — css/mobile.css의
+ * 560px 블록이 목업·legend와 자리를 맞바꾼다.
+ */
+.difference-mobile { display: none; }
+
+.difference-mobile-group + .difference-mobile-group {
+  margin-block-start: var(--space-24);
+}
+
+.difference-mobile-heading {
+  margin-block-end: var(--space-12);
+  font-size: var(--text-card-title);
+  line-height: var(--leading-card-title);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-heaviest);
+}
+
+.difference-mobile-row {
+  display: flex;
+  gap: var(--space-10);
+}
+
+.difference-mobile-item {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8);
+  min-width: 0;
+  padding: var(--space-12);
+  border-radius: var(--radius-md);
+  background: var(--color-brand-tint-1);
+}
+
+.difference-mobile-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--space-24);
+  height: var(--space-24);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-brand);
+
+  & svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.difference-mobile-title {
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
+}
+
+.difference-mobile-desc {
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  color: var(--color-ink-lighter);
+}
+
+.difference-mobile-field {
+  margin-block-start: var(--space-24);
+  padding: var(--space-18);
+  border-radius: var(--radius-lg);
+  background: var(--color-ink-heaviest);
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  color: rgba(255, 255, 255, .78);
+
+  & strong {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-surface);
+  }
+}
+
 /* 900px·560px 반응형은 css/mobile.css에 모아 둔다. */
 
 @media (prefers-reduced-motion: reduce) {

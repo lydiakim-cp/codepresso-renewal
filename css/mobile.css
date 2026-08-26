@@ -92,121 +92,22 @@
 }
 
 /* --- difference.css --- */
-/* 목업(3열 카드)과 legend(3분할 텍스트)를 모두 세로 1열로 접는다.
-   legend는 progress bar 3개를 탭처럼 나란히 남기고, 제목·설명은
-   활성 탭 것만 보여준다 — js/difference-cycle.js가 이미 붙이는
-   .is-active를 그대로 재사용하므로 JS는 손대지 않는다. */
 @media (max-width: 900px) {
-  .difference-mock { padding: var(--space-18); }
+  .difference-mock { padding: var(--space-24); }
 
   /* 3열을 유지하면 카드가 눌려 스켈레톤만 남는다. */
   .difference-screen-body,
   .difference-screen-body.is-cycle,
   .difference-screen-body.is-library,
-  .difference-screen-body.is-field {
+  .difference-screen-body.is-field,
+  .difference-legend {
     grid-template-columns: 1fr;
-    gap: var(--space-12);
   }
 
   .difference-screen-body { min-height: 0; }
 
-  /* 화면 스테이지 여백도 함께 좁힌다. */
-  .difference-screen {
-    gap: var(--space-12);
-    padding: var(--space-18);
-  }
-
-  /* 카드 3장이 세로로 쌓이는 만큼 카드 자체의 여백도 좁힌다. */
-  .difference-card {
-    gap: var(--space-8);
-    padding: var(--space-12);
-  }
-
-  /* 세로로 쌓이면 오른쪽 화살표가 가리킬 다음 칸이 없다 — 아래 칸을
-     가리키도록 90도 돌리고, 칸 사이 세로 gap 한가운데로 옮긴다. */
-  .difference-flow-arrow {
-    inset-inline-start: 50%;
-    inset-block-start: calc(100% + var(--space-8));
-    translate: -50% -50%;
-    rotate: 90deg;
-  }
-
-  /* 카드가 3장 세로로 쌓이며 목업이 길어져, 각 카드의 부가 정보를 덜어낸다.
-     핵심 수치·라벨은 남기고 "더 있다"를 보여주는 여분 행·보조 문구만 뺀다. */
-
-  /* 9개 카드 공통 — 단계 헤드의 한 줄 보조 설명. */
-  .difference-step-desc { display: none; }
-
-  /* ① 2단계 · 교육 — 스켈레톤으로 채운 3번째 항목과 수강 진행률. */
-  .difference-course.is-quiet,
-  .difference-progress {
-    display: none;
-  }
-
-  /* ① 3단계 · 재진단 — 진단/재진단 범례. 막대 자체(회색·브랜드색)로도 구분된다. */
-  .difference-legend-key { display: none; }
-
-  /* ② 1단계 · 공유 허브 — 받는 사람의 스켈레톤 말풍선과 전송 시각. */
-  .difference-bubble.is-them,
-  .difference-chat-foot {
-    display: none;
-  }
-
-  /* ② 2단계 · 라이브러리 — 스켈레톤으로 채운 4번째(여분) 항목. */
-  .difference-stack .difference-asset.is-quiet { display: none; }
-
-  /* ② 3단계 · 전사 확산 — 무한 반복 파장 2개와 노드 절반(인사팀·재무팀,
-     마크업 순서상 6·7번째 span)만 덜어낸다. 핵심(가운데 팀 → 대표 본부
-     2곳으로 퍼진다)은 남긴다. */
-  .difference-spread-wave,
-  .difference-spread-node:nth-child(6),
-  .difference-spread-node:nth-child(7) {
-    display: none;
-  }
-
-  /* ③ 1단계 · 현장 투입 — 3번째(유통) 항목. */
-  .difference-screen-body.is-field .difference-card.is-first .difference-asset:nth-child(3) {
-    display: none;
-  }
-
-  /* ③ 3단계 · 커리큘럼 반영 — 2번째(여신 심사) 항목. */
-  .difference-screen-body.is-field .difference-card.is-last .difference-asset:nth-child(2) {
-    display: none;
-  }
-
-  /* 목업 전용 타이포 — 카드 3장이 세로로 쌓여 길어진 만큼 원본(16/14/12/10)
-     보다 낮춘다. 9px는 하한이라 sm 한 단만 걸치고 나머지 3단은 그 위에
-     성기게 배치해 위계(title > lg > 기본 > sm)는 유지한다. */
-  .difference-screen-body.is-cycle,
-  .difference-screen-body.is-library,
-  .difference-screen-body.is-field {
-    --mock-text-title: 14px;
-    --mock-leading-title: 19px;
-    --mock-text-lg: 12px;
-    --mock-leading-lg: 16px;
-    --mock-text: 10px;
-    --mock-leading: 14px;
-    --mock-text-sm: 9px;
-    --mock-leading-sm: 12px;
-  }
-
-  /* legend — progress bar 3개는 3열 탭 자리에 그대로 두고, 비활성 항목은
-     제목·설명을 감춰 진행바만 남긴다(li의 opacity·cursor는 원본 그대로라
-     클릭 영역은 그대로 유지). 활성 항목만 legend 전체 폭으로 늘어나
-     제목·설명이 진행바 아래에 자연스럽게 펼쳐진다. */
-  .difference-legend {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-10);
-  }
-
-  .difference-legend-item:not(.is-active) .difference-legend-title,
-  .difference-legend-item:not(.is-active) .desc {
-    display: none;
-  }
-
-  .difference-legend-item.is-active {
-    grid-column: 1 / -1;
-  }
+  /* 세로로 쌓이면 화살표가 가리킬 다음 칸이 없다. */
+  .difference-flow-arrow { display: none; }
 }
 
 /* --- education-journey.css --- */
@@ -551,11 +452,18 @@
 }
 
 /* --- difference.css --- */
-/* 카드·legend 1열 접힘과 카드 생략·여백 축소(900px 블록)를 그대로
-   이어받는다. 이 목업은 3화면 순환 + 세로 막대·전사맵 등 내부가 촘촘해
-   zoom 축소로는 글자가 읽히지 않는 폭까지 줄어든다(사용자 확인됨) —
-   그래서 다른 목업과 달리 접어서 재배치하는 쪽을 택했다. 560px에서
-   추가로 손볼 것은 없다. */
+/* 900px(태블릿)까지는 목업을 zoom으로 축소하지만, 560px(순수 모바일)은
+   목업·legend를 통째로 숨기고 정적 대체 뷰(.difference-mobile,
+   difference.css 정의)로 바꿔친다 — 접어도 카드 3장이 세로로 길어져
+   읽기 어렵다(사용자 확인). */
+@media (max-width: 560px) {
+  .difference-mock,
+  .difference-legend {
+    display: none;
+  }
+
+  .difference-mobile { display: block; }
+}
 
 /* --- insight.css --- */
 @media (max-width: 560px) {
