@@ -202,90 +202,115 @@
 }
 
 /* ---------------------------------------------
- * 게이지 막대 · 영역별 목록 — ①의 1단계(진단)와 3단계(재진단)가 함께 쓴다.
+ * 역량 막대 — ①의 1단계(진단)와 3단계(재진단)가 함께 쓴다.
  *
  * 같은 클래스를 두 칸이 나눠 쓰는 것이 의도다. 두 칸의 막대가 같은 자리·같은
  * 순서에 있어야 "같은 잣대로 두 번 쟀다"가 형태로 읽힌다 — 3단계에서만
- * .is-after 막대가 한 겹 더 얹혀 위로 뻗는다.
+ * .is-after 막대가 같은 기둥 안에서 위로 더 자란다.
+ *
+ * 가로 막대가 아니라 세로 기둥인 이유: 3열 한 칸 폭에서 가로 막대는 길이
+ * 차이가 몇 px에 그쳐 "얼마나 늘었는지"가 눈에 들어오지 않는다. 세로로 세우면
+ * 높이 차이가 곧 상승폭이라 멀리서도 읽힌다.
  * --------------------------------------------- */
+.difference-bars {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  align-items: end;
+  gap: var(--space-10);
+  /* 남는 세로 공간을 기둥이 가져간다 — 1단계는 이 목록이 칸의 유일한 내용이라
+     고정 높이로 두면 아래가 휑하게 빈다. 3단계는 범례·결론 카드가 함께 있어
+     자연히 그만큼 덜 가져가므로, 한 선언으로 두 칸이 각자 맞게 채워진다.
+     min-height는 3단계처럼 이웃이 많은 칸에서도 기둥이 납작해지지 않는 하한이다.
+     1·3단계의 기둥이 같은 척도라야 두 칸을 비교할 수 있는데, 높이가 달라도
+     각 칸 안의 상대 비율은 같으므로 "어느 쪽이 더 높은가"는 그대로 읽힌다.
+     1440 기준, 반응형 착수 시 재검토. */
+  flex: 1;
+  min-height: 132px;
+}
 
-/* 인라인 style의 width가 목표값이고, 진입 전에는 scaleX(0)에서 시작한다. */
+/* 기둥 하나 — 트랙·수치·이름을 위에서 아래로 쌓는다. */
+.difference-bar-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  height: 100%;
+}
+
+/* 트랙을 칸 폭 전부로 두면 기둥이 아니라 블록으로 보인다 — 세로로 길쭉해야
+   높이 차이가 눈에 들어온다. 이름(가장 긴 "프롬프트 설계")이 잘리지 않는
+   선에서 최대한 좁힌 값이다. */
+.difference-bar-row .difference-gauge-bar {
+  width: 62%;
+}
+
+/* 트랙 — 기둥이 자라는 빈 칸. 바닥에서 위로 자라므로 내용을 아래에 붙인다. */
 .difference-gauge-bar {
   position: relative;
-  height: 8px;
-  border-radius: var(--radius-full);
-  background: var(--color-brand-tint-2);
-  overflow: hidden;
+  width: 100%;
+  /* 이름·수치 줄을 뺀 나머지를 트랙이 가져간다.
+     min-height: 0이 없으면 flex 자식의 기본 min-height가 auto라 트랙이
+     내용만큼만 잡히고, 그러면 안쪽 기둥의 height 퍼센트가 기준을 잃는다. */
+  flex: 1;
+  min-height: 0;
+  border-radius: var(--radius-sm);
+  /* 빈 트랙은 "아직 안 찬 자리"지 막대가 아니다 — 채워진 기둥과 같은 무게로
+     보이면 전부 꽉 찬 것처럼 읽힌다. 그래서 채움색보다 확실히 옅게 둔다. */
+  background: color-mix(in srgb, var(--color-brand-tint-2) 55%, var(--color-surface));
 
+  /* 기둥은 트랙 바닥에 붙여 위로 자란다. --bar-h가 목표 높이이고,
+     진입 전에는 0에서 시작한다. 퍼센트가 트랙 높이를 기준으로 풀리도록
+     absolute로 띄운다 — flex 자식으로 두면 기준 높이가 정해지지 않는다. */
   & span {
-    display: block;
-    height: 100%;
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 0;
     border-radius: inherit;
     background: var(--color-line-heavy);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 1.1s var(--ease-scroll);
+    transition: height 1.1s var(--ease-scroll);
   }
 }
 
-/* 막대는 그 화면이 켜져 있을 때만 차오른다 — 보이지 않는 동안 다 차버리면
+/* 1단계 판이 흰색이라 트랙이 배경과 붙는다 — 한 단 가라앉힌 색으로 되돌린다. */
+.difference-card.is-step.is-first .difference-gauge-bar {
+  background: var(--color-surface-sunken);
+}
+
+/* 기둥은 그 화면이 켜져 있을 때만 자란다 — 보이지 않는 동안 다 자라 버리면
    화면이 바뀌었을 때 이미 완성된 정지 그림으로 보인다. */
 .difference-screen.is-active .difference-gauge-bar span {
-  transform: scaleX(1);
+  height: var(--bar-h);
 }
 
-.difference-gauge-bar.is-sm {
-  height: 6px;
-}
+/* 재진단 기둥 — 진단 기둥과 같은 트랙 안에서 더 높이 자란다.
+   같은 기둥을 쓰는 것이 요점이다. 옆에 나란히 세우면 막대 두 개를 비교하는
+   그림이 되고, 겹쳐 세워야 "같은 것을 두 번 쟀다"로 읽힌다.
 
-/* 재진단 막대 — 진단 막대 위에 겹쳐 깔고 늦게 차오른다.
-   같은 트랙 안에서 브랜드 막대가 회색 막대를 넘어 더 길게 뻗으므로,
-   "두 번 재서 늘었다"가 막대 하나로 읽힌다(막대를 두 줄로 쌓지 않는 이유다).
-
-   반투명으로 둔 것이 요점이다 — 불투명하면 진단 막대를 통째로 덮어버려
-   "어디서 어디까지 늘었는지"가 사라지고 그냥 파란 막대 하나가 된다.
-   겹친 구간만 색이 진해져 진단 지점이 눈금처럼 남는다. */
+   반투명으로 둔 것도 같은 이유다 — 불투명하면 진단 기둥을 통째로 덮어버려
+   어디서 어디까지 늘었는지가 사라진다. */
 .difference-gauge-bar .is-after {
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline-start: 0;
-  background: color-mix(in srgb, var(--color-brand) 82%, transparent);
+  background: color-mix(in srgb, var(--color-brand) 88%, transparent);
   transition-delay: .45s;
 }
 
 /* 진단 지점에 눈금을 세운다 — "여기까지가 교육 전이었다"를 짚어 주는 선이다.
-   재진단 막대가 이 선을 넘어가는 만큼이 곧 상승폭으로 읽힌다.
-   회색 막대(겹쳐 깔린 두 span 중 첫째)의 오른쪽 끝에 서야 하므로 그쪽에 그린다.
-
-   z-index로 브랜드 막대 위에 올린 것이 핵심이다 — 반투명이어도 나중에 그려진
-   브랜드 막대가 눈금을 덮어 안 보인다(실제로 겪었다). 회색 막대 자체는
-   브랜드 막대에 비쳐 보이므로 위로 올려도 겹친 구간의 인상은 그대로다. */
+   재진단 기둥이 이 선을 넘어가는 만큼이 곧 상승폭으로 읽힌다.
+   z-index로 재진단 기둥 위에 올려야 보인다 — 나중에 그려진 쪽이 덮는다.
+   테두리가 아니라 그림자로 그리는 이유: border는 요소 안쪽에 그려져
+   height 퍼센트에 포함되므로 기둥 높이가 눈금 두께만큼 어긋난다. */
 .difference-gauge-bar span:has(+ .is-after) {
-  position: relative;
   z-index: 1;
-  border-inline-end: 2px solid var(--color-surface);
-}
-
-/* 영역별 목록 — 이름 · 막대 · 수치가 한 줄. */
-.difference-bars {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-10);
-}
-
-.difference-bar-row {
-  display: grid;
-  /* 이름은 폭을 고정해 1·3단계의 막대 시작점이 정확히 같은 자리에 오게 한다 —
-     어긋나면 "같은 잣대"라는 인상이 깨진다. 1440 기준, 반응형 착수 시 재검토. */
-  grid-template-columns: 68px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--space-8);
+  box-shadow: 0 -2px 0 0 var(--color-surface);
 }
 
 .difference-bar-name {
-  font-size: var(--mock-text-sm);
-  line-height: var(--mock-leading-sm);
+  font-size: var(--mock-text);
+  line-height: var(--mock-leading);
   color: var(--color-ink-light);
+  white-space: nowrap;
 }
 
 .difference-bar-value {
@@ -300,10 +325,11 @@
   color: var(--color-ink-lighter);
 }
 
-/* 범례 — 어느 막대가 진단이고 어느 것이 재진단인지 알려준다. */
+/* 범례 — 어느 기둥이 진단이고 어느 것이 재진단인지 알려준다. */
 .difference-legend-key {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-10);
 }
 
@@ -311,14 +337,14 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-6);
-  font-size: var(--mock-text-sm);
-  line-height: var(--mock-leading-sm);
+  font-size: var(--mock-text);
+  line-height: var(--mock-leading);
   color: var(--color-ink-lighter);
 
   & i {
-    width: 10px;
-    height: 6px;
-    border-radius: var(--radius-full);
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
     background: var(--color-line-heavy);
   }
 }
@@ -362,54 +388,17 @@
  * 영역 이름과 순서가 정확히 같아야 하고, 총점은 결론인 3단계에 한 번만 둔다.
  * --------------------------------------------- */
 
-/* --- 1단계 · 진단 — 문항에 답하면 영역별 점수가 낮게 찬다 --- */
-.difference-quiz {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-  padding: var(--space-10);
-  border-radius: var(--radius-sm);
-  /* 카드가 틴트라 문항지는 흰색으로 올려야 "지금 풀고 있는 화면"으로 읽힌다. */
-  background: var(--color-surface);
-}
-
-.difference-quiz-no {
-  font-size: var(--mock-text-sm);
-  line-height: var(--mock-leading-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-brand);
-}
-
-.difference-quiz-options {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-}
-
-/* 보기 — 무엇을 골랐는지만 보이면 되므로 문구는 스켈레톤으로 둔다. */
-.difference-quiz-option {
-  display: flex;
-  align-items: center;
-  gap: var(--space-8);
-
-  & i {
-    flex-shrink: 0;
-    width: 10px;
-    height: 10px;
-    border-radius: var(--radius-full);
-    border: 1.5px solid var(--color-line-heavy);
-  }
-}
-
-/* 고른 보기 — 이 칸에서 유일하게 브랜드 색이 붙는 곳이다. */
-.difference-quiz-option.is-picked i {
-  border-color: var(--color-brand);
-  /* 안쪽을 채워 라디오가 선택된 모습을 만든다. 테두리와 점 사이 간격이
-     1.5px뿐이라 box-shadow로 그리는 편이 배경색과 어긋나지 않는다. */
-  box-shadow: inset 0 0 0 2px var(--color-surface), inset 0 0 0 10px var(--color-brand);
-}
-
 /* --- 2단계 · 교육 — 취약 영역이 그대로 커리큘럼이 된다 --- */
+
+/* 배정 목록이 남는 세로 공간을 가져간다 — 1단계의 기둥, 3단계의 결론 카드처럼
+   각 칸에서 "주인공"이 여백을 흡수해야 세 칸의 무게가 맞는다.
+   행 자체를 늘리지 않고 행 사이 간격만 벌리는 이유는, 행 높이가 들쭉날쭉하면
+   1단계 기둥·3단계 기둥과 눈높이가 어긋나 세 칸이 따로 놀기 때문이다. */
+.difference-card.is-step .difference-stack {
+  flex: 1;
+  justify-content: center;
+}
+
 
 /* 배정된 과정 행. 아이콘 대신 순번을 두는 것이 요점이다 —
    무엇을 먼저 듣는지가 이 칸이 말하려는 것이라 종류보다 순서가 중요하다. */
@@ -438,10 +427,28 @@
   color: var(--color-brand);
 }
 
-.difference-course-meta {
-  font-size: var(--mock-text-sm);
-  line-height: var(--mock-leading-sm);
-  color: var(--color-ink-lighter);
+/* 수강 진행률 막대 — 여기만 가로가 맞다. 역량 막대(세로 기둥)와 달리
+   이건 "얼마나 진행됐나" 하나뿐이라 비교할 이웃이 없고, 가로가 진행률의
+   관습적인 형태다. 세로로 세우면 옆 칸 기둥과 같은 것으로 오해된다. */
+.difference-track {
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-tint-2);
+  overflow: hidden;
+
+  & span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.1s var(--ease-scroll);
+  }
+}
+
+.difference-screen.is-active .difference-track span {
+  transform: scaleX(1);
 }
 
 /* 수강 진행률 — 막대와 수치를 한 줄로 묶는다. */
@@ -609,6 +616,35 @@
     width: 14px;
     height: 14px;
   }
+}
+
+/* 단계가 진행될수록 판이 한 단씩 진해진다 — 세 칸이 같은 색이면 나란한 분류로
+   보이고, 어느 쪽이 앞이고 뒤인지가 형태로만 남는다(번호를 읽어야 안다).
+   색으로 무게를 실어 두면 오른쪽으로 갈수록 결론에 가까워지는 것이 먼저 읽힌다.
+
+   같은 색 안에서 농도만 올리는 이유는, 세 칸이 별개 분류가 아니라 한 과정의
+   단계이기 때문이다 — 색상(hue)을 바꾸면 서로 다른 것 세 개로 갈라진다.
+   흰 판은 카드 배경(--color-surface)과 겹치지 않게 hairline으로 경계를 세운다.
+   단계 순서는 --mock-step이 이미 갖고 있지만, 인라인 style 값을 셀렉터로 잡는 것은
+   깨지기 쉬워서 배경만은 is-first/is-mid/is-last 클래스로 따로 표시한다. */
+.difference-card.is-step.is-first {
+  background: var(--color-surface);
+  box-shadow: inset 0 0 0 1px var(--color-line);
+}
+
+.difference-card.is-step.is-mid {
+  background: var(--color-brand-tint-1);
+}
+
+.difference-card.is-step.is-last {
+  background: var(--color-brand-tint-2);
+}
+
+/* 1단계 판이 흰색이라 그 안의 흰 항목 행이 배경과 겹친다 — 한 단 가라앉힌다. */
+.difference-card.is-step.is-first .difference-course,
+.difference-card.is-step.is-first .difference-asset,
+.difference-card.is-step.is-first .difference-chat {
+  background: var(--color-surface-sunken);
 }
 
 /* ③과 공유하는 항목·칩·라벨을 ①② 안에서만 목업 스케일로 다시 매긴다 —
@@ -1029,6 +1065,7 @@
   /* 차오르는 막대는 장식이므로 애니메이션 없이 완성 상태만 보여준다.
      화면 순환 자체는 js가 멈춘다. */
   .difference-gauge-bar span,
+  .difference-track span,
   .difference-screen {
     transition-duration: .001ms;
     transition-delay: 0s;
