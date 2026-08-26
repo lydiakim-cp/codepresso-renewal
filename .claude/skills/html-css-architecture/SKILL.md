@@ -227,7 +227,7 @@ p  { font-size: var(--text-body); line-height: var(--leading-body); }
 
 /* Radius */
 --radius-sm: 6px; --radius-md: 8px; --radius-lg: 12px;
---radius-xl: 36px; --radius-full: 999px;
+--radius-xl: 20px; --radius-full: 999px;
 
 /* Typography — 용도별 시맨틱 토큰을 먼저 쓴다 */
 --text-hero / --text-h1 (56px) · --text-h2 (44px) · --text-h3 (24px)
