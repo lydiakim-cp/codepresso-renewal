@@ -147,14 +147,14 @@
 /* SkillPath 목업 전용 소형 타이포 — .journey-app과 같은 이유로 메인페이지
    최소 14px 제약을 적용하지 않는다(사용자 확인됨). 실제로 읽는 UI가 아니라
    '화면 그림'이라, 14px로 두면 축소된 제품 화면으로 읽히지 않는다.
-   .journey-app보다 한 단계 크게(11/13px) 둔 것은 이 목업이 3단이 아니라
+   .journey-app보다 한 단계 크게(12/14px) 둔 것은 이 목업이 3단이 아니라
    2단이라 요소당 폭이 더 넓기 때문이다. 전역 토큰으로 올리지 않고 이 목업
    안에만 가둔다 — 실제 UI에 새어나가면 타이포 체계가 깨진다. */
 .journey-mock.mock-detail {
-  --mock-text: 11px;
-  --mock-leading: 15px;
-  --mock-text-lg: 13px;
-  --mock-leading-lg: 18px;
+  --mock-text: 12px;
+  --mock-leading: 16px;
+  --mock-text-lg: 14px;
+  --mock-leading-lg: 19px;
 }
 
 .journey-mock.mock-detail .journey-mock-item-name,
@@ -203,8 +203,8 @@
  * 덱은 3장이 겹쳐 있어 읽을 것이 많았다.
  */
 .journey-mock.camp-ticker {
-  --mock-text: 11px;
-  --mock-leading: 15px;
+  --mock-text: 12px;
+  --mock-leading: 16px;
   gap: var(--space-12);
 }
 
@@ -514,11 +514,11 @@
   /* 목업 전용 소형 타이포 — 사용자가 읽는 UI가 아니라 '화면 그림'이라
      메인페이지 최소 14px 제약을 적용하지 않는다(사용자 확인됨).
      전역 토큰으로 올리지 않고 이 목업 안에만 가두는 이유도 같다 —
-     실제 UI에 11px가 새어나가면 타이포 체계가 깨진다. */
-  --mock-text: 9px;
-  --mock-leading: 13px;
-  --mock-text-lg: 11px;
-  --mock-leading-lg: 15px;
+     실제 UI에 12px가 새어나가면 타이포 체계가 깨진다. */
+  --mock-text: 10px;
+  --mock-leading: 14px;
+  --mock-text-lg: 12px;
+  --mock-leading-lg: 16px;
 }
 
 .journey-app-side,

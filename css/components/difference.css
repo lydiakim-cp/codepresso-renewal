@@ -123,16 +123,18 @@
      주의: 9px는 **하한**이지 기본값이 아니다. 목업 안에도 제목·본문·메타의
      위계가 있어야 실제 제품 화면처럼 보인다 — 전부 9/11px로 깔면 정보가
      평평해져 어디를 봐야 할지 알 수 없다. 아래 4단을 용도에 맞게 골라 쓴다.
+     4단 전체를 15/13/11/9에서 1px씩 올렸다 — 축소된 화면이라도 본문
+     (--mock-text-lg)이 14px은 돼야 읽히고, 위계 간격(2px)은 그대로 지킨다.
      전역 토큰으로 올리지 않고 이 목업 안에만 가둔다 — 실제 UI에 11px가
      새어나가면 타이포 체계가 깨진다. */
-  --mock-text-title: 15px;  /* 칸 제목 — 단계 이름 */
-  --mock-leading-title: 20px;
-  --mock-text-lg: 13px;     /* 목업 안 본문 — 항목 이름, 말풍선 */
-  --mock-leading-lg: 18px;
-  --mock-text: 11px;        /* 보조 정보 — 설명, 각주, 노드 */
-  --mock-leading: 15px;
-  --mock-text-sm: 9px;      /* 하한. 칩·메타처럼 읽지 않아도 되는 것만 */
-  --mock-leading-sm: 13px;
+  --mock-text-title: 16px;  /* 칸 제목 — 단계 이름 */
+  --mock-leading-title: 21px;
+  --mock-text-lg: 14px;     /* 목업 안 본문 — 항목 이름, 말풍선 */
+  --mock-leading-lg: 19px;
+  --mock-text: 12px;        /* 보조 정보 — 설명, 각주, 노드 */
+  --mock-leading: 16px;
+  --mock-text-sm: 10px;     /* 하한. 칩·메타처럼 읽지 않아도 되는 것만 */
+  --mock-leading-sm: 14px;
 }
 
 /* ---------------------------------------------
@@ -566,19 +568,31 @@
   min-width: 0;
 }
 
+/* 단계 번호 — 공용 .tag와 같은 언어를 쓴다(틴트 배경 + 브랜드 글자 +
+   radius-sm). 꽉 찬 브랜드 원이 라벨보다 강해 번호가 먼저 읽혔는데,
+   번호는 순서 표시일 뿐이라 라벨에 자리를 내주는 게 맞다.
+   .tag를 그대로 쓰지 않는 것은 그 클래스가 14px 고정이라 목업 스케일과
+   어긋나기 때문이다 — 색·radius 언어만 가져오고 크기는 목업을 따른다. */
 .difference-step-no {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: var(--space-20);
-  height: var(--space-20);
-  border-radius: var(--radius-full);
-  background: var(--color-brand);
-  color: var(--color-surface);
-  font-size: var(--mock-text-lg);
+  min-width: var(--space-20);
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-sm);
+  background: var(--color-brand-tint-2);
+  color: var(--color-brand);
+  font-size: var(--mock-text);
   line-height: var(--mock-leading-lg);
   font-weight: var(--font-weight-semibold);
+}
+
+/* 다크 화면에서는 틴트가 배경에 묻힌다 — 카드와 같은 흰색 투명도 위계로
+   바꾸고 글자만 밝은 브랜드로 띄운다(.difference-card-label과 같은 처리). */
+.difference-screen.is-dark .difference-step-no {
+  background: rgba(255, 255, 255, .1);
+  color: color-mix(in srgb, var(--color-brand) 45%, white);
 }
 
 /* 같은 행의 보조 설명. 번호·라벨이 자리를 먼저 갖고 남는 폭을 쓰며,
@@ -804,6 +818,10 @@
      1·2단계 칸의 내용 높이에 맞춘 값. 1440 기준, 반응형 착수 시 재검토. */
   flex: 1;
   min-height: 140px;
+  /* 파장이 판보다 크게 펼쳐지므로 여기서 잘라낸다 — 안 자르면 옆 칸까지
+     원이 넘어가 3단 구성이 흐트러진다. 잘린 호가 오히려 "판 밖으로 계속
+     번진다"로 읽혀 의도에 맞는다. */
+  overflow: hidden;
 }
 
 /* 가운데 원본 팀 — 이 단계의 출발점이라 유일한 브랜드 판. */
@@ -826,22 +844,27 @@
 }
 
 /* 퍼져나가는 파장 — 원본에서 바깥으로 번지는 것을 선 하나로 대신한다.
-   두 개를 시차를 두고 겹쳐 "계속 퍼진다"로 읽히게 한다. */
+   두 개를 시차를 두고 겹쳐 "계속 퍼진다"로 읽히게 한다.
+   기본 원을 96px로 키우고 3.4배까지 펼쳐 바깥 노드(좌우 20~78%)까지
+   파장이 실제로 닿게 했다 — 64px·2.1배는 코어 주변에서 멈춰 "퍼진다"가
+   아니라 "코어가 깜빡인다"로 읽혔다.
+   커진 만큼 시작 투명도를 낮추고(.45) 사이클을 2.6s로 늘렸다. 같은 속도로
+   더 멀리 가면 파장이 빨라 보여 화면이 부산해진다. */
 .difference-spread-wave {
   position: absolute;
   inset-block-start: 50%;
   inset-inline-start: 50%;
-  width: 64px;
-  height: 64px;
-  margin: -32px 0 0 -32px;
+  width: 96px;
+  height: 96px;
+  margin: -48px 0 0 -48px;
   border-radius: var(--radius-full);
   border: 1px solid var(--color-brand);
-  animation: difference-spread-wave 1.8s var(--ease-scroll) infinite;
+  animation: difference-spread-wave 2.6s var(--ease-scroll) infinite;
 }
 
 @keyframes difference-spread-wave {
-  0% { transform: scale(.6); opacity: .5; }
-  100% { transform: scale(2.1); opacity: 0; }
+  0% { transform: scale(.5); opacity: .45; }
+  100% { transform: scale(3.4); opacity: 0; }
 }
 
 /* 퍼져나간 본부 — 흰 알약으로 원본 주위에 흩어진다. */
