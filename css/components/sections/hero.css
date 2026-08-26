@@ -57,6 +57,21 @@
   /* 카피와 진단 카드 사이 96px은 모바일에서 둘을 따로 놀게 만든다. */
   .hero-copy { gap: var(--space-48); padding-top: var(--space-24); }
 
+  /* 카피 하단에 배경 이미지를 화면 폭 그대로 붙인다.
+     .hero-copy는 .section-wrap 안에 있어 좌우 20px 패딩과 컨테이너
+     max-width로 좁아져 있다 — ::after에 폭을 100vw로 주고
+     margin-inline을 음수 half-vw 트릭으로 걸어 그 제약을 벗어난다.
+     상하 padding 없이 딱 이미지 높이만큼만 자리를 차지하도록
+     height는 aspect-ratio로 폭에 비례해 정한다(원본 1448:800). */
+  .hero-copy::after {
+    content: "";
+    display: block;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    aspect-ratio: 1448 / 800;
+    background: url("../../../images/main_banner_img_pc.avif") center / cover no-repeat;
+  }
+
   .hero-banner {
     margin-bottom: var(--space-24);
     /* 배너 문구가 두 줄이 되면 좌우 패딩이 과해 보인다. */
