@@ -6,12 +6,12 @@
 
 /* 문서의 컴포넌트·모션 예시가 메인과 똑같이 렌더링되도록,
    메인 전용 컴포넌트 CSS도 그대로 불러 쓴다(스타일을 다시 만들지 않는다). */
-@import url("../components/insight.css") layer(components);
-@import url("../components/part-nav.css") layer(components);
-@import url("../components/hero.css") layer(components);
-@import url("../components/education-journey.css") layer(components);
-@import url("../components/difference.css") layer(components);
-@import url("../components/proof-card.css") layer(components);
+@import url("../components/sections/insight.css") layer(components);
+@import url("../components/sections/part-nav.css") layer(components);
+@import url("../components/sections/hero.css") layer(components);
+@import url("../components/sections/education-journey.css") layer(components);
+@import url("../components/sections/difference.css") layer(components);
+@import url("../components/sections/proof-card.css") layer(components);
 
 .design-guide { background: #f4f7fc; color: var(--color-ink); }
 .guide-topbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; height: 72px; padding: 0 40px; background: #071326; color: #fff; }
@@ -154,7 +154,7 @@
 @media (max-width: 520px) { .guide-hero h1 { font-size: 42px; }.guide-color-grid { grid-template-columns: 1fr 1fr; }.guide-component-row { grid-template-columns: 1fr; }.guide-component-demo { min-height: 112px; }.guide-type-list > div { grid-template-columns: 75px 1fr; }.guide-type-list p { grid-column: 2; }.guide-block-head { display: block; }.guide-block-head span { display: block; margin-top: 6px; }.guide-motion-item { grid-template-columns: 1fr; }.guide-motion-list code { grid-column: 1; }.guide-steps li { grid-template-columns: 48px 1fr; gap: 12px; } }
 
 /* 08 MOCKUP MOTION — 목업 연출 5종의 뼈대.
-   움직임은 components/mock-motion.css가 담당하고, 여기서는 각 연출이 필요로 하는
+   움직임은 components/ui/mock-motion.css가 담당하고, 여기서는 각 연출이 필요로 하는
    레이아웃(브라우저 창 내부 2단, 카드 덱 겹침, 상세 2단, 통계/차트 배치)만 정의한다.
    문서 폭(약 560px)에 맞춘 1회성 치수이므로 토큰으로 올리지 않는다. */
 .guide-motion-live-preview .mock-screen { height: auto; }
@@ -170,4 +170,4 @@
 .mock-replay-cursor { position: absolute; top: 0; left: 0; width: 18px; height: 18px; }
 
 /* E ticker 뼈대는 index.html(PART 1 SkillCamp)도 쓰게 되어
-   components/mock-motion.css로 올렸다 — deck·detail과 같은 처리. */
+   components/ui/mock-motion.css로 올렸다 — deck·detail과 같은 처리. */

@@ -3,9 +3,11 @@
  * Reset → Design Tokens → Base → 공통 Components 순서로 계층을 로드한다.
  * Cascade Layer로 우선순위를 명시해 specificity 경쟁을 방지한다.
  *
- * 여기에는 서비스와 디자인 시스템이 함께 쓰는 Foundation·공통 UI를 둔다.
- * 메인 랜딩의 큰 섹션 조합은 css/pages/{page}.css에서 따로 로드한다.
+ * 여기에는 모든 페이지가 쓰는 범용 UI(components/ui/)만 둔다.
+ * 섹션 컴포넌트(components/sections/)는 그것을 쓰는 페이지가 직접 로드한다 —
+ * 한 페이지만 쓰는 941줄짜리 섹션을 모든 페이지에 딸려 보내지 않기 위함이다.
  *   - index.html               → main.css + css/pages/index.css
+ *   - ax-build.html            → main.css + css/pages/ax-build.css
  *   - codepresso-designsystem  → main.css + css/pages/designsystem.css
  */
 
@@ -20,27 +22,27 @@
 @import url("./keyframes.css");
 
 /* 레이아웃 뼈대 · 텍스트 유틸리티 */
-@import url("./components/layout.css") layer(components);
-@import url("./components/section-body.css") layer(components);
-@import url("./components/text.css") layer(components);
-@import url("./components/surface.css") layer(components);
+@import url("./components/ui/layout.css") layer(components);
+@import url("./components/ui/section-body.css") layer(components);
+@import url("./components/ui/text.css") layer(components);
+@import url("./components/ui/surface.css") layer(components);
 
-/* 공통 UI 컴포넌트 */
-@import url("./components/button.css") layer(components);
-@import url("./components/link.css") layer(components);
-@import url("./components/badge.css") layer(components);
-@import url("./components/header.css") layer(components);
-@import url("./components/feature-card.css") layer(components);
-@import url("./components/summary-banner.css") layer(components);
-@import url("./components/metric-card.css") layer(components);
-@import url("./components/content-panel.css") layer(components);
-@import url("./components/choice-list.css") layer(components);
-@import url("./components/media-card.css") layer(components);
-@import url("./components/preview-frame.css") layer(components);
-@import url("./components/skeleton.css") layer(components);
-@import url("./components/mock-motion.css") layer(components);
-@import url("./components/assessment-card.css") layer(components);
-@import url("./components/compare-panel.css") layer(components);
-@import url("./components/timeline.css") layer(components);
-@import url("./components/faq-list.css") layer(components);
-@import url("./components/catalog-board.css") layer(components);
+/* 공통 UI 컴포넌트 — components/ui/ */
+@import url("./components/ui/button.css") layer(components);
+@import url("./components/ui/link.css") layer(components);
+@import url("./components/ui/badge.css") layer(components);
+@import url("./components/ui/header.css") layer(components);
+@import url("./components/ui/feature-card.css") layer(components);
+@import url("./components/ui/summary-banner.css") layer(components);
+@import url("./components/ui/metric-card.css") layer(components);
+@import url("./components/ui/content-panel.css") layer(components);
+@import url("./components/ui/choice-list.css") layer(components);
+@import url("./components/ui/media-card.css") layer(components);
+@import url("./components/ui/preview-frame.css") layer(components);
+@import url("./components/ui/skeleton.css") layer(components);
+@import url("./components/ui/mock-motion.css") layer(components);
+@import url("./components/ui/assessment-card.css") layer(components);
+@import url("./components/ui/compare-panel.css") layer(components);
+@import url("./components/ui/timeline.css") layer(components);
+@import url("./components/ui/faq-list.css") layer(components);
+@import url("./components/ui/catalog-board.css") layer(components);

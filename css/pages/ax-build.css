@@ -6,7 +6,7 @@
  * @import는 CSS 규칙보다 먼저 와야 하므로 페이지 고유 스타일은 파일 하단에 둔다.
  */
 
-@import url("../components/cta-final.css") layer(components);
+@import url("../components/sections/cta-final.css") layer(components);
 
 @layer components {
   /* 페이지 바탕은 흰색으로 두고, 색은 각 섹션이 직접 칠한다.

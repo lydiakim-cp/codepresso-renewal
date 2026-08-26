@@ -1,20 +1,21 @@
 /*
  * Page: index.html (메인 랜딩)
  * main.css(reset → tokens → base → 공통 컴포넌트) 위에 얹는 메인페이지 전용 계층.
- * 여기에는 메인페이지에서만 쓰는 컴포넌트와 페이지 고유 스타일만 둔다.
- * 다른 페이지에서도 쓰일 컴포넌트가 생기면 css/components/로 올리고 main.css에 등록한다.
+ * 여기에는 이 페이지가 쓰는 섹션 컴포넌트(components/sections/)와
+ * 페이지 고유 스타일만 둔다. 섹션이 아니라 어디서나 쓰일 범용 UI가 되면
+ * components/ui/로 옮기고 main.css에 등록한다.
  *
  * @import는 CSS 규칙보다 먼저 와야 하므로 페이지 고유 스타일은 파일 하단에 둔다.
  */
 
-@import url("../components/hero.css") layer(components);
-@import url("../components/proof-card.css") layer(components);
-@import url("../components/part-nav.css") layer(components);
-@import url("../components/education-journey.css") layer(components);
-@import url("../components/diagnosis-showcase.css") layer(components);
-@import url("../components/difference.css") layer(components);
-@import url("../components/insight.css") layer(components);
-@import url("../components/cta-final.css") layer(components);
+@import url("../components/sections/hero.css") layer(components);
+@import url("../components/sections/proof-card.css") layer(components);
+@import url("../components/sections/part-nav.css") layer(components);
+@import url("../components/sections/education-journey.css") layer(components);
+@import url("../components/sections/diagnosis-showcase.css") layer(components);
+@import url("../components/sections/difference.css") layer(components);
+@import url("../components/sections/insight.css") layer(components);
+@import url("../components/sections/cta-final.css") layer(components);
 
 @layer components {
   /* 스크롤에 따라 상단 하늘색이 흰색으로 옅어지는 페이지 배경.

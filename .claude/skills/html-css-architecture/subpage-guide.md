@@ -54,7 +54,9 @@ CSS는 **정확히 2개**만 링크한다(SKILL.md 337행 규칙). `css/pages/{�
  * main.css 위에 얹는 이 페이지 전용 계층.
  */
 
-@import url("../components/{새-컴포넌트}.css") layer(components);
+/* 이 페이지가 쓰는 섹션 컴포넌트. 범용 UI(components/ui/)는
+   main.css가 이미 로드하므로 여기 다시 쓰지 않는다. */
+@import url("../components/sections/{섹션-컴포넌트}.css") layer(components);
 
 @layer components {
   /* 이 페이지에만 있는 자잘한 조정 */

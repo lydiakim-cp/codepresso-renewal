@@ -1,15 +1,36 @@
 # Codepresso Component Library
 
-`css/components`는 페이지와 무관하게 재사용할 수 있는 UI 디자인을 보관한다.
+`css/components`는 재사용 가능한 UI를 보관하며, **재사용 범위**에 따라 두 폴더로 나눈다.
 컴포넌트는 콘텐츠의 종류가 아니라 **반복되는 정보 구조와 시각 규칙**을 기준으로 분리한다.
 
-## 카테고리
+## 폴더 구분 — `ui/` vs `sections/`
 
-- Foundation UI: `button`, `link`, `badge`, `surface`, `skeleton`
+| | `ui/` (22개) | `sections/` (8개) |
+|---|---|---|
+| 무엇 | 어디에나 놓이는 범용 조각 | 페이지의 한 구획을 통째로 이루는 조합 |
+| 크기 | 대개 100줄 미만 | 60~1151줄 |
+| 로드 | `main.css`가 전부 로드 → **모든 페이지** | 그것을 쓰는 **페이지가 직접** 로드 |
+| 예 | `button` `badge` `metric-card` `content-panel` | `hero` `difference` `education-journey` |
+
+**로드 주체가 다른 것이 이 구분의 실익이다.** 941줄짜리 `education-journey`를
+`main.css`에 넣으면 그 섹션이 없는 페이지까지 받아 간다. 반대로 `button`을
+페이지마다 로드하면 페이지가 늘 때마다 빠뜨릴 수 있다.
+
+### 어느 쪽에 둘지 판단
+
+- 이 조각만 떼어 **다른 맥락에 놓아도 말이 되는가** → `ui/`
+- **그 섹션의 서사에 묶여** 있어 떼면 의미가 없는가 → `sections/`
+- `sections/`의 파일을 두 페이지 이상이 쓰는 것은 정상이다(현재 8개 중 7개가 그렇다).
+  페이지 전용이라는 뜻이 아니라 **섹션 단위 조합**이라는 뜻이다.
+- `sections/` 안에서 범용으로 쓸 조각이 생기면 `ui/`로 올리고 `main.css`에 등록한다.
+
+## 카테고리 (`ui/` 안에서)
+
+- Foundation UI: `button`, `link`, `badge`, `surface`, `skeleton`, `text`
 - Content UI: `metric-card`, `media-card`, `choice-list`, `assessment-card`, `summary-banner`
-- Frame UI: `content-panel`, `preview-frame`, `layout`
-- Navigation UI: `header`, `part-nav`
-- Feature compositions: `feature-card`, `proof-card`, `insight`, `education-journey`, `diagnosis-showcase`, `difference`, `cta-final`
+- Frame UI: `content-panel`, `preview-frame`, `layout`, `section-body`
+- Navigation UI: `header`
+- 조합·연출: `feature-card`, `compare-panel`, `timeline`, `faq-list`, `catalog-board`, `mock-motion`
 
 ## 책임 분리 원칙
 

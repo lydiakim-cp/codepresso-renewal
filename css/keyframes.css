@@ -27,7 +27,7 @@
  *   spin-angle  각도 커스텀 프로퍼티를 한 바퀴 돌린다
  *
  * 특정 연출에만 쓰이는 keyframes는 여기 두지 않는다 —
- * 목업 연출 5종은 components/mock-motion.css가, 그 목업을 변주한 것은
+ * 목업 연출 5종은 components/ui/mock-motion.css가, 그 목업을 변주한 것은
  * 해당 컴포넌트 파일이 각각 소유한다(그 파일을 안 쓰면 따라오지 않게).
  */
 

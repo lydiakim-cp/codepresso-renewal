@@ -89,15 +89,24 @@ css/
 ├── reset.css         브라우저 기본값 정규화
 ├── tokens.css        Design Token (색·타이포·spacing·radius·motion)
 ├── base.css          h1~h3, p, table, code, footer 등 태그 전역 스타일
-├── components/       공통 컴포넌트 (main.css가 로드) + 페이지 전용 컴포넌트
+├── keyframes.css     공용 @keyframes 라이브러리 (main.css가 로드)
+├── components/
+│   ├── ui/           범용 UI 22개 — main.css가 전부 로드 (모든 페이지)
+│   └── sections/     섹션 컴포넌트 8개 — 쓰는 페이지가 직접 로드
 └── pages/
-    ├── index.css     메인페이지 전용 — 전용 컴포넌트를 @import + 페이지 고유 스타일
+    ├── index.css     쓰는 섹션을 @import + 페이지 고유 스타일
+    ├── ax-build.css
     └── designsystem.css
 ```
 
 - `@layer reset, tokens, base, components;` 로 우선순위를 명시한다 — specificity 경쟁(`.a .b .c .d`)으로 해결하지 않는다.
 - **페이지는 CSS를 정확히 2개만 링크한다**: `css/main.css` + `css/pages/{페이지}.css`. 자세한 규칙은 11번 "페이지 · 섹션 구조 관례" 참고.
-- `components/` 안에는 공통 컴포넌트와 페이지 전용 컴포넌트가 함께 있다. 어느 쪽인지는 **누가 `@import`하는가**로 갈린다(`main.css` → 공통, `pages/*.css` → 그 페이지 전용). [component-inventory.md](component-inventory.md)에 전체 목록이 있다.
+- **`components/`는 재사용 범위로 두 폴더로 갈린다** — 자세한 판단 기준은 [css/components/README.md](../../../css/components/README.md)에 있다.
+  - `ui/` — 어디에나 놓이는 범용 조각(`button` `metric-card` `content-panel` …). **`main.css`가 전부 로드**하므로 새로 추가하면 `main.css`에 `@import`를 등록한다.
+  - `sections/` — 페이지의 한 구획을 이루는 조합(`hero` `difference` `education-journey` …). **그것을 쓰는 페이지의 `pages/*.css`가 로드**한다. 941줄짜리 섹션을 그 섹션이 없는 페이지까지 딸려 보내지 않기 위함이다.
+  - `sections/`의 파일을 **두 페이지 이상이 쓰는 것은 정상이다**(8개 중 7개가 index + designsystem을 함께 쓴다). "페이지 전용"이 아니라 "섹션 단위 조합"이라는 뜻이다 — 그래서 페이지 폴더로 내리지 않는다.
+  - 판단: 떼어내 **다른 맥락에 놓아도 말이 되면** `ui/`, **그 섹션의 서사에 묶여** 있으면 `sections/`.
+- [component-inventory.md](component-inventory.md)에 전체 목록이 있다.
 
 ## 1. Semantic HTML
 
@@ -177,7 +186,7 @@ p  { font-size: var(--text-body); line-height: var(--leading-body); }
 - **메인페이지(`index.html`)와 서브페이지의 최소 폰트는 14px이다.** `--text-body-13`(과 그것을 참조하는 `--text-label` **토큰**)을 서비스 페이지에서 쓰지 않는다. 작아 보이게 하고 싶으면 크기를 줄이는 대신 `color`(`--color-ink-lighter`)나 weight로 위계를 낮춘다.
   - 13px은 `codepresso-designsystem.html` 카탈로그 문서의 chrome(캡션·주석) 전용이다.
   - 12px은 사용처가 없어 스케일에서 제거했다.
-  - **주의 — 이름이 같은 둘을 혼동하지 않는다.** `--text-label` **토큰**은 13px이지만, `.text-label` **클래스**(`css/components/text.css`)는 **14px**이다. 서비스 페이지의 라벨에는 `.text-label` 클래스를 쓰면 되고, `var(--text-label)` 토큰을 직접 쓰면 13px이 되어 제약을 깬다.
+  - **주의 — 이름이 같은 둘을 혼동하지 않는다.** `--text-label` **토큰**은 13px이지만, `.text-label` **클래스**(`css/components/ui/text.css`)는 **14px**이다. 서비스 페이지의 라벨에는 `.text-label` 클래스를 쓰면 되고, `var(--text-label)` 토큰을 직접 쓰면 13px이 되어 제약을 깬다.
 - **Font weight는 3단(400 Regular / 500 Medium / 600 Semibold)이 원칙이다.** 700 Bold는 예외 — 현재 전 프로젝트에서 `metric-card`의 큰 수치 하나만 쓴다. Semibold로 부족한 자리에만 쓰고, 새로 쓸 때는 왜 Semibold로 안 되는지 근거를 남긴다.
 - **Heading(`h1~h3`)은 Semibold(600) 고정이다.** heading에 Regular·Medium·Bold를 섞지 않는다.
 - **자간은 스케일이 정한다** — heading은 40px 이하 `-0.1px` / 56px 이상 `-0.5px`, body는 16px만 `-0.1px`이고 14px 이하는 `0`. 개별 컴포넌트에서 임의 자간을 새로 정하지 않는다.
@@ -450,7 +459,7 @@ JS가 요소를 찾을 때는 클래스가 아니라 `data-*` 속성을 쓴다. 
 - **장식용 SVG·아이콘에는 `aria-hidden="true"`** 를 붙인다(현재 프로젝트가 일관되게 지키는 규칙).
 - 이미지 `alt`, form label 연결, keyboard navigation 지원 필수. 의미 없는 장식 이미지는 `alt=""`.
 - 애니메이션을 넣으면 `prefers-reduced-motion` 대응을 함께 넣는다(7번 참고).
-- `.sr-only`, `.skip-link` 같은 스크린리더 유틸리티는 **아직 이 프로젝트에 없다.** 필요해지면 임의로 만들지 말고 사용자에게 확인한 뒤 `css/components/text.css`에 함께 둔다(별도 `utilities.css`를 새로 만들지 않는다).
+- `.sr-only`, `.skip-link` 같은 스크린리더 유틸리티는 **아직 이 프로젝트에 없다.** 필요해지면 임의로 만들지 말고 사용자에게 확인한 뒤 `css/components/ui/text.css`에 함께 둔다(별도 `utilities.css`를 새로 만들지 않는다).
 
 ## 9. 모던 CSS 기능 활용
 
@@ -493,7 +502,7 @@ JS가 요소를 찾을 때는 클래스가 아니라 `data-*` 속성을 쓴다. 
 
 ### 제품 화면 목업을 만들 때
 
-목업을 "정지된 그림"이 아니라 **실제로 돌아가는 화면처럼** 보여줘야 하면 [mock-motion-guide.md](mock-motion-guide.md)를 편다. 확대·이동·pop 연출 5종(`focus` · `replay` · `deck` · `detail` · `ticker`)이 `css/components/mock-motion.css`에 이미 있고, 부모에 `data-mock-motion` 값만 주면 동작한다 — 새로 만들지 않는다.
+목업을 "정지된 그림"이 아니라 **실제로 돌아가는 화면처럼** 보여줘야 하면 [mock-motion-guide.md](mock-motion-guide.md)를 편다. 확대·이동·pop 연출 5종(`focus` · `replay` · `deck` · `detail` · `ticker`)이 `css/components/ui/mock-motion.css`에 이미 있고, 부모에 `data-mock-motion` 값만 주면 동작한다 — 새로 만들지 않는다.
 
 사용자가 **"B번 목업처럼"·"카드 덱처럼 넘어가게"·"스켈레톤으로 하고 중요한 것만 텍스트로"·"실제 웹사이트 돌아가는 것처럼"** 같이 말하면 이 문서의 번호·이름 표를 먼저 확인한다. 번호(A~E)와 이름은 **고정**이라 다시 매기지 않는다. 실제로 돌아가는 예시는 `codepresso-designsystem.html`의 **08 · MOCKUP MOTION** 섹션에 있고, 마크업은 거기서 복사해 내용만 바꾸는 것이 가장 빠르다.
 

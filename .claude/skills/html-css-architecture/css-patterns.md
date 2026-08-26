@@ -235,7 +235,7 @@ transition: opacity var(--duration-scroll) var(--ease-scroll),
 
 ## 6. 유리 질감(glass) 패널
 
-반투명 흰색 + blur 조합은 여러 곳에서 쓰이므로 **공용 클래스 `.surface-glass`가 이미 있다**(`css/components/surface.css`). 새로 만들지 말고 이것을 쓴다.
+반투명 흰색 + blur 조합은 여러 곳에서 쓰이므로 **공용 클래스 `.surface-glass`가 이미 있다**(`css/components/ui/surface.css`). 새로 만들지 말고 이것을 쓴다.
 
 ```html
 <div class="content-panel surface-glass">…</div>
