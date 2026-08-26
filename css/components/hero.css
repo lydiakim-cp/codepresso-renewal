@@ -74,10 +74,14 @@
   color: transparent;
   animation: hero-clients-title-shift 6s linear infinite;
 }
+/* 로고 사이 간격. 트랙 안(로고 사이)과 트랙 사이(첫 트랙 끝 ↔ 둘째 트랙 첫
+   로고)가 같은 값이어야 이음매가 보이지 않는다 — 한 곳에서만 정의한다. */
 .hero-clients-marquee {
+  --hero-clients-gap: 72px;
   position: relative;
   display: flex;
   align-items: center;
+  gap: var(--hero-clients-gap);
   width: 100%;
   max-width: var(--container-medium);
   height: 60px;
@@ -85,12 +89,17 @@
   overflow: hidden;
   mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
 }
+
+/* 같은 목록 2벌을 나란히 두고 첫 벌의 폭만큼 왼쪽으로 흘린다. 되감을 때
+   둘째 벌이 정확히 첫 벌 자리에 오므로 끊긴 곳이 보이지 않는다.
+   이동 거리에 트랙 사이 gap을 더하지 않으면 매 바퀴 그 폭만큼 튄다 —
+   실제로 그 때문에 마지막에 끊겨 보였다. padding-inline을 주지 않는 것도
+   같은 이유다(트랙 양 끝에만 붙어 로고 간격이 이음매에서 달라진다). */
 .hero-clients-track {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  gap: 72px;
-  padding-inline: var(--space-24);
+  gap: var(--hero-clients-gap);
   animation: hero-clients-scroll 28s linear infinite;
 }
 .hero-clients-item { display: flex; align-items: center; flex-shrink: 0; }
@@ -103,7 +112,7 @@
 
 @keyframes hero-clients-scroll {
   from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+  to { transform: translateX(calc(-100% - var(--hero-clients-gap))); }
 }
 
 @media (prefers-reduced-motion: reduce) {
