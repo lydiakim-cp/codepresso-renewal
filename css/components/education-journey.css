@@ -328,10 +328,17 @@
   100% { transform: translate(110px, 58px) scale(.9); opacity: .4; }
 }
 
-/* 슬라이드 본문을 대신하는 도형. 카드 폭에 맞춰 늘어난다. */
+/* 슬라이드 본문을 대신하는 도형.
+   height: auto로 두면 240:74 비율 그대로 118px이 되는데, 카드에 남는 세로는
+   75px뿐이라 푸터(margin-top:auto)가 카드 밖으로 밀려났다 — SESSION 02가
+   앞으로 올라올 때 그 넘침이 그대로 보였다.
+   그래서 높이를 정하지 않고 남는 공간만 쓰게 하고(min-height:0으로 flex
+   기본 하한을 풀어준다), 도형은 마크업의 preserveAspectRatio가 비율을
+   유지한 채 그 안에 맞춘다. */
 .camp-slide-art {
   width: 100%;
-  height: auto;
+  flex: 1;
+  min-height: 0;
   margin-top: var(--space-4);
 }
 
