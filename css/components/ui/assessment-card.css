@@ -215,6 +215,11 @@
      확보하지 않으면 다음 섹션과 겹친다(데스크톱은 padding 60px이 흡수했다). */
   .assessment-card-frame { padding: var(--space-24) var(--space-18) var(--space-60); }
 
+  /* 카드 안쪽 여백 — 상하는 35px 그대로 두고 좌우만 24px로 좁힌다.
+     프레임이 이미 폭을 줄여 놓은 상태라 카드 좌우까지 35px이면 본문이
+     좁은 화면에서 두 번 눌린다. */
+  .assessment-card { padding: var(--space-35) var(--space-24); }
+
   /* nowrap이라 좁은 화면에서 가로로 넘친다 — 줄바꿈을 허용하고
      좌우 여백 안에 가두되, 가운데 정렬(translateX)은 그대로 지킨다. */
   .assessment-card__hint {
