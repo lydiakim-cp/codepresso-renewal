@@ -14,7 +14,8 @@ body {
 h1 {
   font-size: var(--text-h1);
   line-height: var(--leading-h1);
-  font-weight: var(--font-weight-semibold);
+  /* h1만 예외적으로 Bold 고정(사용자 확인). h2·h3는 Semibold 유지. */
+  font-weight: var(--font-weight-bold);
   letter-spacing: var(--tracking-h1);
   color: var(--color-ink-heaviest);
 }

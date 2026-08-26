@@ -128,6 +128,16 @@
     visibility: visible;
     transform: none;
   }
+
+  /* 트랙이 없어 is-popping이 스텝마다 안 붙는다 — pop 대상을 기본값으로 보여준다. */
+  .journey-mock > *,
+  .journey-app-rail > *,
+  .journey-app-side > *,
+  .journey-app-main > *,
+  .journey-app-tutor > *,
+  .journey-app-skill {
+    opacity: 1;
+  }
 }
 
 /* --- proof-card.css --- */
@@ -383,6 +393,17 @@
   .how-it-works .feature-card-arrow { display: none; }
   .how-it-works .feature-card .section-body { padding-right: 0; }
   .how-it-works .feature-card-progress { display: none; }
+
+  /* 3장이 항상 is-active라 활성 시 사라지는 아이콘도 계속 보여준다. */
+  .how-it-works .feature-card.is-active .feature-card-icon-row {
+    height: var(--space-48);
+    margin-bottom: 20px;
+  }
+
+  .how-it-works .feature-card.is-active .feature-card-icon {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* --- part-nav.css --- */
