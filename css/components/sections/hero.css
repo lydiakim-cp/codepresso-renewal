@@ -4,7 +4,7 @@
  * 과거 설문 전용 UI는 제거했으며 서비스 종류와 무관한 콘텐츠 구조만 유지한다.
  */
 .hero {
-  background: var(--color-bg-login-pre) url("../../images/main-bg.png") center / cover no-repeat;
+  background: var(--color-bg-login-pre) url("../../../images/main-bg.png") center / cover no-repeat;
   overflow-x: hidden;
 }
 

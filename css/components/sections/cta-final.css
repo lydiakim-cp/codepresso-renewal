@@ -17,7 +17,7 @@
      일어나게 한다. inset: 0으로 딱 맞춰두면 blur가 경계 바로 안쪽 픽셀을
      투명한 바깥과 섞어버려 가장자리가 어둡게 죽는 문제가 생긴다. */
   inset: -20px;
-  background-image: url("../../images/bg-line2.png");
+  background-image: url("../../../images/bg-line2.png");
   background-repeat: no-repeat;
   background-position: bottom left;
   background-size: 180%;
