@@ -175,6 +175,14 @@
     min-height: 240px;
     padding: var(--space-24);
   }
+
+  /* 화살표는 우측 중앙에 절대 위치하며 hover 시에만 살짝 움직이는
+     장식이다. 모바일은 hover가 없고 카드도 이제 전부 펼쳐진 상태라
+     "눌러서 펼친다"는 신호 자체가 필요 없다 — 감춘다. */
+  .feature-card-arrow { display: none; }
+
+  /* 화살표를 위해 비워 뒀던 우측 32px도 함께 걷는다. */
+  .feature-card .section-body { padding-right: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

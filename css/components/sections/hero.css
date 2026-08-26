@@ -73,6 +73,7 @@
     margin-inline: calc(50% - 50vw);
     aspect-ratio: 1448 / 800;
     background: url("../../../images/main_banner_img_pc.avif") center / cover no-repeat;
+    margin-top: -48px;
   }
 
   .hero-banner {
