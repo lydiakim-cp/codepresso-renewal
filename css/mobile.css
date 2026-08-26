@@ -1,0 +1,507 @@
+/*
+ * Mobile Breakpoints (900 / 720 / 560px)
+ * 컴포넌트별로 흩어져 있던 반응형 규칙을 여기 한 곳에 모은다.
+ * 새 반응형을 추가할 때도 컴포넌트 파일이 아니라 이 파일에 추가한다.
+ *
+ * 페이지마다 세 번째 <link>로 main.css, pages/{page}.css 다음에 로드한다.
+ * <link>는 @import처럼 layer()를 지정할 수 없어 파일 전체를
+ * @layer components로 감싼다 — 감싸지 않으면 우선순위가 밀린다.
+ *
+ * tokens.css의 560px 블록(헤딩 타이포)과 designsystem.css의
+ * 1100/800/520px 블록(사내 문서 전용)은 체계가 달라 여기로 옮기지 않는다.
+ */
+
+@layer components {
+
+/* ===============================================
+ * max-width: 900px
+ * =============================================== */
+
+/* --- layout.css --- */
+@media (max-width: 900px) {
+  .section-wrap.row { grid-template-columns: 1fr; }
+  .section-wrap.row.is-sticky > .section-aside { position: static; }
+}
+
+/* --- header.css --- */
+@media (max-width: 900px) {
+  .nav { display: none; }
+
+  .header-inner {
+    height: 60px;
+    padding: var(--space-10) var(--space-20);
+    gap: var(--space-12);
+    justify-content: space-between;
+  }
+
+  .logo img { width: 124px; height: auto; }
+}
+
+/* --- hero.css --- */
+@media (max-width: 900px) {
+  .hero-content { grid-template-columns: 1fr; }
+  .hero-copy-wrap, .hero-links { align-items: center; }
+  .hero-copy { text-align: center; }
+  .assessment-card-frame { margin-inline: auto; }
+  .hero-links { gap: 0; }
+}
+
+/* --- catalog-board.css --- */
+@media (max-width: 900px) {
+  .catalog-board { grid-template-columns: 1fr; min-height: 0; }
+  .catalog-board__rail {
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .catalog-board__category { flex-shrink: 0; }
+  /* 겹쳐 두지 않고 흐름에 따라 높이를 갖게 한다. */
+  .catalog-board__panel { position: static; inset: auto; display: none; }
+  .catalog-board__panel.is-active { display: flex; }
+}
+
+/* --- compare-panel.css --- */
+@media (max-width: 900px) {
+  .compare-panel { grid-template-columns: 1fr; }
+  /* 세로로 접히면 화살표도 아래를 향한다. 회전은 감싼 span이 맡는다 —
+     svg 자체는 왕복 애니메이션에 transform을 쓰고 있어 충돌한다. */
+  .compare-panel__arrow { justify-self: center; transform: rotate(90deg); }
+}
+
+/* --- diagnosis-showcase.css --- */
+@media (max-width: 900px) {
+  /* sticky 고정을 풀고 리포트를 세로로 쌓는다(PART 1과 동일 처리). */
+  .diagnosis-track { display: none; }
+
+  .diagnosis-preview-panel {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-48);
+  }
+
+  .diagnosis-preview-step {
+    grid-area: auto;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .diagnosis-preview-caption { height: auto; }
+}
+
+/* --- difference.css --- */
+@media (max-width: 900px) {
+  .difference-mock { padding: var(--space-24); }
+
+  /* 3열을 유지하면 카드가 눌려 스켈레톤만 남는다. */
+  .difference-screen-body,
+  .difference-screen-body.is-cycle,
+  .difference-screen-body.is-library,
+  .difference-screen-body.is-field,
+  .difference-legend {
+    grid-template-columns: 1fr;
+  }
+
+  .difference-screen-body { min-height: 0; }
+
+  /* 세로로 쌓이면 화살표가 가리킬 다음 칸이 없다. */
+  .difference-flow-arrow { display: none; }
+}
+
+/* --- education-journey.css --- */
+/* sticky 고정을 풀고 스텝을 세로로 쌓는다. */
+@media (max-width: 900px) {
+  .journey-track { display: none; }
+
+  .journey-viewport {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-48);
+  }
+
+  .journey-step {
+    grid-area: auto;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+}
+
+/* --- proof-card.css --- */
+@media (max-width: 900px) {
+  .proof-card-stage { padding: 40px 76px; }
+  .proof-card-nav:first-of-type { left: -36px; }
+  .proof-card-nav:last-of-type { right: -36px; }
+  .proof-card { padding: 20px; }
+  .proof-card h3 {
+    font-size: var(--text-heading-24);
+    line-height: var(--leading-heading-24);
+  }
+}
+
+/* --- pages/ax-build.css ---
+   1440 기준 3열 배치. 지금은 900px(2단 접힘)과 720px(카드 내부 재배치)만 대응한다. */
+@media (max-width: 900px) {
+  .ax-build-outcome-list,
+  .ax-build-deliverable-list { grid-template-columns: 1fr; }
+  .ax-build-hero .section-wrap { padding-top: 120px; }
+}
+
+/* ===============================================
+ * max-width: 720px
+ * =============================================== */
+
+/* --- content-panel.css --- */
+@media (max-width: 720px) {
+  .content-panel { --content-panel-padding: var(--space-24); }
+}
+
+/* --- metric-card.css --- */
+@media (max-width: 720px) {
+  .metric-card__visual { width: 64px; height: 64px; }
+  .metric-card__glow:first-child { width: 140px; height: 140px; }
+  .metric-card__glow:nth-child(2) { width: 200px; height: 200px; }
+}
+
+/* --- assessment-card.css --- */
+@media (max-width: 720px) {
+  .assessment-card-frame { min-height: auto; padding: var(--space-24); }
+  .assessment-card-stack { width: 100%; }
+}
+
+/* --- timeline.css --- */
+@media (max-width: 720px) {
+  /* 기간 라벨을 위로 올리고 선·점만 왼쪽에 남긴다. */
+  .timeline__step { grid-template-columns: auto minmax(0, 1fr); gap: var(--space-16); }
+  .timeline__term {
+    position: absolute;
+    top: 0;
+    left: var(--space-24);
+    text-align: left;
+    white-space: nowrap;
+  }
+  .timeline__body { padding-top: var(--space-24); }
+}
+
+/* --- proof-card.css --- */
+@media (max-width: 720px) {
+  .proof-card-stage { padding: 28px; }
+  .proof-card-deck { max-width: none; }
+  .proof-card h3 {
+    font-size: var(--text-heading-20);
+    line-height: var(--leading-heading-20);
+  }
+}
+
+/* ===============================================
+ * max-width: 560px (모바일)
+ * =============================================== */
+
+/* --- layout.css --- */
+@media (max-width: 560px) {
+  /* 섹션이 최소 한 화면을 채운다. 100svh를 쓰는 이유 — 100vh는 주소창이
+     펴진 상태 기준이라 접힌 상태에선 화면보다 커져 빈 자리가 생긴다. */
+  .wrap > section,
+  main > section,
+  .parts-group > section {
+    min-height: 100svh;
+    justify-content: center;
+    padding-block: 56px;
+  }
+
+  /* 이미 여러 화면 길이인 섹션은 최소 높이가 sticky 계산만 흐트러뜨린다. */
+  .education-journey,
+  .diagnosis-showcase {
+    min-height: 0;
+    justify-content: flex-start;
+  }
+
+  /* PART 1·2 좌측 컬럼 세로 간격. 데스크톱은 sticky라 여유를 뒀지만
+     모바일은 position: static으로 풀려(900px 규칙) 과하다. */
+  .section-wrap.row.is-sticky > .section-aside {
+    gap: var(--space-20);
+  }
+
+  .section-title { gap: 12px; }
+
+  /* .section-title h2는 모바일에서 화면을 여는 표지 역할이라 굵게 —
+     heading weight semibold 고정 원칙의 의도적 예외(metric-card와 함께 2번째). */
+  .section-title h2 { font-weight: var(--font-weight-bold); }
+
+  .section-header {
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .section-cta { flex-wrap: wrap; }
+  .section-content { min-height: 0; }
+}
+
+/* --- header.css --- */
+@media (max-width: 560px) {
+  /* 버튼 2개가 다 들어가지 않아 진단 CTA만 남긴다. */
+  .header-actions .btn-ghost { display: none; }
+  .logo img { width: 108px; }
+}
+
+/* --- hero.css --- */
+@media (max-width: 560px) {
+  .hero-copy { gap: var(--space-48); padding-top: var(--space-24); }
+
+  /* 카피 하단에 배경 이미지를 .section-wrap의 좌우 패딩을 뚫고 화면 폭
+     그대로 붙인다. 100vw 브레이크아웃은 iOS에서 뷰포트 계산 오차로
+     이미지가 오른쪽으로 쏠려 쓰지 않는다 — 실제 패딩값만큼만 상쇄한다. */
+  .hero-copy::after {
+    content: "";
+    display: block;
+    margin-inline: calc(-1 * var(--space-20));
+    aspect-ratio: 1448 / 800;
+    background: url("../images/main_banner_img_pc.avif") center / cover no-repeat;
+    margin-top: -48px;
+  }
+
+  .hero-banner { margin-bottom: var(--space-24); }
+
+  .hero-description {
+    font-size: var(--text-body-16);
+    line-height: var(--leading-body-16);
+  }
+
+  /* 버튼 2개가 한 줄에 안 들어가 세로로 쌓되, 폭은 글자에 맞춘다
+     (화면을 꽉 채우면 배너처럼 보인다). */
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    margin-inline: auto;
+  }
+
+  .hero-clients { gap: var(--space-24); padding-top: var(--space-48); }
+
+  /* marquee 이동 거리는 --marquee-gap을 읽으므로 gap만 바꾸면 이음매가 맞는다. */
+  .hero-clients-marquee { --marquee-gap: 40px; height: 44px; }
+  .hero-clients-item img { width: 122px; height: 24px; }
+}
+
+/* --- button.css --- */
+/* 터치 타깃 최소치(44px)에 맞춘다. btn-lg(52px)는 이미 충분하다. */
+@media (max-width: 560px) {
+  .btn { height: 44px; }
+}
+
+/* --- text.css --- */
+@media (max-width: 560px) {
+  .stage-step-title {
+    font-size: var(--text-heading-24);
+    line-height: var(--leading-heading-24);
+  }
+}
+
+/* --- content-panel.css --- */
+@media (max-width: 560px) {
+  .content-panel__intro { gap: 0; }
+}
+
+/* --- metric-card.css --- */
+@media (max-width: 560px) {
+  .metric-card {
+    min-height: 0;
+    padding: var(--space-24) var(--space-20);
+  }
+
+  /* 2단으로 나란히 놓이는 카드는 안쪽 가용 폭이 좁아 수치와 아이콘이
+     자리를 다툰다 — 아이콘을 수치 뒤로 내려 겹치게 하고 흐리게 깐다. */
+  .summary-banner-stats > :not(:first-child) .metric-card__value {
+    font-size: var(--text-heading-32);
+    line-height: var(--leading-heading-32);
+  }
+
+  .summary-banner-stats > :not(:first-child) .metric-card__value .unit {
+    font-size: var(--text-heading-18);
+  }
+
+  .summary-banner-stats > :not(:first-child) .metric-card__visual {
+    right: calc(-1 * var(--space-6));
+    bottom: calc(-1 * var(--space-6));
+    width: 72px;
+    height: 72px;
+    transform: none;
+    z-index: 0;
+    opacity: .5;
+  }
+
+  .summary-banner-stats > :not(:first-child) .metric-card__value,
+  .summary-banner-stats > :not(:first-child) .metric-card__label {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* --- summary-banner.css --- */
+@media (max-width: 560px) {
+  .summary-banner { padding: var(--space-24); }
+
+  /* 대표 수치(첫 카드)만 한 줄을 다 쓰고 나머지 둘이 아래 한 줄을 나눈다. */
+  .summary-banner-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-12);
+  }
+
+  .summary-banner-stats > :first-child { grid-column: 1 / -1; }
+}
+
+/* --- choice-list.css --- */
+@media (max-width: 560px) {
+  .choice-list__item {
+    gap: var(--space-12);
+    margin-inline: calc(-1 * var(--space-12));
+    padding: var(--space-12);
+  }
+
+  .choice-list__icon { width: var(--space-35); height: var(--space-35); }
+}
+
+/* --- assessment-card.css --- */
+@media (max-width: 560px) {
+  .assessment-card { padding: var(--space-35) var(--space-24); }
+}
+
+/* --- feature-card.css --- */
+@media (max-width: 560px) {
+  .feature-card {
+    height: auto;
+    min-height: 240px;
+    padding: var(--space-24);
+  }
+
+  /* 모바일은 hover가 없고 카드가 전부 펼쳐져 "눌러서 펼친다"는 신호가
+     불필요하다 — how-it-works에만 건다(feature-card는 ax-build 다른
+     섹션도 쓰는 공용 컴포넌트). */
+  .how-it-works .feature-card-arrow { display: none; }
+  .how-it-works .feature-card .section-body { padding-right: 0; }
+  .how-it-works .feature-card-progress { display: none; }
+}
+
+/* --- part-nav.css --- */
+@media (max-width: 560px) {
+  /* 캡슐이 좁은 화면에 다 안 들어가면 줄바꿈 대신 가로 스크롤로 둔다
+     (줄바꿈하면 슬라이딩 인디케이터 위치가 어긋난다). */
+  .part-nav {
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .part-nav::-webkit-scrollbar { display: none; }
+
+  .part-nav-item {
+    padding: var(--space-6) var(--space-12);
+    white-space: nowrap;
+  }
+}
+
+/* --- faq-list.css --- */
+@media (max-width: 560px) {
+  .faq-list__question,
+  .faq-list__answer { padding-inline: var(--space-18); }
+}
+
+/* --- cta-final.css --- */
+@media (max-width: 560px) {
+  .cta-final-desc {
+    font-size: var(--text-body-16);
+    line-height: var(--leading-body-16);
+  }
+
+  /* hero-cta와 같은 처리 — 세로로 쌓되 폭은 글자에 맞춘다. */
+  .cta-final-actions {
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    margin-inline: auto;
+  }
+}
+
+/* --- education-journey.css --- */
+/* 목업은 열을 재배치하지 않고 비율 그대로 축소한다(--mock-fit, mock-motion.css). */
+@media (max-width: 560px) {
+  .journey-viewport { gap: var(--space-40); padding: var(--space-18); }
+
+  .journey-mock {
+    --mock-fit-width: 566px;
+    zoom: var(--mock-fit);
+  }
+}
+
+/* --- diagnosis-showcase.css --- */
+@media (max-width: 560px) {
+  /* 모바일에서는 제품 선택 UI를 감춘다 — 목업은 스크롤 진행에 따라
+     자동 전환되므로 고를 수단이 없어도 흐름은 유지된다.
+     PART 1(education-journey)도 같은 클래스를 써서 함께 감춰진다. */
+  .diagnosis-products { display: none; width: 0; }
+}
+
+@media (max-width: 560px) {
+  .diagnosis-preview-panel {
+    padding: var(--space-18);
+    gap: var(--space-24);
+  }
+}
+
+/* --- difference.css --- */
+/* 목업은 재배치하지 않고 비율 그대로 축소한다. 900px 블록의 1열 접힘을
+   되돌려 데스크톱 화면 그대로를 줄인다 — 0.62 하한에 걸려 창이
+   가로 스크롤 상자가 된다. */
+@media (max-width: 560px) {
+  .difference-mock {
+    padding: var(--space-18);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .difference-mock::-webkit-scrollbar { display: none; }
+
+  .difference-screen {
+    --mock-fit-width: 1184px;
+    zoom: var(--mock-fit);
+    width: var(--mock-fit-width);
+  }
+
+  .difference-screen-body,
+  .difference-screen-body.is-cycle,
+  .difference-screen-body.is-library,
+  .difference-screen-body.is-field,
+  .difference-legend {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .difference-flow-arrow { display: block; }
+}
+
+/* --- insight.css --- */
+@media (max-width: 560px) {
+  .insight-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-24);
+    height: auto;
+  }
+
+  .insight-row-empty { display: none; }
+}
+
+/* --- pages/ax-build.css --- */
+@media (max-width: 560px) {
+  .ax-build-deliverable-item {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    padding: var(--space-20);
+  }
+
+  .ax-build-hero .section-wrap { padding-top: 88px; }
+  .ax-build-hero-copy > * { --motion-rise: 6px; }
+}
+
+} /* @layer components */
