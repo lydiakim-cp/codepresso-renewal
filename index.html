@@ -1108,89 +1108,171 @@
             <!-- 3화면 스테이지. 같은 그리드 셀에 겹쳐두고 교차 페이드한다. -->
             <div class="difference-screens" data-difference-screens>
 
-              <!-- ① 정량적 관리 — 교육 전후를 같은 잣대로 두 번 잰 리포트 화면. -->
+              <!-- ① 정량적 관리 — 진단 → 교육 → 재진단 3단계를 한 화면에 나란히 두고
+                   좌에서 우로 하나씩 켠다(mock-motion의 stage 연출, ②와 같은 문법).
+                   1단계에서 낮게 찬 영역별 막대가 3단계에서 같은 자리에 한 번 더
+                   차오르는 것이 이 화면의 전부다 — "같은 잣대로 두 번 쟀다". -->
               <div class="difference-screen is-active" data-difference-screen="0">
                 <div class="difference-screen-head">
                   <span class="difference-screen-title">역량 변화 리포트</span>
                   <span class="difference-chip is-brand">2분기 · 개발본부 128명</span>
                 </div>
 
-                <div class="difference-screen-body is-report">
+                <div class="difference-screen-body is-cycle" data-mock-motion="stage">
 
-                  <!-- 좌 — 총점 카드. 이 화면의 결론(+37점)을 가장 크게 둔다. -->
-                  <div class="difference-card is-score">
-                    <span class="difference-card-label">평균 역량 점수</span>
-                    <span class="difference-score">
-                      <strong>78</strong>
-                      <span class="difference-score-unit">점</span>
-                    </span>
-                    <span class="difference-delta">
-                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="2"
-                          stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                      37점
-                    </span>
-                    <span class="difference-gauge-bar"><span style="width: 78%"></span></span>
-                    <span class="difference-card-foot">교육 전 41점 → 교육 후 78점</span>
-                  </div>
+                  <!-- 1단계 · 진단 — 문항에 답하면 영역별 점수가 낮게 찬다. -->
+                  <div class="difference-card is-step" style="--mock-step: 0">
+                    <div class="difference-step-head">
+                      <span class="difference-step-no">1</span>
+                      <span class="difference-card-label">진단</span>
+                    </div>
+                    <span class="difference-step-desc">IT·AI 실무역량 확인</span>
 
-                  <!-- 중 — 영역별 진단/재진단 쌍. 막대 두 줄이 곧 "같은 잣대로 두 번" -->
-                  <div class="difference-card">
-                    <span class="difference-card-label">영역별 변화</span>
+                    <!-- 진단 문항 — 지금 풀고 있는 한 문항만 텍스트로 남긴다. -->
+                    <div class="difference-quiz is-cue">
+                      <span class="difference-quiz-no">Q 14 / 40</span>
+                      <span class="difference-asset-name">업무 데이터를 자동으로 정리해야 한다면?</span>
+                      <ul class="difference-quiz-options">
+                        <li class="difference-quiz-option"><i></i><span class="skeleton-line" style="width: 62px"></span></li>
+                        <li class="difference-quiz-option is-picked"><i></i><span class="skeleton-line" style="width: 74px"></span></li>
+                        <li class="difference-quiz-option"><i></i><span class="skeleton-line" style="width: 54px"></span></li>
+                      </ul>
+                    </div>
 
-                    <ul class="difference-bars">
+                    <!-- 채점 결과 — 3단계에서 이 막대가 그대로 다시 등장한다. -->
+                    <ul class="difference-bars is-cue" style="--mock-cue-delay: .16s">
                       <li class="difference-bar-row">
                         <span class="difference-bar-name">프롬프트 설계</span>
-                        <span class="difference-bar-pair">
-                          <span class="difference-gauge-bar is-sm"><span style="width: 44%"></span></span>
-                          <span class="difference-gauge-bar is-sm is-after"><span style="width: 86%"></span></span>
+                        <span class="difference-gauge-bar is-sm"><span style="width: 44%"></span></span>
+                        <span class="difference-bar-value is-weak">44</span>
+                      </li>
+                      <li class="difference-bar-row">
+                        <span class="difference-bar-name">에이전트 구축</span>
+                        <span class="difference-gauge-bar is-sm"><span style="width: 32%"></span></span>
+                        <span class="difference-bar-value is-weak">32</span>
+                      </li>
+                      <li class="difference-bar-row">
+                        <span class="difference-bar-name">데이터 분석</span>
+                        <span class="difference-gauge-bar is-sm"><span style="width: 48%"></span></span>
+                        <span class="difference-bar-value is-weak">48</span>
+                      </li>
+                    </ul>
+
+                    <span class="difference-card-foot">평균 <strong>41점</strong> · 취약 영역 2개</span>
+
+                    <span class="difference-flow-arrow is-flow">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                  </div>
+
+                  <!-- 2단계 · 교육 — 1단계에서 낮았던 영역이 그대로 커리큘럼이 된다. -->
+                  <div class="difference-card is-step" style="--mock-step: 1">
+                    <div class="difference-step-head">
+                      <span class="difference-step-no">2</span>
+                      <span class="difference-card-label">교육</span>
+                    </div>
+                    <span class="difference-step-desc">수준과 직무에 맞는 학습 제공</span>
+
+                    <!-- 배정된 과정 — 취약 영역 2개가 먼저, 나머지는 가라앉힌다. -->
+                    <ul class="difference-stack">
+                      <li class="difference-course is-cue">
+                        <span class="difference-course-mark">1</span>
+                        <span class="difference-asset-body">
+                          <span class="difference-asset-name">에이전트 구축 실습</span>
+                          <span class="difference-course-meta">취약 영역 · 8차시</span>
+                        </span>
+                        <span class="difference-chip is-brand">배정</span>
+                      </li>
+                      <li class="difference-course is-cue" style="--mock-cue-delay: .12s">
+                        <span class="difference-course-mark">2</span>
+                        <span class="difference-asset-body">
+                          <span class="difference-asset-name">프롬프트 설계 기초</span>
+                          <span class="difference-course-meta">취약 영역 · 6차시</span>
+                        </span>
+                        <span class="difference-chip is-brand">배정</span>
+                      </li>
+                      <li class="difference-course is-quiet is-cue" style="--mock-cue-delay: .22s">
+                        <span class="difference-course-mark">3</span>
+                        <span class="difference-asset-body">
+                          <span class="skeleton-line is-shimmer" style="width: 96px"></span>
+                        </span>
+                      </li>
+                    </ul>
+
+                    <!-- 수강 진행률 — 교육이 실제로 돌아가고 있다는 신호. -->
+                    <div class="difference-progress is-cue" style="--mock-cue-delay: .3s">
+                      <span class="difference-gauge-bar is-sm"><span style="width: 82%"></span></span>
+                      <span class="difference-bar-value">82%</span>
+                    </div>
+
+                    <span class="difference-card-foot">직무별 <strong>4개 과정</strong> 배정</span>
+
+                    <span class="difference-flow-arrow is-flow">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                  </div>
+
+                  <!-- 3단계 · 재진단 — 1단계와 같은 영역·같은 자리 막대가 한 번 더 찬다. -->
+                  <div class="difference-card is-step" style="--mock-step: 2">
+                    <div class="difference-step-head">
+                      <span class="difference-step-no">3</span>
+                      <span class="difference-card-label">재진단</span>
+                    </div>
+                    <span class="difference-step-desc">교육 전후 역량 변화 확인</span>
+
+                    <!-- 진단 막대(회색)를 깔고 그 위에 재진단 막대(브랜드)가 덮어쓰며 뻗는다.
+                         1단계와 같은 영역·같은 순서라야 "같은 잣대"가 읽힌다. -->
+                    <ul class="difference-bars is-cue">
+                      <li class="difference-bar-row">
+                        <span class="difference-bar-name">프롬프트 설계</span>
+                        <span class="difference-gauge-bar is-sm">
+                          <span style="width: 44%"></span>
+                          <span class="is-after" style="width: 86%"></span>
                         </span>
                         <span class="difference-bar-value">+42</span>
                       </li>
                       <li class="difference-bar-row">
                         <span class="difference-bar-name">에이전트 구축</span>
-                        <span class="difference-bar-pair">
-                          <span class="difference-gauge-bar is-sm"><span style="width: 32%"></span></span>
-                          <span class="difference-gauge-bar is-sm is-after"><span style="width: 71%"></span></span>
+                        <span class="difference-gauge-bar is-sm">
+                          <span style="width: 32%"></span>
+                          <span class="is-after" style="width: 71%"></span>
                         </span>
                         <span class="difference-bar-value">+39</span>
                       </li>
                       <li class="difference-bar-row">
                         <span class="difference-bar-name">데이터 분석</span>
-                        <span class="difference-bar-pair">
-                          <span class="difference-gauge-bar is-sm"><span style="width: 48%"></span></span>
-                          <span class="difference-gauge-bar is-sm is-after"><span style="width: 74%"></span></span>
+                        <span class="difference-gauge-bar is-sm">
+                          <span style="width: 48%"></span>
+                          <span class="is-after" style="width: 74%"></span>
                         </span>
                         <span class="difference-bar-value">+26</span>
                       </li>
                     </ul>
 
-                    <span class="difference-legend-key">
+                    <span class="difference-legend-key is-cue" style="--mock-cue-delay: .2s">
                       <span class="difference-key"><i></i>교육 전 진단</span>
                       <span class="difference-key is-brand"><i></i>교육 후 재진단</span>
                     </span>
+
+                    <!-- 이 화면의 결론. 총점은 여기 한 번만 나온다. -->
+                    <div class="difference-verdict is-cue" style="--mock-cue-delay: .3s">
+                      <span class="difference-verdict-score">41<em>→</em>78<span class="difference-score-unit">점</span></span>
+                      <span class="difference-delta">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        37점
+                      </span>
+                    </div>
                   </div>
 
-                  <!-- 우 — 분포 곡선. 조직 전체가 통째로 오른쪽으로 밀렸다는 그림. -->
-                  <div class="difference-card">
-                    <span class="difference-card-label">점수 분포 이동</span>
-
-                    <svg class="difference-curve" viewBox="0 0 200 96" fill="none"
-                      xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                      <!-- 격자 -->
-                      <path d="M0 24h200M0 48h200M0 72h200" stroke="currentColor" stroke-width="1"
-                        class="difference-curve-grid" />
-                      <!-- 교육 전 — 왼쪽에 몰려 있다 -->
-                      <path d="M0 88c24 0 34-38 56-38s30 30 52 30 34-14 56-14 26 8 36 8v14H0V88Z"
-                        class="difference-curve-before" />
-                      <!-- 교육 후 — 오른쪽으로 이동 -->
-                      <path d="M0 92c30 0 46-8 68-8s28-40 50-40 32 34 54 34 28 6 28 6v4H0v4Z"
-                        class="difference-curve-after" />
-                    </svg>
-
-                    <span class="difference-card-foot">하위 구간이 줄고 상위 구간이 두꺼워졌습니다</span>
-                  </div>
                 </div>
               </div>
 

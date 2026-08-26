@@ -33,18 +33,29 @@
 2. **기존 컴포넌트를 그대로 쓴다** — `.preview-frame`, `.journey-mock-*`, `.skeleton-line`, `.text-caption`, `.journey-mock-badge`. mock-motion.css는 **움직임만** 정의하고 색·간격·radius를 다시 쓰지 않는다.
 3. **목업 루트에는 `.journey-mock`이 아니라 `.mock-screen`을 쓴다.** 둘 다 같은 세로 flex지만, `.journey-mock`은 education-journey.css에서 `> * { opacity: 0 }`으로 자식을 숨겨두고 스크롤 시 `journey-stage.js`가 `.is-popping`을 붙여야 나타난다 — 그 스크립트가 없는 곳에서 쓰면 **목업이 통째로 빈 상자로 보인다**(실제로 겪은 버그). 자식 클래스(`.journey-mock-head` 등)는 이름만 같을 뿐 무관하므로 그대로 써도 된다.
 4. **읽혀야 하는 것만 텍스트로.** 나머지는 `.skeleton-line`으로 두고 폭을 `style="width: 148px"`처럼 직접 준다 — 폭이 제각각이어야 실제 데이터처럼 보인다.
-5. **목업 안 텍스트는 14px 제약의 예외다.** 목업은 읽는 UI가 아니라 '화면 그림'이라,
-   14px로 두면 실제 제품 화면 대비 글자가 과하게 커서 축소된 화면으로 보이지 않는다.
-   목업 루트 블록 안에 아래 변수를 선언해 **그 목업 안에만 가둔다** — 전역 토큰으로
-   올리지 않는다(9px/11px가 실제 UI로 새어나가면 타이포 체계가 깨진다).
+5. **목업 안 텍스트는 14px 제약의 예외다 — 9px는 하한이지 기본값이 아니다.**
+   목업은 읽는 UI가 아니라 '화면 그림'이라, 14px로 두면 실제 제품 화면 대비
+   글자가 과하게 커서 축소된 화면으로 보이지 않는다.
+
+   **그렇다고 전부 9/11px로 깔면 안 된다**(실제로 한 번 그렇게 만들었다가 지적받았다).
+   목업 안에도 제목·본문·보조의 위계가 있어야 실제 제품 화면처럼 보인다 —
+   전부 최소 크기로 눌러 담으면 정보가 평평해져 어디를 봐야 할지 알 수 없다.
+   **하한만 9px로 풀린 것이고, 어울리는 크기는 그 위에서 자유롭게 고른다.**
+
+   `.difference-screen-body`(①②)가 쓰는 4단이 표준 예시다:
 
    ```css
-   --mock-text: 9px;      --mock-leading: 13px;
-   --mock-text-lg: 11px;  --mock-leading-lg: 15px;
+   --mock-text-title: 15px;  --mock-leading-title: 20px;  /* 칸 제목 */
+   --mock-text-lg:    13px;  --mock-leading-lg:    18px;  /* 본문·항목 이름 */
+   --mock-text:       11px;  --mock-leading:       15px;  /* 설명·각주 */
+   --mock-text-sm:     9px;  --mock-leading-sm:    13px;  /* 하한. 칩·메타 */
    ```
 
-   기준선은 SkillFit 목업(`.journey-app`, `education-journey.css`)이고,
-   `.difference-screen-body.is-library`(문화 정착 3단계)도 같은 값을 쓴다.
+   결론 수치처럼 더 커야 하는 것은 이 스케일 위로 올려도 된다(`.difference-verdict-score` 20px).
+   SkillFit 목업(`.journey-app`, `education-journey.css`)은 프레임이 더 작아 9/11px 2단만 쓴다.
+
+   **변수는 그 목업 루트 안에만 선언한다** — 전역 토큰으로 올리지 않는다
+   (9px가 실제 UI로 새어나가면 타이포 체계가 깨진다).
    글자만 줄이지 말고 아이콘·패딩도 함께 줄인다 — 행이 빈 것처럼 보인다.
 6. **장식이므로 `aria-hidden="true"`** 를 목업 루트에 붙인다.
    드래그 선택은 이미 꺼져 있다 — `mock-motion.css`가 `.mock-screen`·`.journey-mock`·`[data-mock-motion]`에 `user-select: none`을 건다. 목업마다 다시 쓰지 않는다.
@@ -233,7 +244,9 @@
 
 ### F · stage
 
-`index.html`의 PART 3 · 문화 정착 화면이 이 연출을 쓴다(공유 허브 → 라이브러리 → 전사 확산).
+`index.html`의 PART 3에서 두 화면이 이 연출을 쓴다 — ① 정량적 관리(진단 → 교육 → 재진단)와
+② 문화 정착(공유 허브 → 라이브러리 → 전사 확산). 두 화면이 같은 문법이라, 보는 사람이
+①에서 배운 읽는 법을 ②에서 다시 배우지 않아도 된다.
 기존 3열 카드(`.difference-screen-body`)를 그대로 쓰고 그 위에 등장 순서만 얹은 것이라,
 **3열 레이아웃이 이미 있는 섹션이면 교체 비용이 A(focus) 다음으로 낮다.**
 
