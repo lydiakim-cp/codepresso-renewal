@@ -45,51 +45,61 @@
   }
 
   /* ---------------------------------------------
-   * 제품 목록을 sticky 가로 셀렉터로 — part-nav와 같은 언어.
-   * 데스크톱에서는 좌측 sticky 컬럼에 세로로 놓여 "지금 어느 제품을
-   * 보는지"를 계속 알려줬다. 모바일은 1열로 접혀 그 목록이 화면 위로
-   * 흘러가 버리므로, 스크롤을 따라오는 가로 셀렉터로 바꿔 같은 역할을
-   * 하게 한다(캡슐 · 최소 radius · 가로 스크롤).
+   * 제품 목록을 sticky 세그먼트 컨트롤로 — part-nav--compact와 같은 언어.
+   *
+   * 데스크톱에서는 좌측 sticky 컬럼에 세로로 놓여 "지금 어느 제품을 보는지"를
+   * 계속 알려줬다. 모바일은 1열로 접혀 그 목록이 화면 위로 흘러가 버리므로,
+   * 스크롤을 따라오는 가로 셀렉터로 바꿔 같은 역할을 하게 한다.
+   *
+   * 생김새는 part-nav--compact를 그대로 따른다 — 낱개 탭을 테두리로 나누지
+   * 않고, 한 판(트랙) 안에 항목을 넣고 활성 항목만 진한 판으로 채운다.
+   * PART 1·2를 고르는 part-nav 바로 아래에 붙는 자리라, 두 셀렉터가 같은
+   * 언어를 써야 "같은 층위의 선택"으로 읽힌다.
+   * part-nav 마크업(인디케이터 span)을 쓰지 않는 이유 — 인디케이터 위치는
+   * part-nav.js가 계산해 넣는데 이 목록은 그 스크립트가 잡지 않는다.
+   * 활성 항목 자체를 칠하면 같은 그림이 되고 JS도 필요 없다.
    * --------------------------------------------- */
   .diagnosis-products {
     position: sticky;
     /* GNB가 60px로 낮아졌으므로 그 아래에 붙는다. */
     top: 60px;
     z-index: 2;
-    gap: var(--space-8);
+    /* 좌우 20px 페이지 패딩 밖까지 늘려 화면 끝까지 덮는다 —
+       판이 화면 폭보다 좁으면 그 옆으로 내용이 비쳐 지나간다. */
     margin-inline: calc(-1 * var(--space-20));
     padding: var(--space-8) var(--space-20);
-    /* 아래 내용이 비쳐 지나가므로 part-nav와 같은 유리 질감으로 덮는다. */
-    background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 88%, transparent);
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
     border-bottom: 1px solid var(--color-line);
   }
 
-  /* "교육 프로그램" 라벨은 셀렉터가 되면 군더더기다 — 캡슐 자체가
+  /* "교육 프로그램" 라벨은 셀렉터가 되면 군더더기다 — 판 자체가
      무엇을 고르는 자리인지 말해 준다. */
   .diagnosis-products > .text-label { display: none; }
 
+  /* 트랙 — part-nav의 캡슐 판에 해당한다. radius만 compact(8px)로 둔다. */
   .diagnosis-product-list {
     display: flex;
-    gap: var(--space-6);
+    gap: var(--space-2);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-sunken);
     overflow-x: auto;
     scrollbar-width: none;
   }
 
   .diagnosis-product-list::-webkit-scrollbar { display: none; }
 
-  /* 캡슐 하나 = 제품 하나. 아이콘과 부제는 접고 제품명만 남긴다 —
-     가로로 늘어놓는 자리라 한 칸이 좁다. */
+  /* 항목 — part-nav-item과 같은 치수·굵기. 아이콘·부제·화살표는 접고
+     제품명만 남긴다(가로로 늘어놓는 자리라 한 칸이 좁다). */
   .diagnosis-product {
     width: auto;
-    gap: var(--space-6);
     margin-inline: 0;
     padding: var(--space-6) var(--space-12);
-    border: 1px solid var(--color-line);
-    /* "radius 최소" — 캡슐이 아니라 각진 탭에 가깝게 둔다. */
     border-radius: var(--radius-sm);
-    background: var(--color-surface);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink-light);
     white-space: nowrap;
   }
 
@@ -99,13 +109,34 @@
     display: none;
   }
 
-  /* education-journey.css의 [data-journey-program].is-active가 흰 배경을
+  .diagnosis-product .section-body-title {
+    font-size: var(--text-body-muted);
+    line-height: var(--leading-body-muted);
+    color: inherit;
+  }
+
+  /* 활성 항목이 곧 인디케이터다 — part-nav가 검정 판 + 흰 글자로 대비를
+     잡는 것을 그대로 따른다.
+     education-journey.css의 [data-journey-program].is-active가 흰 배경을
      주고 있어(속성+클래스라 단일 클래스보다 우선), 같은 형태로 맞춰
      덮는다 — !important를 쓰지 않기 위함이다. */
   .diagnosis-product[data-journey-program].is-active,
   .diagnosis-product[data-diagnosis-program].is-active {
-    border-color: var(--color-brand);
-    background: var(--color-brand-tint-2);
+    background: var(--color-ink-heaviest);
+    box-shadow: var(--shadow-md);
+  }
+
+  .diagnosis-product[data-journey-program].is-active .section-body-title,
+  .diagnosis-product[data-diagnosis-program].is-active .section-body-title {
+    color: var(--color-surface);
+  }
+
+  /* 데스크톱에서는 비활성 제품을 opacity .45로 낮춰 시선을 모았지만,
+     세그먼트 컨트롤에서는 비활성 항목이 "지금 누를 수 있는 다른 선택지"라
+     읽혀야 한다 — 대비를 되돌리고 색으로만 위계를 준다. */
+  .diagnosis-product[data-journey-program]:not(.is-active),
+  .diagnosis-product[data-diagnosis-program]:not(.is-active) {
+    opacity: 1;
   }
 }
 
