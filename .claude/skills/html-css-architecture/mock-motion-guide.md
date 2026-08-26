@@ -3,7 +3,7 @@
 제품 화면 목업을 **정지된 그림이 아니라 실제로 돌아가는 화면처럼** 보여주는 연출 레이어. 읽어야 할 것만 텍스트로 남기고 나머지는 스켈레톤으로 가라앉힌 뒤, 확대·이동·pop으로 시선을 한 곳에 모은다.
 
 - **CSS 파일**: `css/components/mock-motion.css` (공용 — `main.css`가 로드)
-- **레이아웃**: `deck`·`detail`의 뼈대(`.mock-deck-*` · `.mock-detail-*`)는 `mock-motion.css`에 함께 있다 — index.html이 쓰게 되면서 컴포넌트 레벨로 올렸다. `replay`·`ticker` 뼈대만 아직 `css/pages/designsystem.css`의 `08 MOCKUP MOTION` 블록에 남아 있고, 다른 페이지에서 쓰게 되면 같은 방식으로 올린다.
+- **레이아웃**: `deck`·`detail`의 뼈대(`.mock-deck-*` · `.mock-detail-*`)는 `mock-motion.css`에 함께 있다 — index.html이 쓰게 되면서 컴포넌트 레벨로 올렸다. `ticker` 뼈대도 index.html PART 1(SkillCamp)이 쓰게 되면서 함께 올렸다. `replay` 뼈대만 아직 `css/pages/designsystem.css`의 `08 MOCKUP MOTION` 블록에 남아 있고, 다른 페이지에서 쓰게 되면 같은 방식으로 올린다.
 - **카탈로그**: `codepresso-designsystem.html` → `08 · MOCKUP MOTION` 섹션에서 6종이 실제로 돌아간다
 - **JS 없음** — 전부 CSS 애니메이션. 스크롤 위치와 무관하게 항상 같은 리듬으로 반복한다.
   단 `stage`만 한 번 재생이라, 다시 보여주려면 쓰는 쪽이 되감아야 한다(F 항목 참고).

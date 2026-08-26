@@ -85,18 +85,16 @@
     linear-gradient(140deg, var(--color-bg-dark) 0%, var(--color-ink-heaviest) 100%);
 }
 
+/* 우측 칩을 걷어내 이제 제목 하나만 남는다 — 양끝 정렬·gap이 할 일이
+   없어져 지웠다. 칩이 다시 생기면 그때 flex를 되살린다. */
 .difference-screen-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-12);
 }
 
 .difference-screen-title {
-  font-size: var(--text-body-16);
-  line-height: var(--leading-body-16);
+  font-size: 20px;
   font-weight: var(--font-weight-semibold);
-  color: var(--color-ink-heaviest);
 }
 
 .difference-screen.is-dark .difference-screen-title {
@@ -354,30 +352,6 @@
   background: var(--color-brand);
 }
 
-/* 증감 표시 — 화살표와 수치를 한 덩어리로 묶는다. ③ 결론 카드에서 쓴다. */
-.difference-delta {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-8);
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, .18);
-  font-size: var(--mock-text);
-  line-height: var(--mock-leading);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-surface);
-
-  & svg {
-    width: 12px;
-    height: 12px;
-  }
-}
-
-.difference-score-unit {
-  font-size: var(--mock-text-lg);
-  color: rgba(255, 255, 255, .72);
-}
-
 /* ---------------------------------------------
  * ① 정량적 관리 — 진단 → 교육 → 재진단 3단계.
  *
@@ -462,35 +436,53 @@
 
 /* --- 3단계 · 재진단 — 같은 막대가 한 번 더 찬다 --- */
 
-/* 결론 — 41 → 78. 총점은 이 화면에서 여기 한 번만 나온다. */
+/* 결론 — "얼마나 올랐나" 하나만 남긴 떠 있는 배지.
+   흐름(flex column) 안에 두면 margin-block-start:auto로 칸 바닥에 붙어
+   그만큼 기둥이 짧아졌다 — 1단계는 기둥이 칸을 다 쓰는데 3단계만 눌려
+   같은 척도로 안 읽혔다. absolute로 흐름에서 빼내 기둥에 1단계와 같은
+   길이를 돌려주고, 배지는 칸 우측 상단에 띄운다.
+   기준 컨테이너는 .difference-card.is-step.is-last(position: relative). */
 .difference-verdict {
-  display: flex;
+  position: absolute;
+  z-index: 1;
+  top: var(--space-12);
+  right: var(--space-12);
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-8);
-  margin-block-start: auto;
-  padding: var(--space-8) var(--space-10);
-  border-radius: var(--radius-sm);
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-full);
   background: linear-gradient(120deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+  box-shadow: var(--shadow-md);
+  font-size: var(--mock-text);
+  line-height: var(--mock-leading);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-surface);
+  white-space: nowrap;
 }
 
-.difference-verdict-score {
-  display: inline-flex;
-  align-items: baseline;
-  gap: var(--space-2);
-  /* 이 화면에서 가장 먼저 읽혀야 하는 수치라 목업 스케일 위로 한 단 올린다.
-     20px은 3열 한 칸 폭에서 "41→78점"이 한 줄에 들어가는 최대치다. */
-  font-size: 20px;
-  line-height: 26px;
+/* 상승률만 한 단 키워 배지 안에서도 위계를 준다. */
+.difference-verdict b {
+  font-size: var(--mock-text-lg);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-surface);
+}
 
-  /* 화살표는 두 수치를 잇는 기호라 숫자보다 작고 흐리게 둔다. */
-  & em {
-    font-style: normal;
-    font-size: var(--mock-text-lg);
-    color: rgba(255, 255, 255, .6);
-  }
+.difference-verdict svg {
+  width: 12px;
+  height: 12px;
+  flex: none;
+}
+
+/* 배지가 걸터앉을 기준. 3단계 칸만 필요하다. */
+.difference-card.is-step.is-last {
+  position: relative;
+}
+
+/* 배지가 같은 행의 머리글 위에 겹치므로, 3단계 칸의 한 줄 설명은 감춘다.
+   배지("평균 90% 상승")가 그 설명("교육 전후 역량 변화 확인")보다 결론을
+   더 정확히 말해 준다 — 둘을 나란히 두면 좁은 칸에서 서로 잘린다. */
+.difference-card.is-step.is-last .difference-step-desc {
+  display: none;
 }
 
 /* ---------------------------------------------
@@ -565,10 +557,13 @@
 }
 
 /* 단계 머리 — 번호와 이름. 번호가 있어야 "순서"로 읽힌다. */
+/* 번호 · 라벨 · 한 줄 설명이 한 행에 놓인다. 설명을 아래로 내리면 칸마다
+   두 줄이 되어 세 칸의 본문 시작 높이가 어긋났다 — 한 행으로 묶어 맞춘다. */
 .difference-step-head {
   display: flex;
   align-items: center;
   gap: var(--space-8);
+  min-width: 0;
 }
 
 .difference-step-no {
@@ -586,12 +581,16 @@
   font-weight: var(--font-weight-semibold);
 }
 
+/* 같은 행의 보조 설명. 번호·라벨이 자리를 먼저 갖고 남는 폭을 쓰며,
+   칸 폭이 좁아 넘치면 말줄임으로 접는다(줄바꿈되면 행 높이가 흐트러진다). */
 .difference-step-desc {
-  /* 머리 바로 아래 붙는 한 줄 설명이라 카드 기본 gap보다 좁힌다. */
-  margin-block-start: calc(var(--space-8) * -1);
+  min-width: 0;
+  overflow: hidden;
   font-size: var(--mock-text);
   line-height: var(--mock-leading);
   color: var(--color-ink-lighter);
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /* 다음 칸으로 넘긴다는 신호. 칸과 칸 사이 gap(18px) 한가운데 걸터앉는다.

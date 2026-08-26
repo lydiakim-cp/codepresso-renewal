@@ -194,236 +194,65 @@
 }
 
 /*
- * SkillCamp 목업 — 강사가 슬라이드를 넘기며 진행하는 발표 화면.
- * 겹침·모션은 공용 deck(mock-motion.css)이 담당하고, 여기서는 355px 판에
- * 맞추는 치수와 목업 전용 소형 타이포만 둔다.
+ * SkillCamp 목업 — 라이브 강의가 지금 돌아가는 현황판.
+ * 수치·막대·피드 연출은 공용 ticker(mock-motion.css)가 담당하고,
+ * 여기서는 355px 판에 맞추는 치수와 목업 전용 소형 타이포만 둔다.
+ *
+ * 슬라이드 덱(camp-deck)에서 이 연출로 교체하면서 덱 전용 CSS 230여 줄과
+ * keyframes 6개를 함께 지웠다 — 한눈에 안 들어온다는 지적이 있었고,
+ * 덱은 3장이 겹쳐 있어 읽을 것이 많았다.
  */
-.journey-mock.camp-deck {
+.journey-mock.camp-ticker {
   --mock-text: 11px;
   --mock-leading: 15px;
-  --mock-text-lg: 13px;
-  --mock-leading-lg: 18px;
-  gap: var(--space-18);
+  gap: var(--space-12);
 }
 
-.journey-mock.camp-deck .journey-mock-item-name,
-.journey-mock.camp-deck .text-caption,
-.journey-mock.camp-deck .text-label,
-.journey-mock.camp-deck .journey-mock-badge {
+.journey-mock.camp-ticker .journey-mock-item-name,
+.journey-mock.camp-ticker .text-caption,
+.journey-mock.camp-ticker .journey-mock-badge {
   font-size: var(--mock-text);
   line-height: var(--mock-leading);
 }
 
-.journey-mock.camp-deck .section-body-title {
-  font-size: var(--mock-text-lg);
-  line-height: var(--mock-leading-lg);
-}
-
 /* 헤드의 강사 블록은 카드가 아니라 한 줄짜리 화자 표시다 —
    .journey-mock-speaker의 카드 여백을 걷어내고 아바타만 줄인다. */
-.journey-mock.camp-deck .journey-mock-speaker {
+.journey-mock.camp-ticker .journey-mock-speaker {
   padding: 0;
   background: none;
   border: 0;
 }
 
-.journey-mock.camp-deck .journey-mock-avatar {
+.journey-mock.camp-ticker .journey-mock-avatar {
+  flex-shrink: 0;
   width: 26px;
   height: 26px;
   font-size: var(--mock-text);
 }
 
-/* 판 높이 355px에서 헤드(≈40px)와 gap을 뺀 나머지. 덱이 이보다 크면
-   맨 앞 장이 빠질 때 프레임 밖으로 삐져나온다. */
-.journey-mock.camp-deck .mock-deck-stage {
+/* 수치는 목업 안에서 가장 크게 읽혀야 한다 — 공용 24px은 이 축소된 화면에서
+   과해 판을 넘치므로 한 단계 줄인다(그래도 목업 안 최대 크기다). */
+.journey-mock.camp-ticker .mock-ticker-stat b {
+  font-size: var(--text-heading-18);
+  line-height: var(--leading-heading-18);
+}
+
+.journey-mock.camp-ticker .mock-ticker-stat em { font-size: var(--mock-text); }
+
+.journey-mock.camp-ticker .mock-ticker-stat {
+  gap: var(--space-4);
+  padding: var(--space-10);
+}
+
+/* 차트는 남는 세로를 쓴다 — 위 수치와 아래 피드가 내용 높이로 고정되므로,
+   판(355px) 안에서 남는 만큼만 차지해야 목업이 넘치지 않는다. */
+.journey-mock.camp-ticker .mock-ticker-chart {
   flex: 1;
+  min-height: 0;
   height: auto;
 }
 
-/* 카드는 스테이지를 최대한 채우되, 뒤 카드의 계단 겹침(110px/58px)이
-   잘리지 않는 크기여야 한다 — 앞장이 스테이지를 꽉 채우면 뒤 두 장이
-   오른쪽·아래로 삐져나간다. 그래서 겹침만큼만 빼고 나머지를 전부 쓴다.
-   scale(.9)로 줄어든 뒤 카드가 실제로 차지하는 폭은 원래 폭의 90%라,
-   겹침 110px에서 그 여유를 감안해 100px만 뺀다. */
-.journey-mock.camp-deck .mock-deck-card {
-  width: calc(100% - 100px);
-  height: calc(100% - 52px);
-  gap: var(--space-10);
-  padding: var(--space-18);
-}
-
-/* 겹침을 키워 뒤 슬라이드의 제목 줄이 앞장 밖으로 나오게 한다 —
-   "다음 장이 대기 중"이 보여야 발표처럼 읽힌다.
-   keyframes에도 같은 값을 써야 정지 상태와 어긋나지 않는다. */
-.journey-mock.camp-deck .mock-deck-card.is-deck-mid {
-  transform: translate(56px, 30px) scale(.95);
-  opacity: .75;
-}
-
-.journey-mock.camp-deck .mock-deck-card.is-deck-back {
-  transform: translate(110px, 58px) scale(.9);
-  opacity: .4;
-}
-
-.journey-mock.camp-deck .is-deck-front {
-  animation-name: camp-deck-front;
-}
-
-/* 배지 pop은 공용 deck의 62~90% 구간에 맞춰져 있어, 사이클을 12s로 바꾸면
-   앞장이 이미 사라진 뒤에 터진다. 되돌아온 직후 터지도록 다시 잡는다. */
-.journey-mock.camp-deck .is-deck-front .is-pop {
-  animation-name: camp-badge-pop;
-}
-
-@keyframes camp-badge-pop {
-  0%, 82% { transform: scale(1) rotate(-8deg); opacity: 1; }
-  88% { transform: scale(.4) rotate(-14deg); opacity: 0; }
-  96% { transform: scale(1.18) rotate(-8deg); opacity: 1; }
-  100% { transform: scale(1) rotate(-8deg); opacity: 1; }
-}
-
-.journey-mock.camp-deck .is-deck-mid {
-  animation-name: camp-deck-mid;
-}
-
-.journey-mock.camp-deck .is-deck-back {
-  animation-name: camp-deck-back;
-}
-
-/*
- * 사이클 배분 — 공용 deck은 앞장이 62%까지 머물고 80%에 교체가 끝난 뒤 바로
- * 되감긴다. 그러면 SESSION 02가 앞에 나와 있는 시간이 20%뿐이라 "넘어갔다"만
- * 보이고 두 번째 슬라이드를 읽을 틈이 없었다(요청받은 문제).
- * 그래서 이 목업만 사이클을 12s로 늘리고 아래처럼 나눈다.
- *   0~36%   SESSION 01 발표 중
- *   36~46%  교체 (01이 좌상단으로 빠지고 02가 올라온다)
- *   46~82%  SESSION 02 발표 중   ← 두 번째 슬라이드도 비슷한 길이로 머문다
- *   82~100% 되돌아가기 — 02가 뒤로 물러나고 01이 다시 덮는다
- *
- * 되돌아가는 구간을 18%(≈2.2s)로 길게 잡은 것은, 여기가 짧으면 01이 순간이동한
- * 것처럼 보이기 때문이다. 나가는 경로(좌상단)를 그대로 되짚어 들어온다.
- */
-.journey-mock.camp-deck {
-  --mock-cycle: 12s;
-}
-
-/* 01은 좌상단으로 빠졌다가, 되돌아갈 때 같은 경로로 미끄러져 들어온다.
-   82~92%에서 위치·투명도가 함께 붙어야 "다시 앞으로 나온다"로 읽힌다. */
-@keyframes camp-deck-front {
-  0%, 36% { transform: translate(0, 0) scale(1); opacity: 1; }
-  46%, 82% { transform: translate(-64px, -26px) scale(.9); opacity: 0; }
-  92% { transform: translate(-16px, -7px) scale(.97); opacity: .85; }
-  100% { transform: translate(0, 0) scale(1); opacity: 1; }
-}
-
-@keyframes camp-deck-mid {
-  0%, 36% { transform: translate(56px, 30px) scale(.95); opacity: .75; }
-  46%, 82% { transform: translate(0, 0) scale(1); opacity: 1; }
-  100% { transform: translate(56px, 30px) scale(.95); opacity: .75; }
-}
-
-@keyframes camp-deck-back {
-  0%, 36% { transform: translate(110px, 58px) scale(.9); opacity: .4; }
-  46%, 82% { transform: translate(56px, 30px) scale(.95); opacity: .75; }
-  100% { transform: translate(110px, 58px) scale(.9); opacity: .4; }
-}
-
-/* 슬라이드 본문을 대신하는 도형.
-   height: auto로 두면 240:74 비율 그대로 118px이 되는데, 카드에 남는 세로는
-   75px뿐이라 푸터(margin-top:auto)가 카드 밖으로 밀려났다 — SESSION 02가
-   앞으로 올라올 때 그 넘침이 그대로 보였다.
-   그래서 높이를 정하지 않고 남는 공간만 쓰게 하고(min-height:0으로 flex
-   기본 하한을 풀어준다), 도형은 마크업의 preserveAspectRatio가 비율을
-   유지한 채 그 안에 맞춘다. */
-.camp-slide-art {
-  width: 100%;
-  flex: 1;
-  min-height: 0;
-  margin-top: var(--space-4);
-}
-
-.camp-deck-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-10);
-  margin-top: auto;
-}
-
-/*
- * 슬라이드 인디케이터 — 발표가 몇 번째 장까지 왔는지 알려준다.
- * 덱 카드와 같은 사이클(6.5s)을 공유해, 앞장이 빠지는 순간 다음 칸으로 넘어간다.
- */
-.camp-deck-rail {
-  display: flex;
-  align-items: center;
-  gap: var(--space-6);
-}
-
-.camp-deck-dot {
-  width: 18px;
-  height: 4px;
-  border-radius: var(--radius-full);
-  background: var(--color-brand-tint-2);
-}
-
-/* 1번 칸은 앞장이 빠지는 62~78% 구간에 꺼지고, 2번 칸이 그때 켜진다.
-   덱 keyframes(mock-deck-front/mid)와 같은 구간을 써야 어긋나 보이지 않는다. */
-.camp-deck-dot.is-slide-1 {
-  background: var(--color-brand);
-  animation: camp-slide-1 var(--mock-cycle, 6.5s) cubic-bezier(.5, 0, .2, 1) infinite;
-}
-
-.camp-deck-dot.is-slide-2 {
-  animation: camp-slide-2 var(--mock-cycle, 6.5s) cubic-bezier(.5, 0, .2, 1) infinite;
-}
-
-@keyframes camp-slide-1 {
-  0%, 36% { background: var(--color-brand); }
-  46%, 82% { background: var(--color-brand-tint-2); }
-  94%, 100% { background: var(--color-brand); }
-}
-
-@keyframes camp-slide-2 {
-  0%, 36% { background: var(--color-brand-tint-2); }
-  46%, 82% { background: var(--color-brand); }
-  94%, 100% { background: var(--color-brand-tint-2); }
-}
-
-/* 뒤에 깔린 SESSION 02는 축소·반투명이라 본문이 뭉갠다 — 앞장이 빠지기 전까지는
-   제목 줄까지만 읽히면 충분하므로 도형과 푸터를 살짝 눌러 둔다. 앞으로
-   올라오는 80% 지점에 맞춰 원래 밀도로 돌아온다. */
-.journey-mock.camp-deck .is-deck-mid .camp-slide-art,
-.journey-mock.camp-deck .is-deck-mid .camp-deck-foot {
-  animation: camp-mid-reveal var(--mock-cycle, 6.5s) cubic-bezier(.5, 0, .2, 1) infinite;
-}
-
-@keyframes camp-mid-reveal {
-  0%, 36% { opacity: .6; }
-  46%, 82% { opacity: 1; }
-  100% { opacity: .6; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-  .camp-deck-dot.is-slide-1,
-  .camp-deck-dot.is-slide-2,
-  .journey-mock.camp-deck .is-deck-mid .camp-slide-art,
-  .journey-mock.camp-deck .is-deck-mid .camp-deck-foot {
-    animation: none;
-    opacity: 1;
-  }
-
-  /* 정지 상태는 "1번 장을 발표 중"으로 고정한다. */
-  .camp-deck-dot.is-slide-1 { background: var(--color-brand); }
-  .camp-deck-dot.is-slide-2 { background: var(--color-brand-tint-2); }
-
-  /* 겹침은 레이아웃 CSS의 기본 transform이 그대로 지킨다 —
-     여기서 지우면 세 장이 포개져 덱으로 안 보인다(공용 규칙과 같은 이유). */
-  .journey-mock.camp-deck .is-deck-front,
-  .journey-mock.camp-deck .is-deck-mid,
-  .journey-mock.camp-deck .is-deck-back { animation: none; }
-}
+.journey-mock.camp-ticker .journey-mock-list { gap: var(--space-6); }
 
 .journey-mock-head {
   display: flex;
@@ -460,12 +289,20 @@
   color: var(--color-critical);
 }
 
+/* LIVE 점은 깜빡여야 "지금 진행 중"이 읽힌다. 공용 pulse를 가져다 쓴다
+   (별도 <i class="is-pulse">를 넣으면 이 ::before와 점이 둘이 된다). */
 .journey-mock-badge.is-live::before {
   content: "";
   width: 6px;
   height: 6px;
   border-radius: var(--radius-full);
   background: currentColor;
+  --motion-pulse-min: .3;
+  animation: pulse 1.6s var(--ease-scroll) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-mock-badge.is-live::before { animation: none; }
 }
 
 /* --- SkillPath: 진도 --- */

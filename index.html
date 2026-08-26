@@ -762,98 +762,63 @@
               </article>
 
               <article class="content-panel__item journey-step" data-journey-step="1">
-                <!-- 목업: 강사가 슬라이드를 넘기며 진행하는 라이브 발표 화면.
-                     연출은 공용 deck(mock-motion.css) — 맨 앞 슬라이드가 빠지면
-                     뒤 슬라이드가 당겨진다. 두 장(SESSION 01·02)은 모두 실제
-                     발표 슬라이드로 채워, 넘어간 뒤에도 설명이 이어지게 한다. -->
-                <div class="content-panel__visual preview-frame journey-mock mock-deck camp-deck"
-                     data-mock-motion="deck" aria-hidden="true">
+                <!-- 목업: 라이브 강의가 지금 돌아가는 현황판.
+                     연출은 공용 ticker(mock-motion.css) — 수치가 pop 되고,
+                     막대가 자라고, 새 이수 기록이 위에서 밀려들며 반짝인다.
+                     한눈에 들어와야 하는 자리라 읽을 것은 수치 3개와 최근
+                     기록 2줄로 줄이고, 나머지는 스켈레톤으로 접는다. -->
+                <div class="content-panel__visual preview-frame journey-mock mock-ticker camp-ticker"
+                     data-mock-motion="ticker" aria-hidden="true">
                   <div class="journey-mock-head">
                     <span class="journey-mock-speaker">
                       <span class="journey-mock-avatar">김</span>
                       <span class="journey-mock-speaker-body">
                         <span class="journey-mock-item-name">김강사 · 현직 전문가</span>
-                        <span class="text-caption">실전 미션 · 팀 프로젝트</span>
+                        <span class="text-caption">3기 · 팀 프로젝트 진행 중</span>
                       </span>
                     </span>
                     <span class="journey-mock-badge is-live">LIVE</span>
                   </div>
 
-                  <div class="mock-deck-stage">
-                    <!-- 3장: 맨 뒤는 다음 차시 예고라 스켈레톤으로 두고,
-                         앞 두 장은 실제 슬라이드로 채운다. -->
-                    <article class="mock-deck-card is-deck-back">
-                      <div class="mock-deck-card-head">
-                        <span class="text-label brand">SESSION 03</span>
-                      </div>
-                      <span class="skeleton-line" style="width: 150px"></span>
-                      <span class="skeleton-line" style="width: 104px"></span>
+                  <!-- 강의가 돌아가는 것을 증명하는 수치 3개. 가운데(참여율)만
+                       is-current로 강조해 어디를 보라는지 하나로 좁힌다. -->
+                  <div class="mock-ticker-stats">
+                    <article class="mock-ticker-stat">
+                      <span class="text-caption">수강</span>
+                      <b class="is-pop">24<em>명</em></b>
                     </article>
-
-                    <!-- SESSION 02 — 앞장이 빠지면 이 슬라이드가 화면을 채운다.
-                         "전문가 피드백" 장면: 제출물에 피드백이 달리는 화면. -->
-                    <article class="mock-deck-card is-deck-mid">
-                      <div class="mock-deck-card-head">
-                        <span class="text-label brand">SESSION 02</span>
-                        <span class="journey-mock-badge">피드백</span>
-                      </div>
-                      <p class="section-body-title">전문가 피드백 · 코드 리뷰</p>
-
-                      <!-- 제출물 위에 피드백이 달리는 모습을 도형으로 요약한다. -->
-                      <svg class="camp-slide-art" viewBox="0 0 240 74" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                        <rect x="0" y="0" width="132" height="74" rx="6" fill="var(--color-brand-tint-1)"/>
-                        <rect x="10" y="12" width="74" height="6" rx="3" fill="var(--color-brand-tint-2)"/>
-                        <rect x="10" y="26" width="104" height="6" rx="3" fill="var(--color-brand-tint-2)"/>
-                        <rect x="10" y="40" width="60" height="6" rx="3" fill="var(--color-brand)"/>
-                        <rect x="10" y="54" width="88" height="6" rx="3" fill="var(--color-brand-tint-2)"/>
-                        <rect x="146" y="6" width="94" height="30" rx="6" fill="var(--color-brand)"/>
-                        <rect x="154" y="16" width="56" height="5" rx="2.5" fill="var(--color-surface)" opacity=".9"/>
-                        <rect x="154" y="25" width="36" height="5" rx="2.5" fill="var(--color-surface)" opacity=".55"/>
-                        <rect x="146" y="44" width="94" height="24" rx="6" fill="var(--color-brand-tint-2)"/>
-                        <rect x="154" y="53" width="48" height="5" rx="2.5" fill="var(--color-brand)" opacity=".5"/>
-                      </svg>
-
-                      <p class="camp-deck-foot">
-                        <span class="text-caption">제출물 12건</span>
-                        <span class="text-caption strong">리뷰 완료 9건</span>
-                      </p>
+                    <article class="mock-ticker-stat">
+                      <span class="text-caption">실시간 참여율</span>
+                      <b class="is-pop is-current" style="animation-delay: .1s">92<em>%</em></b>
                     </article>
-
-                    <!-- SESSION 01 — 현재 발표 중인 슬라이드. -->
-                    <article class="mock-deck-card is-deck-front">
-                      <div class="mock-deck-card-head">
-                        <span class="text-label brand">SESSION 01</span>
-                        <span class="journey-mock-badge is-pop">미션</span>
-                      </div>
-                      <p class="section-body-title">팀 프로젝트 · 결과물 발표</p>
-
-                      <!-- 슬라이드 본문을 도형으로 요약한다. 실제 발표 자료처럼
-                           보이되 읽을 것은 없어야 해서 텍스트 대신 SVG를 쓴다. -->
-                      <svg class="camp-slide-art" viewBox="0 0 240 74" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                        <rect x="0" y="46" width="30" height="28" rx="4" fill="var(--color-brand-tint-2)"/>
-                        <rect x="38" y="30" width="30" height="44" rx="4" fill="var(--color-brand-tint-2)"/>
-                        <rect x="76" y="12" width="30" height="62" rx="4" fill="var(--color-brand)"/>
-                        <circle cx="150" cy="24" r="11" fill="var(--color-brand-tint-2)"/>
-                        <circle cx="176" cy="24" r="11" fill="var(--color-brand-tint-2)"/>
-                        <circle cx="202" cy="24" r="11" fill="var(--color-brand)"/>
-                        <rect x="139" y="48" width="86" height="7" rx="3.5" fill="var(--color-brand-tint-2)"/>
-                        <rect x="139" y="63" width="58" height="7" rx="3.5" fill="var(--color-brand-tint-2)"/>
-                      </svg>
-
-                      <p class="camp-deck-foot">
-                        <span class="text-caption">참여 24명</span>
-                        <span class="text-caption strong">전문가 피드백 진행 중</span>
-                      </p>
+                    <article class="mock-ticker-stat">
+                      <span class="text-caption">제출 과제</span>
+                      <b class="is-pop" style="animation-delay: .2s">18<em>건</em></b>
                     </article>
                   </div>
 
-                  <!-- 슬라이드 인디케이터 — 몇 번째 장을 보고 있는지 알려준다.
-                       덱과 같은 사이클로 칸이 넘어가 "발표가 진행된다"가 읽힌다. -->
-                  <div class="camp-deck-rail">
-                    <span class="camp-deck-dot is-slide-1"></span>
-                    <span class="camp-deck-dot is-slide-2"></span>
-                    <span class="camp-deck-dot"></span>
+                  <!-- 회차별 과제 제출 추이. 마지막(이번 회차)만 강조한다. -->
+                  <div class="mock-ticker-chart">
+                    <span class="is-bar" style="--mock-bar-h: 38%"></span>
+                    <span class="is-bar" style="--mock-bar-h: 52%; animation-delay: .08s"></span>
+                    <span class="is-bar" style="--mock-bar-h: 46%; animation-delay: .16s"></span>
+                    <span class="is-bar" style="--mock-bar-h: 71%; animation-delay: .24s"></span>
+                    <span class="is-bar is-current" style="--mock-bar-h: 94%; animation-delay: .32s"></span>
                   </div>
+
+                  <!-- 방금 들어온 기록 — 맨 위 한 줄만 밀려들며 반짝인다. -->
+                  <ul class="journey-mock-list">
+                    <li class="journey-mock-item is-feed">
+                      <span class="journey-mock-avatar">박</span>
+                      <span class="journey-mock-item-name">과제 제출 · 팀 프로젝트 2차</span>
+                      <span class="text-caption strong">방금</span>
+                    </li>
+                    <li class="journey-mock-item">
+                      <span class="journey-mock-avatar">정</span>
+                      <span class="skeleton-line" style="width: 132px"></span>
+                      <span class="text-caption">2분 전</span>
+                    </li>
+                  </ul>
                 </div>
 
                 <div class="content-panel__intro">
@@ -1118,7 +1083,6 @@
               <div class="difference-screen is-active" data-difference-screen="0">
                 <div class="difference-screen-head">
                   <span class="difference-screen-title">역량 변화 리포트</span>
-                  <span class="difference-chip is-brand">2분기 · 개발본부 128명</span>
                 </div>
 
                 <div class="difference-screen-body is-cycle" data-mock-motion="stage">
@@ -1128,8 +1092,8 @@
                     <div class="difference-step-head">
                       <span class="difference-step-no">1</span>
                       <span class="difference-card-label">진단</span>
+                      <span class="difference-step-desc">IT·AI 실무역량 확인</span>
                     </div>
-                    <span class="difference-step-desc">IT·AI 실무역량 확인</span>
 
                     <!-- 채점 결과 — 3단계에서 이 막대가 그대로 다시 등장한다. -->
                     <ul class="difference-bars is-cue">
@@ -1171,8 +1135,8 @@
                     <div class="difference-step-head">
                       <span class="difference-step-no">2</span>
                       <span class="difference-card-label">교육</span>
+                      <span class="difference-step-desc">수준과 직무에 맞는 학습 제공</span>
                     </div>
-                    <span class="difference-step-desc">수준과 직무에 맞는 학습 제공</span>
 
                     <!-- 배정된 과정 — 취약 영역 2개가 먼저, 나머지는 가라앉힌다. -->
                     <ul class="difference-stack">
@@ -1219,8 +1183,8 @@
                     <div class="difference-step-head">
                       <span class="difference-step-no">3</span>
                       <span class="difference-card-label">재진단</span>
+                      <span class="difference-step-desc">교육 전후 역량 변화 확인</span>
                     </div>
-                    <span class="difference-step-desc">교육 전후 역량 변화 확인</span>
 
                     <!-- 진단 막대(회색)를 깔고 그 위에 재진단 막대(브랜드)가 덮어쓰며 뻗는다.
                          1단계와 같은 영역·같은 순서라야 "같은 잣대"가 읽힌다. -->
@@ -1256,17 +1220,16 @@
                       <span class="difference-key is-brand"><i></i>교육 후 재진단</span>
                     </span>
 
-                    <!-- 이 화면의 결론. 총점은 여기 한 번만 나온다. -->
-                    <div class="difference-verdict is-cue" style="--mock-cue-delay: .3s">
-                      <span class="difference-verdict-score">41<em>→</em>78<span class="difference-score-unit">점</span></span>
-                      <span class="difference-delta">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        37점
-                      </span>
-                    </div>
+                    <!-- 이 화면의 결론. 흐름에서 빼내 우측 상단에 띄운다 —
+                         칸 아래에 두면 기둥이 그만큼 짧아져 1단계와 눈높이가
+                         어긋난다. 배지 하나로 줄여 "얼마나 올랐나"만 남긴다. -->
+                    <span class="difference-verdict is-cue" style="--mock-cue-delay: .3s">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      평균 <b>90%</b> 상승
+                    </span>
                   </div>
 
                 </div>
@@ -1279,7 +1242,6 @@
               <div class="difference-screen" data-difference-screen="1">
                 <div class="difference-screen-head">
                   <span class="difference-screen-title">사내 자산 라이브러리</span>
-                  <span class="difference-chip is-brand">누적 438건</span>
                 </div>
 
                 <div class="difference-screen-body is-library" data-mock-motion="stage">
@@ -1289,8 +1251,8 @@
                     <div class="difference-step-head">
                       <span class="difference-step-no">1</span>
                       <span class="difference-card-label">공유 허브</span>
+                      <span class="difference-step-desc">에이전트·프롬프트를 사내에 공유</span>
                     </div>
-                    <span class="difference-step-desc">에이전트·프롬프트를 사내에 공유</span>
 
                     <!-- 메신저 창 — 받는 사람 줄 + 말풍선 + 첨부 파일. -->
                     <div class="difference-chat">
@@ -1344,8 +1306,8 @@
                     <div class="difference-step-head">
                       <span class="difference-step-no">2</span>
                       <span class="difference-card-label">라이브러리</span>
+                      <span class="difference-step-desc">검증된 자산을 차곡차곡 축적</span>
                     </div>
-                    <span class="difference-step-desc">검증된 자산을 차곡차곡 축적</span>
 
                     <ul class="difference-stack">
                       <!-- 맨 위 = 방금 들어온 자산. 1단계에서 보낸 그 파일이다. -->
@@ -1418,8 +1380,8 @@
                     <div class="difference-step-head">
                       <span class="difference-step-no">3</span>
                       <span class="difference-card-label">전사 확산</span>
+                      <span class="difference-step-desc">팀을 넘어 조직 전체의 문화로</span>
                     </div>
-                    <span class="difference-step-desc">팀을 넘어 조직 전체의 문화로</span>
 
                     <!-- 가운데 원본 팀에서 바깥 본부로 파장이 번지는 방사형 그림.
                          노드 위치는 --node-x/--node-y로 마크업이 직접 정한다. -->
@@ -1447,7 +1409,6 @@
               <div class="difference-screen is-dark" data-difference-screen="2">
                 <div class="difference-screen-head">
                   <span class="difference-screen-title">AXMOS 얼라이언스 · FDE 현장</span>
-                  <span class="difference-chip is-brand">현장 사례 52건</span>
                 </div>
 
                 <div class="difference-screen-body is-field" data-mock-motion="stage">
@@ -1457,8 +1418,8 @@
                     <div class="difference-step-head">
                       <span class="difference-step-no">1</span>
                       <span class="difference-card-label">현장 투입</span>
+                      <span class="difference-step-desc">FDE가 고객사 현장에서 직접 만듭니다</span>
                     </div>
-                    <span class="difference-step-desc">FDE가 고객사 현장에서 직접 만듭니다</span>
 
                     <ul class="difference-stack">
                       <li class="difference-asset is-cue">
@@ -1518,8 +1479,8 @@
                     <div class="difference-step-head">
                       <span class="difference-step-no">2</span>
                       <span class="difference-card-label">검증</span>
+                      <span class="difference-step-desc">현장에서 실제로 통한 것만 남깁니다</span>
                     </div>
-                    <span class="difference-step-desc">현장에서 실제로 통한 것만 남깁니다</span>
 
                     <ul class="difference-stack">
                       <li class="difference-trial is-pass is-cue">
@@ -1568,8 +1529,8 @@
                     <div class="difference-step-head">
                       <span class="difference-step-no">3</span>
                       <span class="difference-card-label">커리큘럼 반영</span>
+                      <span class="difference-step-desc">검증된 사례가 그대로 교육이 됩니다</span>
                     </div>
-                    <span class="difference-step-desc">검증된 사례가 그대로 교육이 됩니다</span>
 
                     <ul class="difference-stack">
                       <li class="difference-asset is-cue">

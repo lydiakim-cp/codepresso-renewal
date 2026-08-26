@@ -261,6 +261,66 @@
   52%, 100% { stroke-dashoffset: var(--mock-gauge-to, 56); }
 }
 
+/* --- ticker 뼈대: 통계 3열 + 막대 차트 + 갱신 피드 ---
+   디자인 가이드에만 있다가 index.html PART 1(SkillCamp)이 쓰게 되어
+   페이지 CSS에서 여기로 올렸다(deck·detail과 같은 처리). */
+.mock-ticker-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-10);
+}
+
+.mock-ticker-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-12);
+  border-radius: var(--radius-md);
+  background: var(--color-brand-tint-1);
+}
+
+.mock-ticker-stat b {
+  color: var(--color-ink-heaviest);
+  font-size: var(--text-heading-24);
+  line-height: var(--leading-heading-24);
+  font-weight: var(--font-weight-semibold);
+}
+
+.mock-ticker-stat b.is-current { color: var(--color-brand); }
+
+.mock-ticker-stat em {
+  font-size: var(--text-body-14);
+  font-weight: var(--font-weight-medium);
+  font-style: normal;
+  color: var(--color-ink-lighter);
+}
+
+.mock-ticker-stat b.is-current em { color: inherit; }
+
+.mock-ticker-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-8);
+  height: 84px;
+}
+
+/* 높이는 마크업이 --mock-bar-h로 준다. 애니메이션이 없을 때도(모션 축소 설정)
+   막대가 형태를 유지하도록 기본값을 여기서 준다 — keyframes에만 두면 납작해진다. */
+.mock-ticker-chart span {
+  flex: 1;
+  height: var(--mock-bar-h, 50%);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--color-brand-tint-2);
+}
+
+.mock-ticker-chart span.is-current { background: var(--color-brand); }
+
+.mock-ticker .journey-mock-avatar {
+  width: 28px;
+  height: 28px;
+  font-size: var(--text-body-14);
+}
+
 /* --- ticker: 수치가 pop 되고 새 행이 밀려든다 --- */
 [data-mock-motion="ticker"] .is-pop {
   animation: mock-value-pop var(--mock-cycle, 5s) cubic-bezier(.34, 1.56, .64, 1) infinite;
