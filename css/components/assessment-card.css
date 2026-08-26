@@ -122,7 +122,9 @@
   color: var(--color-brand-dark);
   white-space: nowrap;
   isolation: isolate;
-  animation: assessment-card-hint-float 2.4s var(--ease-scroll) infinite;
+  /* 가운데 정렬을 transform으로 하므로 float에 X항을 넘겨 정렬을 유지한다. */
+  --motion-float-x: -50%;
+  animation: float 2.4s var(--ease-scroll) infinite;
 }
 
 /*
@@ -138,7 +140,7 @@
   width: 14px;
   height: 7px;
   transform: translateX(-50%);
-  background: conic-gradient(from var(--assessment-hint-angle),
+  background: conic-gradient(from var(--spin-angle),
       #7FB2FF 0deg,
       #9E8BFF 70deg,
       var(--color-brand) 140deg,
@@ -146,7 +148,7 @@
       #A9C4FF 280deg,
       #7FB2FF 360deg);
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  animation: assessment-card-hint-shimmer 3s linear infinite;
+  animation: spin-angle 3s linear infinite;
   pointer-events: none;
 }
 
@@ -188,7 +190,7 @@
   inset: -1px;
   padding: 1px;
   border-radius: inherit;
-  background: conic-gradient(from var(--assessment-hint-angle),
+  background: conic-gradient(from var(--spin-angle),
       #7FB2FF 0deg,
       #9E8BFF 70deg,
       var(--color-brand) 140deg,
@@ -198,24 +200,9 @@
   mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
-  animation: assessment-card-hint-shimmer 3s linear infinite;
+  animation: spin-angle 3s linear infinite;
   pointer-events: none;
   z-index: 2;
-}
-
-@keyframes assessment-card-hint-float {
-  0%, 100% { transform: translate(-50%, 0); }
-  50% { transform: translate(-50%, -5px); }
-}
-
-@property --assessment-hint-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
-@keyframes assessment-card-hint-shimmer {
-  to { --assessment-hint-angle: 360deg; }
 }
 
 @media (max-width: 720px) {

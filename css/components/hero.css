@@ -72,16 +72,19 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: hero-clients-title-shift 6s linear infinite;
+  /* background-size 300%에 맞춰 한 바퀴를 -300%로 잡는다. */
+  --gradient-shift-to: -300%;
+  animation: gradient-shift 6s linear infinite;
 }
 /* 로고 사이 간격. 트랙 안(로고 사이)과 트랙 사이(첫 트랙 끝 ↔ 둘째 트랙 첫
-   로고)가 같은 값이어야 이음매가 보이지 않는다 — 한 곳에서만 정의한다. */
+   로고)가 같은 값이어야 이음매가 보이지 않는다 — 공용 marquee가 읽는
+   --marquee-gap 하나로 두 곳을 함께 정한다. */
 .hero-clients-marquee {
-  --hero-clients-gap: 72px;
+  --marquee-gap: 72px;
   position: relative;
   display: flex;
   align-items: center;
-  gap: var(--hero-clients-gap);
+  gap: var(--marquee-gap);
   width: 100%;
   max-width: var(--container-medium);
   height: 60px;
@@ -99,21 +102,11 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  gap: var(--hero-clients-gap);
-  animation: hero-clients-scroll 28s linear infinite;
+  gap: var(--marquee-gap);
+  animation: marquee 28s linear infinite;
 }
 .hero-clients-item { display: flex; align-items: center; flex-shrink: 0; }
 .hero-clients-item img { width: 183px; height: 36px; }
-
-@keyframes hero-clients-title-shift {
-  from { background-position: 0% 50%; }
-  to { background-position: -300% 50%; }
-}
-
-@keyframes hero-clients-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(calc(-100% - var(--hero-clients-gap))); }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .hero-clients-track,

@@ -390,6 +390,40 @@ JS가 요소를 찾을 때는 클래스가 아니라 `data-*` 속성을 쓴다. 
 
 (`proof-card.css`만 `1023px`/`780px`을 쓰는 예외다. 이 컴포넌트를 손볼 때 900/720으로 맞출지 사용자에게 확인한다.)
 
+### @keyframes는 새로 만들지 않는다 — `css/keyframes.css` 라이브러리를 쓴다
+
+**애니메이션을 넣을 때 `@keyframes`부터 쓰지 않는다.** 공용 움직임은
+`css/keyframes.css`에 모여 있고 `main.css`가 로드하므로 **모든 페이지에서 바로 쓸 수 있다.**
+컴포넌트는 이름만 가져다 `animation`에 넣고, 세기는 변수로 조절한다.
+
+```css
+.my-card {
+  --motion-rise: 6px;                 /* 기본 12px이 과하면 이것만 덮는다 */
+  animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
+}
+```
+
+| 이름 | 움직임 | 조절 변수 |
+|---|---|---|
+| `rise-in` | 아래에서 떠오르며 나타난다 (음수면 위에서 내려온다) | `--motion-rise` |
+| `pop-in` | 떠오르면서 살짝 커진다 | `--motion-rise` · `--motion-pop-scale` |
+| `scale-in` | 이동 없이 크기만 커진다 | `--motion-pop-scale` |
+| `pulse` | 투명도가 오갔다 한다 | `--motion-pulse-min` |
+| `float` | 위아래로 떠다닌다 | `--motion-float-y` · `--motion-float-x` |
+| `nudge` | 좌우로 살짝 민다 | `--motion-nudge-x` |
+| `marquee` | 같은 목록 2벌을 옆으로 흘린다 | `--marquee-gap` |
+| `gradient-shift` | 배경 그라디언트를 가로로 흘린다 | `--gradient-shift-to` |
+| `spin-angle` | 각도 변수를 한 바퀴 돌린다 (conic 테두리) | — |
+
+- **`@keyframes`는 `@layer` 우선순위를 받지 않는다.** 이름이 같으면 나중에 로드된 정의가
+  이기므로, 컴포넌트마다 흩어 두면 이름이 겹치는 순간 조용히 다른 애니메이션이 재생된다.
+  그래서 공용 움직임은 반드시 이 파일 한 곳에만 둔다.
+- **가운데 정렬을 `transform: translate(-50%, …)`로 하는 요소**에 `float`을 쓸 때는
+  `--motion-float-x: -50%`를 함께 준다. 안 주면 정렬이 풀린다.
+- 라이브러리에 없는 **그 컴포넌트만의 연출**은 해당 컴포넌트 파일에 둔다 — 목업 연출
+  5종은 `mock-motion.css`가, 그 변주는 각 컴포넌트가 소유한다(그 파일을 안 쓰면
+  따라오지 않게). 새로 만들기 전에 위 표에서 같은 움직임이 있는지 먼저 본다.
+
 ### 모션 축소 설정 대응 — 애니메이션을 넣으면 반드시 함께 넣는다
 
 **이 프로젝트에서 예외 없이 지켜지는 규칙이다**(현재 13개 컴포넌트 파일에 적용돼 있다). `transition`이나 `animation`을 새로 추가하면 같은 파일 맨 아래에 이 블록을 함께 둔다 — 빠뜨리면 접근성 설정을 켠 사용자에게 어지러운 화면이 그대로 나간다.
@@ -693,7 +727,7 @@ HTML·CSS를 **작성하거나 수정할 때마다** 아래 4종 중복을 점�
 
 **HTML**: Semantic HTML 적절히 사용 / div 대체 가능한 native element 미사용 / heading hierarchy 정상 / link·button 역할 명확 / `<header>`는 GNB 하나뿐인가(섹션 상단 블록은 `div`) / 새 섹션이 `<section class="{이름} fade-up">` + 안쪽 `.section-wrap` 구조를 따르는가
 
-**CSS**: Design Token 사용(존재하는 이름인지 `tokens.css`에서 확인) / raw color 하드코딩 없음(필요하면 `color-mix`로 파생) / 반복 UI가 Component로 추출됨 / specificity 과도하지 않음(`@layer` 활용) / 새 컴포넌트 CSS가 `main.css` 또는 `css/pages/*.css`에 `@import`됐는가(HTML에 세 번째 `<link>`를 붙이지 않았는가) / 컴포넌트 파일 안에 `@layer`를 직접 쓰지 않았는가 / 애니메이션을 넣었다면 `prefers-reduced-motion` 대응을 함께 넣었는가
+**CSS**: Design Token 사용(존재하는 이름인지 `tokens.css`에서 확인) / raw color 하드코딩 없음(필요하면 `color-mix`로 파생) / 반복 UI가 Component로 추출됨 / specificity 과도하지 않음(`@layer` 활용) / 새 컴포넌트 CSS가 `main.css` 또는 `css/pages/*.css`에 `@import`됐는가(HTML에 세 번째 `<link>`를 붙이지 않았는가) / 컴포넌트 파일 안에 `@layer`를 직접 쓰지 않았는가 / 애니메이션을 넣었다면 `css/keyframes.css`에 같은 움직임이 있는지 먼저 봤는가(새 `@keyframes`를 만들었다면 그 컴포넌트 전용인 근거가 있는가) / `prefers-reduced-motion` 대응을 함께 넣었는가
 
 **타이포 제약 (3번 항목)**: 메인페이지에 14px 미만 폰트가 없는가 / heading이 Semibold(600) 고정인가 / 700 Bold를 새로 썼다면 근거가 있는가 / 자간을 컴포넌트에서 임의로 새로 정하지 않았는가
 

@@ -115,12 +115,10 @@
 
 /* 점도 함께 커지며 자리를 잡는다. */
 .fade-up.is-visible .timeline__marker::after {
-  animation: timeline-dot-in var(--duration-scroll) var(--ease-scroll) both;
-}
-
-@keyframes timeline-dot-in {
-  from { transform: scale(0.4); }
-  to { transform: scale(1); }
+  /* 점은 이동 없이 크기만 자란다 — 기본 .96보다 훨씬 작게 시작해야
+     "자리를 잡는다"가 읽힌다. */
+  --motion-pop-scale: .4;
+  animation: scale-in var(--duration-scroll) var(--ease-scroll) both;
 }
 
 @media (prefers-reduced-motion: reduce) {

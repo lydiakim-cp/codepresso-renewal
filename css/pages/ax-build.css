@@ -74,17 +74,12 @@
      로드 직후 아래에서 위로 한 번 올라오는 애니메이션을 CSS로 직접 준다.
      라벨 → 제목 → 설명 → 버튼 순으로 조금씩 늦게 들어와 읽는 순서를 만든다. */
   .ax-build-hero-copy > * {
-    animation: ax-build-rise var(--duration-scroll) var(--ease-scroll) both;
+    animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
   }
 
   .ax-build-hero-copy > :nth-child(2) { animation-delay: .08s; }
   .ax-build-hero-copy > :nth-child(3) { animation-delay: .16s; }
   .ax-build-hero-copy > :nth-child(4) { animation-delay: .24s; }
-
-  @keyframes ax-build-rise {
-    from { opacity: 0; transform: translateY(var(--motion-rise)); }
-    to { opacity: 1; transform: none; }
-  }
 
   .ax-build-hero-title {
     /* hero 스케일(56px)을 쓰되 제품명 라벨과 한 덩어리로 읽히게 위 여백을 줄인다. */
@@ -106,7 +101,7 @@
      위치·진입 타이밍과 배경 질감 위에 놓이기 위한 표면만 조정한다. */
   .ax-build-hero-facts {
     margin-top: var(--space-48);
-    animation: ax-build-rise var(--duration-scroll) var(--ease-scroll) .32s both;
+    animation: rise-in var(--duration-scroll) var(--ease-scroll) .32s both;
   }
 
   /* 배경 질감 위에 놓이는 자리라 sunken 단색 대신 반투명 유리로 띄운다. */

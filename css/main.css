@@ -15,6 +15,10 @@
 @import url("./tokens.css") layer(tokens);
 @import url("./base.css") layer(base);
 
+/* 공용 @keyframes 라이브러리. @keyframes는 @layer 우선순위를 받지 않아
+   레이어에 넣지 않는다 — 이름이 곧 전역 식별자다(파일 상단 주석 참고). */
+@import url("./keyframes.css");
+
 /* 레이아웃 뼈대 · 텍스트 유틸리티 */
 @import url("./components/layout.css") layer(components);
 @import url("./components/section-body.css") layer(components);

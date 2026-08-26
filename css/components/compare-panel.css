@@ -74,12 +74,7 @@
   height: 28px;
   /* Before → After 방향을 계속 짚어주는 미세한 왕복. 폭이 3px이라
      주의를 빼앗지 않으면서 흐름만 읽히게 한다. */
-  animation: compare-panel-nudge 2.4s var(--ease-scroll) infinite;
-}
-
-@keyframes compare-panel-nudge {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(3px); }
+  animation: nudge 2.4s var(--ease-scroll) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

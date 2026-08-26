@@ -106,7 +106,9 @@
 /* 분야를 바꾸면 항목이 차례로 들어와 "목록이 갈렸다"는 것이 눈에 보인다.
    판마다 처음부터 다시 재생되도록 애니메이션은 .is-active에만 건다. */
 .catalog-board__panel.is-active .catalog-board__item {
-  animation: catalog-board-item-in var(--duration-hover) var(--ease-hover) both;
+  /* 항목이 촘촘해 기본 12px은 과하다 — 이동폭만 줄여 같은 진입을 쓴다. */
+  --motion-rise: 6px;
+  animation: rise-in var(--duration-hover) var(--ease-hover) both;
 }
 
 .catalog-board__panel.is-active .catalog-board__item:nth-child(1) { animation-delay: 0s; }
@@ -117,11 +119,6 @@
 .catalog-board__panel.is-active .catalog-board__item:nth-child(6) { animation-delay: .15s; }
 .catalog-board__panel.is-active .catalog-board__item:nth-child(7) { animation-delay: .18s; }
 .catalog-board__panel.is-active .catalog-board__item:nth-child(8) { animation-delay: .21s; }
-
-@keyframes catalog-board-item-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: none; }
-}
 
 .catalog-board__panel-desc {
   color: var(--color-ink-light);

@@ -904,20 +904,6 @@
  * 지연은 --pop-order(마크업 순서, js가 부여)로 계산한다 — nth-child로
  * 일일이 쓰면 목업마다 규칙이 갈라지고 항목이 늘 때마다 CSS를 고쳐야 한다.
  */
-@keyframes journey-pop {
-  from {
-    opacity: 0;
-    /* 아래에서 살짝 올라오며 커진다. 이동폭 8px·축소 .96은 '툲' 튀어나오는
-       느낌을 주면서도 레이아웃이 출렁이지 않는 선이다. */
-    transform: translateY(8px) scale(.96);
-  }
-
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 /* pop 대상 — 목업의 직자식, 그리고 SkillFit 앱 목업은 3단 패널 안의
    항목까지 한 단계 더 쪼개서 띄운다(패널 3개만 나타나면 조립되는 느낌이 약하다). */
 .journey-mock > *,
@@ -932,7 +918,9 @@
 /* fill-mode는 both여야 한다 — backwards는 지연 구간만 붙잡고 재생이 끝나면
    기본 규칙(opacity:0)으로 돌아가서, 다 나타난 요소가 다시 사라진다. */
 .journey-step.is-popping .journey-mock > * {
-  animation: journey-pop var(--duration-scroll) var(--ease-scroll) both;
+  /* 8px·.96은 "톡" 튀어나오면서도 목업 레이아웃이 출렁이지 않는 선이다. */
+  --motion-rise: 8px;
+  animation: pop-in var(--duration-scroll) var(--ease-scroll) both;
   /* 스텝 자체의 페이드(0.5s)가 끝나가는 무렵부터 순서대로 터진다. */
   animation-delay: calc(.18s + var(--pop-order, 0) * .09s);
 }
@@ -942,7 +930,8 @@
 .journey-step.is-popping .journey-app-main > *,
 .journey-step.is-popping .journey-app-tutor > *,
 .journey-step.is-popping .journey-app-skill {
-  animation: journey-pop var(--duration-scroll) var(--ease-scroll) both;
+  --motion-rise: 8px;
+  animation: pop-in var(--duration-scroll) var(--ease-scroll) both;
   animation-delay: calc(.32s + var(--pop-order, 0) * .07s);
 }
 
