@@ -85,19 +85,6 @@ const setupStage = ({ name, sectionSelector, panelSelector, pop = false }) => {
   const section = stage.closest(sectionSelector) || document;
   const programs = Array.from(section.querySelectorAll(attr('-program')));
 
-  /* 모바일 전용 part-nav--compact도 같은 data-*-program 버튼을 쓰므로
-     programs 안에 함께 잡힌다(위 querySelectorAll). part-nav.js는
-     [data-part-nav] 앵커 전용이라 이 nav를 잡지 않으므로, 인디케이터
-     이동은 여기서 함께 처리한다. */
-  const mobileNav = section.querySelector('.diagnosis-products--mobile');
-  const mobileIndicator = mobileNav && mobileNav.querySelector('.part-nav-indicator');
-
-  const moveMobileIndicator = (item) => {
-    if (!mobileIndicator || !item) return;
-    mobileIndicator.style.width = `${item.offsetWidth}px`;
-    mobileIndicator.style.transform = `translateX(${item.offsetLeft - mobileNav.querySelector('.part-nav-item').offsetLeft}px)`;
-  };
-
   /* sticky로 고정되는 우측 판. 클릭 이동이 "판이 자리를 잡은 뒤"에 멈추도록
      도착 지점의 하한을 계산하는 데 쓴다(scrollToStep 참고). */
   const panel = stage.querySelector(panelSelector);
@@ -124,10 +111,6 @@ const setupStage = ({ name, sectionSelector, panelSelector, pop = false }) => {
     programs.forEach((program) =>
       program.classList.toggle('is-active', Number(program.dataset[key('Program')]) === index)
     );
-    moveMobileIndicator(programs.find(
-      (program) => program.classList.contains('part-nav-item') &&
-        Number(program.dataset[key('Program')]) === index
-    ));
   };
 
   /* pop-in 순서(--pop-order)를 마크업 순서대로 매긴다. 마크업에 인라인
@@ -151,14 +134,6 @@ const setupStage = ({ name, sectionSelector, panelSelector, pop = false }) => {
      첫 스크롤 전까지 좌측이 전부 흐린 상태로 보인다. */
   programs.forEach((program) =>
     program.classList.toggle('is-active', Number(program.dataset[key('Program')]) === 0)
-  );
-  moveMobileIndicator(mobileNav && mobileNav.querySelector('.part-nav-item'));
-
-  /* 폭이 바뀌면(모바일 전환·회전) 인디케이터도 다시 잰다. */
-  window.addEventListener('resize', () =>
-    moveMobileIndicator(programs.find(
-      (program) => program.classList.contains('part-nav-item') && program.classList.contains('is-active')
-    ))
   );
 
   /* 첫 스텝의 pop도 같은 이유로 여기서 한 번 켠다. 단, 섹션이 화면에 들어왔을 때

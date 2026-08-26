@@ -43,47 +43,69 @@
     padding: var(--space-18);
     gap: var(--space-24);
   }
-}
 
-/* ---------------------------------------------
- * 제품 선택 — PC용/모바일용 마크업을 따로 둔다.
- * 데스크톱은 좌측 sticky 컬럼에 세로 목록(아이콘·부제·화살표 포함)으로
- * "지금 어느 제품을 보는지"를 계속 보여준다. 모바일은 그 컬럼이 위에서
- * 아래로 흘러가 버리므로, part-nav part-nav--compact 세그먼트 컨트롤로
- * 바꿔 같은 선택을 더 짧게 보여준다 — 두 마크업이 다른 컴포넌트를 쓰므로
- * 미디어쿼리로 배치만 조정하는 대신 각각 표시/숨김한다.
- * 두 마크업 모두 같은 data-journey-program/-diagnosis-program 버튼을 쓰므로
- * journey-stage.js가 추가 분기 없이 둘 다 반응한다(querySelectorAll이
- * 섹션 전체에서 찾는다).
- * --------------------------------------------- */
-.diagnosis-products--mobile { display: none; }
-
-@media (max-width: 560px) {
-  /* .diagnosis-products(뒤에 나오는 display:flex 기본 규칙)와 동일
-     specificity라, 파일 순서상 이 규칙이 먼저 있으면 나중 규칙에 덮여
-     감춰지지 않는다 — !important로 순서 문제를 확실히 피한다. */
-  .diagnosis-products--desktop { display: none !important; }
-  .diagnosis-products--mobile {
-    display: inline-flex;
-    align-self: stretch;
-    width: 100%;
-    /* part-nav의 기본 배경(rgba(255,255,255,.55) + blur)은 hero의 진한
-       브랜드 배경 위에서 대비를 잡도록 만든 값이다. 이 nav는 .parts-group의
-       옅은 배경(--color-brand-tint-1 계열) 위에 놓여 흰 트랙이 배경과
-       거의 구분되지 않았다 — sunken 톤의 불투명 배경으로 바꾸고
-       blur·반투명을 걷어낸다. */
-    background: var(--color-surface-sunken);
-    border-color: var(--color-line);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+  /* ---------------------------------------------
+   * 제품 목록을 sticky 가로 셀렉터로 — part-nav와 같은 언어.
+   * 데스크톱에서는 좌측 sticky 컬럼에 세로로 놓여 "지금 어느 제품을
+   * 보는지"를 계속 알려줬다. 모바일은 1열로 접혀 그 목록이 화면 위로
+   * 흘러가 버리므로, 스크롤을 따라오는 가로 셀렉터로 바꿔 같은 역할을
+   * 하게 한다(캡슐 · 최소 radius · 가로 스크롤).
+   * --------------------------------------------- */
+  .diagnosis-products {
+    position: sticky;
+    /* GNB가 60px로 낮아졌으므로 그 아래에 붙는다. */
+    top: 60px;
+    z-index: 2;
+    gap: var(--space-8);
+    margin-inline: calc(-1 * var(--space-20));
+    padding: var(--space-8) var(--space-20);
+    /* 아래 내용이 비쳐 지나가므로 part-nav와 같은 유리 질감으로 덮는다. */
+    background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border-bottom: 1px solid var(--color-line);
   }
 
-  /* 항목 3개(PART 1)가 360px 폭에서 빡빡하다 — part-nav 기본 좌우
-     패딩(24px)을 줄여 셋 다 한 줄에 들어가게 한다. */
-  .diagnosis-products--mobile .part-nav-item {
-    flex: 1;
-    padding-inline: var(--space-12);
-    text-align: center;
+  /* "교육 프로그램" 라벨은 셀렉터가 되면 군더더기다 — 캡슐 자체가
+     무엇을 고르는 자리인지 말해 준다. */
+  .diagnosis-products > .text-label { display: none; }
+
+  .diagnosis-product-list {
+    display: flex;
+    gap: var(--space-6);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .diagnosis-product-list::-webkit-scrollbar { display: none; }
+
+  /* 캡슐 하나 = 제품 하나. 아이콘과 부제는 접고 제품명만 남긴다 —
+     가로로 늘어놓는 자리라 한 칸이 좁다. */
+  .diagnosis-product {
+    width: auto;
+    gap: var(--space-6);
+    margin-inline: 0;
+    padding: var(--space-6) var(--space-12);
+    border: 1px solid var(--color-line);
+    /* "radius 최소" — 캡슐이 아니라 각진 탭에 가깝게 둔다. */
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    white-space: nowrap;
+  }
+
+  .diagnosis-product-icon,
+  .diagnosis-product-arrow,
+  .diagnosis-product-body .text-caption {
+    display: none;
+  }
+
+  /* education-journey.css의 [data-journey-program].is-active가 흰 배경을
+     주고 있어(속성+클래스라 단일 클래스보다 우선), 같은 형태로 맞춰
+     덮는다 — !important를 쓰지 않기 위함이다. */
+  .diagnosis-product[data-journey-program].is-active,
+  .diagnosis-product[data-diagnosis-program].is-active {
+    border-color: var(--color-brand);
+    background: var(--color-brand-tint-2);
   }
 }
 
