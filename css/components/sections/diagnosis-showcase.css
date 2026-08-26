@@ -45,68 +45,52 @@
   }
 
   /* ---------------------------------------------
-   * 제품 목록을 sticky 세그먼트 컨트롤로 — part-nav--compact와 같은 언어.
+   * 제품 목록을 세그먼트 컨트롤로 — part-nav--compact와 같은 언어.
    *
-   * 데스크톱에서는 좌측 sticky 컬럼에 세로로 놓여 "지금 어느 제품을 보는지"를
-   * 계속 알려줬다. 모바일은 1열로 접혀 그 목록이 화면 위로 흘러가 버리므로,
-   * 스크롤을 따라오는 가로 셀렉터로 바꿔 같은 역할을 하게 한다.
+   * 항목은 세로로 쌓는다. 가로로 늘어놓으면 한 칸이 좁아 제품명만 남기고
+   * 아이콘·부제를 전부 접어야 하는데, 세로로 쌓으면 행이 화면 폭을 다 써서
+   * 아이콘과 부제("온라인 이러닝")까지 그대로 보인다.
    *
-   * 생김새는 part-nav--compact를 그대로 따른다 — 낱개 탭을 테두리로 나누지
-   * 않고, 한 판(트랙) 안에 항목을 넣고 활성 항목만 진한 판으로 채운다.
-   * PART 1·2를 고르는 part-nav 바로 아래에 붙는 자리라, 두 셀렉터가 같은
-   * 언어를 써야 "같은 층위의 선택"으로 읽힌다.
+   * 생김새는 part-nav--compact를 따른다 — 낱개를 테두리로 나누지 않고 한
+   * 판(트랙) 안에 넣고 활성 항목만 진한 판으로 채운다. PART 1·2를 고르는
+   * part-nav 바로 아래에 붙는 자리라, 두 셀렉터가 같은 언어를 써야 "같은
+   * 층위의 선택"으로 읽힌다.
    * part-nav 마크업(인디케이터 span)을 쓰지 않는 이유 — 인디케이터 위치는
    * part-nav.js가 계산해 넣는데 이 목록은 그 스크립트가 잡지 않는다.
    * 활성 항목 자체를 칠하면 같은 그림이 되고 JS도 필요 없다.
    * --------------------------------------------- */
-  .diagnosis-products {
-    position: sticky;
-    /* GNB가 60px로 낮아졌으므로 그 아래에 붙는다. */
-    top: 60px;
-    z-index: 2;
-    /* 좌우 20px 페이지 패딩 밖까지 늘려 화면 끝까지 덮는다 —
-       판이 화면 폭보다 좁으면 그 옆으로 내용이 비쳐 지나간다. */
-    margin-inline: calc(-1 * var(--space-20));
-    padding: var(--space-8) var(--space-20);
-    background: color-mix(in srgb, var(--color-surface) 88%, transparent);
-    backdrop-filter: blur(16px) saturate(160%);
-    -webkit-backdrop-filter: blur(16px) saturate(160%);
-    border-bottom: 1px solid var(--color-line);
-  }
+  /* 세로로 쌓으면 트랙이 148px이라, sticky로 붙여 두면 화면의 23%를
+     계속 차지하고 정작 보여줘야 할 목업을 가린다 — 흐름에 두고 목업
+     바로 위에서 한 번 읽히게 한다. 데스크톱 좌측 컬럼이 하던 역할과 같다. */
+  .diagnosis-products { gap: var(--space-10); }
 
-  /* "교육 프로그램" 라벨은 셀렉터가 되면 군더더기다 — 판 자체가
-     무엇을 고르는 자리인지 말해 준다. */
-  .diagnosis-products > .text-label { display: none; }
-
-  /* 트랙 — part-nav의 캡슐 판에 해당한다. radius만 compact(8px)로 둔다. */
+  /* 트랙 — part-nav의 판에 해당한다. radius만 compact(8px)로 둔다. */
   .diagnosis-product-list {
     display: flex;
+    flex-direction: column;
     gap: var(--space-2);
     padding: var(--space-4);
     border-radius: var(--radius-md);
     background: var(--color-surface-sunken);
-    overflow-x: auto;
-    scrollbar-width: none;
   }
 
-  .diagnosis-product-list::-webkit-scrollbar { display: none; }
-
-  /* 항목 — part-nav-item과 같은 치수·굵기. 아이콘·부제·화살표는 접고
-     제품명만 남긴다(가로로 늘어놓는 자리라 한 칸이 좁다). */
+  /* 항목 — 행이 화면 폭을 다 쓰므로 아이콘과 부제를 그대로 둔다.
+     좌우 여백만 데스크톱(20px)보다 조여 행 높이를 낮춘다. */
   .diagnosis-product {
-    width: auto;
+    gap: var(--space-10);
     margin-inline: 0;
-    padding: var(--space-6) var(--space-12);
+    padding: var(--space-8) var(--space-10);
     border-radius: var(--radius-sm);
-    font-weight: var(--font-weight-semibold);
     color: var(--color-ink-light);
-    white-space: nowrap;
   }
 
-  .diagnosis-product-icon,
-  .diagnosis-product-arrow,
-  .diagnosis-product-body .text-caption {
-    display: none;
+  /* 화살표는 "눌러서 이동"을 뜻하는데, 이 목록은 그 자리에서 목업을
+     바꾸는 셀렉터라 가리키는 곳이 없다. */
+  .diagnosis-product-arrow { display: none; }
+
+  .diagnosis-product-icon {
+    width: var(--space-24);
+    height: var(--space-24);
   }
 
   .diagnosis-product .section-body-title {
@@ -129,6 +113,20 @@
   .diagnosis-product[data-journey-program].is-active .section-body-title,
   .diagnosis-product[data-diagnosis-program].is-active .section-body-title {
     color: var(--color-surface);
+  }
+
+  /* 부제도 어두운 판 위에 놓이므로 함께 뒤집는다 — 기본 ink-lighter는
+     검정 배경에서 읽히지 않는다. */
+  .diagnosis-product[data-journey-program].is-active .text-caption,
+  .diagnosis-product[data-diagnosis-program].is-active .text-caption {
+    color: color-mix(in srgb, var(--color-surface) 72%, transparent);
+  }
+
+  /* 아이콘은 원본 색이 밝은 판 기준이라 어두운 판에서 묻힌다. */
+  .diagnosis-product[data-journey-program].is-active .diagnosis-product-icon,
+  .diagnosis-product[data-diagnosis-program].is-active .diagnosis-product-icon {
+    background: color-mix(in srgb, var(--color-surface) 16%, transparent);
+    border-radius: var(--radius-sm);
   }
 
   /* 데스크톱에서는 비활성 제품을 opacity .45로 낮춰 시선을 모았지만,
