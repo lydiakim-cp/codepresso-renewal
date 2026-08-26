@@ -48,15 +48,15 @@
 
 @media (max-width: 900px) {
   .hero-content { grid-template-columns: 1fr; }
+  .hero-copy-wrap, .hero-links { align-items: center; }
+  .hero-copy { text-align: center; }
   .assessment-card-frame { margin-inline: auto; }
 }
 
 @media (max-width: 560px) {
   /* 카피와 진단 카드 사이 96px은 모바일에서 둘을 따로 놀게 만든다. */
-  .hero-copy { gap: var(--space-48);}
-  .hero-links{
-      gap: 0;
-    }
+  .hero-copy { gap: var(--space-48); padding-top: var(--space-24); }
+
   .hero-banner {
     margin-bottom: var(--space-24);
     /* 배너 문구가 두 줄이 되면 좌우 패딩이 과해 보인다. */
@@ -64,11 +64,19 @@
   }
 
   .hero-description {
-    font-size: var(--text-body-muted);
-    line-height: var(--leading-body-14);
+    font-size: var(--text-body-16);
+    line-height: var(--leading-body-16);
   }
 
-
+  /* 버튼 두 개가 한 줄에 들어가지 않으므로 세로로 쌓되, 폭은 글자에
+     맞춘다 — 화면을 꽉 채우면 버튼이 배너처럼 보여 눌러야 할 것으로
+     읽히지 않는다. hero-copy가 가운데 정렬이라 버튼도 가운데 선다. */
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    margin-inline: auto;
+  }
 
   .hero-clients { gap: var(--space-24); padding-top: var(--space-48); }
 
