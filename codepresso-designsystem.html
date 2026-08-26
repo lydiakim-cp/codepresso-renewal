@@ -229,7 +229,7 @@
                 </li>
               </ul>
             </div>
-            <div><p class="tag">선택 목록</p><h3>Choice List</h3><p>제품이나 프로그램처럼 여러 항목 중 하나를 선택하게 할 때 사용합니다. 각 항목에 마우스를 올리면 배경과 우측 화살표가 기존 규칙대로 반응합니다.</p><code>choice-list · choice-list__item</code></div>
+            <div><p class="tag">선택 목록</p><h3>Choice List</h3><p>제품이나 프로그램처럼 여러 항목 중 하나를 선택하게 할 때 사용합니다. 각 항목에 마우스를 올리면 배경과 우측 화살표가 기존 규칙대로 반응합니다. 항목이 다른 곳으로 이동하면 <code>a</code>, 같은 화면 안에서 무언가를 고르면 <code>button</code>으로 쓰고, 선택된 항목에는 <code>is-active</code>를 붙입니다.</p><code>choice-list · choice-list__item · is-active</code></div>
           </article>
           <article class="guide-component-row">
             <div class="guide-component-demo">
@@ -718,7 +718,7 @@
         <div class="guide-section-head">
           <p class="guide-kicker">08 · MOCKUP MOTION</p>
           <h2>목업을 살아 있는 화면으로</h2>
-          <p>제품 화면을 보여줄 때, 정지된 그림 대신 실제로 돌아가는 화면처럼 연출합니다. 읽어야 할 것만 텍스트로 남기고 나머지는 스켈레톤으로 가라앉힌 뒤, 확대·이동·pop으로 시선을 한 곳에 모읍니다. 다섯 가지 연출은 부모에 <code>data-mock-motion</code> 값만 바꿔 고릅니다.</p>
+          <p>제품 화면을 보여줄 때, 정지된 그림 대신 실제로 돌아가는 화면처럼 연출합니다. 읽어야 할 것만 텍스트로 남기고 나머지는 스켈레톤으로 가라앉힌 뒤, 확대·이동·pop으로 시선을 한 곳에 모읍니다. 여섯 가지 연출은 부모에 <code>data-mock-motion</code> 값만 바꿔 고릅니다.</p>
         </div>
         <div class="guide-motion-list">
           <article class="guide-motion-item">
@@ -960,8 +960,80 @@
             </div>
             <code>data-mock-motion="ticker" · is-pop · is-bar · is-feed · is-pulse</code>
           </article>
+          <article class="guide-motion-item">
+            <div><p class="tag">F · 단계 진행</p><h3>단계가 하나씩 켜진다 (stage)</h3></div>
+            <p>나란히 놓인 단계 칸이 좌에서 우로 하나씩 등장하고, 칸 안의 요소가 이어서 올라오며, 칸과 칸 사이의 화살표가 다음으로 넘깁니다. 장면을 교체하지 않고 나란히 두는 것이 요점입니다 — 앞 단계의 결과가 뒤로 이어진다는 것은 세 칸이 함께 보일 때만 읽히기 때문입니다. 프로세스·확산·전후 흐름을 보여줄 때 씁니다.</p>
+            <div class="guide-motion-live-preview">
+              <div class="difference-screen is-active" aria-hidden="true">
+                <div class="difference-screen-body is-library" data-mock-motion="stage">
+                  <div class="difference-card is-step" style="--mock-step: 0">
+                    <div class="difference-step-head">
+                      <span class="difference-step-no">1</span>
+                      <span class="difference-card-label">공유</span>
+                    </div>
+                    <span class="difference-step-desc">한 팀이 자산을 올린다</span>
+                    <ul class="difference-stack">
+                      <li class="difference-asset is-cue">
+                        <span class="difference-asset-icon"></span>
+                        <span class="difference-asset-body">
+                          <span class="skeleton-line is-shimmer" style="width: 92px"></span>
+                        </span>
+                      </li>
+                    </ul>
+                    <span class="difference-flow-arrow is-flow">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="difference-card is-step" style="--mock-step: 1">
+                    <div class="difference-step-head">
+                      <span class="difference-step-no">2</span>
+                      <span class="difference-card-label">축적</span>
+                    </div>
+                    <span class="difference-step-desc">검증된 것만 쌓인다</span>
+                    <ul class="difference-stack">
+                      <li class="difference-asset is-cue" style="--mock-cue-delay: .1s">
+                        <span class="difference-asset-icon"></span>
+                        <span class="difference-asset-body">
+                          <span class="skeleton-line is-shimmer" style="width: 86px"></span>
+                        </span>
+                      </li>
+                      <li class="difference-asset is-quiet is-cue" style="--mock-cue-delay: .22s">
+                        <span class="difference-asset-icon"></span>
+                        <span class="difference-asset-body">
+                          <span class="skeleton-line is-shimmer" style="width: 64px"></span>
+                        </span>
+                      </li>
+                    </ul>
+                    <span class="difference-flow-arrow is-flow">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="difference-card is-step" style="--mock-step: 2">
+                    <div class="difference-step-head">
+                      <span class="difference-step-no">3</span>
+                      <span class="difference-card-label">확산</span>
+                    </div>
+                    <span class="difference-step-desc">조직 전체로 퍼진다</span>
+                    <div class="difference-spread-map">
+                      <span class="difference-spread-wave"></span>
+                      <span class="difference-spread-core is-cue">원본 팀</span>
+                      <span class="difference-spread-node is-cue" style="--mock-cue-delay: .14s; --node-x: 76%; --node-y: 16%">A본부</span>
+                      <span class="difference-spread-node is-cue" style="--mock-cue-delay: .26s; --node-x: 22%; --node-y: 84%">B본부</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <code>data-mock-motion="stage" · is-step · is-cue · is-flow · --mock-step</code>
+          </article>
         </div>
-        <div class="guide-callout"><strong>고르는 기준</strong><span>기존 목업을 크게 바꾸지 않고 생기만 더할 때는 <code>focus</code>, 실제 서비스 화면임을 보여야 할 때는 <code>replay</code>, 스크롤 중 눈에 띄어야 할 때는 <code>deck</code>, 정보를 함께 전달해야 할 때는 <code>detail</code>, 숫자로 설득할 때는 <code>ticker</code>를 씁니다. 연출은 CSS만으로 돌아가 별도 스크립트가 필요 없고, 움직임 줄이기 설정에서는 모두 완성된 화면으로 정지합니다.</span></div>
+        <div class="guide-callout"><strong>고르는 기준</strong><span>기존 목업을 크게 바꾸지 않고 생기만 더할 때는 <code>focus</code>, 실제 서비스 화면임을 보여야 할 때는 <code>replay</code>, 스크롤 중 눈에 띄어야 할 때는 <code>deck</code>, 정보를 함께 전달해야 할 때는 <code>detail</code>, 숫자로 설득할 때는 <code>ticker</code>, 단계가 순서대로 진행되는 것을 보여줄 때는 <code>stage</code>를 씁니다. 연출은 CSS만으로 돌아가 별도 스크립트가 필요 없고, 움직임 줄이기 설정에서는 모두 완성된 화면으로 정지합니다. <code>stage</code>만 예외로 무한 반복이 아니라 한 번만 재생됩니다 — 단계는 쌓이는 것이라 도로 사라지면 방금 읽은 순서가 부정되기 때문입니다.</span></div>
       </section>
       <section class="guide-section guide-usage" id="usage">
         <p class="guide-kicker">09 · COMPONENT USAGE</p>

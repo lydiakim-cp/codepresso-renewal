@@ -113,9 +113,22 @@
   grid-template-columns: minmax(0, .8fr) minmax(0, 1.25fr) minmax(0, 1fr);
 }
 
-/* ②는 가운데 자산 목록이 주인공이다. */
+/* ②는 세 단계가 같은 무게라 균등 3열 그대로 둔다.
+   화살표가 칸 경계에 걸쳐야 하므로 gap을 넓히지 않는다. */
 .difference-screen-body.is-library {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, .85fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  /* 목업 전용 소형 타이포 — 사용자가 읽는 UI가 아니라 '화면 그림'이라
+     메인페이지 최소 14px 제약을 적용하지 않는다(사용자 확인됨).
+     .journey-app(education-journey.css)이 쓰는 값과 같은 스케일이다.
+     전역 토큰으로 올리지 않고 이 목업 안에만 가두는 이유도 같다 —
+     실제 UI에 11px가 새어나가면 타이포 체계가 깨진다.
+     3열 한 칸에 대화창·목록·확산도가 들어가야 해서, 14px로는
+     말풍선이 두 줄로 깨지고 본부 노드가 서로 겹친다. */
+  --mock-text: 9px;
+  --mock-leading: 13px;
+  --mock-text-lg: 11px;
+  --mock-leading-lg: 15px;
 }
 
 /* ③은 좌측 보증 마크가 결론이라 가운데 목록과 균형을 맞춘다. */
@@ -373,81 +386,8 @@
 }
 
 /* ---------------------------------------------
- * ② 문화 정착 — 검증된 자산이 공유·축적되는 라이브러리 화면.
+ * 자산·현장 항목 행 — ②의 라이브러리 목록과 ③의 FDE 현장 목록이 함께 쓴다.
  * --------------------------------------------- */
-.difference-spread {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-}
-
-/* 행 폭이 아래로 갈수록 넓어져 "범위가 커진다"를 형태 자체로 보여준다. */
-.difference-spread-row {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--space-10);
-  /* 진입 전 기본값은 100% — JS가 붙기 전에도 레이아웃이 깨지지 않는다. */
-  width: 100%;
-  padding: var(--space-10) var(--space-12);
-  border-radius: var(--radius-sm);
-  /* 카드가 틴트라 행은 흰색으로 올려야 항목으로 읽힌다. */
-  background: var(--color-surface);
-  transition: width 1s var(--ease-scroll);
-}
-
-/* 폭이 곧 범위 — 개인(64%) → 팀(82%) → 조직(100%). */
-.difference-screen.is-active .difference-spread-row:first-child {
-  width: 64%;
-}
-
-.difference-screen.is-active .difference-spread-row:nth-child(2) {
-  width: 82%;
-}
-
-.difference-spread-icon {
-  display: inline-flex;
-  flex-shrink: 0;
-  color: var(--color-brand);
-
-  & svg {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-.difference-spread-name {
-  font-size: var(--text-body-14);
-  line-height: var(--leading-body-14);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-ink);
-}
-
-.difference-spread-count {
-  font-size: var(--text-body-14);
-  line-height: var(--leading-body-14);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-ink-lighter);
-}
-
-/* 전사 확산 — 이 카드의 결론이라 유일한 브랜드 판. */
-.difference-spread-row.is-core {
-  background: linear-gradient(120deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
-
-  .difference-spread-icon,
-  .difference-spread-name,
-  .difference-spread-count {
-    color: var(--color-surface);
-  }
-}
-
-/* 자산 목록 — 라이브러리라는 게 눈에 보이도록 실제 항목으로 그린다. */
-.difference-assets {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-}
-
 .difference-asset {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
@@ -499,37 +439,284 @@
   color: var(--color-surface);
 }
 
-/* 분기별 누적 — 막대가 오른쪽으로 갈수록 높아져 축적을 보여준다. */
-.difference-columns {
-  display: flex;
-  align-items: flex-end;
-  gap: var(--space-6);
-  height: 96px;
+/* ---------------------------------------------
+ * ② 문화 정착 — 공유 허브 → 라이브러리 → 전사 확산 3단계.
+ *
+ * ①③처럼 3열 카드를 쓰되, 한꺼번에 펼치지 않고 좌에서 우로 하나씩 켠다 —
+ * "한 팀에서 시작해 조직으로 퍼진다"는 것은 순서가 보여야만 읽히기 때문이다.
+ *
+ * 단계 등장(.is-step) · 칸 안의 전개(.is-cue) · 칸 사이 화살표(.is-flow)는
+ * 공용 mock-motion.css의 stage 연출이 담당한다. 여기서는 칸 안의 형태
+ * (레이아웃·색·radius)만 그린다.
+ * --------------------------------------------- */
+
+/* 화살표가 칸 오른쪽 경계에 걸쳐 다음 칸으로 넘어가는 것처럼 보여야 하므로
+   칸을 기준 상자로 삼는다. */
+.difference-card.is-step {
+  position: relative;
 }
 
-.difference-column {
+/* 단계 머리 — 번호와 이름. 번호가 있어야 "순서"로 읽힌다. */
+.difference-step-head {
   display: flex;
-  align-items: flex-end;
-  flex: 1;
-  height: 100%;
+  align-items: center;
+  gap: var(--space-8);
+}
 
-  /* --col이 목표 높이. 화면이 켜질 때 바닥에서 자라난다. */
-  & i {
-    width: 100%;
-    height: 0;
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-    background: var(--color-brand-tint-2);
-    transition: height 1s var(--ease-scroll);
+.difference-step-no {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--space-18);
+  height: var(--space-18);
+  border-radius: var(--radius-full);
+  background: var(--color-brand);
+  color: var(--color-surface);
+  font-size: var(--mock-text-lg);
+  line-height: var(--mock-leading-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.difference-step-desc {
+  /* 머리 바로 아래 붙는 한 줄 설명이라 카드 기본 gap보다 좁힌다. */
+  margin-block-start: calc(var(--space-8) * -1);
+  font-size: var(--mock-text-lg);
+  line-height: var(--mock-leading-lg);
+  color: var(--color-ink-lighter);
+}
+
+/* 다음 칸으로 넘긴다는 신호. 칸과 칸 사이 gap(18px) 한가운데 걸터앉는다.
+   gap보다 아이콘이 커서 양쪽 칸을 조금씩 덮으므로, 흰 원판을 깔아
+   카드 배경 위에서도 화살표가 또렷하게 읽히게 한다. */
+.difference-flow-arrow {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: calc(100% + var(--space-8));
+  translate: -50% -50%;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-24);
+  height: var(--space-24);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-brand);
+
+  & svg {
+    width: 14px;
+    height: 14px;
   }
 }
 
-.difference-screen.is-active .difference-column i {
-  height: var(--col);
+/* ③과 공유하는 항목·칩·라벨은 ② 안에서만 목업 크기로 내린다 —
+   ③은 3열에 여유가 있어 14px 그대로가 맞다. */
+.difference-screen-body.is-library {
+
+  & .difference-card-label {
+    font-size: var(--mock-text-lg);
+    line-height: var(--mock-leading-lg);
+  }
+
+  & .difference-asset-name {
+    font-size: var(--mock-text-lg);
+    line-height: var(--mock-leading-lg);
+  }
+
+  & .difference-chip {
+    padding: var(--space-2) var(--space-8);
+    font-size: var(--mock-text);
+    line-height: var(--mock-leading);
+  }
+
+  & .difference-card-foot {
+    font-size: var(--mock-text-lg);
+    line-height: var(--mock-leading-lg);
+  }
+
+  /* 항목 행도 글자에 맞춰 함께 줄인다 — 글자만 작아지면 행이 빈 것처럼 보인다. */
+  & .difference-asset {
+    gap: var(--space-8);
+    padding: var(--space-6) var(--space-8);
+  }
+
+  & .difference-asset-icon {
+    width: var(--space-18);
+    height: var(--space-18);
+
+    & svg {
+      width: 11px;
+      height: 11px;
+    }
+  }
 }
 
-/* 마지막 분기 — 현재 시점이라 유일한 브랜드 막대. */
-.difference-column.is-core i {
-  background: linear-gradient(180deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+/* --- 1단계 · 공유 허브 — 동료에게 자산을 보내는 메신저 창 --- */
+.difference-chat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8);
+  padding: var(--space-12);
+  border-radius: var(--radius-sm);
+  /* 카드가 틴트라 대화창은 흰색으로 올려야 "창"으로 읽힌다. */
+  background: var(--color-surface);
+}
+
+.difference-chat-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  align-self: stretch;
+  padding-block-end: var(--space-8);
+  border-block-end: 1px solid var(--color-line);
+
+  /* 대화방 아바타는 목록 아이콘과 같은 크기로 낮춘다 — 공용 40px은 여기서 과하다. */
+  & .journey-mock-avatar {
+    width: var(--space-18);
+    height: var(--space-18);
+    font-size: var(--mock-text);
+    line-height: var(--mock-leading);
+  }
+}
+
+/* 말풍선 — 받은 것은 왼쪽 회색, 보낸 것은 오른쪽 브랜드. */
+.difference-bubble {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 86%;
+  padding: var(--space-10) var(--space-12);
+  border-radius: var(--radius-md);
+}
+
+.difference-bubble.is-them {
+  background: var(--color-surface-sunken);
+}
+
+.difference-bubble.is-me {
+  align-self: flex-end;
+  background: linear-gradient(140deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+}
+
+.difference-bubble-text {
+  font-size: var(--mock-text-lg);
+  line-height: var(--mock-leading-lg);
+  color: var(--color-surface);
+}
+
+/* 첨부 파일 카드 — 말풍선 안에서만 쓰이므로 반투명 흰 판으로 띄운다. */
+.difference-attach {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, .16);
+
+  & .difference-asset-icon {
+    background: rgba(255, 255, 255, .22);
+    color: var(--color-surface);
+  }
+
+  & .difference-asset-name {
+    color: var(--color-surface);
+  }
+}
+
+.difference-attach-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.difference-attach-meta {
+  font-size: var(--mock-text);
+  line-height: var(--mock-leading);
+  color: rgba(255, 255, 255, .7);
+}
+
+.difference-chat-foot {
+  align-self: flex-end;
+  font-size: var(--mock-text);
+  line-height: var(--mock-leading);
+  color: var(--color-ink-lighter);
+}
+
+/* --- 2단계 · 라이브러리 — 공유된 자산이 목록으로 쌓인다 --- */
+.difference-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* --- 3단계 · 전사 확산 — 원본 팀에서 다른 본부로 번진다 --- */
+.difference-spread-map {
+  position: relative;
+  /* 노드가 --node-x/--node-y 퍼센트로 앉으므로 판이 높이를 직접 가져야 한다.
+     1·2단계 칸의 내용 높이에 맞춘 값. 1440 기준, 반응형 착수 시 재검토. */
+  flex: 1;
+  min-height: 140px;
+}
+
+/* 가운데 원본 팀 — 이 단계의 출발점이라 유일한 브랜드 판. */
+.difference-spread-core {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  /* 중앙 정렬은 transform이 아니라 translate 프로퍼티로 한다 — is-cue 등장 연출이
+     transform을 애니메이션하므로, 같은 속성을 쓰면 정렬이 통째로 덮인다. */
+  translate: -50% -50%;
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-full);
+  background: linear-gradient(120deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+  box-shadow: var(--shadow-md);
+  font-size: var(--mock-text-lg);
+  line-height: var(--mock-leading-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-surface);
+  white-space: nowrap;
+}
+
+/* 퍼져나가는 파장 — 원본에서 바깥으로 번지는 것을 선 하나로 대신한다.
+   두 개를 시차를 두고 겹쳐 "계속 퍼진다"로 읽히게 한다. */
+.difference-spread-wave {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-brand);
+  animation: difference-spread-wave 1.8s var(--ease-scroll) infinite;
+}
+
+@keyframes difference-spread-wave {
+  0% { transform: scale(.6); opacity: .5; }
+  100% { transform: scale(2.1); opacity: 0; }
+}
+
+/* 퍼져나간 본부 — 흰 알약으로 원본 주위에 흩어진다. */
+.difference-spread-node {
+  position: absolute;
+  inset-block-start: var(--node-y);
+  inset-inline-start: var(--node-x);
+  /* 위 .difference-spread-core와 같은 이유로 translate 프로퍼티를 쓴다. */
+  translate: -50% -50%;
+  padding: var(--space-4) var(--space-10);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--mock-text-lg);
+  line-height: var(--mock-leading-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-ink);
+  white-space: nowrap;
 }
 
 /* ---------------------------------------------
@@ -725,23 +912,27 @@
     min-height: 0;
   }
 
-  /* 세로로 쌓이면 폭 확장이 "범위"가 아니라 정렬 실수로 보인다. */
-  .difference-spread-row,
-  .difference-screen.is-active .difference-spread-row:first-child,
-  .difference-screen.is-active .difference-spread-row:nth-child(2) {
-    width: 100%;
+  /* 세로로 쌓이면 칸의 오른쪽 밖은 다음 칸이 아니라 빈 여백이다 —
+     화살표가 아무것도 가리키지 않으므로 숨긴다. */
+  .difference-flow-arrow {
+    display: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
 
-  /* 차오르는 막대·폭 확장은 장식이므로 애니메이션 없이 완성 상태만 보여준다.
+  /* 차오르는 막대는 장식이므로 애니메이션 없이 완성 상태만 보여준다.
      화면 순환 자체는 js가 멈춘다. */
   .difference-gauge-bar span,
-  .difference-spread-row,
-  .difference-column i,
   .difference-screen {
     transition-duration: .001ms;
     transition-delay: 0s;
+  }
+
+  /* ②의 확산 파장은 무한 반복이라 반드시 멈춘다. 원본 팀 알약과 본부 노드는
+     그대로 남으므로 "퍼져 있다"는 결과는 정지 상태에서도 읽힌다.
+     단계 등장(.is-step)·칸 안 전개(.is-cue)는 mock-motion.css가 완성 상태로 멈춘다. */
+  .difference-spread-wave {
+    display: none;
   }
 }

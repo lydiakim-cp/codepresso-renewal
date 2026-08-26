@@ -10,6 +10,7 @@
  *   deck      카드가 앞으로 밀려오고, 빠지기 직전 배지가 pop 된다
  *   detail    항목을 고르면 우측 상세가 밀려 들어온다
  *   ticker    수치가 pop 되고 새 행이 위에서 밀려 들어온다
+ *   stage     한 화면에 나란히 놓인 3단계가 좌에서 우로 하나씩 켜진다
  *
  * 연출은 CSS 애니메이션만으로 무한 반복한다(JS 없음) — 스크롤 위치와 무관하게
  * 항상 같은 리듬으로 돌아야 목업이 "살아 있는 화면"으로 읽힌다.
@@ -27,6 +28,17 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-20);
+}
+
+/* 목업은 '제품 화면 그림'이지 읽고 복사하는 본문이 아니다 — 드래그하면
+   스켈레톤과 더미 텍스트가 선택돼 진짜 UI처럼 보이던 인상이 깨진다.
+   목업 루트 전부(.mock-screen · .journey-mock · data-mock-motion를 가진 것)에
+   걸어 새 목업을 만들 때마다 다시 쓰지 않게 한다. */
+.mock-screen,
+.journey-mock,
+[data-mock-motion] {
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 /* 연출 안에서 "지금 읽어야 하는 것"과 "배경으로 가라앉는 것"을 나누는 공통 훅.
@@ -132,6 +144,19 @@
   78%, 100% { transform: translate(var(--mock-cursor-to-x, 150px), var(--mock-cursor-to-y, 118px)); opacity: 0; }
 }
 
+/* deck의 겹침 뼈대. detail과 같은 이유로 designsystem.css에서 컴포넌트
+   레벨로 올렸다 — index.html의 SkillCamp 목업이 같은 구조를 쓴다.
+   세 장을 같은 자리에 겹쳐 두고, 겹침 순서는 문서 순서의 역순이라 z-index로 세운다. */
+.mock-deck { display: flex; flex-direction: column; gap: var(--space-18); }
+.mock-deck-stage { position: relative; height: 190px; }
+.mock-deck-card { position: absolute; inset: 0 auto auto 0; display: flex; flex-direction: column; gap: var(--space-12); width: 300px; padding: var(--space-20); border: 1px solid var(--color-brand-tint-2); border-radius: var(--radius-lg); background: var(--color-surface); }
+/* 덱의 계단 겹침은 기본 transform으로 둔다. keyframes에만 두면 정지 상태에서
+   세 장이 완전히 포개져 덱으로 보이지 않는다. */
+.mock-deck-card.is-deck-back { z-index: 1; transform: translate(74px, 44px) scale(.88); opacity: .3; }
+.mock-deck-card.is-deck-mid { z-index: 2; transform: translate(38px, 22px) scale(.94); opacity: .6; }
+.mock-deck-card.is-deck-front { z-index: 3; border-color: var(--color-brand); box-shadow: var(--shadow-md); }
+.mock-deck-card-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-10); }
+
 /* --- deck: 카드가 앞으로 밀려온다 --- */
 /* 세 장이 각각 앞·중간·뒤를 맡는다. 앞장이 좌상단으로 빠지면 뒤 두 장이 한 칸씩 당겨진다.
    translate 값(38/22 · 74/44)은 카드 모서리가 겹쳐 보이도록 계단 간격을 두 배씩 준 것이다. */
@@ -179,6 +204,21 @@
 [data-mock-motion="deck"] .is-deck-front .journey-mock-progress-bar span {
   animation: mock-progress-fill var(--mock-cycle, 6.5s) cubic-bezier(.5, 0, .2, 1) infinite;
 }
+
+/* detail의 2단 뼈대. 원래 designsystem.css에 있었으나 index.html의 SkillPath
+   목업이 같은 구조를 쓰게 되어 컴포넌트 레벨로 올렸다 — 페이지 CSS에 같은
+   규칙을 복사하지 않기 위해서다. */
+.mock-detail { display: flex; }
+.mock-detail-aside { display: flex; flex-direction: column; gap: var(--space-12); width: 190px; flex-shrink: 0; padding: var(--space-20) var(--space-12); border-right: 1px solid var(--color-line); background: var(--color-surface-page); }
+.mock-detail-list { display: flex; flex-direction: column; gap: var(--space-4); }
+.mock-detail-row { display: flex; align-items: center; gap: var(--space-10); padding: var(--space-10); border-radius: var(--radius-md); }
+.mock-detail-panel { display: flex; flex-direction: column; gap: var(--space-16); flex: 1; min-width: 0; padding: var(--space-20); }
+.mock-detail-head { display: flex; align-items: center; gap: var(--space-16); }
+.mock-detail-gauge { position: relative; width: 64px; height: 64px; flex-shrink: 0; }
+/* 게이지는 12시에서 시작해야 "채워진다"로 읽힌다 — SVG 기본 0도는 3시다. */
+.mock-detail-gauge svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.mock-detail-gauge b { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.mock-detail-head-body { display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
 
 /* --- detail: 상세가 밀려 들어온다 --- */
 [data-mock-motion="detail"] .is-selected {
@@ -272,6 +312,72 @@
   100% { background: var(--color-brand-tint-1); }
 }
 
+/* --- stage: 한 화면에 나란히 놓인 3단계가 순서대로 켜진다 --- *
+ * 프레젠테이션에서 단계 슬라이드가 한 칸씩 채워지듯, 3칸이 좌→우로 하나씩 등장한다.
+ * 장면을 교체하지 않고 나란히 두는 이유는 "1단계의 결과가 2단계로 넘어간다"를
+ * 세 칸이 함께 보일 때만 한눈에 읽을 수 있기 때문이다.
+ *
+ * 세 층위를 분리해 뒀다 — 이 셋이 함께 있어야 "단계가 진행된다"로 읽힌다.
+ *   .is-step  칸 하나가 통째로 올라온다(단계 자체의 등장)
+ *   .is-cue   그 칸 안의 요소가 이어서 올라온다(칸 안의 전개)
+ *   .is-flow  칸과 칸 사이의 화살표가 흘러 다음 칸으로 넘긴다
+ *
+ * 다른 4종과 달리 이 연출만 무한 반복이 아니라 "한 번만" 재생한다(both).
+ * 단계는 쌓이는 것이지 되감기는 것이 아니라서, 다 켜진 뒤 도로 사라지면
+ * 방금 읽은 순서가 부정된다. 대신 화면이 다시 자기 차례로 돌아올 때마다
+ * 처음부터 다시 재생돼야 하므로, 재생 조건을 화면의 활성 상태에 건다.
+ *
+ * CSS만으로는 "한 번 재생"과 "다시 자기 차례일 때 또 재생"을 함께 만들 수 없다 —
+ * 클래스를 다시 붙여도 이미 끝난 애니메이션은 되감기지 않기 때문이다. 그래서
+ * 재생 자체는 여기서 both로 한 번만 돌리고, 되감기는 쓰는 쪽이 맡는다:
+ * index.html의 ②는 difference-cycle.js가 화면을 활성화할 때 되감아 다시 재생시킨다.
+ * 되감아 주는 스크립트가 없는 곳(디자인 가이드 카탈로그 등)에서는 페이지 진입 시
+ * 한 번 재생되고 완성 상태로 머문다 — 그것만으로도 연출의 의도는 전달된다.
+ *
+ * 칸은 --mock-step(0·1·2)으로 자기 순서를 선언하고 그 값으로 지연을 계산한다.
+ * keyframes를 칸마다 따로 쓰지 않아 단계를 늘려도 CSS가 늘지 않는다.
+ */
+
+[data-mock-motion="stage"] .is-step {
+  animation: mock-step-in .5s var(--ease-scroll) both;
+  /* 단계마다 0.34s씩 늦게 켜진다. 세 칸이 다 켜지는 데 약 1.2s —
+     화면이 머무는 5s 안에서 읽을 시간을 충분히 남긴다. */
+  animation-delay: calc(.34s * var(--mock-step, 0));
+  will-change: opacity, transform;
+}
+
+@keyframes mock-step-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 칸 안의 요소가 칸보다 조금 늦게 이어서 올라온다.
+   --mock-step(부모 칸에서 상속)에 --mock-cue-delay를 더해, 칸 순서와 칸 안 순서가
+   하나의 시간축 위에 놓인다. */
+[data-mock-motion="stage"] .is-cue {
+  animation: mock-cue-in .42s var(--ease-scroll) both;
+  animation-delay: calc(.34s * var(--mock-step, 0) + var(--mock-cue-delay, 0s) + .14s);
+  will-change: opacity, transform;
+}
+
+@keyframes mock-cue-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 칸과 칸 사이의 화살표 — 앞 단계의 결과가 다음으로 넘어간다는 신호.
+   칸이 켜진 뒤 한 번 밝아졌다 가라앉으며 "넘어갔다"를 알린다. */
+[data-mock-motion="stage"] .is-flow {
+  animation: mock-flow-slide .6s var(--ease-scroll) both;
+  animation-delay: calc(.34s * var(--mock-step, 0) + .3s);
+}
+
+@keyframes mock-flow-slide {
+  0% { opacity: 0; transform: translateX(-4px); }
+  55% { opacity: 1; transform: translateX(3px); }
+  100% { opacity: .55; transform: translateX(0); }
+}
+
 /* LIVE 표시가 깜빡인다. .journey-mock-badge.is-live와 함께 쓴다. */
 [data-mock-motion] .is-pulse {
   animation: mock-pulse 1.6s var(--ease-scroll) infinite;
@@ -296,6 +402,9 @@
   [data-mock-motion] .is-stagger,
   [data-mock-motion] .is-gauge,
   [data-mock-motion] .is-feed,
+  [data-mock-motion] .is-step,
+  [data-mock-motion] .is-cue,
+  [data-mock-motion] .is-flow,
   [data-mock-motion] .is-pulse,
   [data-mock-motion] .is-selected,
   [data-mock-motion] .is-deck-front,
