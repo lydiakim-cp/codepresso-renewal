@@ -178,11 +178,19 @@
 
   /* 화살표는 우측 중앙에 절대 위치하며 hover 시에만 살짝 움직이는
      장식이다. 모바일은 hover가 없고 카드도 이제 전부 펼쳐진 상태라
-     "눌러서 펼친다"는 신호 자체가 필요 없다 — 감춘다. */
-  .feature-card-arrow { display: none; }
+     "눌러서 펼친다"는 신호 자체가 필요 없다 — 감춘다.
+     how-it-works에만 건다 — feature-card는 ax-build.html의 다른
+     섹션(ax-build-fit)도 쓰는 공용 컴포넌트라, 여기서 무조건 걸면
+     그 섹션의 화살표까지 함께 사라진다. */
+  .how-it-works .feature-card-arrow { display: none; }
 
-  /* 화살표를 위해 비워 뒀던 우측 32px도 함께 걷는다. */
-  .feature-card .section-body { padding-right: 0; }
+  /* 화살표를 위해 비워 뒀던 우측 32px도 함께 걷는다(위와 같은 이유로
+     how-it-works 스코프). */
+  .how-it-works .feature-card .section-body { padding-right: 0; }
+
+  /* 진행률 바도 순환이 없는 모바일에서는 의미가 없다 — 카드가 전부
+     펼쳐져 있어 "다음 카드로 언제 넘어가는지" 보여줄 대상이 없다. */
+  .how-it-works .feature-card-progress { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
