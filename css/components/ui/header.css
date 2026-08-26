@@ -319,3 +319,32 @@
 .nav-news-item:hover .nav-news-title {
   color: var(--color-brand);
 }
+
+/* ---------------------------------------------
+ * 모바일 — 현재 GNB는 hover로 열리는 300px 메가 패널이라 터치 화면에서
+ * 동작하지 않는다. 이 GNB는 추후 실제 운영 GNB로 교체될 예정이므로
+ * (subpage-guide 참고) 여기서 햄버거 메뉴를 새로 만들지 않고,
+ * 메뉴를 감춘 뒤 로고와 주요 CTA만 남긴다.
+ * 교체 작업에 들어가면 이 블록을 지우고 그때 모바일 메뉴를 함께 설계한다.
+ * --------------------------------------------- */
+@media (max-width: 900px) {
+  .nav { display: none; }
+
+  .header-inner {
+    height: 60px;
+    padding: var(--space-10) var(--space-20);
+    gap: var(--space-12);
+    justify-content: space-between;
+  }
+
+  /* 로고가 156px이라 좁은 화면에서 CTA를 밀어낸다. */
+  .logo img { width: 124px; height: auto; }
+}
+
+@media (max-width: 560px) {
+  /* 두 버튼이 다 들어가지 않는다 — 진단 CTA 하나만 남긴다.
+     로그인은 그 화면 안에서 다시 제공된다. */
+  .header-actions .btn-ghost { display: none; }
+
+  .logo img { width: 108px; }
+}

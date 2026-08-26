@@ -188,3 +188,37 @@
   --motion-float-y: -5px;
   --motion-nudge-x: 3px;
 }
+
+/* ---------------------------------------------
+ * 모바일 타이포 스케일
+ * base.css의 h1~h3가 --text-h1/h2/h3 시맨틱 토큰을 읽으므로, 여기서 그
+ * 토큰만 다시 가리키면 컴포넌트를 하나도 건드리지 않고 사이트 전체 제목이
+ * 함께 줄어든다. 컴포넌트마다 font-size를 다시 쓰지 않는 이유가 이것이다.
+ *
+ * 데스크톱 56/44/24는 360px 화면에서 한 단어가 한 줄을 차지한다.
+ * 32/26/20으로 내리되 본문 16px은 그대로 둔다 — 본문까지 줄이면 가독성이
+ * 떨어지고, 이 프로젝트의 "최소 14px" 제약과도 어긋난다.
+ * 자간은 40px 이하 구간의 규칙(-0.1px)을 따라 tight로 바꾼다.
+ * --------------------------------------------- */
+@media (max-width: 560px) {
+  :root {
+    --text-hero: var(--text-heading-32);
+    --leading-hero: var(--leading-heading-32);
+    --tracking-hero: var(--tracking-heading-tight);
+
+    --text-h1: var(--text-heading-32);
+    --leading-h1: var(--leading-heading-32);
+    --tracking-h1: var(--tracking-heading-tight);
+
+    /* h2는 24px — 스케일에 26px이 없어 새로 만들지 않고 기존 단을 쓴다.
+       h1 32 / h2 24 / h3 20으로 3단 위계는 유지된다. */
+    --text-h2: var(--text-heading-24);
+    --leading-h2: var(--leading-heading-24);
+
+    --text-h3: var(--text-heading-20);
+    --leading-h3: var(--leading-heading-20);
+
+    --text-card-title: var(--text-heading-18);
+    --leading-card-title: var(--leading-heading-18);
+  }
+}

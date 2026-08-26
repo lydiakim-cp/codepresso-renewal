@@ -36,6 +36,15 @@
   }
 }
 
+/* 모바일 — 판 안쪽 여백(48px)이 리포트 이미지를 좁힌다.
+   이 섹션은 이미지 + 캡션이라 구조를 바꿀 것이 없고 여백만 줄이면 된다. */
+@media (max-width: 560px) {
+  .diagnosis-preview-panel {
+    padding: var(--space-18);
+    gap: var(--space-24);
+  }
+}
+
 /* 2컬럼·좌측 sticky 구조는 공통 .section-wrap.row.is-sticky가 담당한다. */
 
 /* ---------------------------------------------

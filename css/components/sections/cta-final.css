@@ -58,3 +58,20 @@
   gap: var(--space-12);
   margin-top: var(--space-12);
 }
+
+/* 모바일 — 버튼 2개가 한 줄에 들어가지 않는다. 세로로 쌓고 폭을 채워
+   엄지로 누르는 영역을 넓힌다(hero-cta와 같은 처리). */
+@media (max-width: 560px) {
+  .cta-final-desc {
+    font-size: var(--text-body-16);
+    line-height: var(--leading-body-16);
+  }
+
+  .cta-final-actions {
+    flex-direction: column;
+    align-self: stretch;
+    width: 100%;
+  }
+
+  .cta-final-actions .btn { width: 100%; }
+}

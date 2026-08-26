@@ -1131,6 +1131,49 @@
   }
 }
 
+/* 모바일 — 칸이 이미 1열로 쌓였으므로, 여기서는 칸 '안'을 다시 잡는다.
+   목업 전용 타이포는 화면이 좁아진 만큼 축소 화면이 아니라 실제 크기에
+   가까워지므로, 데스크톱보다 오히려 키워 읽히게 한다(16/14/12/10 → 15/14/13/11).
+   하한(sm)만 11px로 올린 것은 칩·메타가 실제로 읽히는 크기가 되기 때문이다. */
+@media (max-width: 560px) {
+  .difference-mock { padding: var(--space-18); }
+
+  .difference-screen-body.is-cycle,
+  .difference-screen-body.is-library,
+  .difference-screen-body.is-field {
+    --mock-text-title: 15px;
+    --mock-leading-title: 20px;
+    --mock-text-lg: 14px;
+    --mock-leading-lg: 19px;
+    --mock-text: 13px;
+    --mock-leading: 18px;
+    --mock-text-sm: 11px;
+    --mock-leading-sm: 15px;
+  }
+
+  /* 단계 머리글은 번호·라벨·설명을 한 행에 두는데, 360px에서는 설명이
+     말줄임으로 거의 사라진다 — 설명만 다음 줄로 내려 전부 읽히게 한다. */
+  .difference-step-head { flex-wrap: wrap; }
+
+  .difference-step-desc {
+    flex-basis: 100%;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  /* 배지가 머리글 위에 겹치던 이유(같은 행)가 사라졌으므로 3단계 칸에서도
+     설명을 되살린다. 다만 배지는 여전히 우측 상단에 떠 있으므로, 번호·라벨
+     행이 배지 아래로 파고들지 않게 그만큼 오른쪽을 비워 둔다. */
+  .difference-card.is-step.is-last .difference-step-desc { display: block; }
+
+  /* 배지 폭(≈110px)만큼 라벨 뒤를 비운다. flex-basis:100%인 설명은 다음
+     줄이라 영향받지 않게 라벨에만 margin으로 준다. */
+  .difference-card.is-step.is-last .difference-card-label { margin-right: 110px; }
+
+  /* 확산 파장이 좁은 판에서 과하게 번져 노드를 덮는다 — 한 단 줄인다. */
+  .difference-spread-map { min-height: 180px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
 
   /* 차오르는 막대는 장식이므로 애니메이션 없이 완성 상태만 보여준다.

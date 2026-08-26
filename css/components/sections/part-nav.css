@@ -92,3 +92,21 @@
 
 /* 인디케이터에는 transition이 없으므로 reduced-motion 예외가 필요하지 않다.
    클릭 시의 smooth scroll은 part-nav.js가 이 설정을 확인해 즉시 이동으로 바꾼다. */
+
+/* 모바일 — 캡슐 2개(각 ≈160px)가 좌우 패딩 20px씩을 뺀 320px에 겨우 맞는다.
+   좌우 패딩을 줄여 여유를 만들고, 그래도 넘치면 가로로 스크롤되게 둔다
+   (줄바꿈시키면 캡슐 배경과 슬라이딩 인디케이터의 위치가 어긋난다). */
+@media (max-width: 560px) {
+  .part-nav {
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .part-nav::-webkit-scrollbar { display: none; }
+
+  .part-nav-item {
+    padding: var(--space-6) var(--space-12);
+    white-space: nowrap;
+  }
+}

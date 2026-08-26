@@ -102,3 +102,19 @@
 }
 
 .insight-row-empty .skeleton-block.is-thumbnail { flex: 0 0 auto; height: 96px; }
+
+/* ---------------------------------------------
+ * 모바일 — 좌(대표 기사) + 우(목록) 2단을 세로로 쌓는다.
+ * 480px 고정 높이는 두 칼럼의 키를 맞추려던 값인데, 1열이 되면 맞출 상대가
+ * 없고 내용이 그 안에 갇혀 잘린다 — 높이를 풀어 내용대로 흐르게 둔다.
+ * --------------------------------------------- */
+@media (max-width: 560px) {
+  .insight-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-24);
+    height: auto;
+  }
+
+  /* 자리를 채우려고 두던 빈 스켈레톤 행은 세로 배치에서 스크롤만 늘린다. */
+  .insight-row-empty { display: none; }
+}

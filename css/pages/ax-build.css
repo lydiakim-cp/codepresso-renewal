@@ -348,4 +348,24 @@
 
   /* 720px 이하는 metric-card·summary-banner-stats가 자체 규칙으로 접힌다.
      이 페이지에서 추가로 손댈 것은 없다. */
+
+  /* 모바일 — 위 900px 블록의 "반응형 착수 시 재검토" 예고분.
+     제목·본문 스케일은 tokens.css의 560px 블록이 사이트 전체에 적용하므로
+     여기서는 이 페이지 고유의 배치만 손본다. */
+  @media (max-width: 560px) {
+    /* 아이콘 칸(48px) + 본문 2단은 좁은 화면에서 본문을 눌러 버린다 —
+       아이콘을 본문 위로 올려 한 열로 쌓는다. */
+    .ax-build-deliverable-item {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+      padding: var(--space-20);
+    }
+
+    /* hero는 GNB가 60px로 낮아진 만큼 상단 여백도 함께 줄인다. */
+    .ax-build-hero .section-wrap { padding-top: 88px; }
+
+    /* 카피가 세로로 쌓이므로 순차 진입의 이동폭을 줄인다 — 12px이면
+       짧은 화면에서 요소가 아래에서 크게 튀어 올라오는 것처럼 보인다. */
+    .ax-build-hero-copy > * { --motion-rise: 6px; }
+  }
 }

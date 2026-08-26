@@ -69,6 +69,33 @@ main > section,
   .section-wrap.row.is-sticky > .section-aside { position: static; }
 }
 
+/* 모바일 — 세로 여백과 좌우 패딩을 함께 줄인다.
+   96px 섹션 여백은 화면이 좁아지면 "빈 화면을 스크롤하는" 느낌을 준다.
+   좌우 20px은 유지한다(더 줄이면 카드가 화면 끝에 붙어 답답해진다). */
+@media (max-width: 560px) {
+  .wrap > section,
+  main > section,
+  .parts-group > section {
+    padding-block: 56px;
+  }
+
+  .section-wrap.col { --section-gap: 24px; }
+  .section-wrap.row { --section-gap: 32px; }
+
+  .section-title { gap: 12px; }
+
+  /* 타이틀과 CTA를 한 줄에 두던 헤더는 세로로 쌓고 CTA를 왼쪽에 맞춘다. */
+  .section-header {
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  /* 폭이 좁아 버튼 2개가 한 줄에 안 들어가면 다음 줄로 흐른다. */
+  .section-cta { flex-wrap: wrap; }
+
+  .section-content { min-height: 0; }
+}
+
 /*
  * Component: Section Title
  * 섹션 상단에 반복되는 라벨 + 타이틀 + 설명 블록.

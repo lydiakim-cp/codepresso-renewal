@@ -1,6 +1,6 @@
 ---
 name: html-css-architecture
-description: 코드프레소 리뉴얼 사이트의 HTML/CSS 작업 규범. 제1규칙은 "새로 만들지 말고 기존 컴포넌트·토큰·패턴을 찾아 그대로 재사용" — 중복 CSS를 만들지 않는다. 순수 HTML/CSS 프로젝트(Tailwind·React 없음). Semantic HTML, 실제 Design Token(--color-brand/--color-ink 계열), 고정 타이포 제약(서비스 페이지 최소 14px·weight 3단), 클래스 네이밍(공용 BEM·페이지전용 하이픈·is- 상태·data- 훅), 페이지/섹션 구조, 새 서브페이지 제작 절차(subpage-guide.md), 컴포넌트 인벤토리(component-inventory.md), 제품 화면 목업 연출 5종(mock-motion-guide.md — focus·replay·deck·detail·ticker, "B번 목업처럼"·"카드 덱처럼"·"스켈레톤으로 하고 중요한 것만 텍스트로"), 실제 CSS 관용구(css-patterns.md — color-mix 색 파생·chevron SVG와 images/icon 색상 교체·hover 리듬·prefers-reduced-motion·breakpoint 900/720), 화면이 단조로울 때 채우는 순서(섹션 배경 리듬 → 배경 이미지 질감 → 아이콘 → 모션), 내부용 화면의 군더더기 제거, 에셋 네이밍, 중복·무효 선언 정리, 마크업·CSS·JS 3자 정합성, 커밋 규칙, 접근성. HTML 작성, CSS 작성, 컴포넌트 스타일링, 섹션 추가·리디자인, 새 서브페이지 만들기, 화면이 심심할 때 시각적으로 보강, 배경·아이콘·애니메이션 추가, 목업에 애니메이션 넣기, 아이콘/이미지 교체, 반응형, CSS 중복 제거·리팩터링, 커밋 작업을 할 때 항상 먼저 로드해서 따른다.
+description: 코드프레소 리뉴얼 사이트의 HTML/CSS 작업 규범. 제1규칙은 "새로 만들지 말고 기존 컴포넌트·토큰·패턴을 찾아 그대로 재사용" — 중복 CSS를 만들지 않는다. 순수 HTML/CSS 프로젝트(Tailwind·React 없음). Semantic HTML, 실제 Design Token(--color-brand/--color-ink 계열), 고정 타이포 제약(서비스 페이지 최소 14px·weight 3단), 클래스 네이밍(공용 BEM·페이지전용 하이픈·is- 상태·data- 훅), 페이지/섹션 구조, 새 서브페이지 제작 절차(subpage-guide.md), 컴포넌트 인벤토리(component-inventory.md), 제품 화면 목업 연출 5종(mock-motion-guide.md — focus·replay·deck·detail·ticker, "B번 목업처럼"·"카드 덱처럼"·"스켈레톤으로 하고 중요한 것만 텍스트로"), 실제 CSS 관용구(css-patterns.md — color-mix 색 파생·chevron SVG와 images/icon 색상 교체·hover 리듬·prefers-reduced-motion·breakpoint 900/720/560), 화면이 단조로울 때 채우는 순서(섹션 배경 리듬 → 배경 이미지 질감 → 아이콘 → 모션), 내부용 화면의 군더더기 제거, 에셋 네이밍, 중복·무효 선언 정리, 마크업·CSS·JS 3자 정합성, 커밋 규칙, 접근성. HTML 작성, CSS 작성, 컴포넌트 스타일링, 섹션 추가·리디자인, 새 서브페이지 만들기, 화면이 심심할 때 시각적으로 보강, 배경·아이콘·애니메이션 추가, 목업에 애니메이션 넣기, 아이콘/이미지 교체, 반응형, CSS 중복 제거·리팩터링, 커밋 작업을 할 때 항상 먼저 로드해서 따른다.
 ---
 
 # Modern HTML & CSS Architecture
@@ -380,24 +380,27 @@ JS가 요소를 찾을 때는 클래스가 아니라 `data-*` 속성을 쓴다. 
 
 ## 7. Responsive Design
 
-### 이 프로젝트의 현재 단계 — 데스크톱 확정 우선
+### breakpoint 3단 — 새 값을 만들지 않는다
 
-**이 프로젝트는 데스크톱(1440px 기준) 디자인을 확정하는 단계다.** 본격적인 반응형 설계는 아직 착수하지 않았지만, **일부 컴포넌트에는 이미 미디어 쿼리가 들어가 있다**(레이아웃이 깨지는 것을 막는 최소 대응). 따라서:
+데스크톱(1440px)을 기준으로 만들고, 아래 **3단**으로 좁혀 간다. 반응형을 손볼 일이 생기면 이 세 값을 쓰고 **새 숫자를 만들지 않는다.**
 
-- **요청받지 않은 반응형 작업을 임의로 확대하지 않는다.** 새 컴포넌트를 만들면서 미디어 쿼리 3단을 함께 깔지 않는다 — 데스크톱 레이아웃이 확정되기 전의 반응형은 대부분 재작업이 된다.
-- **고정 px 레이아웃을 쓸 때는 그것이 임시임을 드러낸다** — 폭·높이를 픽셀로 못 박아야 한다면 한 줄 주석으로 근거를 남겨(“1440 기준, 반응형 착수 시 재검토”) 나중에 찾을 수 있게 한다.
-- 전면 반응형은 **별도 요청으로 착수**한다.
+| breakpoint | 무엇이 달라지는가 | 쓰는 곳 |
+|---|---|---|
+| `max-width: 900px` | 2단 레이아웃(`section-wrap.row`)이 1단으로 접히고 sticky가 풀린다. GNB 메뉴가 감춰진다 | `layout` `hero` `header` `education-journey` `diagnosis-showcase` `difference` `proof-card` `ax-build` |
+| `max-width: 720px` | 카드 **내부**가 재배치된다 | `assessment-card` `content-panel` `metric-card` `proof-card` |
+| `max-width: 560px` | 모바일. 타이포 스케일이 내려가고, 목업 안이 1열로 접히고, 버튼이 폭을 채운다 | `tokens` `layout` `hero` `header` `assessment-card` `feature-card` `part-nav` `insight` `cta-final` `education-journey` `diagnosis-showcase` `difference` `ax-build` |
 
-### 이미 쓰이는 breakpoint — 새 값을 만들지 않는다
+**모바일(560px)에서 지키는 원칙:**
 
-기존 컴포넌트가 실제로 쓰는 breakpoint는 사실상 2단으로 수렴해 있다. 반응형을 손볼 일이 생기면 **이 두 값을 쓰고, 새 숫자를 만들지 않는다.**
+- **타이포는 컴포넌트가 아니라 토큰으로 줄인다.** `tokens.css`의 560px 블록이 `--text-h1/h2/h3`를 32/24/20px로 다시 가리키고, `base.css`의 `h1~h3`가 그것을 읽으므로 **컴포넌트를 하나도 고치지 않고** 사이트 전체 제목이 함께 줄어든다. 컴포넌트에서 `font-size`를 다시 쓰지 않는다.
+- **본문 16px은 줄이지 않는다** — "최소 14px" 제약과 충돌하고 가독성이 떨어진다.
+- **목업 안 타이포는 오히려 키운다.** 화면이 좁아지면 목업이 "축소 화면"이 아니라 실제 크기에 가까워지므로, 데스크톱 스케일(16/14/12/10)을 모바일에서 15/14/13/11로 올린다.
+- **주요 CTA는 폭을 채운다**(`width: 100%` + 세로 쌓기) — 버튼 2개가 한 줄에 안 들어가고, 엄지로 누르는 영역도 넓어야 한다.
+- **고정 높이는 푼다.** 카드 높이·판 높이는 대개 "이웃과 눈높이를 맞추려는" 값인데, 1열로 쌓이면 맞출 이웃이 없고 내용만 잘린다(`feature-card` 380px, `journey-mock` 355px, `insight-layout` 480px).
 
-| breakpoint | 쓰는 곳 |
-|---|---|
-| `max-width: 900px` | 2단 레이아웃(`section-wrap.row`)이 1단으로 접히는 지점 — `layout.css`, `hero.css`, `education-journey.css`, `diagnosis-showcase.css`, `difference.css` |
-| `max-width: 720px` | 카드 내부가 재배치되는 지점 — `assessment-card.css`, `content-panel.css`, `metric-card.css` |
+**아직 남은 것 — GNB.** 현재 GNB는 hover로 열리는 메가 패널이라 터치에서 동작하지 않는다. 실제 운영 GNB로 교체될 예정이라(subpage-guide 참고) 햄버거 메뉴를 새로 만들지 않고, 900px 이하에서 **메뉴를 감추고 로고 + 주요 CTA만** 남겨 두었다. 교체 작업에 들어가면 `header.css`의 그 블록을 지우고 모바일 메뉴를 함께 설계한다.
 
-(`proof-card.css`만 `1023px`/`780px`을 쓰는 예외다. 이 컴포넌트를 손볼 때 900/720으로 맞출지 사용자에게 확인한다.)
+(`proof-card.css`만 `1023px`/`780px`을 쓰는 예외다. 이 컴포넌트를 손볼 때 900/720/560으로 맞출지 사용자에게 확인한다.)
 
 ### @keyframes는 새로 만들지 않는다 — `css/keyframes.css` 라이브러리를 쓴다
 
@@ -748,7 +751,7 @@ HTML·CSS를 **작성하거나 수정할 때마다** 아래 4종 중복을 점�
 
 **에셋 (11번 항목)**: `images/` 밖에 새 에셋 루트를 만들지 않았는가 / 아이콘이 `ic_` + camelCase인가 / 한글·공백·쉼표 파일명이 없는가 / `-v1`·`-v2` 같은 버전 접미사가 커밋에 남지 않았는가 / 교체한 구본을 같은 커밋에서 삭제했는가
 
-**Responsive**: (현재는 데스크톱 확정 단계 — 요청 없는 반응형 작업을 추가하지 않았는가) / 고정 px 레이아웃에 근거 주석을 남겼는가 / `clamp()`·논리 속성·`container-type`처럼 지금 해두면 재작업이 없는 것은 적용했는가
+**Responsive**: 900/720/560 3단 안에서 처리했는가(새 breakpoint를 만들지 않았는가) / 모바일 제목 크기를 컴포넌트가 아니라 `tokens.css`의 560px 블록으로 처리했는가 / 이웃과 눈높이를 맞추려던 고정 높이를 모바일에서 풀었는가 / 다단 그리드가 `minmax(0, 1fr)`이라 넘치지 않는가 / 고정 px 레이아웃에 근거 주석을 남겼는가
 
 **Accessibility**: keyboard navigation 가능 / `:focus-visible` 제공 / 이미지 `alt` 적절 / form label 연결 / screen reader 유틸리티 적용
 

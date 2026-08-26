@@ -167,6 +167,16 @@
   transform: translateY(0);
 }
 
+/* 모바일 — 카드 높이 380px은 3장이 나란할 때 눈높이를 맞추려던 값이다.
+   1열로 쌓이면 맞출 이웃이 없고, 짧은 카드에 빈 공간만 남는다. */
+@media (max-width: 560px) {
+  .feature-card {
+    height: auto;
+    min-height: 240px;
+    padding: var(--space-24);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .feature-card,
   .feature-card-arrow,
