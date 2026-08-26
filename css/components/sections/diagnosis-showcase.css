@@ -59,11 +59,23 @@
 .diagnosis-products--mobile { display: none; }
 
 @media (max-width: 560px) {
-  .diagnosis-products--desktop { display: none; }
+  /* .diagnosis-products(뒤에 나오는 display:flex 기본 규칙)와 동일
+     specificity라, 파일 순서상 이 규칙이 먼저 있으면 나중 규칙에 덮여
+     감춰지지 않는다 — !important로 순서 문제를 확실히 피한다. */
+  .diagnosis-products--desktop { display: none !important; }
   .diagnosis-products--mobile {
     display: inline-flex;
     align-self: stretch;
     width: 100%;
+    /* part-nav의 기본 배경(rgba(255,255,255,.55) + blur)은 hero의 진한
+       브랜드 배경 위에서 대비를 잡도록 만든 값이다. 이 nav는 .parts-group의
+       옅은 배경(--color-brand-tint-1 계열) 위에 놓여 흰 트랙이 배경과
+       거의 구분되지 않았다 — sunken 톤의 불투명 배경으로 바꾸고
+       blur·반투명을 걷어낸다. */
+    background: var(--color-surface-sunken);
+    border-color: var(--color-line);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   /* 항목 3개(PART 1)가 360px 폭에서 빡빡하다 — part-nav 기본 좌우
