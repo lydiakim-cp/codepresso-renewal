@@ -25,7 +25,13 @@
 }
 
 .hero-banner:hover { background: var(--color-surface); box-shadow: var(--shadow-md); }
-.hero-banner-text { font-size: var(--text-body-muted); font-weight: var(--font-weight-medium); color: var(--color-ink); }
+
+/* 최소 14px 제약의 의도적 예외 — hero-banner는 뉴스 헤드라인을 알리는
+   보조 배너지 본문이 아니다. 10/12px 토큰이 스케일에 없어(12px은 사용처가
+   없어 제거된 값) raw로 둔다. 다른 곳에서 같은 크기가 또 필요해지면
+   그때 토큰으로 올린다. */
+.hero-banner .tag { font-size: 10px; line-height: 14px; }
+.hero-banner-text { font-size: 12px; line-height: 16px; font-weight: var(--font-weight-medium); color: var(--color-ink); }
 .hero-banner-arrow { width: 16px; height: 16px; color: var(--color-brand); }
 
 .hero-content {
@@ -45,6 +51,13 @@
 .hero-description strong { font-weight: var(--font-weight-semibold); color: var(--color-ink); }
 .hero-cta { display: flex; gap: var(--space-12); }
 .hero-links { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-12); }
+
+/* hero 안의 보조 링크만 더 옅게 — link-arrow-ink는 여러 섹션이 공유하는
+   색 modifier라 여기서 직접 바꾸면 다른 섹션의 링크까지 옅어진다.
+   #9c9c9c는 --color-ink-lighter(#7C88A3, 블루 톤)와 다른 순수 회색이라
+   기존 토큰으로 대체하지 않고 이 자리에서만 쓴다 — 다른 곳에서 같은
+   값이 필요해지면 그때 토큰으로 올린다. */
+.hero-links .link-arrow-ink { color: #9c9c9c; }
 
 @media (max-width: 900px) {
   .hero-content { grid-template-columns: 1fr; }
@@ -78,8 +91,6 @@
 
   .hero-banner {
     margin-bottom: var(--space-24);
-    /* 배너 문구가 두 줄이 되면 좌우 패딩이 과해 보인다. */
-    padding: var(--space-8) var(--space-12);
   }
 
   .hero-description {
