@@ -135,6 +135,289 @@
   height: 355px;
 }
 
+/* SkillPath 목업은 공용 detail 연출(mock-motion.css)의 2단 구조를 쓴다.
+   .journey-mock이 이 파일에서 나중에 로드돼 세로 flex로 덮어버리므로,
+   두 클래스가 함께 붙었을 때만 가로 2단으로 되돌린다. 높이 355px과
+   pop-in(.is-popping) 규칙은 다른 스텝과 같게 그대로 유지된다. */
+.journey-mock.mock-detail {
+  flex-direction: row;
+  gap: 0;
+}
+
+/* SkillPath 목업 전용 소형 타이포 — .journey-app과 같은 이유로 메인페이지
+   최소 14px 제약을 적용하지 않는다(사용자 확인됨). 실제로 읽는 UI가 아니라
+   '화면 그림'이라, 14px로 두면 축소된 제품 화면으로 읽히지 않는다.
+   .journey-app보다 한 단계 크게(11/13px) 둔 것은 이 목업이 3단이 아니라
+   2단이라 요소당 폭이 더 넓기 때문이다. 전역 토큰으로 올리지 않고 이 목업
+   안에만 가둔다 — 실제 UI에 새어나가면 타이포 체계가 깨진다. */
+.journey-mock.mock-detail {
+  --mock-text: 11px;
+  --mock-leading: 15px;
+  --mock-text-lg: 13px;
+  --mock-leading-lg: 18px;
+}
+
+.journey-mock.mock-detail .journey-mock-item-name,
+.journey-mock.mock-detail .text-caption {
+  font-size: var(--mock-text);
+  line-height: var(--mock-leading);
+}
+
+.journey-mock.mock-detail .section-body-title {
+  font-size: var(--mock-text-lg);
+  line-height: var(--mock-leading-lg);
+}
+
+/* 체크·게이지도 함께 줄여야 글자만 작아진 어색한 비율이 안 생긴다.
+   background-size를 따로 두는 이유 — .is-done이 background 단축 속성으로
+   체크 아이콘을 깔면서 size까지 12px로 되돌리므로, 그 규칙보다 뒤에서
+   size만 다시 잡아야 아이콘이 14px 원 밖으로 넘치지 않는다. */
+.journey-mock.mock-detail .journey-mock-check {
+  width: 14px;
+  height: 14px;
+}
+
+.journey-mock.mock-detail .mock-detail-gauge {
+  width: 46px;
+  height: 46px;
+}
+
+/* 목업 높이가 355px로 고정돼 있어(다른 스텝과 판 높이를 맞추기 위해) STEP 행
+   4개만으로는 우측 패널 아래가 비어 보인다. 행을 늘려 여백을 나눠 갖게 한다. */
+.journey-mock.mock-detail .mock-detail-panel > .journey-mock-list {
+  flex: 1;
+  justify-content: space-between;
+}
+
+.journey-mock.mock-detail .mock-detail-panel .journey-mock-item {
+  flex: 1;
+}
+
+/*
+ * SkillCamp 목업 — 강사가 슬라이드를 넘기며 진행하는 발표 화면.
+ * 겹침·모션은 공용 deck(mock-motion.css)이 담당하고, 여기서는 355px 판에
+ * 맞추는 치수와 목업 전용 소형 타이포만 둔다.
+ */
+.journey-mock.camp-deck {
+  --mock-text: 11px;
+  --mock-leading: 15px;
+  --mock-text-lg: 13px;
+  --mock-leading-lg: 18px;
+  gap: var(--space-18);
+}
+
+.journey-mock.camp-deck .journey-mock-item-name,
+.journey-mock.camp-deck .text-caption,
+.journey-mock.camp-deck .text-label,
+.journey-mock.camp-deck .journey-mock-badge {
+  font-size: var(--mock-text);
+  line-height: var(--mock-leading);
+}
+
+.journey-mock.camp-deck .section-body-title {
+  font-size: var(--mock-text-lg);
+  line-height: var(--mock-leading-lg);
+}
+
+/* 헤드의 강사 블록은 카드가 아니라 한 줄짜리 화자 표시다 —
+   .journey-mock-speaker의 카드 여백을 걷어내고 아바타만 줄인다. */
+.journey-mock.camp-deck .journey-mock-speaker {
+  padding: 0;
+  background: none;
+  border: 0;
+}
+
+.journey-mock.camp-deck .journey-mock-avatar {
+  width: 26px;
+  height: 26px;
+  font-size: var(--mock-text);
+}
+
+/* 판 높이 355px에서 헤드(≈40px)와 gap을 뺀 나머지. 덱이 이보다 크면
+   맨 앞 장이 빠질 때 프레임 밖으로 삐져나온다. */
+.journey-mock.camp-deck .mock-deck-stage {
+  flex: 1;
+  height: auto;
+}
+
+/* 카드는 스테이지를 최대한 채우되, 뒤 카드의 계단 겹침(110px/58px)이
+   잘리지 않는 크기여야 한다 — 앞장이 스테이지를 꽉 채우면 뒤 두 장이
+   오른쪽·아래로 삐져나간다. 그래서 겹침만큼만 빼고 나머지를 전부 쓴다.
+   scale(.9)로 줄어든 뒤 카드가 실제로 차지하는 폭은 원래 폭의 90%라,
+   겹침 110px에서 그 여유를 감안해 100px만 뺀다. */
+.journey-mock.camp-deck .mock-deck-card {
+  width: calc(100% - 100px);
+  height: calc(100% - 52px);
+  gap: var(--space-10);
+  padding: var(--space-18);
+}
+
+/* 겹침을 키워 뒤 슬라이드의 제목 줄이 앞장 밖으로 나오게 한다 —
+   "다음 장이 대기 중"이 보여야 발표처럼 읽힌다.
+   keyframes에도 같은 값을 써야 정지 상태와 어긋나지 않는다. */
+.journey-mock.camp-deck .mock-deck-card.is-deck-mid {
+  transform: translate(56px, 30px) scale(.95);
+  opacity: .75;
+}
+
+.journey-mock.camp-deck .mock-deck-card.is-deck-back {
+  transform: translate(110px, 58px) scale(.9);
+  opacity: .4;
+}
+
+.journey-mock.camp-deck .is-deck-front {
+  animation-name: camp-deck-front;
+}
+
+/* 배지 pop은 공용 deck의 62~90% 구간에 맞춰져 있어, 사이클을 12s로 바꾸면
+   앞장이 이미 사라진 뒤에 터진다. 되돌아온 직후 터지도록 다시 잡는다. */
+.journey-mock.camp-deck .is-deck-front .is-pop {
+  animation-name: camp-badge-pop;
+}
+
+@keyframes camp-badge-pop {
+  0%, 82% { transform: scale(1) rotate(-8deg); opacity: 1; }
+  88% { transform: scale(.4) rotate(-14deg); opacity: 0; }
+  96% { transform: scale(1.18) rotate(-8deg); opacity: 1; }
+  100% { transform: scale(1) rotate(-8deg); opacity: 1; }
+}
+
+.journey-mock.camp-deck .is-deck-mid {
+  animation-name: camp-deck-mid;
+}
+
+.journey-mock.camp-deck .is-deck-back {
+  animation-name: camp-deck-back;
+}
+
+/*
+ * 사이클 배분 — 공용 deck은 앞장이 62%까지 머물고 80%에 교체가 끝난 뒤 바로
+ * 되감긴다. 그러면 SESSION 02가 앞에 나와 있는 시간이 20%뿐이라 "넘어갔다"만
+ * 보이고 두 번째 슬라이드를 읽을 틈이 없었다(요청받은 문제).
+ * 그래서 이 목업만 사이클을 12s로 늘리고 아래처럼 나눈다.
+ *   0~36%   SESSION 01 발표 중
+ *   36~46%  교체 (01이 좌상단으로 빠지고 02가 올라온다)
+ *   46~82%  SESSION 02 발표 중   ← 두 번째 슬라이드도 비슷한 길이로 머문다
+ *   82~100% 되돌아가기 — 02가 뒤로 물러나고 01이 다시 덮는다
+ *
+ * 되돌아가는 구간을 18%(≈2.2s)로 길게 잡은 것은, 여기가 짧으면 01이 순간이동한
+ * 것처럼 보이기 때문이다. 나가는 경로(좌상단)를 그대로 되짚어 들어온다.
+ */
+.journey-mock.camp-deck {
+  --mock-cycle: 12s;
+}
+
+/* 01은 좌상단으로 빠졌다가, 되돌아갈 때 같은 경로로 미끄러져 들어온다.
+   82~92%에서 위치·투명도가 함께 붙어야 "다시 앞으로 나온다"로 읽힌다. */
+@keyframes camp-deck-front {
+  0%, 36% { transform: translate(0, 0) scale(1); opacity: 1; }
+  46%, 82% { transform: translate(-64px, -26px) scale(.9); opacity: 0; }
+  92% { transform: translate(-16px, -7px) scale(.97); opacity: .85; }
+  100% { transform: translate(0, 0) scale(1); opacity: 1; }
+}
+
+@keyframes camp-deck-mid {
+  0%, 36% { transform: translate(56px, 30px) scale(.95); opacity: .75; }
+  46%, 82% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(56px, 30px) scale(.95); opacity: .75; }
+}
+
+@keyframes camp-deck-back {
+  0%, 36% { transform: translate(110px, 58px) scale(.9); opacity: .4; }
+  46%, 82% { transform: translate(56px, 30px) scale(.95); opacity: .75; }
+  100% { transform: translate(110px, 58px) scale(.9); opacity: .4; }
+}
+
+/* 슬라이드 본문을 대신하는 도형. 카드 폭에 맞춰 늘어난다. */
+.camp-slide-art {
+  width: 100%;
+  height: auto;
+  margin-top: var(--space-4);
+}
+
+.camp-deck-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-10);
+  margin-top: auto;
+}
+
+/*
+ * 슬라이드 인디케이터 — 발표가 몇 번째 장까지 왔는지 알려준다.
+ * 덱 카드와 같은 사이클(6.5s)을 공유해, 앞장이 빠지는 순간 다음 칸으로 넘어간다.
+ */
+.camp-deck-rail {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.camp-deck-dot {
+  width: 18px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--color-brand-tint-2);
+}
+
+/* 1번 칸은 앞장이 빠지는 62~78% 구간에 꺼지고, 2번 칸이 그때 켜진다.
+   덱 keyframes(mock-deck-front/mid)와 같은 구간을 써야 어긋나 보이지 않는다. */
+.camp-deck-dot.is-slide-1 {
+  background: var(--color-brand);
+  animation: camp-slide-1 var(--mock-cycle, 6.5s) cubic-bezier(.5, 0, .2, 1) infinite;
+}
+
+.camp-deck-dot.is-slide-2 {
+  animation: camp-slide-2 var(--mock-cycle, 6.5s) cubic-bezier(.5, 0, .2, 1) infinite;
+}
+
+@keyframes camp-slide-1 {
+  0%, 36% { background: var(--color-brand); }
+  46%, 82% { background: var(--color-brand-tint-2); }
+  94%, 100% { background: var(--color-brand); }
+}
+
+@keyframes camp-slide-2 {
+  0%, 36% { background: var(--color-brand-tint-2); }
+  46%, 82% { background: var(--color-brand); }
+  94%, 100% { background: var(--color-brand-tint-2); }
+}
+
+/* 뒤에 깔린 SESSION 02는 축소·반투명이라 본문이 뭉갠다 — 앞장이 빠지기 전까지는
+   제목 줄까지만 읽히면 충분하므로 도형과 푸터를 살짝 눌러 둔다. 앞으로
+   올라오는 80% 지점에 맞춰 원래 밀도로 돌아온다. */
+.journey-mock.camp-deck .is-deck-mid .camp-slide-art,
+.journey-mock.camp-deck .is-deck-mid .camp-deck-foot {
+  animation: camp-mid-reveal var(--mock-cycle, 6.5s) cubic-bezier(.5, 0, .2, 1) infinite;
+}
+
+@keyframes camp-mid-reveal {
+  0%, 36% { opacity: .6; }
+  46%, 82% { opacity: 1; }
+  100% { opacity: .6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .camp-deck-dot.is-slide-1,
+  .camp-deck-dot.is-slide-2,
+  .journey-mock.camp-deck .is-deck-mid .camp-slide-art,
+  .journey-mock.camp-deck .is-deck-mid .camp-deck-foot {
+    animation: none;
+    opacity: 1;
+  }
+
+  /* 정지 상태는 "1번 장을 발표 중"으로 고정한다. */
+  .camp-deck-dot.is-slide-1 { background: var(--color-brand); }
+  .camp-deck-dot.is-slide-2 { background: var(--color-brand-tint-2); }
+
+  /* 겹침은 레이아웃 CSS의 기본 transform이 그대로 지킨다 —
+     여기서 지우면 세 장이 포개져 덱으로 안 보인다(공용 규칙과 같은 이유). */
+  .journey-mock.camp-deck .is-deck-front,
+  .journey-mock.camp-deck .is-deck-mid,
+  .journey-mock.camp-deck .is-deck-back { animation: none; }
+}
+
 .journey-mock-head {
   display: flex;
   align-items: center;
@@ -237,13 +520,18 @@
   background: var(--color-surface);
 }
 
-.journey-mock-item.is-done .journey-mock-check {
+/* is-done은 행(.journey-mock-item)에 붙기도 하고, 행이 없는 목록
+   (.mock-detail-row)에서는 체크 자신에게 붙기도 한다 — 둘 다 받는다. */
+.journey-mock-item.is-done .journey-mock-check,
+.journey-mock-check.is-done {
   border-color: var(--color-brand);
   background:
     var(--color-brand)
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")
     center / 12px no-repeat;
 }
+
+.journey-mock.mock-detail .journey-mock-check.is-done { background-size: 9px; }
 
 .journey-mock-item.is-current .journey-mock-check {
   border-color: var(--color-brand);
@@ -275,11 +563,6 @@
   flex-direction: column;
 }
 
-.journey-mock-chat {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-}
 
 /* 말풍선 — 강사/동료 발화는 좌측 틴트, 내 발화(.is-mine)는 우측 브랜드 틴트. */
 .journey-mock-bubble {
@@ -298,13 +581,6 @@
   color: var(--color-brand-dark);
 }
 
-.journey-mock-foot {
-  text-align: center;
-  font-size: var(--text-body-14);
-  line-height: var(--leading-body-14);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-brand);
-}
 
 /* 1단으로 접히면 좌우로 나란히 놓일 자리가 없어 sticky 고정이 의미를 잃는다.
    스텝을 그냥 세로로 쌓아 순서대로 읽히게 한다. */

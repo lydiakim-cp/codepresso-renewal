@@ -5,3 +5,6 @@ Thumbs.db
 .env
 .env.local
 docs/.pdca-snapshots/
+
+# Claude Design 캔버스 시안 — 결과는 실제 컴포넌트로 반영되므로 저장소에 두지 않는다
+.design/

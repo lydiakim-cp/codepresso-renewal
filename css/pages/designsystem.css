@@ -169,30 +169,6 @@
 .mock-replay-grid .journey-mock-item { padding: var(--space-12); }
 .mock-replay-cursor { position: absolute; top: 0; left: 0; width: 18px; height: 18px; }
 
-/* C deck — 세 장을 같은 자리에 겹쳐 둔다. 겹침 순서는 문서 순서의 역순이라 z-index로 세운다. */
-.mock-deck { display: flex; flex-direction: column; gap: var(--space-18); }
-.mock-deck-stage { position: relative; height: 190px; }
-.mock-deck-card { position: absolute; inset: 0 auto auto 0; display: flex; flex-direction: column; gap: var(--space-12); width: 300px; padding: var(--space-20); border: 1px solid var(--color-brand-tint-2); border-radius: var(--radius-lg); background: var(--color-surface); }
-/* 덱의 계단 겹침은 기본 transform으로 둔다. keyframes에만 두면 정지 상태에서
-   세 장이 완전히 포개져 덱으로 보이지 않는다. */
-.mock-deck-card.is-deck-back { z-index: 1; transform: translate(74px, 44px) scale(.88); opacity: .3; }
-.mock-deck-card.is-deck-mid { z-index: 2; transform: translate(38px, 22px) scale(.94); opacity: .6; }
-.mock-deck-card.is-deck-front { z-index: 3; border-color: var(--color-brand); box-shadow: var(--shadow-md); }
-.mock-deck-card-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-10); }
-
-/* D detail — 좌측 목록 + 우측 상세 2단. */
-.mock-detail { display: flex; }
-.mock-detail-aside { display: flex; flex-direction: column; gap: var(--space-12); width: 190px; flex-shrink: 0; padding: var(--space-20) var(--space-12); border-right: 1px solid var(--color-line); background: var(--color-surface-page); }
-.mock-detail-list { display: flex; flex-direction: column; gap: var(--space-4); }
-.mock-detail-row { display: flex; align-items: center; gap: var(--space-10); padding: var(--space-10); border-radius: var(--radius-md); }
-.mock-detail-panel { display: flex; flex-direction: column; gap: var(--space-16); flex: 1; min-width: 0; padding: var(--space-20); }
-.mock-detail-head { display: flex; align-items: center; gap: var(--space-16); }
-.mock-detail-gauge { position: relative; width: 64px; height: 64px; flex-shrink: 0; }
-/* 게이지는 12시에서 시작해야 "채워진다"로 읽힌다 — SVG 기본 0도는 3시다. */
-.mock-detail-gauge svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-.mock-detail-gauge b { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-.mock-detail-head-body { display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
-
 /* E ticker — 통계 3열 + 막대 차트 + 갱신 피드. */
 .mock-ticker-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10); }
 .mock-ticker-stat { display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-12); border-radius: var(--radius-md); background: var(--color-brand-tint-1); }
