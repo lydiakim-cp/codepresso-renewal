@@ -40,3 +40,8 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: var(--space-24);
 }
+
+/* 모바일 — 48px 사방 여백이 좁은 화면에서 문구가 쓸 폭을 크게 깎는다. */
+@media (max-width: 560px) {
+  .summary-banner { padding: var(--space-24); }
+}

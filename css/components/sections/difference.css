@@ -1131,47 +1131,45 @@
   }
 }
 
-/* 모바일 — 칸이 이미 1열로 쌓였으므로, 여기서는 칸 '안'을 다시 잡는다.
-   목업 전용 타이포는 화면이 좁아진 만큼 축소 화면이 아니라 실제 크기에
-   가까워지므로, 데스크톱보다 오히려 키워 읽히게 한다(16/14/12/10 → 15/14/13/11).
-   하한(sm)만 11px로 올린 것은 칩·메타가 실제로 읽히는 크기가 되기 때문이다. */
+/* ---------------------------------------------
+ * 모바일 — 목업 화면은 재배치하지 않고 비율 그대로 축소한다
+ * (.mock-fit 관용구, mock-motion.css 참고).
+ * 900px 블록이 3열을 1열로 접어 두지만, 여기서는 그것을 되돌리고
+ * 데스크톱 화면 그대로를 줄여 보여준다 — 접힌 상태를 축소하면 실제
+ * 제품과 다른 화면이 된다.
+ * 0.62 하한에 걸려 734px로 남으므로 창이 가로 스크롤 상자가 된다.
+ * --------------------------------------------- */
 @media (max-width: 560px) {
-  .difference-mock { padding: var(--space-18); }
+  .difference-mock {
+    padding: var(--space-18);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
 
+  .difference-mock::-webkit-scrollbar { display: none; }
+
+  .difference-screen {
+    /* 데스크톱에서 이 화면이 갖던 폭 — 컨테이너 1320px에서 좌우
+       패딩(20px씩)과 창 padding(48px씩)을 뺀 값. */
+    --mock-fit-width: 1184px;
+    zoom: var(--mock-fit);
+    /* 축소한 화면이 스크롤 상자 안에서 제 폭을 유지하게 한다. */
+    width: var(--mock-fit-width);
+  }
+
+  .difference-screen-body,
   .difference-screen-body.is-cycle,
   .difference-screen-body.is-library,
-  .difference-screen-body.is-field {
-    --mock-text-title: 15px;
-    --mock-leading-title: 20px;
-    --mock-text-lg: 14px;
-    --mock-leading-lg: 19px;
-    --mock-text: 13px;
-    --mock-leading: 18px;
-    --mock-text-sm: 11px;
-    --mock-leading-sm: 15px;
+  .difference-screen-body.is-field,
+  .difference-legend {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  /* 단계 머리글은 번호·라벨·설명을 한 행에 두는데, 360px에서는 설명이
-     말줄임으로 거의 사라진다 — 설명만 다음 줄로 내려 전부 읽히게 한다. */
-  .difference-step-head { flex-wrap: wrap; }
+  /* 3열로 되돌렸으므로 칸 사이를 넘기는 화살표도 다시 보여준다. */
+  .difference-flow-arrow { display: block; }
 
-  .difference-step-desc {
-    flex-basis: 100%;
-    overflow: visible;
-    white-space: normal;
-  }
-
-  /* 배지가 머리글 위에 겹치던 이유(같은 행)가 사라졌으므로 3단계 칸에서도
-     설명을 되살린다. 다만 배지는 여전히 우측 상단에 떠 있으므로, 번호·라벨
-     행이 배지 아래로 파고들지 않게 그만큼 오른쪽을 비워 둔다. */
-  .difference-card.is-step.is-last .difference-step-desc { display: block; }
-
-  /* 배지 폭(≈110px)만큼 라벨 뒤를 비운다. flex-basis:100%인 설명은 다음
-     줄이라 영향받지 않게 라벨에만 margin으로 준다. */
-  .difference-card.is-step.is-last .difference-card-label { margin-right: 110px; }
-
-  /* 확산 파장이 좁은 판에서 과하게 번져 노드를 덮는다 — 한 단 줄인다. */
-  .difference-spread-map { min-height: 180px; }
+  /* 화면을 통째로 축소하므로 목업 안 타이포·배치는 데스크톱 그대로 둔다.
+     여기서 크기를 다시 잡으면 축소 배율과 겹쳐 위계가 어긋난다. */
 }
 
 @media (prefers-reduced-motion: reduce) {

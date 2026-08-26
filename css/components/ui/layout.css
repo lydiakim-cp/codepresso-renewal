@@ -73,10 +73,25 @@ main > section,
    96px 섹션 여백은 화면이 좁아지면 "빈 화면을 스크롤하는" 느낌을 준다.
    좌우 20px은 유지한다(더 줄이면 카드가 화면 끝에 붙어 답답해진다). */
 @media (max-width: 560px) {
+  /* 섹션 하나가 최소 한 화면을 채운다 — 모바일에서 섹션이 반쯤 걸쳐 보이면
+     "여기서 하나가 끝났다"가 읽히지 않는다. 내용이 그보다 길면 자연히 늘어난다.
+     100vh가 아니라 100svh를 쓰는 이유 — 모바일 브라우저는 스크롤에 따라
+     주소창이 접혔다 펴지고 100vh는 '펴진 상태' 기준이라, 실제로는 화면보다
+     커져서 섹션마다 빈 자리가 생긴다. svh는 접힌 상태(작은 쪽) 기준이다. */
   .wrap > section,
   main > section,
   .parts-group > section {
+    min-height: 100svh;
+    justify-content: center;
     padding-block: 56px;
+  }
+
+  /* 이미 여러 화면 길이인 섹션에는 최소 높이가 의미 없고, sticky 스크롤
+     구간의 계산만 흐트러뜨린다. */
+  .education-journey,
+  .diagnosis-showcase {
+    min-height: 0;
+    justify-content: flex-start;
   }
 
   .section-wrap.col { --section-gap: 24px; }

@@ -84,3 +84,9 @@
   .faq-list__icon { transition-duration: 0.001ms; }
   .faq-list__item[open] .faq-list__answer { animation: none; }
 }
+
+/* 모바일 — 좌우 28px이 좁은 화면에서 질문 문구가 쓸 폭을 크게 깎는다. */
+@media (max-width: 560px) {
+  .faq-list__question,
+  .faq-list__answer { padding-inline: var(--space-18); }
+}

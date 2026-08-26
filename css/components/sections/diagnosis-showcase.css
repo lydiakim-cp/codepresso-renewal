@@ -43,6 +43,70 @@
     padding: var(--space-18);
     gap: var(--space-24);
   }
+
+  /* ---------------------------------------------
+   * 제품 목록을 sticky 가로 셀렉터로 — part-nav와 같은 언어.
+   * 데스크톱에서는 좌측 sticky 컬럼에 세로로 놓여 "지금 어느 제품을
+   * 보는지"를 계속 알려줬다. 모바일은 1열로 접혀 그 목록이 화면 위로
+   * 흘러가 버리므로, 스크롤을 따라오는 가로 셀렉터로 바꿔 같은 역할을
+   * 하게 한다(캡슐 · 최소 radius · 가로 스크롤).
+   * --------------------------------------------- */
+  .diagnosis-products {
+    position: sticky;
+    /* GNB가 60px로 낮아졌으므로 그 아래에 붙는다. */
+    top: 60px;
+    z-index: 2;
+    gap: var(--space-8);
+    margin-inline: calc(-1 * var(--space-20));
+    padding: var(--space-8) var(--space-20);
+    /* 아래 내용이 비쳐 지나가므로 part-nav와 같은 유리 질감으로 덮는다. */
+    background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  /* "교육 프로그램" 라벨은 셀렉터가 되면 군더더기다 — 캡슐 자체가
+     무엇을 고르는 자리인지 말해 준다. */
+  .diagnosis-products > .text-label { display: none; }
+
+  .diagnosis-product-list {
+    display: flex;
+    gap: var(--space-6);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .diagnosis-product-list::-webkit-scrollbar { display: none; }
+
+  /* 캡슐 하나 = 제품 하나. 아이콘과 부제는 접고 제품명만 남긴다 —
+     가로로 늘어놓는 자리라 한 칸이 좁다. */
+  .diagnosis-product {
+    width: auto;
+    gap: var(--space-6);
+    margin-inline: 0;
+    padding: var(--space-6) var(--space-12);
+    border: 1px solid var(--color-line);
+    /* "radius 최소" — 캡슐이 아니라 각진 탭에 가깝게 둔다. */
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    white-space: nowrap;
+  }
+
+  .diagnosis-product-icon,
+  .diagnosis-product-arrow,
+  .diagnosis-product-body .text-caption {
+    display: none;
+  }
+
+  /* education-journey.css의 [data-journey-program].is-active가 흰 배경을
+     주고 있어(속성+클래스라 단일 클래스보다 우선), 같은 형태로 맞춰
+     덮는다 — !important를 쓰지 않기 위함이다. */
+  .diagnosis-product[data-journey-program].is-active,
+  .diagnosis-product[data-diagnosis-program].is-active {
+    border-color: var(--color-brand);
+    background: var(--color-brand-tint-2);
+  }
 }
 
 /* 2컬럼·좌측 sticky 구조는 공통 .section-wrap.row.is-sticky가 담당한다. */

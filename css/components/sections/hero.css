@@ -68,15 +68,15 @@
     line-height: var(--leading-body-16);
   }
 
-  /* CTA는 화면 폭을 꽉 채운다 — 좁은 화면에서 버튼 두 개가 나란히
-     들어가지 않고, 엄지로 누르는 영역도 넓어야 한다. */
+  /* 버튼 두 개가 한 줄에 들어가지 않으므로 세로로 쌓되, 폭은 글자에
+     맞춘다 — 화면을 꽉 채우면 버튼이 배너처럼 보여 눌러야 할 것으로
+     읽히지 않는다. hero-copy가 가운데 정렬이라 버튼도 가운데 선다. */
   .hero-cta {
     flex-direction: column;
-    align-self: stretch;
-    width: 100%;
+    align-items: center;
+    width: fit-content;
+    margin-inline: auto;
   }
-
-  .hero-cta .btn { width: 100%; }
 
   .hero-clients { gap: var(--space-24); padding-top: var(--space-48); }
 

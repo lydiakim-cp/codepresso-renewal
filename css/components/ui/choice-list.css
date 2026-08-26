@@ -69,3 +69,15 @@
   transform: translateX(3px);
   color: var(--color-brand);
 }
+
+/* 모바일 — 아이콘 48px + 좌우 여백 20px씩이면 360px 화면에서 본문에
+   남는 폭이 200px 남짓이라 제품명이 두 줄로 꺾인다. */
+@media (max-width: 560px) {
+  .choice-list__item {
+    gap: var(--space-12);
+    margin-inline: calc(-1 * var(--space-12));
+    padding: var(--space-12);
+  }
+
+  .choice-list__icon { width: var(--space-35); height: var(--space-35); }
+}

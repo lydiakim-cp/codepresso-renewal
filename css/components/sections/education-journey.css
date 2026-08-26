@@ -451,51 +451,23 @@
 }
 
 /* ---------------------------------------------
- * 모바일 — 목업 안을 다시 배치한다.
- * 세 목업 모두 데스크톱 폭(566px)에 맞춘 다단 구성이라, 360px에서는 칸이
- * 눌려 스켈레톤만 남는다. 각 목업의 성격에 맞게 열을 접고, 높이 355px
- * 고정도 푼다(세로로 쌓이면 내용이 늘어 잘린다).
- * 목업 전용 타이포는 화면이 좁아진 만큼 실제 크기에 가까워지므로 키운다.
+ * 모바일 — 목업은 비율 그대로 축소한다(.mock-fit, mock-motion.css).
+ * 세 목업 모두 데스크톱 폭 566px에 맞춘 다단 구성이라 360px에서 칸이
+ * 눌려 깨진다. 열을 접어 재배치하면 실제 제품과 다른 화면이 되므로,
+ * 레이아웃은 그대로 두고 통째로 줄인다.
  * --------------------------------------------- */
 @media (max-width: 560px) {
   .journey-viewport { gap: var(--space-24); }
 
-  /* 높이 고정을 푼다 — 데스크톱은 스텝 전환 시 판이 들썩이지 않게 355px로
-     묶었지만, 모바일은 스텝이 세로로 쌓여 전환 자체가 없다. */
+  /* 판 padding(48px씩)이 zoom으로 함께 줄면 목업이 판 안에서 뜬다 —
+     판은 실제 크기를 유지하고 목업만 줄인다. */
+  .journey-viewport { padding: var(--space-18); }
+
   .journey-mock {
-    height: auto;
-    min-height: 0;
+    /* 데스크톱에서 이 목업이 갖던 폭. 판 폭 566px 기준(위 주석 참고). */
+    --mock-fit-width: 566px;
+    zoom: var(--mock-fit);
   }
-
-  /* ① SkillPath — 좌(트랙 목록) + 우(STEP 상세) 2단을 세로로 쌓는다.
-     190px 고정폭 사이드가 360px 화면의 절반을 먹어 상세가 읽히지 않는다. */
-  .journey-mock.mock-detail {
-    flex-direction: column;
-    gap: var(--space-12);
-    padding: var(--space-12);
-  }
-
-  .journey-mock.mock-detail .mock-detail-aside {
-    width: 100%;
-    padding: 0 0 var(--space-12);
-    border-right: 0;
-    border-bottom: 1px solid var(--color-line);
-    background: none;
-  }
-
-  /* ② SkillCamp 티커 — 수치 3열은 좁아도 읽히므로 유지하고, 차트에
-     최소 높이만 준다(flex:1이 세로 여유를 못 받아 납작해진다). */
-  .journey-mock.camp-ticker .mock-ticker-chart { min-height: 84px; }
-
-  /* ③ SkillFit — 아이콘 레일 + 3열을 "레일 옆 1열"로 접는다.
-     스킬 목록·레슨·튜터를 세로로 쌓아 각각 제 폭을 갖게 한다. */
-  .journey-app {
-    grid-template-columns: 26px minmax(0, 1fr);
-    gap: var(--space-10);
-  }
-
-  /* 레일은 세로로 길게 남고, 나머지 3개가 오른쪽 칸에 차례로 쌓인다. */
-  .journey-app-rail { grid-row: 1 / -1; }
 }
 
 /*

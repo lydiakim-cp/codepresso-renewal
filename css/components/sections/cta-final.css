@@ -67,11 +67,12 @@
     line-height: var(--leading-body-16);
   }
 
+  /* hero-cta와 같은 처리 — 세로로 쌓되 폭은 글자에 맞춘다.
+     이 섹션은 이미 text-align: center라 가운데 정렬이 이어진다. */
   .cta-final-actions {
     flex-direction: column;
-    align-self: stretch;
-    width: 100%;
+    align-items: center;
+    width: fit-content;
+    margin-inline: auto;
   }
-
-  .cta-final-actions .btn { width: 100%; }
 }

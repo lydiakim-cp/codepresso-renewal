@@ -127,3 +127,10 @@
     transition-duration: 0.001ms;
   }
 }
+
+/* 모바일 — 기본 버튼 높이 40px은 손가락으로 누르기에 작다.
+   접근성 가이드가 권하는 터치 타깃 최소치(44px)에 맞춘다.
+   btn-lg(52px)는 이미 충분해 손대지 않는다. */
+@media (max-width: 560px) {
+  .btn { height: 44px; }
+}
