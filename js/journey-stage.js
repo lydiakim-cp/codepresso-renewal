@@ -85,24 +85,6 @@ const setupStage = ({ name, sectionSelector, panelSelector, pop = false }) => {
   const section = stage.closest(sectionSelector) || document;
   const programs = Array.from(section.querySelectorAll(attr('-program')));
 
-  /* 모바일에서 제품 목록은 part-nav--compact와 같은 세그먼트 컨트롤이 된다.
-     활성 항목 뒤로 미끄러지는 인디케이터의 위치를 여기서 잡는다 —
-     part-nav.js는 섹션 앵커 전용이라 이 목록을 잡지 않는다.
-     데스크톱에서는 CSS가 인디케이터를 display:none으로 감추므로, 아래 계산이
-     돌아도 화면에는 영향이 없다(offsetTop은 그대로 읽힌다). */
-  const productIndicator = section.querySelector('[data-diagnosis-product-indicator]');
-
-  const moveProductIndicator = (target) => {
-    if (!productIndicator || !target) return;
-    const track = productIndicator.parentElement;
-    if (!track) return;
-    /* li(항목)가 아니라 button이 활성 클래스를 갖는다 — 트랙 기준 좌표는
-       그 button을 감싼 li에서 읽어야 padding이 어긋나지 않는다. */
-    const row = target.closest('li') || target;
-    productIndicator.style.height = `${row.offsetHeight}px`;
-    productIndicator.style.transform = `translateY(${row.offsetTop - track.clientTop}px)`;
-  };
-
   /* sticky로 고정되는 우측 판. 클릭 이동이 "판이 자리를 잡은 뒤"에 멈추도록
      도착 지점의 하한을 계산하는 데 쓴다(scrollToStep 참고). */
   const panel = stage.querySelector(panelSelector);
@@ -129,9 +111,6 @@ const setupStage = ({ name, sectionSelector, panelSelector, pop = false }) => {
     programs.forEach((program) =>
       program.classList.toggle('is-active', Number(program.dataset[key('Program')]) === index)
     );
-    moveProductIndicator(programs.find(
-      (program) => Number(program.dataset[key('Program')]) === index
-    ));
   };
 
   /* pop-in 순서(--pop-order)를 마크업 순서대로 매긴다. 마크업에 인라인
@@ -155,12 +134,6 @@ const setupStage = ({ name, sectionSelector, panelSelector, pop = false }) => {
      첫 스크롤 전까지 좌측이 전부 흐린 상태로 보인다. */
   programs.forEach((program) =>
     program.classList.toggle('is-active', Number(program.dataset[key('Program')]) === 0)
-  );
-  moveProductIndicator(programs[0]);
-
-  /* 폭이 바뀌면 행 높이도 바뀐다(글자 줄바꿈·모바일 전환) — 다시 잰다. */
-  window.addEventListener('resize', () =>
-    moveProductIndicator(programs.find((program) => program.classList.contains('is-active')))
   );
 
   /* 첫 스텝의 pop도 같은 이유로 여기서 한 번 켠다. 단, 섹션이 화면에 들어왔을 때
