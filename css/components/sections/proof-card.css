@@ -163,15 +163,15 @@
   }
 
   .proof-card-nav:first-of-type {
-    left: -32px;
+    left: -36px;
   }
 
   .proof-card-nav:last-of-type {
-    right: -32px;
+    right: -36px;
   }
 
   .proof-card {
-    padding: 40px 48px;
+    padding: 20px;
   }
 
   .proof-card h3 {
@@ -182,28 +182,13 @@
 
 @media (max-width: 720px) {
   .proof-card-stage {
-    padding: 28px 16px 36px;
-    border-radius: var(--radius-lg);
+    padding: 28px;
   }
 
   .proof-card-deck {
-    width: 80vw;
     max-width: none;
   }
 
-  .proof-card-nav:first-of-type {
-    left: -8px;
-  }
-
-  .proof-card-nav:last-of-type {
-    right: -8px;
-  }
-
-  .proof-card {
-    min-height: 420px;
-    padding: 32px 26px;
-    gap: 14px;
-  }
 
   .proof-card h3 {
     font-size: var(--text-heading-20);

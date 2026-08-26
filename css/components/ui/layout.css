@@ -94,8 +94,7 @@ main > section,
     justify-content: flex-start;
   }
 
-  .section-wrap.col { --section-gap: 24px; }
-  .section-wrap.row { --section-gap: 32px; }
+
 
   .section-title { gap: 12px; }
 
