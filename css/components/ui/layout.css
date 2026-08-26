@@ -99,6 +99,13 @@ main > section,
 
   .section-title { gap: 12px; }
 
+  /* h2 확대 요청 — 32px은 tokens.css의 모바일 --text-h2가 이미 준다.
+     weight만 여기서 bold로 올린다. 이 프로젝트는 heading weight를
+     semibold(600) 고정으로 삼는데(metric-card 큰 수치 하나만 예외),
+     .section-title h2는 모바일에서 화면을 여는 표지 역할이라 눈에 띄게
+     하려는 의도적인 두 번째 예외다 — 다른 heading에는 번지지 않는다. */
+  .section-title h2 { font-weight: var(--font-weight-bold); }
+
   /* 타이틀과 CTA를 한 줄에 두던 헤더는 세로로 쌓고 CTA를 왼쪽에 맞춘다. */
   .section-header {
     align-items: stretch;

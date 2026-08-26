@@ -205,18 +205,21 @@
  * --------------------------------------------- */
 @media (max-width: 560px) {
   :root {
-    --text-hero: var(--text-heading-32);
-    --leading-hero: var(--leading-heading-32);
+    /* h1을 32→36px로 한 단 올렸다 — .section-title h2를 32px로 키우면서
+       h1과 겹치게 돼, h1을 그 위 단으로 밀어 3단 위계(h1>h2>h3)를
+       지킨다. --text-hero도 h1과 같은 값을 쓰던 자리라 함께 올린다. */
+    --text-hero: var(--text-heading-36);
+    --leading-hero: var(--leading-heading-36);
     --tracking-hero: var(--tracking-heading-tight);
 
-    --text-h1: var(--text-heading-32);
-    --leading-h1: var(--leading-heading-32);
+    --text-h1: var(--text-heading-36);
+    --leading-h1: var(--leading-heading-36);
     --tracking-h1: var(--tracking-heading-tight);
 
-    /* h2는 24px — 스케일에 26px이 없어 새로 만들지 않고 기존 단을 쓴다.
-       h1 32 / h2 24 / h3 20으로 3단 위계는 유지된다. */
-    --text-h2: var(--text-heading-24);
-    --leading-h2: var(--leading-heading-24);
+    /* .section-title h2 전용 확대 요청으로 24→32px. 모바일에서 h2가
+       h3(20px)와 차이가 잘 안 느껴진다는 지적에 따른 것이다. */
+    --text-h2: var(--text-heading-32);
+    --leading-h2: var(--leading-heading-32);
 
     --text-h3: var(--text-heading-20);
     --leading-h3: var(--leading-heading-20);
