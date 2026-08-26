@@ -1,11 +1,10 @@
 /*
  * Main Entry (모든 페이지 공통)
- * Reset → Design Tokens → Base → 공통 Components 순서로 계층을 로드한다.
- * Cascade Layer로 우선순위를 명시해 specificity 경쟁을 방지한다.
+ * Reset → Design Tokens → Base → 공통 Components 순서로 로드. Cascade Layer로
+ * 우선순위를 명시한다.
  *
- * 여기에는 모든 페이지가 쓰는 범용 UI(components/ui/)만 둔다.
- * 섹션 컴포넌트(components/sections/)는 그것을 쓰는 페이지가 직접 로드한다 —
- * 한 페이지만 쓰는 941줄짜리 섹션을 모든 페이지에 딸려 보내지 않기 위함이다.
+ * 범용 UI(components/ui/)만 여기서 로드한다. 섹션 컴포넌트(components/sections/)는
+ * 그것을 쓰는 페이지가 직접 로드한다.
  *   - index.html               → main.css + css/pages/index.css
  *   - ax-build.html            → main.css + css/pages/ax-build.css
  *   - codepresso-designsystem  → main.css + css/pages/designsystem.css
@@ -17,8 +16,7 @@
 @import url("./tokens.css") layer(tokens);
 @import url("./base.css") layer(base);
 
-/* 공용 @keyframes 라이브러리. @keyframes는 @layer 우선순위를 받지 않아
-   레이어에 넣지 않는다 — 이름이 곧 전역 식별자다(파일 상단 주석 참고). */
+/* 공용 @keyframes 라이브러리. @layer 우선순위를 받지 않아 레이어에 넣지 않는다. */
 @import url("./keyframes.css");
 
 /* 레이아웃 뼈대 · 텍스트 유틸리티 */

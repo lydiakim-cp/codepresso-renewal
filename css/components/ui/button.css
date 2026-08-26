@@ -1,6 +1,6 @@
 /*
  * Component: Button
- * 코드프레소 공용 버튼. Primary(브랜드 블루) / Ghost(밝은 배경 보조) / Outline Inverse(어두운 배경 보조) / Pill(플로팅 CTA).
+ * 공용 버튼. Primary(브랜드 블루) / Ghost(밝은 배경 보조) / Outline Inverse(어두운 배경 보조) / Pill(플로팅 CTA).
  */
 
 .btn {
@@ -43,10 +43,7 @@
   color: var(--color-brand);
 }
 
-/*
- * Outline Inverse — 어두운 배경 위 보조 버튼.
- * 투명 배경 + 반투명 화이트 외곽선으로, 밝은 배경의 .btn-ghost와 같은 역할을 한다.
- */
+/* Outline Inverse — 어두운 배경 위 보조 버튼(.btn-ghost의 다크 버전). */
 .btn-outline-inverse {
   background: transparent;
   color: var(--color-surface);
@@ -57,13 +54,7 @@
   border-color: var(--color-surface);
 }
 
-/*
- * 버튼 우측 방향 아이콘 공통 규칙.
- * 텍스트 화살표(→, +, ‹, ›)를 직접 쓰지 않고 항상 이 chevron SVG를 쓴다.
- * path는 images/icon/chevron-right.svg와 동일한 `M9 18L15 12L9 6` 하나로 통일한다
- * (좌향은 같은 path에 transform: scaleX(-1), 하향은 chevron-down.svg의 `M6 9L12 15L18 9`).
- * stroke-width는 2, 버튼 안에서의 크기는 16px 고정.
- */
+/* 버튼 우측 chevron 아이콘. */
 .btn > svg {
   display: block;
   flex-shrink: 0;
@@ -84,10 +75,7 @@
   letter-spacing: var(--tracking-body);
 }
 
-/*
- * Pill CTA — 흰색 캡슐 배경 + 우측 원형 화살표 아이콘.
- * 그라디언트/이미지 배경 위에 떠 있는 강조 CTA(플로팅 버튼)에 사용.
- */
+/* Pill CTA — 흰색 캡슐 + 우측 원형 화살표. 그라디언트/이미지 배경 위 플로팅 CTA. */
 .btn-pill {
   gap: var(--space-12);
   height: 56px;
@@ -128,9 +116,4 @@
   }
 }
 
-/* 모바일 — 기본 버튼 높이 40px은 손가락으로 누르기에 작다.
-   접근성 가이드가 권하는 터치 타깃 최소치(44px)에 맞춘다.
-   btn-lg(52px)는 이미 충분해 손대지 않는다. */
-@media (max-width: 560px) {
-  .btn { height: 44px; }
-}
+/* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */

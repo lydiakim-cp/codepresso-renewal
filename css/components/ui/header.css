@@ -1,7 +1,6 @@
 /*
  * Component: Site Header
- * 랜딩 페이지 상단 GNB. 로고 + 1depth 네비게이션 + 로그인/CTA 버튼으로 구성.
- * hero(최상단)에서는 배경 없이 투명하게 두고, 스크롤을 내리면 반투명 배경 + blur로 전환한다.
+ * 상단 GNB. 로고 + 1depth 네비게이션 + 로그인/CTA 버튼.
  */
 
 .header {
@@ -19,7 +18,7 @@
     backdrop-filter var(--duration-scroll) var(--ease-scroll);
 }
 
-/* 스크롤 시: 본문과 겹쳐도 읽히도록 반투명 배경 + blur */
+/* 스크롤 시 반투명 배경 + blur로 전환 */
 .header.is-scrolled {
     background-color: rgb(255 255 255 / 0.3);
     border-bottom-color: rgb(255 255 255 / 0.3);
@@ -108,8 +107,7 @@
 /* ---------------------------------------------
  * 2depth Mega Panel
  * nav-trigger에 hover/focus하면 header 아래에 폭 100%로 펼쳐지는 패널.
- * 안쪽은 "인트로 컬럼(좌) + 메뉴 그룹 그리드(우)" 2단 구성이다.
- * 패널은 .nav-item에 붙지만 폭이 100vw라 트리거 위치와 무관하게 화면 전체를 덮는다.
+ * 인트로 컬럼(좌) + 메뉴 그룹 그리드(우) 2단 구성.
  * --------------------------------------------- */
 
 .nav-item {
@@ -118,7 +116,7 @@
 
 .nav-panel {
   position: fixed;
-  /* header-inner 높이(75px)에 맞춰 GNB 바로 아래에서 시작한다 */
+  /* header-inner 높이(75px)에 맞춰 GNB 바로 아래에서 시작 */
   inset-block-start: 75px;
   inset-inline: 0;
   background: var(--color-surface);
@@ -132,7 +130,7 @@
     transform var(--duration-hover) var(--ease-hover);
 }
 
-/* hidden 속성이 붙어 있어도 열림 상태에서는 그려야 하므로 display를 되살린다 */
+/* hidden 속성이 있어도 열림 상태에서는 display를 되살린다 */
 .nav-panel[hidden] {
   display: block;
 }
@@ -143,8 +141,7 @@
   pointer-events: auto;
 }
 
-/* 메뉴별 항목 수가 달라도 패널 높이가 들쭉날쭉하지 않게 300px로 고정한다.
- * 항목이 이보다 많아지면 늘리지 말고 그룹 구성을 줄이는 쪽으로 조정한다. */
+/* 항목 수가 달라도 패널 높이가 들쭉날쭉하지 않게 300px로 고정. */
 .nav-panel-inner {
   max-width: var(--container-wide);
   height: 300px;
@@ -152,7 +149,7 @@
   margin: 0 auto;
   padding: var(--space-24) 40px;
   display: grid;
-  /* 좌측 인트로 컬럼은 고정폭, 나머지 폭을 메뉴 그룹이 나눠 갖는다 */
+  /* 좌측 인트로 컬럼 고정폭, 나머지는 메뉴 그룹이 나눠 가짐 */
   grid-template-columns: 300px 1fr;
   gap: var(--space-60);
 }
@@ -188,9 +185,7 @@
   margin-block-start: var(--space-12);
 }
 
-/* 우측 메뉴 그룹 그리드
- * min-height:0 + overflow:hidden — 300px 고정 높이라 항목이 늘면 패널 밖으로
- * 삐져나가는 대신 안에서 잘리게 한다(레이아웃이 깨지는 것보다 낫다). */
+/* 우측 메뉴 그룹 그리드. 300px 고정 높이 안에서 넘치면 잘리게 한다. */
 .nav-panel-groups {
   min-height: 0;
   overflow: hidden;
@@ -276,13 +271,13 @@
   }
 }
 
-/* 최근 소식 컬럼 — 메뉴 항목이 아니라 콘텐츠라서 좌측 구분선으로 성격을 나눈다 */
+/* 최근 소식 컬럼. 메뉴 항목과 구분하려 좌측 구분선을 둔다 */
 .nav-news {
   padding-inline-start: var(--space-24);
   border-inline-start: 1px solid var(--color-line);
 }
 
-/* 아이콘 없이 날짜·분류 메타 + 제목만 쌓는다 */
+/* 날짜·분류 메타 + 제목만 쌓는다 */
 .nav-news-list {
   display: grid;
   gap: var(--space-4);
@@ -321,30 +316,6 @@
 }
 
 /* ---------------------------------------------
- * 모바일 — 현재 GNB는 hover로 열리는 300px 메가 패널이라 터치 화면에서
- * 동작하지 않는다. 이 GNB는 추후 실제 운영 GNB로 교체될 예정이므로
- * (subpage-guide 참고) 여기서 햄버거 메뉴를 새로 만들지 않고,
- * 메뉴를 감춘 뒤 로고와 주요 CTA만 남긴다.
- * 교체 작업에 들어가면 이 블록을 지우고 그때 모바일 메뉴를 함께 설계한다.
+ * 모바일 — hover 메가 패널이라 터치에서 동작하지 않아 메뉴를 감추고
+ * 로고·CTA만 남긴다(운영 GNB 교체 예정). 900px·560px 규칙은 css/mobile.css.
  * --------------------------------------------- */
-@media (max-width: 900px) {
-  .nav { display: none; }
-
-  .header-inner {
-    height: 60px;
-    padding: var(--space-10) var(--space-20);
-    gap: var(--space-12);
-    justify-content: space-between;
-  }
-
-  /* 로고가 156px이라 좁은 화면에서 CTA를 밀어낸다. */
-  .logo img { width: 124px; height: auto; }
-}
-
-@media (max-width: 560px) {
-  /* 두 버튼이 다 들어가지 않는다 — 진단 CTA 하나만 남긴다.
-     로그인은 그 화면 안에서 다시 제공된다. */
-  .header-actions .btn-ghost { display: none; }
-
-  .logo img { width: 108px; }
-}

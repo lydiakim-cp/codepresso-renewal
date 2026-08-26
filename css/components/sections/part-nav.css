@@ -1,34 +1,25 @@
 /*
  * Component: Part Nav
- * PART 1(교육) · PART 2(진단) 두 섹션이 하나의 여정으로 묶여있음을 보여주는
- * 상위 앵커 내비게이션. 각 파트의 .section-title 맨 위에 놓여 좌측 sticky
- * 컬럼과 함께 고정되므로, 스크롤 중에도 "지금 어느 파트인지 + 다른 파트로
- * 갈 수 있음"이 계속 보인다.
- *
- * 시각 언어는 Segmented Control(캡슐 + 슬라이딩 인디케이터)을 재사용하지만,
- * 실제로는 탭이 아니라 <a href="#id">로 해당 섹션까지 스크롤 이동하는 링크다
- * (콘텐츠는 클릭 여부와 무관하게 항상 전부 노출돼 있으므로 tablist/tab role을
- * 쓰지 않는다). part-nav.js가 스크롤 위치에 따라 활성 링크를 갱신한다.
+ * PART 1(교육)·PART 2(진단)을 묶어 보여주는 상위 앵커 내비게이션.
+ * 각 파트의 .section-title 맨 위, 좌측 sticky 컬럼과 함께 고정된다.
+ * Segmented Control(캡슐+슬라이딩 인디케이터) 스타일의 <a href="#id"> 스크롤 링크.
+ * part-nav.js가 스크롤 위치로 활성 링크(.is-active)를 갱신한다.
  */
 
 .part-nav {
   position: relative;
   display: inline-flex;
-  /* 부모 .section-title이 flex column이므로 stretch를 막아 내용 폭만 차지하게 한다. */
   align-self: flex-start;
   width: fit-content;
   gap: var(--space-2);
   padding: var(--space-4);
-  /* 브랜드 그라디언트 배경 위에 올라가므로, 흰 반투명 + blur로 hero의
-     글래스모피즘 언어를 이어받는다. */
+  /* 글래스모피즘 캡슐 배경 */
   background: rgba(255, 255, 255, .55);
   border: 1px solid rgba(255, 255, 255, .8);
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-sm);
   backdrop-filter: blur(16px) saturate(160%);
   -webkit-backdrop-filter: blur(16px) saturate(160%);
-  /* .tag(라벨) 대신 들어가면서 시각적 무게가 커졌으므로,
-     .section-title의 기본 gap(16px)에 여백을 조금 더 얹어 h2와 숨을 띄운다. */
   margin-bottom: var(--space-8);
 }
 
@@ -38,20 +29,16 @@
   left: var(--space-4);
   height: calc(100% - var(--space-4) * 2);
   border-radius: var(--radius-full);
-  /* 디자인 시스템 Segmented Control과 같은 검정 인디케이터.
-     브랜드 블루 배경 위에서 대비가 가장 확실하게 잡힌다. */
+  /* 디자인 시스템 Segmented Control과 같은 검정 인디케이터 */
   background: var(--color-ink-heaviest);
   box-shadow: var(--shadow-md);
-  /* 여기서는 인디케이터를 슬라이딩시키지 않는다(transition 없음).
-     실제 이동감은 클릭 시 페이지가 부드럽게 스크롤되는 것으로 전달되므로,
-     인디케이터까지 함께 미끄러지면 움직임이 이중으로 겹쳐 산만해진다. */
+  /* transition 없음 — 이동감은 클릭 시 페이지 스크롤로 전달된다. */
 }
 
 .part-nav-item {
   position: relative;
   z-index: 1;
   display: inline-block;
-  /* 세로는 조여 높이를 낮추고(≈42px), 좌우는 넓혀 라벨이 답답해 보이지 않게 한다. */
   padding: var(--space-6) var(--space-24);
   border-radius: var(--radius-full);
   font-size: var(--text-body-muted);
@@ -72,8 +59,7 @@
   color: var(--color-surface);
 }
 
-/* 최소 radius 변형 — 제품 화면처럼 정돈된 직사각형 UI에 사용한다.
-   기본값은 코드프레소의 부드러운 캡슐형(max radius)을 유지한다. */
+/* 최소 radius 변형 — 제품 화면처럼 정돈된 직사각형 UI에 사용한다. */
 .part-nav--compact,
 .part-nav--compact .part-nav-indicator,
 .part-nav--compact .part-nav-item {
@@ -90,23 +76,6 @@
   .part-nav--animated .part-nav-indicator { transition-duration: 0.001ms; }
 }
 
-/* 인디케이터에는 transition이 없으므로 reduced-motion 예외가 필요하지 않다.
-   클릭 시의 smooth scroll은 part-nav.js가 이 설정을 확인해 즉시 이동으로 바꾼다. */
+/* 클릭 시 smooth scroll은 part-nav.js가 reduced-motion 설정을 확인해 즉시 이동으로 바꾼다. */
 
-/* 모바일 — 캡슐 2개(각 ≈160px)가 좌우 패딩 20px씩을 뺀 320px에 겨우 맞는다.
-   좌우 패딩을 줄여 여유를 만들고, 그래도 넘치면 가로로 스크롤되게 둔다
-   (줄바꿈시키면 캡슐 배경과 슬라이딩 인디케이터의 위치가 어긋난다). */
-@media (max-width: 560px) {
-  .part-nav {
-    max-width: 100%;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .part-nav::-webkit-scrollbar { display: none; }
-
-  .part-nav-item {
-    padding: var(--space-6) var(--space-12);
-    white-space: nowrap;
-  }
-}
+/* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */

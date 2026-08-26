@@ -100,7 +100,7 @@ css/
 ```
 
 - `@layer reset, tokens, base, components;` 로 우선순위를 명시한다 — specificity 경쟁(`.a .b .c .d`)으로 해결하지 않는다.
-- **페이지는 CSS를 정확히 2개만 링크한다**: `css/main.css` + `css/pages/{페이지}.css`. 자세한 규칙은 11번 "페이지 · 섹션 구조 관례" 참고.
+- **페이지는 CSS를 정확히 2개만 링크한다**: `css/main.css` + `css/pages/{페이지}.css`. 자세한 규칙은 11번 "페이지 · 섹션 구조 관례" 참고. (`css/mobile.css`를 세 번째로 링크하는 것은 이 원칙의 의도적 예외다 — 7번 "@keyframes는 새로 만들지 않는다" 앞 반응형 항목 참고.)
 - **`components/`는 재사용 범위로 두 폴더로 갈린다** — 자세한 판단 기준은 [css/components/README.md](../../../css/components/README.md)에 있다.
   - `ui/` — 어디에나 놓이는 범용 조각(`button` `metric-card` `content-panel` …). **`main.css`가 전부 로드**하므로 새로 추가하면 `main.css`에 `@import`를 등록한다.
   - `sections/` — 페이지의 한 구획을 이루는 조합(`hero` `difference` `education-journey` …). **그것을 쓰는 페이지의 `pages/*.css`가 로드**한다. 941줄짜리 섹션을 그 섹션이 없는 페이지까지 딸려 보내지 않기 위함이다.
@@ -390,7 +390,11 @@ JS가 요소를 찾을 때는 클래스가 아니라 `data-*` 속성을 쓴다. 
 | `max-width: 720px` | 카드 **내부**가 재배치된다 | `assessment-card` `content-panel` `metric-card` `proof-card` |
 | `max-width: 560px` | 모바일. 타이포 스케일이 내려가고, 목업 안이 1열로 접히고, 버튼이 폭을 채운다 | `tokens` `layout` `hero` `header` `assessment-card` `feature-card` `part-nav` `insight` `cta-final` `education-journey` `diagnosis-showcase` `difference` `ax-build` |
 
-**모바일 CSS는 각 컴포넌트 파일 안에 둔다** — 별도 `mobile.css`를 만들지 않는다(사용자 확인됨). 900/720px이 이미 그 방식이라 규칙이 하나로 유지되고, 컴포넌트를 고칠 때 반응형이 같은 파일에 있어 빠뜨리지 않는다.
+**모바일 CSS(900/720/560px)는 `css/mobile.css` 하나로 모은다**(사용자 확인됨 — 이전에는 각 컴포넌트 파일 안에 뒀으나, 흩어진 반응형을 한눈에 보기 어려워 통합했다). 컴포넌트 순서로 섹션을 나눠 그 컴포넌트가 원래 있던 파일을 주석으로 표시한다. 새 컴포넌트에 반응형을 추가할 때도 컴포넌트 파일이 아니라 `mobile.css`의 같은 breakpoint 섹션에 추가한다 — 다시 흩어 두지 않는다.
+
+`tokens.css`의 560px 블록(`--text-h1/h2/h3` 등 타이포 토큰 재정의)과 `designsystem.css`의 1100/800/520px 블록(사내 문서 전용, 다른 breakpoint 체계 — `proof-card`의 1023/780px 예외와 같은 성격)은 성격이 달라 옮기지 않고 각자 자리에 남긴다.
+
+**로드 방법 — 페이지마다 세 번째 `<link>`로 추가한다**(`css/main.css` + `css/pages/{page}.css` + `css/mobile.css`). "페이지당 CSS 2개만 링크" 원칙의 의도적 예외다. `css/mobile.css` 파일 전체는 `@layer components { ... }`로 감싼다 — `<link>`는 `@import`처럼 `layer()`를 지정할 방법이 없어, 감싸지 않으면 익명 레이어보다도 우선순위가 낮은 일반 스타일시트로 취급돼 `@layer components` 안의 컴포넌트 규칙에 밀린다. `@layer components` 안에서는 나중에 로드된 규칙이 같은 specificity를 이기므로, 항상 마지막에 오는 세 번째 `<link>`가 그 페이지의 모든 컴포넌트·페이지 전용 규칙보다 반드시 나중에 캐스케이드되게 한다.
 
 **모바일(560px)에서 지키는 원칙:**
 

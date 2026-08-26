@@ -1,8 +1,7 @@
 /*
  * Component: FAQ List
- * 질문을 눌러 답을 펼치는 범용 아코디언.
- * <details>/<summary> native 동작을 그대로 쓴다 — 열고 닫는 상태, 키보드 조작,
- * 스크린리더 안내를 브라우저가 처리하므로 JS와 aria 속성이 필요하지 않다.
+ * 질문을 눌러 답을 펼치는 범용 아코디언. <details>/<summary> native 동작을 그대로
+ * 써서 열림 상태·키보드·스크린리더 안내를 브라우저가 처리한다(JS·aria 불필요).
  *
  * Markup API
  * .faq-list
@@ -66,14 +65,13 @@
   transform: rotate(180deg);
 }
 
-/* 답이 위에서 아래로 펼쳐지듯 들어온다. <details>는 높이 transition이
-   되지 않으므로, 열린 뒤 내용에만 진입 애니메이션을 준다. */
+/* <details>는 높이 transition이 안 돼 내용에만 진입 애니메이션을 준다. */
 .faq-list__answer {
   padding: 0 var(--space-28) var(--space-24);
   color: var(--color-ink-light);
 }
 
-/* 답변은 질문 아래에서 펼쳐지므로 위에서 내려온다 — 이동폭을 음수로 준다. */
+/* 답변이 위에서 내려오도록 이동폭을 음수로 준다. */
 .faq-list__item[open] .faq-list__answer {
   --motion-rise: calc(-1 * var(--space-8));
   animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
@@ -85,8 +83,4 @@
   .faq-list__item[open] .faq-list__answer { animation: none; }
 }
 
-/* 모바일 — 좌우 28px이 좁은 화면에서 질문 문구가 쓸 폭을 크게 깎는다. */
-@media (max-width: 560px) {
-  .faq-list__question,
-  .faq-list__answer { padding-inline: var(--space-18); }
-}
+/* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */

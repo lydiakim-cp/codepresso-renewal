@@ -1,8 +1,6 @@
 /*
- * Design Tokens
- * 코드프레소 디자인 시스템 리뉴얼안 기준.
- * 원본: codepresso-designsystem.html (실측 컬러/스페이싱/타이포 스케일 + 채널톡 벤치마킹 반영)
- * 값을 직접 하드코딩하지 말고 항상 이 변수를 참조한다.
+ * Design Tokens — 코드프레소 디자인 시스템 리뉴얼안 기준.
+ * 원본: codepresso-designsystem.html. 값을 직접 하드코딩하지 말고 항상 이 변수를 참조한다.
  */
 
 :root {
@@ -34,7 +32,7 @@
   --color-surface-page: #FBFCFF;
   --color-surface-mist: #EEF0F3;
 
-  /* Color — State (기능 목적 한정 사용. success/warning은 아직 사용처가 없는 예비 토큰) */
+  /* Color — State (success/warning은 예비 토큰) */
   --color-success: #1C9A6C;
   --color-warning: #D98A1B;
   --color-critical: #E1435A;
@@ -53,7 +51,7 @@
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
-  /* Bold — 3단 원칙의 예외. proof-card 강조 지표처럼 semibold보다 강한 강조가 필요한 자리에서만 사용 */
+  /* Bold — 3단 원칙의 예외. proof-card 지표 등 강한 강조 전용 */
   --font-weight-bold: 700;
 
   /* Typography — Heading Scale (9단, Semibold 고정)
@@ -72,12 +70,8 @@
   --tracking-heading-tight: -0.1px;
   --tracking-heading-wide: -0.5px;
 
-  /* Typography — Body Scale
-   * 서비스 페이지(index.html 및 서브페이지)의 최소 폰트 사이즈는 14px이다.
-   * --text-body-13은 서비스 페이지에서 쓰지 않는다
-   * (13px은 codepresso-designsystem.html 카탈로그 문서 chrome 전용).
-   * 12px은 사용처가 없어 스케일에서 제거했다 — 필요해지면 그때 되살린다.
-   * 주의: .text-label 클래스(text.css)는 14px이고, --text-label 토큰은 13px이다. */
+  /* Typography — Body Scale (서비스 페이지 최소 14px, 13px은 designsystem.html chrome 전용)
+   * 주의: .text-label 클래스(text.css)는 14px, --text-label 토큰은 13px로 다르다. */
   --text-body-13: 13px; --leading-body-13: 20px;
   --text-body-14: 14px; --leading-body-14: 22px;
   --text-body-16: 16px; --leading-body-16: 24px;
@@ -156,20 +150,13 @@
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-lg: 12px;
-  /* 큰 판(목업 배경·카드 스테이지·프레임) 전용. 36px이었으나 20px로 낮췄다 —
-     6·8·12에서 갑자기 3배로 뛰어 같은 스케일로 보이지 않았고, 무엇보다
-     36px 판 안에 12px 창이 들어가 바깥이 안쪽보다 3배 둥근 중첩이 생겼다.
-     20px이면 안쪽과 1.7배 차라 겹쳐 놓아도 자연스럽고, 큰 판이라는 인상은
-     남는다. 이보다 낮추면 lg와 구분이 사라져 토큰을 둘 이유가 없어진다. */
+  /* 큰 판(목업 배경·카드 스테이지·프레임) 전용 */
   --radius-xl: 20px;
   --radius-full: 999px;
 
 
   /* ---------------------------------------------
-   * Motion
-   * 즉각적인 hover(0.1s)와 느긋한 스크롤 페이드(0.5s)의 이중 리듬이 원칙.
-   * easing은 channel.io의 유들유들한 cubic-bezier를 도입하지 않고
-   * 기존 ease 계열(즉각 반응)을 그대로 유지한다.
+   * Motion — hover(0.1s)와 스크롤 페이드(0.5s)의 이중 리듬
    * --------------------------------------------- */
   --duration-hover: 0.1s;
   --duration-indicator: 0.25s;
@@ -178,11 +165,10 @@
   --ease-hover: ease-out;
   --ease-scroll: ease-out;
 
-  /* 스크롤 페이드 진입 시 살짝 떠오르는 거리(0.5s 리듬과 짝을 이루는 보조 토큰) */
+  /* 스크롤 페이드 진입 시 떠오르는 거리 */
   --motion-rise: 12px;
 
-  /* keyframes.css의 공용 애니메이션이 읽는 기본값. 쓰는 쪽에서 덮어
-     같은 움직임의 세기만 바꾼다(거리·최소 투명도·축소율). */
+  /* keyframes.css 공용 애니메이션 기본값. 쓰는 쪽에서 덮어써 세기만 조절 */
   --motion-pop-scale: .96;
   --motion-pulse-min: .5;
   --motion-float-y: -5px;
@@ -190,24 +176,10 @@
 }
 
 /* ---------------------------------------------
- * 모바일 타이포 스케일
- * base.css의 h1~h3가 --text-h1/h2/h3 시맨틱 토큰을 읽으므로, 여기서 그
- * 토큰만 다시 가리키면 컴포넌트를 하나도 건드리지 않고 사이트 전체 제목이
- * 함께 줄어든다. 컴포넌트마다 font-size를 다시 쓰지 않는 이유가 이것이다.
- *
- * 데스크톱 56/44/24는 360px 화면에서 한 단어가 한 줄을 차지한다.
- * 제목은 32/24/20으로, 본문 계열은 한 단씩 내린다(18→16, 16→15).
- * 자간은 40px 이하 구간의 규칙(-0.1px)을 따라 tight로 바꾼다.
- *
- * 14px은 내리지 않는다 — 이 프로젝트의 "서비스 페이지 최소 14px" 제약이
- * 모바일에서도 그대로 유효하다. 그래서 본문 하한(--text-body-muted)과
- * .text-label/.text-caption 계열은 손대지 않는다.
+ * 모바일 타이포 스케일 — base.css의 h1~h3가 참조하는 시맨틱 토큰 재정의
  * --------------------------------------------- */
 @media (max-width: 560px) {
   :root {
-    /* h1을 32→36px로 한 단 올렸다 — .section-title h2를 32px로 키우면서
-       h1과 겹치게 돼, h1을 그 위 단으로 밀어 3단 위계(h1>h2>h3)를
-       지킨다. --text-hero도 h1과 같은 값을 쓰던 자리라 함께 올린다. */
     --text-hero: var(--text-heading-36);
     --leading-hero: var(--leading-heading-36);
     --tracking-hero: var(--tracking-heading-tight);
@@ -216,8 +188,7 @@
     --leading-h1: var(--leading-heading-36);
     --tracking-h1: var(--tracking-heading-tight);
 
-    /* .section-title h2 전용 확대 요청으로 24→32px. 모바일에서 h2가
-       h3(20px)와 차이가 잘 안 느껴진다는 지적에 따른 것이다. */
+    /* .section-title h2 전용 확대 */
     --text-h2: var(--text-heading-32);
     --leading-h2: var(--leading-heading-32);
 
@@ -227,10 +198,7 @@
     --text-card-title: var(--text-heading-18);
     --leading-card-title: var(--leading-heading-18);
 
-    /* 본문 계열 — 원시 스케일 18px을 16px로 내린다. .desc가 이 토큰을
-       읽으므로 섹션 설명문 전체가 함께 내려간다(가장 덩어리가 큰 본문).
-       16px 본문과 14px 하한은 그대로 둔다 — 더 내리면 최소 14px 제약을
-       깨거나 본문과 보조 정보의 위계가 사라진다. */
+    /* 섹션 설명문(.desc) 등 본문 계열 */
     --text-body-18: 16px;
     --leading-body-18: 24px;
   }

@@ -1,7 +1,7 @@
 /*
  * Component: Content Panel
- * 위쪽 설명 영역과 아래쪽 큰 시각 영역을 한 박스 안에 쌓는 범용 프레임.
- * journey처럼 콘텐츠가 교체되는 경우에도 같은 padding, 간격, 시각 비율을 유지한다.
+ * 설명 영역 + 큰 시각 영역을 한 박스에 쌓는 범용 프레임. journey처럼 콘텐츠가
+ * 교체돼도 같은 padding·간격·비율을 유지한다.
  *
  * Markup API
  * .content-panel
@@ -9,7 +9,7 @@
  *     .content-panel__intro (eyebrow/title/description)
  *     .content-panel__visual (이미지, 목업, 차트 등)
  *
- * 컴포넌트는 내부 구조만 담당한다. sticky, grid 중첩, 전환 상태는 사용하는 페이지가 맡는다.
+ * 내부 구조만 담당한다. sticky, grid 중첩, 전환 상태는 사용 페이지가 맡는다.
  */
 .content-panel {
   --content-panel-padding: var(--space-48);
@@ -45,12 +45,4 @@
   --content-panel-gap: var(--space-16);
 }
 
-@media (max-width: 720px) {
-  .content-panel { --content-panel-padding: var(--space-24); }
-}
-
-@media (max-width: 560px) {
-  /* 라벨·타이틀·설명 사이 간격을 없앤다 — 요청에 따른 압축.
-     세 요소가 붙어 한 덩어리로 읽힌다. */
-  .content-panel__intro { gap: 0; }
-}
+/* 720px·560px 반응형은 css/mobile.css에 모아 둔다. */

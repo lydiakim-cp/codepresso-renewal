@@ -18,11 +18,9 @@
   flex: none;
 }
 
-/* 메인페이지 hero(assessment-card)에서 쓰이므로 최소 폰트 14px 제약을 따른다.
-   13px(--text-label)은 카탈로그 문서 chrome 전용이다. */
+/* hero(assessment-card)의 캡슐형 라벨. */
 .pill {
   display: inline-block;
-  /* 좌우 14px — 캡슐 안 텍스트 양옆 여유. spacing 스케일에 없는 1회성 값 */
   padding: var(--space-6) 14px;
   border-radius: var(--radius-full);
   font-size: var(--text-body-14);

@@ -1,8 +1,6 @@
 /*
  * Component: Feature Card
- * 아이콘 + 제목 + 화살표 + 설명으로 구성된 기능 소개 카드.
- * 평소엔 배경/테두리 없는 무자극 상태, hover 시에만 옅은 회색 배경이
- * 나타나 포커스를 유도한다(카드가 튀어나오거나 이동하지 않음).
+ * 아이콘 + 제목 + 화살표 + 설명 기능 소개 카드. hover/active 시 옅은 배경만 나타난다.
  */
 
 .feature-card-grid {
@@ -56,7 +54,7 @@
 
 .feature-card .section-body {
   flex: 1;
-  /* 우측 중앙에 절대 위치한 화살표(18px)와 겹치지 않도록 여백을 둔다. */
+  /* 우측 절대 위치 화살표와 겹치지 않게 여백 */
   padding-right: 32px;
 }
 
@@ -131,12 +129,8 @@
   color: var(--color-ink-light);
 }
 
-/*
- * Active State (.feature-card.is-active)
- * hover 또는 자동 순환(feature-card-cycle.js)에 의해 activate된 카드의 상태.
- * 아이콘이 fade+상승하며 사라지고, 화살표(카드 우측 중앙에 절대 위치)가
- * 살짝 오른쪽으로 이동하며, 설명(desc)이 fade-in된다.
- */
+/* Active State — hover 또는 feature-card-cycle.js(자동 순환)가 붙이는 .is-active.
+   아이콘이 사라지고 화살표가 이동하며 설명이 나타난다. */
 .feature-card.is-active {
   background: var(--color-surface-sunken);
 }
@@ -151,9 +145,7 @@
   transform: translateY(calc(-1 * var(--motion-rise)));
 }
 
-/* 활성 카드의 라벨(01 · 진단 등)은 브랜드 색으로 올라간다.
-   원래 .how-it-works에만 걸려 있었으나, 이 카드를 쓰는 다른 페이지에서도
-   같은 동작이 필요해 컴포넌트 규칙으로 올렸다. */
+/* 활성 카드의 라벨이 브랜드 색으로 바뀐다 */
 .feature-card.is-active .section-body-title {
   color: var(--color-brand);
 }
@@ -167,31 +159,7 @@
   transform: translateY(0);
 }
 
-/* 모바일 — 카드 높이 380px은 3장이 나란할 때 눈높이를 맞추려던 값이다.
-   1열로 쌓이면 맞출 이웃이 없고, 짧은 카드에 빈 공간만 남는다. */
-@media (max-width: 560px) {
-  .feature-card {
-    height: auto;
-    min-height: 240px;
-    padding: var(--space-24);
-  }
-
-  /* 화살표는 우측 중앙에 절대 위치하며 hover 시에만 살짝 움직이는
-     장식이다. 모바일은 hover가 없고 카드도 이제 전부 펼쳐진 상태라
-     "눌러서 펼친다"는 신호 자체가 필요 없다 — 감춘다.
-     how-it-works에만 건다 — feature-card는 ax-build.html의 다른
-     섹션(ax-build-fit)도 쓰는 공용 컴포넌트라, 여기서 무조건 걸면
-     그 섹션의 화살표까지 함께 사라진다. */
-  .how-it-works .feature-card-arrow { display: none; }
-
-  /* 화살표를 위해 비워 뒀던 우측 32px도 함께 걷는다(위와 같은 이유로
-     how-it-works 스코프). */
-  .how-it-works .feature-card .section-body { padding-right: 0; }
-
-  /* 진행률 바도 순환이 없는 모바일에서는 의미가 없다 — 카드가 전부
-     펼쳐져 있어 "다음 카드로 언제 넘어가는지" 보여줄 대상이 없다. */
-  .how-it-works .feature-card-progress { display: none; }
-}
+/* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */
 
 @media (prefers-reduced-motion: reduce) {
   .feature-card,

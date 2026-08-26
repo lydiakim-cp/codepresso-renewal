@@ -1,8 +1,7 @@
 /*
  * Component: Timeline
- * 기간이 있는 단계를 위에서 아래로 잇는 범용 세로 타임라인.
- * 왼쪽에 기간 라벨, 가운데에 연결선과 점, 오른쪽에 내용이 온다.
- * 단계 수가 늘어도 마크업만 추가하면 선이 자동으로 이어진다.
+ * 기간이 있는 단계를 위→아래로 잇는 범용 세로 타임라인.
+ * 왼쪽 기간 라벨 · 가운데 연결선+점 · 오른쪽 내용. 단계를 추가하면 선도 자동으로 이어진다.
  *
  * Markup API
  * ol.timeline
@@ -45,14 +44,14 @@
   transform: translateX(-50%);
 }
 
-/* 단계 지점을 나타내는 점. 브랜드 색이라 진행 흐름이 눈에 걸린다. */
+/* 단계 지점을 나타내는 점(브랜드 색). */
 .timeline__marker::after {
   content: "";
   position: relative;
   z-index: 1;
   width: 11px;
   height: 11px;
-  /* 기간 라벨 텍스트의 첫 줄 중앙과 점 높이를 맞춘다(22px 줄높이의 절반). */
+  /* 기간 라벨 첫 줄 중앙과 높이를 맞춘다. */
   margin-top: 6px;
   border-radius: var(--radius-full);
   background: var(--color-brand);
@@ -77,8 +76,7 @@
 
 .timeline__step:last-child .timeline__body { padding-bottom: 0; }
 
-/* h3 전역 스타일을 쓰되 카드 제목 스케일(20px)로 낮춘다 — 단계가 4개 이상
-   쌓이면 24px은 섹션 제목과 위계가 겹쳐 보인다. */
+/* h3 대신 카드 제목 스케일(20px)을 쓴다. */
 .timeline__title {
   font-size: var(--text-card-title);
   line-height: var(--leading-card-title);
@@ -90,11 +88,7 @@
   color: var(--color-ink-light);
 }
 
-/*
- * 진입 모션 — 섹션에 .fade-up이 걸려 있으면 그 .is-visible을 받아
- * 단계가 위에서 아래로 차례로 들어온다. 진행 흐름이라 순서가 보이는 편이 좋다.
- * .fade-up이 없는 곳에서는 그냥 정지 상태로 보인다(기본값이 보이는 상태).
- */
+/* 진입 모션 — 섹션의 .fade-up.is-visible을 받아 단계가 순서대로 들어온다. */
 .fade-up .timeline__step {
   opacity: 0;
   transform: translateY(var(--motion-rise));
@@ -115,8 +109,6 @@
 
 /* 점도 함께 커지며 자리를 잡는다. */
 .fade-up.is-visible .timeline__marker::after {
-  /* 점은 이동 없이 크기만 자란다 — 기본 .96보다 훨씬 작게 시작해야
-     "자리를 잡는다"가 읽힌다. */
   --motion-pop-scale: .4;
   animation: scale-in var(--duration-scroll) var(--ease-scroll) both;
 }
@@ -127,15 +119,4 @@
   .fade-up.is-visible .timeline__marker::after { animation: none; }
 }
 
-@media (max-width: 720px) {
-  /* 기간 라벨을 위로 올리고 선·점만 왼쪽에 남긴다. */
-  .timeline__step { grid-template-columns: auto minmax(0, 1fr); gap: var(--space-16); }
-  .timeline__term {
-    position: absolute;
-    top: 0;
-    left: var(--space-24);
-    text-align: left;
-    white-space: nowrap;
-  }
-  .timeline__body { padding-top: var(--space-24); }
-}
+/* 720px 반응형은 css/mobile.css에 모아 둔다. */

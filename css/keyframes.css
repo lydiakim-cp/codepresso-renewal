@@ -1,51 +1,22 @@
 /*
  * Keyframes Library (모든 페이지 공통)
- * 프로젝트 전체가 함께 쓰는 @keyframes를 한 곳에 모은 라이브러리.
- * 컴포넌트는 여기 정의된 이름을 animation 속성으로 "가져다 쓰기만" 한다.
- *
- * 왜 별도 파일인가
- *   @keyframes는 @layer의 우선순위를 받지 않는다 — 이름이 같으면 나중에 로드된
- *   정의가 이긴다(레이어와 무관). 그래서 컴포넌트마다 흩어져 있으면 이름이
- *   겹치는 순간 로드 순서에 따라 조용히 다른 애니메이션이 재생된다.
- *   한 파일에 모아 두면 이름 충돌을 눈으로 확인할 수 있고, 새 컴포넌트가
- *   같은 움직임을 또 정의하는 일도 막는다.
- *
- * 쓰는 법 — 이름만 가져다 animation에 넣는다. duration·easing·delay는
- * 쓰는 쪽이 정한다(같은 움직임도 맥락마다 속도가 다르기 때문).
+ * 프로젝트 전체가 함께 쓰는 @keyframes 모음. 컴포넌트는 이름만 animation
+ * 속성에 가져다 쓴다. duration·easing은 쓰는 쪽이 정한다.
  *   .my-card { animation: rise-in var(--duration-scroll) var(--ease-scroll) both; }
  *
- * 거리·각도처럼 값이 달라지는 것은 CSS 변수로 열어 뒀다. 새 keyframes를
- * 만들기 전에 아래 목록에서 같은 움직임이 있는지 먼저 본다.
- *   rise-in     아래에서 떠오르며 나타난다 (--motion-rise로 거리 조절)
- *   pop-in      떠오르면서 살짝 커진다 (--motion-rise · --motion-pop-scale)
- *   scale-in    작게 시작해 제자리 크기로 커진다 (--motion-pop-scale)
- *   pulse       투명도가 오갔다 한다 (--motion-pulse-min)
- *   float       제자리에서 위아래로 떠다닌다 (--motion-float-y)
- *   nudge       제자리에서 좌우로 살짝 민다 (--motion-nudge-x)
- *   marquee     같은 목록 2벌을 옆으로 흘린다 (--marquee-gap)
- *   gradient-shift  배경 그라디언트를 가로로 흘린다 (--gradient-shift-to)
- *   spin-angle  각도 커스텀 프로퍼티를 한 바퀴 돌린다
- *
- * 특정 연출에만 쓰이는 keyframes는 여기 두지 않는다 —
- * 목업 연출 5종은 components/ui/mock-motion.css가, 그 목업을 변주한 것은
- * 해당 컴포넌트 파일이 각각 소유한다(그 파일을 안 쓰면 따라오지 않게).
+ * 특정 연출 전용 keyframes는 여기 두지 않는다 — 목업 연출 5종은
+ * components/ui/mock-motion.css가, 그 변주는 해당 컴포넌트 파일이 소유한다.
  */
 
-/* ---------------------------------------------
- * 진입 — 스크롤·전개로 요소가 나타날 때
- * --------------------------------------------- */
+/* --- 진입: 스크롤·전개로 요소가 나타날 때 --- */
 
-/* 아래에서 떠오르며 나타난다. 거리는 --motion-rise(기본 12px)로 조절한다.
-   이 프로젝트에서 가장 많이 쓰이는 진입 모션이라, 이동폭만 다르던
-   ax-build-rise(12px) · catalog-board-item-in(6px) · faq-list-open(8px)
-   · mock-step-in(10px) · mock-cue-in(8px)을 이 하나로 합쳤다. */
+/* 아래에서 떠오르며 나타난다 (--motion-rise로 이동폭 조절) */
 @keyframes rise-in {
   from { opacity: 0; transform: translateY(var(--motion-rise)); }
   to { opacity: 1; transform: none; }
 }
 
-/* 떠오르면서 살짝 커진다 — "톡" 튀어나오는 인상.
-   이동폭 8px·축소 .96은 그 느낌을 주면서도 레이아웃이 출렁이지 않는 선이다. */
+/* 떠오르면서 살짝 커진다 — "톡" 튀어나오는 인상 (--motion-rise · --motion-pop-scale) */
 @keyframes pop-in {
   from {
     opacity: 0;
@@ -54,58 +25,49 @@
   to { opacity: 1; transform: none; }
 }
 
-/* 작게 시작해 제자리 크기로 커진다. 점·배지처럼 위치가 고정된 것에 쓴다
-   (이동이 없어 옆 요소를 밀지 않는다). */
+/* 이동 없이 크기만 커진다. 점·배지처럼 위치 고정된 요소에 쓴다 (--motion-pop-scale) */
 @keyframes scale-in {
   from { transform: scale(var(--motion-pop-scale)); }
   to { transform: scale(1); }
 }
 
-/* ---------------------------------------------
- * 반복 — 계속 돌면서 "살아 있음"을 알리는 움직임
- * --------------------------------------------- */
+/* --- 반복: 계속 돌면서 "살아 있음"을 알리는 움직임 --- */
 
-/* 투명도가 오갔다 한다. 최소값을 --motion-pulse-min으로 열어 둬,
-   은은한 스켈레톤(.55)부터 또렷한 상태 표시(.35)까지 한 정의로 쓴다. */
+/* 투명도가 오갔다 한다. 스켈레톤·상태 표시 등에 쓴다 (--motion-pulse-min) */
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: var(--motion-pulse-min); }
 }
 
-/* 제자리에서 위아래로 떠다닌다. translate의 X항을 변수로 열어 둔 것은
-   가운데 정렬을 transform으로 하는 요소(translate(-50%, …))도 같은
-   keyframes를 쓰기 위해서다 — 그렇지 않으면 정렬이 풀린다. */
+/* 제자리에서 위아래로 떠다닌다 (--motion-float-y).
+   가운데 정렬에 translate(-50%, …)를 쓰는 요소는 --motion-float-x도 함께 준다. */
 @keyframes float {
   0%, 100% { transform: translate(var(--motion-float-x, 0), 0); }
   50% { transform: translate(var(--motion-float-x, 0), var(--motion-float-y)); }
 }
 
-/* 제자리에서 좌우로 살짝 민다 — "여기를 보라"는 신호. */
+/* 제자리에서 좌우로 살짝 민다 — 주의 환기용 (--motion-nudge-x) */
 @keyframes nudge {
   0%, 100% { transform: translateX(0); }
   50% { transform: translateX(var(--motion-nudge-x)); }
 }
 
-/* 같은 목록을 2벌 나란히 두고 첫 벌의 폭만큼 흘린다. 되감을 때 둘째 벌이
-   첫 벌 자리에 정확히 오므로 이음매가 보이지 않는다.
-   --marquee-gap은 두 벌 사이의 간격이다 — 이 항을 빼면 매 바퀴 그만큼 튄다. */
+/* 같은 목록 2벌을 나란히 두고 옆으로 흘려 무한 루프처럼 보이게 한다
+   (--marquee-gap: 두 벌 사이 간격) */
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(calc(-100% - var(--marquee-gap, 0px))); }
 }
 
-/* 배경 그라디언트를 가로로 흘린다. 쓰는 쪽에서 background-size를 100%보다
-   크게 잡고(예: 300%), 그 값에 맞춰 --gradient-shift-to를 준다. */
+/* 배경 그라디언트를 가로로 흘린다. background-size를 100% 이상으로 잡고
+   그 값에 맞춰 --gradient-shift-to를 준다 */
 @keyframes gradient-shift {
   from { background-position: 0% 50%; }
   to { background-position: var(--gradient-shift-to) 50%; }
 }
 
-/* 각도 커스텀 프로퍼티를 한 바퀴 돌린다. conic-gradient로 그린 테두리를
-   회전시킬 때 쓴다.
-   @property 등록이 있어야 브라우저가 각도를 '숫자'로 보고 보간한다 —
-   등록하지 않으면 문자열로 취급해 0deg에서 360deg로 툭 튀고, 회전이
-   아예 보이지 않는다. keyframes와 짝이므로 같은 자리에 둔다. */
+/* 각도 커스텀 프로퍼티를 한 바퀴 돌린다. conic-gradient 테두리 회전용.
+   @property 등록이 있어야 각도가 숫자로 보간되어 회전이 보인다. */
 @property --spin-angle {
   syntax: "<angle>";
   inherits: false;

@@ -23,7 +23,7 @@
   min-height: 420px;
 }
 
-/* 좌측 분류 레일 — 실제 앱의 사이드 내비처럼 옅게 가라앉힌다. */
+/* 좌측 분류 레일 */
 .catalog-board__rail {
   display: flex;
   flex-direction: column;
@@ -61,7 +61,7 @@
   font-weight: var(--font-weight-medium);
 }
 
-/* 항목 개수 배지. 분야별 규모가 한눈에 비교된다. */
+/* 항목 개수 배지 */
 .catalog-board__count {
   flex-shrink: 0;
   min-width: 26px;
@@ -86,7 +86,7 @@
   padding: var(--space-28);
 }
 
-/* 판을 겹쳐 두고 활성 판만 보여준다 — 분야를 바꿀 때 높이가 튀지 않는다. */
+/* 판을 겹쳐 두고 활성 판만 보여준다(분야 전환 시 높이 유지). */
 .catalog-board__panel {
   position: absolute;
   inset: var(--space-28);
@@ -103,10 +103,8 @@
   pointer-events: auto;
 }
 
-/* 분야를 바꾸면 항목이 차례로 들어와 "목록이 갈렸다"는 것이 눈에 보인다.
-   판마다 처음부터 다시 재생되도록 애니메이션은 .is-active에만 건다. */
+/* 분야 전환 시 항목이 차례로 들어온다(stagger). */
 .catalog-board__panel.is-active .catalog-board__item {
-  /* 항목이 촘촘해 기본 12px은 과하다 — 이동폭만 줄여 같은 진입을 쓴다. */
   --motion-rise: 6px;
   animation: rise-in var(--duration-hover) var(--ease-hover) both;
 }
@@ -131,7 +129,7 @@
   align-content: start;
 }
 
-/* 워크플로 한 건. 실제로 등록된 자동화 항목처럼 보이도록 카드로 세운다. */
+/* 워크플로 항목 카드 */
 .catalog-board__item {
   display: flex;
   align-items: center;
@@ -156,7 +154,7 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* 항목 앞의 상태 점 — 검증된 워크플로라는 신호. */
+/* 항목 앞 상태 점 */
 .catalog-board__item::before {
   content: "";
   flex-shrink: 0;
@@ -166,19 +164,7 @@
   background: var(--color-brand);
 }
 
-@media (max-width: 900px) {
-  .catalog-board { grid-template-columns: 1fr; min-height: 0; }
-  .catalog-board__rail {
-    flex-direction: row;
-    overflow-x: auto;
-    border-right: 0;
-    border-bottom: 1px solid var(--color-line);
-  }
-  .catalog-board__category { flex-shrink: 0; }
-  /* 좁은 화면에서는 겹쳐 두지 않고 흐름에 따라 높이를 갖게 한다. */
-  .catalog-board__panel { position: static; inset: auto; display: none; }
-  .catalog-board__panel.is-active { display: flex; }
-}
+/* 900px 반응형은 css/mobile.css에 모아 둔다. */
 
 @media (prefers-reduced-motion: reduce) {
   .catalog-board__category,

@@ -1,8 +1,7 @@
 /*
  * Component: Insight
- * 최근 뉴스·인사이트 섹션. 좌측에 가장 최근 기사 하나를 큰 썸네일로 두고,
- * 우측에 나머지 기사를 제목+썸네일 한 줄씩 상하로 쌓는다.
- * 영역 구분은 border 대신 배경색(surface-sunken)과 행 사이 구분선으로만 처리한다.
+ * 최근 뉴스·인사이트 섹션. 좌측에 최신 기사 하나를 큰 썸네일로, 우측엔 나머지를
+ * 제목+썸네일 한 줄씩 쌓는다.
  */
 
 .insight-layout {
@@ -10,8 +9,7 @@
   /* 좌측 피처가 절반, 우측 목록이 나머지 절반. */
   grid-template-columns: 1fr 1fr;
   gap: var(--space-48);
-  /* 좌측 피처 썸네일이 폭에 비례해 커지므로 상한을 두지 않으면 섹션이 계속 늘어난다.
-     두 칼럼 모두 이 높이에 맞춰 늘어난다(stretch 기본값). */
+  /* 섹션이 계속 늘어나지 않도록 높이 상한을 둔다. */
   height: 480px;
 }
 
@@ -24,10 +22,7 @@
 }
 
 .insight-feature-thumb {
-  /* 4:3 고정. 칼럼 폭(636px) 기준으로 비율을 잡으면 높이가 477px이라 480px 안에
-     본문이 들어갈 자리가 없다. 그래서 폭이 아니라 "남는 높이"를 기준으로 크기를 정한다:
-     480px - 본문(tag 30 + gap 12 + 제목 2줄 64 = 106) - gap 24 = 350px.
-     폭은 비율에 따라 466px이 되고, 칼럼 폭(636px) 안에 들어간다. */
+  /* 4:3 고정 썸네일. 본문(태그+제목 2줄) 자리를 남기려 높이 기준으로 크기를 정한다. */
   height: 350px;
   aspect-ratio: 4 / 3;
   flex: 0 0 auto;
@@ -40,13 +35,13 @@
 }
 
 .insight-feature-title {
-  /* 썸네일 높이(354px)가 본문 2줄을 전제로 계산돼 있어, 넘치면 잘라 높이를 지킨다. */
+  /* 본문 2줄 전제로 썸네일 높이가 계산돼 있어, 넘치면 잘라 높이를 지킨다. */
 }
 
 /* 우측 — 상하로 쌓이는 기사 목록. 행 사이는 구분선 하나로만 나눈다. */
 .insight-list {
-  /* 좌측과 같은 480px 안에서 4개 행이 균등하게 나눠 갖는다(행당 120px).
-     기사가 4건에 못 미치면 .insight-row-empty 스켈레톤이 남는 자리를 채운다. */
+  /* 좌측과 같은 높이를 4개 행이 균등 분할. 기사가 4건 미만이면
+     .insight-row-empty 스켈레톤이 남는 자리를 채운다. */
   height: 100%;
   display: grid;
   grid-template-rows: repeat(4, 1fr);
@@ -71,50 +66,33 @@
   gap: var(--space-8);
 }
 
-/* 목록 제목은 h3 전역(24px)보다 한 단계 낮은 18px — 행 안에서는 본문에 가까운 위계다.
-   2줄을 넘기면 자른다. */
+/* 목록 제목은 h3 전역보다 한 단계 낮은 18px — 행 안에서는 본문에 가까운 위계다. */
 .insight-row-title {
   font-size: var(--text-body-18);
   line-height: var(--leading-body-18);
 }
 
 .insight-row-thumb {
-  /* 가로로 긴 4:3 썸네일. 행 높이(480/4 = 120px)에서 padding-block 12px*2를 뺀 96px이
-     실제로 쓸 수 있는 높이다. 폭은 비율에 따라 128px. 1440 기준, 반응형 착수 시 재검토. */
+  /* 4:3 썸네일. 행 높이에서 상하 padding을 뺀 만큼이 실사용 높이. */
   flex: 0 0 auto;
   height: 96px;
   aspect-ratio: 4 / 3;
   border-radius: var(--radius-md);
 }
 
-/* 목록 하단, 섹션 폭 안에서 가운데 배치되는 더보기 버튼. */
+/* 목록 하단, 섹션 폭 안에서 가운데 배치되는 더보기 버튼 */
 .insight-more {
   display: flex;
   justify-content: center;
   margin-top: var(--space-48);
 }
 
-/* 기사가 4건에 못 미칠 때 남는 자리를 채우는 빈 스켈레톤 행.
-   공통 .skeleton-block modifier로 실제 콘텐츠와 동일한 자리를 잡는다.
-   레이아웃 높이(480px)를 유지해 아래 더보기 버튼이 위로 딸려 올라오지 않게 한다. */
+/* 기사가 4건 미만일 때 남는 자리를 채우는 빈 스켈레톤 행. 공통 .skeleton-block
+   modifier로 실제 콘텐츠와 같은 자리를 잡아 레이아웃 높이를 유지한다. */
 .insight-row-empty .insight-row-body {
   flex: 1;
 }
 
 .insight-row-empty .skeleton-block.is-thumbnail { flex: 0 0 auto; height: 96px; }
 
-/* ---------------------------------------------
- * 모바일 — 좌(대표 기사) + 우(목록) 2단을 세로로 쌓는다.
- * 480px 고정 높이는 두 칼럼의 키를 맞추려던 값인데, 1열이 되면 맞출 상대가
- * 없고 내용이 그 안에 갇혀 잘린다 — 높이를 풀어 내용대로 흐르게 둔다.
- * --------------------------------------------- */
-@media (max-width: 560px) {
-  .insight-layout {
-    grid-template-columns: 1fr;
-    gap: var(--space-24);
-    height: auto;
-  }
-
-  /* 자리를 채우려고 두던 빈 스켈레톤 행은 세로 배치에서 스크롤만 늘린다. */
-  .insight-row-empty { display: none; }
-}
+/* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */

@@ -1,7 +1,6 @@
 /*
  * Component: Hero
  * 메인 메시지, 주요 CTA, 보조 링크, 고객 로고로 구성한 단일 컬럼 랜딩 히어로.
- * 과거 설문 전용 UI는 제거했으며 서비스 종류와 무관한 콘텐츠 구조만 유지한다.
  */
 .hero {
   background: var(--color-bg-login-pre) url("../../../images/main-bg.png") center / cover no-repeat;
@@ -26,10 +25,8 @@
 
 .hero-banner:hover { background: var(--color-surface); box-shadow: var(--shadow-md); }
 
-/* 최소 14px 제약의 의도적 예외 — hero-banner는 뉴스 헤드라인을 알리는
-   보조 배너지 본문이 아니다. 10/12px 토큰이 스케일에 없어(12px은 사용처가
-   없어 제거된 값) raw로 둔다. 다른 곳에서 같은 크기가 또 필요해지면
-   그때 토큰으로 올린다. */
+/* 최소 14px 제약의 의도적 예외 — hero-banner는 본문이 아니라 뉴스 헤드라인
+   보조 배너다. 대응 토큰이 없어 raw 값을 쓴다. */
 .hero-banner .tag { font-size: 10px; line-height: 14px; }
 .hero-banner-text { font-size: 12px; line-height: 16px; font-weight: var(--font-weight-medium); color: var(--color-ink); }
 .hero-banner-arrow { width: 16px; height: 16px; color: var(--color-brand); }
@@ -52,70 +49,11 @@
 .hero-cta { display: flex; gap: var(--space-12); }
 .hero-links { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-12); }
 
-/* hero 안의 보조 링크만 더 옅게 — link-arrow-ink는 여러 섹션이 공유하는
-   색 modifier라 여기서 직접 바꾸면 다른 섹션의 링크까지 옅어진다.
-   #9c9c9c는 --color-ink-lighter(#7C88A3, 블루 톤)와 다른 순수 회색이라
-   기존 토큰으로 대체하지 않고 이 자리에서만 쓴다 — 다른 곳에서 같은
-   값이 필요해지면 그때 토큰으로 올린다. */
+/* hero 안의 보조 링크만 더 옅게. #9c9c9c는 순수 회색이라 토큰으로 대체하지 않고
+   이 자리에서만 쓴다. */
 .hero-links .link-arrow-ink { color: #9c9c9c; }
 
-@media (max-width: 900px) {
-  .hero-content { grid-template-columns: 1fr; }
-  .hero-copy-wrap, .hero-links { align-items: center; }
-  .hero-copy { text-align: center; }
-  .assessment-card-frame { margin-inline: auto; }
-  .hero-links{
-    gap: 0;
-  }
-}
-
-@media (max-width: 560px) {
-  /* 카피와 진단 카드 사이 96px은 모바일에서 둘을 따로 놀게 만든다. */
-  .hero-copy { gap: var(--space-48); padding-top: var(--space-24); }
-
-  /* 카피 하단에 배경 이미지를 화면 폭 그대로 붙인다.
-     .hero-copy는 .section-wrap 안에 있어 좌우 20px 패딩과 컨테이너
-     max-width로 좁아져 있다 — ::after에 폭을 100vw로 주고
-     margin-inline을 음수 half-vw 트릭으로 걸어 그 제약을 벗어난다.
-     상하 padding 없이 딱 이미지 높이만큼만 자리를 차지하도록
-     height는 aspect-ratio로 폭에 비례해 정한다(원본 1448:800). */
-  .hero-copy::after {
-    content: "";
-    display: block;
-    width: 100vw;
-    margin-inline: calc(50% - 50vw);
-    aspect-ratio: 1448 / 800;
-    background: url("../../../images/main_banner_img_pc.avif") center / cover no-repeat;
-    margin-top: -48px;
-  }
-
-  .hero-banner {
-    margin-bottom: var(--space-24);
-  }
-
-  .hero-description {
-    font-size: var(--text-body-16);
-    line-height: var(--leading-body-16);
-  }
-
-  /* 버튼 두 개가 한 줄에 들어가지 않으므로 세로로 쌓되, 폭은 글자에
-     맞춘다 — 화면을 꽉 채우면 버튼이 배너처럼 보여 눌러야 할 것으로
-     읽히지 않는다. hero-copy가 가운데 정렬이라 버튼도 가운데 선다. */
-  .hero-cta {
-    flex-direction: column;
-    align-items: center;
-    width: fit-content;
-    margin-inline: auto;
-  }
-
-  .hero-clients { gap: var(--space-24); padding-top: var(--space-48); }
-
-  /* 로고와 간격을 함께 줄인다 — 로고만 줄이면 사이가 휑하고, 간격만
-     줄이면 로고가 화면을 다 먹는다. marquee 이동 거리는 --marquee-gap을
-     읽으므로 여기서 gap을 바꿔도 이음매는 그대로 맞는다. */
-  .hero-clients-marquee { --marquee-gap: 40px; height: 44px; }
-  .hero-clients-item img { width: 122px; height: 24px; }
-}
+/* 900px·560px 반응형은 css/mobile.css에 모아 둔다. */
 
 .hero-clients {
   display: flex;
@@ -136,13 +74,12 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  /* background-size 300%에 맞춰 한 바퀴를 -300%로 잡는다. */
+  /* background-size 300%에 맞춰 한 바퀴 분량으로 이동시킨다. */
   --gradient-shift-to: -300%;
   animation: gradient-shift 6s linear infinite;
 }
-/* 로고 사이 간격. 트랙 안(로고 사이)과 트랙 사이(첫 트랙 끝 ↔ 둘째 트랙 첫
-   로고)가 같은 값이어야 이음매가 보이지 않는다 — 공용 marquee가 읽는
-   --marquee-gap 하나로 두 곳을 함께 정한다. */
+/* 로고 사이 간격 — 트랙 안·트랙 사이 간격이 같아야 이음매가 안 보인다.
+   공용 marquee가 읽는 --marquee-gap 하나로 정한다. */
 .hero-clients-marquee {
   --marquee-gap: 72px;
   position: relative;
@@ -157,11 +94,8 @@
   mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
 }
 
-/* 같은 목록 2벌을 나란히 두고 첫 벌의 폭만큼 왼쪽으로 흘린다. 되감을 때
-   둘째 벌이 정확히 첫 벌 자리에 오므로 끊긴 곳이 보이지 않는다.
-   이동 거리에 트랙 사이 gap을 더하지 않으면 매 바퀴 그 폭만큼 튄다 —
-   실제로 그 때문에 마지막에 끊겨 보였다. padding-inline을 주지 않는 것도
-   같은 이유다(트랙 양 끝에만 붙어 로고 간격이 이음매에서 달라진다). */
+/* 같은 목록 2벌을 나란히 두고 첫 벌 폭만큼 왼쪽으로 흘려 무한 루프처럼 보이게 한다.
+   padding-inline은 주지 않는다 — 양 끝에만 붙어 이음매의 로고 간격이 달라진다. */
 .hero-clients-track {
   display: flex;
   align-items: center;

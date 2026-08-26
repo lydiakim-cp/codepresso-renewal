@@ -4,8 +4,7 @@
  * 색만 다른 경우는 별도 클래스를 새로 만들지 않고 modifier로 붙인다.
  */
 
-/* 공용 라벨 — 14px medium, ink-light. 통계·소제목처럼 짧게 값을 짚어주는 자리에 쓴다.
-   색/굵기가 다른 라벨은 modifier로 덮어쓴다(.brand, .strong 등). */
+/* 공용 라벨 — 통계·소제목처럼 짧게 값을 짚는 자리. */
 .text-label {
   font-size: var(--text-body-14);
   line-height: var(--leading-body-14);
@@ -13,14 +12,13 @@
   color: var(--color-ink-light);
 }
 
-/* 소제목 라벨 — "01. 설계", "진단 제품"처럼 상위 그룹을 가리키는 브랜드 컬러 라벨. */
+/* 소제목 라벨 — "01. 설계"처럼 상위 그룹을 가리키는 브랜드 컬러 라벨. */
 .text-label.brand {
   font-weight: var(--font-weight-semibold);
   color: var(--color-brand);
 }
 
-/* 캡션 — 리스트 항목의 보조 설명문(14px, ink-lighter). .strong은 숫자 인디케이터처럼
-   같은 크기·색이지만 더 두껍게 강조해야 하는 자리에 쓴다. */
+/* 캡션 — 리스트 항목의 보조 설명문. .strong은 숫자 인디케이터 등 강조용. */
 .text-caption {
   font-size: var(--text-body-14);
   line-height: var(--leading-body-14);
@@ -35,18 +33,14 @@
   font-weight: var(--font-weight-medium);
 }
 
-/* 스테이지 스텝 타이틀 — PART 1 education-journey와 PART 2 diagnosis-showcase의
-   교차 페이드 판 안에서 쓰는 32px 타이틀. h3 전역 스타일(semibold, --color-ink)보다
-   한 단계 큰 스케일이 필요해 태그는 h3로 유지하고 시각 스타일만 여기서 정의한다.
-   두 섹션이 함께 쓰므로 한쪽 컴포넌트 파일이 아니라 공용 텍스트로 둔다. */
+/* 스테이지 스텝 타이틀 — education-journey·diagnosis-showcase의 교차 페이드 판 32px 타이틀(태그는 h3). */
 .stage-step-title {
   font-size: var(--text-heading-32);
   line-height: var(--leading-heading-32);
   color: var(--color-ink-heaviest);
 }
 
-/* 섹션 설명문뿐 아니라 education-journey의 블록 설명(journey-block-desc)에서도
-   재사용하는 공용 텍스트 스타일이라 전역 클래스로 둔다. */
+/* 섹션 설명문. education-journey의 블록 설명(journey-block-desc)도 공유. */
 .desc {
   font-size: var(--text-body-18);
   line-height: var(--leading-body-18);
@@ -54,8 +48,7 @@
   color: var(--color-ink-light);
 }
 
-/* 카탈로그 문서에서 쓰는 보조 설명 텍스트 2종.
-   .sub은 크기를 p 기본값(16px)에서 바꾸지 않고 색만 낮춘다. */
+/* 카탈로그 문서용 보조 설명 텍스트. .sub은 p 기본 크기(16px) 유지, 색만 낮춤. */
 .sub {
   color: var(--color-ink-lighter);
 }
@@ -65,11 +58,4 @@
   font-size: var(--text-body-muted);
 }
 
-/* 모바일 — 32px는 목업 판 폭(566px 기준)에 맞춘 크기라 좁은 화면에서
-   과하다. h3 다음 단인 24px로 낮춘다. */
-@media (max-width: 560px) {
-  .stage-step-title {
-    font-size: var(--text-heading-24);
-    line-height: var(--leading-heading-24);
-  }
-}
+/* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */
