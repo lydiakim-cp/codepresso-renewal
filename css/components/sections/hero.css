@@ -51,6 +51,9 @@
   .hero-copy-wrap, .hero-links { align-items: center; }
   .hero-copy { text-align: center; }
   .assessment-card-frame { margin-inline: auto; }
+  .hero-links{
+    gap: 0;
+  }
 }
 
 @media (max-width: 560px) {

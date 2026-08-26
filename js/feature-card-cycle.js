@@ -10,6 +10,13 @@
  * - prefers-reduced-motion 사용자에게는 자동 순환 없이 첫 카드만 activate 상태로 둔다.
  */
 (() => {
+  /* 모바일에서는 카드를 순환시키지 않고 전부 펼쳐 둔다(사용자 확인) —
+     좁은 화면에서 카드가 세로로 쌓이면 순환이 오히려 "다른 카드가 왜
+     닫혀 있는지" 헷갈리게 한다. 뷰포트 폭은 리사이즈에 반응하지 않고
+     스크립트 로드 시점에 한 번만 확인한다 — 다른 스크립트의
+     prefersReducedMotion과 같은 방식이다. */
+  const isMobile = window.matchMedia('(max-width: 560px)').matches;
+
   function parseCssDuration(value) {
     if (!value) return 0;
     const trimmed = value.trim();
@@ -26,6 +33,11 @@
   groups.forEach((group) => {
     const cards = Array.from(group.querySelectorAll('.feature-card'));
     if (!cards.length) return;
+
+    if (isMobile) {
+      cards.forEach((card) => card.classList.add('is-active'));
+      return;
+    }
 
     // 순환 주기는 CSS 토큰(--duration-cycle)이 단일 진실 소스다.
     // progress bar의 transition-duration과 항상 같은 값을 쓰도록 여기서 읽어온다.
