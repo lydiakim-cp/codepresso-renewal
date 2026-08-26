@@ -1438,35 +1438,27 @@
                 </div>
               </div>
 
-              <!-- ③ 현장 검증 — 다크 판. 이 섹션의 결론이라 화면 전체를 어둡게 쓴다. -->
+              <!-- ③ 현장 검증 — 현장 투입 → 검증 → 커리큘럼 반영 3단계.
+                   ①②와 같은 stage 문법을 쓰되 다크 판만 유지한다(섹션의 결론).
+                   3단계가 ①의 교육으로 되돌아가며 순환을 닫는 것이 이 화면의 요점이다. -->
               <div class="difference-screen is-dark" data-difference-screen="2">
                 <div class="difference-screen-head">
                   <span class="difference-screen-title">AXMOS 얼라이언스 · FDE 현장</span>
-                  <span class="difference-chip is-brand">검증 완료</span>
+                  <span class="difference-chip is-brand">현장 사례 52건</span>
                 </div>
 
-                <div class="difference-screen-body is-field">
+                <div class="difference-screen-body is-field" data-mock-motion="stage">
 
-                  <!-- 좌 — 보증 마크와 결론 한 문장. -->
-                  <div class="difference-card is-seal">
-                    <span class="difference-closing-mark">
-                      <!-- 방패 안 체크 — 현장에서 검증됐다는 보증 -->
-                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2.8l7.2 2.7v6.1c0 4.3-2.9 8.2-7.2 9.6-4.3-1.4-7.2-5.3-7.2-9.6V5.5L12 2.8z"
-                          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M8.8 12.2l2.3 2.3 4.1-4.4" stroke="currentColor" stroke-width="1.8"
-                          stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </span>
-                    <p class="difference-closing-text">현장에서 검증한 것만<br><strong>교육으로 만듭니다</strong></p>
-                  </div>
+                  <!-- 1단계 · 현장 투입 — 우리가 실제로 어디에 들어가 있는지. -->
+                  <div class="difference-card is-step is-first" style="--mock-step: 0">
+                    <div class="difference-step-head">
+                      <span class="difference-step-no">1</span>
+                      <span class="difference-card-label">현장 투입</span>
+                    </div>
+                    <span class="difference-step-desc">FDE가 고객사 현장에서 직접 만듭니다</span>
 
-                  <!-- 중 — 실제 투입 현장 목록. 검증 배지가 붙어 있다. -->
-                  <div class="difference-card">
-                    <span class="difference-card-label">FDE 투입 현장</span>
-
-                    <ul class="difference-verified">
-                      <li class="difference-verified-row">
+                    <ul class="difference-stack">
+                      <li class="difference-asset is-cue">
                         <span class="difference-asset-icon">
                           <!-- 공장 — 제조 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1476,11 +1468,9 @@
                         </span>
                         <span class="difference-asset-body">
                           <span class="difference-asset-name">제조 · 품질 검사 자동화</span>
-                          <span class="skeleton-line is-short"></span>
                         </span>
-                        <span class="difference-verified-mark">검증</span>
                       </li>
-                      <li class="difference-verified-row">
+                      <li class="difference-asset is-cue" style="--mock-cue-delay: .12s">
                         <span class="difference-asset-icon">
                           <!-- 카드 — 금융 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1491,11 +1481,9 @@
                         </span>
                         <span class="difference-asset-body">
                           <span class="difference-asset-name">금융 · 여신 심사 보조</span>
-                          <span class="skeleton-line is-short"></span>
                         </span>
-                        <span class="difference-verified-mark">검증</span>
                       </li>
-                      <li class="difference-verified-row">
+                      <li class="difference-asset is-cue" style="--mock-cue-delay: .22s">
                         <span class="difference-asset-icon">
                           <!-- 카트 — 유통 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1507,34 +1495,127 @@
                         </span>
                         <span class="difference-asset-body">
                           <span class="difference-asset-name">유통 · 수요 예측</span>
-                          <span class="skeleton-line is-short"></span>
                         </span>
-                        <span class="difference-verified-mark">검증</span>
                       </li>
                     </ul>
+
+                    <span class="difference-card-foot"><strong>12개 산업</strong>에 투입 중</span>
+
+                    <span class="difference-flow-arrow is-flow">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
                   </div>
 
-                  <!-- 우 — 현장에서 교육으로 되돌아오는 순환. 이 회사가 왜 다른지의 근거. -->
-                  <div class="difference-card">
-                    <span class="difference-card-label">현장 → 교육 반영</span>
+                  <!-- 2단계 · 검증 — 현장에서 통한 것만 남기고 나머지는 버린다.
+                       "걸러낸다"가 이 칸의 전부라, 통과와 탈락을 함께 보여준다. -->
+                  <div class="difference-card is-step is-mid" style="--mock-step: 1">
+                    <div class="difference-step-head">
+                      <span class="difference-step-no">2</span>
+                      <span class="difference-card-label">검증</span>
+                    </div>
+                    <span class="difference-step-desc">현장에서 실제로 통한 것만 남깁니다</span>
 
-                    <ol class="difference-flow">
-                      <li class="difference-flow-step">
-                        <span class="difference-flow-dot"></span>
-                        <span class="difference-asset-name">현장 투입</span>
+                    <ul class="difference-stack">
+                      <li class="difference-trial is-pass is-cue">
+                        <span class="difference-trial-mark">
+                          <!-- 체크 — 현장에서 통과 -->
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4"
+                              stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </span>
+                        <span class="difference-asset-body">
+                          <span class="difference-asset-name">현장에서 통한 방식</span>
+                        </span>
+                        <span class="difference-trial-count">38</span>
                       </li>
-                      <li class="difference-flow-step">
-                        <span class="difference-flow-dot"></span>
-                        <span class="difference-asset-name">문제 해결</span>
+                      <li class="difference-trial is-fail is-cue" style="--mock-cue-delay: .14s">
+                        <span class="difference-trial-mark">
+                          <!-- 가위표 — 현장에서 탈락 -->
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 7l10 10M17 7L7 17" stroke="currentColor" stroke-width="2.4"
+                              stroke-linecap="round" />
+                          </svg>
+                        </span>
+                        <span class="difference-asset-body">
+                          <span class="difference-asset-name">써 보니 안 되던 방식</span>
+                        </span>
+                        <span class="difference-trial-count">14</span>
                       </li>
-                      <li class="difference-flow-step is-core">
-                        <span class="difference-flow-dot"></span>
-                        <span class="difference-asset-name">교육 콘텐츠화</span>
-                      </li>
-                    </ol>
+                    </ul>
 
-                    <span class="difference-card-foot">현장 사례 <strong>52건</strong>이 커리큘럼에 반영</span>
+                    <!-- 안 되던 것도 버리지 않는다 — 이게 왜 남다른지의 핵심이라 강조한다. -->
+                    <p class="difference-trial-note is-cue" style="--mock-cue-delay: .26s">
+                      안 되던 <strong>14건</strong>도 <strong>“이건 왜 안 되는지”</strong>로 함께 가르칩니다
+                    </p>
+
+                    <span class="difference-flow-arrow is-flow">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
                   </div>
+
+                  <!-- 3단계 · 커리큘럼 반영 — ①의 교육으로 되돌아가며 순환이 닫힌다. -->
+                  <div class="difference-card is-step is-last" style="--mock-step: 2">
+                    <div class="difference-step-head">
+                      <span class="difference-step-no">3</span>
+                      <span class="difference-card-label">커리큘럼 반영</span>
+                    </div>
+                    <span class="difference-step-desc">검증된 사례가 그대로 교육이 됩니다</span>
+
+                    <ul class="difference-stack">
+                      <li class="difference-asset is-cue">
+                        <span class="difference-asset-icon">
+                          <!-- 책 — 교육 콘텐츠 -->
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H5.5A1.5 1.5 0 0 1 4 15.5v-10Z"
+                              stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+                            <path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h4.5a1.5 1.5 0 0 0 1.5-1.5v-10Z"
+                              stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+                          </svg>
+                        </span>
+                        <span class="difference-asset-body">
+                          <span class="difference-asset-name">제조 품질 검사 실습</span>
+                        </span>
+                        <span class="difference-chip is-brand">신규</span>
+                      </li>
+                      <li class="difference-asset is-cue" style="--mock-cue-delay: .12s">
+                        <span class="difference-asset-icon">
+                          <!-- 책 — 교육 콘텐츠 -->
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H5.5A1.5 1.5 0 0 1 4 15.5v-10Z"
+                              stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+                            <path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h4.5a1.5 1.5 0 0 0 1.5-1.5v-10Z"
+                              stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+                          </svg>
+                        </span>
+                        <span class="difference-asset-body">
+                          <span class="difference-asset-name">여신 심사 자동화</span>
+                        </span>
+                        <span class="difference-chip is-brand">신규</span>
+                      </li>
+                    </ul>
+
+                    <!-- 순환이 닫히는 지점. ①의 2단계 교육으로 되돌아간다. -->
+                    <div class="difference-loop is-cue" style="--mock-cue-delay: .24s">
+                      <span class="difference-loop-mark">
+                        <!-- 되돌아가는 화살표 — 다시 교육으로 -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20 11a8 8 0 1 0-2.3 5.7" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" />
+                          <path d="M20 4.5V11h-6.5" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </span>
+                      <p class="difference-loop-text">다시 <strong>진단·교육</strong>으로<br>현장이 바뀌면 교육도 바뀝니다</p>
+                    </div>
+                  </div>
+
                 </div>
               </div>
 
@@ -1558,7 +1639,7 @@
           <li class="difference-legend-item" data-difference-legend-item="2">
             <span class="difference-legend-progress"><span class="difference-legend-progress-bar"></span></span>
             <strong class="difference-legend-title">현장 검증</strong>
-            <p class="desc">우리는 AXMOS 얼라이언스와 함께 FDE 현장을 직접 뜁니다. 현장에서 검증한 것만 가르칩니다.</p>
+            <p class="desc">우리는 AXMOS 얼라이언스와 함께 FDE 현장을 직접 뜁니다. 현장에서 통한 것만 커리큘럼이 되고, 안 되던 것은 그 이유까지 교육이 됩니다.</p>
           </li>
         </ol>
 

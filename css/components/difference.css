@@ -42,7 +42,12 @@
 .difference-mock {
   padding: var(--space-48);
   border-radius: var(--radius-xl);
-  background: linear-gradient(160deg, var(--color-brand-tint-2) 0%, var(--color-brand-tint-1) 100%);
+  /* 틴트 2단(#E9EFFF → #F5F8FF)은 페이지 배경과 거의 붙어 판이 있는지도
+     몰랐다. 흰 창이 확실히 떠 보이도록 브랜드색을 섞어 한참 진하게 잡는다.
+     --color-brand를 흰색과 섞어 파생시켜, 브랜드색이 바뀌면 함께 따라간다. */
+  background: linear-gradient(160deg,
+    color-mix(in srgb, var(--color-brand) 38%, white) 0%,
+    color-mix(in srgb, var(--color-brand) 50%, white) 100%);
 }
 
 /* 흰 브라우저 창 — 하늘색 판 위에 떠 있으므로 hairline 대신 그림자로 띄운다. */
@@ -108,10 +113,11 @@
   min-height: 268px;
 }
 
-/* ①②는 세 단계가 같은 무게라 균등 3열이다.
+/* ①②③ 모두 세 단계가 같은 무게라 균등 3열이다.
    화살표가 칸 경계에 걸쳐야 하므로 gap을 넓히지 않는다. */
 .difference-screen-body.is-cycle,
-.difference-screen-body.is-library {
+.difference-screen-body.is-library,
+.difference-screen-body.is-field {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 
   /* 목업 전용 타이포 스케일 — 사용자가 읽는 UI가 아니라 '화면 그림'이라
@@ -129,11 +135,6 @@
   --mock-leading: 15px;
   --mock-text-sm: 9px;      /* 하한. 칩·메타처럼 읽지 않아도 되는 것만 */
   --mock-leading-sm: 13px;
-}
-
-/* ③은 좌측 보증 마크가 결론이라 가운데 목록과 균형을 맞춘다. */
-.difference-screen-body.is-field {
-  grid-template-columns: minmax(0, .85fr) minmax(0, 1.3fr) minmax(0, 1fr);
 }
 
 /* ---------------------------------------------
@@ -627,32 +628,34 @@
    흰 판은 카드 배경(--color-surface)과 겹치지 않게 hairline으로 경계를 세운다.
    단계 순서는 --mock-step이 이미 갖고 있지만, 인라인 style 값을 셀렉터로 잡는 것은
    깨지기 쉬워서 배경만은 is-first/is-mid/is-last 클래스로 따로 표시한다. */
-.difference-card.is-step.is-first {
+.difference-screen:not(.is-dark) .difference-card.is-step.is-first {
   background: var(--color-surface);
   box-shadow: inset 0 0 0 1px var(--color-line);
 }
 
-.difference-card.is-step.is-mid {
+.difference-screen:not(.is-dark) .difference-card.is-step.is-mid {
   background: var(--color-brand-tint-1);
 }
 
-.difference-card.is-step.is-last {
+.difference-screen:not(.is-dark) .difference-card.is-step.is-last {
   background: var(--color-brand-tint-2);
 }
 
-/* 1단계 판이 흰색이라 그 안의 흰 항목 행이 배경과 겹친다 — 한 단 가라앉힌다. */
-.difference-card.is-step.is-first .difference-course,
-.difference-card.is-step.is-first .difference-asset,
-.difference-card.is-step.is-first .difference-chat {
+/* 1단계 판이 흰색이라 그 안의 흰 항목 행이 배경과 겹친다 — 한 단 가라앉힌다.
+   다크 화면(③)은 판이 애초에 어두워 겹치지 않고, 여기서 밝은 색을 주면
+   행만 하얗게 떠서 글자가 읽히지 않는다 — 그래서 밝은 화면에만 건다. */
+.difference-screen:not(.is-dark) .difference-card.is-step.is-first .difference-course,
+.difference-screen:not(.is-dark) .difference-card.is-step.is-first .difference-asset,
+.difference-screen:not(.is-dark) .difference-card.is-step.is-first .difference-chat {
   background: var(--color-surface-sunken);
 }
 
-/* ③과 공유하는 항목·칩·라벨을 ①② 안에서만 목업 스케일로 다시 매긴다 —
-   ③은 3열에 여유가 있어 14px 그대로가 맞다.
-   같은 크기로 눌러 담지 않고 용도별로 갈라 놓는 것이 요점이다:
+/* 항목·칩·라벨을 목업 스케일로 다시 매긴다. 같은 크기로 눌러 담지 않고
+   용도별로 갈라 놓는 것이 요점이다:
    단계 이름은 title, 항목 이름은 lg, 각주는 기본, 칩만 하한(sm). */
 .difference-screen-body.is-cycle,
-.difference-screen-body.is-library {
+.difference-screen-body.is-library,
+.difference-screen-body.is-field {
 
   /* 단계 이름 — 칸에서 가장 먼저 읽혀야 하므로 이 목업의 최대 크기다. */
   & .difference-card-label {
@@ -861,110 +864,156 @@
 }
 
 /* ---------------------------------------------
- * ③ 현장 검증 — 다크 화면. 세 근거의 결론으로 읽힌다.
+ * ③ 현장 검증 — 현장 투입 → 검증 → 커리큘럼 반영 3단계.
+ *
+ * ①②와 같은 stage 문법을 쓰되 다크 판만 유지한다 — 섹션의 결론이라 무게를
+ * 남겨야 하지만, 문법까지 다르면 보는 사람이 세 번째로 읽는 법을 다시 배운다.
+ * 이전 버전이 "슬로건 / 목록 / 순서도" 3종 세트였던 것이 이 화면의 문제였다.
+ *
+ * 3단계가 ①의 교육으로 되돌아가며 순환이 닫히는 것이 이 화면의 요점이다 —
+ * 여기서 닫히지 않으면 ③는 그냥 실적 자랑으로 읽히고,
+ * "왜 이 회사 교육이 다른가"라는 섹션 전체의 물음에 답하지 못한다.
  * --------------------------------------------- */
 
-/* 보증 카드 — 마크와 결론 문장만 두고 가운데 정렬한다. */
-.difference-card.is-seal {
-  justify-content: center;
-  gap: var(--space-18);
+/* 다크 판 안에서도 단계가 진행될수록 밝아진다 — ①②의 배경 위계와 같은 규칙을
+   반대 방향으로 적용한 것이다(밝은 판은 진해지고, 어두운 판은 밝아진다).
+   어느 쪽이든 "오른쪽으로 갈수록 결론에 가까워진다"가 색으로 읽히면 된다. */
+.difference-screen.is-dark .difference-card.is-step.is-first {
+  background: rgba(255, 255, 255, .04);
 }
 
-.difference-closing-mark {
+.difference-screen.is-dark .difference-card.is-step.is-mid {
+  background: rgba(255, 255, 255, .07);
+}
+
+.difference-screen.is-dark .difference-card.is-step.is-last {
+  background: rgba(255, 255, 255, .11);
+}
+
+/* 다크 판에서는 항목 행도 흰색 투명도로 만든다. */
+.difference-screen.is-dark .difference-asset,
+.difference-screen.is-dark .difference-trial {
+  background: rgba(255, 255, 255, .08);
+}
+
+.difference-screen.is-dark .difference-step-desc {
+  color: rgba(255, 255, 255, .6);
+}
+
+.difference-screen.is-dark .difference-flow-arrow {
+  background: rgba(255, 255, 255, .14);
+  box-shadow: none;
+  color: color-mix(in srgb, var(--color-brand) 55%, white);
+}
+
+/* --- 2단계 · 검증 — 통과와 탈락을 함께 보여준다 --- */
+
+/* 통과·탈락 목록도 남는 세로 공간을 가져간다 — ①②의 .difference-stack과 같은
+   규칙이지만, 여기는 행이 2개뿐이라 벌어지면 성기게 보인다. 그래서 늘리지 않고
+   위쪽에 붙여 두고, 아래 여백은 결론(안 되던 것도 가르친다)이 가져간다. */
+.difference-screen.is-dark .difference-trial-note,
+.difference-screen.is-dark .difference-loop {
+  margin-block-start: auto;
+}
+
+/* 통과/탈락 행. 마크 색만 다르고 나머지는 같다 — 둘 다 "현장에서 얻은 결과"라
+   한쪽을 실패로 깎아내리면 다음 문장(안 되던 것도 가르친다)과 어긋난다. */
+.difference-trial {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+}
+
+.difference-trial-mark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  align-self: flex-start;
-  width: var(--space-48);
-  height: var(--space-48);
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, .1);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-brand) 40%, transparent);
-  color: color-mix(in srgb, var(--color-brand) 55%, white);
+  flex-shrink: 0;
+  width: var(--space-20);
+  height: var(--space-20);
+  border-radius: var(--radius-full);
 
   & svg {
-    width: 24px;
-    height: 24px;
+    width: 12px;
+    height: 12px;
   }
 }
 
-.difference-closing-text {
-  font-size: var(--text-body-16);
-  line-height: var(--leading-body-16);
-  color: rgba(255, 255, 255, .74);
+.difference-trial.is-pass .difference-trial-mark {
+  background: color-mix(in srgb, var(--color-brand) 22%, transparent);
+  color: color-mix(in srgb, var(--color-brand) 60%, white);
+}
 
-  /* 결론 한 줄만 흰색으로 올려 이 화면의 주장이 되게 한다. */
+/* 탈락 마크 — 경고색을 쓰지 않는다. 실패가 아니라 "가려낸 결과"라서,
+   빨강을 쓰면 우리 잘못처럼 읽힌다. 무채색으로 가라앉히는 것이 맞다. */
+.difference-trial.is-fail .difference-trial-mark {
+  background: rgba(255, 255, 255, .12);
+  color: rgba(255, 255, 255, .55);
+}
+
+.difference-trial-count {
+  font-size: var(--mock-text-lg);
+  line-height: var(--mock-leading-lg);
+  font-weight: var(--font-weight-semibold);
+  color: color-mix(in srgb, var(--color-brand) 55%, white);
+}
+
+.difference-trial.is-fail .difference-trial-count {
+  color: rgba(255, 255, 255, .5);
+}
+
+/* 안 되던 것도 가르친다 — 이 화면에서 가장 남다른 주장이라 판을 깔아 세운다. */
+.difference-trial-note {
+  padding: var(--space-8) var(--space-10);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-brand) 20%, transparent);
+  font-size: var(--mock-text);
+  line-height: var(--mock-leading);
+  color: rgba(255, 255, 255, .78);
+
   & strong {
     font-weight: var(--font-weight-semibold);
     color: var(--color-surface);
   }
 }
 
-/* 현장 목록 — 다크 판이라 항목 배경도 흰색 투명도로 만든다. */
-.difference-verified {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-}
+/* --- 3단계 · 커리큘럼 반영 — 순환이 닫힌다 --- */
 
-.difference-verified-row {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+/* 되돌아가는 지점. 이 화면의 결론이라 ①의 .difference-verdict처럼 브랜드 판이다. */
+.difference-loop {
+  display: flex;
   align-items: center;
   gap: var(--space-10);
-  padding: var(--space-10) var(--space-12);
+  margin-block-start: auto;
+  padding: var(--space-10);
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, .06);
-
-  & .skeleton-line {
-    background: rgba(255, 255, 255, .16);
-  }
+  background: linear-gradient(120deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
 }
 
-.difference-verified-mark {
-  font-size: var(--text-body-14);
-  line-height: var(--leading-body-14);
-  font-weight: var(--font-weight-medium);
-  color: color-mix(in srgb, var(--color-brand) 50%, white);
-}
-
-/* 현장 → 교육 순환. 점을 선으로 이어 흐름으로 읽히게 한다. */
-.difference-flow {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-18);
-}
-
-.difference-flow-step {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--space-10);
-
-  /* 다음 점까지 잇는 세로선. 마지막 단계에는 붙이지 않는다. */
-  &:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    top: 14px;
-    left: 5px;
-    width: 2px;
-    height: var(--space-18);
-    background: rgba(255, 255, 255, .16);
-  }
-}
-
-.difference-flow-dot {
+.difference-loop-mark {
+  display: inline-flex;
   flex-shrink: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: var(--radius-full);
-  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .3);
+  color: var(--color-surface);
+
+  & svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 
-/* 교육 콘텐츠화 — 이 순환의 결론이라 유일하게 채워진 점. */
-.difference-flow-step.is-core .difference-flow-dot {
-  background: var(--color-brand);
-  box-shadow: inset 0 0 0 2px var(--color-brand);
+.difference-loop-text {
+  font-size: var(--mock-text);
+  line-height: var(--mock-leading);
+  color: rgba(255, 255, 255, .78);
+
+  & strong {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-surface);
+  }
 }
 
 /* ---------------------------------------------

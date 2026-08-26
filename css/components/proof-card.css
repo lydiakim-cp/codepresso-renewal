@@ -9,8 +9,12 @@
   position: relative;
   padding: 48px 112px;
   border-radius: var(--radius-xl);
-  /* 원색 브랜드 블루 대신 틴트로 옅게 — 카드 뒤 배경이 쨍하지 않게 한다. */
-  background: color-mix(in srgb, var(--color-brand) 12%, var(--color-surface));
+  /* 12% 틴트는 페이지 배경과 거의 붙어 판이 있는지도 몰랐다. 흰 카드가
+     확실히 떠 보이도록 진하게 잡는다(difference-mock과 같은 농도).
+     원색 그대로는 쨍하므로 흰색과 섞어 파생시킨다. */
+  background: linear-gradient(160deg,
+    color-mix(in srgb, var(--color-brand) 38%, white) 0%,
+    color-mix(in srgb, var(--color-brand) 50%, white) 100%);
 }
 
 .proof-card-deck {
