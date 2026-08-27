@@ -1,9 +1,9 @@
 /*
  * Page: ax-build.html (AX Build 제품 소개)
  * main.css 위에 얹는 페이지 전용 계층. 공용 컴포넌트로 표현 안 되는 hero·성과 비교만 정의한다.
+ * cta-final은 css/components/ui/에 있는 범용 컴포넌트라 main.css가 로드한다 —
+ * 여기서 따로 import하지 않는다.
  */
-
-@import url("../components/sections/cta-final.css") layer(components);
 
 @layer components {
   /* 페이지 전체 레이아웃 wrapper */

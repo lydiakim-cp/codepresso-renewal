@@ -3,11 +3,12 @@
  * Reset → Design Tokens → Base → 공통 Components 순서로 로드. Cascade Layer로
  * 우선순위를 명시한다.
  *
- * 범용 UI(components/ui/)만 여기서 로드한다. 섹션 컴포넌트(components/sections/)는
- * 그것을 쓰는 페이지가 직접 로드한다.
+ * 범용 UI(components/ui/)만 여기서 로드한다. index.html 전용 섹션 컴포넌트
+ * (Hero · Proof Card · Education Journey · Diagnosis Showcase · Difference · Insight)는
+ * css/pages/index.css에 직접 통합돼 있다.
  *   - index.html               → main.css + css/pages/index.css
  *   - ax-build.html            → main.css + css/pages/ax-build.css
- *   - codepresso-designsystem  → main.css + css/pages/designsystem.css
+ *   - codepresso-designsystem  → main.css + css/pages/designsystem.css (index.css를 import)
  */
 
 @layer reset, tokens, base, components;
@@ -44,3 +45,5 @@
 @import url("./components/ui/timeline.css") layer(components);
 @import url("./components/ui/faq-list.css") layer(components);
 @import url("./components/ui/catalog-board.css") layer(components);
+@import url("./components/ui/part-nav.css") layer(components);
+@import url("./components/ui/cta-final.css") layer(components);

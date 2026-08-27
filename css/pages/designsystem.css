@@ -3,13 +3,10 @@
  * 좌측 카테고리·우측 콘텐츠 문서형 레이아웃.
  */
 
-/* 문서의 컴포넌트·모션 예시를 메인과 동일하게 렌더링하기 위한 섹션 컴포넌트 CSS */
-@import url("../components/sections/insight.css") layer(components);
-@import url("../components/sections/part-nav.css") layer(components);
-@import url("../components/sections/hero.css") layer(components);
-@import url("../components/sections/education-journey.css") layer(components);
-@import url("../components/sections/difference.css") layer(components);
-@import url("../components/sections/proof-card.css") layer(components);
+/* 문서의 컴포넌트·모션 예시를 메인과 동일하게 렌더링하기 위해, index.html이 쓰는
+   섹션 컴포넌트 전체를 그대로 가져온다. designsystem은 사내 참고용 페이지라 index.css의
+   main/footer 페이지 전용 규칙이 함께 딸려와도 상관없다(사용자 확인됨). */
+@import url("index.css") layer(components);
 
 .design-guide { background: #f4f7fc; color: var(--color-ink); }
 .guide-topbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; height: 72px; padding: 0 40px; background: #071326; color: #fff; }
