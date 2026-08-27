@@ -352,7 +352,10 @@
 
 /* --- summary-banner.css --- */
 @media (max-width: 560px) {
-  .summary-banner { padding: var(--space-24); }
+  .summary-banner {
+    padding: var(--space-24);
+    font-size: var(--text-body);
+  }
 
   /* 대표 수치(첫 카드)만 한 줄을 다 쓰고 나머지 둘이 아래 한 줄을 나눈다. */
   .summary-banner-stats {
@@ -495,6 +498,8 @@
   }
 
   .insight-row-empty { display: none; }
+
+  .insight-more { margin-top: 0; }
 }
 
 /* --- pages/ax-build.css --- */
