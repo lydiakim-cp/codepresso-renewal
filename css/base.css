@@ -78,3 +78,8 @@ footer {
   font-size: var(--text-label);
   color: var(--color-ink-lighter);
 }
+
+/* 반응형 줄바꿈 — <br data-break="desktop">은 데스크톱에서만, <br data-break="mobile">은
+   모바일(560px 이하)에서만 줄바꿈한다. 기본(데스크톱)은 여기서, 560px 반전은
+   css/mobile.css의 560px 섹션이 담당한다. */
+br[data-break="mobile"] { display: none; }

@@ -272,6 +272,32 @@ box-shadow: var(--shadow-md);   /* hover 시 한 단계 띄움 */
 
 전면 반응형은 아직 착수 단계가 아니므로, **요청받지 않은 반응형을 새로 추가하지 않는다**([SKILL.md](SKILL.md) 7번).
 
+### PC/모바일에서 줄바꿈 위치가 달라야 할 때 — `data-break`
+
+`<br>`은 위치를 가리지 않고 항상 줄바꿈한다. PC와 모바일에서 문장을 끊는 자리가 달라야
+하면, class가 아니라 `data-*` 훅으로 표시한다(이 프로젝트의 JS 훅 관례와 같은 이유 —
+스타일용 클래스와 섞이지 않는다).
+
+```html
+<h1>전 직원을<br data-break="desktop">AI 네이티브 개발자로</h1>
+```
+
+```css
+/* base.css — 데스크톱 기본값. mobile 전용 br은 기본적으로 숨긴다 */
+br[data-break="mobile"] { display: none; }
+
+/* mobile.css 560px 섹션 — 반전 */
+@media (max-width: 560px) {
+  br[data-break="mobile"] { display: inline; }
+  br[data-break="desktop"] { display: none; }
+}
+```
+
+- **PC/모바일 어디서나 같은 자리에서 끊겨도 되면 그냥 `<br>`을 쓴다.** `data-break`는
+  두 화면의 줄바꿈 위치가 실제로 다를 때만 붙인다 — 모든 `<br>`에 습관적으로 붙이지 않는다.
+- 가운데 정렬 제목처럼 화면 폭에 따라 끊는 자리가 바뀌어야 하는 곳에 주로 쓴다.
+- 가능한 값은 `desktop`(560px 초과에서만 줄바꿈) / `mobile`(560px 이하에서만 줄바꿈) 두 가지다.
+
 ## 9. 컴포넌트 CSS 파일을 새로 만들 때
 
 ```css

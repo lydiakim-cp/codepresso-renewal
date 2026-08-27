@@ -210,6 +210,12 @@
  * max-width: 560px (모바일)
  * =============================================== */
 
+/* --- base.css (반응형 줄바꿈) --- */
+@media (max-width: 560px) {
+  br[data-break="mobile"] { display: inline; }
+  br[data-break="desktop"] { display: none; }
+}
+
 /* --- layout.css --- */
 @media (max-width: 560px) {
   /* 섹션이 최소 한 화면을 채운다. 100svh를 쓰는 이유 — 100vh는 주소창이
