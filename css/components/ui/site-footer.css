@@ -1,0 +1,104 @@
+/*
+ * Component: Site Footer
+ * 전 페이지 공용 최하단 푸터. 마크업은 partials/footer.html 하나이며
+ * js/include-partials.js가 각 페이지에 삽입한다.
+ *
+ * Markup API
+ * footer.site-footer
+ *   .site-footer-inner (.section-wrap)
+ *     .site-footer-brand   ← 로고 + 한 줄 소개
+ *     .site-footer-nav     ← .site-footer-group 여러 개(제목 + 링크 목록)
+ *   .site-footer-legal (.section-wrap) ← 사업자정보 + 저작권
+ *
+ * base.css의 footer 태그 스타일 위에 얹힌다. cta-final 바로 아래에 오므로
+ * 어두운 판을 또 쓰지 않고 옅게 가라앉힌 면으로 둔다 — 페이지가 두 번 닫히지 않게.
+ */
+.site-footer {
+  background: var(--color-surface-sunken);
+  border-top: 1px solid var(--color-line);
+}
+
+.site-footer-inner {
+  display: grid;
+  /* 브랜드 열은 고정 폭, 링크 열들이 남는 폭을 나눈다 */
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  gap: var(--space-60);
+  padding-top: var(--space-60);
+  padding-bottom: var(--space-48);
+}
+
+.site-footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+}
+
+.site-footer-tagline {
+  color: var(--color-ink-light);
+  font-size: var(--text-body-muted);
+  line-height: var(--leading-body-14);
+  letter-spacing: var(--tracking-body-normal);
+}
+
+.site-footer-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-35) var(--space-24);
+}
+
+.site-footer-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+/* 시맨틱은 h2지만 푸터 안 그룹 제목이라 본문 크기로 낮춘다(h2 44px는 과하다). */
+.site-footer-group-title {
+  font-size: var(--text-body-muted);
+  line-height: var(--leading-body-14);
+  letter-spacing: var(--tracking-body-normal);
+  color: var(--color-ink-heaviest);
+}
+
+.site-footer-group ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.site-footer-group a {
+  color: var(--color-ink-light);
+  font-size: var(--text-body-muted);
+  line-height: var(--leading-body-14);
+  letter-spacing: var(--tracking-body-normal);
+  transition: color var(--duration-hover) var(--ease-hover);
+}
+
+.site-footer-group a:hover {
+  color: var(--color-brand);
+}
+
+.site-footer-legal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+  flex-wrap: wrap;
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-35);
+  border-top: 1px solid var(--color-line);
+}
+
+.site-footer-company,
+.site-footer-copyright {
+  color: var(--color-ink-lighter);
+  font-size: var(--text-body-muted);
+  line-height: var(--leading-body-14);
+  letter-spacing: var(--tracking-body-normal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer-group a { transition-duration: 0.001ms; }
+}
+
+/* 900px·560px 반응형은 css/mobile.css에 모아 둔다. */

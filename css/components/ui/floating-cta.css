@@ -1,0 +1,217 @@
+/*
+ * Component: Floating CTA
+ * hero의 진단 CTA가 화면 밖으로 나간 순간부터 우측에 따라다니는 배너.
+ * hero 버튼과 같은 행선지를 갖는 "두 번째 기회" CTA다.
+ *
+ * Markup API
+ *   <aside class="floating-cta" data-floating-cta="hero-cta-id" hidden>
+ *     <button class="floating-cta-close" …>          닫기(세션 동안 다시 뜨지 않음)
+ *     <a class="floating-cta-link" href="…">
+ *       <span class="floating-cta-mock" aria-hidden="true">  결과 게이지 목업
+ *       <span class="floating-cta-copy">                     라벨 + 문구
+ *       <span class="floating-cta-action">                   버튼 모양 행
+ *
+ * position은 fixed다 — sticky는 조상 컨테이너 안에서만 따라다니므로 페이지 전체를
+ * 따라오는 이 배너에는 맞지 않는다. z-index는 header(100) 아래인 90에 둬서
+ * GNB 드롭다운을 가리지 않는다.
+ *
+ * 표시 상태는 js/floating-cta.js가 .is-shown으로 토글한다 —
+ * hidden 속성만 벗기면 등장 트랜지션이 걸리지 않아 두 단계로 나눴다.
+ */
+
+.floating-cta {
+  position: fixed;
+  right: var(--space-24);
+  bottom: var(--space-24);
+  z-index: 90;
+  width: 264px;
+  /* 등장 전 상태 — 우측 아래에서 살짝 밀려 올라온다. */
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--duration-scroll) var(--ease-scroll),
+    transform var(--duration-scroll) var(--ease-scroll);
+  /* 숨어 있는 동안 아래 콘텐츠의 클릭을 막지 않는다. */
+  pointer-events: none;
+}
+
+.floating-cta.is-shown {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.floating-cta-link {
+  display: block;
+  padding: var(--space-16);
+  border: 1px solid var(--color-line-heavy);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: 0 7px 29px 0 rgba(68, 68, 68, .18);
+  transition: box-shadow var(--duration-hover) var(--ease-hover),
+    border-color var(--duration-hover) var(--ease-hover),
+    transform var(--duration-hover) var(--ease-hover);
+}
+
+.floating-cta-link:hover {
+  border-color: var(--color-brand);
+  box-shadow: 0 10px 34px 0 rgba(26, 97, 234, .24);
+  transform: translateY(-2px);
+}
+
+/* 닫기 — 배너 우상단 모서리에 걸친다. */
+.floating-cta-close {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--color-line-heavy);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-ink-lighter);
+  box-shadow: var(--shadow-sm);
+  transition: color var(--duration-hover) var(--ease-hover),
+    border-color var(--duration-hover) var(--ease-hover);
+}
+
+.floating-cta-close:hover {
+  color: var(--color-ink);
+  border-color: var(--color-ink-lighter);
+}
+
+.floating-cta-close svg { display: block; width: 12px; height: 12px; }
+
+/*
+ * 결과 게이지 목업 — "진단하면 이런 게 나온다"를 한 눈에 보여주는 장치.
+ * 텍스트만 있는 배너는 광고로 읽혀 무시되므로 제품의 산출물을 미리 보여준다.
+ */
+.floating-cta-mock {
+  display: block;
+  padding: var(--space-12);
+  border-radius: var(--radius-md);
+  /* tint-1은 페이지 배경(brand-tint 계열 섹션) 위에서 사라져서, 배너 안이라는
+     경계가 보이도록 tint-2에서 시작하는 더 진한 구간을 쓴다. */
+  background: linear-gradient(160deg, var(--color-brand-tint-2),
+    color-mix(in srgb, var(--color-brand) 18%, var(--color-surface)));
+}
+
+.floating-cta-mock-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-10);
+}
+
+/* 목업 안 텍스트라 9px 하한이 적용된다(서비스 텍스트 14px 규칙의 예외). */
+.floating-cta-mock-label {
+  font-size: 11px;
+  color: var(--color-ink-light);
+}
+
+.floating-cta-mock-score {
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-dark);
+}
+
+/* 역량 4축 막대. 채워지는 폭은 --fill로 마크업이 정한다. */
+.floating-cta-mock-bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.floating-cta-mock-bar {
+  height: 6px;
+  border-radius: var(--radius-full);
+  /* 빈 구간도 채운 구간과 구분돼야 "얼마나 찼는지"가 읽힌다 — 흰색이 아니라
+     브랜드를 옅게 깐 색으로 둔다. */
+  background: color-mix(in srgb, var(--color-brand) 22%, var(--color-surface));
+  overflow: hidden;
+}
+
+.floating-cta-mock-bar::after {
+  content: "";
+  display: block;
+  width: var(--fill);
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-brand);
+  /* 배너가 뜨는 순간 0 → --fill로 차오른다. 등장에 맞춰 한 번만 재생한다. */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-cycle) var(--ease-scroll);
+}
+
+.floating-cta.is-shown .floating-cta-mock-bar::after { transform: scaleX(1); }
+
+/* 막대마다 시간차를 줘 순서대로 차오르게 한다. */
+.floating-cta-mock-bar:nth-child(1)::after { transition-duration: .6s; transition-delay: .15s; }
+.floating-cta-mock-bar:nth-child(2)::after { transition-duration: .6s; transition-delay: .25s; }
+.floating-cta-mock-bar:nth-child(3)::after { transition-duration: .6s; transition-delay: .35s; }
+.floating-cta-mock-bar:nth-child(4)::after { transition-duration: .6s; transition-delay: .45s; }
+
+.floating-cta-copy {
+  display: block;
+  margin: var(--space-12) 0 var(--space-12);
+  font-size: var(--text-body-muted);
+  line-height: var(--leading-body-14);
+  color: var(--color-ink);
+}
+
+.floating-cta-copy strong {
+  display: block;
+  font-size: var(--text-body);
+  line-height: var(--leading-body-16);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-heaviest);
+}
+
+/* 버튼 모양이지만 실제 링크는 바깥 <a>라 여기는 <span>이다 —
+   중첩 링크를 만들지 않으려는 선택. */
+.floating-cta-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--color-brand);
+  color: var(--color-surface);
+  font-size: var(--text-body-muted);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-body-muted);
+  transition: background-color var(--duration-hover) var(--ease-hover);
+}
+
+.floating-cta-link:hover .floating-cta-action {
+  background: color-mix(in srgb, var(--color-brand) 80%, white);
+}
+
+.floating-cta-action svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  transition: transform var(--duration-hover) var(--ease-hover);
+}
+
+.floating-cta-link:hover .floating-cta-action svg { transform: translateX(3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-cta,
+  .floating-cta-link,
+  .floating-cta-action,
+  .floating-cta-action svg,
+  .floating-cta-mock-bar::after {
+    transition-duration: 0.001ms;
+    transition-delay: 0s;
+  }
+
+  .floating-cta-link:hover { transform: none; }
+}
+
+/* 모바일(720px 이하) 반응형은 css/mobile.css에 모아 둔다. */
