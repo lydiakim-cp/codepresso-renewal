@@ -69,3 +69,11 @@
 }
 
 /* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */
+
+@media (prefers-reduced-motion: reduce) {
+  .choice-list__item,
+  .choice-list__arrow { transition-duration: 0.001ms; }
+
+  .choice-list__item:hover .choice-list__arrow,
+  .choice-list__item.is-active .choice-list__arrow { transform: none; }
+}

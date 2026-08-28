@@ -1,6 +1,9 @@
 /*
  * Feature Card Cycle
- * .feature-card-grid[data-feature-cycle] 안의 카드를 순서대로 자동 activate한다.
+ * [data-feature-cycle] 안의 자식 요소를 순서대로 자동 activate한다.
+ * 카드 자체가 무엇인지는 이 스크립트가 몰라도 된다 — 직계 자식을 그대로 순회하고
+ * 진행 바(.feature-card-progress-bar)가 그 자식 안에 있으면 함께 채운다.
+ * .feature-card-grid(02 Why It Matters)와 .blend-cycle(05 Blended Design)이 공유한다.
  * - 평소: data-interval(ms)마다 다음 카드로 넘어가며, 각 카드 상단 progress bar가
  *   0%→100%로 채워져 다음 전환까지 남은 시간을 보여준다.
  * - 자동 순환 중이던 카드에 마우스를 올리면 진행률이 그 지점에서 그대로 멈춘다
@@ -31,7 +34,7 @@
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   groups.forEach((group) => {
-    const cards = Array.from(group.querySelectorAll('.feature-card'));
+    const cards = Array.from(group.children);
     if (!cards.length) return;
 
     if (isMobile) {

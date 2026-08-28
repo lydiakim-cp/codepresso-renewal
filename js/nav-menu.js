@@ -4,8 +4,12 @@
  * - hover와 키보드를 한 상태(is-open + aria-expanded)로 통합해, CSS :hover만으로 열 때
  *   생기는 문제(키보드 사용자가 열 수 없음, 패널 밖으로 나가도 안 닫힘)를 피한다.
  * - 마우스가 트리거와 패널 사이 빈 공간을 지날 때 깜빡이지 않도록 닫기에만 짧은 지연을 둔다.
+ *
+ * GNB는 partials/header.html에서 fetch로 삽입되므로(js/include-partials.js) 이 스크립트가
+ * 먼저 돌면 [data-nav-item]이 아직 없다. 그래서 `partials:loaded`를 기다렸다가 초기화한다.
  */
 (() => {
+  const init = () => {
   const items = Array.from(document.querySelectorAll("[data-nav-item]"));
   if (!items.length) return;
 
@@ -64,4 +68,7 @@
 
   // 스크롤로 header가 숨겨지면 열린 패널도 함께 닫는다.
   window.addEventListener("scroll", closeAll, { passive: true });
+  };
+
+  document.addEventListener("partials:loaded", init, { once: true });
 })();

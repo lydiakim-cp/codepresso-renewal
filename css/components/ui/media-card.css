@@ -24,3 +24,8 @@
 }
 .media-card:hover .media-card__title { color: var(--color-brand); }
 
+
+@media (prefers-reduced-motion: reduce) {
+  .media-card__media img { transition-duration: 0.001ms; }
+  .media-card:hover .media-card__media img { transform: none; }
+}

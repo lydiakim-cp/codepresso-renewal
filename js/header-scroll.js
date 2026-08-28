@@ -4,8 +4,12 @@
  * - 최상단(hero)에서는 header 배경을 투명하게 두고, 스크롤을 내리면 반투명 배경을 입힌다.
  * - main 배경(하늘색 → 흰색) 전환 진행률을 --scroll-progress CSS 변수로 넘겨준다.
  * prefers-reduced-motion 사용자에게는 숨김/등장 모션 없이 header를 항상 보이게 둔다.
+ *
+ * GNB는 partials/header.html에서 fetch로 삽입되므로(js/include-partials.js) 이 스크립트가
+ * 먼저 돌면 .header가 아직 없다. 그래서 `partials:loaded`를 기다렸다가 초기화한다.
  */
 (() => {
+  const init = () => {
   const header = document.querySelector(".header");
   const main = document.querySelector("main");
   if (!header || !main) return;
@@ -58,4 +62,7 @@
   );
 
   update();
+  };
+
+  document.addEventListener("partials:loaded", init, { once: true });
 })();
