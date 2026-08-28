@@ -37,6 +37,14 @@ background: color-mix(in srgb, var(--color-brand-dark) 70%, var(--color-ink-heav
 
 **텍스트 화살표(`→`, `>`, `+`, `‹`)를 쓰지 않는다.** 방향 표시는 항상 같은 chevron SVG path를 인라인으로 넣는다.
 
+> **chevron은 아래 두 파일의 path만 쓴다**(사용자 지시).
+> `images/icon/chevron-right.svg` · `images/icon/chevron-down.svg`
+>
+> 이 둘이 유일한 진실 원천이다. **모양이 같아도 다른 표기로 쓰지 않는다** —
+> `m9 18 6-6-6-6`(상대 좌표)은 `M9 18L15 12L9 6`과 같은 그림이지만, 표기가 갈리면
+> 나중에 일괄 교체·검증이 안 된다. 실제로 두 곳이 이 표기로 새 있었고 통일했다.
+> 새 chevron이 필요하면 그 파일을 열어 path를 그대로 복사한다.
+
 ```html
 <!-- 우향 (기본) — 버튼·링크·리스트 항목 끝 -->
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -86,6 +94,48 @@ background: color-mix(in srgb, var(--color-brand-dark) 70%, var(--color-ink-heav
 - `<img>`를 쓰는 것이 허용되는 경우는 **색을 바꿀 필요가 없을 때뿐이다**(GNB 메가메뉴 아이콘, 고객사 로고처럼 원본 색을 그대로 살려야 하는 것).
 - 새 아이콘 파일을 추가한다면 `images/icon/ic_{camelCase}.svg` 규칙을 따른다([SKILL.md](SKILL.md) 에셋 네이밍).
 
+### path를 손으로 그리지 않는다 — 파일에서 복사한다 (실제로 겪은 실수)
+
+인라인으로 넣으라는 규칙을 "그 아이콘처럼 생긴 path를 새로 쓰라"로 오해하기 쉽다.
+**`ic_barChart.svg 기반`이라고 주석만 달고 좌표를 손으로 지어내면 안 된다.**
+겉보기에 비슷해도 같은 제품·같은 지표가 페이지마다 다른 그림이 된다.
+
+- 반드시 **그 파일을 열어 `<path>` 요소를 그대로 복사**하고, `fill`의 하드코딩 색만 바꾼다.
+- **같은 대상은 index.html이 쓰는 것과 같은 아이콘 파일을 쓴다.** 제품·지표 이름으로
+  index를 먼저 grep한다. (실제 매핑: AI Fluent→`ic_aiFluent`, SkillCertify→`ic_skillCertify`,
+  SkillPath→`ic_skillPath`, SkillCamp→`ic_edu`, SkillFit→`ic_skillFit`)
+- index에 같은 지표가 있으면 **그 SVG 블록을 통째로 복사**한다. path 하나만 빠져도
+  그림이 미묘하게 달라진다(실제로 캘린더 아이콘이 index 9개 / 서브 8개로 갈렸다).
+- **아이콘 이름만 보고 그림을 짐작하지 않는다.** `ic_proof`는 돋보기가 아니라 트로피,
+  `ic_award`도 트로피다. 확인하려면 파일들을 한 판에 렌더해 눈으로 본다.
+- **한 페이지 안에서 같은 아이콘을 뜻이 다른 두 자리에 쓰지 않는다.** 뜻이 겹치면
+  대조표에서 다른 파일을 고른다(예: 증명은 `ic_barChart`가 아니라 `ic_skillMonitor`).
+
+### 두 가지 함정 — viewBox와 단색 파일
+
+`images/icon/`의 파일은 **두 종류가 섞여 있다.** 둘을 같은 크기 박스에 그대로 넣으면
+크기가 들쭉날쭉해 보인다.
+
+| 파일 | viewBox | 그림이 채우는 비율 |
+|---|---|---|
+| `ic_barChart` `ic_lineChart` `ic_structure` `ic_team` `ic_todo` `ic_proof` | `0 0 24 24` | 75~83% |
+| `ic_edu` `ic_award` `ic_skillFit` `ic_skillCertify` `ic_skillMonitor` `ic_aiFluent` | `0 0 40 40` | 39~58% |
+
+40 그리드 파일은 사방에 여백(과 배경 판 `<rect>`)을 품고 있다. 그래서:
+
+1. **배경 판 `<rect width="40|39|24">`는 빼낸다** — 얹히는 자리가 이미 자기 면을 갖고 있어 판이 두 겹이 된다.
+2. **viewBox를 그림 범위로 잘라** 다른 아이콘과 광학 크기를 맞춘다. 눈대중이 아니라
+   브라우저 `getBBox()`로 실측하고, 채움 비율 80%가 되게 정사각 viewBox를 계산한다.
+   예: `ic_award`의 bbox가 `10.75,10.92 18.5×18.17` → `viewBox="8.44 8.44 23.13 23.13"`.
+
+**단색 파일에는 색 단계를 만들지 않는다.** 위 색 배정 표는 원본이 2색 이상일 때의
+이야기다. `#1A61EA` 하나로만 그려진 파일(`ic_skillCertify` `ic_skillFit` `ic_skillMonitor`
+`ic_proof`)의 첫 path를 옅은 톤으로 내리면 형태가 희미해져 아이콘이 깨져 보인다.
+원본이 단색이면 **전부 `var(--color-brand)`**(흰색으로 파인 부분만 `--color-surface`)로 둔다.
+
+**교체한 뒤에는 반드시 렌더해서 눈으로 본다.** 크기·색·의미 세 가지가 한꺼번에
+틀어질 수 있고, 계산만으로는 "트로피가 진단 자리에 들어간" 것을 잡을 수 없다.
+
 ## 3. hover와 트랜지션 — 이중 리듬을 지킨다
 
 이 프로젝트는 **즉각적인 hover(0.1s)와 느긋한 스크롤 연출(0.5s)** 두 리듬으로 움직인다. 새 인터랙션도 이 둘 중 하나에 맞춘다.
@@ -122,18 +172,47 @@ transition: opacity var(--duration-scroll) var(--ease-scroll),
 
 흰 바탕만 이어지면 페이지가 평평해 보인다. **옅은 면과 흰 면을 번갈아** 배치해 구간을 나눈다.
 
+> **먼저 알아야 하는 값 — 이 팔레트는 옅은 쪽이 매우 촘촘하다.**
+> 흰색을 기준으로 한 대비비를 실제로 재 보면 이렇다.
+>
+> | 토큰 | hex | 흰색과의 대비비 |
+> |---|---|---|
+> | `--color-surface` | `#FFFFFF` | 1.00 |
+> | `--color-surface-page` | `#FBFCFF` | 1.03 |
+> | `--color-surface-sunken` | `#F5F8FF` | **1.06** |
+> | `--color-brand-tint-1` | `#F5F8FF` | **1.06 — sunken과 같은 값이다** |
+> | `--color-brand-tint-2` | `#E9EFFF` | 1.15 |
+> | `--color-ink-heaviest` | `#04091A` | 19.83 |
+>
+> 즉 **`surface-sunken`과 `brand-tint-1`은 같은 색이고**, 흰색과의 차이도 6%뿐이다.
+> 이 둘로 "옅은 면 / 강조 면"을 나누려 하면 화면이 통째로 허여멀건해진다
+> (capability.html에서 실제로 그렇게 만들었다가 지적받았다 — 사용자: "너무 허여멀건한
+> 배경 및 색상으로 위계·격차가 없고 단조로워 보임").
+
 ```css
-/* 섹션마다 성격에 맞춰 배정한다 */
-.my-section-a { background: var(--color-surface-sunken); }   /* 옅은 블루 */
-.my-section-b { background: var(--color-brand-tint-1); }     /* 강조 구간 */
+/* 옅은 면 — sunken이 아니라 한 단계 진한 tint-2를 쓴다 */
+.my-section-a { background: var(--color-brand-tint-2); }
+
+/* 강조 구간 하나 — 옅은 톤으로는 강조가 서지 않는다. 어두운 판으로 올린다 */
+.my-section-b { background-color: var(--color-ink-heaviest); }
 /* 나머지는 흰색(--color-surface) 그대로 둔다 */
 ```
 
 배정 기준:
+- **위계는 배경 하나로 만들지 못한다. 배경 · 카드 · 경계선 3층으로 만든다.**
+  옅은 판(`brand-tint-2`) 위에는 **흰 카드 + 옅은 브랜드 경계선**을,
+  흰 판 위에는 **`sunken` 카드**를 놓는다. 판과 카드가 같은 색이면 카드가 사라진다.
 - **카드가 흰색이면 바탕에 색을 깔아야** 카드가 떠 보인다. 반대로 **카드가 `sunken`이면 바탕은 흰색**이어야 대비가 산다 — 카드와 배경이 같은 색이 되지 않게 항상 확인한다.
 - 목업·대시보드처럼 **그림자로 떠 있어야 하는 것은 흰 바탕**에 둔다.
-- 페이지에서 가장 강조할 한 구간만 `--color-brand-tint-1`로 한 단계 올린다. 여러 곳에 쓰면 강조가 사라진다.
-- 배경색을 넣으면 **`dot-line`(점선 구분)은 불필요해진다** — 영역 구분은 border보다 background 차이로 처리하는 것이 이 프로젝트의 기본이다([SKILL.md](SKILL.md) 11번).
+- **가장 강조할 한 구간은 어두운 판(`--color-ink-heaviest`)으로 올린다.**
+  `brand-tint-1`로는 흰 면과 구분되지 않는다(위 표). ax-build 06·capability 07이
+  이 방식이고, 배경 질감 + 유리 카드를 함께 얹는다.
+- 어두운 판은 **페이지에 두 곳까지**다. 최하단 `cta-final`이 이미 어두우므로
+  강조 구간을 어둡게 하면 **그 사이에 흰 면 섹션을 하나 두어** 페이지가 두 번
+  닫히는 느낌을 막는다.
+- 다 적용했는데도 평평하면 배경을 더 칠하지 말고 **(3) 아이콘·(4) 모션**으로 넘어간다.
+  옅은 톤을 하나 더 추가하는 것으로는 해결되지 않는다.
+- 배경색을 넣으면 **`dot-line`(점선 구분)은 불필요해진다** — 영역 구분은 border보다 background 차이로 처리하는 것이 이 프로젝트의 기본이다([references/page-structure.md](references/page-structure.md)).
 - 인접 섹션이 **하나의 배경을 공유해야 하면 섹션마다 칠하지 말고 감싸는 wrapper가 한 번만 그린다**(`.parts-group`이 그 방식) — 섹션마다 칠하면 경계에서 색이 끊긴다.
 
 > **주의**: `main`에 스크롤 연동 그라디언트(`--scroll-progress`)를 깔아둔 상태에서 섹션 배경을 칠하면 섹션이 그라디언트를 가려 연출이 보이지 않는다. 둘 중 하나만 택하고, 택한 이유를 주석에 남긴다.
@@ -263,14 +342,8 @@ box-shadow: var(--shadow-md);   /* hover 시 한 단계 띄움 */
 
 ## 8. 반응형 breakpoint
 
-새 숫자를 만들지 않고 **두 값만 쓴다**.
-
-| breakpoint | 의미 |
-|---|---|
-| `max-width: 900px` | 2단 레이아웃(`section-wrap.row`)이 1단으로 접힘 |
-| `max-width: 720px` | 카드 내부 요소가 재배치됨 |
-
-전면 반응형은 아직 착수 단계가 아니므로, **요청받지 않은 반응형을 새로 추가하지 않는다**([SKILL.md](SKILL.md) 7번).
+breakpoint 3단(900/720/560)과 `css/mobile.css` 운용 규칙은
+[references/responsive-motion.md](references/responsive-motion.md)에 있다. 여기서는 줄바꿈 훅만 다룬다.
 
 ### PC/모바일에서 줄바꿈 위치가 달라야 할 때 — `data-break`
 
@@ -315,5 +388,5 @@ br[data-break="mobile"] { display: none; }
 ```
 
 - **파일 안에 `@layer`를 쓰지 않는다.** 레이어는 부르는 쪽이 정한다 — `main.css`나 `css/pages/*.css`에서 `@import url("…") layer(components);`로 등록한다.
-- 새 파일을 만들기 전에 **성격이 맞는 기존 파일에 합칠 수 있는지** 먼저 본다([SKILL.md](SKILL.md) 6번).
+- 새 파일을 만들기 전에 **성격이 맞는 기존 파일에 합칠 수 있는지** 먼저 본다([SKILL.md](SKILL.md) 2번 파일 구조).
 - 1회성 수치(카드 높이 등)를 남길 때는 **왜 그 값인지 한 줄 주석**을 붙인다.

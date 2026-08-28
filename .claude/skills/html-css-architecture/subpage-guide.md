@@ -2,7 +2,10 @@
 
 이 문서는 [SKILL.md](SKILL.md)의 규범을 전제로, **"가격 페이지 만들어줘" 같은 새 서브페이지 요청을 실제로 처리하는 순서**를 다룬다. SKILL.md는 "무엇을 지켜야 하는가"를 다루고, 이 문서는 "어떤 순서로 어떤 파일을 만드는가"를 다룬다.
 
-> 지금 시점(2026-08) 기준 사실: `index.html` 외에는 실제 콘텐츠 서브페이지가 하나도 없다. 즉 아래 절차를 처음 밟는 페이지가 이 프로젝트의 첫 서브페이지가 된다 — 참고할 완성된 선례가 없다는 뜻이니, 특히 1~3단계는 건너뛰지 말고 그대로 따른다.
+> 지금 시점(2026-08) 기준 선례: `ax-build.html`(업무 자동화)과 `capability.html`(역량
+> 진단·교육) 두 서브페이지가 이 절차로 만들어졌다. **새 페이지를 만들 때 이 둘을 먼저
+> 열어 본다** — 섹션 골격·페이지 스코프·반응형·목업 재사용이 모두 여기 들어 있어,
+> 문서만 읽고 새로 설계하는 것보다 빠르고 어긋나지 않는다.
 
 ## 0. 시작 전에 사용자(비개발자)에게 확인할 것
 
@@ -31,15 +34,20 @@ Claude가 서브페이지를 만들기 전에, 요청에 아래 정보가 없으
 </head>
 
 <body>
-  <!-- 1. GNB — 아래 2번 항목 참고 -->
-  <header class="header"> ... </header>
+  <!-- 1. GNB — 마크업을 복사하지 않는다. 조각 파일을 불러온다(아래 2번) -->
+  <div data-include="partials/header.html"></div>
 
   <!-- main에 페이지 스코프 클래스를 준다. pages/*.css의 모든 규칙이 이 안에 들어간다 -->
   <main class="{페이지이름}">
     <!-- 2. 이 페이지의 섹션들 — 아래 3번 항목 참고 -->
   </main>
 
-  <!-- 3. 스크립트 — 아래 4번 항목 참고, 필요한 것만 -->
+  <!-- 3. Footer — 역시 조각 파일 -->
+  <div data-include="partials/footer.html"></div>
+
+  <!-- 4. 스크립트 — 아래 4번 항목 참고, 필요한 것만.
+       include-partials.js를 가장 먼저 둔다 -->
+  <script src="js/include-partials.js"></script>
   <script src="js/fade-up.js"></script>
   <script src="js/header-scroll.js"></script>
   <script src="js/nav-menu.js"></script>
@@ -48,37 +56,56 @@ Claude가 서브페이지를 만들기 전에, 요청에 아래 정보가 없으
 </html>
 ```
 
-CSS는 **정확히 2개**만 링크한다(SKILL.md 337행 규칙). `css/pages/{페이지이름}.css`가 아직 없으면 새로 만들고, 이 페이지에서만 쓰는 컴포넌트를 여기서 `@import`한다. `index.css`의 형식을 그대로 따라 만든다:
+CSS는 **`main.css` + `pages/{페이지}.css` + `mobile.css` 3개**를 링크한다
+(`mobile.css`가 세 번째인 것은 의도된 예외 — [SKILL.md](SKILL.md) 2번 참고).
+`css/pages/{페이지이름}.css`가 아직 없으면 새로 만든다:
 
 ```css
 /*
  * Page: {페이지이름}.html
  * main.css 위에 얹는 이 페이지 전용 계층.
+ * 범용 UI(components/ui/)는 main.css가 이미 전부 로드하므로 여기서 import하지 않는다.
  */
 
-/* 이 페이지가 쓰는 섹션 컴포넌트. 범용 UI(components/ui/)는
-   main.css가 이미 로드하므로 여기 다시 쓰지 않는다. */
-@import url("../components/sections/{섹션-컴포넌트}.css") layer(components);
-
 @layer components {
-  /* 이 페이지에만 있는 자잘한 조정 */
+  /* 이 페이지 전용 규칙. 전부 .{페이지이름} 스코프 안에 둔다 */
+  .{페이지이름} { ... }
 }
+
+/* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다 */
 ```
 
-## 2. GNB(헤더) 붙이기
+**페이지 전용 규칙은 전부 `.{페이지이름}` 스코프 안에 둔다** — 그래야 여러 페이지가
+같은 섹션 이름(`hero`·`features`·`outcomes`)을 써도 서로에게 새지 않는다.
 
-지금 GNB는 사용자가 시안으로 만든 예시이며 **나중에 실제 운영 중인 GNB로 교체될 예정**이다. 그러니 지금 단계에서는:
+## 2. GNB(헤더)·Footer 붙이기
 
-- `index.html`의 `<header class="header">` ~ `</header>` 블록을 **통째로 그대로 복사**해서 새 페이지에 붙인다. 지금 단계에서 메가메뉴 구조를 손으로 다시 만들거나 줄이지 않는다 — 교체될 코드를 다듬는 데 시간을 쓰지 않는다.
-- 로고(`<a class="logo" href="/">`)는 그대로 둔다.
-- 지금 만드는 페이지가 GNB의 어떤 메뉴에 해당하면, 그 메뉴의 `href="#"`를 이 페이지 경로로 바꾼다. 예: 가격 페이지라면 `<a class="nav-link" href="#">가격</a>` → `<a class="nav-link" href="pricing.html">가격</a>`. 그 외의 링크(`로그인`, `1분 AI 진단`, 다른 메뉴들)는 아직 연동 대상이 아니므로 `href="#"`를 그대로 둔다.
-- 현재 활성 페이지 표시(`is-active` 등)는 아직 규칙이 없다 — 임의로 추가하지 않고, 필요해지면 사용자에게 확인받는다.
+**마크업을 복사하지 않는다.** 둘 다 `partials/`에 조각 파일 하나로 있고, 페이지는
+그것을 불러온다([references/page-structure.md](references/page-structure.md) "header · footer는 마크업을 복사하지 않는다").
+
+```html
+<div data-include="partials/header.html"></div>
+...
+<div data-include="partials/footer.html"></div>
+<script src="js/include-partials.js"></script>   <!-- 다른 스크립트보다 먼저 -->
+```
+
+- 위 두 줄과 스크립트 한 줄이면 끝이다. `<header>`/`<footer>` 태그를 페이지에 쓰지 않는다.
+- **`file://`로 열면 조각이 안 보인다**(fetch가 CORS로 막힘) — 로컬 확인도
+  `python -m http.server` 같은 정적 서버로 한다.
+- **GNB 링크를 이 페이지로 연결해야 하면 `partials/header.html`을 고친다.** 한 곳만
+  고치면 전 페이지에 함께 반영된다. 예: 이 페이지가 GNB의 어떤 메뉴에 해당하면
+  그 메뉴의 `href="#"`를 이 파일 경로로 바꾼다.
+- 현재 활성 페이지 표시(`is-active`)는 아직 관례가 없다 — 임의로 추가하지 않고
+  필요해지면 사용자에게 확인받는다.
+- 지금 GNB는 시안이며 나중에 실제 운영 GNB로 교체될 예정이다. 교체도 조각 파일
+  하나만 바꾸면 된다.
 
 ## 3. 본문 섹션 만들기
 
 SKILL.md의 "페이지·섹션 구조 관례"를 그대로 따른다:
 
-**섹션 이름은 새로 짓지 않는다** — [SKILL.md](SKILL.md) 5번의 "섹션 역할 어휘표"에서
+**섹션 이름은 새로 짓지 않는다** — [SKILL.md](SKILL.md) 4번의 "섹션 역할 어휘표"에서
 고른다(`hero` · `intro` · `features` · `catalog` · `process` · `deliverables` ·
 `outcomes` · `journey` · `insight` · `faq` · `cta-final`). 표에 없는 역할이면
 임의로 만들지 말고 **사용자에게 물어본 뒤** 표에 추가한다.
@@ -104,7 +131,7 @@ SKILL.md의 "페이지·섹션 구조 관례"를 그대로 따른다:
 - 페이지의 첫 화면(hero)에 해당하는 섹션에는 `fade-up`을 붙이지 않는다.
 - 좌우 2단 배치가 필요하면 `section-wrap row` (필요시 `is-sticky` 추가) — [SKILL.md](SKILL.md) "4번 항목" 및 `codepresso-designsystem.html`의 `#layout` 참고.
 - 이미 있는 컴포넌트를 먼저 찾는다. 아래 표와 [component-inventory.md](component-inventory.md)를 순서대로 확인한다 — 없는 것만 새로 만든다.
-- 실제로 있는 서비스 서브페이지 선례가 아직 없으므로, 여러 섹션을 구성할 때 가장 가까운 참고는 `index.html`의 각 섹션(`how-it-works`, `proof` 등)이다. 그 섹션들의 마크업 구조(섹션 → `.section-wrap` → `.section-title`/`.section-content`)를 그대로 본뜨고, 안의 콘텐츠 컴포넌트만 이 페이지 내용에 맞는 것으로 바꾼다.
+- 여러 섹션을 구성할 때 가장 가까운 참고는 이미 만들어진 `ax-build.html`·`capability.html`이고, 그다음이 `index.html`의 각 섹션(`features`·`outcomes` 등)이다. 그 섹션들의 마크업 구조(섹션 → `.section-wrap` → `.section-title`/`.section-content`)를 그대로 본뜨고, 안의 콘텐츠 컴포넌트만 이 페이지 내용에 맞는 것으로 바꾼다.
 
 ## 4. 스크립트 — 공용 vs 페이지 전용
 
@@ -122,32 +149,44 @@ SKILL.md의 "페이지·섹션 구조 관례"를 그대로 따른다:
 | `js/journey-stage.js` | 스크롤에 따라 단계별 콘텐츠가 전환되는 스테이지형 섹션 | `[data-journey-stage]`류 구조를 쓸 때만 |
 | `js/difference-cycle.js` | 여러 화면이 일정 주기로 자동 순환하는 섹션 | 그 패턴을 그대로 쓸 때만 |
 
-**판단 기준**: 이 페이지의 마크업에 그 스크립트가 찾는 `data-*` 속성/클래스가 있는가? 없으면 그 `<script>` 태그를 넣지 않는다. 반대로 어떤 컴포넌트를 마크업에 썼는데 대응하는 스크립트를 빠뜨리면 인터랙션이 콘솔 에러 없이 조용히 죽으므로(SKILL.md 12번 "정리 후 확인" 3번 항목), 컴포넌트를 골랐으면 이 표에서 짝이 되는 스크립트도 함께 확인한다.
+**판단 기준**: 이 페이지의 마크업에 그 스크립트가 찾는 `data-*` 속성/클래스가 있는가? 없으면 그 `<script>` 태그를 넣지 않는다. 반대로 어떤 컴포넌트를 마크업에 썼는데 대응하는 스크립트를 빠뜨리면 인터랙션이 콘솔 에러 없이 조용히 죽으므로([references/cleanup.md](references/cleanup.md) "정리 후 확인" 3번 항목), 컴포넌트를 골랐으면 이 표에서 짝이 되는 스크립트도 함께 확인한다.
 
 ## 5. Footer
 
-이 프로젝트에는 **아직 실제로 쓰이는 `<footer>` 마크업이 없다** (`base.css`에 `footer` 태그 스타일만 정의돼 있고, `index.html`에도 footer가 없는 상태다). 서브페이지에 footer가 필요하다고 판단되면, 마크업을 임의로 새로 확정하지 말고 **먼저 사용자에게 어떤 내용(회사 정보/링크/저작권 등)이 들어가야 하는지 확인**한다. 확인 전에는 비워두거나, 임시로 최소한의 자리만 잡아둔다.
+`partials/footer.html` 하나가 전 페이지 공용이므로 **새 페이지에서 할 일은
+`<div data-include="partials/footer.html"></div>` 한 줄뿐이다**(2번 참고).
+스타일은 `css/components/ui/site-footer.css`가 담당하고 `main.css`가 로드한다.
+
+footer의 **내용**(링크 구성·사업자정보)을 바꿔야 하면 그 조각 파일만 고친다.
+현재 링크 `href`와 사업자정보는 확정 전이라 자리만 잡혀 있다(`TODO` 주석) —
+실제 값을 받으면 그 파일에서 채운다.
 
 ## 6. 마무리 체크리스트
 
-서브페이지를 완성한 뒤 아래를 확인한다. [SKILL.md](SKILL.md) 14번(최종 품질 체크리스트)과 함께 사용한다.
+서브페이지를 완성한 뒤 아래를 확인한다. [references/checklist.md](references/checklist.md)과 함께 사용한다.
 
-- [ ] `<link>`가 정확히 2개인가 (`css/main.css` + `css/pages/{페이지}.css`)
-- [ ] GNB를 통째로 복사했고, 이 페이지에 해당하는 메뉴의 `href`만 바꿨는가
+- [ ] `<link>`가 3개인가 (`css/main.css` + `css/pages/{페이지}.css` + `css/mobile.css`)
+- [ ] GNB·footer를 **복사하지 않고** `data-include`로 불러왔는가 / `include-partials.js`를 스크립트 맨 앞에 뒀는가
+- [ ] 다른 페이지에 같은 내용(목업·이미지)이 이미 있는지 확인했는가 — 있으면 CSS·JS 한 벌을 공유하도록 공용으로 올렸는가
+- [ ] 버튼이 카탈로그 변형만 쓰고, width를 `100%`로 덮지 않았는가
+- [ ] 1440/900/720/560/390/320px에서 섹션 좌우 여백이 일정하고 가로 스크롤이 없는가
 - [ ] 새로 쓴 컴포넌트가 [component-inventory.md](component-inventory.md)에 이미 있는 것인지 먼저 확인했는가 — 있으면 그 클래스를 재사용했는가
 - [ ] 섹션마다 `<section class="{이름} fade-up">` → `.section-wrap` → `.section-title`/`.section-content` 구조를 따르는가 (첫 화면 제외)
 - [ ] 마크업에 쓴 `data-*`/클래스에 맞는 스크립트를 4번 표에서 확인해 빠짐없이 로드했는가 — 반대로 쓰지 않는 스크립트는 넣지 않았는가
 - [ ] 타이포·토큰·중복 정리 등 SKILL.md 3~12번 규칙을 그대로 지켰는가
-- [ ] footer가 필요한 페이지라면, 마크업을 임의로 확정하지 않고 사용자에게 확인받았는가
 - [ ] **텍스트만 반복되는 화면으로 끝나지 않았는가** — 아래 7번을 확인했는가
 
 ## 7. 시각적 완성도 — 콘텐츠를 다 넣은 뒤 반드시 확인
 
-마크업과 콘텐츠가 다 들어갔어도 **텍스트 블록만 이어지면 완성이 아니다.** 아래 4가지를 넣은 상태로 제출하고, 넣지 않기로 한 것은 이유를 보고에 남긴다. 구체적인 코드는 [css-patterns.md](css-patterns.md) 4번에 있다.
+마크업과 콘텐츠가 다 들어갔어도 **텍스트 블록만 이어지면 완성이 아니다.**
+아래 4가지를 넣은 상태로 제출하고, 넣지 않기로 한 것은 이유를 보고에 남긴다.
 
-1. **섹션 배경 리듬** — 모든 섹션을 흰 바탕으로 두지 않는다. 옅은 면(`--color-surface-sunken`)과 흰 면을 번갈아 배치하고, 가장 강조할 한 구간만 `--color-brand-tint-1`로 올린다.
-   - 카드가 흰색이면 바탕에 색을, 카드가 `sunken`이면 바탕은 흰색으로 — **카드와 배경이 같은 색이 되지 않게** 확인한다.
-   - 배경색을 넣었으면 `dot-line`은 빼고, `main`에 스크롤 그라디언트를 깔았다면 둘 중 하나만 택한다.
-2. **배경 이미지 질감** — hero와 최하단 CTA처럼 시선이 머무는 구간에, `images/`의 배경을 크게 확대해 일부만 쓰고 `blur`로 흘린다.
-3. **아이콘** — 반복되는 카드 목록에는 아이콘을 넣는다. `images/icon/`의 파일은 **원본 색이 브랜드와 무관하므로 인라인 SVG로 옮겨 색을 토큰으로 교체**한다.
-4. **모션** — hero는 로드 직후 순차 상승, 스크롤 구간은 `fade-up` + 순차 지연, 카드에는 hover 부상(`translateY(-3px)` + 그림자 한 단계). **애니메이션마다 `prefers-reduced-motion` 대응을 1:1로 넣는다.**
+1. **섹션 배경 리듬** — 옅은 면과 흰 면을 번갈아, 강조 구간 하나는 어두운 판으로.
+2. **배경 이미지 질감** — hero와 최하단 CTA처럼 시선이 머무는 구간에.
+3. **아이콘** — 반복되는 카드 목록에. 원본 색을 브랜드 토큰으로 교체한다.
+4. **모션** — 진입 stagger + 카드 hover 부상. `prefers-reduced-motion` 대응을 1:1로.
+
+> **판단 기준·실측 대비비 표·실제 코드는 전부
+> [css-patterns.md](css-patterns.md) 4번에 있다.** 배경색을 고르기 전에 그것을 편다 —
+> `--color-surface-sunken`과 `--color-brand-tint-1`은 **같은 색**이고 흰색과 6% 차이뿐이라,
+> 그 둘로 리듬을 만들려 하면 화면이 허여멀건해진다(실제로 겪은 지적).
