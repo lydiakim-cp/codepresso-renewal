@@ -1318,22 +1318,32 @@
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
       <a class="floating-cta-link" href="#">
-        <!-- 진단 결과 미리보기 목업. 막대 4개는 역량 축이고, 채움 폭은 --fill로 준다. -->
+        <!-- 진단 결과 목업 — 질문 아래로 4개 레벨이 차례로 나타났다 사라진다.
+             순서는 --mock-slot-index로 준다(0·1·2·3). -->
         <span class="floating-cta-mock" aria-hidden="true">
-          <span class="floating-cta-mock-head">
-            <span class="floating-cta-mock-label">AI 활용 종합</span>
-            <span class="floating-cta-mock-score">Lv.3</span>
-          </span>
-          <span class="floating-cta-mock-bars">
-            <span class="floating-cta-mock-bar" style="--fill: 78%"></span>
-            <span class="floating-cta-mock-bar" style="--fill: 54%"></span>
-            <span class="floating-cta-mock-bar" style="--fill: 88%"></span>
-            <span class="floating-cta-mock-bar" style="--fill: 41%"></span>
-          </span>
+          <span class="floating-cta-mock-question">나의 AI 활용 레벨은?</span>
+          <ul class="floating-cta-mock-levels">
+            <li style="--mock-slot-index: 0">
+              <span class="floating-cta-mock-emoji">🔍</span>
+              <span class="floating-cta-mock-name"><b>Lv.1</b> 탐색자</span>
+            </li>
+            <li style="--mock-slot-index: 1">
+              <span class="floating-cta-mock-emoji">⚡</span>
+              <span class="floating-cta-mock-name"><b>Lv.2</b> 실행자</span>
+            </li>
+            <li style="--mock-slot-index: 2">
+              <span class="floating-cta-mock-emoji">📐</span>
+              <span class="floating-cta-mock-name"><b>Lv.3</b> 설계자</span>
+            </li>
+            <li style="--mock-slot-index: 3">
+              <span class="floating-cta-mock-emoji">🌟</span>
+              <span class="floating-cta-mock-name"><b>Lv.4</b> 선도자</span>
+            </li>
+          </ul>
         </span>
         <span class="floating-cta-copy">
-          <strong>내 AI 활용 수준은?</strong>
-          3분이면 역량 4축 결과를 받습니다
+          <strong>AI를 쓰는 사람 vs 다루는 사람</strong>
+          3분이면 내 수준을 알 수 있어요
         </span>
         <span class="floating-cta-action">
           진단 시작
