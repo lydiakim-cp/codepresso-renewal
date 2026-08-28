@@ -334,7 +334,7 @@
           <article class="guide-component-row">
             <div class="guide-component-demo">
               <ol class="timeline">
-                <li class="timeline__step">
+                <li>
                   <span class="timeline__term">Day 1</span>
                   <span class="timeline__marker" aria-hidden="true"></span>
                   <div class="timeline__body">
@@ -342,7 +342,7 @@
                     <p class="timeline__desc">실제 업무를 관찰하고 자동화 목표를 찾습니다.</p>
                   </div>
                 </li>
-                <li class="timeline__step">
+                <li>
                   <span class="timeline__term">Day 2~5</span>
                   <span class="timeline__marker" aria-hidden="true"></span>
                   <div class="timeline__body">
@@ -352,19 +352,19 @@
                 </li>
               </ol>
             </div>
-            <div><p class="tag">단계 흐름</p><h3>Timeline</h3><p>기간이 있는 단계를 위에서 아래로 잇습니다. 왼쪽에 기간, 가운데에 연결선과 점, 오른쪽에 내용이 옵니다. 단계를 추가하면 선이 자동으로 이어집니다.</p><code>timeline · timeline__step</code></div>
+            <div><p class="tag">단계 흐름</p><h3>Timeline</h3><p>기간이 있는 단계를 위에서 아래로 잇습니다. 왼쪽에 기간, 가운데에 연결선과 점, 오른쪽에 내용이 옵니다. 단계를 추가하면 선이 자동으로 이어집니다.</p><code>timeline &gt; li</code></div>
           </article>
           <article class="guide-component-row">
             <div class="guide-component-demo">
               <div class="faq-list">
-                <details class="faq-list__item" open>
+                <details open>
                   <summary class="faq-list__question">
                     어떤 업무를 먼저 골라야 하나요?
                     <span class="faq-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                   </summary>
                   <p class="faq-list__answer">반복되고, 결과가 맞았는지 판단할 기준이 분명한 업무가 첫 대상으로 적합합니다.</p>
                 </details>
-                <details class="faq-list__item">
+                <details>
                   <summary class="faq-list__question">
                     사내 개발팀이 없어도 가능한가요?
                     <span class="faq-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -373,7 +373,7 @@
                 </details>
               </div>
             </div>
-            <div><p class="tag">질문과 답</p><h3>FAQ List</h3><p>질문을 눌러 답을 펼칩니다. <code>&lt;details&gt;</code> 기본 동작을 그대로 쓰기 때문에 여는 상태·키보드 조작·스크린리더 안내를 브라우저가 처리하고, 별도 스크립트가 필요하지 않습니다.</p><code>faq-list · faq-list__item</code></div>
+            <div><p class="tag">질문과 답</p><h3>FAQ List</h3><p>질문을 눌러 답을 펼칩니다. <code>&lt;details&gt;</code> 기본 동작을 그대로 쓰기 때문에 여는 상태·키보드 조작·스크린리더 안내를 브라우저가 처리하고, 별도 스크립트가 필요하지 않습니다.</p><code>faq-list &gt; details</code></div>
           </article>
           <article class="guide-component-row">
             <div class="guide-component-demo">

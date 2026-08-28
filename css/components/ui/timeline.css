@@ -5,7 +5,7 @@
  *
  * Markup API
  * ol.timeline
- *   li.timeline__step
+ *   li> li
  *     .timeline__marker   ← 기간 라벨 + 점. 선은 ::before로 그린다.
  *       .timeline__term
  *     .timeline__body
@@ -17,7 +17,7 @@
   gap: 0;
 }
 
-.timeline__step {
+.timeline > li {
   position: relative;
   display: grid;
   grid-template-columns: 96px auto minmax(0, 1fr);
@@ -33,7 +33,7 @@
 }
 
 /* 단계를 잇는 세로선. 마지막 단계는 아래로 선을 내리지 않는다. */
-.timeline__step:not(:last-child) .timeline__marker::before {
+.timeline > li:not(:last-child) .timeline__marker::before {
   content: "";
   position: absolute;
   top: var(--space-16);
@@ -74,7 +74,7 @@
   padding-bottom: var(--space-35);
 }
 
-.timeline__step:last-child .timeline__body { padding-bottom: 0; }
+.timeline > li:last-child .timeline__body { padding-bottom: 0; }
 
 /* h3 대신 카드 제목 스케일(20px)을 쓴다. */
 .timeline__title {
@@ -89,23 +89,23 @@
 }
 
 /* 진입 모션 — 섹션의 .fade-up.is-visible을 받아 단계가 순서대로 들어온다. */
-.fade-up .timeline__step {
+.fade-up .timeline > li {
   opacity: 0;
   transform: translateY(var(--motion-rise));
 }
 
-.fade-up.is-visible .timeline__step {
+.fade-up.is-visible .timeline > li {
   opacity: 1;
   transform: none;
   transition: opacity var(--duration-scroll) var(--ease-scroll),
     transform var(--duration-scroll) var(--ease-scroll);
 }
 
-.fade-up.is-visible .timeline__step:nth-child(1) { transition-delay: 0s; }
-.fade-up.is-visible .timeline__step:nth-child(2) { transition-delay: .1s; }
-.fade-up.is-visible .timeline__step:nth-child(3) { transition-delay: .2s; }
-.fade-up.is-visible .timeline__step:nth-child(4) { transition-delay: .3s; }
-.fade-up.is-visible .timeline__step:nth-child(5) { transition-delay: .4s; }
+.fade-up.is-visible .timeline > li:nth-child(1) { transition-delay: 0s; }
+.fade-up.is-visible .timeline > li:nth-child(2) { transition-delay: .1s; }
+.fade-up.is-visible .timeline > li:nth-child(3) { transition-delay: .2s; }
+.fade-up.is-visible .timeline > li:nth-child(4) { transition-delay: .3s; }
+.fade-up.is-visible .timeline > li:nth-child(5) { transition-delay: .4s; }
 
 /* 점도 함께 커지며 자리를 잡는다. */
 .fade-up.is-visible .timeline__marker::after {
@@ -114,8 +114,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-up .timeline__step { opacity: 1; transform: none; }
-  .fade-up.is-visible .timeline__step { transition: none; transition-delay: 0s; }
+  .fade-up .timeline > li { opacity: 1; transform: none; }
+  .fade-up.is-visible .timeline > li { transition: none; transition-delay: 0s; }
   .fade-up.is-visible .timeline__marker::after { animation: none; }
 }
 

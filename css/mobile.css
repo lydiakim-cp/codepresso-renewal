@@ -211,7 +211,7 @@
 /* --- timeline.css --- */
 @media (max-width: 720px) {
   /* 기간 라벨을 위로 올리고 선·점만 왼쪽에 남긴다. */
-  .timeline__step { grid-template-columns: auto minmax(0, 1fr); gap: var(--space-16); }
+  .timeline > li { grid-template-columns: auto minmax(0, 1fr); gap: var(--space-16); }
   .timeline__term {
     position: absolute;
     top: 0;

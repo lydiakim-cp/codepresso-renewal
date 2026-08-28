@@ -5,7 +5,7 @@
  *
  * Markup API
  * .faq-list
- *   details.faq-list__item
+ *   details> details
  *     summary.faq-list__question   ← 안에 텍스트 + .faq-list__icon
  *     .faq-list__answer
  */
@@ -14,15 +14,15 @@
   gap: var(--space-12);
 }
 
-.faq-list__item {
+.faq-list > details {
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   transition: border-color var(--duration-hover) var(--ease-hover);
 }
 
-.faq-list__item:hover,
-.faq-list__item[open] {
+.faq-list > details:hover,
+> details[open] {
   border-color: var(--color-brand-tint-2);
 }
 
@@ -44,7 +44,7 @@
 /* Safari는 list-style로 마커가 지워지지 않아 별도 처리가 필요하다. */
 .faq-list__question::-webkit-details-marker { display: none; }
 
-.faq-list__item[open] .faq-list__question { color: var(--color-brand-dark); }
+.faq-list > details[open] .faq-list__question { color: var(--color-brand-dark); }
 
 .faq-list__icon {
   flex-shrink: 0;
@@ -60,7 +60,7 @@
 }
 
 /* 닫힘 = 아래 방향, 열림 = 위 방향. chevron 하나를 뒤집어 쓴다. */
-.faq-list__item[open] .faq-list__icon {
+.faq-list > details[open] .faq-list__icon {
   color: var(--color-brand);
   transform: rotate(180deg);
 }
@@ -72,15 +72,15 @@
 }
 
 /* 답변이 위에서 내려오도록 이동폭을 음수로 준다. */
-.faq-list__item[open] .faq-list__answer {
+.faq-list > details[open] .faq-list__answer {
   --motion-rise: calc(-1 * var(--space-8));
   animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .faq-list__item,
+  .faq-list > details,
   .faq-list__icon { transition-duration: 0.001ms; }
-  .faq-list__item[open] .faq-list__answer { animation: none; }
+  .faq-list > details[open] .faq-list__answer { animation: none; }
 }
 
 /* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */

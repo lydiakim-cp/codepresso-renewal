@@ -26,9 +26,9 @@
 | Assessment Card | `assessment-card.css` | `.assessment-card`, `__head`, `__title`, `__meta`, `__action` | 자가진단/설문 시작 유도 카드 |
 | Content Panel | `content-panel.css` | `.content-panel`, `__item`, `__intro`, `__visual`, `--compact` | 설명 + 큰 시각 요소를 한 판에 담는 패널 |
 | Compare Panel | `compare-panel.css` | `.compare-panel`, `__item`(+`.is-after`), `__label`, `__title`, `__desc`, `__arrow` | "지금 → 바뀐 뒤" 두 상태를 좌우로 대비 |
-| Timeline | `timeline.css` | `.timeline`, `__step`, `__marker`, `__term`, `__body`, `__title`, `__desc` | 기간이 있는 단계를 세로로 잇는 진행 흐름 |
-| FAQ List | `faq-list.css` | `.faq-list`, `__item`, `__question`, `__icon`, `__answer` | 질문을 눌러 답을 펼치는 아코디언 (`<details>` native) |
-| Catalog Board | `catalog-board.css` | `.catalog-board`, `__rail`, `__category`, `__count`, `__panel`, `__items`, `__item` | 여러 분류의 항목 묶음을 대시보드처럼 한 판에 (`js/catalog-board.js`와 짝) |
+| Timeline | `timeline.css` | `.timeline > li`, `__marker`, `__term`, `__body`, `__title`, `__desc` | 기간이 있는 단계를 세로로 잇는 진행 흐름 |
+| FAQ List | `faq-list.css` | `.faq-list > details`, `__question`, `__icon`, `__answer` | 질문을 눌러 답을 펼치는 아코디언 (`<details>` native) |
+| Catalog Board | `catalog-board.css` | `.catalog-board`, `__rail`, `__category`, `__count`, `__panel`, `__items > li` | 여러 분류의 항목 묶음을 대시보드처럼 한 판에 (`js/catalog-board.js`와 짝) |
 | Mock Motion | `mock-motion.css` | `.mock-screen`, `[data-mock-motion]`(focus·replay·deck·detail·ticker·stage), `.mock-deck-*`, `.mock-detail-*`, `.is-quiet`, `.is-focus`, `.is-pop`, `.is-shimmer` | 제품 화면 목업을 실제로 돌아가는 화면처럼 연출 (CSS만, JS 없음). 목업 안은 드래그 선택이 꺼져 있다(`user-select: none`). deck·detail의 2단·겹침 뼈대도 여기 있다(index.html이 쓰면서 designsystem.css에서 올림). `stage`만 무한 반복이 아니라 한 번 재생이라, 다시 보여주려면 쓰는 쪽이 되감는다(`difference-cycle.js`의 `replayStage()`). 목업 안 텍스트는 14px 제약의 예외 — **9px는 하한이지 기본값이 아니다**(`--mock-text-title` 15px ~ `--mock-text-sm` 9px 4단). 6종 사용법은 [mock-motion-guide.md](mock-motion-guide.md) |
 
 ## B. 레이아웃/텍스트 프리미티브 — 카탈로그에 없지만 전 페이지 공용

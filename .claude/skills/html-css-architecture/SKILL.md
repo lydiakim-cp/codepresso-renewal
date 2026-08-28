@@ -426,6 +426,12 @@ border: 1px solid color-mix(in srgb, var(--color-surface) 40%, transparent);
   - **형제마다 모디파이어가 달라지는 것** — `difference-card.is-step`처럼
     자식마다 클래스가 다르면 "전부 같은 역할"이 아니다.
   - **같은 부모 밑에 그 역할이 아닌 같은 태그가 섞일 수 있는 것.**
+
+  **카탈로그에 문서화된 공용 컴포넌트도 예외가 아니다** — `timeline > li`,
+  `faq-list > details`, `catalog-board__items > li`가 그렇게 바뀌었다.
+  다만 그 컴포넌트의 **Markup API 주석과 `codepresso-designsystem.html`의
+  클래스 표기를 같은 변경에서 함께 고친다.** 안 고치면 다음 사람이 카탈로그를
+  보고 없어진 클래스를 다시 쓴다.
 - **`.title` `.item` `.card`처럼 흔한 한 단어는 피한다.** 그 섹션에 나중에 공용
   컴포넌트를 넣었을 때 오염된다. `.step-icon` `.scale-term`처럼 역할이 드러나는
   두 단어를 쓴다.
