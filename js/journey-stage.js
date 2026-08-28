@@ -232,13 +232,13 @@ const setupStage = ({ name, sectionSelector, panelSelector, pop = false }) => {
 
 setupStage({
   name: 'journey',
-  sectionSelector: '.education-journey',
+  sectionSelector: '.journey',
   panelSelector: '.journey-viewport',
   pop: true,
 });
 
 setupStage({
   name: 'diagnosis',
-  sectionSelector: '.diagnosis-showcase',
+  sectionSelector: '.diagnosis',
   panelSelector: '.diagnosis-preview-panel',
 });

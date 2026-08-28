@@ -121,7 +121,7 @@
 .guide-motion-static-preview { padding: var(--space-20); }
 .guide-motion-static-preview .difference-screen-body { min-height: 120px; }
 .guide-motion-static-preview .content-panel { width: 100%; }
-.guide-motion-static-preview .hero-clients-item img { width: 120px; }
+.guide-motion-static-preview .hero-clients-track > li img { width: 120px; }
 
 /* 06 RULES — 네이밍·상태·화면 폭 규칙 */
 .guide-rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-20); }

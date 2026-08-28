@@ -145,9 +145,9 @@ main > section,
   transform: none;
 }
 
-/* sticky 컬럼을 품은 섹션(education-journey 등)은 transform을 쓰지 않는다. */
-.fade-up.education-journey,
-.fade-up.diagnosis-showcase,
+/* sticky 컬럼을 품은 섹션(journey 등)은 transform을 쓰지 않는다. */
+.fade-up.journey,
+.fade-up.diagnosis,
 .fade-up.difference {
   transform: none;
 }

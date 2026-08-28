@@ -309,7 +309,7 @@
     </div>
   </header>
 
-  <main>
+  <main class="index">
     <section class="hero">
       <div class="section-wrap">
         <a class="hero-banner" href="#">
@@ -381,28 +381,28 @@
         <h3 class="hero-clients-title"> <strong>코드프레소</strong>와 함께하는 기업들</h3>
         <div class="hero-clients-marquee">
           <ul class="hero-clients-track">
-            <li class="hero-clients-item"><img src="images/logos/logo_4_현대_(h36).svg" alt="현대"></li>
-            <li class="hero-clients-item"><img src="images/logos/logo_5_벡터_(h36).svg" alt="벡터"></li>
-            <li class="hero-clients-item"><img src="images/logos/logo_6_서강대_(h36).svg" alt="서강대"></li>
-            <li class="hero-clients-item"><img src="images/logos/logo_1_삼성_(h36).svg" alt="삼성"></li>
-            <li class="hero-clients-item"><img src="images/logos/logo_2_기획재정부_(h36).svg" alt="기획재정부"></li>
-            <li class="hero-clients-item"><img src="images/logos/logo_3_롯데_(h36).svg" alt="롯데"></li>
+            <li><img src="images/logos/logo_4_현대_(h36).svg" alt="현대"></li>
+            <li><img src="images/logos/logo_5_벡터_(h36).svg" alt="벡터"></li>
+            <li><img src="images/logos/logo_6_서강대_(h36).svg" alt="서강대"></li>
+            <li><img src="images/logos/logo_1_삼성_(h36).svg" alt="삼성"></li>
+            <li><img src="images/logos/logo_2_기획재정부_(h36).svg" alt="기획재정부"></li>
+            <li><img src="images/logos/logo_3_롯데_(h36).svg" alt="롯데"></li>
           </ul>
           <!-- 끊김 없이 이어지도록 같은 목록을 한 벌 더 둔다. 시각적 복제일
                뿐이라 스크린리더에는 감춘다. -->
           <ul class="hero-clients-track" aria-hidden="true">
-            <li class="hero-clients-item"><img src="images/logos/logo_4_현대_(h36).svg" alt="현대"></li>
-            <li class="hero-clients-item"><img src="images/logos/logo_5_벡터_(h36).svg" alt="벡터"></li>
-            <li class="hero-clients-item"><img src="images/logos/logo_6_서강대_(h36).svg" alt="서강대"></li>
-            <li class="hero-clients-item"><img src="images/logos/logo_1_삼성_(h36).svg" alt="삼성"></li>
-            <li class="hero-clients-item"><img src="images/logos/logo_2_기획재정부_(h36).svg" alt="기획재정부"></li>
-            <li class="hero-clients-item"><img src="images/logos/logo_3_롯데_(h36).svg" alt="롯데"></li>
+            <li><img src="images/logos/logo_4_현대_(h36).svg" alt="현대"></li>
+            <li><img src="images/logos/logo_5_벡터_(h36).svg" alt="벡터"></li>
+            <li><img src="images/logos/logo_6_서강대_(h36).svg" alt="서강대"></li>
+            <li><img src="images/logos/logo_1_삼성_(h36).svg" alt="삼성"></li>
+            <li><img src="images/logos/logo_2_기획재정부_(h36).svg" alt="기획재정부"></li>
+            <li><img src="images/logos/logo_3_롯데_(h36).svg" alt="롯데"></li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="how-it-works fade-up">
+    <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
           <p class="tag">How it works</p>
@@ -509,7 +509,7 @@
 
     <div class="dot-line"></div>
 
-    <section class="proof fade-up">
+    <section class="outcomes fade-up">
       <div class="section-wrap col">
         <div class="section-header">
           <div class="section-title text-left">
@@ -614,7 +614,7 @@
     <!-- PART 1(교육) + PART 2(진단) 묶음 — 두 파트가 하나의 흐름으로 읽히도록
          배경 그라디언트를 이 래퍼가 한 번만 소유한다. -->
     <div class="parts-group">
-      <section class="education-journey fade-up" id="part1-education">
+      <section class="journey fade-up" id="part1-education">
         <div class="section-wrap row is-sticky">
           <div class="section-aside">
             <div class="section-title text-left">
@@ -673,13 +673,13 @@
             <a href="#" class="btn btn-primary">교육 과정 자세히 보기<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
 
-          <div class="education-journey-stage" data-journey-stage>
+          <div class="journey-stage" data-journey-stage>
             <!-- 스크롤 길이를 만드는 트랙. 각 구간에 진입하면 같은 index의
                  .journey-step이 활성화된다(js/journey-stage.js). -->
             <div class="journey-track" data-journey-track>
-              <div class="journey-track-step" data-journey-track-step="0"></div>
-              <div class="journey-track-step" data-journey-track-step="1"></div>
-              <div class="journey-track-step" data-journey-track-step="2"></div>
+              <div data-journey-track-step="0"></div>
+              <div data-journey-track-step="1"></div>
+              <div data-journey-track-step="2"></div>
             </div>
 
             <!-- 판은 하나로 고정되고, 안의 내용만 교차 페이드된다.
@@ -783,15 +783,15 @@
                   <!-- 강의가 돌아가는 것을 증명하는 수치 3개. 가운데(참여율)만
                        is-current로 강조해 어디를 보라는지 하나로 좁힌다. -->
                   <div class="mock-ticker-stats">
-                    <article class="mock-ticker-stat">
+                    <article>
                       <span class="text-caption">수강</span>
                       <b class="is-pop">24<em>명</em></b>
                     </article>
-                    <article class="mock-ticker-stat">
+                    <article>
                       <span class="text-caption">실시간 참여율</span>
                       <b class="is-pop is-current" style="animation-delay: .1s">92<em>%</em></b>
                     </article>
-                    <article class="mock-ticker-stat">
+                    <article>
                       <span class="text-caption">제출 과제</span>
                       <b class="is-pop" style="animation-delay: .2s">18<em>건</em></b>
                     </article>
@@ -954,7 +954,7 @@
         </div>
       </section>
 
-      <section class="diagnosis-showcase fade-up" id="part2-diagnosis">
+      <section class="diagnosis fade-up" id="part2-diagnosis">
         <div class="section-wrap row is-sticky">
           <div class="section-aside">
             <div class="section-title text-left">
@@ -1003,12 +1003,12 @@
           </div>
 
           <div class="diagnosis-preview" data-diagnosis-stage>
-            <!-- PART 1의 education-journey-stage와 같은 뼈대 — 보이지 않는 트랙이
+            <!-- PART 1의 journey-stage와 같은 뼈대 — 보이지 않는 트랙이
                  스크롤 길이를 만들고, 판은 sticky로 고정된 채 안의 스텝만 교차
                  페이드된다(js/journey-stage.js). -->
             <div class="diagnosis-track" data-diagnosis-track>
-              <div class="diagnosis-track-step" data-diagnosis-track-step="0"></div>
-              <div class="diagnosis-track-step" data-diagnosis-track-step="1"></div>
+              <div data-diagnosis-track-step="0"></div>
+              <div data-diagnosis-track-step="1"></div>
             </div>
 
             <div class="content-panel diagnosis-preview-panel surface-glass">
@@ -1096,21 +1096,21 @@
 
                     <!-- 채점 결과 — 3단계에서 이 막대가 그대로 다시 등장한다. -->
                     <ul class="difference-bars is-cue">
-                      <li class="difference-bar-row">
+                      <li>
                         <span class="difference-gauge-bar">
                           <span style="--bar-h: 44%"></span>
                         </span>
                         <span class="difference-bar-value is-weak">44</span>
                         <span class="difference-bar-name">프롬프트 설계</span>
                       </li>
-                      <li class="difference-bar-row">
+                      <li>
                         <span class="difference-gauge-bar">
                           <span style="--bar-h: 32%"></span>
                         </span>
                         <span class="difference-bar-value is-weak">32</span>
                         <span class="difference-bar-name">에이전트 구축</span>
                       </li>
-                      <li class="difference-bar-row">
+                      <li>
                         <span class="difference-gauge-bar">
                           <span style="--bar-h: 48%"></span>
                         </span>
@@ -1188,7 +1188,7 @@
                     <!-- 진단 막대(회색)를 깔고 그 위에 재진단 막대(브랜드)가 덮어쓰며 뻗는다.
                          1단계와 같은 영역·같은 순서라야 "같은 잣대"가 읽힌다. -->
                     <ul class="difference-bars is-cue">
-                      <li class="difference-bar-row">
+                      <li>
                         <span class="difference-gauge-bar">
                           <span style="--bar-h: 44%"></span>
                           <span class="is-after" style="--bar-h: 86%"></span>
@@ -1196,7 +1196,7 @@
                         <span class="difference-bar-value">+42</span>
                         <span class="difference-bar-name">프롬프트 설계</span>
                       </li>
-                      <li class="difference-bar-row">
+                      <li>
                         <span class="difference-gauge-bar">
                           <span style="--bar-h: 32%"></span>
                           <span class="is-after" style="--bar-h: 71%"></span>
@@ -1204,7 +1204,7 @@
                         <span class="difference-bar-value">+39</span>
                         <span class="difference-bar-name">에이전트 구축</span>
                       </li>
-                      <li class="difference-bar-row">
+                      <li>
                         <span class="difference-gauge-bar">
                           <span style="--bar-h: 48%"></span>
                           <span class="is-after" style="--bar-h: 74%"></span>
@@ -1614,7 +1614,7 @@
           <div class="difference-mobile-group">
             <p class="difference-mobile-heading">① 정량적 관리</p>
             <ul class="difference-mobile-row">
-              <li class="difference-mobile-item">
+              <li>
                 <span class="difference-mobile-icon">
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M6 19V11M12 19V5M18 19v-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
@@ -1623,7 +1623,7 @@
                 <span class="difference-mobile-title">진단</span>
                 <span class="difference-mobile-desc">IT·AI 실무역량 확인</span>
               </li>
-              <li class="difference-mobile-item">
+              <li>
                 <span class="difference-mobile-icon">
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H5.5A1.5 1.5 0 0 1 4 15.5v-10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
@@ -1633,7 +1633,7 @@
                 <span class="difference-mobile-title">교육</span>
                 <span class="difference-mobile-desc">수준과 직무에 맞는 학습 제공</span>
               </li>
-              <li class="difference-mobile-item">
+              <li>
                 <span class="difference-mobile-icon">
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M20 11a8 8 0 1 0-2.3 5.7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
@@ -1649,7 +1649,7 @@
           <div class="difference-mobile-group">
             <p class="difference-mobile-heading">② 문화 정착</p>
             <ul class="difference-mobile-row">
-              <li class="difference-mobile-item">
+              <li>
                 <span class="difference-mobile-icon">
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M20 15a3 3 0 0 1-3 3H8l-4 3V6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
@@ -1658,7 +1658,7 @@
                 <span class="difference-mobile-title">공유 허브</span>
                 <span class="difference-mobile-desc">에이전트·프롬프트를 사내에 공유</span>
               </li>
-              <li class="difference-mobile-item">
+              <li>
                 <span class="difference-mobile-icon">
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <rect x="3.5" y="4.5" width="17" height="15" rx="2.5" stroke="currentColor" stroke-width="1.7" />
@@ -1668,7 +1668,7 @@
                 <span class="difference-mobile-title">라이브러리</span>
                 <span class="difference-mobile-desc">검증된 자산을 차곡차곡 축적</span>
               </li>
-              <li class="difference-mobile-item">
+              <li>
                 <span class="difference-mobile-icon">
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <circle cx="12" cy="12" r="2.5" stroke="currentColor" stroke-width="1.7" />

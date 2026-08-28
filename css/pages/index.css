@@ -118,8 +118,8 @@
     gap: var(--marquee-gap);
     animation: marquee 28s linear infinite;
   }
-  .hero-clients-item { display: flex; align-items: center; flex-shrink: 0; }
-  .hero-clients-item img { width: 183px; height: 36px; }
+  .hero-clients-track > li { display: flex; align-items: center; flex-shrink: 0; }
+  .hero-clients-track > li img { width: 183px; height: 36px; }
 
   @media (prefers-reduced-motion: reduce) {
     .hero-clients-track,
@@ -302,11 +302,11 @@
   }
 
   /* 두 섹션이 맞닿는 지점의 여백을 줄여 하나의 영역처럼 이어지게 한다. */
-  .parts-group .education-journey {
+  .parts-group .journey {
     padding-bottom: var(--space-48);
   }
 
-  .parts-group .diagnosis-showcase {
+  .parts-group .diagnosis {
     padding-top: var(--space-48);
   }
 
@@ -318,21 +318,21 @@
    * 페이드로 교체된다. 보이지 않는 .journey-track이 스크롤 길이를 만든다.
    */
   /* 트랙과 판을 같은 그리드 셀에 겹쳐 둔다. */
-  .education-journey-stage {
+  .journey-stage {
     display: grid;
   }
 
-  .education-journey-stage > * {
+  .journey-stage > * {
     grid-area: 1 / 1;
   }
 
   /* 3단계 × 1화면 높이. */
-  .journey-track-step {
+  .journey-track > div {
     height: 100vh;
   }
 
   /* 마지막 구간(SkillFit)은 판 높이+오프셋만큼 더해 읽는 시간을 확보한다. */
-  .journey-track-step:last-child {
+  .journey-track > div:last-child {
     height: calc(100vh + 708px);
   }
 
@@ -476,14 +476,14 @@
   }
 
   /* 수치는 목업 안에서 가장 크게 읽혀야 한다 — 목업 안 최대 크기. */
-  .journey-mock.camp-ticker .mock-ticker-stat b {
+  .journey-mock.camp-ticker .mock-ticker-stats > article b {
     font-size: var(--text-heading-18);
     line-height: var(--leading-heading-18);
   }
 
-  .journey-mock.camp-ticker .mock-ticker-stat em { font-size: var(--mock-text); }
+  .journey-mock.camp-ticker .mock-ticker-stats > article em { font-size: var(--mock-text); }
 
-  .journey-mock.camp-ticker .mock-ticker-stat {
+  .journey-mock.camp-ticker .mock-ticker-stats > article {
     gap: var(--space-4);
     padding: var(--space-10);
   }
@@ -1184,14 +1184,14 @@
     grid-area: 1 / 1;
   }
 
-  /* 2단계 × 1화면. PART 1의 journey-track-step과 같은 척도. */
-  .diagnosis-track-step {
+  /* 2단계 × 1화면. PART 1의 .journey-track > div와 같은 척도. */
+  .diagnosis-track > div {
     height: 100vh;
   }
 
-  /* PART 1의 journey-track-step:last-child와 같은 이유 — 마지막 구간은 "읽는
+  /* PART 1의 .journey-track > div:last-child와 같은 이유 — 마지막 구간은 "읽는
      시간 100vh + 판이 풀려나가는 거리"를 함께 갖는다. */
-  .diagnosis-track-step:last-child {
+  .diagnosis-track > div:last-child {
     height: calc(100vh + var(--diagnosis-panel-height));
   }
 
@@ -1449,7 +1449,7 @@
   }
 
   /* 기둥 하나 — 트랙·수치·이름을 위에서 아래로 쌓는다. */
-  .difference-bar-row {
+  .difference-bars > li {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1458,7 +1458,7 @@
   }
 
   /* 트랙 폭 — 이름이 잘리지 않는 선에서 최대한 좁힌 값. */
-  .difference-bar-row .difference-gauge-bar {
+  .difference-bars > li .difference-gauge-bar {
     width: 62%;
   }
 
@@ -2284,7 +2284,7 @@
     gap: var(--space-10);
   }
 
-  .difference-mobile-item {
+  .difference-mobile-row > li {
     display: flex;
     flex: 1;
     flex-direction: column;

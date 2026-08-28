@@ -1,6 +1,6 @@
 ---
 name: html-css-architecture
-description: 코드프레소 리뉴얼 사이트의 HTML/CSS 작업 규범. 제1규칙은 "새로 만들지 말고 기존 컴포넌트·토큰·패턴을 찾아 그대로 재사용" — 중복 CSS를 만들지 않는다. 순수 HTML/CSS 프로젝트(Tailwind·React 없음). Semantic HTML, 실제 Design Token(--color-brand/--color-ink 계열), 고정 타이포 제약(서비스 페이지 최소 14px·weight 3단), 클래스 네이밍(공용 BEM·페이지전용 하이픈·is- 상태·data- 훅), 페이지/섹션 구조, 새 서브페이지 제작 절차(subpage-guide.md), 컴포넌트 인벤토리(component-inventory.md), 제품 화면 목업 연출 5종(mock-motion-guide.md — focus·replay·deck·detail·ticker, "B번 목업처럼"·"카드 덱처럼"·"스켈레톤으로 하고 중요한 것만 텍스트로"), 실제 CSS 관용구(css-patterns.md — color-mix 색 파생·chevron SVG와 images/icon 색상 교체·hover 리듬·prefers-reduced-motion·breakpoint 900/720/560), 화면이 단조로울 때 채우는 순서(섹션 배경 리듬 → 배경 이미지 질감 → 아이콘 → 모션), 내부용 화면의 군더더기 제거, 에셋 네이밍, 중복·무효 선언 정리, 마크업·CSS·JS 3자 정합성, 커밋 규칙, 접근성. HTML 작성, CSS 작성, 컴포넌트 스타일링, 섹션 추가·리디자인, 새 서브페이지 만들기, 화면이 심심할 때 시각적으로 보강, 배경·아이콘·애니메이션 추가, 목업에 애니메이션 넣기, 아이콘/이미지 교체, 반응형, CSS 중복 제거·리팩터링, 커밋 작업을 할 때 항상 먼저 로드해서 따른다.
+description: 코드프레소 리뉴얼 사이트의 HTML/CSS 작업 규범. 제1규칙은 "새로 만들지 말고 기존 컴포넌트·토큰·패턴을 찾아 그대로 재사용" — 중복 CSS를 만들지 않는다. 순수 HTML/CSS 프로젝트(Tailwind·React 없음). Semantic HTML, 실제 Design Token(--color-brand/--color-ink 계열), 고정 타이포 제약(서비스 페이지 최소 14px·weight 3단), 클래스 네이밍(섹션 역할 어휘표에서 고르기·페이지 스코프 .{페이지명}·공용 BEM·is- 상태·data- 훅), 페이지/섹션 구조, 새 서브페이지 제작 절차(subpage-guide.md), 컴포넌트 인벤토리(component-inventory.md), 제품 화면 목업 연출 5종(mock-motion-guide.md — focus·replay·deck·detail·ticker, "B번 목업처럼"·"카드 덱처럼"·"스켈레톤으로 하고 중요한 것만 텍스트로"), 실제 CSS 관용구(css-patterns.md — color-mix 색 파생·chevron SVG와 images/icon 색상 교체·hover 리듬·prefers-reduced-motion·breakpoint 900/720/560), 화면이 단조로울 때 채우는 순서(섹션 배경 리듬 → 배경 이미지 질감 → 아이콘 → 모션), 내부용 화면의 군더더기 제거, 에셋 네이밍, 중복·무효 선언 정리, 마크업·CSS·JS 3자 정합성, 커밋 규칙, 접근성. HTML 작성, CSS 작성, 컴포넌트 스타일링, 섹션 추가·리디자인, 새 서브페이지 만들기, 화면이 심심할 때 시각적으로 보강, 배경·아이콘·애니메이션 추가, 목업에 애니메이션 넣기, 아이콘/이미지 교체, 반응형, CSS 중복 제거·리팩터링, 커밋 작업을 할 때 항상 먼저 로드해서 따른다.
 ---
 
 # Modern HTML & CSS Architecture
@@ -300,16 +300,159 @@ border: 1px solid color-mix(in srgb, var(--color-surface) 40%, transparent);
 
 이 프로젝트에는 실제로 정착된 네이밍 규칙이 있다. **새 컴포넌트를 만들 때 이 방식을 그대로 따른다** — 다른 방식을 새로 도입하지 않는다.
 
-### 블록·요소 이름 — 두 방식이 역할에 따라 갈린다
+### 세 층으로 나눠 생각한다 — 어휘 · 스코프 · 안쪽
+
+페이지가 늘어날수록 이름 짓기가 비용이 된다. 그래서 이 프로젝트는 **섹션 이름을 매번
+새로 짓지 않고, 정해진 어휘표에서 고른다.** 아래 세 층만 기억하면 된다.
+
+```
+1. 어휘   섹션 이름은 아래 표에서 고른다 (짓지 않는다)
+2. 스코프 페이지별 차이는 .{페이지명} .{섹션명} 으로 덮는다
+3. 안쪽   섹션 안 요소는 짧게. 태그로 유일하면 클래스를 생략한다
+```
+
+```css
+.process { }                        /* 공통 골격 — sections/ */
+.ax-build .process { }              /* 이 페이지에서만 다른 값 — pages/ */
+.ax-build .process .step-icon { }   /* 섹션 안 요소 */
+```
+
+이렇게 하면 `ax-build-process-step-icon`(26자)이 `.step-icon`(10자)이 되고, 다음
+페이지에 프로세스 섹션이 생겨도 **이름을 새로 짓지 않고 `.process`를 그대로 쓴다.**
+
+### 섹션 역할 어휘표 — 여기서 고른다
+
+랜딩·제품 소개 페이지는 어느 회사든 하는 말이 비슷하다. 그 역할에 이름을 미리 박아
+두고 모든 페이지가 같은 단어를 쓴다. **새 페이지를 만들 때 작명하지 말고 이 표에서 고른다.**
+
+| 클래스 | 역할 | 쓰는 곳 |
+|---|---|---|
+| `hero` | 첫 화면 — 한 줄 정의 + CTA | 전 페이지 |
+| `intro` | 이것이 무엇인지 정의·전후 대비 | ax-build 01 |
+| `features` | 기능·특징·조건을 나열 | index(how-it-works), ax-build 02 |
+| `catalog` | 목록·분류를 한 판에 | ax-build 03 |
+| `process` | 단계·절차·기간 | ax-build 04 |
+| `deliverables` | 산출물·남는 것 | ax-build 05 |
+| `outcomes` | 성과·고객 사례·수치 | index(proof), ax-build 06 |
+| `journey` | 여정·학습 경로 | index PART 1·2 |
+| `insight` | 콘텐츠·아티클·뉴스 | index |
+| `faq` | 자주 묻는 질문 | ax-build 07 |
+| `cta-final` | 최하단 전환 유도 | 전 페이지 |
+
+- **표에 없는 역할이 나오면 임의로 만들지 말고 사용자에게 묻는다.** "이런 역할의
+  섹션이 필요한데 `{제안이름}`으로 추가할까요"라고 확인한 뒤 이 표에 등록한다.
+  대부분의 역할은 이미 표에 있으므로, 먼저 "비슷한 역할이 표에 있는지"를 본다.
+- 겉모습이 달라도 **역할이 같으면 같은 이름을 쓴다.** 페이지마다 다르게 보이는 것은
+  스코프(`.{페이지명}`)가 처리한다.
+- 한 페이지에 같은 역할이 두 번 나오면 뒤에 한 단어를 붙인다(`features-team`).
+
+### 페이지 스코프 — `<main class="{페이지명}">`
+
+```html
+<main class="ax-build">
+  <section class="hero">…</section>
+  <section class="intro fade-up">…</section>
+  <section class="process fade-up">…</section>
+  <section class="outcomes is-dark fade-up">…</section>
+  <section class="cta-final fade-up">…</section>
+</main>
+```
+
+- **ID(`<main id="ax-build">`)가 아니라 클래스를 쓴다.** ID는 specificity가 높아
+  같은 `@layer components` 안에서 공용 컴포넌트를 이겨 버린다. 얻는 것은 같고
+  위험만 없앤다.
+- 페이지 CSS(`pages/*.css`)의 규칙은 **전부 이 스코프 안에 둔다.** 그래야 페이지에서
+  쓴 이름이 다른 페이지로 새지 않는다.
+- **공용 컴포넌트의 생김새를 스코프로 덮지 않는다.** 배치만 한다 —
+  `.ax-build .metric-card { margin-top: 20px }`은 되지만
+  `.ax-build .metric-card__value { font-size: 32px }`는 안 된다(0번 제1규칙).
+
+### 섹션 클래스와 앵커 ID는 다른 것이다
+
+| | 목적 | 다는 때 |
+|---|---|---|
+| `class="process"` | CSS·JS가 이 섹션을 지목 | 섹션 **자체**에 스타일·동작이 붙을 때 |
+| `id="process"` | URL 앵커 점프 대상 | GNB·`part-nav`가 잡아야 할 때만 |
+
+- **섹션 자체를 지목할 일이 없으면 클래스를 달지 않는다.** 배경색도, sticky도 없이
+  안쪽 요소만 스타일한다면 `<section class="fade-up">`으로 끝내고 안쪽 블록에
+  이름을 준다. (실제로 `ax-build-what`·`-deliverables`·`-faq`는 규칙이 하나도 없는
+  빈 이름이었다.)
+- `fade-up`은 모든 섹션에 붙는 공용 유틸리티라 섹션 고유 이름과 무관하다.
+- 앵커 ID는 **URL에 노출되므로 반드시 의미 있는 이름**이어야 한다. 순서 번호
+  (`#section04`)를 쓰지 않는다 — 섹션을 하나 끼우면 외부에 공유된 링크까지 깨진다.
+
+### 섹션 안쪽 요소 — 짧게, 역할이 드러나게
+
+스코프와 섹션이 이미 맥락을 말해 주므로 **안쪽 이름에 페이지명·섹션명을 반복하지 않는다.**
+
+```css
+/* 나쁨 — 맥락을 이름이 다시 반복한다 */
+.ax-build .ax-build-process-step-icon { }
+
+/* 좋음 */
+.ax-build .process .step-icon { }
+```
+
+- **`:nth-child`를 쓰게 되는 순간이 클래스를 달아야 한다는 신호다.** 순서에 의존하는
+  선택자는 마크업이 바뀌면 조용히 틀어진다.
+- **태그로 유일하면 클래스를 생략한다** — `.process h2`, `.process .step-body p`.
+- **한 부모 안의 형제가 전부 같은 역할이면 자식 클래스를 달지 않는다.**
+  `부모 > 태그` 자손 선택자로 충분하다(사용자 확인됨). 목록 항목마다 같은 클래스를
+  반복하는 것은 마크업만 길어지고 얻는 것이 없다.
+
+  ```html
+  <!-- 나쁨 — li마다 같은 클래스를 반복 -->
+  <ul class="catalog-board__items">
+    <li class="catalog-board__item">회의록 자동 작성</li>
+    <li class="catalog-board__item">태스크 관리</li>
+  </ul>
+
+  <!-- 좋음 -->
+  <ul class="catalog-board__items">
+    <li>회의록 자동 작성</li>
+    <li>태스크 관리</li>
+  </ul>
+  ```
+
+  ```css
+  .catalog-board__items > li { … }
+  .catalog-board__items > li:nth-child(2) { animation-delay: .03s; }
+  ```
+
+  **단 아래 셋은 클래스를 유지한다:**
+  - **JS가 `querySelectorAll('.그것')`로 잡는 것** — `feature-card`, `metric-card`,
+    `proof-card`. 훅을 `data-*`로 옮기기 전에는 클래스를 지우면 동작이 죽는다.
+  - **형제마다 모디파이어가 달라지는 것** — `difference-card.is-step`처럼
+    자식마다 클래스가 다르면 "전부 같은 역할"이 아니다.
+  - **같은 부모 밑에 그 역할이 아닌 같은 태그가 섞일 수 있는 것.**
+- **`.title` `.item` `.card`처럼 흔한 한 단어는 피한다.** 그 섹션에 나중에 공용
+  컴포넌트를 넣었을 때 오염된다. `.step-icon` `.scale-term`처럼 역할이 드러나는
+  두 단어를 쓴다.
+
+### 공용 컴포넌트는 BEM `__`를 유지한다
 
 | 방식 | 쓰는 대상 | 예시 |
 |---|---|---|
-| **BEM (`__`)** | **여러 페이지가 공유하는 범용 컴포넌트** (`main.css`가 로드하고 카탈로그에 문서화된 것) | `metric-card__value`, `choice-list__item`, `assessment-card__title`, `content-panel__intro`, `media-card__body`, `preview-frame__bar` |
-| **하이픈 (`-`)** | **한 페이지의 특정 섹션 전용 컴포넌트** (`pages/*.css`가 로드하는 것) | `hero-banner-text`, `proof-card-nav`, `journey-mock-head`, `cta-final-title`, `insight-row-thumb` |
+| **BEM (`__`)** | **여러 페이지가 공유하는 범용 컴포넌트** (`components/ui/`, `main.css`가 로드) | `metric-card__value`, `choice-list__item`, `content-panel__intro`, `preview-frame__bar` |
+| **섹션 어휘 + 자손** | **섹션과 그 안쪽** (`components/sections/`, `pages/`) | `.process .step-icon`, `.outcomes .shift` |
 
-- **범용 컴포넌트를 만들면** BEM으로 쓰고, 파일 상단에 "Markup API" 주석으로 구조를 남긴다(`metric-card.css` 상단이 표준 예시).
-- **페이지 전용 섹션을 만들면** 하이픈으로 쓴다.
-- 판단이 애매하면 [component-inventory.md](component-inventory.md)에서 그 컴포넌트가 A/B(공용)인지 C(페이지 전용)인지 보고 맞춘다.
+이 비대칭이 규칙의 핵심이다 — **공용 컴포넌트는 어느 섹션 안에 놓일지 모르니
+자기 이름만으로 서야 하고, 섹션은 자기 안에서만 사니 맥락을 빌려 쓸 수 있다.**
+
+- 범용 컴포넌트를 만들면 파일 상단에 "Markup API" 주석으로 구조를 남긴다
+  (`metric-card.css` 상단이 표준 예시).
+- 판단이 애매하면 [component-inventory.md](component-inventory.md)에서 그것이
+  A/B(공용)인지 C(섹션)인지 보고 맞춘다.
+
+### 기존 이름은 그 섹션을 고칠 때 함께 정리한다
+
+지금 코드에는 옛 방식(`ax-build-process-step-icon`, `difference-legend-progress-bar`)이
+남아 있다. **동작하는 CSS를 이름만 바꾸려고 건드리지 않는다** — 마크업·CSS·JS 3자
+정합성을 다시 맞춰야 하는데 얻는 것은 이름 길이뿐이다.
+
+그 섹션을 **어차피 재작성할 때** 새 규칙으로 옮긴다. 그때가 개명 비용이 0에 가까운
+유일한 시점이다.
 
 ### Modifier — BEM `--`를 쓰지 않고 별도 클래스를 병기한다
 

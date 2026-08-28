@@ -244,7 +244,7 @@
   gap: var(--space-10);
 }
 
-.mock-ticker-stat {
+.mock-ticker-stats > article {
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
@@ -253,23 +253,23 @@
   background: var(--color-brand-tint-1);
 }
 
-.mock-ticker-stat b {
+.mock-ticker-stats > article b {
   color: var(--color-ink-heaviest);
   font-size: var(--text-heading-24);
   line-height: var(--leading-heading-24);
   font-weight: var(--font-weight-semibold);
 }
 
-.mock-ticker-stat b.is-current { color: var(--color-brand); }
+.mock-ticker-stats > article b.is-current { color: var(--color-brand); }
 
-.mock-ticker-stat em {
+.mock-ticker-stats > article em {
   font-size: var(--text-body-14);
   font-weight: var(--font-weight-medium);
   font-style: normal;
   color: var(--color-ink-lighter);
 }
 
-.mock-ticker-stat b.is-current em { color: inherit; }
+.mock-ticker-stats > article b.is-current em { color: inherit; }
 
 .mock-ticker-chart {
   display: flex;

@@ -27,13 +27,15 @@ Claude가 서브페이지를 만들기 전에, 요청에 아래 정보가 없으
   <title>코드프레소 — {페이지 제목}</title>
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pages/{페이지이름}.css">
+  <link rel="stylesheet" href="css/mobile.css">
 </head>
 
 <body>
   <!-- 1. GNB — 아래 2번 항목 참고 -->
   <header class="header"> ... </header>
 
-  <main>
+  <!-- main에 페이지 스코프 클래스를 준다. pages/*.css의 모든 규칙이 이 안에 들어간다 -->
+  <main class="{페이지이름}">
     <!-- 2. 이 페이지의 섹션들 — 아래 3번 항목 참고 -->
   </main>
 
@@ -76,8 +78,16 @@ CSS는 **정확히 2개**만 링크한다(SKILL.md 337행 규칙). `css/pages/{�
 
 SKILL.md의 "페이지·섹션 구조 관례"를 그대로 따른다:
 
+**섹션 이름은 새로 짓지 않는다** — [SKILL.md](SKILL.md) 5번의 "섹션 역할 어휘표"에서
+고른다(`hero` · `intro` · `features` · `catalog` · `process` · `deliverables` ·
+`outcomes` · `journey` · `insight` · `faq` · `cta-final`). 표에 없는 역할이면
+임의로 만들지 말고 **사용자에게 물어본 뒤** 표에 추가한다.
+
+섹션 자체에 스타일·동작이 붙지 않으면 클래스를 아예 달지 않아도 된다
+(`<section class="fade-up">`). 안쪽 블록에만 이름을 준다.
+
 ```html
-<section class="{섹션이름} fade-up">
+<section class="{어휘표에서 고른 이름} fade-up">
   <div class="section-wrap col">
     <div class="section-title text-center">
       <p class="tag">{eyebrow}</p>

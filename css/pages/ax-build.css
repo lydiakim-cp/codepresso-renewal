@@ -7,20 +7,20 @@
 
 @layer components {
   /* 페이지 전체 레이아웃 wrapper */
-  .ax-build-main {
+  .ax-build {
     background: var(--color-surface);
     display: flex;
     flex-direction: column;
   }
 
   /* Hero — 제품 한 줄 정의 + CTA + 핵심 조건 3개 */
-  .ax-build-hero {
+  .ax-build .hero {
     position: relative;
     overflow: hidden;
   }
 
   /* 배경 질감 — bg-line2 확대 + blur */
-  .ax-build-hero::before {
+  .ax-build .hero::before {
     content: "";
     position: absolute;
     inset: -40px;
@@ -34,7 +34,7 @@
   }
 
   /* 하단이 흰색으로 덮여 다음 섹션과 이어진다 */
-  .ax-build-hero::after {
+  .ax-build .hero::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -45,14 +45,14 @@
     pointer-events: none;
   }
 
-  .ax-build-hero .section-wrap {
+  .ax-build .hero .section-wrap {
     position: relative;
     z-index: 1;
     padding-top: 152px;
     padding-bottom: var(--space-60);
   }
 
-  .ax-build-hero-copy {
+  .ax-build .hero-copy {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,36 +61,36 @@
   }
 
   /* hero 진입 애니메이션 — 순차 지연 */
-  .ax-build-hero-copy > * {
+  .ax-build .hero-copy > * {
     animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
   }
 
-  .ax-build-hero-copy > :nth-child(2) { animation-delay: .08s; }
-  .ax-build-hero-copy > :nth-child(3) { animation-delay: .16s; }
-  .ax-build-hero-copy > :nth-child(4) { animation-delay: .24s; }
+  .ax-build .hero-copy > :nth-child(2) { animation-delay: .08s; }
+  .ax-build .hero-copy > :nth-child(3) { animation-delay: .16s; }
+  .ax-build .hero-copy > :nth-child(4) { animation-delay: .24s; }
 
-  .ax-build-hero-title {
+  .ax-build .hero-title {
     color: var(--color-ink-heaviest);
   }
 
-  .ax-build-hero-desc {
+  .ax-build .hero-desc {
     font-size: var(--text-body-18);
     line-height: var(--leading-body-18);
     color: var(--color-ink-light);
   }
 
-  .ax-build-hero-actions {
+  .ax-build .hero-actions {
     margin-top: var(--space-12);
   }
 
   /* 20일 / AI Agent / 3개월 핵심 수치 — metric-card 재사용 */
-  .ax-build-hero-facts {
+  .ax-build .hero-facts {
     margin-top: var(--space-48);
     animation: rise-in var(--duration-scroll) var(--ease-scroll) .32s both;
   }
 
   /* 배경 질감 위라 반투명 유리 표면으로 띄운다 */
-  .ax-build-hero-facts .metric-card {
+  .ax-build .hero-facts .metric-card {
     background: color-mix(in srgb, var(--color-surface) 78%, transparent);
     backdrop-filter: blur(14px) saturate(160%);
     -webkit-backdrop-filter: blur(14px) saturate(160%);
@@ -99,38 +99,232 @@
       transform var(--duration-hover) var(--ease-hover);
   }
 
-  .ax-build-hero-facts .metric-card:hover {
+  .ax-build .hero-facts .metric-card:hover {
     box-shadow: var(--shadow-md);
     transform: translateY(-3px);
   }
 
   /* "AI Agent" 텍스트 폭에 맞춰 한 단계 낮춘 값 */
-  .ax-build-hero-facts .metric-card__value {
+  .ax-build .hero-facts .metric-card__value {
     font-size: var(--text-heading-32);
     line-height: var(--leading-heading-32);
   }
 
   /* Best Fit — feature-card 자동 순환. 활성 카드만 흰색으로 구분 */
-  .ax-build-fit .feature-card.is-active {
+  .ax-build .features .feature-card.is-active {
     background: var(--color-surface);
     box-shadow: var(--shadow-sm);
   }
 
+  /*
+   * 01 What It Is — 사람 → 분담 → Agent 3단계.
+   * mock-motion F·stage의 등장 순서(is-step/is-cue/is-flow)만 빌려 쓰고,
+   * 칸 레이아웃은 여기서 정의한다. index의 .difference-card 계열은
+   * css/pages/index.css 안에 있는 index 전용이라 클래스를 가져오지 않는다.
+   * 목업 안 텍스트는 14px 제약의 예외 — 4단 위계를 이 루트 안에만 선언한다.
+   */
+  .ax-build .shift {
+    --shift-text-title: 15px;
+    --shift-text-lg: 13px;
+    --shift-text: 11px;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-20);
+    padding: var(--space-28);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-sunken);
+  }
+
+  .ax-build .shift-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    padding: var(--space-20);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+  }
+
+  /* 1·2칸은 아직 결론이 아니라 가라앉혀 두고, 3칸만 브랜드 톤으로 올린다 */
+  .ax-build .shift-step.is-after {
+    border-color: var(--color-brand);
+    background: var(--color-brand-tint-1);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .ax-build .shift-head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .ax-build .shift-no {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    background: var(--color-brand-tint-2);
+    color: var(--color-brand);
+    font-size: var(--shift-text);
+    font-weight: var(--font-weight-semibold);
+    flex: none;
+  }
+
+  .ax-build .shift-step.is-after .shift-no {
+    background: var(--color-brand);
+    color: var(--color-surface);
+  }
+
+  .ax-build .shift-label {
+    color: var(--color-ink-lighter);
+    font-size: var(--shift-text);
+    letter-spacing: 0;
+  }
+
+  .ax-build .shift-title {
+    color: var(--color-ink-heaviest);
+    font-size: var(--shift-text-title);
+    line-height: 20px;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0;
+  }
+
+  .ax-build .shift-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .ax-build .shift-task {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-8) var(--space-10);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-mist);
+    color: var(--color-ink-light);
+    font-size: var(--shift-text-lg);
+    line-height: 18px;
+    letter-spacing: 0;
+  }
+
+  /* Agent가 맡은 줄만 브랜드 톤으로 — 어느 줄이 넘어갔는지가 이 칸의 정보다 */
+  .ax-build .shift-task.is-agent {
+    background: var(--color-brand-tint-2);
+    color: var(--color-brand-dark);
+  }
+
+  .ax-build .shift-step.is-after .shift-task:not(.is-agent) {
+    background: var(--color-surface);
+  }
+
+  .ax-build .shift-actor {
+    padding: 2px var(--space-6);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    color: var(--color-ink-lighter);
+    font-size: var(--shift-text);
+    line-height: 14px;
+    flex: none;
+  }
+
+  .ax-build .shift-task.is-agent .shift-actor {
+    background: var(--color-brand);
+    color: var(--color-surface);
+  }
+
+  /* Agent가 이미 돌고 있다는 표시 — 줄 왼쪽에 브랜드 색 축을 세운다 */
+  .ax-build .shift-task.is-done {
+    box-shadow: inset 2px 0 0 var(--color-brand);
+  }
+
+  .ax-build .shift-foot {
+    margin-top: auto;
+    padding-top: var(--space-10);
+    border-top: 1px solid var(--color-line);
+    color: var(--color-ink-lighter);
+    font-size: var(--shift-text);
+    line-height: 15px;
+  }
+
+  .ax-build .shift-foot strong {
+    color: var(--color-ink);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* 3칸의 결론 수치. 목업 4단 스케일 위로 올려도 되는 자리다(결론 강조) */
+  .ax-build .shift-verdict {
+    margin-top: auto;
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-8);
+    padding: var(--space-10) var(--space-12);
+    border-radius: var(--radius-md);
+    background: var(--color-brand);
+  }
+
+  .ax-build .shift-verdict-value {
+    color: var(--color-surface);
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .ax-build .shift-verdict-label {
+    color: color-mix(in srgb, var(--color-surface) 80%, transparent);
+    font-size: var(--shift-text);
+    line-height: 15px;
+  }
+
+  /* 칸과 칸 사이 화살표. 오른쪽 경계에 걸터앉아 다음 칸으로 넘긴다 */
+  .ax-build .shift-arrow {
+    position: absolute;
+    top: 50%;
+    right: calc(var(--space-20) / -2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    color: var(--color-brand);
+    z-index: 1;
+  }
+
+  .ax-build .shift-arrow svg {
+    display: block;
+    width: 14px;
+    height: 14px;
+  }
+
+  /* 목업은 aria-hidden이므로 같은 내용을 읽을 수 있는 한 줄로 남긴다 */
+  .ax-build .shift-note {
+    margin-top: var(--space-20);
+    color: var(--color-ink-lighter);
+    text-align: center;
+  }
+
   /* 워크플로 보드 아래 보조 안내 문구 */
-  .ax-build-catalog-note {
+  .ax-build .catalog-note {
     margin-top: var(--space-20);
     color: var(--color-ink-lighter);
     text-align: center;
   }
 
   /* Deliverables — 20일 뒤 산출물 4개, 2열 그리드 */
-  .ax-build-deliverable-list {
+  .ax-build .deliverable-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-20);
   }
 
-  .ax-build-deliverable-item {
+  .ax-build .deliverable-list > li {
     position: relative;
     display: grid;
     grid-template-columns: var(--space-48) minmax(0, 1fr);
@@ -142,11 +336,11 @@
     transition: background var(--duration-hover) var(--ease-hover);
   }
 
-  .ax-build-deliverable-item:hover {
+  .ax-build .deliverable-list > li:hover {
     background: var(--color-brand-tint-2);
   }
 
-  .ax-build-deliverable-icon {
+  .ax-build .deliverable-icon {
     grid-row: 1 / span 2;
     display: inline-flex;
     align-items: center;
@@ -160,28 +354,181 @@
     transition: transform var(--duration-hover) var(--ease-hover);
   }
 
-  .ax-build-deliverable-icon svg {
+  .ax-build .deliverable-icon svg {
     display: block;
     width: 24px;
     height: 24px;
   }
 
-  .ax-build-deliverable-item:hover .ax-build-deliverable-icon {
+  .ax-build .deliverable-list > li:hover .deliverable-icon {
     transform: scale(1.06);
   }
 
-  .ax-build-deliverable-desc {
+  .ax-build .deliverable-desc {
+    color: var(--color-ink-light);
+  }
+
+  /*
+   * 04 20-Day Process — 좌측 sticky 요약 + 우측 단계 목록.
+   * 골격은 공용 .section-wrap.row.is-sticky가 담당하므로 여기서는
+   * 좌측 요약 판과 우측 단계 카드의 생김새만 정의한다.
+   */
+  .ax-build .process-summary {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    width: 100%;
+    padding: var(--space-24);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .ax-build .process-scale {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  /* 기간 라벨 폭을 고정해 4줄의 막대 시작점이 일치한다(가장 긴 "Day 16~20" 기준) */
+  .ax-build .process-scale > li {
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-12);
+  }
+
+  .ax-build .scale-term {
+    color: var(--color-ink-light);
+    font-size: var(--text-body-muted);
+    line-height: var(--leading-body-14);
+  }
+
+  /* 막대 폭은 마크업의 --scale-w가 정한다(단계별 소요 기간 비율) */
+  .ax-build .scale-bar {
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--color-brand-tint-2);
+  }
+
+  .ax-build .scale-bar::before {
+    content: "";
+    display: block;
+    width: var(--scale-w, 100%);
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: var(--color-brand);
+    transition: width var(--duration-scroll) var(--ease-scroll);
+  }
+
+  /* 진입 전에는 접혀 있다가 섹션이 보이면 자기 비율까지 자란다 */
+  .ax-build .process.fade-up:not(.is-visible) .scale-bar::before {
+    width: 0;
+  }
+
+  .ax-build .process-summary-foot {
+    color: var(--color-ink-lighter);
+    font-size: var(--text-body-muted);
+    line-height: var(--leading-body-14);
+  }
+
+  .ax-build .process-summary-foot strong {
+    color: var(--color-brand);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .ax-build .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  .ax-build .process-steps > li {
+    position: relative;
+    display: grid;
+    /* 아이콘 칸(48px) + 본문. 기간·번호 줄은 두 칸을 가로지른다 */
+    grid-template-columns: var(--space-48) minmax(0, 1fr);
+    gap: var(--space-12) var(--space-20);
+    padding: var(--space-28);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--duration-hover) var(--ease-hover),
+      transform var(--duration-hover) var(--ease-hover);
+  }
+
+  .ax-build .process-steps > li:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  .ax-build .step-head {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-12);
+  }
+
+  .ax-build .step-term {
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    background: var(--color-brand);
+    color: var(--color-surface);
+    font-size: var(--text-body-muted);
+    line-height: var(--leading-body-14);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* 배경으로 물러나는 순번. 위계를 낮추는 것이 목적이라 색으로만 눌렀다 */
+  .ax-build .step-no {
+    color: var(--color-brand-tint-2);
+    font-size: var(--text-heading-32);
+    line-height: var(--leading-heading-32);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* 본문이 2줄일 때 아이콘이 통째로 떠 보이지 않게 제목 줄 높이에 맞춰 붙인다 */
+  .ax-build .step-icon {
+    align-self: start;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--space-48);
+    height: var(--space-48);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-sunken);
+    transition: transform var(--duration-hover) var(--ease-hover);
+  }
+
+  .ax-build .step-icon svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  .ax-build .process-steps > li:hover .step-icon {
+    transform: scale(1.06);
+  }
+
+  .ax-build .step-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .ax-build .step-desc {
     color: var(--color-ink-light);
   }
 
   /* Real Outcomes — 고객별 "이전 → 이후" 소요 시간 비교 3열 */
-  .ax-build-outcome-list {
+  .ax-build .outcome-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--space-24);
   }
 
-  .ax-build-outcome-item {
+  .ax-build .outcome-list > li {
     display: flex;
     flex-direction: column;
     gap: var(--space-16);
@@ -194,12 +541,12 @@
       transform var(--duration-hover) var(--ease-hover);
   }
 
-  .ax-build-outcome-item:hover {
+  .ax-build .outcome-list > li:hover {
     box-shadow: var(--shadow-md);
     transform: translateY(-3px);
   }
 
-  .ax-build-outcome-client {
+  .ax-build .outcome-client {
     color: var(--color-ink-heaviest);
     font-size: var(--text-card-title);
     line-height: var(--leading-card-title);
@@ -208,21 +555,21 @@
   }
 
   /* 이전 값 → 이후 값 표시줄 */
-  .ax-build-outcome-shift {
+  .ax-build .outcome-shift {
     display: flex;
     align-items: baseline;
     gap: var(--space-10);
     flex-wrap: wrap;
   }
 
-  .ax-build-outcome-before {
+  .ax-build .outcome-before {
     color: var(--color-ink-lighter);
     font-size: var(--text-body-18);
     text-decoration: line-through;
   }
 
   /* 공통 chevron SVG. hover 시 오른쪽으로 밀린다 */
-  .ax-build-outcome-arrow {
+  .ax-build .outcome-arrow {
     display: inline-flex;
     align-items: center;
     color: var(--color-line-heavy);
@@ -230,18 +577,18 @@
       color var(--duration-hover) var(--ease-hover);
   }
 
-  .ax-build-outcome-arrow svg {
+  .ax-build .outcome-arrow svg {
     display: block;
     width: 18px;
     height: 18px;
   }
 
-  .ax-build-outcome-item:hover .ax-build-outcome-arrow {
+  .ax-build .outcome-list > li:hover .outcome-arrow {
     color: var(--color-brand);
     transform: translateX(3px);
   }
 
-  .ax-build-outcome-after {
+  .ax-build .outcome-after {
     font-size: var(--text-heading-24);
     line-height: var(--leading-heading-24);
     letter-spacing: var(--tracking-heading-tight);
@@ -249,48 +596,143 @@
     color: var(--color-brand);
   }
 
-  .ax-build-outcome-detail {
+  .ax-build .outcome-detail {
     padding-top: var(--space-16);
     border-top: 1px solid var(--color-line);
     color: var(--color-ink-light);
   }
 
-  /* 섹션 배경 리듬 — 흰 면과 옅은 면을 번갈아 배치 */
-  .ax-build-fit,
-  .ax-build-process {
+  /*
+   * 섹션 배경 리듬.
+   * 흰 면과 옅은 면을 번갈아 배치하고, 강조 구간 한 곳만 어두운 톤으로 올린다 —
+   * 옅은 틴트(--color-brand-tint-1)로는 흰 면과 구분이 약해 강조가 서지 않았다.
+   * 어두운 판은 최하단 cta-final과 같은 계열이라 페이지가 두 번 닫히지 않게
+   * 그 사이 07 FAQ를 흰 면으로 두어 숨을 돌린다.
+   */
+  .ax-build .features,
+  .ax-build .process {
     background: var(--color-surface-sunken);
   }
 
-  /* 성과 섹션은 진한 틴트로 강조 */
-  .ax-build-outcomes {
-    background: var(--color-brand-tint-1);
+  /* --- 강조 구간: 06 Real Outcomes만 어두운 판 --- */
+  .ax-build .outcomes.is-dark {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-ink-heaviest);
+  }
+
+  /* 배경 질감 — cta-final과 같은 이미지지만 다른 구역·배율을 써서 반복을 피한다 */
+  .ax-build .outcomes.is-dark::before {
+    content: "";
+    position: absolute;
+    inset: -30px;
+    background-image: url("../../images/bg-line2.png");
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 140%;
+    filter: blur(8px);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .ax-build .outcomes.is-dark::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--color-ink-heaviest) 88%, transparent) 0%,
+        color-mix(in srgb, var(--color-brand-dark) 62%, var(--color-ink-heaviest)) 100%);
+    opacity: 0.75;
+    pointer-events: none;
+  }
+
+  .ax-build .outcomes.is-dark .section-wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ax-build .outcomes.is-dark h2 {
+    color: var(--color-surface);
+  }
+
+  /* 어두운 판 위에서는 옅은 틴트 배지가 묻히므로 반투명 흰색으로 반전한다 */
+  .ax-build .outcomes.is-dark .tag {
+    background: color-mix(in srgb, var(--color-surface) 16%, transparent);
+    color: var(--color-surface);
+  }
+
+  /* 카드는 유리 표면으로 띄운다 — 흰 단색이면 판이 뚫린 것처럼 보인다 */
+  .ax-build .outcomes.is-dark .ax-build .outcome-list > li {
+    border-color: color-mix(in srgb, var(--color-surface) 18%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 8%, transparent);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    box-shadow: none;
+  }
+
+  .ax-build .outcomes.is-dark .ax-build .outcome-list > li:hover {
+    border-color: color-mix(in srgb, var(--color-surface) 34%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 13%, transparent);
+    box-shadow: none;
+  }
+
+  .ax-build .outcomes.is-dark .outcome-client {
+    color: var(--color-surface);
+  }
+
+  .ax-build .outcomes.is-dark .outcome-before,
+  .ax-build .outcomes.is-dark .outcome-arrow {
+    color: color-mix(in srgb, var(--color-surface) 55%, transparent);
+  }
+
+  /* 결과 수치 — 어두운 배경에서 브랜드 원색은 어두워 보이므로 흰색을 섞어 올린다 */
+  .ax-build .outcomes.is-dark .outcome-after {
+    color: color-mix(in srgb, var(--color-brand) 45%, white);
+  }
+
+  .ax-build .outcomes.is-dark .ax-build .outcome-list > li:hover .outcome-arrow {
+    color: color-mix(in srgb, var(--color-brand) 45%, white);
+  }
+
+  .ax-build .outcomes.is-dark .outcome-detail {
+    border-top-color: color-mix(in srgb, var(--color-surface) 16%, transparent);
+    color: color-mix(in srgb, var(--color-surface) 76%, transparent);
   }
 
   /* 최하단 CTA — 공용 cta-final 배경을 우측 하단 구역으로 변경 */
-  .cta-final::before {
+  .ax-build .cta-final::before {
     background-position: bottom right;
     background-size: 220%;
   }
 
   /* Catalog Board — 진입 시 보드에 그림자 추가 */
-  .ax-build-catalog .preview-frame {
+  .ax-build .catalog .preview-frame {
     transition: box-shadow var(--duration-scroll) var(--ease-scroll);
   }
 
-  .ax-build-catalog.is-visible .preview-frame {
+  .ax-build .catalog.is-visible .preview-frame {
     box-shadow: var(--shadow-md);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .ax-build-hero-copy > *,
-    .ax-build-hero-facts { animation: none; }
+    .ax-build .hero-copy > *,
+    .ax-build .hero-facts { animation: none; }
 
-    .ax-build-hero-facts .metric-card,
-    .ax-build-deliverable-item,
-    .ax-build-deliverable-icon,
-    .ax-build-outcome-item,
-    .ax-build-outcome-arrow,
-    .ax-build-catalog .preview-frame { transition-duration: 0.001ms; }
+    .ax-build .hero-facts .metric-card,
+    .ax-build .deliverable-list > li,
+    .ax-build .deliverable-icon,
+    .ax-build .outcome-list > li,
+    .ax-build .outcome-arrow,
+    .ax-build .process-steps > li,
+    .ax-build .step-icon,
+    .ax-build .catalog .preview-frame { transition-duration: 0.001ms; }
+
+    /* 막대는 접혀 있지 않고 완성된 비율로 정지한다 */
+    .ax-build .scale-bar::before { transition: none; }
+
+    .ax-build .process.fade-up:not(.is-visible) .scale-bar::before {
+      width: var(--scale-w, 100%);
+    }
   }
 
   /* 900px·560px 반응형은 css/mobile.css에 모아 둔다 */

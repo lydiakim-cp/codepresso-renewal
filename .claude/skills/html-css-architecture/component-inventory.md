@@ -50,15 +50,26 @@
 
 **메인 랜딩 한 곳에서만 쓰도록 만들어진 컴포넌트**다. 겉모습이 비슷해 보여도 서브페이지에서 그대로 재사용하기보다, 구조(아이콘+제목+설명+CTA 같은 패턴)만 참고해서 새 페이지 전용 CSS로 만드는 것이 맞다. 다만 완전히 같은 목적(예: 다른 페이지에도 "고객 도입 사례 슬라이더"가 또 필요함)이면 그때는 이 컴포넌트를 공용으로 승격할지 사용자에게 확인한다.
 
-| 컴포넌트 | CSS 파일 | 로드 위치 | 짝이 되는 JS |
+**섹션 클래스는 어휘표 이름을 쓴다**([SKILL.md](SKILL.md) 5번). 아래 "섹션 클래스"가
+현재 마크업의 실제 이름이고, 안쪽 요소명(`difference-*`·`journey-mock-*` 등)은
+`codepresso-designsystem.html`이 함께 쓰고 있어 옛 이름을 유지한다.
+
+| 섹션 클래스 | 역할 | 정의 위치 | 짝이 되는 JS |
 |---|---|---|---|
-| Hero | `hero.css` | `css/pages/index.css` | — |
-| Proof Card (도입 사례 슬라이더) | `proof-card.css` | `css/pages/index.css` | `js/proof-card-slider.js` |
-| Education Journey | `education-journey.css` | `css/pages/index.css` | `js/journey-stage.js` |
-| Diagnosis Showcase | `diagnosis-showcase.css` | `css/pages/index.css` | `js/journey-stage.js` |
-| Difference | `difference.css` | `css/pages/index.css` | `js/difference-cycle.js` |
-| Insight | `insight.css` | `css/pages/index.css` | — |
-| CTA Final | `cta-final.css` | `css/pages/index.css` | — |
+| `hero` | 첫 화면 | `css/pages/index.css` | — |
+| `outcomes` | 도입 사례 슬라이더(안쪽은 `proof-card`) | `css/pages/index.css` | `js/proof-card-slider.js` |
+| `features` | 3단 카드 자동 순환 | `css/pages/index.css` | `js/feature-card-cycle.js` |
+| `journey` | PART 1 교육 여정 | `css/pages/index.css` | `js/journey-stage.js` |
+| `diagnosis` | PART 2 진단 쇼케이스 | `css/pages/index.css` | `js/journey-stage.js` |
+| `difference` | PART 3 차별점 3화면 순환 | `css/pages/index.css` | `js/difference-cycle.js` |
+| `insight` | 콘텐츠·아티클 | `css/pages/index.css` | — |
+| `cta-final` | 최하단 전환 (공용 — `components/ui/`) | `css/main.css` | — |
+
+**`index.css`는 스코프로 감싸지 않는다** — `designsystem.css`가 통째로
+`@import`해서 카탈로그 페이지가 같은 규칙을 쓰기 때문이다. 대신 `ax-build.css`는
+`.ax-build` 스코프로 감싸, 두 페이지가 같은 `hero`·`features` 이름을 써도
+서로에게 새지 않는다. 세 페이지가 함께 로드하는 `mobile.css`에서만
+페이지 전용 블록에 스코프를 붙인다.
 
 ## 판단 순서 (요약)
 

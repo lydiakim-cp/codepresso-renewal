@@ -217,11 +217,11 @@
     <span class="journey-mock-badge is-live"><i class="is-pulse"></i>실시간</span>
   </div>
   <div class="mock-ticker-stats">
-    <article class="mock-ticker-stat">
+    <article>
       <span class="skeleton-line" style="width: 46px"></span>
       <b class="is-pop">248<em>명</em></b>
     </article>
-    <article class="mock-ticker-stat">
+    <article>
       <span class="skeleton-line" style="width: 52px"></span>
       <b class="is-pop is-current" style="animation-delay: .1s">68<em>%</em></b>
     </article>

@@ -13,7 +13,7 @@
  *   .catalog-board__main
  *     .catalog-board__panel (+ .is-active)           ← data-catalog-panel="{key}"
  *       .catalog-board__panel-desc
- *       .catalog-board__items > .catalog-board__item
+ *       .catalog-board__items > > li
  *
  * 활성 전환은 catalog-board.js가 .is-active 토글로 처리한다.
  */
@@ -104,19 +104,19 @@
 }
 
 /* 분야 전환 시 항목이 차례로 들어온다(stagger). */
-.catalog-board__panel.is-active .catalog-board__item {
+.catalog-board__panel.is-active .catalog-board__items > li {
   --motion-rise: 6px;
   animation: rise-in var(--duration-hover) var(--ease-hover) both;
 }
 
-.catalog-board__panel.is-active .catalog-board__item:nth-child(1) { animation-delay: 0s; }
-.catalog-board__panel.is-active .catalog-board__item:nth-child(2) { animation-delay: .03s; }
-.catalog-board__panel.is-active .catalog-board__item:nth-child(3) { animation-delay: .06s; }
-.catalog-board__panel.is-active .catalog-board__item:nth-child(4) { animation-delay: .09s; }
-.catalog-board__panel.is-active .catalog-board__item:nth-child(5) { animation-delay: .12s; }
-.catalog-board__panel.is-active .catalog-board__item:nth-child(6) { animation-delay: .15s; }
-.catalog-board__panel.is-active .catalog-board__item:nth-child(7) { animation-delay: .18s; }
-.catalog-board__panel.is-active .catalog-board__item:nth-child(8) { animation-delay: .21s; }
+.catalog-board__panel.is-active .catalog-board__items > li:nth-child(1) { animation-delay: 0s; }
+.catalog-board__panel.is-active .catalog-board__items > li:nth-child(2) { animation-delay: .03s; }
+.catalog-board__panel.is-active .catalog-board__items > li:nth-child(3) { animation-delay: .06s; }
+.catalog-board__panel.is-active .catalog-board__items > li:nth-child(4) { animation-delay: .09s; }
+.catalog-board__panel.is-active .catalog-board__items > li:nth-child(5) { animation-delay: .12s; }
+.catalog-board__panel.is-active .catalog-board__items > li:nth-child(6) { animation-delay: .15s; }
+.catalog-board__panel.is-active .catalog-board__items > li:nth-child(7) { animation-delay: .18s; }
+.catalog-board__panel.is-active .catalog-board__items > li:nth-child(8) { animation-delay: .21s; }
 
 .catalog-board__panel-desc {
   color: var(--color-ink-light);
@@ -130,7 +130,7 @@
 }
 
 /* 워크플로 항목 카드 */
-.catalog-board__item {
+.catalog-board__items > li {
   display: flex;
   align-items: center;
   gap: var(--space-10);
@@ -147,7 +147,7 @@
     transform var(--duration-hover) var(--ease-hover);
 }
 
-.catalog-board__item:hover {
+.catalog-board__items > li:hover {
   border-color: var(--color-brand-tint-2);
   background: var(--color-brand-tint-1);
   transform: translateY(-1px);
@@ -155,7 +155,7 @@
 }
 
 /* 항목 앞 상태 점 */
-.catalog-board__item::before {
+.catalog-board__items > li::before {
   content: "";
   flex-shrink: 0;
   width: 6px;
@@ -169,6 +169,6 @@
 @media (prefers-reduced-motion: reduce) {
   .catalog-board__category,
   .catalog-board__panel,
-  .catalog-board__item { transition-duration: 0.001ms; }
-  .catalog-board__panel.is-active .catalog-board__item { animation: none; }
+  .catalog-board__items > li { transition-duration: 0.001ms; }
+  .catalog-board__panel.is-active .catalog-board__items > li { animation: none; }
 }
