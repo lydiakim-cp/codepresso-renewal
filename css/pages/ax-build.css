@@ -310,6 +310,169 @@
     text-align: center;
   }
 
+  /* 03 워크플로 — 어두운 판 하나에 공통(고정) + 직군별(탭) 두 묶음을 나란히 둔다.
+     공통 7개는 늘 보이고, 우측만 탭으로 갈아 끼운다. */
+  .ax-build .service-catalog {
+    display: grid;
+    /* 양쪽 다 4열이라 폭을 같게 나눈다 — 타일 크기가 좌우 동일해야 한다 */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-28);
+    /* 배지 / 탭 레일 자리 / 타일 세 줄. 공통은 탭이 없어 2행이 비고,
+       타일이 3행부터 시작해 직군별과 같은 y에서 맞는다. */
+    grid-template-rows: auto auto minmax(0, 1fr);
+    align-items: start;
+    padding: var(--space-28);
+    border-radius: var(--radius-lg);
+    background: var(--color-ink-heaviest);
+  }
+
+  /* 묶음 이름 — 레퍼런스의 알약 배지 */
+  .ax-build .service-catalog__label {
+    display: inline-block;
+    align-self: start;
+    justify-self: start;
+    padding: var(--space-6) var(--space-12);
+    border-radius: var(--radius-full);
+    background: var(--color-brand);
+    color: var(--color-surface);
+    font-size: var(--text-body-14);
+    line-height: var(--leading-body-14);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* 직군별은 색을 달리해 두 묶음이 구분되게 */
+  .ax-build .service-catalog__label--alt {
+    background: color-mix(in srgb, var(--color-brand) 45%, var(--color-surface));
+    color: var(--color-ink-heaviest);
+  }
+
+  /* 배지 / 탭 레일 / 타일 3행을 좌우가 같은 y에서 시작하게 맞춘다.
+     공통은 탭이 없으니 타일을 3행으로 밀어 직군별 타일과 줄을 맞춘다. */
+  .ax-build .service-catalog__fixed,
+  .ax-build .service-catalog__tabbed {
+    display: grid;
+    grid-row: 1 / 4;
+    grid-template-rows: subgrid;
+    gap: var(--space-16);
+    min-width: 0;
+  }
+
+  .ax-build .service-catalog__fixed .catalog-board__items {
+    grid-row: 3;
+  }
+
+  /* 보드도 부모의 2·3행(레일 자리 + 타일 자리)을 그대로 물려받는다 */
+  .ax-build .service-catalog .catalog-board {
+    display: grid;
+    grid-row: 2 / 4;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: subgrid;
+    gap: var(--space-16);
+    min-height: 0;
+  }
+
+  .ax-build .service-catalog .catalog-board__rail {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    align-content: end;
+    gap: var(--space-8);
+    padding: 0;
+    border-right: 0;
+    background: none;
+  }
+
+  /* 폴더 탭 — 아래 판과 이어지도록 위쪽만 둥글린다 */
+  .ax-build .service-catalog .catalog-board__category {
+    padding: var(--space-10) var(--space-16);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    background: color-mix(in srgb, var(--color-surface) 8%, transparent);
+    color: color-mix(in srgb, var(--color-surface) 70%, transparent);
+  }
+
+  .ax-build .service-catalog .catalog-board__category:hover {
+    background: color-mix(in srgb, var(--color-surface) 14%, transparent);
+    color: var(--color-surface);
+  }
+
+  .ax-build .service-catalog .catalog-board__category.is-active {
+    background: color-mix(in srgb, var(--color-surface) 12%, var(--color-brand));
+    color: var(--color-surface);
+    box-shadow: none;
+  }
+
+  .ax-build .service-catalog .catalog-board__count {
+    background: color-mix(in srgb, var(--color-surface) 16%, transparent);
+    color: inherit;
+  }
+
+  .ax-build .service-catalog .catalog-board__category.is-active .catalog-board__count {
+    background: color-mix(in srgb, var(--color-ink-heaviest) 30%, transparent);
+    color: var(--color-surface);
+  }
+
+  /* 판이 absolute라 높이를 줄 것이 없다 — 가장 항목이 많은 분야(8개)만큼 잡는다 */
+  .ax-build .service-catalog .catalog-board__main {
+    flex: 1;
+    min-height: 292px;
+    padding: 0;
+  }
+
+  .ax-build .service-catalog .catalog-board__panel {
+    inset: 0;
+    gap: 0;
+  }
+
+  /* 아이콘 타일 — 좌우 묶음 모두 4열 */
+  .ax-build .service-catalog .catalog-board__items {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-10);
+  }
+
+  .ax-build .service-catalog .catalog-board__items > li {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-10);
+    padding: var(--space-16) var(--space-8);
+    /* 항목명 1~2줄에도 한 행의 아래선이 맞게 */
+    min-height: 112px;
+    border-color: transparent;
+    /* 어두운 판이라 타일은 한 단 밝혀 띄운다 */
+    background: color-mix(in srgb, var(--color-surface) 8%, transparent);
+    color: var(--color-surface);
+    text-align: center;
+    word-break: keep-all;
+  }
+
+  /* 앞 상태 점 자리를 아이콘이 대신한다 */
+  .ax-build .service-catalog .catalog-board__items > li::before {
+    content: none;
+  }
+
+  .ax-build .service-catalog .catalog-board__items > li:hover {
+    border-color: transparent;
+    background: color-mix(in srgb, var(--color-surface) 14%, transparent);
+  }
+
+  .ax-build .workflow-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    transition: transform var(--duration-hover) var(--ease-hover);
+  }
+
+  .ax-build .workflow-icon svg {
+    display: block;
+    width: 30px;
+    height: 30px;
+  }
+
+  .ax-build .catalog-board__items > li:hover .workflow-icon {
+    transform: scale(1.08);
+  }
+
   /* 워크플로 보드 아래 보조 안내 문구 */
   .ax-build .catalog-note {
     margin-top: var(--space-20);
@@ -705,15 +868,6 @@
     background-size: 220%;
   }
 
-  /* Catalog Board — 진입 시 보드에 그림자 추가 */
-  .ax-build .catalog .preview-frame {
-    transition: box-shadow var(--duration-scroll) var(--ease-scroll);
-  }
-
-  .ax-build .catalog.is-visible .preview-frame {
-    box-shadow: var(--shadow-md);
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .ax-build .hero-copy > *,
     .ax-build .hero-facts { animation: none; }
@@ -725,7 +879,7 @@
     .ax-build .outcome-arrow,
     .ax-build .process-steps > li,
     .ax-build .step-icon,
-    .ax-build .catalog .preview-frame { transition-duration: 0.001ms; }
+    .ax-build .workflow-icon { transition-duration: 0.001ms; }
 
     /* 막대는 접혀 있지 않고 완성된 비율로 정지한다 */
     .ax-build .scale-bar::before { transition: none; }

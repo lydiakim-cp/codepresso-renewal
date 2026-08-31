@@ -185,16 +185,25 @@ css/
 | 반응형을 손본다 / 애니메이션을 넣는다 | [references/responsive-motion.md](references/responsive-motion.md) |
 | hover·아이콘·색 파생 등 CSS 관용구가 필요하다 | [css-patterns.md](css-patterns.md) |
 | **화면이 심심하다 — 배경·아이콘·모션으로 채운다** | [css-patterns.md](css-patterns.md) 4번 |
+| 섹션 배경·카드·그림자로 위계(3층)를 정한다(실측 기반) | [references/surface-depth.md](references/surface-depth.md) |
 | 제품 화면 목업에 연출을 넣는다 | [mock-motion-guide.md](mock-motion-guide.md) |
 | 새 서브페이지를 처음부터 만든다 | [subpage-guide.md](subpage-guide.md) |
 | CSS 중복을 정리한다 / 리팩터링 후 확인한다 | [references/cleanup.md](references/cleanup.md) |
-| **작업을 마친 뒤 — 색·구조·배치를 디자이너 시점으로 검수한다** | [references/design-qa.md](references/design-qa.md) |
+| **작업을 마친 뒤 — 색·구조·배치를 디자이너 시점으로 검수한다** | [references/design-qa.md](references/design-qa.md) (대비 자동 검수: `scripts/contrast-audit.js`) |
 | **작업을 마치기 직전** | [references/checklist.md](references/checklist.md) |
 
 ## 항상 하는 것
 
 지시받지 않아도 매 작업에서 수행한다.
 
+- **CSS를 바꿨으면 주변 CSS와 함께 본다** — 바꾼 값 하나로 끝내지 않는다. **그 값에
+  기대고 있던 형제·부모·자식 규칙이 깨지지 않는지 확인하고, 필요하면 함께 고친다.**
+  지시받은 것만 바꾸고 그 결과로 어긋난 것을 남기면 작업을 끝낸 게 아니다.
+  - 열 수를 바꿨으면 **높이·여백**도 본다(4열로 바꾸면 카드가 좁아져 본문 줄 수가 늘고,
+    형제 열과 아래선이 어긋난다 — 실제로 그렇게 남겼다가 지적받았다).
+  - 컴포넌트의 `min-height`·`padding`을 풀었으면 **무엇이 대신 높이를 정하는지** 찾는다.
+  - 면 색을 바꿨으면 그 위 **텍스트 대비**와 **형제 카드와의 구분**을 다시 본다.
+  - 같은 선택자를 두 번 쓰지 않았는지 본다 — 뒤쪽이 조용히 이긴다.
 - **중복·무효 선언 정리** — 이번에 쓴 CSS가 `base.css`의 태그 전역 스타일이나 공용 유틸리티와 값이 겹치면 지운다. "몇 줄만 고치는 작업"이라고 건너뛰지 않는다 → [references/cleanup.md](references/cleanup.md)
 - **마크업 · CSS · JS는 함께 움직인다** — 한쪽만 고치고 끝내지 않는다. 섹션을 재구성했거나 CSS를 30줄 이상 고쳤으면 3자 정합성을 확인한다.
 - **접근성** — native 태그 우선(`<button>` > `<div role="button">`), 장식용 SVG에 `aria-hidden="true"`, 이미지 `alt`. `:focus-visible`은 `reset.css`가 전역으로 처리하므로 컴포넌트에서 다시 쓰지 않는다.

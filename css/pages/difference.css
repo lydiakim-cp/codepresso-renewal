@@ -269,9 +269,10 @@
     font-weight: var(--font-weight-medium);
   }
 
+  /* 각주 번호 — 틴트 판 위에서 ink-lighter는 AA 미달(2.81) */
   .difference-page .problem-label sup {
     margin-left: 2px;
-    color: var(--color-ink-lighter);
+    color: var(--color-ink-light);
     font-size: var(--text-body-13);
     vertical-align: super;
     line-height: 0;
@@ -295,8 +296,10 @@
 
   /* 수치 아래 한 줄 — 이 숫자가 왜 나쁜 소식인지 말로 한 번 더 짚는다.
      그림·색만으로는 "6%가 낮다"는 판단까지 전달되지 않는다. */
+  /* 01은 brand-tint-2 판이라 ink-lighter는 대비 2.81로 AA(4.5) 미달이다
+     (tokens.css의 진한 면 주석과 같은 이유). 한 단계 올려 ink-light를 쓴다. */
   .difference-page .problem-note {
-    color: var(--color-ink-lighter);
+    color: var(--color-ink-light);
     font-size: var(--text-body-14);
     line-height: var(--leading-body-14);
   }
@@ -357,10 +360,11 @@
     counter-reset: source;
   }
 
+  /* 각주도 같은 틴트 판 위다 — ink-lighter는 AA 미달 */
   .difference-page .source-note > li {
     display: flex;
     gap: var(--space-4);
-    color: var(--color-ink-lighter);
+    color: var(--color-ink-light);
     font-size: var(--text-body-14);
     line-height: var(--leading-body-14);
     counter-increment: source;
@@ -852,15 +856,47 @@
   }
 
   /*
-   * 마지막 칸(Improve)만 브랜드 면 — 성과가 다시 데이터로 돌아가는 지점이다.
+   * 마지막 칸(Improve) — 성과가 다시 데이터로 돌아가는 지점이라 결론 칸이다.
    *
-   * tint-1을 줬더니 판(tint-2)과 8% 차이뿐이라 위계가 없었다(실측:
-   * 섹션 #E9EFFF vs 카드 #F5F8FF). 다른 세 칸이 흰 카드인데 이 칸만
-   * 더 옅어져서 "가라앉은 칸"으로 읽혔다 — 결론 칸인데 반대 신호다.
-   * 브랜드 면 + 흰 글씨로 뒤집는다(어두운 면엔 흰 글씨 — 대비 원칙).
+   * 두 번 고쳤다.
+   *   ① tint-1: 판(tint-2)과 8% 차이뿐이라 위계가 없었다. 다른 세 칸이 흰
+   *      카드인데 이 칸만 더 옅어 "가라앉은 칸"으로 읽혔다 — 결론인데 반대다.
+   *   ② 통짜 브랜드 면: 위계는 생겼지만 칸 사이 화살표(브랜드 원)와 같은 색이라
+   *      화살표가 카드에 먹혔다(사용자 지적).
+   *
+   * 그래서 유리 표면으로 간다 — 브랜드 기운은 유지하되 한 톤이 아니게 만든다.
+   * 공용 .surface-glass를 쓰지 않은 이유: 그것은 55% 흰색이라 **어두운·그라디언트
+   * 배경 전용**이고, 여기(밝은 틴트 판)에서는 흰 형제 카드와 구별되지 않는다.
+   * 대신 브랜드를 옅게 두 단계로 겹친 그라디언트에 blur를 얹는다 —
+   * 화살표(단색 브랜드)와 채도·명도가 달라져 원이 카드 위에 떠 보인다.
    */
   .difference-page .cycle > li.is-return {
-    background: var(--color-brand);
+    position: relative;
+    background:
+      linear-gradient(150deg,
+        color-mix(in srgb, var(--color-brand) 82%, transparent) 0%,
+        color-mix(in srgb, var(--color-brand-dark) 72%, transparent) 100%);
+    border: 1px solid color-mix(in srgb, var(--color-surface) 34%, transparent);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+  }
+
+  /* 유리 위쪽 광원 — 유리라는 신호는 "빛이 한쪽에서 든다"는 것이다 */
+  .difference-page .cycle > li.is-return::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(160deg,
+      color-mix(in srgb, var(--color-surface) 26%, transparent) 0%,
+      transparent 46%);
+    pointer-events: none;
+  }
+
+  /* 내용이 광원 위로 오게 한다 */
+  .difference-page .cycle > li.is-return > * {
+    position: relative;
+    z-index: 1;
   }
 
   .difference-page .cycle > li.is-return h3,
@@ -900,13 +936,12 @@
    * 기본 규칙(위)과 선택자 무게가 같아서, 이 규칙이 파일에서 뒤에 와야 이긴다.
    * 처음엔 앞쪽에 뒀다가 기본값에 밀려 "흰 판 + 흰 글씨"로 숫자가 사라졌다.
    */
+  /* 결론 칸의 번호 배지 — 유리 면 위에서는 반투명 흰 판 + 흰 글씨.
+     같은 선택자를 두 번 써서 뒤쪽이 background를 흰색으로 덮어버렸고,
+     흰 판 + 흰 글씨가 되어 "4"가 안 보였다(사용자 지적). 한 규칙으로 합친다. */
   .difference-page .cycle > li.is-return .cycle-no {
-    background: color-mix(in srgb, var(--color-surface) 22%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 24%, transparent);
     color: var(--color-surface);
-  }
-
-  .difference-page .cycle > li.is-return .cycle-no {
-    background: var(--color-surface);
   }
 
   /* 영문 단계명 — 한글 제목 위에서 위계를 낮춰 얹는다 */
@@ -955,10 +990,13 @@
     margin-top: -20px;
     border-radius: var(--radius-full);
     /* 브랜드 면 + 흰 화살표 — 틴트 판 위에서 흰 원은 카드와 같은 색이라
-       화살표가 카드 사이에 낀 것처럼 보였다. 색을 뒤집어 노드로 세운다. */
+       화살표가 카드 사이에 낀 것처럼 보였다. 색을 뒤집어 노드로 세운다.
+       3번째 화살표는 유리 카드(같은 브랜드 계열) 옆에 오므로, 흰 링을 둘러
+       원의 윤곽이 카드에 먹히지 않게 한다. */
     background: var(--color-brand);
     color: var(--color-surface);
-    z-index: 1;
+    box-shadow: 0 0 0 4px var(--color-brand-tint-2);
+    z-index: 2;
   }
 
   .difference-page .cycle-arrow svg {
@@ -1345,14 +1383,6 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  /* 법무 관련 표기 주석 — 읽는 순서에서 가장 아래다 */
-  .difference-page .position-caveat {
-    text-align: center;
-    color: color-mix(in srgb, var(--color-surface) 45%, transparent);
-    font-size: var(--text-body-14);
-    line-height: var(--leading-body-14);
-  }
-
   /* ============================================================
    * 06 Start Anywhere — 두 갈래 시작점
    * ============================================================ */
@@ -1436,11 +1466,22 @@
    */
   /*
    * 판 높이 — catalog-board의 min-height 420px는 칩이 여러 줄 쌓이는
-   * ax-build 기준이다. 07은 카드 한 줄(116px)로 끝나 아래가 크게 비므로
-   * 레일 4개가 들어갈 만큼만 남기고 줄인다.
+   * ax-build 기준이라 07(카드 한 줄)에서는 아래가 크게 빈다. 그래서 풀었다.
+   *
+   * 다만 min-height만 풀면 높이가 **좌측 레일**이 정한다(실측 250px:
+   * padding 20×2 + 탭 4개 + gap). 카드는 116px이라 아래에 78px이 죽은 채로
+   * 남았다 — 1행 4열로 바꾸면서 이걸 확인하지 않았다.
+   * 카드 줄을 판 높이에 맞춰 늘려 두 열의 아래선을 맞춘다.
    */
   .difference-page .catalog .catalog-board {
     min-height: 0;
+  }
+
+  /* 활성 판은 absolute + inset 28px이라 높이가 이미 판 전체다 —
+     그 안에서 카드 줄이 남은 높이를 다 쓰게 한다 */
+  .difference-page .catalog .catalog-board__panel {
+    display: flex;
+    flex-direction: column;
   }
 
   /*
@@ -1452,6 +1493,10 @@
   .difference-page .industry-cards {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-12);
+    /* 판(레일 높이 250px)의 남은 세로를 카드가 채운다 — 아래 빈칸을 없앤다.
+       align-content: start(컴포넌트 기본)를 stretch로 되돌리는 것이기도 하다. */
+    flex: 1;
+    align-content: stretch;
   }
 
   .difference-page .industry-cards > li {
@@ -1493,10 +1538,6 @@
     line-height: var(--leading-body-14);
   }
 
-  /* 문구 미확정 자리 — 있는 것과 없는 것을 색으로 구분한다 */
-  .difference-page .industry-card-body.is-todo {
-    color: var(--color-ink-lighter);
-  }
 
   /* ============================================================
    * 최하단 CTA — 공용 cta-final 배경을 좌측 상단 구역으로 변경

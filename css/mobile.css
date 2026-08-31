@@ -64,6 +64,37 @@
   .catalog-board__panel.is-active { display: flex; }
 }
 
+/* --- ax-build 03 워크플로(service-catalog) --- */
+@media (max-width: 900px) {
+  /* 공통·직군별 두 묶음을 위아래로 쌓는다.
+     데스크톱은 두 칼럼이 부모 grid-row를 subgrid로 공유해 줄을 맞추지만,
+     1칼럼이 되면 그 공유가 겹침으로 바뀌므로 각자 독립된 행으로 되돌린다. */
+  .ax-build .service-catalog {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+  .ax-build .service-catalog__fixed,
+  .ax-build .service-catalog__tabbed {
+    grid-row: auto;
+    grid-template-rows: none;
+  }
+  /* 판이 static이 되므로 겹침용 높이를 푼다 */
+  .ax-build .service-catalog .catalog-board__main { min-height: 0; }
+  .ax-build .service-catalog .catalog-board__rail {
+    flex-wrap: nowrap;
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .ax-build .service-catalog .catalog-board__items { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .ax-build .service-catalog { padding: var(--space-20); gap: var(--space-24); }
+  .ax-build .service-catalog .catalog-board__items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 /* --- compare-panel.css --- */
 @media (max-width: 900px) {
   .compare-panel { grid-template-columns: 1fr; }

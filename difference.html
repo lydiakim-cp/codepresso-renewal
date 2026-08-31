@@ -557,49 +557,48 @@
               </div>
             </div>
 
-            <!-- ② 2개월차 · 진단 → 학습 — 부족한 항목이 그대로 학습 경로가 된다 -->
+            <!--
+              ② 2개월차 · 진단 → 학습 — 부족한 항목이 그대로 학습 경로가 된다.
+              연출을 detail에서 focus로 바꿨다. mock-detail은 좌측 aside 190px +
+              우측 패널 2단 구조라 **프레임 폭이 넓을 때**를 전제한다(다른 페이지에서는
+              mock-detail이 프레임 루트다 — preview-frame--flush mock-detail).
+              여기는 420px 사이드 칼럼이라 우측 패널이 228px로 눌리고, 안쪽 여백이
+              다른 두 판(L25)과 어긋났다(head L17 · mock-detail L1). 세 판이 번갈아
+              나타나는 자리라 판마다 여백이 다르면 전환할 때 경계가 튄다.
+            -->
             <div class="preview-frame mock-screen scenario-mock"
-                 data-scenario-panel="assess" data-mock-motion="detail" aria-hidden="true">
+                 data-scenario-panel="assess" data-mock-motion="focus" aria-hidden="true">
               <div class="journey-mock-head">
                 <span class="journey-mock-title">AI Fluent 진단 결과</span>
                 <span class="journey-mock-badge">2개월차</span>
               </div>
 
-              <!-- detail 뼈대는 mock-motion.css의 API를 그대로 쓴다 —
-                   좌측 aside 목록에서 is-selected 행이 켜지고, is-panel이 밀려 들어온다 -->
-              <div class="mock-detail">
-                <div class="mock-detail-aside">
-                  <ul class="mock-detail-list">
-                    <li class="mock-detail-row">
-                      <span class="journey-mock-item-name">데이터 해석</span>
-                      <span style="flex: 1"></span>
-                      <span class="text-caption strong">78</span>
-                    </li>
-                    <li class="mock-detail-row">
-                      <span class="journey-mock-item-name">도구 활용</span>
-                      <span style="flex: 1"></span>
-                      <span class="text-caption strong">65</span>
-                    </li>
-                    <li class="mock-detail-row is-selected">
-                      <span class="journey-mock-item-name">프롬프트 설계</span>
-                      <span style="flex: 1"></span>
-                      <span class="text-caption strong">32</span>
-                    </li>
-                  </ul>
-                </div>
+              <!-- 진단 점수 3항목 — 부족한 항목만 is-focus로 떠오른다 -->
+              <ul class="journey-mock-list">
+                <li class="journey-mock-item is-quiet">
+                  <span class="journey-mock-item-name">데이터 해석</span>
+                  <span style="flex: 1"></span>
+                  <span class="text-caption strong">78점</span>
+                </li>
+                <li class="journey-mock-item is-quiet">
+                  <span class="journey-mock-item-name">도구 활용</span>
+                  <span style="flex: 1"></span>
+                  <span class="text-caption strong">65점</span>
+                </li>
+                <li class="journey-mock-item is-focus">
+                  <span class="journey-mock-item-name">프롬프트 설계</span>
+                  <span style="flex: 1"></span>
+                  <span class="text-caption strong">32점</span>
+                </li>
+              </ul>
 
-                <div class="mock-detail-panel is-panel">
-                  <p class="text-caption">SkillFit 학습 경로</p>
-                  <ul class="journey-mock-list">
-                    <li class="journey-mock-item is-current">
-                      <span class="journey-mock-item-name">프롬프트 설계 기초</span>
-                    </li>
-                    <li class="journey-mock-item is-quiet">
-                      <span class="journey-mock-item-name">1:1 AI 튜터 보완</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <!-- 그 결과가 곧 학습 경로가 된다 -->
+              <p class="scenario-mock-caption">SkillFit 학습 경로</p>
+              <ul class="journey-mock-list">
+                <li class="journey-mock-item is-current">
+                  <span class="journey-mock-item-name">프롬프트 설계 기초</span>
+                </li>
+              </ul>
             </div>
 
             <!-- ③ 3개월차 · 성과 — 재진단 점수와 활용률이 함께 오른다 -->
@@ -675,7 +674,6 @@
           <p class="position-note">진단만 하는 회사는 처방이 없고, 교육만 하는 회사는 실행 도구가 없습니다. <strong>우리는 진단, 교육, 도구, 그리고 연결까지 전부입니다.</strong></p>
           <!-- 실명 대신 유형으로만 표기하는 이유를 화면에 남긴다 — 나중에 이 페이지를
                고치는 사람이 "왜 경쟁사 이름이 없는가"를 다시 묻지 않게 한다. -->
-          <p class="position-caveat">경쟁사는 유형으로만 표기. 실명 명기는 법무·전략 판단 사항.</p>
         </div>
       </div>
     </section>
@@ -783,26 +781,23 @@
                   </ul>
                 </div>
 
-                <!-- 제조 외 3개 업종은 아직 확정 문구를 받지 못했다.
-                     빈 판을 두면 탭을 눌렀을 때 아무것도 안 나와 고장으로 읽히므로,
-                     같은 4블록 골격에 자리만 표시해 둔다. 문구를 받으면 dd만 바꾼다. -->
                 <div class="catalog-board__panel" data-catalog-panel="finance">
                   <ul class="catalog-board__items industry-cards">
                     <li class="industry-card">
                       <p class="industry-card-label">Pain Point</p>
-                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                      <p class="industry-card-body">규제·보안 요건 탓에 AI 도입 시도가 번번이 멈춘다.</p>
                     </li>
                     <li class="industry-card">
                       <p class="industry-card-label">AXpresso 적용</p>
-                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                      <p class="industry-card-body">국내 클라우드·거버넌스 기반의 심사·보고 업무 자동화.</p>
                     </li>
                     <li class="industry-card">
                       <p class="industry-card-label">역량 교육 매핑</p>
-                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                      <p class="industry-card-body">컴플라이언스를 고려한 전사 AI 리터러시 진단·교육.</p>
                     </li>
                     <li class="industry-card">
                       <p class="industry-card-label">기대 효과</p>
-                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                      <p class="industry-card-body">보안 요건을 지키면서 안전하게 확산하는 AX.</p>
                     </li>
                   </ul>
                 </div>
@@ -811,19 +806,19 @@
                   <ul class="catalog-board__items industry-cards">
                     <li class="industry-card">
                       <p class="industry-card-label">Pain Point</p>
-                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                      <p class="industry-card-body">상품 등록·CS·정산 업무가 사람 손에 몰려 병목이 된다.</p>
                     </li>
                     <li class="industry-card">
                       <p class="industry-card-label">AXpresso 적용</p>
-                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                      <p class="industry-card-body">CS 에이전트, 정산·콘텐츠 제작 자동화.</p>
                     </li>
                     <li class="industry-card">
                       <p class="industry-card-label">역량 교육 매핑</p>
-                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                      <p class="industry-card-body">CS·MD 직군별 역량 진단과 직무 맞춤 학습 경로.</p>
                     </li>
                     <li class="industry-card">
                       <p class="industry-card-label">기대 효과</p>
-                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                      <p class="industry-card-body">응대 속도 향상, 정산·콘텐츠 리드타임 단축.</p>
                     </li>
                   </ul>
                 </div>
@@ -832,19 +827,19 @@
                   <ul class="catalog-board__items industry-cards">
                     <li class="industry-card">
                       <p class="industry-card-label">Pain Point</p>
-                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                      <p class="industry-card-body">개발 조직 안에서도 AI 활용 편차가 크다.</p>
                     </li>
                     <li class="industry-card">
                       <p class="industry-card-label">AXpresso 적용</p>
-                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                      <p class="industry-card-body">회의록·태스크 관리·지식베이스 에이전트로 협업 자동화.</p>
                     </li>
                     <li class="industry-card">
                       <p class="industry-card-label">역량 교육 매핑</p>
-                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                      <p class="industry-card-body">AI Fluent로 편차를 진단하고 SkillFit으로 개인별 보완.</p>
                     </li>
                     <li class="industry-card">
                       <p class="industry-card-label">기대 효과</p>
-                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                      <p class="industry-card-body">조직 전체의 AI 생산성 표준화.</p>
                     </li>
                   </ul>
                 </div>

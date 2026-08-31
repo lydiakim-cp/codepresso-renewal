@@ -30,6 +30,25 @@
   transform: translateY(-100%);
 }
 
+/*
+ * 2depth 패널이 열리면 header도 패널과 같은 흰색 서피스로 맞춘다.
+ * 헤더와 패널이 하나의 면으로 보이도록, 스크롤 상태의 반투명/blur/하단 보더는 걷어낸다.
+ * (패널 상단 보더가 이미 경계 역할을 하므로 여기서 또 그으면 선이 겹친다)
+ */
+.header.is-nav-open,
+.header.is-scrolled.is-nav-open {
+  background-color: var(--color-surface);
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  /* 패널(0.1s)보다 배경이 늦게 따라오면 어긋나 보이므로 hover 속도에 맞춘다 */
+  transition:
+    transform var(--duration-scroll) var(--ease-scroll),
+    background-color var(--duration-hover) var(--ease-hover),
+    border-color var(--duration-hover) var(--ease-hover),
+    backdrop-filter var(--duration-hover) var(--ease-hover);
+}
+
 .header-inner {
   max-width: var(--container-wide);
   height: 75px;
