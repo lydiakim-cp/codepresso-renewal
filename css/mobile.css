@@ -261,6 +261,12 @@
 @media (max-width: 900px) {
   .difference-page .hero .section-wrap { padding-top: 120px; }
 
+  /* 07 업종 카드 — 900px에서 catalog-board가 세로로 접히면 판 폭이 줄어
+     4열 카드가 한 장 150px대로 눌린다. 2열로 한 단계만 내린다. */
+  .difference-page .industry-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   /* hero 3칸 대비 — 5그리드(판·화살표·판·화살표·판)가 좁아지면 각 칸의 문장이
      3줄로 늘어져 무엇이 답인지 안 보인다. 세로로 쌓고 답 칸을 맨 위로 올린다.
      좌우 대비가 상하 대비로 바뀌므로 "가운데가 답"이 아니라 "첫 칸이 답"이 된다. */
@@ -462,9 +468,7 @@
     height: 64px;
   }
 
-  /* 07 업종 — 소제목 140px 고정 열이 좁은 폭에서 설명문을 두 단어씩 끊는다.
-     소제목을 위로 올리고 설명을 그 아래로 흘린다. */
-  /* 업종 카드 — 좁은 폭에서는 2×2가 눌린다. 1열로 쌓는다 */
+  /* 07 업종 카드 — 720px에서는 2열로도 카드가 눌린다. 1열로 쌓는다 */
   .difference-page .industry-cards {
     grid-template-columns: 1fr;
   }

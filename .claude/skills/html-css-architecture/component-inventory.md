@@ -118,7 +118,7 @@
 | `scenario-stage` | 04 각 단계의 국면 라벨(데이터 / 진단→학습 / 성과) | `timeline` 전부. 라벨 한 줄만 추가 |
 | `position-map` · `position-dot` | 05 경쟁 구도 2축 좌표. 점 자리는 마크업의 `--pos-x`·`--pos-y`(%)가 정한다 | — (비개발자가 좌표를 옮길 수 있게 값을 마크업에 노출) |
 | `start-grid` · `start-card` | 06 두 갈래 시작점 | `content-panel` · `summary-banner`(결론 한 줄) |
-| `industry-cards` · `industry-card-label` · `industry-card-body` | 07 업종별 4블록을 2×2 카드로 | `catalog-board__items`를 그대로 씀(auto-fill 그리드 + 진입 stagger를 컴포넌트가 이미 가짐). 그 `li`는 "한 줄 칩"이라 라벨+본문 2단만 페이지에서 덮는다 |
+| `industry-cards` · `industry-card-label` · `industry-card-body` | 07 업종별 4블록을 1행 4열 카드로(Pain Point → 적용 → 교육 매핑 → 기대 효과 순서가 한 줄로 흐른다). 900px 2열 · 720px 1열 | `catalog-board__items`를 그대로 씀(auto-fill 그리드 + 진입 stagger를 컴포넌트가 이미 가짐). 그 `li`는 "한 줄 칩"이라 라벨+본문 2단만 페이지에서 덮는다 |
 | `scenario-screens` | 04 목업 3장을 grid 한 칸에 겹쳐 두고 활성 판만 보여줌(높이 튐 방지) | `js/scenario-switch.js`와 짝. 규약은 `catalog-board`와 같음(key 짝 + `.is-active`) |
 
 **이 페이지에서 처음 실제로 쓰인 공용 컴포넌트** — `timeline`(04)과 `compare-panel`(hero)은
