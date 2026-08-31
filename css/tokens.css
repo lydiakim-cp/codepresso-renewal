@@ -32,12 +32,32 @@
   --color-surface-page: #FBFCFF;
   --color-surface-mist: #EEF0F3;
 
+  /* Color — Surface (진한 면 2단)
+   * 기존 밝은 면은 전부 흰색과 1.03~1.18× 차이뿐이라, 판을 나눠도 "허여멀건"해서
+   * 테두리 없이는 공간이 안 잡혔다. 어두운 판(19.6×)까지 가기 전 중간 단계가
+   * 아무것도 없었던 자리를 채운다. 둘 다 브랜드 블루 기운을 유지한다.
+   *
+   * raised — 틴트 페이지 위에 얹는 판·묶음 배경 (흰 대비 1.267×)
+   * deep   — 더 강하게 묶어야 할 때. 여기까지가 "밝은 면"의 한계다 (1.510×)
+   *
+   * 이 두 면 위 텍스트는 --color-ink / --color-ink-light 까지만 쓴다.
+   * --color-ink-lighter는 대비가 2.8×/2.35×로 AA에 미달한다(본문 4.5 필요). */
+  --color-surface-raised: #DDE5F3;
+  --color-surface-deep: #C6D3EA;
+
   /* Color — State (success/warning은 예비 토큰) */
   --color-success: #1C9A6C;
   --color-warning: #D98A1B;
   --color-critical: #E1435A;
 
-  /* Color — Shadow (블루 섀도우, 코드프레소 시각적 서명) */
+  /* Color — Shadow (블루 섀도우, 코드프레소 시각적 서명)
+   *
+   * 그림자는 "상호작용" 신호다 — 평소 상태에는 깔지 않는다.
+   * 카드가 평소에도 떠 있으면 화면이 탁해지고, 정작 hover했을 때 변화가 안 보인다.
+   * 공간은 면(surface ramp)과 경계선이 만들고, 그림자는 hover·활성만 담당한다.
+   *
+   * sm — hover 기본 / md — hover 강조·활성
+   * 화면 위에 실제로 떠 있는 것(floating-cta, 목업 프레임)만 평소 그림자를 갖는다. */
   --shadow-sm: 0 2px 6px rgba(26, 97, 234, .04);
   --shadow-md: 0 6px 16px rgba(26, 97, 234, .12);
 

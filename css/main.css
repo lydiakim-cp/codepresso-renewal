@@ -33,6 +33,7 @@
 @import url("./components/ui/header.css") layer(components);
 @import url("./components/ui/feature-card.css") layer(components);
 @import url("./components/ui/summary-banner.css") layer(components);
+@import url("./components/ui/statement.css") layer(components);
 @import url("./components/ui/metric-card.css") layer(components);
 @import url("./components/ui/content-panel.css") layer(components);
 @import url("./components/ui/choice-list.css") layer(components);

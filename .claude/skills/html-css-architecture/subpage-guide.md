@@ -2,9 +2,9 @@
 
 이 문서는 [SKILL.md](SKILL.md)의 규범을 전제로, **"가격 페이지 만들어줘" 같은 새 서브페이지 요청을 실제로 처리하는 순서**를 다룬다. SKILL.md는 "무엇을 지켜야 하는가"를 다루고, 이 문서는 "어떤 순서로 어떤 파일을 만드는가"를 다룬다.
 
-> 지금 시점(2026-08) 기준 선례: `ax-build.html`(업무 자동화)과 `capability.html`(역량
-> 진단·교육) 두 서브페이지가 이 절차로 만들어졌다. **새 페이지를 만들 때 이 둘을 먼저
-> 열어 본다** — 섹션 골격·페이지 스코프·반응형·목업 재사용이 모두 여기 들어 있어,
+> 지금 시점(2026-08) 기준 선례: `ax-build.html`(업무 자동화) · `capability.html`(역량
+> 진단·교육) · `difference.html`(차별점) · `stories.html`(고객 사례 목록) 네 서브페이지가
+> 이 절차로 만들어졌다. **새 페이지를 만들 때 이들을 먼저 열어 본다** — 섹션 골격·페이지 스코프·반응형·목업 재사용이 모두 여기 들어 있어,
 > 문서만 읽고 새로 설계하는 것보다 빠르고 어긋나지 않는다.
 
 ## 0. 시작 전에 사용자(비개발자)에게 확인할 것
@@ -148,6 +148,9 @@ SKILL.md의 "페이지·섹션 구조 관례"를 그대로 따른다:
 | `js/part-nav.js` | PART 1/2 같은 세그먼트 내비게이션의 스크롤 연동 활성 표시 | `part-nav[data-part-nav]`를 쓸 때만 |
 | `js/journey-stage.js` | 스크롤에 따라 단계별 콘텐츠가 전환되는 스테이지형 섹션 | `[data-journey-stage]`류 구조를 쓸 때만 |
 | `js/difference-cycle.js` | 여러 화면이 일정 주기로 자동 순환하는 섹션 | 그 패턴을 그대로 쓸 때만 |
+| `js/catalog-board.js` | `catalog-board`의 좌측 분류 레일 전환 | `[data-catalog-board]`를 쓸 때만 |
+| `js/case-filter.js` | `part-nav`를 필터로 써서 목록 카드를 걸러 보여줌 | `[data-case-filter]` + `[data-case-list]`를 쓸 때만 |
+| `js/scenario-switch.js` | 좌측 단계 목록을 읽어 내려가면 우측 목업이 그 단계 화면으로 바뀜(스크롤 연동) | `[data-scenario-steps]` + `[data-scenario-screens]`를 쓸 때만 |
 
 **판단 기준**: 이 페이지의 마크업에 그 스크립트가 찾는 `data-*` 속성/클래스가 있는가? 없으면 그 `<script>` 태그를 넣지 않는다. 반대로 어떤 컴포넌트를 마크업에 썼는데 대응하는 스크립트를 빠뜨리면 인터랙션이 콘솔 에러 없이 조용히 죽으므로([references/cleanup.md](references/cleanup.md) "정리 후 확인" 3번 항목), 컴포넌트를 골랐으면 이 표에서 짝이 되는 스크립트도 함께 확인한다.
 

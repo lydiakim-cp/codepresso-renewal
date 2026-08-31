@@ -1,0 +1,541 @@
+/*
+ * Page: stories.html (고객 사례 전체 목록)
+ * main.css 위에 얹는 페이지 전용 계층. 공용 컴포넌트로 표현 안 되는 hero 배치와
+ * 사례 카드 목록만 정의한다.
+ * metric-card·summary-banner·part-nav·tag·cta-final은 모두 components/ui/에 있는
+ * 범용 컴포넌트라 main.css가 로드한다 — 여기서 따로 import하지 않는다.
+ */
+
+@layer components {
+  /* 페이지 전체 레이아웃 wrapper */
+  .stories {
+    background: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ============================================================
+   * Hero — 한 줄 정의 + 누적 성과 3개
+   *
+   * 이 페이지는 섹션이 hero·catalog·cta-final 셋뿐이라 배경 리듬을 만들 면이 부족하다.
+   * 아래 catalog가 옅은 면(tint-2)을 가져갔으므로 hero는 흰 면으로 둔다 —
+   * 셋 다 옅은 면이면 리듬이 사라지고, sunken은 tint-2와 구분되지 않는다
+   * (sunken/tint-1은 같은 색 #F5F8FF이고 tint-2는 그보다 한 단계 진하다).
+   * 대신 질감·경계선 두 층으로 첫 화면의 판을 세운다.
+   * ============================================================ */
+  .stories .hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-surface);
+    /* hero는 자기 여백을 section-wrap에서 직접 정하므로 layout.css의 공통 96px를 되돌린다 */
+    padding-block: 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  /* 배경 질감 — ax-build·capability hero와 같은 이미지지만 우측 하단 구역을 써서 반복을 피한다 */
+  .stories .hero::before {
+    content: "";
+    position: absolute;
+    inset: -40px;
+    background-image: url("../../images/bg-line2.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 165%;
+    filter: blur(10px);
+    opacity: 0.34;
+    pointer-events: none;
+  }
+
+  /* 질감이 아래로 갈수록 옅어져 다음 섹션(옅은 면)과의 경계가 선 하나로 끝난다 */
+  .stories .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        transparent 0%,
+        color-mix(in srgb, var(--color-surface) 55%, transparent) 65%,
+        var(--color-surface) 100%);
+    pointer-events: none;
+  }
+
+  .stories .hero .section-wrap {
+    position: relative;
+    z-index: 1;
+    padding-top: 152px;
+    padding-bottom: var(--space-60);
+  }
+
+  .stories .hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-20);
+    text-align: center;
+  }
+
+  /* hero 진입 애니메이션 — 순차 지연 */
+  .stories .hero-copy > * {
+    animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
+  }
+
+  .stories .hero-copy > :nth-child(2) { animation-delay: .08s; }
+  .stories .hero-copy > :nth-child(3) { animation-delay: .16s; }
+
+  .stories .hero-title {
+    color: var(--color-ink-heaviest);
+  }
+
+  .stories .hero-desc {
+    font-size: var(--text-body-18);
+    line-height: var(--leading-body-18);
+    color: var(--color-ink-light);
+  }
+
+  /* "실명과 숫자" — 이 페이지의 주장이라 본문 안에서 한 번만 브랜드 색으로 짚는다 */
+  .stories .hero-desc strong {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-brand);
+  }
+
+  /* 누적 성과 3개 — ax-build hero-facts와 같은 자리, 배치만 재사용한다 */
+  .stories .hero-facts {
+    margin-top: var(--space-48);
+  }
+
+  /* 흰 면 위의 카드는 가라앉아야 구분된다 — metric-card 기본값(sunken)을 그대로 두고
+     배경 질감이 비치도록 살짝 투명하게만 만든다. */
+  .stories .hero-facts .metric-card {
+    background: color-mix(in srgb, var(--color-surface-sunken) 88%, transparent);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* metric-card 기본 transition은 진입 fade만 담당한다 — hover 부상을 여기서 더한다 */
+  .stories .hero-facts .metric-card.is-visible {
+    transition: opacity var(--duration-scroll) var(--ease-scroll),
+      transform var(--duration-hover) var(--ease-hover),
+      box-shadow var(--duration-hover) var(--ease-hover);
+  }
+
+  .stories .hero-facts .metric-card.is-visible:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  /* ============================================================
+   * 사례 목록 — 분류 필터 + 카드 그리드
+   *
+   * 배경 위계: 이 섹션은 옅은 면(tint-2)이고 그 위의 카드는 흰색이다.
+   * sunken/tint-1은 흰색과 6% 차이뿐이라 카드가 배경에 묻힌다 —
+   * 카드가 떠 보여야 12장이 목록이 아니라 각각의 사례로 읽힌다.
+   *
+   * 어두운 판을 여기 쓰지 않은 이유 — 이 페이지의 어두운 판은 최하단 cta-final
+   * 하나이고, 본문 강조를 어둡게 하면 12장 카드가 전부 유리 카드가 되어
+   * 두 갈래의 톤 구분(브랜드 틴트 vs 중립)이 사라진다. 강조는 배경이 아니라
+   * 카드 톤과 수치 색이 맡는다.
+   * ============================================================ */
+  .stories .catalog {
+    background: var(--color-brand-tint-2);
+  }
+
+  /* 필터 줄 — 좌측 segmented control, 우측 결과 건수 */
+  .stories .case-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-20);
+    flex-wrap: wrap;
+  }
+
+  /* part-nav는 sticky 컬럼 안에서 쓰이는 것을 전제로 아래 여백을 갖고 있다.
+     여기서는 필터 줄이 직접 간격을 정하므로 되돌린다. */
+  .stories .case-filter .part-nav {
+    margin-bottom: 0;
+  }
+
+  /* 필터는 <a>가 아니라 <button>이라 버튼 기본값(테두리·배경·폰트)을 지운다.
+     생김새는 part-nav.css가 전부 정하므로 여기서는 초기화만 한다. */
+  .stories .case-filter .part-nav-item {
+    border: 0;
+    background: transparent;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .stories .case-count {
+    color: var(--color-ink-lighter);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /*
+   * 사례 카드 — ax-build 06 Real Outcomes의 outcome-list와 같은 역할·같은 클래스 이름.
+   * 그쪽 정의는 .ax-build 스코프 안(페이지 전용)이라 이 페이지에서는 로드되지 않으므로
+   * 구조만 본떠 다시 정의한다. 다른 점은 세 가지다 —
+   *   1) 12개를 한 판에 놓아야 해서 3열 고정이 아니라 auto-fill 그리드다.
+   *   2) 카드가 로고 판(.outcome-logo) + 본문(.outcome-body) 2단이다.
+   *   3) 배지가 서비스·업종 두 개이고, 고객사 줄이 카드 맨 아래로 내려간다.
+   */
+  .stories .outcome-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-24);
+  }
+
+  .stories .outcome-list > li {
+    display: flex;
+    flex-direction: column;
+    /* 여백은 li가 아니라 .outcome-body가 갖는다 — 로고 판이 카드 폭을 꽉 채워야
+       위쪽 판과 아래쪽 본문이 두 구역으로 갈린다(레퍼런스 배치). */
+    overflow: hidden;
+    border: 1px solid var(--color-brand-tint-2);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--duration-hover) var(--ease-hover),
+      transform var(--duration-hover) var(--ease-hover),
+      border-color var(--duration-hover) var(--ease-hover);
+  }
+
+  /* --- 로고 판 --- */
+
+  /*
+   * 12장의 로고 판이 모두 같은 크기여야 그리드가 고르다. 로고는 가로세로 비율이
+   * 제각각이라(아모레퍼시픽 10:1 ~ 우하컴퍼니 1:1) 판을 고정 높이로 두고 안에서 contain한다.
+   * media-card를 쓰지 않은 이유 — 그쪽 __media img는 object-fit: cover라 로고가
+   * 잘린다. 로고는 절대 잘리면 안 된다.
+   *
+   * 원본 파일의 여백은 CSS로 보정하지 않고 파일 자체를 잉크 범위로 잘라 두었다
+   * (SK텔레콤 1600x1600 중 세로 32%만 잉크, 현대모비스 26%). CSS로 키워 맞추면
+   * 판 밖으로 넘치거나 파일마다 다른 값을 외워야 한다.
+   */
+  .stories .outcome-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 132px;
+    padding: var(--space-24);
+    background: var(--color-surface-sunken);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .stories .outcome-logo img {
+    /* 폭 상한이 100%면 아모레퍼시픽처럼 가로로 긴 로고(10:1)가 판 좌우를 꽉 채워
+       혼자 두 배 커 보인다. 판 안쪽에 여백이 남도록 상한을 낮춘다. */
+    max-width: 76%;
+    max-height: 44px;
+    /* 로고 원본 비율을 지킨다 — 절대 늘이거나 자르지 않는다 */
+    object-fit: contain;
+  }
+
+  /*
+   * 어두운 배경용으로 제작된 로고(흰 글자)를 위한 판.
+   * 체인로지스 로고는 잉크의 88%가 흰색이라 밝은 판에서는 글자가 사라진다.
+   * 로고 파일의 색을 우리가 바꾸는 것은 브랜드 훼손이라 하지 않는다 —
+   * 대신 그 카드의 판만 어둡게 깔아 로고가 제 색으로 읽히게 한다.
+   */
+  .stories .outcome-logo--invert {
+    background: var(--color-ink-heaviest);
+    border-bottom-color: var(--color-ink-heaviest);
+  }
+
+  /*
+   * 세로로 쌓인 로고(심볼 위 + 워드마크 아래) 전용 높이.
+   * 가로형과 같은 44px로 묶으면 2단 로고는 글자가 절반 크기가 되어 혼자 작아 보인다.
+   * 광학적으로 같은 무게가 되도록 높이만 올린다 — 폭은 판이 알아서 잡는다.
+   */
+  .stories .outcome-logo--tall img {
+    max-height: 76px;
+  }
+
+  /* --- 카드 본문 --- */
+
+  .stories .outcome-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    flex: 1;
+    padding: var(--space-24);
+  }
+
+  /* 서비스 + 업종 배지 두 개가 한 줄에. 좁아지면 아래로 접힌다 */
+  .stories .outcome-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+  }
+
+  /*
+   * 업종 배지 — 서비스 배지(브랜드 틴트)와 나란히 서므로 채우지 않고 경계선만 둔다.
+   * 레퍼런스는 업종마다 다른 색을 쓰지만, 이 프로젝트는 색 토큰이 브랜드 1계열 +
+   * 잉크 4단이라 업종 7종에 색을 배정하면 없는 색을 새로 만들게 된다.
+   * 배지 두 개의 역할 차이는 "채움(서비스) vs 테두리(업종)"로 가른다.
+   */
+  .stories .tag-industry {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--color-line-heavy);
+    color: var(--color-ink-light);
+  }
+
+  .stories .outcome-list > li:hover {
+    border-color: color-mix(in srgb, var(--color-brand) 30%, var(--color-brand-tint-2));
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  /* 역량 진단·교육 사례는 브랜드 틴트가 아니라 중립 면으로 갈라, 두 갈래가 배지 글자뿐
+     아니라 카드 톤으로도 구분되게 한다(색을 새로 만들지 않고 기존 line 토큰만 쓴다). */
+  .stories .outcome-list > li[data-case-axis="people"] {
+    border-color: var(--color-line);
+  }
+
+  /* 옅은 면(tint-2) 위라 mist 배지는 배경과 붙는다 — 카드와 같은 흰색에
+     경계선을 둘러 "브랜드 틴트가 아닌 갈래"임만 전한다.
+     :not(.tag-industry) — 업종 배지는 위에서 이미 테두리형이라 덮을 필요가 없다. */
+  .stories .outcome-list > li[data-case-axis="people"] .tag:not(.tag-industry) {
+    background: var(--color-surface);
+    box-shadow: inset 0 0 0 1px var(--color-line-heavy);
+    color: var(--color-ink-light);
+  }
+
+  .stories .outcome-list > li[data-case-axis="people"]:hover {
+    border-color: var(--color-line-heavy);
+  }
+
+  /*
+   * 고객사 / 업무 — 레퍼런스처럼 카드 맨 아래 한 줄로 눕힌다.
+   * 카드의 주인공은 수치(.outcome-shift / .outcome-headline)이므로 고객사 이름은
+   * 제목 크기가 아니라 본문 크기로 두고, 위계는 색으로 만든다
+   * (고객사 = ink-light / 업무 = ink-lighter).
+   */
+  .stories .outcome-client {
+    color: var(--color-ink-light);
+    font-size: var(--text-body-muted);
+    line-height: var(--leading-body-muted);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .stories .outcome-industry {
+    color: var(--color-ink-lighter);
+    font-weight: var(--font-weight-regular);
+  }
+
+  /* 이전 값 → 이후 값 표시줄 */
+  .stories .outcome-shift {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-10);
+    flex-wrap: wrap;
+  }
+
+  .stories .outcome-before {
+    color: var(--color-ink-lighter);
+    font-size: var(--text-body-18);
+    text-decoration: line-through;
+  }
+
+  /* 공통 chevron SVG. hover 시 오른쪽으로 밀린다 */
+  .stories .outcome-arrow {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-line-heavy);
+    transition: transform var(--duration-hover) var(--ease-hover),
+      color var(--duration-hover) var(--ease-hover);
+  }
+
+  .stories .outcome-arrow svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+  }
+
+  .stories .outcome-list > li:hover .outcome-arrow {
+    color: var(--color-brand);
+    transform: translateX(3px);
+  }
+
+  /* before→after가 없는 사례의 결과 한 줄. .outcome-after와 같은 크기·색을 써서
+     두 형태의 카드가 같은 줄에서 같은 무게로 읽히게 한다. */
+  .stories .outcome-after,
+  .stories .outcome-headline {
+    font-size: var(--text-heading-24);
+    line-height: var(--leading-heading-24);
+    letter-spacing: var(--tracking-heading-tight);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-brand);
+  }
+
+  /* 결과 수치는 두 갈래 모두 브랜드색으로 통일한다 — 카드 톤(틴트 vs 중립)은
+     배지와 테두리가 이미 가르고 있고, "얼마나 달라졌는가"는 이 페이지 전체에서
+     같은 색으로 읽혀야 한 눈에 훑을 수 있다. */
+
+  .stories .outcome-detail {
+    color: var(--color-ink-light);
+    font-size: var(--text-body-muted);
+    line-height: var(--leading-body-muted);
+  }
+
+  /*
+   * 상세 문장 안의 수치. 크기를 올리지 않고 색과 굵기만 바꾼다 —
+   * 문장 흐름을 끊지 않으면서 "몇 시간이 줄었는가"만 눈에 먼저 들어온다.
+   * (base.css의 strong 전역값을 이 자리에서만 덮는다)
+   */
+  .stories .outcome-detail strong {
+    color: var(--color-brand);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* 고객사 옆 인터뷰이 — 회사명보다 한 단계 낮은 목소리로 */
+  .stories .outcome-person {
+    color: var(--color-ink-lighter);
+    font-weight: var(--font-weight-regular);
+  }
+
+  .stories .outcome-person::before {
+    content: "· ";
+  }
+
+  /* 카드 높이가 제각각이면 그리드가 들쭉날쭉해진다 —
+     고객사 줄은 항상 카드 바닥에 붙어 12장의 마지막 줄이 나란히 선다. */
+  .stories .outcome-client {
+    margin-top: auto;
+    padding-top: var(--space-16);
+    border-top: 1px solid var(--color-line);
+  }
+
+  /*
+   * 카드 등장 — 섹션 진입 시, 그리고 필터를 바꿀 때마다 순차로 떠오른다.
+   * --case-index는 case-filter.js가 남은 카드에만 0부터 다시 매긴다.
+   * 지연 상한을 8단(0.32s)으로 끊는다 — 12장 전부에 지연을 주면 마지막 카드가
+   * 0.5초 넘게 늦어 목록이 덜 그려진 것처럼 보인다.
+   */
+  .stories .catalog.is-visible .outcome-list > li {
+    animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
+    animation-delay: calc(min(var(--case-index, 0), 8) * .04s);
+  }
+
+  /* ============================================================
+   * 공통 순서 — 진단 → 전환 → 증명 3단계
+   *
+   * 앞 섹션이 옅은 면, 아래 cta-final이 잉크 판이라 여기는 흰 면이다.
+   * capability 01의 loop(4단계 순환)와 같은 구조를 본떴지만 순환이 아니라
+   * 한 방향이므로 마지막 칸에 화살표가 없고, 대신 그 칸이 결론이라 브랜드 톤으로 올린다.
+   * ============================================================ */
+  /* 카드 한 줄로 끝나는 섹션이라 공통 96px 여백이면 위아래 빈 면이 남는다
+     (capability .process와 같은 판단). */
+  .stories .process {
+    padding-block: 80px;
+  }
+
+  .stories .order {
+    display: grid;
+    /* 3단계 균등 분할. 화살표는 칸을 차지하지 않고 각 칸의 오른쪽 경계에 얹힌다 */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-20);
+  }
+
+  .stories .order > li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    padding: var(--space-28) var(--space-24);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    transition: box-shadow var(--duration-hover) var(--ease-hover),
+      transform var(--duration-hover) var(--ease-hover),
+      border-color var(--duration-hover) var(--ease-hover);
+  }
+
+  .stories .order > li:hover {
+    border-color: var(--color-brand-tint-2);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  /* 마지막 단계(증명)만 브랜드 톤으로 올린다 — 위 사례 12장이 곧 이 칸의 결과다 */
+  .stories .order > li:last-child {
+    border-color: var(--color-brand-tint-2);
+    background: var(--color-brand-tint-1);
+  }
+
+  .stories .order-head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  /* heading-number는 h2 안 번호용이라 우측 여백을 갖고 있다 —
+     여기서는 order-head의 gap이 간격을 정하므로 되돌린다. */
+  .stories .order .heading-number {
+    margin-right: 0;
+  }
+
+  /* 영문 단계명 — 한글 제목 위에서 위계를 낮춰 얹는다 */
+  .stories .order-en {
+    color: var(--color-brand);
+    font-size: var(--text-body-muted);
+    line-height: var(--leading-body-muted);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-body-normal);
+  }
+
+  /* h3 기본값(24px semibold)을 그대로 쓴다 — 크기를 다시 쓰지 않는다 */
+  .stories .order-title {
+    margin-top: var(--space-4);
+  }
+
+  .stories .order-desc {
+    color: var(--color-ink-light);
+    font-size: var(--text-body-muted);
+    line-height: var(--leading-body-muted);
+  }
+
+  /* 칸 사이 화살표 — 경계 위에 얹혀 다음 단계로 넘어감을 가리킨다 */
+  .stories .order-arrow {
+    position: absolute;
+    top: 50%;
+    right: calc(var(--space-20) / -2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    color: var(--color-brand);
+    box-shadow: var(--shadow-sm);
+    z-index: 1;
+  }
+
+  .stories .order-arrow svg {
+    display: block;
+    width: 14px;
+    height: 14px;
+  }
+
+  /* 진입 시 좌 → 우로 차례로 떠오른다 */
+  .stories .process.is-visible .order > li {
+    animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
+  }
+
+  .stories .process.is-visible .order > li:nth-child(2) { animation-delay: .08s; }
+  .stories .process.is-visible .order > li:nth-child(3) { animation-delay: .16s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stories .hero-copy > *,
+    .stories .catalog.is-visible .outcome-list > li,
+    .stories .process.is-visible .order > li { animation: none; }
+
+    .stories .hero-facts .metric-card.is-visible,
+    .stories .outcome-list > li,
+    .stories .outcome-arrow,
+    .stories .order > li { transition-duration: 0.001ms; }
+
+    /* part-nav--animated의 인디케이터 이동은 part-nav.css가 이미 줄여 놓는다 */
+  }
+
+  /* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다 */
+}

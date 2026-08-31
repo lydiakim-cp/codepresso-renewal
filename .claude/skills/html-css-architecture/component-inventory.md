@@ -18,7 +18,7 @@
 | Button | `button.css` | `.btn`, `.btn-primary`, `.btn-ghost`, `.btn-outline-inverse`, `.btn-lg` | 주요/보조 행동 버튼 |
 | Link Arrow | `link.css` | `.link-arrow`, `.link-arrow-ink`, `.link-arrow-inverse`, `.link-underline` | 화살표가 붙는 **보조** 텍스트 링크. **색 modifier(`-ink`/`-inverse`) 필수** — 맨몸이면 hover 없는 검은 글씨가 된다. 카드·패널의 행동에는 이것이 아니라 `btn-ghost`를 쓴다 |
 | Badge / Tag | `badge.css` | `.tag` | 콘텐츠 분류·상태 라벨 |
-| Metric Card | `metric-card.css` | `.metric-card`, `__value`, `__label`, `__visual`, `__glow`, `__icon` | 숫자 성과 지표 카드 (`js/stat-reveal.js`와 짝) |
+| Metric Card | `metric-card.css` | `.metric-card`, `__value`, `__label`, `__visual`, `__glow`, `__icon` | 숫자 **성과** 지표 카드 (`js/stat-reveal.js`와 짝). **나쁜 수치에는 쓰지 않는다** — 큰 숫자+아이콘이 자랑으로 읽힌다(difference 01이 `problem-card`를 따로 만든 이유). `stat-reveal.js`는 그룹에 `data-stat-card="{선택자}"`를 주면 다른 카드도 카운트업한다 |
 | Choice List | `choice-list.css` | `.choice-list`, `__item`, `__icon`, `__body`, `__arrow` | 여러 항목 중 하나를 고르는 리스트 |
 | Preview Frame | `preview-frame.css` | `.preview-frame`, `__bar`, `__dots` | 제품/서비스 화면을 보여주는 목업 프레임 |
 | Skeleton | `skeleton.css` | `.skeleton-block`, `.skeleton-line`, `.skeleton-stack` | 콘텐츠 대기/자리표시 상태 |
@@ -29,8 +29,9 @@
 | Compare Panel | `compare-panel.css` | `.compare-panel`, `__item`(+`.is-after`), `__label`, `__title`, `__desc`, `__arrow` | "지금 → 바뀐 뒤" 두 상태를 좌우로 대비 |
 | Timeline | `timeline.css` | `.timeline > li`, `__marker`, `__term`, `__body`, `__title`, `__desc` | 기간이 있는 단계를 세로로 잇는 진행 흐름 |
 | FAQ List | `faq-list.css` | `.faq-list > details`, `__question`, `__icon`, `__answer` | 질문을 눌러 답을 펼치는 아코디언 (`<details>` native) |
-| Catalog Board | `catalog-board.css` | `.catalog-board`, `__rail`, `__category`, `__count`, `__panel`, `__items > li` | 여러 분류의 항목 묶음을 대시보드처럼 한 판에 (`js/catalog-board.js`와 짝) |
+| Catalog Board | `catalog-board.css` | `.catalog-board`, `__rail`, `__category`, `__count`, `__panel`, `__items > li` | 여러 분류의 항목 묶음을 대시보드처럼 한 판에 (`js/catalog-board.js`와 짝). **`__items`는 auto-fill 그리드 + nth-child 진입 stagger를 이미 갖고 있다** — 카드 나열이 필요하면 새로 만들지 말고 이걸 쓰고 `li` 안쪽만 덮는다(difference 07이 그렇게 했다) |
 | Product Mock | `product-mock.css` | `.journey-mock`(+`.mock-detail`·`.camp-ticker`), `-head`, `-title`, `-badge`(+`.is-live`), `-progress`, `-list`, `-item`(+`.is-current`·`.is-done`), `-check`, `-speaker`, `-avatar`, `-bubble`, `.journey-app*`(SkillFit 3단 앱 화면) | 제품 학습·강의 화면 목업 셸. index PART 1과 capability 04가 함께 쓴다(원래 index.css에 있던 712줄을 공용으로 올림). 목업 내부는 `opacity: 0`이 기본이고 **쓰는 페이지가 진입 신호로 띄워야 한다** — index는 `journey-stage.js`의 `.is-popping`, capability는 `.catalog-learn.is-visible`. 움직임은 `mock-motion.css`가 담당 |
+| Statement | `statement.css` | `.statement`(+`.is-ink`), `-inner`, `-eyebrow`, `-title`, `-desc` | 한 문장만 던지는 **전체 폭 강조 띠**. 섹션 자체가 배경을 칠해 화면 끝까지 닿는다(`summary-banner.dark`는 1320px 안에서 잘리는 배너라 역할이 다르다). 어두운 판 위 글씨는 흰색. **페이지마다 본문 중간 강조 1곳**의 표준 후보 — index·stories가 쓴다 |
 | Site Footer | `site-footer.css` | `.site-footer`, `-inner`, `-brand`, `-tagline`, `-nav`, `-group`, `-group-title`, `-legal`, `-company`, `-copyright` | 전 페이지 공용 최하단 푸터. 마크업은 `partials/footer.html` 하나이며 `js/include-partials.js`가 삽입한다 |
 | Mock Motion | `mock-motion.css` | `.mock-screen`, `[data-mock-motion]`(focus·replay·deck·detail·ticker·stage), `.mock-deck-*`, `.mock-detail-*`, `.is-quiet`, `.is-focus`, `.is-pop`, `.is-shimmer` | 제품 화면 목업을 실제로 돌아가는 화면처럼 연출 (CSS만, JS 없음). 목업 안은 드래그 선택이 꺼져 있다(`user-select: none`). deck·detail의 2단·겹침 뼈대도 여기 있다(index.html이 쓰면서 designsystem.css에서 올림). `stage`만 무한 반복이 아니라 한 번 재생이라, 다시 보여주려면 쓰는 쪽이 되감는다(`difference-cycle.js`의 `replayStage()`). 목업 안 텍스트는 14px 제약의 예외 — **9px는 하한이지 기본값이 아니다**(`--mock-text-title` 15px ~ `--mock-text-sm` 9px 4단). 6종 사용법은 [mock-motion-guide.md](mock-motion-guide.md) |
 
@@ -93,9 +94,89 @@
 | `blend-combo` | 05 가운데 단계의 하위 제품 배지 | `timeline`(단계 골격) · `tag` |
 | `bridge-inner` · `bridge-title` | 도구 연결 브릿지 좌우 배치 | `summary-banner.dark` |
 
+## E. difference.html(코드프레소 차별점) 전용 섹션 컴포넌트
+
+`css/pages/difference.css`가 정의하고 `.difference-page` 스코프 안에만 있다.
+**스코프가 `.difference`가 아닌 이유** — `index.css`의 PART 3 섹션이 이미 스코프 없이
+`.difference`를 쓰고 있고 그 파일은 `designsystem.css`가 통째로 `@import`하므로,
+같은 이름을 쓰면 두 규칙이 섞인다.
+
+아래는 **공용 컴포넌트로 표현되지 않은 것만** 남은 목록이다.
+
+| 클래스 | 역할 | 재사용한 공용 컴포넌트 |
+|---|---|---|
+| `hero-compare` | hero의 "도구 회사 / 우리 / 교육 회사" 3칸 대비 | `compare-panel` 전부(색·hover·`__label` 반전). 5그리드로 칸을 하나 늘린 것만 페이지 CSS |
+| `problem-grid` · `problem-card` | 01 나쁜 수치 4개를 1행 4열로(도형이 본문 위). `is-fact`(사실) / `is-gap`(문제) 두 톤 — 문제 표시는 **좌측 accent 띠가 아니라** 수치 색·도형·설명 한 줄로만 한다 | — (`metric-card`는 **성과 지표용**이라 큰 숫자+아이콘이 전부 자랑으로 읽혀 부적합했다 — 나쁜 수치를 좋은 소식처럼 보이게 했다) |
+| `source-note` | 01 인용 수치의 출처 각주(번호는 `counter()`가 만든다) | — |
+| `diagnosis-slide` · `slide-row`(+`.is-fail`/`.is-link`) | 02 프레젠테이션 슬라이드형 2줄. 줄마다 캡슐 라벨 + 레일(`slide-rail`) | — |
+| `slide-pair` · `slide-card`(+`.is-ours`) | 줄 안의 카드 2장 + 가운데 노드(3열 그리드) | — |
+| `slide-break` | 실패 두 카드 사이의 끊긴 연결(64px 점선 ✕ 원 + 좌우 점선). 카드 안 아이콘(48px)보다 커야 노드로 읽힌다 | — |
+| `slide-join` · `slide-join-pill` | 우리 두 카드가 만나는 **96px 원형** 어두운 "데이터" 노드(아이콘+글자 2단, 브랜드 링) + 위아래 화살표. 레퍼런스의 가로 알약은 132px 열 안에서 셋이 나눠 가져 전부 작아졌다 | — |
+| `slide-verdict` | 실패 카드의 결말 배지("전환 실패") | — |
+| `diagnosis-mock` | 02 카드 4장 안의 목업(라이선스·수료·자동화·역량). 카드 안이라 목업 타이포는 13/11px 2단 | `preview-frame` · `mock-screen` · `journey-mock-*` · `skeleton-line` · `data-mock-motion="focus"`×3 · `"ticker"`×1 |
+| `cycle` · `cycle-arrow` | 03 4단계 순환 + 경계 화살표 + ↺ 마무리 | capability `.loop`과 같은 방식(그 클래스는 `.capability` 스코프라 재사용 불가 — 두 페이지가 함께 쓰게 되면 공용 승격 후보) |
+| `scenario-stage` | 04 각 단계의 국면 라벨(데이터 / 진단→학습 / 성과) | `timeline` 전부. 라벨 한 줄만 추가 |
+| `position-map` · `position-dot` | 05 경쟁 구도 2축 좌표. 점 자리는 마크업의 `--pos-x`·`--pos-y`(%)가 정한다 | — (비개발자가 좌표를 옮길 수 있게 값을 마크업에 노출) |
+| `start-grid` · `start-card` | 06 두 갈래 시작점 | `content-panel` · `summary-banner`(결론 한 줄) |
+| `industry-cards` · `industry-card-label` · `industry-card-body` | 07 업종별 4블록을 2×2 카드로 | `catalog-board__items`를 그대로 씀(auto-fill 그리드 + 진입 stagger를 컴포넌트가 이미 가짐). 그 `li`는 "한 줄 칩"이라 라벨+본문 2단만 페이지에서 덮는다 |
+| `scenario-screens` | 04 목업 3장을 grid 한 칸에 겹쳐 두고 활성 판만 보여줌(높이 튐 방지) | `js/scenario-switch.js`와 짝. 규약은 `catalog-board`와 같음(key 짝 + `.is-active`) |
+
+**이 페이지에서 처음 실제로 쓰인 공용 컴포넌트** — `timeline`(04)과 `compare-panel`(hero)은
+그전까지 카탈로그에만 있고 서비스 페이지에서 쓰이지 않았다.
+
+**`position-map`의 높이를 `aspect-ratio`로 주지 않는다** — 이 판은 `.section-content`
+(세로 flex)의 자식이고 안이 전부 absolute라 내용 높이가 0이다. `aspect-ratio`는 그 0을
+기준으로 계산해 판이 통째로 접힌다(실제로 겪었다 — 점 5개가 한 자리에 포개졌다).
+높이는 px로 주고 반응형에서 단계로 낮춘다(520 → 440 → 400px).
+
+
 **시간차 등장(stagger)은 이 페이지 CSS가 소유한다** — `.capability .fade-up.is-visible`
 아래에서 `loop`·`product-grid`·`analyze-grid`와 그 안쪽 목록에 `transition-delay`를
 단계로 준다. `timeline`은 컴포넌트가 이미 같은 방식을 갖고 있어 건드리지 않는다.
+
+## E. stories.html(고객 사례 목록) 전용 섹션 컴포넌트
+
+`css/pages/stories.css`가 정의하고 `.stories` 스코프 안에만 있다. 이 페이지는 섹션이
+hero·catalog·cta-final 셋뿐이라 대부분 공용 컴포넌트 조합으로 끝났고, 아래만 남았다.
+
+| 클래스 | 역할 | 재사용한 공용 컴포넌트 |
+|---|---|---|
+| `case-filter` · `case-count` | 두 갈래(업무 자동화 · 역량 진단·교육)로 사례를 거르는 컨트롤 줄 + 결과 건수 | `part-nav`(`--compact --animated` segmented control)를 그대로 씀. `js/case-filter.js`와 짝 |
+| `outcome-list`(+ `outcome-logo`(`--tall`·`--invert`) · `outcome-body` · `outcome-headline` · `outcome-person`) | 고객사별 로고 판 + "이전 → 이후" 사례 카드 12장 | ax-build 06의 같은 이름 구조를 본뜸(`tag` · chevron SVG). `outcome-headline`은 before→after가 없는 사례가 `outcome-shift` 자리를 대신 채우는 한 줄 |
+| `order` · `order-arrow` | 진단 → 전환 → 증명 3단계 흐름 + 경계 화살표 | capability `loop`(4단계 순환)의 구조를 본뜸 · `heading-number`(번호 뱃지) |
+| `tag-industry` | 업종 배지 — 서비스 배지와 나란히 서는 테두리형 변형 | `tag`(채움형)를 테두리형으로 덮음. 업종별 색을 만들지 않은 이유는 아래 참고 |
+
+**`outcome-list`가 ax-build와 이름이 같은데 정의가 둘인 이유** — ax-build 쪽 정의는
+`.ax-build` 스코프(페이지 전용) 안이라 다른 페이지에서 로드되지 않는다. 두 페이지가
+계속 같은 카드를 쓰게 되면 그때 `components/ui/`로 공용 승격할지 사용자에게 확인한다.
+
+**`part-nav`는 필터로도 쓸 수 있다** — 다만 `js/part-nav.js`는 앵커 스크롤 전용이라
+필터 동작에는 쓸 수 없다. 컨트롤(CSS)만 재사용하고 동작은 `js/case-filter.js`가 맡는다.
+필터로 쓸 때는 `<a>`가 아니라 `<button>`이므로 버튼 기본값 초기화가 필요하다.
+
+**로고 판(`outcome-logo`)은 고정 높이 + `object-fit: contain`이다** — 로고는 비율이
+제각각(아모레퍼시픽 10:1 ~ 우하컴퍼니 1:1)이라 판을 고정하고 안에서 맞춘다.
+**`media-card`를 쓰지 않는다** — 그쪽 `__media img`는 `object-fit: cover`라 로고가 잘린다.
+
+**고객사 로고를 받으면 세 가지를 먼저 확인한다** (실제로 다 겪었다):
+
+| 확인 | 처리 |
+|---|---|
+| 캔버스에 빈 여백이 큰가 | **파일을 잉크 범위로 자른다.** CSS로 키워 맞추면 판 밖으로 넘치고 파일마다 다른 값을 외워야 한다 (SK텔레콤 1600×1600 중 세로 32%만 잉크 → 454×176으로 자름, 83KB→26KB) |
+| 흰 글자(어두운 배경용)인가 | **로고 색을 고치지 않는다**(브랜드 훼손). 그 카드의 판만 `outcome-logo--invert`로 어둡게 깐다 (체인로지스는 잉크의 88%가 흰색) |
+| 세로로 쌓인 2단 로고인가 | `outcome-logo--tall`로 높이 허용치를 올린다(44→76px). 가로형과 같은 값으로 묶으면 글자가 절반 크기로 보인다 |
+
+`img`의 `max-width`는 100%가 아니라 **76%** 다 — 100%면 가로로 긴 로고가 판 좌우를 꽉 채워
+혼자 두 배 커 보인다.
+
+**배지 색을 업종별로 만들지 않는다** — 이 프로젝트의 색 토큰은 브랜드 1계열 + 잉크 4단이라
+업종 7종에 색을 배정하면 없는 색을 새로 만들게 된다. 배지 두 개의 역할 차이는
+**채움(서비스) vs 테두리(업종)** 로 가른다.
+
+**화면 문구는 GNB 메뉴명을 그대로 쓴다** — 기획서의 "도구 축 / 사람 축"은 내부 분류
+용어라 방문자에게는 번역투로 읽힌다. 배지·필터·각주 모두 GNB와 같은 말
+(**업무 자동화** / **역량 진단·교육**)을 쓴다. 마크업의 `data-case-axis="tool|people"`은
+화면에 안 나오는 내부 식별자라 그대로 둔다.
 
 ## 판단 순서 (요약)
 

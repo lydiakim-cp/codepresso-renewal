@@ -194,9 +194,15 @@
 @media (max-width: 900px) {
   .capability .hero .section-wrap { padding-top: 120px; }
 
-  /* hero 질문 3개 · 06 분석 2블록 — 좁아지면 카드 안 문장이 눌려 1열로 쌓는다 */
+  /* hero 질문 3개 · 06 분석 2블록 — 좁아지면 칸 안 문장이 눌려 1열로 쌓는다 */
   .capability .hero-questions,
   .capability .analyze-grid { grid-template-columns: 1fr; }
+
+  /* 유리 띠가 세로로 쌓이면 칸 구분선도 좌 → 상으로 돌아야 한다 */
+  .capability .hero-questions > li + li {
+    border-left: 0;
+    border-top: 1px solid var(--color-line);
+  }
 
   /* 01 Growth Loop — 4칸이 좁아지면 각 칸의 설명이 3줄로 늘어져 2x2로 접는다.
      Assess→Design / Learn→Prove 순서가 위→아래로 그대로 이어진다. */
@@ -247,6 +253,125 @@
   }
 
   .capability .blend-mock .preview-frame { height: auto; }
+}
+
+
+/* --- pages/difference.css ---
+   1440 기준 3~4열 배치. 900px(2단 접힘) · 720px(카드 내부) · 560px(모바일) 3단으로 내린다. */
+@media (max-width: 900px) {
+  .difference-page .hero .section-wrap { padding-top: 120px; }
+
+  /* hero 3칸 대비 — 5그리드(판·화살표·판·화살표·판)가 좁아지면 각 칸의 문장이
+     3줄로 늘어져 무엇이 답인지 안 보인다. 세로로 쌓고 답 칸을 맨 위로 올린다.
+     좌우 대비가 상하 대비로 바뀌므로 "가운데가 답"이 아니라 "첫 칸이 답"이 된다. */
+  .difference-page .hero-compare {
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+  }
+
+  .difference-page .hero-compare .compare-panel__item.is-after { order: -1; }
+
+  /* 화살표는 좌우를 가리키던 것이라 세로 배치에서 방향이 틀린다 — 감춘다.
+     compare-panel.css의 900px 규칙(90도 회전)을 쓰지 않는 이유: 그 규칙은
+     화살표 하나짜리 2판 구조를 전제하고, 여기는 답 칸이 맨 위로 올라가
+     "위→아래 한 방향"이 아니게 된다. */
+  .difference-page .hero-compare .compare-panel__arrow { display: none; }
+
+  /* 06 두 갈래 — 2열이 좁아지면 1열로 쌓는다 */
+  .difference-page .start-grid { grid-template-columns: 1fr; }
+
+  /*
+   * 02 슬라이드 — 카드 2장 + 가운데 노드(3열)가 좁아지면 카드 안 목업이 눌린다.
+   * 세로로 쌓고 노드를 두 카드 사이에 그대로 둔다(순서는 카드 → 노드 → 카드).
+   */
+  .difference-page .slide-pair {
+    grid-template-columns: 1fr;
+    gap: var(--space-20);
+  }
+
+  /* 데스크톱은 카드가 좌우라 화살표도 가로축이다.
+     여기서는 카드가 세로로 쌓이므로 흐름이 위→아래가 된다 —
+     노드를 세로로 돌리고 화살표도 90도 돌려 방향을 흐름에 맞춘다. */
+  .difference-page .slide-join {
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .difference-page .slide-join-arrow svg {
+    transform: rotate(90deg);
+  }
+
+  .difference-page .slide-join-pill {
+    width: 84px;
+    height: 84px;
+  }
+
+  /* 끊긴 노드의 좌우 점선은 세로 배치에서 방향이 틀린다 — 감춘다 */
+  .difference-page .slide-break::before,
+  .difference-page .slide-break::after { display: none; }
+
+  .difference-page .slide-break {
+    width: 56px;
+    height: 56px;
+  }
+
+  .difference-page .slide-break svg { width: 24px; height: 24px; }
+
+  /* 03 The Cycle — 4칸이 좁아지면 칸 설명이 3줄로 늘어져 2x2로 접는다.
+     Data→Assess / Learn→Improve 순서가 위→아래로 그대로 이어진다
+     (capability .loop과 같은 판단). */
+  .difference-page .cycle { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  /* 2x2로 접히면 2번째 칸의 화살표는 줄 끝을 가리켜 방향이 틀린다 — 감춘다 */
+  .difference-page .cycle > li:nth-child(2) .cycle-arrow { display: none; }
+
+  /* 01 문제 카드 — 데스크톱 1행 4열은 900px에서 카드 폭이 좁아 라벨이 세 줄로
+     깨진다. 2x2로 접는다("많다 / 안 된다" 짝이 행으로 유지된다). */
+  .difference-page .problem-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  /* 04 시나리오 — 타임라인 + 목업 2단이 좁아지면 목업 안 막대·수치가 눌린다.
+     세로로 쌓고 목업을 아래에 둔다(이야기를 먼저 읽고 증거를 본다). */
+  .difference-page .scenario-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-35);
+  }
+
+  /* 목업 3장이 겹쳐 있는 판 전체에 폭 제한을 준다
+     (이전엔 .scenario-mock 하나였는데 이제 판이 wrapper다) */
+  .difference-page .scenario-screens {
+    max-width: 480px;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  /* 05 좌표 — 좁은 폭에서는 점 라벨이 서로 겹친다. 높이를 조금 낮춰 가로로
+     눕혀 점 사이 수평 거리를 확보한다(높이는 페이지 CSS가 px로 준다 — 그 이유는
+     pages/difference.css의 .position-map 주석 참고). */
+  .difference-page .position-map { height: 440px; }
+}
+
+
+/* --- pages/stories.css ---
+   1440 기준 hero 3열 + 사례 카드 3열. 900px(hero 여백) · 560px(1열·여백) 2단으로 내린다.
+   카드 그리드는 auto-fill minmax(320px)라 열 수가 스스로 줄어 별도 규칙이 필요 없다. */
+@media (max-width: 900px) {
+  .stories .hero .section-wrap { padding-top: 120px; }
+
+  /* 공통 순서 3단계 — 3칸이 좁아지면 칸 안 설명이 3줄로 늘어져 1열로 쌓는다.
+     진단 → 전환 → 증명 순서가 위→아래로 그대로 이어진다. */
+  .stories .order { grid-template-columns: 1fr; }
+
+  /* 세로로 쌓이면 화살표도 아래를 가리켜야 한다 — 회전은 컨테이너가 아니라
+     안쪽 svg에 준다(capability .loop-arrow와 같은 처리). */
+  .stories .order-arrow {
+    top: auto;
+    right: auto;
+    bottom: calc(var(--space-20) / -2);
+    left: 50%;
+    margin: 0 0 0 -10px;
+  }
+
+  .stories .order-arrow svg { transform: rotate(90deg); }
 }
 
 
@@ -316,6 +441,44 @@
   }
 
   .capability .product-icon svg { width: 22px; height: 22px; }
+}
+
+/* --- pages/difference.css --- */
+@media (max-width: 720px) {
+  /* 02 감싸는 판 — 판 여백을 한 단계 줄인다 */
+  .difference-page .slide-card { padding: var(--space-24); }
+  .difference-page .slide-icon { width: var(--space-40); height: var(--space-40); }
+  .difference-page .slide-icon svg { width: 22px; height: 22px; }
+
+  /* 01 문제 카드 — 카드 안 세로 배치는 데스크톱 기본값이 됐으므로(1행 4열로
+     되돌리며 도형이 본문 위로 올라갔다) 여백과 도형 크기만 줄인다. */
+  .difference-page .problem-card {
+    gap: var(--space-16);
+    padding: var(--space-24);
+  }
+
+  .difference-page .problem-visual {
+    width: 64px;
+    height: 64px;
+  }
+
+  /* 07 업종 — 소제목 140px 고정 열이 좁은 폭에서 설명문을 두 단어씩 끊는다.
+     소제목을 위로 올리고 설명을 그 아래로 흘린다. */
+  /* 업종 카드 — 좁은 폭에서는 2×2가 눌린다. 1열로 쌓는다 */
+  .difference-page .industry-cards {
+    grid-template-columns: 1fr;
+  }
+
+  /* 05 좌표 — 점 라벨이 좌표 판 밖으로 새지 않게 폰트를 키우지 않고 여백만 줄인다 */
+  .difference-page .position-dot {
+    padding: var(--space-4) var(--space-10) var(--space-4) var(--space-8);
+  }
+
+  .difference-page .position-dot.is-us {
+    padding: var(--space-8) var(--space-12) var(--space-8) var(--space-10);
+    font-size: var(--text-body-14);
+    line-height: var(--leading-body-14);
+  }
 }
 
 /* ===============================================
@@ -560,6 +723,18 @@
   .faq-list__answer { padding-inline: var(--space-18); }
 }
 
+/* --- statement.css --- */
+@media (max-width: 560px) {
+  /* 한 문장짜리 판이라 여백이 콘텐츠를 대신한다 — 모바일에서는 줄인다.
+     제목 크기는 tokens.css의 --text-h2 모바일 재정의(32px)가 이미 내린다. */
+  .statement { padding-block: 48px; }
+
+  .statement-eyebrow {
+    font-size: var(--text-body-14);
+    line-height: var(--leading-body-14);
+  }
+}
+
 /* --- cta-final.css --- */
 @media (max-width: 560px) {
   .cta-final-desc {
@@ -707,16 +882,14 @@
   .capability .hero .section-wrap { padding-top: 88px; }
   .capability .hero-copy > * { --motion-rise: 6px; }
 
-  /* hero 질문 카드는 1열로 쌓이면 좌측 정렬이 어색하다 — 가운데로 맞춘다 */
+  /* 유리 띠는 그대로 쌓되(아이콘+문장 한 줄 구조는 좁은 폭에서도 유지된다)
+     좌우 여백만 줄인다. 900px에서 이미 세로 구분선으로 바뀌어 있다. */
   .capability .hero-questions {
-    gap: var(--space-12);
     margin-top: var(--space-35);
   }
 
   .capability .hero-questions > li {
-    padding: var(--space-20);
-    text-align: center;
-    align-items: center;
+    padding: var(--space-16) var(--space-20);
   }
 
   /* 01 Growth Loop — 2x2도 좁아 1열로 내린다. 4칸이 세로로 이어지므로
@@ -756,6 +929,88 @@
     text-align: center;
   }
 
+}
+
+
+/* --- pages/difference.css --- */
+@media (max-width: 560px) {
+  .difference-page .hero .section-wrap { padding-top: 88px; }
+  .difference-page .hero-copy > * { --motion-rise: 6px; }
+
+  .difference-page .hero-compare { margin-top: var(--space-35); }
+
+  /* 01 문제 카드 — 2x2도 좁아 1열로 내린다. "많다 / 그런데 안 된다" 순서가
+     위→아래로 그대로 이어지므로 짝은 유지된다. */
+  .difference-page .problem-grid { grid-template-columns: 1fr; }
+
+  /* 02 슬라이드 카드 — 28px 여백은 모바일에서 문장 폭을 잡아먹는다 */
+  .difference-page .slide-card { padding: var(--space-20); }
+
+  /* 줄 머리 라벨 — 긴 문구(우리 줄)가 좁은 폭에서 두 줄이 되므로 레일을 접는다 */
+  .difference-page .slide-rail::after { display: none; }
+
+  .difference-page .slide-rail-label { white-space: normal; }
+
+  /* 03 The Cycle — 2x2도 좁아 1열로 내린다. 4칸이 세로로 이어지므로 칸 사이
+     화살표를 아래를 가리키게 돌린다(capability .loop-arrow와 같은 처리:
+     회전은 컨테이너가 아니라 안쪽 svg에 준다). */
+  .difference-page .cycle {
+    grid-template-columns: 1fr;
+    gap: var(--space-24);
+  }
+
+  .difference-page .cycle > li { padding: var(--space-20); }
+
+  .difference-page .cycle > li:nth-child(2) .cycle-arrow { display: inline-flex; }
+
+  /* 세로로 쌓이면 화살표가 칸 아래로 간다 — 40px이 되었으니 중심 보정도 20px */
+  .difference-page .cycle-arrow {
+    top: auto;
+    right: auto;
+    bottom: calc((var(--space-24) / 2 + 20px) * -1);
+    left: 50%;
+    margin: 0 0 0 -20px;
+  }
+
+  .difference-page .cycle-arrow svg { transform: rotate(90deg); }
+
+  /* 05 좌표 — 좁은 폭에서는 점 5개가 서로 겹쳐 좌표로 읽히지 않는다.
+     좌표를 세로로 더 눕혀 점 사이 거리를 벌리고, 축 라벨은 한 단계 낮춘다.
+     좌표 자체를 목록으로 바꾸지 않는 이유 — "오른쪽 위"라는 위치가 이 섹션의
+     주장이고, 아래 position-note가 같은 내용을 이미 글로 전한다. */
+  .difference-page .position-map { height: 400px; }
+
+  .difference-page .position-axis.is-y { left: var(--space-10); }
+  .difference-page .position-axis.is-x { right: var(--space-12); }
+
+  /* 06 결론 배너 — summary-banner의 20px 본문은 모바일에서 3줄을 넘는다 */
+  .difference-page .start-note { font-size: var(--text-body); }
+}
+
+
+/* --- pages/stories.css --- */
+@media (max-width: 560px) {
+  .stories .hero .section-wrap { padding-top: 88px; }
+  .stories .hero-copy > * { --motion-rise: 6px; }
+
+  .stories .hero-facts { margin-top: var(--space-35); }
+
+  /* 필터 줄 — 캡슐이 가로 스크롤(part-nav.css 560px 규칙)로 바뀌면 우측 건수가
+     같은 줄에서 캡슐 폭을 빼앗는다. 건수를 아래 줄로 내린다. */
+  .stories .case-filter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-12);
+  }
+
+  /* 320px에서도 카드가 컨테이너를 넘지 않게 minmax 하한을 푼다
+     (auto-fill minmax(320px)는 좁은 화면에서 그리드가 넘친다) */
+  .stories .outcome-list { grid-template-columns: 1fr; }
+
+  /* 좌우 28px 여백은 모바일에서 고객사 이름을 두 줄로 끊는다 */
+  .stories .outcome-list > li { padding: var(--space-20); }
+
+  .stories .order > li { padding: var(--space-20); }
 }
 
 

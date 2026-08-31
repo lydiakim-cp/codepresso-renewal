@@ -81,6 +81,27 @@ css/
 - **raw 값을 직접 쓰지 않는다.** `#1A61EA` (X) → `var(--color-brand)` (O)
 - **토큰 이름을 추측하지 않는다.** 이 프로젝트는 흔한 관례와 다르다 — `--color-primary`, `--color-text`, `--color-border`, `--text-sm`, `--shadow-lg`는 **없다.** 텍스트는 `--color-ink` 계열이다. 없는 변수를 쓰면 그 속성이 조용히 무시된다. 반드시 `tokens.css`에서 확인한다.
 - **`--space-*`는 숫자가 곧 px다** — `--space-6`은 6px이지 24px이 아니다.
+- **그림자는 상호작용 신호다** — 평소 상태에 `box-shadow`를 깔지 않는다. 공간은
+  면(surface ramp)과 경계선이 만들고, 그림자는 hover·활성만 담당한다. 예외는
+  화면 위에 실제로 떠 있는 것뿐(`floating-cta`·`preview-frame`·`surface-glass`)
+  → [css-patterns.md](css-patterns.md) "면·경계·그림자 3층"
+- **진한 면이 필요하면 `--color-surface-raised`(1.267×) / `--color-surface-deep`(1.510×)** 를 쓴다.
+  이 두 면 위 텍스트는 `--color-ink`·`--color-ink-light`까지만(그 아래는 AA 미달).
+
+**카드 안에 장식용 선을 넣지 않는다**
+- **카드·패널 안에 `border-left`/`border-top` 같은 accent 선을 쓰지 않는다.**
+  "이 카드는 문제다", "이 항목은 강조다"를 세로 띠로 표시하지 않는다 —
+  색(`--color-critical` 등 수치·텍스트 색) · 도형 · 한 줄 설명으로 말한다.
+- **구분선은 예외다.** 영역을 나누는 선은 계속 쓴다 — 섹션 경계, 표의 행 사이,
+  레일과 본문 사이(`catalog-board__rail`), 목업 상단 바(`preview-frame__bar`),
+  footer 위쪽 선, 카드와 카드를 잇는 연결선. 판별 기준은
+  **"나누거나 잇고 있는가(선) vs 꾸미고 있는가(장식)"** 다.
+- **구현 방식이 아니라 보이는 결과로 판단한다.** `border-top`을 피해서
+  `position: absolute`로 카드 상단에 4px 띠를 얹는 것은 같은 위반이다
+  (실제로 그렇게 우회했다가 지적받았다). 카드 가장자리에 색 띠가 보이면 안 된다.
+- 카드의 성격 구분이 필요하면 **면(배경) · 경계선 색 · 그림자 · 아이콘 색**으로 한다.
+- 그래도 카드가 평평하면 선을 넣지 말고 배경·아이콘·모션으로 간다
+  ([css-patterns.md](css-patterns.md) 4번).
 
 **모션**
 - `@keyframes`를 새로 만들기 전에 `css/keyframes.css`를 본다(rise-in·pop-in·scale-in·pulse·float·nudge·marquee 등).
@@ -115,6 +136,8 @@ css/
 | `process` | 단계·절차·기간 |
 | `deliverables` | 산출물·남는 것 |
 | `outcomes` | 성과·고객 사례·수치 |
+| `positioning` | 경쟁 구도·좌표 안에서의 자리 |
+| `statement` | 한 문장만 던지는 전체 폭 강조 띠 (페이지당 1곳) |
 | `journey` | 여정·학습 경로 |
 | `insight` | 콘텐츠·아티클·뉴스 |
 | `faq` | 자주 묻는 질문 |

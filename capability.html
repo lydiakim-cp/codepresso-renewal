@@ -14,15 +14,15 @@
   <!-- GNB는 partials/header.html 하나로 관리한다. js/include-partials.js가 fetch해 삽입한다.
        (fetch를 쓰므로 file:// 직접 열기로는 안 보인다 — 로컬 정적 서버로 확인한다) -->
   <div data-include="partials/header.html"></div>
-
   <main class="capability">
-    <!-- Hero — 한 줄 정의 + 진단 CTA + 교육의 세 가지 질문. 첫 화면이라 fade-up을 붙이지 않는다. -->
+    <!-- Hero — 한 줄 정의 + 진단 CTA + 교육의 세 가지 질문. 첫 화면이라 fade-up을 붙이지 않는다.
+         배경은 sunken 판이고 아래로 갈수록 흰색이 되어, 흰 면인 01 process가 위로 떠오른다. -->
     <section class="hero">
       <div class="section-wrap">
         <div class="hero-copy">
           <p class="tag">People Axis · 일하는 사람의 전환</p>
           <h1 class="hero-title">역량 진단·교육</h1>
-          <p class="hero-desc">좋은 교육은 강의 횟수가 아니라, 사람의 변화로 설명되어야 합니다. <br data-break="desktop">역량을 진단하고, 부족한 영역만 학습하고, 재진단으로 성장을 증명합니다.</p>
+          <p class="hero-desc">좋은 교육은 강의 횟수가 아니라, <strong>사람의 변화</strong>로 설명되어야 합니다. <br data-break="desktop">역량을 진단하고, 부족한 영역만 학습하고, 재진단으로 성장을 증명합니다.</p>
           <div class="hero-actions">
             <a class="btn btn-primary btn-lg" href="#" id="hero-diagnosis-cta">
               3분 AI 활용 진단 시작
@@ -32,8 +32,10 @@
         </div>
 
         <!-- 교육이 답해야 하는 세 가지 질문. 수치가 아니라 질문이라 metric-card 대신
-             질문 카드로 둔다(__value가 빌 자리가 없다). -->
-        <ul class="hero-questions">
+             질문 카드로 둔다(__value가 빌 자리가 없다).
+             hero의 주인공은 제목·CTA이므로, 세 질문은 카드 3장이 아니라 유리 띠 한 장 안의
+             세 칸으로 눕혀 보조 역할로 내린다. -->
+        <ul class="hero-questions surface-glass">
           <li>
             <span class="hero-question-icon" aria-hidden="true">
               <!-- 현재 수준 — images/icon/ic_barChart.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로
@@ -44,8 +46,10 @@
                 <path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="var(--color-brand)"/>
               </svg>
             </span>
-            <h3>현재 수준은 어디인가?</h3>
-            <p class="hero-question-desc">감이 아니라 실무 데이터로 진단합니다</p>
+            <div class="hero-question-text">
+              <h3>현재 수준은 어디인가?</h3>
+              <p class="hero-question-desc">감이 아니라 실무 데이터로 진단합니다</p>
+            </div>
           </li>
           <li>
             <span class="hero-question-icon" aria-hidden="true">
@@ -57,8 +61,10 @@
                 <path d="M22.416 13.8327L29.3327 17.166V21.9993H28.7374L29.666 23.9993L28.5827 24.666L27.4993 23.9993L28.4279 21.9993H27.8327V17.9993L21.0827 14.7493L22.416 13.8327Z" fill="var(--color-brand)"/>
               </svg>
             </span>
-            <h3>무엇을 배워야 하는가?</h3>
-            <p class="hero-question-desc">부족한 역량에 맞춰 학습을 조합합니다</p>
+            <div class="hero-question-text">
+              <h3>무엇을 배워야 하는가?</h3>
+              <p class="hero-question-desc">부족한 역량에 맞춰 학습을 조합합니다</p>
+            </div>
           </li>
           <li>
             <span class="hero-question-icon" aria-hidden="true">
@@ -70,8 +76,10 @@
                 <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"/>
               </svg>
             </span>
-            <h3>교육 후 무엇이 달라졌는가?</h3>
-            <p class="hero-question-desc">재진단과 대시보드로 변화를 증명합니다</p>
+            <div class="hero-question-text">
+              <h3>교육 후 무엇이 달라졌는가?</h3>
+              <p class="hero-question-desc">재진단과 대시보드로 변화를 증명합니다</p>
+            </div>
           </li>
         </ul>
       </div>

@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>코드프레소 차별점 — 도구도 교육도, 그리고 연결까지 | 코드프레소</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/difference.css">
+  <link rel="stylesheet" href="css/mobile.css">
+</head>
+
+<body>
+  <!-- GNB는 partials/header.html 하나로 관리한다. js/include-partials.js가 fetch해 삽입한다.
+       (fetch를 쓰므로 file:// 직접 열기로는 안 보인다 — 로컬 정적 서버로 확인한다) -->
+  <div data-include="partials/header.html"></div>
+
+  <main class="difference-page">
+    <!--
+      Hero — "도구 회사도, 교육 회사도 아니다"가 이 페이지 전체의 주장이다.
+      첫 화면이라 fade-up을 붙이지 않는다.
+
+      주장이 부정문 둘("도구도 아니고 교육도 아니다")이라 글로만 두면 무엇인지 알 수 없다.
+      그래서 공용 compare-panel을 세 칸으로 늘려, 도구 회사 · 교육 회사 두 결핍을 좌우에
+      두고 가운데(is-after)에 우리를 놓는다 — 배치 자체가 주장을 대신 말한다.
+    -->
+    <section class="hero">
+      <div class="section-wrap">
+        <div class="hero-copy">
+          <p class="tag">The Difference · 데이터 선순환</p>
+          <h1 class="hero-title">도구 회사도,<br>교육 회사도 아닙니다</h1>
+          <p class="hero-desc">도구 전문 회사는 사람을 못 바꾸고, 교육 회사는 도구가 없습니다. <br data-break="desktop">Codepresso는 <strong>둘 다, 그리고 연결까지</strong> 합니다.</p>
+        </div>
+
+        <!--
+          세 칸 대비. 공용 compare-panel의 __item·__label·__title·__arrow를 그대로 쓰고,
+          가운데 칸을 하나 더 넣어 3열로 만드는 것만 페이지 CSS가 담당한다
+          (컴포넌트는 좌·화살표·우 3그리드라, 칸을 하나 더 넣으면 5그리드가 된다).
+          가운데만 is-after라 브랜드 톤으로 올라온다 — 어느 쪽이 답인지 색이 먼저 말한다.
+        -->
+        <div class="compare-panel hero-compare">
+          <div class="compare-panel__item">
+            <p class="compare-panel__label">도구 전문 회사</p>
+            <h3 class="compare-panel__title">도구는 있지만<br>사람을 못 바꿉니다</h3>
+            <p class="compare-panel__desc">라이선스를 팔고 끝납니다. 쓰는 사람의 역량은 그대로입니다.</p>
+          </div>
+          <span class="compare-panel__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="compare-panel__item is-after">
+            <p class="compare-panel__label">Codepresso</p>
+            <h3 class="compare-panel__title">둘 다, 그리고<br>데이터로 연결까지</h3>
+            <p class="compare-panel__desc">도구가 만든 사용 데이터가 역량 진단으로, 진단 결과가 다시 업무 개선으로 돌아옵니다.</p>
+          </div>
+          <span class="compare-panel__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="compare-panel__item">
+            <p class="compare-panel__label">교육 회사</p>
+            <h3 class="compare-panel__title">교육은 하지만<br>도구가 없습니다</h3>
+            <p class="compare-panel__desc">배운 것을 적용할 현장 도구가 없어 업무는 그대로 남습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      01 The Problem — 수치 4개로 문제를 세운다.
+      index proof·capability 07과 같은 summary-banner.stats-light + metric-card 4장이고,
+      숫자는 js/stat-reveal.js가 카운트업한다(data-stat-reveal은 카드를 감싼 grid에).
+      다만 이 넷은 성과가 아니라 문제라서, 카드 색을 성공 톤으로 올리지 않고
+      "도입률 88% vs 고성과 6%"의 낙차가 읽히게 두 쌍으로 배치한다.
+    -->
+    <!--
+      01 The Problem — 수치 4개로 문제를 세운다.
+
+      metric-card를 쓰지 않는다. 그 컴포넌트는 "성과 지표"용이라 큰 숫자 + 아이콘이
+      전부 자랑처럼 읽힌다 — 네 수치 중 셋은 나쁜 수치인데 카드가 좋은 소식처럼
+      보였다(실제로 지적받았다). 그래서 이 섹션은 전용 카드로 만들고,
+      나쁜 수치에는 아래로 꺾이는 도형·잔량 표시를 함께 둬서 숫자와 그림이
+      같은 방향을 말하게 한다.
+
+      1행 4열이 아니라 2x2다 — 넷은 "많다 / 그런데 안 된다" 두 쌍이라,
+      한 줄로 늘어놓으면 그 짝이 안 보인다. 각 행이 한 쌍이다.
+    -->
+    <section class="outcomes fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">01 · The Problem</p>
+          <h2>AI를 도입한 기업은 많지만, <br data-break="desktop">성과를 내는 기업은 드뭅니다</h2>
+        </div>
+        <div class="section-content">
+          <ul class="problem-grid" data-stat-reveal data-stat-card=".problem-card">
+            <!-- 1행 — 도입은 88%인데, 성과는 6%다. is-fact / is-gap 한 쌍. -->
+            <li class="problem-card is-fact">
+              <!-- 거의 다 찬 막대 — "많다"를 도형으로 한 번 더 말한다 -->
+              <div class="problem-visual" aria-hidden="true">
+                <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="8" y="60" width="14" height="28" rx="3" fill="color-mix(in srgb, var(--color-brand) 28%, var(--color-surface))"/>
+                  <rect x="29" y="44" width="14" height="44" rx="3" fill="color-mix(in srgb, var(--color-brand) 42%, var(--color-surface))"/>
+                  <rect x="50" y="26" width="14" height="62" rx="3" fill="color-mix(in srgb, var(--color-brand) 62%, var(--color-surface))"/>
+                  <rect x="71" y="12" width="14" height="76" rx="3" fill="var(--color-brand)"/>
+                </svg>
+              </div>
+              <div class="problem-card-body">
+                <p class="problem-label">기업의 AI 도입률<sup>1</sup></p>
+                <p class="problem-value"><span class="num" data-target="88">0</span><span class="unit">%</span></p>
+                <p class="problem-note">도입 자체는 이미 보편적입니다</p>
+              </div>
+            </li>
+
+            <li class="problem-card is-gap">
+              <!--
+                도넛 — 6%만 칠하고 나머지 94%를 비워 둔다. 숫자 6이 작다는 것을
+                "빈 자리"로 보여야 나쁜 수치로 읽힌다.
+                r=28 → 둘레 175.9. 6% ≈ 10.6 이므로 dasharray "10.6 175.9".
+              -->
+              <div class="problem-visual" aria-hidden="true">
+                <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="48" cy="48" r="28" stroke="color-mix(in srgb, var(--color-critical) 16%, var(--color-surface))" stroke-width="12"/>
+                  <circle class="problem-donut" cx="48" cy="48" r="28" stroke="var(--color-critical)" stroke-width="12" stroke-linecap="round" stroke-dasharray="10.6 175.9" transform="rotate(-90 48 48)"/>
+                </svg>
+              </div>
+              <div class="problem-card-body">
+                <p class="problem-label">AI로 고성과를 내는 기업<sup>1</sup></p>
+                <p class="problem-value"><span class="num" data-target="6">0</span><span class="unit">%</span></p>
+                <p class="problem-note">도입한 곳의 대부분은 성과가 없습니다</p>
+              </div>
+            </li>
+
+            <!-- 2행 — 파일럿은 도는데 95%가 손익에 안 닿고, 배운 것은 12%만 현업으로 간다.
+                 둘 다 "거의 다 새어 나간다"는 같은 이야기라 같은 행에 둔다. -->
+            <li class="problem-card is-gap">
+              <!-- 아래로 꺾이는 선 + 끊어진 뒷부분 — "가다가 멈춘다" -->
+              <div class="problem-visual" aria-hidden="true">
+                <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 30L34 30L50 66" stroke="var(--color-critical)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M50 66L66 80L86 80" stroke="color-mix(in srgb, var(--color-critical) 22%, var(--color-surface))" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 11"/>
+                  <circle cx="50" cy="66" r="7" fill="var(--color-critical)"/>
+                </svg>
+              </div>
+              <div class="problem-card-body">
+                <p class="problem-label">P&amp;L 성과 없는 GenAI 파일럿<sup>2</sup></p>
+                <p class="problem-value"><span class="num" data-target="95">0</span><span class="unit">%</span></p>
+                <p class="problem-note">파일럿에서 실제 손익으로 넘어가지 못합니다</p>
+              </div>
+            </li>
+
+            <li class="problem-card is-gap">
+              <!-- 깔때기 — 위로 많이 들어가고 아래로 조금 나온다.
+                   흘러 나가는 양(12%)만 진하게, 새는 부분은 옅게 둔다. -->
+              <div class="problem-visual" aria-hidden="true">
+                <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 14H84L56 52V82H40V52L12 14Z" fill="color-mix(in srgb, var(--color-critical) 14%, var(--color-surface))" stroke="color-mix(in srgb, var(--color-critical) 34%, var(--color-surface))" stroke-width="4" stroke-linejoin="round"/>
+                  <path d="M40 66H56V82H40V66Z" fill="var(--color-critical)"/>
+                </svg>
+              </div>
+              <div class="problem-card-body">
+                <p class="problem-label">현업에 적용되는 교육 내용<sup>3</sup></p>
+                <p class="problem-value"><span class="num" data-target="12">0</span><span class="unit">%</span></p>
+                <p class="problem-note">배운 것의 대부분이 업무에 닿지 않습니다</p>
+              </div>
+            </li>
+          </ul>
+
+          <!-- 출처 각주. 수치 4개가 인용이라 근거를 같은 화면에 남긴다 —
+               숫자만 크게 두고 출처를 숨기면 마케팅 문구로 읽힌다. -->
+          <ol class="source-note">
+            <li>McKinsey, The State of AI (2025.11, n=1,993)</li>
+            <li>MIT NANDA, The GenAI Divide (2025.08)</li>
+            <li>ATD, Scrap Learning Research</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      02 Diagnosis — 프레젠테이션 슬라이드처럼 재구성했다(와이어프레임 레퍼런스 기준).
+
+      두 줄로 읽힌다:
+      (1) 실패 두 유형 — 두 카드가 점선으로 이어지고 가운데 ✕ 노드가 "끊겼다"를 말한다
+      (2) 코드프레소   — 두 카드가 화살표로 가운데 "데이터" 알약을 향해 모인다
+
+      줄마다 좌측에 캡슐 라벨을 두고 오른쪽으로 얇은 레일을 뽑는다 — 슬라이드의
+      섹션 머리처럼 읽히고, 두 줄이 같은 문법을 쓰므로 두 번 배우지 않아도 된다.
+
+      감싸는 판을 두지 않고 줄 단위로 나눈다 — 판 안에 판이 겹치면
+      프레젠테이션이 아니라 카드 더미가 된다.
+
+      레퍼런스의 "카드 상단 파란 띠"는 쓰지 않는다(SKILL 3번: 카드에 accent 선 금지).
+      border-top이든 같은 자리에 놓은 요소든 보이는 결과가 같으므로 둘 다 안 쓴다 —
+      우리 카드라는 표시는 흰 면 · 브랜드 아이콘 · 그림자로 한다.
+      와이어프레임은 배치만 참고하고 스타일은 이 프로젝트 규칙으로 다시 만든다.
+    -->
+    <section class="intro fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">02 · Diagnosis</p>
+          <h2>원인은 하나, <br data-break="desktop">도구와 사람이 따로 가기 때문입니다</h2>
+          <p class="desc">AI를 쓰는 사람과 AI를 다루는 사람은 다릅니다. <br data-break="desktop">도구(일하는 방식)와 사람(역량)이 연결되지 않으면 전환은 완성되지 않습니다.</p>
+        </div>
+
+        <div class="section-content diagnosis-slide">
+          <!-- ── 1행: 한쪽만 바꾼 회사 ── -->
+          <div class="slide-row is-fail">
+            <p class="slide-rail"><span class="slide-rail-label">한쪽만 바꾼 회사</span></p>
+
+            <div class="slide-pair">
+              <article class="slide-card">
+                <div class="slide-card-head">
+                  <span class="slide-icon" aria-hidden="true">
+                    <!-- 도구 — images/icon/ic_axBuild.svg 계열의 형태를 단순화한 도형 -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="3" y="6" width="8" height="5" rx="1.5" fill="currentColor"/>
+                      <rect x="13" y="6" width="8" height="5" rx="1.5" fill="currentColor" opacity=".45"/>
+                      <rect x="3" y="13" width="8" height="5" rx="1.5" fill="currentColor" opacity=".45"/>
+                      <rect x="13" y="13" width="8" height="5" rx="1.5" fill="currentColor" opacity=".2"/>
+                    </svg>
+                  </span>
+                  <h3>도구만 산 회사</h3>
+                </div>
+                <p class="slide-card-desc">라이선스는 샀지만 활용률은 바닥인 <strong>"서랍 속 AI"</strong>. 결재만 AI로 하고 실무는 그대로.</p>
+
+                <!-- 라이선스 관리 화면 — 120석 중 활용률 12%. focus로 "미사용 106석"만 떠오른다 -->
+                <div class="preview-frame mock-screen diagnosis-mock" data-mock-motion="focus" aria-hidden="true">
+                  <div class="journey-mock-head">
+                    <span class="journey-mock-title">라이선스 관리</span>
+                    <span class="journey-mock-badge">120석</span>
+                  </div>
+                  <div class="journey-mock-progress">
+                    <div class="journey-mock-progress-bar"><span style="width: 12%"></span></div>
+                    <span class="text-caption strong">12%</span>
+                  </div>
+                  <ul class="journey-mock-list">
+                    <li class="journey-mock-item is-focus">
+                      <span class="journey-mock-item-name">미사용 좌석 106석</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <p class="slide-verdict">전환 실패</p>
+              </article>
+
+              <!-- 두 실패 사이의 끊긴 연결. 점선 + ✕ — "이어지지 않았다"가 이 노드의 뜻이다 -->
+              <span class="slide-break" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 8L16 16M16 8L8 16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                </svg>
+              </span>
+
+              <article class="slide-card">
+                <div class="slide-card-head">
+                  <span class="slide-icon" aria-hidden="true">
+                    <!-- 교육 — 수료증·문서 형태 -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 3H18C18.5523 3 19 3.44772 19 4V20C19 20.5523 18.5523 21 18 21H6C5.44772 21 5 20.5523 5 20V4C5 3.44772 5.44772 3 6 3Z" fill="currentColor" opacity=".28"/>
+                      <path d="M8.5 8H15.5M8.5 11.5H15.5M8.5 15H12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                  <h3>교육만 한 회사</h3>
+                </div>
+                <p class="slide-card-desc">특강과 수료증은 쌓였지만 <strong>업무는 바뀌지 않는</strong> 현업 단절. 배운 것을 적용할 자리가 없습니다.</p>
+
+                <!-- 수료 현황 — 수료는 100%인데 현업 적용은 0건 -->
+                <div class="preview-frame mock-screen diagnosis-mock" data-mock-motion="focus" aria-hidden="true">
+                  <div class="journey-mock-head">
+                    <span class="journey-mock-title">수료 현황</span>
+                    <span class="journey-mock-badge">4기</span>
+                  </div>
+                  <div class="journey-mock-progress">
+                    <div class="journey-mock-progress-bar"><span style="width: 100%"></span></div>
+                    <span class="text-caption strong">100%</span>
+                  </div>
+                  <ul class="journey-mock-list">
+                    <li class="journey-mock-item is-focus">
+                      <span class="journey-mock-item-name">현업 적용 0건</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <p class="slide-verdict">전환 실패</p>
+              </article>
+            </div>
+          </div>
+
+          <!-- ── 2행: 코드프레소 ── -->
+          <div class="slide-row is-link">
+            <p class="slide-rail"><span class="slide-rail-label is-dark">코드프레소는 도구와 사람을 데이터로 잇습니다</span></p>
+
+            <div class="slide-pair">
+              <article class="slide-card is-ours">
+                <p class="tag slide-card-tag">업무 자동화 · AXpresso</p>
+                <div class="slide-card-head">
+                  <span class="slide-icon" aria-hidden="true">
+                    <!-- 일하는 방식 — ic_axBuild.svg 기반(AXpresso 제품 아이콘).
+                         하드코딩 #1A61EA를 브랜드 토큰으로, 가운데 흰 원은 면 토큰으로 교체 -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 19.75C16.2802 19.75 19.75 16.2802 19.75 12C19.75 7.71979 16.2802 4.25 12 4.25C7.71979 4.25 4.25 7.71979 4.25 12C4.25 16.2802 7.71979 19.75 12 19.75Z" fill="var(--color-brand)"/>
+                      <path d="M10 2H14C14.2652 2 14.5196 2.10536 14.7071 2.29289C14.8946 2.48043 15 2.73478 15 3V5H9V3C9 2.73478 9.10536 2.48043 9.29289 2.29289C9.48043 2.10536 9.73478 2 10 2Z" fill="var(--color-brand)"/>
+                      <path d="M2.34082 8.73944L4.34082 5.27534C4.47343 5.04566 4.69187 4.87805 4.94805 4.80941C5.20423 4.74077 5.47716 4.77671 5.70685 4.90932L7.4389 5.90932L4.4389 11.1055L2.70685 10.1055C2.47716 9.97286 2.30958 9.75444 2.24094 9.49826C2.1723 9.24208 2.20821 8.96913 2.34082 8.73944Z" fill="var(--color-brand)"/>
+                      <path d="M4.3418 18.7394L2.3418 15.2753C2.20919 15.0457 2.17326 14.7727 2.2419 14.5165C2.31054 14.2603 2.47814 14.0419 2.70782 13.9093L4.43987 12.9093L7.43987 18.1055L5.70782 19.1055C5.47814 19.2381 5.20519 19.274 4.94901 19.2053C4.69283 19.1367 4.47441 18.9691 4.3418 18.7394Z" fill="var(--color-brand)"/>
+                      <path d="M13.9902 22H9.99023C9.72502 22 9.47068 21.8946 9.28314 21.7071C9.09561 21.5196 8.99023 21.2652 8.99023 21V19H14.9902V21C14.9902 21.2652 14.8849 21.5196 14.6974 21.7071C14.5098 21.8946 14.2555 22 13.9902 22Z" fill="var(--color-brand)"/>
+                      <path d="M21.6533 15.2762L19.6533 18.7403C19.5207 18.97 19.3023 19.1376 19.0461 19.2062C18.7899 19.2749 18.517 19.2389 18.2873 19.1063L16.5552 18.1063L19.5552 12.9102L21.2873 13.9102C21.517 14.0428 21.6846 14.2612 21.7532 14.5174C21.8218 14.7735 21.7859 15.0465 21.6533 15.2762Z" fill="var(--color-brand)"/>
+                      <path d="M19.6543 5.27618L21.6543 8.74028C21.7869 8.96997 21.8228 9.24294 21.7542 9.49912C21.6855 9.7553 21.518 9.9737 21.2883 10.1063L19.5562 11.1063L16.5562 5.91016L18.2883 4.91016C18.518 4.77755 18.7909 4.74163 19.0471 4.81028C19.3033 4.87892 19.5217 5.0465 19.6543 5.27618Z" fill="var(--color-brand)"/>
+                      <path d="M12 14.5C13.3807 14.5 14.5 13.3807 14.5 12C14.5 10.6193 13.3807 9.5 12 9.5C10.6193 9.5 9.5 10.6193 9.5 12C9.5 13.3807 10.6193 14.5 12 14.5Z" fill="var(--color-surface)"/>
+                    </svg>
+                  </span>
+                  <h3>일하는 방식의 전환</h3>
+                </div>
+                <p class="slide-card-desc"><strong>AXpresso</strong>가 일하는 방식을 AI 중심으로 재설계합니다.</p>
+
+                <!-- 자동화 운영 — 수치가 튀어나오고 막대가 자란다 -->
+                <div class="preview-frame mock-screen diagnosis-mock" data-mock-motion="ticker" aria-hidden="true">
+                  <div class="journey-mock-head">
+                    <span class="journey-mock-title">자동화 운영</span>
+                    <span class="journey-mock-badge is-live"><i class="is-pulse"></i>가동 중</span>
+                  </div>
+                  <div class="mock-ticker-stats">
+                    <article>
+                      <span class="text-caption">자동화 업무</span>
+                      <b class="is-pop">18<em>개</em></b>
+                    </article>
+                    <article>
+                      <span class="text-caption">이번 달 처리</span>
+                      <b class="is-pop is-current" style="animation-delay: .1s">1,240<em>건</em></b>
+                    </article>
+                  </div>
+                </div>
+              </article>
+
+              <!--
+                가운데 "데이터" 알약. 양쪽에서 화살표가 이 지점으로 모인다 —
+                두 카드가 각각 서 있는 게 아니라 데이터에서 만난다는 뜻이다.
+                어두운 알약이라 이 줄에서 시선이 가운데에 멈춘다.
+              -->
+              <div class="slide-join" aria-hidden="true">
+                <span class="slide-join-arrow is-left">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 12H5M11 6L5 12L11 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="slide-join-pill">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="12" cy="6" rx="7" ry="2.6" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M5 6V12C5 13.4 8.1 14.6 12 14.6C15.9 14.6 19 13.4 19 12V6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M5 12V18C5 19.4 8.1 20.6 12 20.6C15.9 20.6 19 19.4 19 18V12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                  데이터
+                </span>
+                <span class="slide-join-arrow is-right">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12H19M13 6L19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </div>
+
+              <article class="slide-card is-ours">
+                <p class="tag slide-card-tag">역량 진단·교육</p>
+                <div class="slide-card-head">
+                  <span class="slide-icon" aria-hidden="true">
+                    <!-- 일하는 사람 — ic_skillFit.svg 기반(역량 진단 제품 아이콘).
+                         원본은 40px 프레임(흰 판 + 테두리)이라 안쪽 path만 가져오고,
+                         좌표를 24px 기준으로 옮겼다(원본 11~34 → 2~22). -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <!-- 오름차순 막대 3개 — 역량 수준이 단계로 올라간다 -->
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 15.5C2.5 14.9477 2.94772 14.5 3.5 14.5H6C6.55228 14.5 7 14.9477 7 15.5V20C7 20.5523 6.55228 21 6 21H3.5C2.94772 21 2.5 20.5523 2.5 20V15.5ZM4 16V19.5H5.5V16H4Z" fill="var(--color-brand)"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8.5 11.5C8.5 10.9477 8.94772 10.5 9.5 10.5H12C12.5523 10.5 13 10.9477 13 11.5V20C13 20.5523 12.5523 21 12 21H9.5C8.94772 21 8.5 20.5523 8.5 20V11.5ZM10 12V19.5H11.5V12H10Z" fill="var(--color-brand)"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5 7.5C14.5 6.94772 14.9477 6.5 15.5 6.5H17C17.4142 6.5 17.75 6.83579 17.75 7.25C17.75 7.66421 17.4142 8 17 8H16V19.5H18.5V13.25C18.5 12.8358 18.8358 12.5 19.25 12.5C19.6642 12.5 20 12.8358 20 13.25V20C20 20.5523 19.5523 21 19 21H15.5C14.9477 21 14.5 20.5523 14.5 20V7.5Z" fill="var(--color-brand)"/>
+                      <!-- 반짝임 — 진단이 짚어낸 지점 -->
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M18.6 1.9C18.71 1.6 18.99 1.4 19.31 1.4C19.62 1.4 19.91 1.6 20.01 1.9L20.56 3.41C20.74 3.92 21.14 4.32 21.64 4.5L23.16 5.04C23.46 5.15 23.65 5.43 23.65 5.75C23.65 6.06 23.46 6.35 23.16 6.46L21.64 7C21.14 7.18 20.74 7.58 20.56 8.08L20.01 9.6C19.91 9.9 19.62 10.09 19.31 10.09C18.99 10.09 18.71 9.9 18.6 9.6L18.06 8.08C17.88 7.58 17.48 7.18 16.97 7L15.46 6.46C15.16 6.35 14.96 6.06 14.96 5.75C14.96 5.43 15.16 5.15 15.46 5.04L16.97 4.5C17.48 4.32 17.88 3.92 18.06 3.41L18.6 1.9ZM19.31 4.34C18.99 4.95 18.51 5.43 17.89 5.75C18.51 6.07 18.99 6.55 19.31 7.16C19.62 6.55 20.11 6.07 20.72 5.75C20.11 5.43 19.62 4.95 19.31 4.34Z" fill="var(--color-brand)"/>
+                    </svg>
+                  </span>
+                  <h3>일하는 사람의 전환</h3>
+                </div>
+                <p class="slide-card-desc"><strong>역량 진단·교육</strong>이 진단·학습·분석·개선의 성장 루프를 만듭니다.</p>
+
+                <!-- 역량 성장 — 진단 결과에 따라 부족한 항목만 학습으로 이어진다 -->
+                <div class="preview-frame mock-screen diagnosis-mock" data-mock-motion="focus" aria-hidden="true">
+                  <div class="journey-mock-head">
+                    <span class="journey-mock-title">역량 성장</span>
+                    <span class="journey-mock-badge is-live"><i class="is-pulse"></i>진단 반영</span>
+                  </div>
+                  <div class="journey-mock-progress">
+                    <div class="journey-mock-progress-bar"><span style="width: 72%"></span></div>
+                    <span class="text-caption strong">72점</span>
+                  </div>
+                  <ul class="journey-mock-list">
+                    <li class="journey-mock-item is-current is-focus">
+                      <span class="journey-mock-item-name">프롬프트 설계 학습 중</span>
+                    </li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+
+            <p class="slide-note">어디서부터 시작해도 좋습니다. 자동화에서 쌓인 활용 데이터가 역량 진단으로, 진단 결과가 다시 업무 개선으로 이어질 때 전환이 완성됩니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      03 The Cycle — 4단계 순환.
+      capability 01의 .loop과 같은 역할(4칸 + 칸 사이 화살표 + 마지막 ↺ 한 줄)이라
+      그 구조를 그대로 본뜬다. 다만 .loop은 .capability 스코프 안에 있어 이 페이지에서는
+      로드되지 않으므로(인벤토리 C·D 항목의 판단 순서 3번), 같은 방식으로 이 페이지 CSS에
+      .cycle로 만든다. 4번째 칸이 다시 1번으로 돌아가는 것이 이 섹션의 요점이라
+      마지막 칸에도 화살표를 남기고, 그 화살표만 아래로 꺾어 첫 칸으로 돌린다.
+    -->
+    <section class="process fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">03 · The Cycle</p>
+          <h2>순환할수록 정교해지는 구조</h2>
+        </div>
+        <div class="section-content">
+          <ol class="cycle">
+            <li>
+              <div class="cycle-head">
+                <span class="cycle-no">1</span>
+                <p class="cycle-en">Data</p>
+              </div>
+              <h3>도구 사용 데이터</h3>
+              <p class="cycle-desc">누가 무엇을 얼마나 쓰는가</p>
+              <span class="cycle-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </li>
+            <li>
+              <div class="cycle-head">
+                <span class="cycle-no">2</span>
+                <p class="cycle-en">Assess</p>
+              </div>
+              <h3>역량 진단 반영</h3>
+              <p class="cycle-desc">데이터가 진단을 정확하게</p>
+              <span class="cycle-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </li>
+            <li>
+              <div class="cycle-head">
+                <span class="cycle-no">3</span>
+                <p class="cycle-en">Learn</p>
+              </div>
+              <h3>맞춤 학습</h3>
+              <p class="cycle-desc">부족한 것만 정확히 채움</p>
+              <span class="cycle-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </li>
+            <!-- 마지막 칸만 브랜드 톤 — 성과가 다시 데이터로 돌아가는 지점이다 -->
+            <li class="is-return">
+              <div class="cycle-head">
+                <span class="cycle-no">4</span>
+                <p class="cycle-en">Improve</p>
+              </div>
+              <h3>도구 활용 극대화</h3>
+              <p class="cycle-desc">성과가 다시 데이터로</p>
+            </li>
+          </ol>
+          <p class="cycle-note">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 12C4 7.58 7.58 4 12 4C14.5 4 16.73 5.15 18.2 6.95M20 12C20 16.42 16.42 20 12 20C9.5 20 7.27 18.85 5.8 17.05" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 3.5V7.5H14M6 20.5V16.5H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            데이터 선순환, 경쟁사가 복제할 수 없는 구조
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      04 Scenario — 김 대리의 3개월.
+      "기간 라벨 + 제목 + 설명"이 그대로 공용 timeline의 Markup API다(1개월차 → term).
+      진입 시 단계가 순서대로 들어오는 stagger도 컴포넌트가 이미 갖고 있어 손대지 않는다.
+      이 페이지에서는 각 단계에 "무엇이 근거였는가"를 한 줄 더 붙이므로
+      timeline__body 안에 근거 칩만 페이지 CSS로 추가한다.
+    -->
+    <section class="journey fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-left">
+          <p class="tag">04 · Scenario</p>
+          <h2>김 대리의 3개월</h2>
+          <p class="desc">실제 고객 여정들을 한 사람의 이야기로 재구성했습니다. <br data-break="desktop">선순환이 어떻게 작동하는지 따라가 보세요.</p>
+        </div>
+        <!-- 좌: 3개월 타임라인 · 우: 그 3개월이 실제로 어떤 화면으로 보이는지.
+             이야기만 글로 두면 "재구성한 사례"라는 말이 증거 없이 떠 있으므로,
+             관리자가 보는 대시보드를 한 장 함께 둔다.
+             연출은 공용 6종 중 ticker — "숫자로 설득하는 자리·관리자 시점"이고,
+             김 대리의 활용률·진단 점수·재진단이 전부 수치라 맞는다.
+             목업 루트는 .journey-mock이 아니라 .mock-screen이다(journey-stage.js가
+             없는 페이지에서 .journey-mock을 쓰면 자식이 opacity 0으로 남아
+             빈 상자가 된다 — mock-motion-guide 공통규칙 3번). -->
+        <div class="section-content scenario-layout">
+          <ol class="timeline scenario" data-scenario-steps>
+            <li data-scenario-step="data">
+              <span class="timeline__term">1개월차</span>
+              <span class="timeline__marker" aria-hidden="true"></span>
+              <div class="timeline__body">
+                <p class="scenario-stage">데이터</p>
+                <h3 class="timeline__title">에이전트 사용 로그, 하위 20%</h3>
+                <p class="timeline__desc">AXpresso 도입 후에도 김 대리의 활용률은 낮았습니다. 도구 탓일까요, 역량 탓일까요? 데이터가 답합니다.</p>
+              </div>
+            </li>
+            <li data-scenario-step="assess">
+              <span class="timeline__term">2개월차</span>
+              <span class="timeline__marker" aria-hidden="true"></span>
+              <div class="timeline__body">
+                <p class="scenario-stage">진단 → 학습</p>
+                <h3 class="timeline__title">AI Fluent 진단: "프롬프트 설계 역량 부족"</h3>
+                <p class="timeline__desc">진단 결과에 따라 SkillFit이 김 대리만의 학습 경로를 생성하고, 1:1 AI 튜터가 취약점을 집중 보완합니다.</p>
+              </div>
+            </li>
+            <li data-scenario-step="outcome">
+              <span class="timeline__term">3개월차</span>
+              <span class="timeline__marker" aria-hidden="true"></span>
+              <div class="timeline__body">
+                <p class="scenario-stage">성과</p>
+                <h3 class="timeline__title">활용률 상승, 성과로 증명</h3>
+                <p class="timeline__desc">재진단으로 역량 변화를 숫자로 확인하고, 팀 전체의 확산 근거가 됩니다.</p>
+              </div>
+            </li>
+          </ol>
+
+          <!--
+            우측 목업 — 좌측 타임라인 3단계와 1:1로 짝을 이룬다.
+            공용 catalog-board와 같은 방식으로 key를 맞추고(data-scenario-panel),
+            scenario-switch.js가 스크롤 위치에 따라 .is-active를 옮긴다.
+            연출은 단계마다 다르게 골랐다 — 1개월차는 "낮은 활용률"이라 focus,
+            2개월차는 "진단 결과 → 학습 경로"라 detail, 3개월차는 수치라 ticker.
+          -->
+          <div class="scenario-screens" data-scenario-screens>
+
+            <!-- ① 1개월차 · 데이터 — 사용 로그에서 김 대리가 하위 20%로 잡힌다 -->
+            <div class="preview-frame mock-screen scenario-mock is-active"
+                 data-scenario-panel="data" data-mock-motion="focus" aria-hidden="true">
+              <div class="journey-mock-head">
+                <span class="journey-mock-title">에이전트 사용 로그</span>
+                <span class="journey-mock-badge">1개월차</span>
+              </div>
+
+              <ul class="journey-mock-list">
+                <li class="journey-mock-item is-quiet">
+                  <span class="journey-mock-item-name">이 차장</span>
+                  <span style="flex: 1"></span>
+                  <span class="text-caption strong">일 42회</span>
+                </li>
+                <li class="journey-mock-item is-quiet">
+                  <span class="journey-mock-item-name">박 과장</span>
+                  <span style="flex: 1"></span>
+                  <span class="text-caption strong">일 31회</span>
+                </li>
+                <li class="journey-mock-item is-focus">
+                  <span class="journey-mock-avatar">김</span>
+                  <span class="journey-mock-item-name">김 대리</span>
+                  <span style="flex: 1"></span>
+                  <span class="text-caption strong">일 3회</span>
+                </li>
+              </ul>
+
+              <div class="journey-mock-progress">
+                <div class="journey-mock-progress-bar"><span style="width: 20%"></span></div>
+                <span class="text-caption strong">하위 20%</span>
+              </div>
+            </div>
+
+            <!-- ② 2개월차 · 진단 → 학습 — 부족한 항목이 그대로 학습 경로가 된다 -->
+            <div class="preview-frame mock-screen scenario-mock"
+                 data-scenario-panel="assess" data-mock-motion="detail" aria-hidden="true">
+              <div class="journey-mock-head">
+                <span class="journey-mock-title">AI Fluent 진단 결과</span>
+                <span class="journey-mock-badge">2개월차</span>
+              </div>
+
+              <!-- detail 뼈대는 mock-motion.css의 API를 그대로 쓴다 —
+                   좌측 aside 목록에서 is-selected 행이 켜지고, is-panel이 밀려 들어온다 -->
+              <div class="mock-detail">
+                <div class="mock-detail-aside">
+                  <ul class="mock-detail-list">
+                    <li class="mock-detail-row">
+                      <span class="journey-mock-item-name">데이터 해석</span>
+                      <span style="flex: 1"></span>
+                      <span class="text-caption strong">78</span>
+                    </li>
+                    <li class="mock-detail-row">
+                      <span class="journey-mock-item-name">도구 활용</span>
+                      <span style="flex: 1"></span>
+                      <span class="text-caption strong">65</span>
+                    </li>
+                    <li class="mock-detail-row is-selected">
+                      <span class="journey-mock-item-name">프롬프트 설계</span>
+                      <span style="flex: 1"></span>
+                      <span class="text-caption strong">32</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="mock-detail-panel is-panel">
+                  <p class="text-caption">SkillFit 학습 경로</p>
+                  <ul class="journey-mock-list">
+                    <li class="journey-mock-item is-current">
+                      <span class="journey-mock-item-name">프롬프트 설계 기초</span>
+                    </li>
+                    <li class="journey-mock-item is-quiet">
+                      <span class="journey-mock-item-name">1:1 AI 튜터 보완</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- ③ 3개월차 · 성과 — 재진단 점수와 활용률이 함께 오른다 -->
+            <div class="preview-frame mock-screen scenario-mock"
+                 data-scenario-panel="outcome" data-mock-motion="ticker" aria-hidden="true">
+              <div class="journey-mock-head">
+                <span class="journey-mock-title">AI 역량·활용 대시보드</span>
+                <span class="journey-mock-badge is-live"><i class="is-pulse"></i>실시간</span>
+              </div>
+
+              <div class="mock-ticker-stats">
+                <article>
+                  <span class="text-caption">진단 전</span>
+                  <b class="is-pop">41<em>점</em></b>
+                </article>
+                <article>
+                  <span class="text-caption">재진단</span>
+                  <b class="is-pop is-current" style="animation-delay: .1s">72<em>점</em></b>
+                </article>
+              </div>
+
+              <!-- 재진단에서 올라간 막대 하나만 is-current로 강조한다 -->
+              <div class="mock-ticker-chart">
+                <span class="is-bar" style="--mock-bar-h: 24%"></span>
+                <span class="is-bar" style="--mock-bar-h: 38%"></span>
+                <span class="is-bar" style="--mock-bar-h: 46%"></span>
+                <span class="is-bar" style="--mock-bar-h: 62%"></span>
+                <span class="is-bar is-current" style="--mock-bar-h: 88%"></span>
+              </div>
+
+              <ul class="journey-mock-list">
+                <li class="journey-mock-item is-feed">
+                  <span class="journey-mock-avatar">김</span>
+                  <span class="journey-mock-item-name">재진단 완료 · 프롬프트 설계 +28</span>
+                  <span class="text-caption strong">방금</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      05 Position — 경쟁 구도 좌표.
+      어휘표에 없던 역할이라 `positioning`으로 새로 등록했다(사용자 확인 2026-08-31).
+      2축 좌표(가로 = 도구 역량, 세로 = 사람 역량)에 경쟁 유형 4개와 우리를 놓는다.
+      좌표는 그림이므로 스크린리더에는 숨기고, 바로 아래 설명문이 같은 내용을 글로 전한다.
+
+      어두운 판이다 — 이 페이지에서 강조 구간 하나를 갖는 자리이고(subpage-guide 7-1),
+      좌표 위 점이 배경과 대비돼야 "우리가 오른쪽 위"가 한눈에 읽힌다.
+    -->
+    <section class="positioning is-dark fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">05 · Position</p>
+          <h2>경쟁 구도에서 우리의 자리</h2>
+        </div>
+        <div class="section-content">
+          <div class="position-map" aria-hidden="true">
+            <span class="position-axis is-y">사람 역량 ↑</span>
+            <span class="position-axis is-x">도구 역량 →</span>
+
+            <!-- 각 점의 자리는 --pos-x·--pos-y(%)로 준다. 값이 마크업에 보여야
+                 비개발자가 좌표를 옮길 수 있다(마케팅팀 인수인계 전제). -->
+            <span class="position-dot" style="--pos-x: 22%; --pos-y: 68%">교육 단독형</span>
+            <span class="position-dot" style="--pos-x: 34%; --pos-y: 42%">진단 단독형</span>
+            <span class="position-dot" style="--pos-x: 72%; --pos-y: 22%">도구 단독형</span>
+            <span class="position-dot" style="--pos-x: 50%; --pos-y: 52%">컨설팅형</span>
+            <span class="position-dot is-us" style="--pos-x: 82%; --pos-y: 84%">Codepresso</span>
+          </div>
+
+          <p class="position-note">진단만 하는 회사는 처방이 없고, 교육만 하는 회사는 실행 도구가 없습니다. <strong>우리는 진단, 교육, 도구, 그리고 연결까지 전부입니다.</strong></p>
+          <!-- 실명 대신 유형으로만 표기하는 이유를 화면에 남긴다 — 나중에 이 페이지를
+               고치는 사람이 "왜 경쟁사 이름이 없는가"를 다시 묻지 않게 한다. -->
+          <p class="position-caveat">경쟁사는 유형으로만 표기. 실명 명기는 법무·전략 판단 사항.</p>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      06 Start Anywhere — 두 갈래 시작점.
+      "조건 2가지를 나열하고 하나를 고르게" 하는 자리라 공용 content-panel 2장을 쓴다.
+      마지막 한 줄(어느 쪽에서 시작해도 → 데이터 연결 → 전환 완성)은 결론이므로
+      공용 summary-banner를 그대로 쓴다.
+    -->
+    <section class="features fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">06 · Start Anywhere</p>
+          <h2>둘 다 있어야 완성되지만, <br data-break="desktop">시작은 더 급한 쪽부터</h2>
+          <p class="desc">한쪽만 먼저 도입해도 됩니다. 데이터는 나중에 이어집니다.</p>
+        </div>
+        <div class="section-content">
+          <ul class="start-grid">
+            <li>
+              <div class="content-panel start-card">
+                <div class="content-panel__intro">
+                  <p class="text-label brand">도구가 급하다면</p>
+                  <h3>AXpresso 먼저</h3>
+                  <p class="start-desc">업무 자동화로 즉시 시간을 회수하고, 쌓인 사용 데이터가 이후 역량 진단의 근거가 됩니다.</p>
+                </div>
+                <a class="btn btn-ghost" href="ax-build.html">
+                  업무 자동화 보기
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class="content-panel start-card">
+                <div class="content-panel__intro">
+                  <p class="text-label brand">사람이 급하다면</p>
+                  <h3>Platform 먼저</h3>
+                  <p class="start-desc">역량 진단과 교육으로 조직을 준비시키고, 역량 데이터가 이후 도구 도입의 설계도가 됩니다.</p>
+                </div>
+                <a class="btn btn-ghost" href="capability.html">
+                  역량 진단·교육 보기
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              </div>
+            </li>
+          </ul>
+
+          <p class="summary-banner start-note">어디서 시작해도 <strong class="brand">데이터로 이어지면</strong> <strong>전환은 완성됩니다</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      07 Industry — 업종별 적용.
+      "분류를 골라 그 분야 내용을 본다"가 그대로 공용 catalog-board의 역할이고
+      전환은 js/catalog-board.js가 맡는다(자동 순환하지 않는다 — 읽는 중 판이 바뀌면
+      방해라는 그 파일의 판단을 그대로 따른다).
+      다만 ax-build 03은 판 안이 항목 나열(ul)이고, 여기는 항목마다 소제목이 붙는
+      4블록(Pain Point / AXpresso 적용 / 역량 교육 매핑 / 기대 효과)이라
+      __items 대신 정의형 목록 하나만 페이지 CSS로 추가한다.
+    -->
+    <section class="catalog fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">07 · Industry</p>
+          <h2>우리 회사에선 어떻게 쓰나요</h2>
+        </div>
+        <div class="section-content">
+          <div class="preview-frame preview-frame--flush">
+            <div class="catalog-board" data-catalog-board>
+              <div class="catalog-board__rail" role="tablist" aria-label="업종">
+                <button class="catalog-board__category is-active" type="button" data-catalog-category="manufacturing">
+                  <span class="catalog-board__category-name">제조</span>
+                </button>
+                <button class="catalog-board__category" type="button" data-catalog-category="finance">
+                  <span class="catalog-board__category-name">금융</span>
+                </button>
+                <button class="catalog-board__category" type="button" data-catalog-category="retail">
+                  <span class="catalog-board__category-name">유통</span>
+                </button>
+                <button class="catalog-board__category" type="button" data-catalog-category="it">
+                  <span class="catalog-board__category-name">IT서비스</span>
+                </button>
+              </div>
+
+              <div class="catalog-board__main">
+                <div class="catalog-board__panel is-active" data-catalog-panel="manufacturing">
+                  <ul class="catalog-board__items industry-cards">
+                    <li class="industry-card">
+                      <p class="industry-card-label">Pain Point</p>
+                      <p class="industry-card-body">설비·품질 데이터는 쌓이는데 보고서·검사·발주는 여전히 수작업.</p>
+                    </li>
+                    <li class="industry-card">
+                      <p class="industry-card-label">AXpresso 적용</p>
+                      <p class="industry-card-body">품질 리포트 자동화, 이슈 모니터링 에이전트, 회의록 자동화.</p>
+                    </li>
+                    <li class="industry-card">
+                      <p class="industry-card-label">역량 교육 매핑</p>
+                      <p class="industry-card-body">현장 관리자 AI Fluent 진단 → 실무 프롬프트·에이전트 활용 교육.</p>
+                    </li>
+                    <li class="industry-card">
+                      <p class="industry-card-label">기대 효과</p>
+                      <p class="industry-card-body">반복 문서 업무 절감, 데이터 기반 의사결정 정착.</p>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- 제조 외 3개 업종은 아직 확정 문구를 받지 못했다.
+                     빈 판을 두면 탭을 눌렀을 때 아무것도 안 나와 고장으로 읽히므로,
+                     같은 4블록 골격에 자리만 표시해 둔다. 문구를 받으면 dd만 바꾼다. -->
+                <div class="catalog-board__panel" data-catalog-panel="finance">
+                  <ul class="catalog-board__items industry-cards">
+                    <li class="industry-card">
+                      <p class="industry-card-label">Pain Point</p>
+                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                    </li>
+                    <li class="industry-card">
+                      <p class="industry-card-label">AXpresso 적용</p>
+                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                    </li>
+                    <li class="industry-card">
+                      <p class="industry-card-label">역량 교육 매핑</p>
+                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                    </li>
+                    <li class="industry-card">
+                      <p class="industry-card-label">기대 효과</p>
+                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="catalog-board__panel" data-catalog-panel="retail">
+                  <ul class="catalog-board__items industry-cards">
+                    <li class="industry-card">
+                      <p class="industry-card-label">Pain Point</p>
+                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                    </li>
+                    <li class="industry-card">
+                      <p class="industry-card-label">AXpresso 적용</p>
+                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                    </li>
+                    <li class="industry-card">
+                      <p class="industry-card-label">역량 교육 매핑</p>
+                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                    </li>
+                    <li class="industry-card">
+                      <p class="industry-card-label">기대 효과</p>
+                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="catalog-board__panel" data-catalog-panel="it">
+                  <ul class="catalog-board__items industry-cards">
+                    <li class="industry-card">
+                      <p class="industry-card-label">Pain Point</p>
+                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                    </li>
+                    <li class="industry-card">
+                      <p class="industry-card-label">AXpresso 적용</p>
+                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                    </li>
+                    <li class="industry-card">
+                      <p class="industry-card-label">역량 교육 매핑</p>
+                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                    </li>
+                    <li class="industry-card">
+                      <p class="industry-card-label">기대 효과</p>
+                      <p class="industry-card-body" class="is-todo">준비 중입니다.</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-final fade-up">
+      <div class="section-wrap col cta-final-inner">
+        <h2 class="cta-final-title">어디가 더 급한지부터<br>진단하세요</h2>
+        <p class="cta-final-desc">진단 결과가 도입 순서를 알려드립니다.</p>
+        <div class="cta-final-actions">
+          <a href="#" class="btn btn-primary btn-lg" id="hero-diagnosis-cta">
+            3분 AI 활용 진단 시작
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#" class="btn btn-outline-inverse btn-lg">도입 문의</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="partials/footer.html"></div>
+
+  <!-- include-partials.js를 가장 먼저 둔다(GNB·footer를 삽입한 뒤 나머지가 붙는다).
+       stat-reveal은 01의 metric-card 카운트업, catalog-board는 07의 업종 탭 전환용.
+       이 페이지는 feature-card 순환·part-nav·journey-stage·floating-cta를 쓰지 않으므로
+       그 스크립트는 넣지 않는다(subpage-guide 4번 판단 기준). -->
+  <script src="js/include-partials.js"></script>
+  <script src="js/fade-up.js"></script>
+  <script src="js/header-scroll.js"></script>
+  <script src="js/nav-menu.js"></script>
+  <script src="js/stat-reveal.js"></script>
+  <script src="js/catalog-board.js"></script>
+  <script src="js/scenario-switch.js"></script>
+</body>
+
+</html>

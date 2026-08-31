@@ -1,6 +1,9 @@
 /*
  * Stat Reveal
- * [data-stat-reveal] 안의 .metric-card를 스크롤 진입 시 fade-up시킨다.
+ * [data-stat-reveal] 안의 카드를 스크롤 진입 시 fade-up시킨다.
+ * - 대상은 기본이 .metric-card이고, 다른 카드를 쓰는 섹션은 그룹에
+ *   data-stat-card="{선택자}"로 알린다(difference 01의 .problem-card).
+ *   선택자를 마크업이 정하므로 이 파일이 페이지마다 늘어나지 않는다.
  * - 화면에 들어오는 순간 .is-visible이 붙어 아래에서 위로 올라오며 나타난다.
  * - 카드끼리 순차 지연(stagger)을 줘서 왼쪽에서 오른쪽으로 차례로 등장한다.
  * - 동시에 숫자(.num)는 0에서 목표값까지 카운트업되고, progress bar는 실측 달성률까지 채워진다.
@@ -62,7 +65,8 @@
   };
 
   groups.forEach((group) => {
-    const cards = Array.from(group.querySelectorAll('.metric-card'));
+    const cardSelector = group.dataset.statCard || '.metric-card';
+    const cards = Array.from(group.querySelectorAll(cardSelector));
     if (!cards.length) return;
 
     // 모션을 원하지 않는 사용자, 또는 IntersectionObserver가 없는 환경에서는
