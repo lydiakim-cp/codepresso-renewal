@@ -1,64 +1,47 @@
 /*
  * Page: ax-build.html (AX Build 제품 소개)
  * main.css 위에 얹는 페이지 전용 계층. 공용 컴포넌트로 표현 안 되는 hero·성과 비교만 정의한다.
- * cta-final은 css/components/ui/에 있는 범용 컴포넌트라 main.css가 로드한다 —
- * 여기서 따로 import하지 않는다.
+ * cta-final은 css/components/ui/의 범용 컴포넌트라 여기서 따로 import하지 않는다.
  */
 
 @layer components {
-  /*
-   * 페이지 전체 다크모드 — AXpresso 전용 다크 네이비 팔레트(css/tokens.css의
-   * --color-axpresso-*)로 통일한다. 개별 색을 하나씩 바꾸는 대신 이 스코프 안에서
-   * 시맨틱 토큰(--color-ink-*, --color-surface-sunken, --color-line* 등) 자체를
-   * 다크값으로 재정의해, hero·feature-card·process-steps·faq-list 같은 공용
-   * 컴포넌트가 코드 수정 없이 그대로 다크로 렌더링되게 한다.
-   *
-   * --color-surface(순백)와 --color-brand*는 재정의하지 않는다 — 버튼(btn-primary)의
-   * 흰 글자색·cta-final의 흰 타이포처럼 "다크 배경 위 흰색"으로 쓰이는 자리가 많아
-   * 여기까지 건드리면 오히려 대비가 깨진다. 카드처럼 명시적으로
-   * background: var(--color-surface)를 쓰는 흰 판만 아래에서 개별적으로
-   * axpresso-box로 바꾼다.
-   */
+  /* 페이지 전체 다크모드 — .ax-build 안에서 시맨틱 토큰 자체를 axpresso 값으로
+     재정의해, 공용 컴포넌트가 코드 수정 없이 다크로 렌더링되게 한다. */
   .ax-build {
-    /*
-     * --color-ink-heaviest는 재정의하지 않는다 — 이 토큰은 "가장 어두운 잉크"라는
-     * 뜻으로 텍스트뿐 아니라 cta-final·outcome-logo--invert 같은 어두운 배경에도
-     * 쓰인다. 여기서 흰색으로 바꾸면 그 배경들이 하얗게 뒤집힌다. heaviest를 텍스트로
-     * 쓰는 자리(hero-title 등)는 아래에서 개별적으로 axpresso-ink를 참조하게 한다.
-     */
+    /* heaviest는 cta-final 등 "배경"으로도 쓰여 재정의 안 함 — 텍스트 자리는
+       아래서 개별적으로 axpresso-ink를 참조한다. */
     --color-ink: var(--color-axpresso-ink);
     --color-ink-light: var(--color-axpresso-ink-light);
     --color-ink-lighter: var(--color-axpresso-ink-lighter);
     --color-surface-sunken: var(--color-axpresso-bg-2);
     --color-surface-mist: var(--color-axpresso-box-tint);
-    /* 매우 어두운 배경 위에서는 흰 테두리를 라이트 모드보다 진하게 둬야 카드
-       경계가 또렷하다 — 14%/24%로는 거의 안 보여 구분이 힘들다는 피드백. */
+    /* 다크 배경 위 흰 테두리는 라이트 모드보다 진하게(14%→20%, 24%→32%) */
     --color-line: color-mix(in srgb, var(--color-axpresso-ink) 20%, transparent);
     --color-line-heavy: color-mix(in srgb, var(--color-axpresso-ink) 32%, transparent);
     --color-brand-tint-1: var(--color-axpresso-box-tint);
     --color-brand-tint-2: color-mix(in srgb, var(--color-brand) 32%, transparent);
 
-    /* 페이지 전체에 그라데이션 하나를 깔면 섹션이 다 같은 톤으로 이어져 경계가
-       안 보인다 — 바탕은 가장 짙은 단색 하나로 고정하고, 섹션별 진하기 차이와
-       구분선은 각 섹션이 아래에서 개별적으로 낸다. */
+    /* 바탕은 단색(bg-1) 고정 — 그라데이션 하나면 섹션 경계가 안 보인다 */
     background: var(--color-axpresso-bg-1);
     display: flex;
     flex-direction: column;
   }
 
-  /* 섹션 경계 — main 바로 아래 모든 섹션에 위쪽 구분선을 그어 어디서 끝나는지
-     보이게 한다. sub-hero(첫 화면)는 위 섹션이 없어 제외. */
+  /* 섹션 경계선 — 어디서 끝나는지 보이게. sub-hero(첫 화면)는 제외 */
   .ax-build > section + section {
     border-top: 1px solid var(--color-line);
   }
 
-  /*
-   * --color-ink-heaviest를 텍스트로 참조하는 자리 — h1·h2(base.css)부터 hero·
-   * feature-card·faq-list의 제목류까지 전역/공용 컴포넌트가 이 토큰을 직접 쓰고
-   * 있어, 위에서 토큰 자체를 재정의하지 않은 만큼 이 스코프 안에서 개별적으로
-   * axpresso-ink로 되돌린다. cta-final처럼 heaviest를 "배경"으로 쓰는 곳은
-   * 건드리지 않는다.
-   */
+  /* .tag 전부 흰/회색 유리질감으로 통일(섹션 번호·hero·06 업종 배지 전부 포함) */
+  .ax-build .tag {
+    background: color-mix(in srgb, white 14%, transparent);
+    color: var(--color-axpresso-ink);
+    border: 1px solid color-mix(in srgb, white 22%, transparent);
+    backdrop-filter: blur(6px) saturate(140%);
+    -webkit-backdrop-filter: blur(6px) saturate(140%);
+  }
+
+  /* heaviest를 텍스트로 쓰는 자리 — h1·h2·hero·feature-card·faq-list 제목류 */
   .ax-build h1,
   .ax-build h2,
   .ax-build .hero-title,
@@ -75,12 +58,15 @@
     color: color-mix(in srgb, var(--color-brand) 55%, white);
   }
 
-  /* Hero — 공통 골격은 components/ui/hero.css. 배경·테두리·텍스처 오버레이가
-     밝은 면(sunken)을 전제로 하므로 다크에서는 무력화하고 텍스처 위치만 가져간다. */
+  /* Hero — 밝은 면 전제인 배경·텍스처 오버레이를 다크용으로 무력화 */
   .ax-build .sub-hero {
-    --hero-texture-position: top right;
     background: transparent;
     border-bottom-color: var(--color-line);
+  }
+
+  /* bg-line2 텍스처는 밝은 면 전제라 다크에서는 끈다 */
+  .ax-build .sub-hero::before {
+    background-image: none;
   }
 
   .ax-build .sub-hero::after {
@@ -98,14 +84,11 @@
     padding-bottom: var(--space-60);
   }
 
-  /* 20일 / AI Agent / 3개월 핵심 수치 — 외피·크기는 hero.css의 hero-facts 표준을
-     그대로 쓴다. 진입 애니메이션 딜레이만 이 페이지 hero-copy 길이(.24s에 끝남)에 맞춘다. */
   .ax-build .hero-facts {
     animation: rise-in var(--duration-scroll) var(--ease-scroll) .32s both;
   }
 
-  /* surface-glass(hero-facts 외피)는 밝은 배경을 전제로 한 반투명 흰색이라
-     다크에서는 박스 톤으로 반전한다. */
+  /* surface-glass는 밝은 배경 전제라 다크에서 박스 톤으로 반전 */
   .ax-build .hero-facts.surface-glass {
     background: var(--color-axpresso-box-tint);
     border-color: var(--color-line);
@@ -115,7 +98,7 @@
     border-left-color: var(--color-line-heavy);
   }
 
-  /* Best Fit — feature-card 자동 순환. 활성 카드만 박스 톤으로 구분 */
+  /* Best Fit — 활성 카드만 박스 톤으로 구분 */
   .ax-build .features .feature-card.is-active {
     background: var(--color-axpresso-box-tint);
     box-shadow: none;
@@ -135,13 +118,8 @@
     background: var(--color-axpresso-ink);
   }
 
-  /*
-   * 01 What It Is — 사람 → 분담 → Agent 3단계.
-   * mock-motion F·stage의 등장 순서(is-step/is-cue/is-flow)만 빌려 쓰고,
-   * 칸 레이아웃은 여기서 정의한다. index의 .difference-card 계열은
-   * css/pages/index.css 안에 있는 index 전용이라 클래스를 가져오지 않는다.
-   * 목업 안 텍스트는 14px 제약의 예외 — 4단 위계를 이 루트 안에만 선언한다.
-   */
+  /* 01 What It Is — 사람→분담→Agent 3단계. mock-motion stage 순서만 빌려 쓴다.
+     목업 안 텍스트는 14px 예외 — 4단 위계를 이 루트 안에만 선언 */
   .ax-build .shift {
     --shift-text-title: 15px;
     --shift-text-lg: 13px;
@@ -166,7 +144,7 @@
     background: var(--color-axpresso-box);
   }
 
-  /* 1·2칸은 아직 결론이 아니라 가라앉혀 두고, 3칸만 브랜드 톤으로 올린다 */
+  /* 1·2칸은 가라앉히고 3칸(결론)만 브랜드 톤으로 올린다 */
   .ax-build .shift-step.is-after {
     border-color: var(--color-brand);
     background: var(--color-brand-tint-1);
@@ -231,10 +209,8 @@
     letter-spacing: 0;
   }
 
-  /* Agent가 맡은 줄만 브랜드 톤으로 — 어느 줄이 넘어갔는지가 이 칸의 정보다.
-     --color-brand-dark는 밝은 배경 전용 다크블루라 다크 카드 위에서는 글자가
-     거의 안 보인다(3칸 is-after는 배경 자체도 브랜드 톤이라 대비가 0에 가까웠다) —
-     흰색을 섞어 올린 밝은 브랜드 톤으로 바꾼다. */
+  /* Agent가 맡은 줄만 브랜드 톤 — brand-dark는 다크 카드 위 대비가 없어
+     흰색 섞은 밝은 브랜드 톤으로 교체 */
   .ax-build .shift-task.is-agent {
     background: var(--color-brand-tint-2);
     color: color-mix(in srgb, var(--color-brand) 55%, white);
@@ -259,7 +235,7 @@
     color: var(--color-surface);
   }
 
-  /* Agent가 이미 돌고 있다는 표시 — 줄 왼쪽에 브랜드 색 축을 세운다 */
+  /* Agent가 이미 돌고 있다는 표시 — 줄 왼쪽에 브랜드 색 축 */
   .ax-build .shift-task.is-done {
     box-shadow: inset 2px 0 0 var(--color-brand);
   }
@@ -278,7 +254,7 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  /* 3칸의 결론 수치. 목업 4단 스케일 위로 올려도 되는 자리다(결론 강조) */
+  /* 3칸 결론 수치 — 목업 4단 스케일 위로 올려도 되는 자리(결론 강조) */
   .ax-build .shift-verdict {
     margin-top: auto;
     display: flex;
@@ -302,7 +278,7 @@
     line-height: 15px;
   }
 
-  /* 칸과 칸 사이 화살표. 오른쪽 경계에 걸터앉아 다음 칸으로 넘긴다 */
+  /* 칸 사이 화살표 — 오른쪽 경계에 걸터앉아 다음 칸으로 넘긴다 */
   .ax-build .shift-arrow {
     position: absolute;
     top: 50%;
@@ -325,23 +301,19 @@
     height: 14px;
   }
 
-  /* 목업은 aria-hidden이므로 같은 내용을 읽을 수 있는 한 줄로 남긴다 */
+  /* 목업은 aria-hidden — 같은 내용을 읽을 수 있는 한 줄로 남긴다 */
   .ax-build .shift-note {
     margin-top: var(--space-20);
     color: var(--color-ink-lighter);
     text-align: center;
   }
 
-  /* 03 워크플로 — 어두운 판 하나에 공통(고정) + 직군별(탭) 두 묶음을 나란히 둔다.
-     공통 7개는 늘 보이고, 우측만 탭으로 갈아 끼운다.
-     AXpresso 전용 다크 네이비 그라데이션 — --color-axpresso-bg-1~4 (css/tokens.css). */
+  /* 03 워크플로 — 공통(고정) + 직군별(탭) 두 묶음을 나란히 둔 어두운 판 */
   .ax-build .service-catalog {
     display: grid;
-    /* 양쪽 다 4열이라 폭을 같게 나눈다 — 타일 크기가 좌우 동일해야 한다 */
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-28);
-    /* 배지 / 탭 레일 자리 / 타일 세 줄. 공통은 탭이 없어 2행이 비고,
-       타일이 3행부터 시작해 직군별과 같은 y에서 맞는다. */
+    /* 공통은 탭이 없어 타일을 3행으로 밀어 직군별과 y를 맞춘다 */
     grid-template-rows: auto auto minmax(0, 1fr);
     align-items: start;
     padding: var(--space-28);
@@ -367,14 +339,13 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  /* 직군별은 색을 달리해 두 묶음이 구분되게 — 박스 톤(axpresso-box)으로 가라앉힌다 */
+  /* 직군별은 박스 톤으로 가라앉혀 공통과 구분 */
   .ax-build .service-catalog__label--alt {
     background: var(--color-axpresso-box);
     color: var(--color-axpresso-ink);
   }
 
-  /* 배지 / 탭 레일 / 타일 3행을 좌우가 같은 y에서 시작하게 맞춘다.
-     공통은 탭이 없으니 타일을 3행으로 밀어 직군별 타일과 줄을 맞춘다. */
+  /* 배지/탭 레일/타일 3행을 좌우가 같은 y에서 시작하게 맞춘다 */
   .ax-build .service-catalog__fixed,
   .ax-build .service-catalog__tabbed {
     display: grid;
@@ -388,7 +359,6 @@
     grid-row: 3;
   }
 
-  /* 보드도 부모의 2·3행(레일 자리 + 타일 자리)을 그대로 물려받는다 */
   .ax-build .service-catalog .catalog-board {
     display: grid;
     grid-row: 2 / 4;
@@ -438,7 +408,7 @@
     color: var(--color-axpresso-ink);
   }
 
-  /* 판이 absolute라 높이를 줄 것이 없다 — 가장 항목이 많은 분야(8개)만큼 잡는다 */
+  /* 판이 absolute라 가장 항목 많은 분야(8개)만큼 높이를 잡는다 */
   .ax-build .service-catalog .catalog-board__main {
     flex: 1;
     min-height: 292px;
@@ -450,7 +420,6 @@
     gap: 0;
   }
 
-  /* 아이콘 타일 — 좌우 묶음 모두 4열 */
   .ax-build .service-catalog .catalog-board__items {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-10);
@@ -462,17 +431,14 @@
     justify-content: center;
     gap: var(--space-10);
     padding: var(--space-16) var(--space-8);
-    /* 항목명 1~2줄에도 한 행의 아래선이 맞게 */
     min-height: 112px;
     border-color: transparent;
-    /* 어두운 판이라 타일은 박스 톤으로 한 단 띄운다 */
     background: var(--color-axpresso-box-tint);
     color: var(--color-axpresso-ink);
     text-align: center;
     word-break: keep-all;
   }
 
-  /* 앞 상태 점 자리를 아이콘이 대신한다 */
   .ax-build .service-catalog .catalog-board__items > li::before {
     content: none;
   }
@@ -500,7 +466,6 @@
     transform: scale(1.08);
   }
 
-  /* 워크플로 보드 아래 보조 안내 문구 */
   .ax-build .catalog-note {
     margin-top: var(--space-20);
     color: var(--color-ink-lighter);
@@ -558,12 +523,7 @@
     color: var(--color-ink-light);
   }
 
-  /*
-   * 04 20-Day Process — 좌측 sticky 요약 + 우측 단계 목록.
-   * 골격은 공용 .section-wrap.row.is-sticky가 담당하므로 여기서는
-   * 우측 단계 카드의 생김새만 정의한다. 좌측 전체 일정 요약 판(process-summary)은
-   * 제거했다(사용자 확인 — 불필요).
-   */
+  /* 04 20-Day Process — 좌측 sticky는 공용 골격이 담당. 좌측 요약 판은 삭제됨 */
   .ax-build .process-steps {
     display: flex;
     flex-direction: column;
@@ -573,7 +533,6 @@
   .ax-build .process-steps > li {
     position: relative;
     display: grid;
-    /* 아이콘 칸(48px) + 본문. 기간·번호 줄은 두 칸을 가로지른다 */
     grid-template-columns: var(--space-48) minmax(0, 1fr);
     gap: var(--space-12) var(--space-20);
     padding: var(--space-28);
@@ -607,9 +566,7 @@
     font-weight: var(--font-weight-medium);
   }
 
-  /* 배경으로 물러나는 순번. 위계를 낮추는 것이 목적이라 색으로만 눌렀다.
-     다크 카드 위에서는 브랜드 tint(32% 투명)가 배경에 묻히므로 axpresso ink를
-     옅게 섞어 카드보다는 밝고 본문보다는 낮은 위계로 잡는다. */
+  /* 순번은 위계를 낮추는 게 목적 — 카드보다 밝고 본문보다 낮게 */
   .ax-build .step-no {
     color: color-mix(in srgb, var(--color-axpresso-ink) 16%, transparent);
     font-size: var(--text-heading-32);
@@ -617,8 +574,6 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  /* 본문이 2줄일 때 아이콘이 통째로 떠 보이지 않게 제목 줄 높이에 맞춰 붙인다.
-     카드(axpresso-box)보다 한 단 밝혀야 아이콘 자리가 도드라진다. */
   .ax-build .step-icon {
     align-self: start;
     display: inline-flex;
@@ -651,19 +606,8 @@
     color: var(--color-ink-light);
   }
 
-  /*
-   * 06 Real Outcomes — 마크업을 공용 outcome-card(components/ui/outcome-card.css)
-   * API로 통일했다(cases·skillcertify와 동일). 카드 껍데기·로고 판·타이포는
-   * 그 파일이 전부 정하므로 여기서는 다크 배경에서 깨지는 지점만 되돌린다 —
-   * 카드 배경(--color-surface, 흰 판)은 이 섹션 전용 유리 카드 규칙에서,
-   * 로고 판(--color-surface-sunken, 카드보다 옅은 톤 전제)은 카드보다 한 단
-   * 밝은 axpresso-box-tint로.
-   *
-   * outcome-shift/outcome-before/outcome-arrow는 outcome-card.css가 정하지
-   * 않는다(cases.css가 자기 페이지에서 정의하는 것과 같은 구조) — 여기서
-   * cases.css와 같은 값으로 정의한다. svg에 width/height를 명시하지 않으면
-   * 브라우저가 원본 크기로 렌더링해 화살표가 커 보이는 문제가 있었다.
-   */
+  /* 06 Real Outcomes — 마크업은 공용 outcome-card API로 통일(cases와 동일).
+     outcome-shift/before/arrow는 outcome-card.css가 정하지 않아 여기서 정의 */
   .ax-build .outcome-shift {
     display: flex;
     align-items: baseline;
@@ -699,19 +643,13 @@
     background: var(--color-axpresso-box-tint);
   }
 
-  /* invert 로고판(흰 글자 로고용 검정 판)은 별도로 지켜준다 — ax-build.css는
-     layer 없이 로드돼 위 .outcome-logo 규칙이 layer(components) 안의
-     .outcome-logo--invert(outcome-card.css)를 명시도와 무관하게 덮어쓴다. */
+  /* invert 로고판(체인로지스)만 별도 지킴 — ax-build.css가 언레이어드라
+     안 지키면 layer(components) 안 원본을 덮어써 버린다 */
   .ax-build .outcome-logo--invert {
     background: var(--color-ink-heaviest);
   }
 
-  /*
-   * 섹션 배경 리듬 — .ax-build 바탕은 가장 짙은 단색(bg-1) 하나로 고정했으므로,
-   * 섹션마다 한 단씩 다른 진하기를 명시적으로 줘서 라이트 모드의 "흰 면 · sunken
-   * 면 교차"에 대응하는 경계를 만든다. 03 워크플로 보드·06 Real Outcomes는
-   * 강조 구간이라 더 밝은 그라데이션을 유지해 시선이 멈추게 한다.
-   */
+  /* 섹션 배경 리듬 — 단색 바탕 위 섹션마다 진하기를 다르게 줘서 경계를 만든다 */
   .ax-build .intro,
   .ax-build .catalog,
   .ax-build .deliverables,
@@ -724,7 +662,7 @@
     background: var(--color-axpresso-bg-2);
   }
 
-  /* --- 강조 구간: 06 Real Outcomes — 03 워크플로 보드와 같은 그라데이션으로 톤을 맞춘다 --- */
+  /* 강조 구간 — 06은 03 워크플로 보드와 같은 그라데이션으로 톤을 맞춘다 */
   .ax-build .outcomes {
     position: relative;
     overflow: hidden;
@@ -740,7 +678,7 @@
     z-index: 1;
   }
 
-  /* 카드는 유리 표면으로 띄운다 — 옅은 판 위에서 구분이 서도록 배경에 블러를 얹는다 */
+  /* 카드는 유리 표면 — 옅은 판 위 구분을 위해 배경에 블러를 얹는다 */
   .ax-build .outcomes .outcome-list > li {
     background: var(--color-axpresso-box-tint);
     backdrop-filter: blur(16px) saturate(160%);
@@ -751,7 +689,7 @@
     background: var(--color-axpresso-box);
   }
 
-  /* 결과 수치 — 어두운 배경에서 브랜드 원색은 어두워 보이므로 흰색을 섞어 올린다 */
+  /* 결과 수치 — 브랜드 원색은 다크 배경에서 어두워 보여 흰색을 섞는다 */
   .ax-build .outcomes .outcome-after,
   .ax-build .outcomes .outcome-headline {
     color: color-mix(in srgb, var(--color-brand) 45%, white);
@@ -761,7 +699,7 @@
     color: color-mix(in srgb, var(--color-brand) 45%, white);
   }
 
-  /* 07 FAQ — faq-list는 흰 카드(--color-surface)를 전제로 하므로 박스 톤으로 반전한다 */
+  /* 07 FAQ — 흰 카드 전제인 faq-list를 박스 톤으로 반전 */
   .ax-build .faq-list > details {
     background: var(--color-axpresso-box);
   }
@@ -771,7 +709,7 @@
     border-color: var(--color-brand-tint-2);
   }
 
-  /* 최하단 CTA — 공용 cta-final 배경을 우측 하단 구역으로 변경 */
+  /* 최하단 CTA — 공용 cta-final 배경 위치를 우측 하단으로 변경 */
   .ax-build .cta-final::before {
     background-position: bottom right;
     background-size: 220%;
