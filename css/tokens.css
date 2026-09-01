@@ -197,6 +197,30 @@
   --motion-pulse-min: .5;
   --motion-float-y: -5px;
   --motion-nudge-x: 3px;
+
+  /* ---------------------------------------------
+   * Color — AXpresso (업무 자동화) 전용 다크톤
+   * 일반 서비스 페이지는 밝은 면(--color-surface-*) 기준이지만,
+   * AXpresso 관련 화면은 이 다크 네이비 팔레트를 쓴다.
+   * --------------------------------------------- */
+  /* 그라데이션 배경 4단 (진한 순 → 옅은 순) */
+  --color-axpresso-bg-1: #050C21;
+  --color-axpresso-bg-2: #06102E;
+  --color-axpresso-bg-3: #07143B;
+  --color-axpresso-bg-4: #081640;
+
+  /* 박스(카드·패널) 면 — 단독 배경 또는 --color-brand + 16% 투명도 중 상황에 맞게 선택 */
+  --color-axpresso-box: #081F63;
+  --color-axpresso-box-tint: rgba(26, 97, 234, .16); /* --color-brand 16% */
+
+  /* 텍스트 — 화이트 + opacity로 위계만 조절, 색상 자체는 바꾸지 않는다.
+   * 순백 100%는 제목처럼 면적이 작은 자리에만 쓴다 — 본문처럼 넓은 면적에
+   * 오래 깔리면 다크 배경 위에서 눈부심을 준다. light/lighter는 그래서
+   * 살짝 더 낮춰(72%→82%는 오히려 밝아지므로 반대 방향인 66%/42%로) 잡았다.
+   */
+  --color-axpresso-ink: #FFFFFF;
+  --color-axpresso-ink-light: rgba(255, 255, 255, .66);
+  --color-axpresso-ink-lighter: rgba(255, 255, 255, .42);
 }
 
 /* ---------------------------------------------

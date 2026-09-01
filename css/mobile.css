@@ -205,10 +205,6 @@
   .ax-build .deliverable-list { grid-template-columns: 1fr; }
   .ax-build .sub-hero .hero-wrap { padding-top: 120px; }
 
-  /* 04 Process — 좌측 sticky는 layout.css 900px 규칙이 이미 풀어 놓는다.
-     좌측 요약 판이 한 줄로 넓어지면 막대가 과하게 길어지므로 폭을 제한한다. */
-  .ax-build .process-summary { max-width: 480px; }
-
   /* 01 What It Is — 3칸이 좁아지면 칸 안 목록이 눌려 읽히지 않아 1열로 쌓는다.
      같은 3단계 서사가 위→아래로 그대로 이어지므로 순서는 유지된다. */
   .ax-build .shift {
@@ -943,11 +939,6 @@
   }
 
   /* 04 Process — 아이콘 칸을 접고 기간 배지 아래로 본문을 흘린다 */
-  .ax-build .process-summary {
-    max-width: none;
-    padding: var(--space-20);
-  }
-
   .ax-build .process-steps > li {
     grid-template-columns: 1fr;
     gap: var(--space-12);

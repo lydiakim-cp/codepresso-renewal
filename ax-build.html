@@ -800,30 +800,6 @@
             <p class="desc">무엇을 만들지 합의한 뒤 구축하고, <br data-break="desktop">실제 사용자와 함께 효과를 확인합니다.</p>
           </div>
 
-          <!-- 좌측이 고정된 채 우측이 흐르므로, 전체 일정을 한눈에 잡아주는 판을 함께 둔다 -->
-          <div class="process-summary">
-            <p class="text-label brand">전체 일정</p>
-            <ol class="process-scale">
-              <li>
-                <span class="scale-term">Day 1</span>
-                <span class="scale-bar" style="--scale-w: 8%"></span>
-              </li>
-              <li>
-                <span class="scale-term">Day 2~5</span>
-                <span class="scale-bar" style="--scale-w: 24%"></span>
-              </li>
-              <li>
-                <span class="scale-term">Day 6~15</span>
-                <span class="scale-bar" style="--scale-w: 62%"></span>
-              </li>
-              <li>
-                <span class="scale-term">Day 16~20</span>
-                <span class="scale-bar" style="--scale-w: 34%"></span>
-              </li>
-            </ol>
-            <p class="process-summary-foot">FDE가 현업 담당자와 <strong>매주 확인</strong>하며 진행합니다.</p>
-          </div>
-
           <a class="btn btn-primary" href="#">
             20일 일정 상담받기
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -986,11 +962,10 @@
       </div>
     </section>
 
-    <!-- 06 Real Outcomes — 이 페이지에서 유일하게 어두운 섹션.
-         배경 리듬(흰 면 · sunken 면)만으로는 강조가 잡히지 않아, 가장 설득력 있는
-         구간 하나를 cta-final과 같은 어두운 계열로 올렸다(사용자 확인됨).
-         어두운 판 위에서는 tag·본문 색이 반전돼야 하므로 .is-dark 변형을 병기한다. -->
-    <section class="outcomes is-dark fade-up">
+    <!-- 06 Real Outcomes — 공용 outcome-card(components/ui/outcome-card.css) 마크업을
+         그대로 쓴다. cases.html·skillcertify.html과 같은 카드 껍데기·로고 판·타이포로
+         통일해, 다크 배경 위에서도 별도 오버라이드 없이 같은 디자인으로 읽힌다. -->
+    <section class="outcomes fade-up">
       <div class="section-wrap col">
         <div class="section-header">
           <div class="section-title text-left">
@@ -998,7 +973,7 @@
             <h2>실제 고객 업무는 <br data-break="desktop">이렇게 달라졌습니다</h2>
           </div>
           <div class="section-cta">
-            <a href="stories.html" class="btn btn-outline-inverse">
+            <a href="cases.html" class="btn btn-outline-inverse">
               고객 사례 전체 보기
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
@@ -1007,34 +982,49 @@
         <div class="section-content">
           <ul class="outcome-list">
             <li>
-              <span class="tag">금융·VC</span>
-              <p class="outcome-client">트랜스링크인베스트먼트</p>
-              <p class="outcome-shift">
-                <span class="outcome-before">3~5일</span>
-                <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="outcome-after">1시간 이내</span>
-              </p>
-              <p class="outcome-detail">100개 이상 포트폴리오사 실사 자동화 · 월 30시간 절감</p>
+              <div class="outcome-logo">
+                <img src="images/logos/logo-translink.svg" alt="트랜스링크인베스트먼트 로고" loading="lazy">
+              </div>
+              <div class="outcome-body">
+                <p class="tag">금융·VC</p>
+                <p class="outcome-shift">
+                  <span class="outcome-before">3~5일</span>
+                  <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="outcome-after">1시간 이내</span>
+                </p>
+                <p class="outcome-detail">100개 이상 포트폴리오사 실사 자동화 · 월 30시간 절감</p>
+                <p class="outcome-client">트랜스링크인베스트먼트</p>
+              </div>
             </li>
             <li>
-              <span class="tag">물류·마케팅</span>
-              <p class="outcome-client">체인로지스</p>
-              <p class="outcome-shift">
-                <span class="outcome-before">2~4시간</span>
-                <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="outcome-after">3분</span>
-              </p>
-              <p class="outcome-detail">분류·게시 자동화 · 처리량 20배 향상</p>
+              <div class="outcome-logo outcome-logo--invert">
+                <img src="images/logos/logo-chainlogis.png" alt="체인로지스 로고" loading="lazy">
+              </div>
+              <div class="outcome-body">
+                <p class="tag">물류·마케팅</p>
+                <p class="outcome-shift">
+                  <span class="outcome-before">2~4시간</span>
+                  <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="outcome-after">3분</span>
+                </p>
+                <p class="outcome-detail">분류·게시 자동화 · 처리량 20배 향상</p>
+                <p class="outcome-client">체인로지스</p>
+              </div>
             </li>
             <li>
-              <span class="tag">이커머스·정산</span>
-              <p class="outcome-client">UHA Company</p>
-              <p class="outcome-shift">
-                <span class="outcome-before">2~3시간</span>
-                <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="outcome-after">30초</span>
-              </p>
-              <p class="outcome-detail">주문 정산 자동화 · 월 60시간 절감</p>
+              <div class="outcome-logo">
+                <img src="images/logos/logo-wooha.png" alt="우하컴퍼니 로고" loading="lazy">
+              </div>
+              <div class="outcome-body">
+                <p class="tag">이커머스·정산</p>
+                <p class="outcome-shift">
+                  <span class="outcome-before">2~3시간</span>
+                  <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="outcome-after">30초</span>
+                </p>
+                <p class="outcome-detail">주문 정산 자동화 · 월 60시간 절감</p>
+                <p class="outcome-client">UHA Company</p>
+              </div>
             </li>
           </ul>
         </div>
