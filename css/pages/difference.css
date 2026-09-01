@@ -71,84 +71,29 @@
   }
 
   /* ============================================================
-   * Hero — "도구도 교육도 아니다" 3칸 대비
-   *
-   * 배경 위계: hero는 sunken 판, 바로 다음 01 outcomes는 흰 면이다.
-   * sunken은 흰색과 6% 차이뿐이라 그것만으로는 판이 서지 않는다 —
-   * 질감·상단 광원·경계선 세 층을 함께 얹는다(capability hero와 같은 판단).
+   * Hero — 공통 골격은 components/ui/hero.css. 이 페이지는 텍스처 위치만 정의한다.
+   * (3칸 대비 hero-compare는 뺐다 — surface-glass 판이 hero 텍스처와 겹쳐
+   * 탁해 보였고, hero-desc 한 문장과 내용도 겹쳤다.)
    * ============================================================ */
-  .difference-page .hero {
-    position: relative;
-    overflow: hidden;
-    background: var(--color-surface-sunken);
-    /* hero는 자기 여백을 section-wrap에서 직접 정하므로 공통 96px을 되돌린다 */
-    padding-block: 0;
-    border-bottom: 1px solid var(--color-line);
+  .difference-page .sub-hero {
+    --hero-texture-position: top right;
   }
 
-  /* 배경 질감 — 다른 hero들과 같은 이미지지만 우측 상단 구역을 써서 반복을 피한다 */
-  .difference-page .hero::before {
-    content: "";
-    position: absolute;
-    inset: -40px;
-    background-image: url("../../images/bg-line2.png");
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: 165%;
-    filter: blur(10px);
-    opacity: 0.3;
-    pointer-events: none;
-  }
-
-  /* 제목 뒤 브랜드 광원 + 아래로 sunken을 유지해 판을 끝까지 끌고 간다 */
-  .difference-page .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(58% 44% at 50% 18%,
-        color-mix(in srgb, var(--color-brand) 12%, transparent) 0%,
-        transparent 100%),
-      linear-gradient(180deg,
-        transparent 0%,
-        color-mix(in srgb, var(--color-surface-sunken) 60%, transparent) 62%,
-        var(--color-surface-sunken) 100%);
-    pointer-events: none;
-  }
-
-  /* 상단 132px은 고정 GNB 아래 여백 */
-  .difference-page .hero .section-wrap {
-    position: relative;
-    z-index: 1;
-    padding-top: 132px;
-    padding-bottom: var(--space-48);
-  }
-
-  .difference-page .hero-copy {
+  /*
+   * hero-compare를 뺀 뒤 태그+제목+설명 3줄만 남아, CTA·보조 3칸까지 채우는
+   * ax-build·capability(실측 615~630px)보다 hero가 눈에 띄게 낮아졌다.
+   * 콘텐츠를 더 채우는 대신 높이만 맞춘다 — hero-wrap을 세로 중앙 정렬해
+   * 내용이 판 위쪽에 쏠리지 않게 한다.
+   */
+  .difference-page .hero-wrap {
+    min-height: 620px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: var(--space-20);
-    text-align: center;
+    justify-content: center;
   }
 
-  /* hero 진입 애니메이션 — 순차 지연 */
-  .difference-page .hero-copy > * {
-    animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
-  }
-
-  .difference-page .hero-copy > :nth-child(2) { animation-delay: .08s; }
-  .difference-page .hero-copy > :nth-child(3) { animation-delay: .16s; }
-
-  .difference-page .hero-title {
-    color: var(--color-ink-heaviest);
-  }
-
+  /* 중앙 정렬 문단은 한 줄이 길어지면 읽히지 않는다 */
   .difference-page .hero-desc {
-    font-size: var(--text-body-18);
-    line-height: var(--leading-body-18);
-    color: var(--color-ink-light);
-    /* 중앙 정렬 문단은 한 줄이 길어지면 읽히지 않는다 */
     max-width: 760px;
   }
 
@@ -159,52 +104,21 @@
   }
 
   /*
-   * 3칸 대비 — 공용 compare-panel을 그대로 쓰고 칸 수만 늘린다.
-   * 컴포넌트는 [판 | 화살표 | 판] 3그리드지만 여기는 칸이 하나 더 붙어 5그리드다.
-   * 색·경계·hover·__label 색 반전은 전부 컴포넌트가 이미 갖고 있어 다시 쓰지 않는다.
-   *
-   * 가운데를 is-after로 둔 이유 — 좌우가 결핍이고 가운데가 답이라, 브랜드 톤이
-   * 가운데에 있어야 시선이 양쪽을 거쳐 중앙에 멈춘다.
-   */
-  .difference-page .hero-compare {
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.1fr) auto minmax(0, 1fr);
-    margin-top: var(--space-48);
-    /* hero-copy가 .16s에 끝나므로 그 뒤부터 이어 붙인다 */
-    animation: rise-in var(--duration-scroll) var(--ease-scroll) .24s both;
-  }
-
-  /* 가운데 답 칸만 무게를 올린다.
-     그림자를 쓰지 않는다(평소 그림자 금지) — 면과 경계로만 구분한다.
-     compare-panel이 이미 is-after에 브랜드 톤 면·경계를 주므로 여기서는
-     흰 면으로 한 단계 더 띄우는 것으로 충분하다. */
-  .difference-page .hero-compare .compare-panel__item.is-after {
-    background: var(--color-surface);
-    border-color: var(--color-brand);
-  }
-
-  /* 두 번째 화살표는 오른쪽 칸에서 가운데로 들어온다 — 마크업의 SVG가 이미
-     반대 방향(9 → 15)이고, 여기서는 색만 좌측 화살표와 같게 유지한다 */
-
-  /*
    * ── 공용 컴포넌트의 "평소 그림자" 끄기 ──
-   * compare-panel·catalog-board·card 등은 상시 --shadow-sm을 깔고 있다.
+   * catalog-board·card 등은 상시 --shadow-sm을 깔고 있다.
    * 이 페이지는 면 반전으로 공간을 만들므로 그 그림자가 겹쳐 탁해진다.
    * 공용 파일을 아직 건드리지 않고(다른 페이지 영향 없음) 이 페이지 안에서만 끈다 —
    * 시안이 확정되면 components/ui/로 올린다.
+   * (hero-compare는 더 이상 compare-panel을 쓰지 않는다 — hero.css가 그림자 없음을
+   *  이미 표준으로 갖고 있어 여기서 다시 끄지 않는다.)
    *
    * 끄지 않는 것: preview-frame(제품 창은 페이지 위에 떠 있어야 한다) ·
    * floating-cta(화면에 실제로 떠 있는 배너) · timeline 마커 링(색 표시) ·
    * metric-card__glow(inset) · mock-motion 키프레임(그 자체가 상호작용 연출).
    */
-  .difference-page .compare-panel__item,
   .difference-page .catalog-board__category,
   .difference-page .card {
     box-shadow: none;
-  }
-
-  /* hover에서는 되살린다 — 그림자는 상호작용 신호다 */
-  .difference-page .compare-panel__item:hover {
-    box-shadow: var(--shadow-md);
   }
 
   /* ============================================================
@@ -819,259 +733,15 @@
   }
 
   /* ============================================================
-   * 03 The Cycle — 4단계 순환
-   *
-   * capability 01의 .loop과 같은 역할·같은 방식이다. 그 클래스를 그대로 쓸 수
-   * 없는 이유는 `.capability` 스코프 안에 있어 이 페이지에서 로드되지 않기
-   * 때문이다(인벤토리 "판단 순서" 3번). 두 페이지 모두 쓰게 되면 그때 공용으로
-   * 올릴 후보다.
-   *
-   * .loop과 다른 점 하나 — 마지막 칸에도 화살표가 남아 첫 칸으로 되돌아간다.
-   * "순환할수록 정교해진다"가 제목이라 4에서 끝나면 안 된다.
+   * 03 The Cycle — 4단계 순환. 공용 css/components/ui/cycle.css로 승격됐다
+   * (skillcertify.html의 05 2주 PoC도 같은 구조를 쓰게 되며 공용화).
+   * 여기 남기는 건 "이 페이지만 다른 값"뿐 — 4칸(기본값)이라 --cycle-columns도
+   * 생략한다. 마지막 칸에도 화살표가 남아 첫 칸으로 되돌아가는 점(순환이라 4에서
+   * 끝나면 안 된다)은 마크업의 is-return + 화살표 유무로 표현되어 CSS가 필요 없다.
    * ============================================================ */
-  .difference-page .cycle {
-    display: grid;
-    /* 4단계 균등 분할. 화살표는 칸을 차지하지 않고 칸의 오른쪽 경계에 얹힌다 */
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--space-20);
-  }
-
-  .difference-page .cycle > li {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-12);
-    padding: var(--space-28) var(--space-24);
-    /* 테두리 없음 — 틴트 판 위의 흰 카드라 면 차이만으로 선다 */
-    border: 0;
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
-    transition: box-shadow var(--duration-hover) var(--ease-hover),
-      transform var(--duration-hover) var(--ease-hover);
-  }
-
-  .difference-page .cycle > li:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
-  }
-
-  /*
-   * 마지막 칸(Improve) — 성과가 다시 데이터로 돌아가는 지점이라 결론 칸이다.
-   *
-   * 두 번 고쳤다.
-   *   ① tint-1: 판(tint-2)과 8% 차이뿐이라 위계가 없었다. 다른 세 칸이 흰
-   *      카드인데 이 칸만 더 옅어 "가라앉은 칸"으로 읽혔다 — 결론인데 반대다.
-   *   ② 통짜 브랜드 면: 위계는 생겼지만 칸 사이 화살표(브랜드 원)와 같은 색이라
-   *      화살표가 카드에 먹혔다(사용자 지적).
-   *
-   * 그래서 유리 표면으로 간다 — 브랜드 기운은 유지하되 한 톤이 아니게 만든다.
-   * 공용 .surface-glass를 쓰지 않은 이유: 그것은 55% 흰색이라 **어두운·그라디언트
-   * 배경 전용**이고, 여기(밝은 틴트 판)에서는 흰 형제 카드와 구별되지 않는다.
-   * 대신 브랜드를 옅게 두 단계로 겹친 그라디언트에 blur를 얹는다 —
-   * 화살표(단색 브랜드)와 채도·명도가 달라져 원이 카드 위에 떠 보인다.
-   */
-  .difference-page .cycle > li.is-return {
-    position: relative;
-    background:
-      linear-gradient(150deg,
-        color-mix(in srgb, var(--color-brand) 82%, transparent) 0%,
-        color-mix(in srgb, var(--color-brand-dark) 72%, transparent) 100%);
-    border: 1px solid color-mix(in srgb, var(--color-surface) 34%, transparent);
-    backdrop-filter: blur(12px) saturate(150%);
-    -webkit-backdrop-filter: blur(12px) saturate(150%);
-  }
-
-  /* 유리 위쪽 광원 — 유리라는 신호는 "빛이 한쪽에서 든다"는 것이다 */
-  .difference-page .cycle > li.is-return::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(160deg,
-      color-mix(in srgb, var(--color-surface) 26%, transparent) 0%,
-      transparent 46%);
-    pointer-events: none;
-  }
-
-  /* 내용이 광원 위로 오게 한다 */
-  .difference-page .cycle > li.is-return > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  .difference-page .cycle > li.is-return h3,
-  /* en 라벨·설명문은 한 단계 낮춰 위계를 유지한다(브랜드 면 위 82%는 AA 통과) */
-  .difference-page .cycle > li.is-return .cycle-en,
-  .difference-page .cycle > li.is-return .cycle-desc {
-    color: color-mix(in srgb, var(--color-surface) 82%, transparent);
-  }
-
-
-
-  .difference-page .cycle-head {
-    display: flex;
-    align-items: center;
-    gap: var(--space-10);
-  }
-
-  /* 단계 번호. badge.css의 .heading-number와 같은 형태지만 그것은 h2 안의
-     번호 배지라 크기(32px)·margin이 제목 기준이다. 여기는 카드 머리라 크기만 맞춘다 */
-  .difference-page .cycle-no {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--space-28);
-    height: var(--space-28);
-    border-radius: var(--radius-md);
-    background: var(--color-brand-tint-2);
-    color: var(--color-brand);
-    font-size: var(--text-body-14);
-    line-height: var(--leading-body-14);
-    font-weight: var(--font-weight-semibold);
-    flex: none;
-  }
-
-  /*
-   * 결론 칸의 번호 배지 — 브랜드 면 위에서는 유리 표면 + 흰 글씨로 뒤집는다.
-   * 기본 규칙(위)과 선택자 무게가 같아서, 이 규칙이 파일에서 뒤에 와야 이긴다.
-   * 처음엔 앞쪽에 뒀다가 기본값에 밀려 "흰 판 + 흰 글씨"로 숫자가 사라졌다.
-   */
-  /* 결론 칸의 번호 배지 — 유리 면 위에서는 반투명 흰 판 + 흰 글씨.
-     같은 선택자를 두 번 써서 뒤쪽이 background를 흰색으로 덮어버렸고,
-     흰 판 + 흰 글씨가 되어 "4"가 안 보였다(사용자 지적). 한 규칙으로 합친다. */
-  .difference-page .cycle > li.is-return .cycle-no {
-    background: color-mix(in srgb, var(--color-surface) 24%, transparent);
-    color: var(--color-surface);
-  }
-
-  /* 영문 단계명 — 한글 제목 위에서 위계를 낮춰 얹는다 */
-  .difference-page .cycle-en {
-    color: var(--color-brand);
-    font-size: var(--text-body-muted);
-    line-height: var(--leading-body-14);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: var(--tracking-body-normal);
-  }
-
-  /* 카드 제목 — h3 전역(24px)은 4칸에 들어가면 줄이 깨진다 */
-  .difference-page .cycle > li h3 {
-    font-size: var(--text-card-title);
-    line-height: var(--leading-card-title);
-    letter-spacing: var(--tracking-card-title);
-    color: var(--color-ink-heaviest);
-  }
-
-  .difference-page .cycle-desc {
-    color: var(--color-ink-light);
-    font-size: var(--text-body-14);
-    line-height: var(--leading-body-14);
-  }
-
-  /* 칸과 칸 사이 화살표. capability .loop-arrow와 같은 방식으로 경계에 걸터앉는다 */
-  /*
-   * 20px이라 "순환한다"는 뜻이 안 읽혔다 → 40px로 키운다.
-   *
-   * 정중앙 배치 —
-   *   가로: 칸 사이 간격(--space-20) 중앙에 원의 중심을 놓는다.
-   *         원이 40px이므로 right = -(간격/2 + 폭/2) = -(10 + 20) = -30px.
-   *   세로: top 50%에서 자기 높이의 절반(-20px)만큼 올린다.
-   * 이전엔 20px 원에 right: -10px이라 원 중심이 간격 중앙이 아니라
-   * 카드 경계선 위에 걸쳐 있었다.
-   */
-  .difference-page .cycle-arrow {
-    position: absolute;
-    top: 50%;
-    right: calc((var(--space-20) / 2 + 20px) * -1);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    margin-top: -20px;
-    border-radius: var(--radius-full);
-    /* 브랜드 면 + 흰 화살표 — 틴트 판 위에서 흰 원은 카드와 같은 색이라
-       화살표가 카드 사이에 낀 것처럼 보였다. 색을 뒤집어 노드로 세운다.
-       3번째 화살표는 유리 카드(같은 브랜드 계열) 옆에 오므로, 흰 링을 둘러
-       원의 윤곽이 카드에 먹히지 않게 한다. */
-    background: var(--color-brand);
-    color: var(--color-surface);
-    box-shadow: 0 0 0 4px var(--color-brand-tint-2);
-    z-index: 2;
-  }
-
-  .difference-page .cycle-arrow svg {
-    display: block;
-    width: 22px;
-    height: 22px;
-  }
-
-  /* 순환이 다시 처음으로 돌아간다는 마무리 한 줄 */
-  .difference-page .cycle-note {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-8);
-    margin-top: var(--space-20);
-    color: var(--color-brand-dark);
-  }
-
-  .difference-page .cycle-note svg {
-    display: block;
-    width: 18px;
-    height: 18px;
-    color: var(--color-brand);
-    flex: none;
-  }
-
-  /*
-   * 순환을 실제로 한 번 보여준다 — 화살표가 좌→우로 차례로 밝아진다.
-   * 무한 반복하지 않는 이유: 단계는 쌓이는 것이라 다 켜진 뒤 도로 사라지면
-   * 방금 읽은 순서가 부정된다(mock-motion-guide F·stage에서 확인된 판단).
-   * 섹션의 .fade-up.is-visible을 받아 시작하므로 별도 JS가 필요 없다.
-   *
-   * 기본값은 완성 상태다 — 애니메이션이 실행되지 않는 환경(캡처·정지)에서도
-   * 화살표가 보여야 한다(mock-motion-guide "0% 프레임은 보이는 상태").
-   */
-  .difference-page .fade-up .cycle-arrow {
-    opacity: 1;
-  }
-
-  .difference-page .fade-up.is-visible .cycle-arrow {
-    animation: cycle-flow .5s var(--ease-scroll) both;
-  }
-
   .difference-page .fade-up.is-visible .cycle > li:nth-child(1) .cycle-arrow { animation-delay: .3s; }
   .difference-page .fade-up.is-visible .cycle > li:nth-child(2) .cycle-arrow { animation-delay: .5s; }
   .difference-page .fade-up.is-visible .cycle > li:nth-child(3) .cycle-arrow { animation-delay: .7s; }
-
-  /* 화살표가 한 번 브랜드색으로 차오르며 다음 칸으로 넘긴다.
-     capability의 loop-flow와 같은 연출이지만 그 keyframes는 페이지 스코프
-     파일에 있어 여기서 참조할 수 없다 — 두 페이지가 함께 쓰게 되면
-     keyframes.css로 올릴 후보다. */
-  @keyframes cycle-flow {
-    0% { transform: scale(1); box-shadow: var(--shadow-sm); }
-    45% {
-      transform: scale(1.35);
-      background: var(--color-brand);
-      color: var(--color-surface);
-      box-shadow: var(--shadow-md);
-    }
-    100% { transform: scale(1); box-shadow: var(--shadow-sm); }
-  }
-
-  /* 카드도 좌→우 시간차로 올라온다 — 순서가 있는 4단계라 한꺼번에 뜨면
-     "순환"이 아니라 "목록"으로 읽힌다 */
-  .difference-page .fade-up .cycle > li {
-    opacity: 0;
-    transform: translateY(var(--motion-rise));
-  }
-
-  .difference-page .fade-up.is-visible .cycle > li {
-    opacity: 1;
-    transform: none;
-    transition: opacity var(--duration-scroll) var(--ease-scroll),
-      transform var(--duration-scroll) var(--ease-scroll);
-  }
 
   .difference-page .fade-up.is-visible .cycle > li:nth-child(2) { transition-delay: .08s; }
   .difference-page .fade-up.is-visible .cycle > li:nth-child(3) { transition-delay: .16s; }
@@ -1523,11 +1193,36 @@
     transform: translateY(-2px);
   }
 
+  /* 라벨 위 아이콘 — ax-build 03의 workflow-icon과 같은 인라인 SVG 관용구.
+     카드가 라벨+본문 2단이라 아이콘은 그 위에 얹어 3단으로 만든다. */
+  .difference-page .industry-card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    transition: transform var(--duration-hover) var(--ease-hover);
+  }
+
+  .difference-page .industry-card-icon svg {
+    display: block;
+    width: 32px;
+    height: 32px;
+  }
+
+  .difference-page .industry-cards > li:hover .industry-card-icon {
+    transform: scale(1.08);
+  }
+
   .difference-page .industry-card-label {
     color: var(--color-brand);
     font-size: var(--text-body-14);
     line-height: var(--leading-body-14);
     font-weight: var(--font-weight-semibold);
+  }
+
+  /* Pain Point만 위험 신호라 라벨을 critical 톤으로 낮춘다(아이콘과 짝) */
+  .difference-page .industry-card:has(.industry-card-icon--pain) .industry-card-label {
+    color: var(--color-critical);
   }
 
   /* 4열 카드 안에서 16px은 한 줄에 8~9자밖에 안 들어가 본문이 잘게 쪼개진다.
@@ -1549,12 +1244,12 @@
 
   @media (prefers-reduced-motion: reduce) {
     /* 진입 애니메이션은 끈다 */
-    .difference-page .hero-copy > *,
-    .difference-page .hero-compare { animation: none; }
+    .difference-page .sub-hero-copy > * { animation: none; }
 
     .difference-page .slide-card,
     .difference-page .cycle > li,
-    .difference-page .start-card { transition-duration: 0.001ms; }
+    .difference-page .start-card,
+    .difference-page .industry-card-icon { transition-duration: 0.001ms; }
 
     /* 01 카드는 stat-reveal.js가 .is-visible을 붙이지만, 모션 축소에서는
        그 스크립트도 애니메이션 없이 최종 상태로 두므로 여기서 값만 고정한다.

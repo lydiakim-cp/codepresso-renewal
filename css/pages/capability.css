@@ -44,100 +44,15 @@
   }
 
   /* ============================================================
-   * Hero — 한 줄 정의 + 진단 CTA + 세 가지 질문
-   *
-   * 배경 위계: hero는 sunken 판, 바로 다음 01 process는 흰 면이다.
-   * 둘 다 흰색이면 첫 화면과 본문의 경계가 사라져 페이지가 평평하게 읽힌다
-   * (sunken은 흰색과 6% 차이뿐이라 이것만으로는 약하다 — 아래 질감·상단 광원·
-   *  경계선 세 층을 함께 얹어야 판이 선다).
+   * Hero — 공통 골격은 components/ui/hero.css. 이 페이지는 텍스처 위치와
+   * 세 가지 질문 밴드의 hover 인터랙션·등장 순서만 얹는다.
    * ============================================================ */
-  .capability .hero {
-    position: relative;
-    overflow: hidden;
-    background: var(--color-surface-sunken);
-    /* layout.css의 공통 96px 위에 section-wrap 여백이 또 쌓여 유리 띠 아래로
-       150px 가까운 빈 면이 남았다. hero는 자기 여백을 section-wrap에서
-       직접 정하므로 공통값을 0으로 되돌린다. */
-    padding-block: 0;
-    /* 흰 면인 다음 섹션과의 경계를 선으로도 한 번 더 긋는다 */
-    border-bottom: 1px solid var(--color-line);
+  .capability .sub-hero {
+    --hero-texture-position: top left;
   }
 
-  /* 배경 질감 — ax-build hero와 같은 이미지지만 좌측 상단 구역을 써서 반복을 피한다 */
-  .capability .hero::before {
-    content: "";
-    position: absolute;
-    inset: -40px;
-    background-image: url("../../images/bg-line2.png");
-    background-repeat: no-repeat;
-    background-position: top left;
-    background-size: 170%;
-    filter: blur(10px);
-    opacity: 0.32;
-    pointer-events: none;
-  }
-
-  /*
-   * 상단 광원 + 하단 정리.
-   * 이전에는 아래가 흰색(--color-surface)으로 끝나 다음 흰 섹션과 그대로 이어졌다.
-   * 이제는 sunken으로 끝내 판을 유지하고, 대신 제목 뒤쪽에 브랜드 광원을 얹어
-   * 시선이 h1·CTA에 먼저 닿게 만든다.
-   */
-  .capability .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(60% 46% at 50% 20%,
-        color-mix(in srgb, var(--color-brand) 12%, transparent) 0%,
-        transparent 100%),
-      linear-gradient(180deg,
-        transparent 0%,
-        color-mix(in srgb, var(--color-surface-sunken) 60%, transparent) 62%,
-        var(--color-surface-sunken) 100%);
-    pointer-events: none;
-  }
-
-  /*
-   * 상단 152px은 GNB(고정 헤더) 아래 여백이고, 하단은 유리 띠가 다음 섹션과
-   * 붙지 않을 만큼만 둔다. 이전에는 아래도 60px + 섹션 padding-block이 겹쳐
-   * 띠 밑에 150px 가까운 빈 면이 남았다 — 띠가 판 위에 떠 있는 게 아니라
-   * 버려진 것처럼 보였다.
-   */
-  .capability .hero .section-wrap {
-    position: relative;
-    z-index: 1;
-    padding-top: 132px;
-    padding-bottom: var(--space-40);
-  }
-
-  .capability .hero-copy {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-20);
-    text-align: center;
-  }
-
-  /* hero 진입 애니메이션 — 순차 지연 */
-  .capability .hero-copy > * {
-    animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
-  }
-
-  .capability .hero-copy > :nth-child(2) { animation-delay: .08s; }
-  .capability .hero-copy > :nth-child(3) { animation-delay: .16s; }
-  .capability .hero-copy > :nth-child(4) { animation-delay: .24s; }
-  .capability .hero-copy > :nth-child(5) { animation-delay: .32s; }
-
-  .capability .hero-title {
-    color: var(--color-ink-heaviest);
-  }
-
+  /* 한 줄이 너무 길면 중앙 정렬 문단이 읽히지 않는다 */
   .capability .hero-desc {
-    font-size: var(--text-body-18);
-    line-height: var(--leading-body-18);
-    color: var(--color-ink-light);
-    /* 한 줄이 너무 길면 중앙 정렬 문단이 읽히지 않는다 */
     max-width: 720px;
   }
 
@@ -147,40 +62,13 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  .capability .hero-actions {
-    margin-top: var(--space-12);
-  }
-
   /*
-   * 세 가지 질문 — "현재 수준 / 무엇을 배울지 / 무엇이 달라졌는지".
-   * 수치가 아니라 질문이므로 metric-card 대신 질문 카드로 둔다(값 없이 label만 있는
-   * metric-card는 __value가 비어 위계가 무너진다).
-   *
-   * 이 셋은 hero의 주인공이 아니라 각주다. 카드 3장으로 세우면 세로 높이가 커져
-   * 제목·CTA와 무게가 같아지므로, 유리 띠 한 장 안에 세 칸으로 눕히고 칸 사이는
-   * 배경이 아니라 구분선으로 나눈다(카드 3장 → 띠 1장으로 높이 약 168px → 96px).
-   * 표면·경계·그림자는 공용 .surface-glass가 주므로 여기서 다시 쓰지 않는다.
-   */
-  .capability .hero-questions {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin-top: var(--space-48);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-
-  /*
-   * 띠는 하나로 올라오되 칸은 좌→우로 시간차를 준다 — 이 셋이 순서라는
-   * 것(현재 수준 → 무엇을 배울지 → 무엇이 달라졌는지)을 등장 순서가 알려준다.
-   * hero-copy가 .32s에 끝나므로 그 뒤 .4s부터 이어 붙이고, 간격은 위 hero-copy와
-   * 같은 .08s로 맞춘다.
+   * 세 가지 질문 — 칸은 좌→우로 시간차를 준다. 이 셋이 순서라는 것
+   * (현재 수준 → 무엇을 배울지 → 무엇이 달라졌는지)을 등장 순서가 알려준다.
+   * hero-copy가 .32s에 끝나므로 그 뒤 .4s부터 이어 붙이고, 간격은 hero-copy와
+   * 같은 .08s로 맞춘다. 칸·아이콘 크기·구분선은 hero.css 공통 표준을 그대로 쓴다.
    */
   .capability .hero-questions > li {
-    display: flex;
-    align-items: center;
-    gap: var(--space-12);
-    padding: var(--space-20) var(--space-24);
-    text-align: left;
     animation: rise-in var(--duration-scroll) var(--ease-scroll) .4s both;
     transition: background var(--duration-hover) var(--ease-hover);
   }
@@ -188,55 +76,16 @@
   .capability .hero-questions > li:nth-child(2) { animation-delay: .48s; }
   .capability .hero-questions > li:nth-child(3) { animation-delay: .56s; }
 
-  /* 칸 구분은 배경이 아니라 선으로 — 띠가 세 장으로 쪼개져 보이지 않게 한다 */
-  .capability .hero-questions > li + li {
-    border-left: 1px solid var(--color-line);
-  }
-
   .capability .hero-questions > li:hover {
     background: color-mix(in srgb, var(--color-surface) 60%, transparent);
-  }
-
-  .capability .hero-question-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--space-40);
-    height: var(--space-40);
-    border-radius: var(--radius-md);
-    background: var(--color-brand-tint-2);
-    color: var(--color-brand);
-    flex: none;
-    transition: transform var(--duration-hover) var(--ease-hover);
   }
 
   .capability .hero-questions > li:hover .hero-question-icon {
     transform: translateY(-2px);
   }
 
-  .capability .hero-question-icon svg {
-    display: block;
-    width: 22px;
-    height: 22px;
-  }
-
-  .capability .hero-question-text {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  /* 각주 자리라 카드 제목(20px)까지 올리지 않는다 — 본문 크기에 색으로 위계를 준다 */
-  .capability .hero-question-text h3 {
-    font-size: var(--text-body);
-    line-height: var(--leading-body);
-    color: var(--color-ink-heaviest);
-  }
-
-  .capability .hero-question-desc {
-    font-size: var(--text-body-muted);
-    line-height: var(--leading-body-muted);
-    color: var(--color-ink-lighter);
+  .capability .hero-question-icon {
+    transition: transform var(--duration-hover) var(--ease-hover);
   }
 
   /* ============================================================
@@ -1945,7 +1794,7 @@
   @media (prefers-reduced-motion: reduce) {
     /* 진입 애니메이션은 끈다. 질문 카드는 ul이 아니라 li가 애니메이션을
        갖는다(좌→우 시간차) — 여기서도 li를 지목해야 꺼진다. */
-    .capability .hero-copy > *,
+    .capability .sub-hero-copy > *,
     .capability .hero-questions > li { animation: none; }
 
     .capability .hero-questions > li,

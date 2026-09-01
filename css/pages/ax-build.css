@@ -13,101 +13,21 @@
     flex-direction: column;
   }
 
-  /* Hero — 제품 한 줄 정의 + CTA + 핵심 조건 3개 */
-  .ax-build .hero {
-    position: relative;
-    overflow: hidden;
+  /* Hero — 공통 골격은 components/ui/hero.css. 이 페이지는 텍스처 위치와
+     보조 콘텐츠(hero-facts 3장)만 정의한다.
+     hero-facts 카드가 하단에 더 붙으므로 공통 48px보다 여백을 조금 더 둔다. */
+  .ax-build .sub-hero {
+    --hero-texture-position: top right;
   }
 
-  /* 배경 질감 — bg-line2 확대 + blur */
-  .ax-build .hero::before {
-    content: "";
-    position: absolute;
-    inset: -40px;
-    background-image: url("../../images/bg-line2.png");
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: 160%;
-    filter: blur(10px);
-    opacity: 0.35;
-    pointer-events: none;
-  }
-
-  /* 하단이 흰색으로 덮여 다음 섹션과 이어진다 */
-  .ax-build .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg,
-        transparent 0%,
-        color-mix(in srgb, var(--color-surface) 70%, transparent) 60%,
-        var(--color-surface) 100%);
-    pointer-events: none;
-  }
-
-  .ax-build .hero .section-wrap {
-    position: relative;
-    z-index: 1;
-    padding-top: 152px;
+  .ax-build .sub-hero .hero-wrap {
     padding-bottom: var(--space-60);
   }
 
-  .ax-build .hero-copy {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-20);
-    text-align: center;
-  }
-
-  /* hero 진입 애니메이션 — 순차 지연 */
-  .ax-build .hero-copy > * {
-    animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
-  }
-
-  .ax-build .hero-copy > :nth-child(2) { animation-delay: .08s; }
-  .ax-build .hero-copy > :nth-child(3) { animation-delay: .16s; }
-  .ax-build .hero-copy > :nth-child(4) { animation-delay: .24s; }
-
-  .ax-build .hero-title {
-    color: var(--color-ink-heaviest);
-  }
-
-  .ax-build .hero-desc {
-    font-size: var(--text-body-18);
-    line-height: var(--leading-body-18);
-    color: var(--color-ink-light);
-  }
-
-  .ax-build .hero-actions {
-    margin-top: var(--space-12);
-  }
-
-  /* 20일 / AI Agent / 3개월 핵심 수치 — metric-card 재사용 */
+  /* 20일 / AI Agent / 3개월 핵심 수치 — 외피·크기는 hero.css의 hero-facts 표준을
+     그대로 쓴다. 진입 애니메이션 딜레이만 이 페이지 hero-copy 길이(.24s에 끝남)에 맞춘다. */
   .ax-build .hero-facts {
-    margin-top: var(--space-48);
     animation: rise-in var(--duration-scroll) var(--ease-scroll) .32s both;
-  }
-
-  /* 배경 질감 위라 반투명 유리 표면으로 띄운다 */
-  .ax-build .hero-facts .metric-card {
-    background: color-mix(in srgb, var(--color-surface) 78%, transparent);
-    backdrop-filter: blur(14px) saturate(160%);
-    -webkit-backdrop-filter: blur(14px) saturate(160%);
-    box-shadow: var(--shadow-sm);
-    transition: box-shadow var(--duration-hover) var(--ease-hover),
-      transform var(--duration-hover) var(--ease-hover);
-  }
-
-  .ax-build .hero-facts .metric-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
-  }
-
-  /* "AI Agent" 텍스트 폭에 맞춰 한 단계 낮춘 값 */
-  .ax-build .hero-facts .metric-card__value {
-    font-size: var(--text-heading-32);
-    line-height: var(--leading-heading-32);
   }
 
   /* Best Fit — feature-card 자동 순환. 활성 카드만 흰색으로 구분 */
@@ -869,7 +789,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .ax-build .hero-copy > *,
+    .ax-build .sub-hero-copy > *,
     .ax-build .hero-facts { animation: none; }
 
     .ax-build .hero-facts .metric-card,

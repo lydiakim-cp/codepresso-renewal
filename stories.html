@@ -19,70 +19,68 @@
     <!-- Hero — 한 줄 정의 + 신뢰 수치 3개. 첫 화면이라 fade-up을 붙이지 않는다.
          이 페이지는 "증거"가 주인공이라 hero의 수치도 장식이 아니라 첫 번째 증거다.
          ax-build hero-facts의 유리 표면 metric-card 패턴을 그대로 쓴다. -->
-    <section class="hero">
-      <div class="section-wrap">
-        <div class="hero-copy">
+    <section class="sub-hero">
+      <div class="hero-wrap">
+        <div class="sub-hero-copy">
           <p class="tag">Customer Stories</p>
           <h1 class="hero-title">숫자로 증명하는 전환</h1>
           <p class="hero-desc">익명의 후기가 아닙니다. <strong>실명과 숫자</strong>로 공개합니다.</p>
         </div>
 
-        <!-- 누적 성과 3개. 이 페이지에서는 수치가 곧 주장이라 카운트업을 켠다
-             (data-stat-reveal). ax-build hero는 기간·산출물이라 세는 수치가 아니어서
-             .is-visible 고정이었는데, 여기는 반대 판단이다.
+        <!-- 누적 성과 3개. hero-questions와 같은 유리 띠 외피에 수치를 담는 hero-facts
+             변형(질문형과 짝) + 카운트업(data-stat-reveal, 대상은 li). ax-build hero는
+             기간·산출물이라 세는 수치가 아니어서 카운트업이 없는데, 여기는 반대 판단이다.
              75,000+처럼 접미사가 붙는 값은 .unit이 받는다. -->
-        <div class="summary-banner stats-light hero-facts">
-          <div class="summary-banner-stats" data-stat-reveal>
-            <article class="metric-card">
-              <div class="metric-card__value"><span class="num" data-target="102">0</span><span class="unit">개</span></div>
-              <p class="metric-card__label text-label">고객사</p>
-              <div class="metric-card__visual" aria-hidden="true">
-                <span class="metric-card__glow"></span>
-                <span class="metric-card__glow"></span>
-                <!-- 고객사 — 건물 형태. 하드코딩 색만 브랜드 토큰으로 바꿨다.
-                     앞판은 25% 틴트, 뒷판·창은 원색으로 두어 index outcomes 카드들과
-                     같은 2단 명도 규칙을 지킨다. -->
-                <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M13 3H4C3.44772 3 3 3.44772 3 4V21H14V4C14 3.44772 13.5523 3 13 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
-                  <path d="M20 9H14V21H21V10C21 9.44772 20.5523 9 20 9Z" fill="var(--color-brand)" />
-                  <path d="M6.5 6H9.5V8H6.5V6ZM6.5 10H9.5V12H6.5V10ZM6.5 14H9.5V16H6.5V14Z" fill="var(--color-brand)" />
-                  <path d="M16 12H19V14H16V12ZM16 16H19V18H16V16Z" fill="var(--color-surface)" />
-                </svg>
-              </div>
-            </article>
-            <article class="metric-card">
-              <div class="metric-card__value"><span class="num" data-target="75000">0</span><span class="unit">+</span></div>
-              <p class="metric-card__label text-label">누적 사용자</p>
-              <div class="metric-card__visual" aria-hidden="true">
-                <span class="metric-card__glow"></span>
-                <span class="metric-card__glow"></span>
-                <!-- 누적 사용자 — index outcomes 첫 카드(누적 수강)와 같은 사람 아이콘 path -->
-                <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
-                  <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
-                  <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
-                  <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
-                  <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)" />
-                  <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)" />
-                </svg>
-              </div>
-            </article>
-            <article class="metric-card">
-              <div class="metric-card__value"><span class="num" data-target="96">0</span><span class="unit">%</span></div>
-              <p class="metric-card__label text-label">고객 만족도</p>
-              <div class="metric-card__visual" aria-hidden="true">
-                <span class="metric-card__glow"></span>
-                <span class="metric-card__glow"></span>
-                <!-- 고객 만족도 — index outcomes 재구매율 카드와 같은 상승 그래프 path -->
-                <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
-                  <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
-                  <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)" />
-                  <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)" />
-                </svg>
-              </div>
-            </article>
-          </div>
-        </div>
+        <ul class="hero-facts surface-glass" data-stat-reveal data-stat-card="li">
+          <li>
+            <span class="hero-question-icon" aria-hidden="true">
+              <!-- 고객사 — 건물 형태. 하드코딩 색만 브랜드 토큰으로 바꿨다.
+                   앞판은 25% 틴트, 뒷판·창은 원색으로 두어 index outcomes 카드들과
+                   같은 2단 명도 규칙을 지킨다. -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M13 3H4C3.44772 3 3 3.44772 3 4V21H14V4C14 3.44772 13.5523 3 13 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                <path d="M20 9H14V21H21V10C21 9.44772 20.5523 9 20 9Z" fill="var(--color-brand)" />
+                <path d="M6.5 6H9.5V8H6.5V6ZM6.5 10H9.5V12H6.5V10ZM6.5 14H9.5V16H6.5V14Z" fill="var(--color-brand)" />
+                <path d="M16 12H19V14H16V12ZM16 16H19V18H16V16Z" fill="var(--color-surface)" />
+              </svg>
+            </span>
+            <div>
+              <div class="hero-fact-value"><span class="num" data-target="102">0</span><span class="unit">개</span></div>
+              <p class="hero-fact-label">고객사</p>
+            </div>
+          </li>
+          <li>
+            <span class="hero-question-icon" aria-hidden="true">
+              <!-- 누적 사용자 — index outcomes 첫 카드(누적 수강)와 같은 사람 아이콘 path -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)" />
+                <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)" />
+              </svg>
+            </span>
+            <div>
+              <div class="hero-fact-value"><span class="num" data-target="75000">0</span><span class="unit">+</span></div>
+              <p class="hero-fact-label">누적 사용자</p>
+            </div>
+          </li>
+          <li>
+            <span class="hero-question-icon" aria-hidden="true">
+              <!-- 고객 만족도 — index outcomes 재구매율 카드와 같은 상승 그래프 path -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)" />
+                <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)" />
+              </svg>
+            </span>
+            <div>
+              <div class="hero-fact-value"><span class="num" data-target="96">0</span><span class="unit">%</span></div>
+              <p class="hero-fact-label">고객 만족도</p>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
 

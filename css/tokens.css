@@ -12,7 +12,11 @@
   --color-brand-tint-1: #F5F8FF;
   --color-brand-tint-2: #E9EFFF;
 
-  /* Color — Background */
+  /* Color — Background
+   * 기존 코드프레소 실서비스 기준 — 로그인전 메인/서브페이지는 #F5F8FF,
+   * 로그인후페이지는 #EAECF3(--color-line과 동일 값), Dark Mode는 #04091A.
+   * 이 리뉴얼 사이트는 전부 로그인전 페이지이므로 --color-surface-page /
+   * --color-surface-sunken도 같은 #F5F8FF로 맞춰져 있다. */
   --color-bg-login-pre: #F5F8FF;
   --color-bg-dark: #04091A;
 
@@ -29,7 +33,7 @@
   /* Color — Surface */
   --color-surface: #FFFFFF;
   --color-surface-sunken: #F5F8FF;
-  --color-surface-page: #FBFCFF;
+  --color-surface-page: #F5F8FF;
   --color-surface-mist: #EEF0F3;
 
   /* Color — Surface (진한 면 2단)
@@ -80,7 +84,7 @@
   --text-heading-20: 20px; --leading-heading-20: 28px;
   --text-heading-24: 24px; --leading-heading-24: 32px;
   --text-heading-32: 32px; --leading-heading-32: 42px;
-  --text-heading-36: 36px; --leading-heading-36: 48px;
+  --text-heading-36: 36px; --leading-heading-36: 46px;
   --text-heading-40: 40px; --leading-heading-40: 50px;
   --text-heading-44: 44px; --leading-heading-44: 54px;
   --text-heading-56: 56px; --leading-heading-56: 66px;

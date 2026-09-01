@@ -1,0 +1,223 @@
+/*
+ * Component: Sub Hero
+ * 서브페이지 첫 화면 공통 골격 — 태그 + h1 + desc(+ CTA) 중앙정렬, sunken 배경,
+ * bg-line2 텍스처, 상단 브랜드 광원, GNB와 이어지는 하단 페이드.
+ * 메인페이지 hero(main-hero, css/pages/index.css)와는 완전히 다른 컴포넌트라
+ * 클래스를 분리했다 — 이름이 겹치면 같은 layer components 안에서 로드 순서에
+ * 따라 서로의 규칙을 덮어써 사고가 난다(실제로 겹쳐서 메인 hero 정렬·배경이
+ * 깨진 적이 있다).
+ * 보조 콘텐츠(hero-questions·hero-facts·hero-compare 등)는 페이지마다 다르므로
+ * 이 컴포넌트가 정하지 않는다 — 각 페이지 css가 hero-wrap 안에 이어 붙인다.
+ *
+ * A/B 두 방향 중 A(Standard) 하나로 통일했다(2026-08-31 hero 통일 작업).
+ * 배경 텍스처 위치만 페이지별로 반복을 피해 --hero-texture-position으로 연다.
+ *
+ * 그림자 원칙 — hero 안에서는 평소 상태에 box-shadow를 두지 않는다. hover만 예외
+ * (버튼은 button.css가 이미 그렇게 되어 있다). 판 구분은 배경·테두리로 한다.
+ */
+.sub-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface-sunken);
+  /* layout.css의 공통 96px 위에 section-wrap 여백이 겹치지 않도록 되돌린다.
+     hero는 자기 여백을 hero-wrap에서 직접 정한다. */
+  padding-block: 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+/* 배경 질감 — bg-line2 확대 + blur. 위치는 페이지마다 반복을 피해 변수로 연다. */
+.sub-hero::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background-image: url("../../../images/bg-line2.png");
+  background-repeat: no-repeat;
+  background-position: var(--hero-texture-position, top right);
+  background-size: 160%;
+  filter: blur(10px);
+  opacity: 0.32;
+  pointer-events: none;
+}
+
+/* 상단 브랜드 광원 + 하단은 sunken을 유지해 다음 섹션(흰 면)과의 경계를 선 하나로 정리한다. */
+.sub-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 46% at 50% 20%,
+      color-mix(in srgb, var(--color-brand) 12%, transparent) 0%,
+      transparent 100%),
+    linear-gradient(180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--color-surface-sunken) 60%, transparent) 62%,
+      var(--color-surface-sunken) 100%);
+  pointer-events: none;
+}
+
+.hero-wrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--container-medium);
+  margin: 0 auto;
+  padding: 132px 24px 48px;
+}
+
+.sub-hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-20);
+  text-align: center;
+}
+
+/* hero 진입 애니메이션 — 순차 지연. 첫 화면이라 fade-up(IntersectionObserver) 대신 즉시 재생한다. */
+.sub-hero-copy > * {
+  animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
+}
+
+.sub-hero-copy > :nth-child(2) { animation-delay: .08s; }
+.sub-hero-copy > :nth-child(3) { animation-delay: .16s; }
+.sub-hero-copy > :nth-child(4) { animation-delay: .24s; }
+.sub-hero-copy > :nth-child(5) { animation-delay: .32s; }
+
+.hero-title {
+  color: var(--color-ink-heaviest);
+}
+
+.hero-desc {
+  font-size: var(--text-body-18);
+  line-height: var(--leading-body-18);
+  color: var(--color-ink-light);
+}
+
+.hero-actions {
+  margin-top: var(--space-12);
+}
+
+/* ============================================================
+ * Hero Questions — 유리 띠 안에 세 칸(아이콘 + 제목 + 설명)을 눕힌 보조 정보.
+ * capability에서 시작했지만 질문형 보조 정보가 필요한 다른 페이지도 재사용할 수 있어
+ * 공용으로 올린다. surface-glass 위에 얹어 쓴다: class="hero-questions surface-glass"
+ * ============================================================ */
+.hero-questions {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-radius: var(--radius-xl);
+  /* surface-glass는 공용 컴포넌트라 평소에도 shadow-md를 갖지만, hero 안에서는
+     그림자 없는 원칙을 따른다 — 여기서만 무력화하고 테두리로 판을 구분한다. */
+  box-shadow: none;
+}
+
+.hero-questions li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 0 20px;
+  text-align: left;
+}
+
+.hero-questions li + li {
+  border-left: 1px solid var(--color-line-heavy);
+}
+
+.hero-question-icon {
+  flex: none;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-question-icon svg {
+  width: 45px;
+  height: 45px;
+}
+
+.hero-question-text h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-heaviest);
+}
+
+.hero-question-desc {
+  margin: 0;
+  font-size: var(--text-body-13);
+  line-height: var(--leading-body-13);
+  color: var(--color-ink-light);
+}
+
+/* ============================================================
+ * Hero Facts — hero-questions와 같은 외피(유리 띠 1장 + 세로 구분선 + 그림자 없음)
+ * 안에 질문 대신 핵심 수치(큰 숫자 + 단위 + 라벨)를 담는 변형.
+ * ax-build·stories처럼 "질문"이 아니라 "숫자"가 보조 정보의 핵심일 때 쓴다.
+ * class="hero-facts surface-glass"로 surface-glass 위에 얹는다.
+ * 아이콘은 선택 — 숫자 자체가 중심이라 없어도 되고, hero-question-icon을 그대로 써도 된다.
+ * ============================================================ */
+.hero-facts {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-radius: var(--radius-xl);
+  box-shadow: none;
+}
+
+.hero-facts li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 0 20px;
+  text-align: left;
+}
+
+.hero-facts li + li {
+  border-left: 1px solid var(--color-line-heavy);
+}
+
+/* stat-reveal.js가 카운트업과 함께 붙이는 진입 상태(metric-card와 같은 규칙).
+   카운트업을 쓰지 않는 페이지(ax-build)는 마크업에 .is-visible을 직접 둬서
+   고정하면 되므로 이 트랜지션이 그대로 통과한다. */
+.hero-facts li {
+  opacity: 0;
+  transform: translateY(var(--motion-rise));
+  transition: opacity var(--duration-scroll) var(--ease-scroll),
+    transform var(--duration-scroll) var(--ease-scroll);
+}
+
+.hero-facts li.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.hero-fact-value {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  font-size: var(--text-heading-32);
+  line-height: var(--leading-heading-32);
+  letter-spacing: var(--tracking-heading-tight);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink-heaviest);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-fact-value .unit {
+  font-size: var(--text-heading-18);
+  font-weight: var(--font-weight-semibold);
+}
+
+.hero-fact-label {
+  margin: 0;
+  font-size: var(--text-body-13);
+  line-height: var(--leading-body-13);
+  color: var(--color-ink-light);
+}
+

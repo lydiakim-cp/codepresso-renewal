@@ -1,0 +1,214 @@
+/*
+ * Component: Cycle
+ * N단계 순서/순환 + 칸 사이 화살표. difference.html "03 The Cycle"(4단계 순환)에서
+ * 처음 만들었고, skillcertify.html "05 2주 PoC"(5단계 선형 진행)도 같은 구조를
+ * 필요로 해 공용으로 승격했다(component-inventory.md에 "두 페이지가 함께 쓰게
+ * 되면 공용 승격 후보"로 이미 적혀 있던 지점).
+ *
+ * Markup API
+ * <ol class="cycle">
+ *   <li> (또는 <li class="is-return"> — 순환의 결론/도착 칸만, 없어도 된다)
+ *     <div class="cycle-head">
+ *       <span class="cycle-no">1</span>
+ *       <p class="cycle-en">Data</p>  (없어도 된다 — 라벨이 필요할 때만)
+ *     </div>
+ *     <h3>제목</h3>
+ *     <p class="cycle-desc">설명</p>
+ *     <span class="cycle-arrow" aria-hidden="true"><svg>...</svg></span>
+ *       (칸 사이에만 — 마지막 칸은 순환이면 남기고, 선형 진행이면 생략)
+ *   </li>
+ *   ...
+ * </ol>
+ *
+ * 열 수(4칸/5칸)는 사용 페이지가 --cycle-columns로 지정한다(기본 4).
+ * 순환 여부(마지막 화살표 유무, is-return 색) · fade-up stagger delay는
+ * 사용 페이지 스코프가 값만 얹는다.
+ */
+.cycle {
+  display: grid;
+  grid-template-columns: repeat(var(--cycle-columns, 4), minmax(0, 1fr));
+  gap: var(--space-20);
+}
+
+.cycle > li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-28) var(--space-24);
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  transition: box-shadow var(--duration-hover) var(--ease-hover),
+    transform var(--duration-hover) var(--ease-hover);
+}
+
+.cycle > li:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+/* 결론/도착 칸 — 유리 표면으로 띄워 위계를 준다. 통짜 단색을 쓰지 않는 이유는
+   칸 사이 화살표(같은 브랜드 계열)와 맞붙으면 서로 먹히기 때문이다. */
+.cycle > li.is-return {
+  background:
+    linear-gradient(150deg,
+      color-mix(in srgb, var(--color-brand) 82%, transparent) 0%,
+      color-mix(in srgb, var(--color-brand-dark) 72%, transparent) 100%);
+  border: 1px solid color-mix(in srgb, var(--color-surface) 34%, transparent);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+}
+
+.cycle > li.is-return::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(160deg,
+    color-mix(in srgb, var(--color-surface) 26%, transparent) 0%,
+    transparent 46%);
+  pointer-events: none;
+}
+
+.cycle > li.is-return > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cycle > li.is-return h3,
+.cycle > li.is-return .cycle-en,
+.cycle > li.is-return .cycle-desc {
+  color: color-mix(in srgb, var(--color-surface) 82%, transparent);
+}
+
+.cycle-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+}
+
+.cycle-no {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-28);
+  height: var(--space-28);
+  border-radius: var(--radius-md);
+  background: var(--color-brand-tint-2);
+  color: var(--color-brand);
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  font-weight: var(--font-weight-semibold);
+  flex: none;
+}
+
+.cycle > li.is-return .cycle-no {
+  background: color-mix(in srgb, var(--color-surface) 24%, transparent);
+  color: var(--color-surface);
+}
+
+.cycle-en {
+  color: var(--color-brand);
+  font-size: var(--text-body-muted);
+  line-height: var(--leading-body-14);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-body-normal);
+}
+
+.cycle > li h3 {
+  font-size: var(--text-card-title);
+  line-height: var(--leading-card-title);
+  letter-spacing: var(--tracking-card-title);
+  color: var(--color-ink-heaviest);
+}
+
+.cycle-desc {
+  color: var(--color-ink-light);
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+}
+
+/*
+ * 칸과 칸 사이 화살표 — 경계에 걸터앉는 노드.
+ * 브랜드 단색(진한 원)이었던 것을 반투명 글래스모피즘으로 바꿨다: 흰 배경
+ * 위에서 색이 너무 진하다는 지적 → 배경을 브랜드 틴트 유리(옅은 브랜드
+ * 그라디언트 + blur)로 낮추고, 아이콘 색은 브랜드를 유지해 신호는 살린다.
+ */
+.cycle-arrow {
+  position: absolute;
+  top: 50%;
+  right: calc((var(--space-20) / 2 + 20px) * -1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  border-radius: var(--radius-full);
+  background:
+    linear-gradient(150deg,
+      color-mix(in srgb, var(--color-brand-tint-2) 90%, transparent) 0%,
+      color-mix(in srgb, var(--color-surface) 55%, transparent) 100%);
+  border: 1px solid color-mix(in srgb, var(--color-surface) 70%, transparent);
+  color: var(--color-brand);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(8px) saturate(160%);
+  -webkit-backdrop-filter: blur(8px) saturate(160%);
+  z-index: 2;
+}
+
+.cycle-arrow svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+/* 순환이 다시 처음으로 돌아간다는 마무리 한 줄 — 순환형 페이지만 쓴다 */
+.cycle-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  margin-top: var(--space-20);
+  color: var(--color-brand-dark);
+}
+
+.cycle-note svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: var(--color-brand);
+  flex: none;
+}
+
+/*
+ * 순환/진행을 실제로 한 번 보여준다 — 화살표가 좌→우로 차례로 밝아진다.
+ * 무한 반복하지 않는 이유: 단계는 쌓이는 것이라 다 켜진 뒤 도로 사라지면
+ * 방금 읽은 순서가 부정된다. 섹션의 .fade-up.is-visible을 받아 시작하므로
+ * 별도 JS가 필요 없다. 기본값은 완성 상태다(정지 캡처에서도 화살표가 보여야 한다).
+ */
+.fade-up .cycle-arrow {
+  opacity: 1;
+}
+
+.fade-up.is-visible .cycle-arrow {
+  animation: cycle-flow .5s var(--ease-scroll) both;
+}
+
+/* 카드도 좌→우 시간차로 올라온다 — 순서가 있는 목록이라 한꺼번에 뜨면
+   "순서"가 아니라 "나열"로 읽힌다. 정확한 delay(nth-child)는 칸 수가
+   페이지마다 달라(4·5) 사용 페이지 스코프가 정한다. */
+.fade-up .cycle > li {
+  opacity: 0;
+  transform: translateY(var(--motion-rise));
+}
+
+.fade-up.is-visible .cycle > li {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--duration-scroll) var(--ease-scroll),
+    transform var(--duration-scroll) var(--ease-scroll);
+}
+
+/* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다. */

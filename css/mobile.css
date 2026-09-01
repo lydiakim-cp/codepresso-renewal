@@ -43,10 +43,22 @@
 @media (max-width: 900px) {
   .index .hero-content { grid-template-columns: 1fr; }
   .index .hero-copy-wrap, .index .hero-links { align-items: center; }
-  .index .hero-copy { text-align: center; }
+  .index .main-hero-copy { text-align: center; }
   /* 공용 컴포넌트라 스코프를 붙이지 않는다 — 카탈로그 페이지도 쓴다 */
   .assessment-card-frame { margin-inline: auto; }
   .index .hero-links { gap: 0; }
+
+  /* 서브페이지 hero 보조 밴드(질문형·수치형 공통) — 좁아지면 칸 안 문장이
+     눌려 1열로 쌓는다. 스코프를 붙이지 않는다 — 어느 서브페이지든 같은 컴포넌트다. */
+  .hero-questions,
+  .hero-facts { grid-template-columns: 1fr; }
+
+  /* 유리 띠가 세로로 쌓이면 칸 구분선도 좌 → 상으로 돌아야 한다 */
+  .hero-questions > li + li,
+  .hero-facts li + li {
+    border-left: 0;
+    border-top: 1px solid var(--color-line-heavy);
+  }
 }
 
 /* --- catalog-board.css --- */
@@ -191,7 +203,7 @@
 @media (max-width: 900px) {
   .ax-build .outcome-list,
   .ax-build .deliverable-list { grid-template-columns: 1fr; }
-  .ax-build .hero .section-wrap { padding-top: 120px; }
+  .ax-build .sub-hero .hero-wrap { padding-top: 120px; }
 
   /* 04 Process — 좌측 sticky는 layout.css 900px 규칙이 이미 풀어 놓는다.
      좌측 요약 판이 한 줄로 넓어지면 막대가 과하게 길어지므로 폭을 제한한다. */
@@ -223,17 +235,11 @@
 /* --- pages/capability.css ---
    1440 기준 3~4열 배치. 900px(2단 접힘) · 720px(카드 내부) · 560px(모바일) 3단으로 내린다. */
 @media (max-width: 900px) {
-  .capability .hero .section-wrap { padding-top: 120px; }
+  .capability .sub-hero .hero-wrap { padding-top: 120px; }
 
-  /* hero 질문 3개 · 06 분석 2블록 — 좁아지면 칸 안 문장이 눌려 1열로 쌓는다 */
-  .capability .hero-questions,
+  /* hero 질문 3개는 공용 --- hero.css --- 섹션(900px)이 처리한다.
+     06 분석 2블록만 이 페이지 고유. */
   .capability .analyze-grid { grid-template-columns: 1fr; }
-
-  /* 유리 띠가 세로로 쌓이면 칸 구분선도 좌 → 상으로 돌아야 한다 */
-  .capability .hero-questions > li + li {
-    border-left: 0;
-    border-top: 1px solid var(--color-line);
-  }
 
   /* 01 Growth Loop — 4칸이 좁아지면 각 칸의 설명이 3줄로 늘어져 2x2로 접는다.
      Assess→Design / Learn→Prove 순서가 위→아래로 그대로 이어진다. */
@@ -290,29 +296,17 @@
 /* --- pages/difference.css ---
    1440 기준 3~4열 배치. 900px(2단 접힘) · 720px(카드 내부) · 560px(모바일) 3단으로 내린다. */
 @media (max-width: 900px) {
-  .difference-page .hero .section-wrap { padding-top: 120px; }
+  .difference-page .sub-hero .hero-wrap { padding-top: 120px; }
+
+  /* 620px min-height는 데스크톱 3줄 기준 — 좁은 화면은 줄바꿈이 늘어
+     내용만으로도 충분히 채워지므로 고정 높이를 푼다. */
+  .difference-page .hero-wrap { min-height: 0; }
 
   /* 07 업종 카드 — 900px에서 catalog-board가 세로로 접히면 판 폭이 줄어
      4열 카드가 한 장 150px대로 눌린다. 2열로 한 단계만 내린다. */
   .difference-page .industry-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  /* hero 3칸 대비 — 5그리드(판·화살표·판·화살표·판)가 좁아지면 각 칸의 문장이
-     3줄로 늘어져 무엇이 답인지 안 보인다. 세로로 쌓고 답 칸을 맨 위로 올린다.
-     좌우 대비가 상하 대비로 바뀌므로 "가운데가 답"이 아니라 "첫 칸이 답"이 된다. */
-  .difference-page .hero-compare {
-    grid-template-columns: 1fr;
-    gap: var(--space-16);
-  }
-
-  .difference-page .hero-compare .compare-panel__item.is-after { order: -1; }
-
-  /* 화살표는 좌우를 가리키던 것이라 세로 배치에서 방향이 틀린다 — 감춘다.
-     compare-panel.css의 900px 규칙(90도 회전)을 쓰지 않는 이유: 그 규칙은
-     화살표 하나짜리 2판 구조를 전제하고, 여기는 답 칸이 맨 위로 올라가
-     "위→아래 한 방향"이 아니게 된다. */
-  .difference-page .hero-compare .compare-panel__arrow { display: none; }
 
   /* 06 두 갈래 — 2열이 좁아지면 1열로 쌓는다 */
   .difference-page .start-grid { grid-template-columns: 1fr; }
@@ -392,7 +386,7 @@
    1440 기준 hero 3열 + 사례 카드 3열. 900px(hero 여백) · 560px(1열·여백) 2단으로 내린다.
    카드 그리드는 auto-fill minmax(320px)라 열 수가 스스로 줄어 별도 규칙이 필요 없다. */
 @media (max-width: 900px) {
-  .stories .hero .section-wrap { padding-top: 120px; }
+  .stories .sub-hero .hero-wrap { padding-top: 120px; }
 
   /* 공통 순서 3단계 — 3칸이 좁아지면 칸 안 설명이 3줄로 늘어져 1열로 쌓는다.
      진단 → 전환 → 증명 순서가 위→아래로 그대로 이어진다. */
@@ -409,6 +403,34 @@
   }
 
   .stories .order-arrow svg { transform: rotate(90deg); }
+}
+
+
+/* --- pages/skillcertify.css ---
+   1440 기준 hero·01~04 전부 좌우 2단(section-wrap row는 layout.css가 이미
+   900px에서 1열로 접는다), 05는 5칸 가로 순서.
+   900px에서 hero 전용 2단과 고민 3카드, 5칸 순서를 접는다. */
+@media (max-width: 900px) {
+  .skillcertify .hero-row { grid-template-columns: minmax(0, 1fr); }
+  .skillcertify .hero-row .sub-hero-copy { align-items: center; text-align: center; }
+  .skillcertify .hero-row .hero-visual { order: -1; }
+
+  .skillcertify .pain-grid { grid-template-columns: 1fr; }
+
+  /* 5칸이 1열로 쌓인다 — 컨테이너(640px)가 이미 화면보다 좁아지면 자동으로
+     폭이 줄어드니 별도 max-width가 필요 없다. 화살표만 아래를 가리키게 돌린다
+     (difference .cycle-arrow 900px 처리와 같은 방식). */
+  .skillcertify .cycle { grid-template-columns: 1fr; }
+
+  .skillcertify .cycle-arrow {
+    top: auto;
+    right: auto;
+    bottom: calc(var(--space-20) / -2);
+    left: 50%;
+    margin: 0 0 0 -20px;
+  }
+
+  .skillcertify .cycle-arrow svg { transform: rotate(90deg); }
 }
 
 
@@ -516,6 +538,12 @@
   }
 }
 
+/* --- pages/skillcertify.css --- */
+@media (max-width: 720px) {
+  /* 06 고객 사례 3장 — 좁아지면 카드 안 설명이 눌린다. 1열로 쌓는다 */
+  .skillcertify .outcome-list { grid-template-columns: 1fr; }
+}
+
 /* ===============================================
  * max-width: 560px (모바일)
  * =============================================== */
@@ -583,12 +611,12 @@
 
 /* --- hero.css --- */
 @media (max-width: 560px) {
-  .index .hero-copy { gap: var(--space-48); padding-top: var(--space-24); }
+  .index .main-hero-copy { gap: var(--space-48); padding-top: var(--space-24); }
 
   /* 카피 하단에 배경 이미지를 .section-wrap의 좌우 패딩을 뚫고 화면 폭
      그대로 붙인다. 100vw 브레이크아웃은 iOS에서 뷰포트 계산 오차로
      이미지가 오른쪽으로 쏠려 쓰지 않는다 — 실제 패딩값만큼만 상쇄한다. */
-  .index .hero-copy::after {
+  .index .main-hero-copy::after {
     content: "";
     display: block;
     margin-inline: calc(-1 * var(--space-20));
@@ -619,6 +647,19 @@
   /* marquee 이동 거리는 --marquee-gap을 읽으므로 gap만 바꾸면 이음매가 맞는다. */
   .hero-clients-marquee { --marquee-gap: 40px; height: 44px; }
   .hero-clients-track > li img { width: 122px; height: 24px; }
+
+  /* 서브페이지 hero 보조 밴드(질문형·수치형 공통) — 유리 띠는 그대로 쌓되
+     (아이콘+문장 한 줄 구조는 좁은 폭에서도 유지된다) 좌우 여백만 줄인다.
+     900px에서 이미 세로 구분선으로 바뀌어 있다. 스코프를 붙이지 않는다. */
+  .hero-questions,
+  .hero-facts {
+    margin-top: var(--space-35);
+  }
+
+  .hero-questions > li,
+  .hero-facts li {
+    padding: var(--space-16) var(--space-20);
+  }
 }
 
 /* --- button.css --- */
@@ -857,8 +898,8 @@
     padding: var(--space-20);
   }
 
-  .ax-build .hero .section-wrap { padding-top: 88px; }
-  .ax-build .hero-copy > * { --motion-rise: 6px; }
+  .ax-build .sub-hero .hero-wrap { padding-top: 88px; }
+  .ax-build .sub-hero-copy > * { --motion-rise: 6px; }
 
   /* 01 What It Is — 화면이 좁아지면 이 판은 "축소된 목업"이 아니라 실제로 읽는
      콘텐츠가 되므로, 목업 4단 스케일(15/13/11)을 본문 크기로 되돌린다.
@@ -914,18 +955,10 @@
 
 /* --- pages/capability.css --- */
 @media (max-width: 560px) {
-  .capability .hero .section-wrap { padding-top: 88px; }
-  .capability .hero-copy > * { --motion-rise: 6px; }
+  .capability .sub-hero .hero-wrap { padding-top: 88px; }
+  .capability .sub-hero-copy > * { --motion-rise: 6px; }
 
-  /* 유리 띠는 그대로 쌓되(아이콘+문장 한 줄 구조는 좁은 폭에서도 유지된다)
-     좌우 여백만 줄인다. 900px에서 이미 세로 구분선으로 바뀌어 있다. */
-  .capability .hero-questions {
-    margin-top: var(--space-35);
-  }
-
-  .capability .hero-questions > li {
-    padding: var(--space-16) var(--space-20);
-  }
+  /* 유리 띠 여백 축소는 공용 --- hero.css --- 섹션(560px)이 처리한다. */
 
   /* 01 Growth Loop — 2x2도 좁아 1열로 내린다. 4칸이 세로로 이어지므로
      칸 사이 화살표를 아래를 가리키게 돌린다(ax-build .shift-arrow와 같은 처리:
@@ -969,10 +1002,8 @@
 
 /* --- pages/difference.css --- */
 @media (max-width: 560px) {
-  .difference-page .hero .section-wrap { padding-top: 88px; }
-  .difference-page .hero-copy > * { --motion-rise: 6px; }
-
-  .difference-page .hero-compare { margin-top: var(--space-35); }
+  .difference-page .sub-hero .hero-wrap { padding-top: 88px; }
+  .difference-page .sub-hero-copy > * { --motion-rise: 6px; }
 
   /* 01 문제 카드 — 2x2도 좁아 1열로 내린다. "많다 / 그런데 안 된다" 순서가
      위→아래로 그대로 이어지므로 짝은 유지된다. */
@@ -1025,10 +1056,10 @@
 
 /* --- pages/stories.css --- */
 @media (max-width: 560px) {
-  .stories .hero .section-wrap { padding-top: 88px; }
-  .stories .hero-copy > * { --motion-rise: 6px; }
+  .stories .sub-hero .hero-wrap { padding-top: 88px; }
+  .stories .sub-hero-copy > * { --motion-rise: 6px; }
 
-  .stories .hero-facts { margin-top: var(--space-35); }
+  /* hero-facts 여백 축소는 공용 --- hero.css --- 섹션(560px)이 처리한다. */
 
   /* 필터 줄 — 캡슐이 가로 스크롤(part-nav.css 560px 규칙)로 바뀌면 우측 건수가
      같은 줄에서 캡슐 폭을 빼앗는다. 건수를 아래 줄로 내린다. */

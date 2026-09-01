@@ -14,10 +14,14 @@
 @layer components {
 
   /* ===============================================================
-   * Component: Hero
+   * Component: Main Hero
    * 메인 메시지, 주요 CTA, 보조 링크, 고객 로고로 구성한 단일 컬럼 랜딩 히어로.
+   * 서브페이지 공통 골격(sub-hero, css/components/ui/hero.css)과는 완전히
+   * 다른 컴포넌트라 클래스를 분리했다 — 이름이 겹치면 같은 layer components
+   * 안에서 로드 순서에 따라 서로의 규칙을 덮어써 사고가 난다(실제로 겹쳐서
+   * 정렬·배경이 깨진 적이 있다).
    * =============================================================== */
-  .hero {
+  .main-hero {
     background: var(--color-bg-login-pre) url("../../images/main-bg.png") center / cover no-repeat;
     overflow-x: hidden;
   }
@@ -52,7 +56,7 @@
     align-items: start;
     gap: var(--space-48);
   }
-  .hero-copy { display: flex; flex-direction: column; gap:96px; padding-top: var(--space-48); }
+  .main-hero-copy { display: flex; flex-direction: column; gap:96px; padding-top: var(--space-48); }
   .hero-copy-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-18); }
   .hero-description {
     font-size: var(--text-heading-20);

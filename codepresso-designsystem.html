@@ -46,7 +46,7 @@
           <div class="guide-block-head"><h3>전체 컴포넌트 인벤토리</h3><span>공용 UI와 메인 전용 참조 컴포넌트를 구분합니다.</span></div>
           <h4>공용 프리미티브 · 어떤 페이지에서도 재사용</h4>
           <div class="guide-inventory-grid">
-            <article><h5>Section Body</h5><p>카드 안의 제목·부제·설명 묶음</p><code>section-body</code></article><article><h5>Text Utilities</h5><p>라벨·캡션 등 보조 텍스트</p><code>text-label · text-caption</code></article><article><h5>Surface</h5><p>글래스 배경과 표면 처리</p><code>surface-glass</code></article><article><h5>Summary Banner</h5><p>강조 문장과 통계 묶음</p><code>summary-banner</code></article><article><h5>Feature Card</h5><p>아이콘·제목·설명·진행 상태</p><code>feature-card</code></article><article><h5>Card / Grid</h5><p>범용 카드·반복 항목 배치</p><code>card · grid · flex-row</code></article><article><h5>Dot Line</h5><p>섹션 사이의 점선 구분</p><code>dot-line</code></article><article><h5>Fade Up</h5><p>스크롤 진입 모션</p><code>fade-up</code></article><article><h5>Header / GNB</h5><p>전역 메뉴와 헤더 상태</p><code>header · nav</code></article><article><h5>Compare Panel</h5><p>지금 → 바뀐 뒤 좌우 대비</p><code>compare-panel</code></article><article><h5>Timeline</h5><p>기간이 있는 단계의 세로 흐름</p><code>timeline</code></article><article><h5>FAQ List</h5><p>질문을 눌러 답을 펼치는 목록</p><code>faq-list</code></article><article><h5>Catalog Board</h5><p>분류별 항목을 대시보드처럼</p><code>catalog-board</code></article><article><h5>Mock Motion</h5><p>목업을 돌아가는 화면처럼 연출</p><code>data-mock-motion</code></article>
+            <article><h5>Hero</h5><p>서브페이지 첫 화면 공통 골격</p><code>sub-hero · hero-questions · hero-facts</code></article><article><h5>Section Body</h5><p>카드 안의 제목·부제·설명 묶음</p><code>section-body</code></article><article><h5>Text Utilities</h5><p>라벨·캡션 등 보조 텍스트</p><code>text-label · text-caption</code></article><article><h5>Surface</h5><p>글래스 배경과 표면 처리</p><code>surface-glass</code></article><article><h5>Summary Banner</h5><p>강조 문장과 통계 묶음</p><code>summary-banner</code></article><article><h5>Feature Card</h5><p>아이콘·제목·설명·진행 상태</p><code>feature-card</code></article><article><h5>Card / Grid</h5><p>범용 카드·반복 항목 배치</p><code>card · grid · flex-row</code></article><article><h5>Dot Line</h5><p>섹션 사이의 점선 구분</p><code>dot-line</code></article><article><h5>Fade Up</h5><p>스크롤 진입 모션</p><code>fade-up</code></article><article><h5>Header / GNB</h5><p>전역 메뉴와 헤더 상태</p><code>header · nav</code></article><article><h5>Compare Panel</h5><p>지금 → 바뀐 뒤 좌우 대비</p><code>compare-panel</code></article><article><h5>Timeline</h5><p>기간이 있는 단계의 세로 흐름</p><code>timeline</code></article><article><h5>Cycle</h5><p>순서·순환의 가로 흐름과 화살표</p><code>cycle</code></article><article><h5>FAQ List</h5><p>질문을 눌러 답을 펼치는 목록</p><code>faq-list</code></article><article><h5>Catalog Board</h5><p>분류별 항목을 대시보드처럼</p><code>catalog-board</code></article><article><h5>Mock Motion</h5><p>목업을 돌아가는 화면처럼 연출</p><code>data-mock-motion</code></article>
           </div>
           <h4>메인 전용 참조 · 다른 페이지에서는 구조만 참고</h4>
           <div class="guide-inventory-grid is-reference">
@@ -75,8 +75,17 @@
             <article class="guide-swatch ink-lighter"><span></span><strong>Ink Lighter</strong><small>#7C88A3 · 보조 정보</small></article>
             <article class="guide-swatch surface"><span></span><strong>Surface</strong><small>#FFFFFF · 카드 배경</small></article>
             <article class="guide-swatch sunken"><span></span><strong>Sunken</strong><small>#F5F8FF · 옅은 영역</small></article>
-            <article class="guide-swatch page"><span></span><strong>Page</strong><small>#FBFCFF · 페이지 배경</small></article>
+            <article class="guide-swatch page"><span></span><strong>Page</strong><small>#F5F8FF · 페이지 배경</small></article>
             <article class="guide-swatch line"><span></span><strong>Line</strong><small>#EAECF3 · 구분선</small></article>
+          </div>
+        </div>
+
+        <div class="guide-block">
+          <div class="guide-block-head"><h3>BG Color</h3><span>기존 코드프레소 실서비스가 화면 종류별로 구분해 쓰는 배경색</span></div>
+          <div class="guide-color-grid">
+            <article class="guide-swatch bg-login-pre"><span></span><strong>#F5F8FF</strong><small>로그인전 메인/서브페이지 · 이 리뉴얼 사이트 전체</small></article>
+            <article class="guide-swatch bg-login-post"><span></span><strong>#EAECF3</strong><small>로그인후페이지 · --color-line과 동일 값</small></article>
+            <article class="guide-swatch bg-dark"><span></span><strong>#04091A</strong><small>Dark Mode BG</small></article>
           </div>
         </div>
 
@@ -161,6 +170,54 @@
           <p>비슷한 정보를 보여줄 때는 이미 준비된 디자인을 사용합니다. 내용만 바꿔도 화면의 일관성이 유지됩니다.</p>
         </div>
         <div class="guide-component-list">
+          <article class="guide-component-row">
+            <div class="guide-component-demo">
+              <!-- 실제로는 <section class="sub-hero">가 화면 끝까지 sunken 배경 +
+                   bg-line2 텍스처를 깐다. 카탈로그 안에서는 데모 칸 폭에 맞춰 축소한다. -->
+              <div class="sub-hero" style="border-radius: var(--radius-lg); padding: var(--space-40) var(--space-24)">
+                <div class="hero-wrap" style="padding: 0; max-width: none">
+                  <div class="sub-hero-copy">
+                    <p class="tag">People Axis · 일하는 사람의 전환</p>
+                    <h1 class="hero-title" style="font-size: var(--text-heading-32); line-height: var(--leading-heading-32)">역량 진단·교육</h1>
+                    <p class="hero-desc">진단하고, 부족한 영역만 학습하고, 재진단으로 성장을 증명합니다.</p>
+                    <div class="hero-actions">
+                      <a class="btn btn-primary" href="#components">3분 AI 활용 진단 시작<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    </div>
+                  </div>
+                  <ul class="hero-questions surface-glass">
+                    <li>
+                      <span class="hero-question-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="var(--color-brand)"/><path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="var(--color-brand)"/><path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="var(--color-brand)"/></svg>
+                      </span>
+                      <div class="hero-question-text">
+                        <h3>현재 수준은 어디인가?</h3>
+                        <p class="hero-question-desc">감이 아니라 실무 데이터로 진단합니다</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span class="hero-question-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/><path d="M2 17L12 22L22 17" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                      <div class="hero-question-text">
+                        <h3>무엇을 배워야 하는가?</h3>
+                        <p class="hero-question-desc">부족한 영역만 골라 학습합니다</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span class="hero-question-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 17L9 11L13 15L21 7" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7H15" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7V13" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                      <div class="hero-question-text">
+                        <h3>성장이 증명됐는가?</h3>
+                        <p class="hero-question-desc">재진단으로 변화를 숫자로 확인합니다</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div><p class="tag">서브페이지 첫 화면</p><h3>Hero</h3><p>서브페이지 첫 화면의 공통 골격입니다. 태그 + h1 + 설명(+ CTA)이 중앙 정렬되고, sunken 배경과 상단 브랜드 광원이 깔립니다. 보조 정보는 유리 띠 1장 안에 세로 구분선으로 나뉜 3칸이 표준입니다 — 질문형은 <code>hero-questions</code>, 핵심 수치형은 <code>hero-facts</code>(<code>hero-fact-value</code> + <code>unit</code> + <code>hero-fact-label</code>). 독립 카드로 늘어놓지 않습니다. <strong>hero 안에서는 그림자를 쓰지 않습니다</strong>(hover 제외). 메인 첫 화면(<code>main-hero</code>)과는 다른 컴포넌트입니다.</p><code>sub-hero · hero-wrap · hero-questions · hero-facts</code></div>
+          </article>
           <article class="guide-component-row">
             <div class="guide-component-demo">
               <div class="section-title text-left">
@@ -368,6 +425,30 @@
               </ol>
             </div>
             <div><p class="tag">단계 흐름</p><h3>Timeline</h3><p>기간이 있는 단계를 위에서 아래로 잇습니다. 왼쪽에 기간, 가운데에 연결선과 점, 오른쪽에 내용이 옵니다. 단계를 추가하면 선이 자동으로 이어집니다.</p><code>timeline &gt; li</code></div>
+          </article>
+          <article class="guide-component-row">
+            <div class="guide-component-demo">
+              <ol class="cycle" style="--cycle-columns: 3;">
+                <li>
+                  <div class="cycle-head"><span class="cycle-no">1</span><p class="cycle-en">Data</p></div>
+                  <h3>도구 사용 데이터</h3>
+                  <p class="cycle-desc">누가 무엇을 얼마나 쓰는가</p>
+                  <span class="cycle-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </li>
+                <li>
+                  <div class="cycle-head"><span class="cycle-no">2</span><p class="cycle-en">Assess</p></div>
+                  <h3>역량 진단 반영</h3>
+                  <p class="cycle-desc">데이터가 진단을 정확하게</p>
+                  <span class="cycle-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </li>
+                <li class="is-return">
+                  <div class="cycle-head"><span class="cycle-no">3</span><p class="cycle-en">Improve</p></div>
+                  <h3>도구 활용 극대화</h3>
+                  <p class="cycle-desc">성과가 다시 데이터로</p>
+                </li>
+              </ol>
+            </div>
+            <div><p class="tag">순서 · 순환</p><h3>Cycle</h3><p>N단계 순서나 순환을 가로 칸 + 경계 화살표로 보여줍니다. 화살표는 반투명 글래스모피즘 노드입니다. 순환의 결론/도착 칸에는 <code>is-return</code>을 붙여 유리 표면으로 띄웁니다. 열 수는 <code>--cycle-columns</code>로 조절합니다(기본 4).</p><code>cycle &gt; li · cycle-arrow</code></div>
           </article>
           <article class="guide-component-row">
             <div class="guide-component-demo">

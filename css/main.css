@@ -30,6 +30,7 @@
 @import url("./components/ui/button.css") layer(components);
 @import url("./components/ui/link.css") layer(components);
 @import url("./components/ui/badge.css") layer(components);
+@import url("./components/ui/hero.css") layer(components);
 @import url("./components/ui/header.css") layer(components);
 @import url("./components/ui/feature-card.css") layer(components);
 @import url("./components/ui/summary-banner.css") layer(components);
@@ -45,6 +46,7 @@
 @import url("./components/ui/assessment-card.css") layer(components);
 @import url("./components/ui/compare-panel.css") layer(components);
 @import url("./components/ui/timeline.css") layer(components);
+@import url("./components/ui/cycle.css") layer(components);
 @import url("./components/ui/faq-list.css") layer(components);
 @import url("./components/ui/catalog-board.css") layer(components);
 @import url("./components/ui/part-nav.css") layer(components);

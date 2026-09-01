@@ -18,6 +18,7 @@
 | Button | `button.css` | `.btn`, `.btn-primary`, `.btn-ghost`, `.btn-outline-inverse`, `.btn-lg` | 주요/보조 행동 버튼 |
 | Link Arrow | `link.css` | `.link-arrow`, `.link-arrow-ink`, `.link-arrow-inverse`, `.link-underline` | 화살표가 붙는 **보조** 텍스트 링크. **색 modifier(`-ink`/`-inverse`) 필수** — 맨몸이면 hover 없는 검은 글씨가 된다. 카드·패널의 행동에는 이것이 아니라 `btn-ghost`를 쓴다 |
 | Badge / Tag | `badge.css` | `.tag` | 콘텐츠 분류·상태 라벨 |
+| Hero | `hero.css` | `.hero`, `.hero-wrap`, `.hero-copy`, `.hero-title`, `.hero-desc`, `.hero-actions`, `.hero-questions`(+`surface-glass`), `.hero-facts`(+`surface-glass`) | 서브페이지 첫 화면 공통 골격(태그+h1+desc+CTA 중앙정렬, sunken 배경, bg-line2 텍스처, 상단 광원). 보조 정보 밴드는 유리 띠 1장 안에 세로 구분선으로 나뉜 3칸이 표준 외피다 — 질문형은 `.hero-questions`(아이콘+제목+설명), 수치형은 `.hero-facts`(`.hero-fact-value`+`.unit`+`.hero-fact-label`, `metric-card__value`와 같은 위계). 독립 카드로 늘어놓지 않는다. 보조 콘텐츠 내용 자체는 페이지 CSS가 `.hero-wrap` 안에 이어 붙인다. **hero 안에서는 그림자를 쓰지 않는다**(hover 제외) — `.hero-questions`/`.hero-facts`가 `surface-glass`의 평소 그림자를 무력화하는 이유. 배경 텍스처 위치는 `--hero-texture-position`으로 페이지마다 반복을 피한다 |
 | Metric Card | `metric-card.css` | `.metric-card`, `__value`, `__label`, `__visual`, `__glow`, `__icon` | 숫자 **성과** 지표 카드 (`js/stat-reveal.js`와 짝). **나쁜 수치에는 쓰지 않는다** — 큰 숫자+아이콘이 자랑으로 읽힌다(difference 01이 `problem-card`를 따로 만든 이유). `stat-reveal.js`는 그룹에 `data-stat-card="{선택자}"`를 주면 다른 카드도 카운트업한다 |
 | Choice List | `choice-list.css` | `.choice-list`, `__item`, `__icon`, `__body`, `__arrow` | 여러 항목 중 하나를 고르는 리스트 |
 | Preview Frame | `preview-frame.css` | `.preview-frame`, `__bar`, `__dots` | 제품/서비스 화면을 보여주는 목업 프레임 |
@@ -28,6 +29,7 @@
 | Content Panel | `content-panel.css` | `.content-panel`, `__item`, `__intro`, `__visual`, `--compact` | 설명 + 큰 시각 요소를 한 판에 담는 패널 |
 | Compare Panel | `compare-panel.css` | `.compare-panel`, `__item`(+`.is-after`), `__label`, `__title`, `__desc`, `__arrow` | "지금 → 바뀐 뒤" 두 상태를 좌우로 대비 |
 | Timeline | `timeline.css` | `.timeline > li`, `__marker`, `__term`, `__body`, `__title`, `__desc` | 기간이 있는 단계를 세로로 잇는 진행 흐름 |
+| Cycle | `cycle.css` | `.cycle > li`(+`.is-return`), `.cycle-head`, `.cycle-no`, `.cycle-en`, `.cycle-desc`, `.cycle-arrow`, `.cycle-note` | N단계 순서/순환을 가로 칸 + 경계 화살표로. 열 수는 `--cycle-columns`(기본 4). 순환형 결론 칸은 `.is-return`(유리 표면), 화살표는 반투명 글래스모피즘 노드. difference.html 03(4단계 순환)·skillcertify.html 05(5단계 선형, `.is-return`·마지막 화살표 없이)가 함께 쓰며 공용 승격 |
 | FAQ List | `faq-list.css` | `.faq-list > details`, `__question`, `__icon`, `__answer` | 질문을 눌러 답을 펼치는 아코디언 (`<details>` native) |
 | Catalog Board | `catalog-board.css` | `.catalog-board`, `__rail`, `__category`, `__count`, `__panel`, `__items > li` | 여러 분류의 항목 묶음을 대시보드처럼 한 판에 (`js/catalog-board.js`와 짝). **`__items`는 auto-fill 그리드 + nth-child 진입 stagger를 이미 갖고 있다** — 카드 나열이 필요하면 새로 만들지 말고 이걸 쓰고 `li` 안쪽만 덮는다(difference 07이 그렇게 했다) |
 | Product Mock | `product-mock.css` | `.journey-mock`(+`.mock-detail`·`.camp-ticker`), `-head`, `-title`, `-badge`(+`.is-live`), `-progress`, `-list`, `-item`(+`.is-current`·`.is-done`), `-check`, `-speaker`, `-avatar`, `-bubble`, `.journey-app*`(SkillFit 3단 앱 화면) | 제품 학습·강의 화면 목업 셸. index PART 1과 capability 04가 함께 쓴다(원래 index.css에 있던 712줄을 공용으로 올림). 목업 내부는 `opacity: 0`이 기본이고 **쓰는 페이지가 진입 신호로 띄워야 한다** — index는 `journey-stage.js`의 `.is-popping`, capability는 `.catalog-learn.is-visible`. 움직임은 `mock-motion.css`가 담당 |
@@ -60,7 +62,7 @@
 
 | 섹션 클래스 | 역할 | 정의 위치 | 짝이 되는 JS |
 |---|---|---|---|
-| `hero` | 첫 화면 | `css/pages/index.css` | — |
+| `main-hero` | 메인 첫 화면(메인 전용 — 서브페이지는 `sub-hero`, `components/ui/hero.css`를 쓴다) | `css/pages/index.css` | — |
 | `outcomes` | 도입 사례 슬라이더(안쪽은 `proof-card`) | `css/pages/index.css` | `js/proof-card-slider.js` |
 | `features` | 3단 카드 자동 순환 | `css/pages/index.css` | `js/feature-card-cycle.js` |
 | `journey` | PART 1 교육 여정 | `css/pages/index.css` | `js/journey-stage.js` |
@@ -73,7 +75,10 @@
 **`index.css`는 스코프로 감싸지 않는다** — `designsystem.css`가 통째로
 `@import`해서 카탈로그 페이지가 같은 규칙을 쓰기 때문이다. 대신 `ax-build.css`·
 `capability.css`는 각각 `.ax-build`·`.capability` 스코프로 감싸, 여러 페이지가
-같은 `hero`·`features`·`outcomes` 이름을 써도 서로에게 새지 않는다.
+같은 `features`·`outcomes` 이름을 써도 서로에게 새지 않는다. hero만은 스코프로
+가르지 않고 메인·서브페이지가 아예 클래스명 자체를 나눴다(`main-hero` vs `sub-hero`) —
+서브페이지 hero는 공용 골격(`components/ui/hero.css`)이라 `main.css`가 전역 로드하므로
+스코프만으로는 메인 hero와의 충돌을 막을 수 없었다.
 모든 페이지가 함께 로드하는 `mobile.css`에서도 페이지 전용 블록에 스코프를 붙인다.
 
 ## D. capability.html(역량 진단·교육) 전용 섹션 컴포넌트
@@ -105,7 +110,6 @@
 
 | 클래스 | 역할 | 재사용한 공용 컴포넌트 |
 |---|---|---|
-| `hero-compare` | hero의 "도구 회사 / 우리 / 교육 회사" 3칸 대비 | `compare-panel` 전부(색·hover·`__label` 반전). 5그리드로 칸을 하나 늘린 것만 페이지 CSS |
 | `problem-grid` · `problem-card` | 01 나쁜 수치 4개를 1행 4열로(도형이 본문 위). `is-fact`(사실) / `is-gap`(문제) 두 톤 — 문제 표시는 **좌측 accent 띠가 아니라** 수치 색·도형·설명 한 줄로만 한다 | — (`metric-card`는 **성과 지표용**이라 큰 숫자+아이콘이 전부 자랑으로 읽혀 부적합했다 — 나쁜 수치를 좋은 소식처럼 보이게 했다) |
 | `source-note` | 01 인용 수치의 출처 각주(번호는 `counter()`가 만든다) | — |
 | `diagnosis-slide` · `slide-row`(+`.is-fail`/`.is-link`) | 02 프레젠테이션 슬라이드형 2줄. 줄마다 캡슐 라벨 + 레일(`slide-rail`) | — |
@@ -114,7 +118,7 @@
 | `slide-join` · `slide-join-pill` | 우리 두 카드가 만나는 **96px 원형** 어두운 "데이터" 노드(아이콘+글자 2단, 브랜드 링) + 위아래 화살표. 레퍼런스의 가로 알약은 132px 열 안에서 셋이 나눠 가져 전부 작아졌다 | — |
 | `slide-verdict` | 실패 카드의 결말 배지("전환 실패") | — |
 | `diagnosis-mock` | 02 카드 4장 안의 목업(라이선스·수료·자동화·역량). 카드 안이라 목업 타이포는 13/11px 2단 | `preview-frame` · `mock-screen` · `journey-mock-*` · `skeleton-line` · `data-mock-motion="focus"`×3 · `"ticker"`×1 |
-| `cycle` · `cycle-arrow` | 03 4단계 순환 + 경계 화살표 + ↺ 마무리 | capability `.loop`과 같은 방식(그 클래스는 `.capability` 스코프라 재사용 불가 — 두 페이지가 함께 쓰게 되면 공용 승격 후보) |
+| ~~`cycle` · `cycle-arrow`~~ | 03 4단계 순환 + 경계 화살표 + ↺ 마무리 | **공용 승격됨** → `css/components/ui/cycle.css`(skillcertify.html 05가 함께 쓰게 되며 승격). 페이지 스코프에는 entrance stagger delay만 남음 |
 | `scenario-stage` | 04 각 단계의 국면 라벨(데이터 / 진단→학습 / 성과) | `timeline` 전부. 라벨 한 줄만 추가 |
 | `position-map` · `position-dot` | 05 경쟁 구도 2축 좌표. 점 자리는 마크업의 `--pos-x`·`--pos-y`(%)가 정한다 | — (비개발자가 좌표를 옮길 수 있게 값을 마크업에 노출) |
 | `start-grid` · `start-card` | 06 두 갈래 시작점 | `content-panel` · `summary-banner`(결론 한 줄) |

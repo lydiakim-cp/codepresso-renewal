@@ -15,80 +15,11 @@
   }
 
   /* ============================================================
-   * Hero — 한 줄 정의 + 누적 성과 3개
-   *
-   * 이 페이지는 섹션이 hero·catalog·cta-final 셋뿐이라 배경 리듬을 만들 면이 부족하다.
-   * 아래 catalog가 옅은 면(tint-2)을 가져갔으므로 hero는 흰 면으로 둔다 —
-   * 셋 다 옅은 면이면 리듬이 사라지고, sunken은 tint-2와 구분되지 않는다
-   * (sunken/tint-1은 같은 색 #F5F8FF이고 tint-2는 그보다 한 단계 진하다).
-   * 대신 질감·경계선 두 층으로 첫 화면의 판을 세운다.
+   * Hero — 공통 골격은 components/ui/hero.css. 이 페이지는 텍스처 위치와
+   * 누적 성과 3개(hero-facts)만 정의한다.
    * ============================================================ */
-  .stories .hero {
-    position: relative;
-    overflow: hidden;
-    background: var(--color-surface);
-    /* hero는 자기 여백을 section-wrap에서 직접 정하므로 layout.css의 공통 96px를 되돌린다 */
-    padding-block: 0;
-    border-bottom: 1px solid var(--color-line);
-  }
-
-  /* 배경 질감 — ax-build·capability hero와 같은 이미지지만 우측 하단 구역을 써서 반복을 피한다 */
-  .stories .hero::before {
-    content: "";
-    position: absolute;
-    inset: -40px;
-    background-image: url("../../images/bg-line2.png");
-    background-repeat: no-repeat;
-    background-position: bottom right;
-    background-size: 165%;
-    filter: blur(10px);
-    opacity: 0.34;
-    pointer-events: none;
-  }
-
-  /* 질감이 아래로 갈수록 옅어져 다음 섹션(옅은 면)과의 경계가 선 하나로 끝난다 */
-  .stories .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg,
-        transparent 0%,
-        color-mix(in srgb, var(--color-surface) 55%, transparent) 65%,
-        var(--color-surface) 100%);
-    pointer-events: none;
-  }
-
-  .stories .hero .section-wrap {
-    position: relative;
-    z-index: 1;
-    padding-top: 152px;
-    padding-bottom: var(--space-60);
-  }
-
-  .stories .hero-copy {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-20);
-    text-align: center;
-  }
-
-  /* hero 진입 애니메이션 — 순차 지연 */
-  .stories .hero-copy > * {
-    animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
-  }
-
-  .stories .hero-copy > :nth-child(2) { animation-delay: .08s; }
-  .stories .hero-copy > :nth-child(3) { animation-delay: .16s; }
-
-  .stories .hero-title {
-    color: var(--color-ink-heaviest);
-  }
-
-  .stories .hero-desc {
-    font-size: var(--text-body-18);
-    line-height: var(--leading-body-18);
-    color: var(--color-ink-light);
+  .stories .sub-hero {
+    --hero-texture-position: bottom right;
   }
 
   /* "실명과 숫자" — 이 페이지의 주장이라 본문 안에서 한 번만 브랜드 색으로 짚는다 */
@@ -97,31 +28,8 @@
     color: var(--color-brand);
   }
 
-  /* 누적 성과 3개 — ax-build hero-facts와 같은 자리, 배치만 재사용한다 */
-  .stories .hero-facts {
-    margin-top: var(--space-48);
-  }
-
-  /* 흰 면 위의 카드는 가라앉아야 구분된다 — metric-card 기본값(sunken)을 그대로 두고
-     배경 질감이 비치도록 살짝 투명하게만 만든다. */
-  .stories .hero-facts .metric-card {
-    background: color-mix(in srgb, var(--color-surface-sunken) 88%, transparent);
-    backdrop-filter: blur(14px) saturate(160%);
-    -webkit-backdrop-filter: blur(14px) saturate(160%);
-    box-shadow: var(--shadow-sm);
-  }
-
-  /* metric-card 기본 transition은 진입 fade만 담당한다 — hover 부상을 여기서 더한다 */
-  .stories .hero-facts .metric-card.is-visible {
-    transition: opacity var(--duration-scroll) var(--ease-scroll),
-      transform var(--duration-hover) var(--ease-hover),
-      box-shadow var(--duration-hover) var(--ease-hover);
-  }
-
-  .stories .hero-facts .metric-card.is-visible:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
-  }
+  /* 누적 성과 3개 — 외피·크기·진입 애니메이션은 hero.css의 hero-facts 표준을
+     그대로 쓴다. 이 페이지 고유는 카운트업(data-stat-reveal, js/stat-reveal.js)뿐이다. */
 
   /* ============================================================
    * 사례 목록 — 분류 필터 + 카드 그리드
@@ -525,7 +433,7 @@
   .stories .process.is-visible .order > li:nth-child(3) { animation-delay: .16s; }
 
   @media (prefers-reduced-motion: reduce) {
-    .stories .hero-copy > *,
+    .stories .sub-hero-copy > *,
     .stories .catalog.is-visible .outcome-list > li,
     .stories .process.is-visible .order > li { animation: none; }
 

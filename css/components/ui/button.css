@@ -10,7 +10,7 @@
   justify-content: center;
   gap: var(--space-8);
   height: 40px;
-  padding: 0 var(--space-20);
+  padding: 8px 24px;
   border-radius: var(--radius-sm);
   font-size: var(--text-body-muted);
   font-weight: var(--font-weight-semibold);
@@ -28,8 +28,7 @@
 }
 
 .btn-primary:hover {
-  background: color-mix(in srgb, var(--color-brand) 80%, white);
-  box-shadow: var(--shadow-md);
+  background: color-mix(in srgb, var(--color-brand) 90%, white);
 }
 
 .btn-ghost {
@@ -68,11 +67,8 @@
 }
 
 .btn-lg {
-  height: 52px;
-  padding: 0 var(--space-24);
-  border-radius: var(--radius-md);
+  padding: 10px 24px;
   font-size: var(--text-body);
-  letter-spacing: var(--tracking-body);
 }
 
 /* Pill CTA — 흰색 캡슐 + 우측 원형 화살표. 그라디언트/이미지 배경 위 플로팅 CTA. */

@@ -20,46 +20,16 @@
       Hero — "도구 회사도, 교육 회사도 아니다"가 이 페이지 전체의 주장이다.
       첫 화면이라 fade-up을 붙이지 않는다.
 
-      주장이 부정문 둘("도구도 아니고 교육도 아니다")이라 글로만 두면 무엇인지 알 수 없다.
-      그래서 공용 compare-panel을 세 칸으로 늘려, 도구 회사 · 교육 회사 두 결핍을 좌우에
-      두고 가운데(is-after)에 우리를 놓는다 — 배치 자체가 주장을 대신 말한다.
+      3칸 대비(hero-compare)는 뺐다 — hero 배경 위 surface-glass 판이 텍스처와
+      겹쳐 탁하게 보였고, 그 설명 자체가 hero-desc 한 문장과 중복이라 굳이
+      따로 펼쳐 둘 필요가 없었다.
     -->
-    <section class="hero">
-      <div class="section-wrap">
-        <div class="hero-copy">
+    <section class="sub-hero">
+      <div class="hero-wrap">
+        <div class="sub-hero-copy">
           <p class="tag">The Difference · 데이터 선순환</p>
           <h1 class="hero-title">도구 회사도,<br>교육 회사도 아닙니다</h1>
           <p class="hero-desc">도구 전문 회사는 사람을 못 바꾸고, 교육 회사는 도구가 없습니다. <br data-break="desktop">Codepresso는 <strong>둘 다, 그리고 연결까지</strong> 합니다.</p>
-        </div>
-
-        <!--
-          세 칸 대비. 공용 compare-panel의 __item·__label·__title·__arrow를 그대로 쓰고,
-          가운데 칸을 하나 더 넣어 3열로 만드는 것만 페이지 CSS가 담당한다
-          (컴포넌트는 좌·화살표·우 3그리드라, 칸을 하나 더 넣으면 5그리드가 된다).
-          가운데만 is-after라 브랜드 톤으로 올라온다 — 어느 쪽이 답인지 색이 먼저 말한다.
-        -->
-        <div class="compare-panel hero-compare">
-          <div class="compare-panel__item">
-            <p class="compare-panel__label">도구 전문 회사</p>
-            <h3 class="compare-panel__title">도구는 있지만<br>사람을 못 바꿉니다</h3>
-            <p class="compare-panel__desc">라이선스를 팔고 끝납니다. 쓰는 사람의 역량은 그대로입니다.</p>
-          </div>
-          <span class="compare-panel__arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <div class="compare-panel__item is-after">
-            <p class="compare-panel__label">Codepresso</p>
-            <h3 class="compare-panel__title">둘 다, 그리고<br>데이터로 연결까지</h3>
-            <p class="compare-panel__desc">도구가 만든 사용 데이터가 역량 진단으로, 진단 결과가 다시 업무 개선으로 돌아옵니다.</p>
-          </div>
-          <span class="compare-panel__arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <div class="compare-panel__item">
-            <p class="compare-panel__label">교육 회사</p>
-            <h3 class="compare-panel__title">교육은 하지만<br>도구가 없습니다</h3>
-            <p class="compare-panel__desc">배운 것을 적용할 현장 도구가 없어 업무는 그대로 남습니다.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -763,18 +733,50 @@
                 <div class="catalog-board__panel is-active" data-catalog-panel="manufacturing">
                   <ul class="catalog-board__items industry-cards">
                     <li class="industry-card">
+                      <span class="industry-card-icon industry-card-icon--pain" aria-hidden="true">
+                        <!-- 주의,강조 — flat_icon_svg/117.주의,강조.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" fill="color-mix(in srgb, var(--color-critical) 25%, var(--color-surface))"/>
+                          <path d="M12.702 6.5H11.2976C11.1616 6.49978 11.027 6.52424 10.9021 6.57186C10.7772 6.61947 10.6646 6.68924 10.5713 6.77687C10.478 6.86449 10.406 6.96812 10.3596 7.08136C10.3132 7.1946 10.2934 7.31506 10.3016 7.43531L10.7398 14H13.2498L13.698 7.43531C13.7062 7.31506 13.6864 7.1946 13.64 7.08136C13.5937 6.96812 13.5216 6.86449 13.4283 6.77687C13.335 6.68924 13.2224 6.61947 13.0975 6.57186C12.9726 6.52424 12.838 6.49978 12.702 6.5Z" fill="var(--color-critical)"/>
+                          <path d="M12 18.3604C12.8284 18.3604 13.5 17.6888 13.5 16.8604C13.5 16.0319 12.8284 15.3604 12 15.3604C11.1716 15.3604 10.5 16.0319 10.5 16.8604C10.5 17.6888 11.1716 18.3604 12 18.3604Z" fill="var(--color-critical)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">Pain Point</p>
                       <p class="industry-card-body">설비·품질 데이터는 쌓이는데 보고서·검사·발주는 여전히 수작업.</p>
                     </li>
                     <li class="industry-card">
+                      <span class="industry-card-icon" aria-hidden="true">
+                        <!-- AXpresso 적용 — images/icon/ic_axBuild.svg의 실제 path -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M21.5001 5L12.0001 1L2.50007 5V9C2.49107 12.0185 3.39297 14.9695 5.08786 17.4672C6.78276 19.9649 9.19179 21.8932 12.0001 23C14.8083 21.8932 17.2174 19.9649 18.9123 17.4672C20.6072 14.9695 21.5091 12.0185 21.5001 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4089 11.5203L15.2373 7.70001L17.0032 9.46964L11.3316 15.1293L7.7002 11.181L9.54027 9.48864L11.4089 11.5203Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">AXpresso 적용</p>
                       <p class="industry-card-body">품질 리포트 자동화, 이슈 모니터링 에이전트, 회의록 자동화.</p>
                     </li>
                     <li class="industry-card">
+                      <span class="industry-card-icon" aria-hidden="true">
+                        <!-- 역량 교육 매핑 — images/flat_icon_svg/006.화상회의.svg의 실제 path. 배경 rect는 빼고
+                             viewBox를 그림 범위로 잘랐다(다른 24-grid 아이콘과 광학 크기를 맞춤). -->
+                        <svg viewBox="3 1 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.9998 18H14.9998L16.7198 22.3199C16.7514 22.3951 16.7638 22.477 16.7558 22.5581C16.7478 22.6392 16.7197 22.7171 16.674 22.7846C16.6283 22.8521 16.5665 22.9072 16.4942 22.9448C16.4219 22.9824 16.3413 23.0014 16.2598 23H7.72981C7.6483 23.0014 7.56773 22.9824 7.4954 22.9448C7.42307 22.9072 7.36127 22.8521 7.31559 22.7846C7.26991 22.7171 7.2418 22.6392 7.23381 22.5581C7.22581 22.477 7.23819 22.3951 7.26982 22.3199L8.9998 18Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                          <path d="M12 19C16.9706 19 21 14.9706 21 10C21 5.02944 16.9706 1 12 1C7.02944 1 3 5.02944 3 10C3 14.9706 7.02944 19 12 19Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                          <path d="M12 12.5C13.3807 12.5 14.5 11.3807 14.5 10C14.5 8.61929 13.3807 7.5 12 7.5C10.6193 7.5 9.5 8.61929 9.5 10C9.5 11.3807 10.6193 12.5 12 12.5Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">역량 교육 매핑</p>
                       <p class="industry-card-body">현장 관리자 AI Fluent 진단 → 실무 프롬프트·에이전트 활용 교육.</p>
                     </li>
                     <li class="industry-card">
+                      <span class="industry-card-icon" aria-hidden="true">
+                        <!-- 기대 효과 — images/icon/ic_lineChart.svg의 실제 path -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 15%, var(--color-surface))"/>
+                          <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"/>
+                          <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">기대 효과</p>
                       <p class="industry-card-body">반복 문서 업무 절감, 데이터 기반 의사결정 정착.</p>
                     </li>
@@ -784,18 +786,50 @@
                 <div class="catalog-board__panel" data-catalog-panel="finance">
                   <ul class="catalog-board__items industry-cards">
                     <li class="industry-card">
+                      <span class="industry-card-icon industry-card-icon--pain" aria-hidden="true">
+                        <!-- 주의,강조 — flat_icon_svg/117.주의,강조.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" fill="color-mix(in srgb, var(--color-critical) 25%, var(--color-surface))"/>
+                          <path d="M12.702 6.5H11.2976C11.1616 6.49978 11.027 6.52424 10.9021 6.57186C10.7772 6.61947 10.6646 6.68924 10.5713 6.77687C10.478 6.86449 10.406 6.96812 10.3596 7.08136C10.3132 7.1946 10.2934 7.31506 10.3016 7.43531L10.7398 14H13.2498L13.698 7.43531C13.7062 7.31506 13.6864 7.1946 13.64 7.08136C13.5937 6.96812 13.5216 6.86449 13.4283 6.77687C13.335 6.68924 13.2224 6.61947 13.0975 6.57186C12.9726 6.52424 12.838 6.49978 12.702 6.5Z" fill="var(--color-critical)"/>
+                          <path d="M12 18.3604C12.8284 18.3604 13.5 17.6888 13.5 16.8604C13.5 16.0319 12.8284 15.3604 12 15.3604C11.1716 15.3604 10.5 16.0319 10.5 16.8604C10.5 17.6888 11.1716 18.3604 12 18.3604Z" fill="var(--color-critical)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">Pain Point</p>
                       <p class="industry-card-body">규제·보안 요건 탓에 AI 도입 시도가 번번이 멈춘다.</p>
                     </li>
                     <li class="industry-card">
+                      <span class="industry-card-icon" aria-hidden="true">
+                        <!-- AXpresso 적용 — images/icon/ic_axBuild.svg의 실제 path -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M21.5001 5L12.0001 1L2.50007 5V9C2.49107 12.0185 3.39297 14.9695 5.08786 17.4672C6.78276 19.9649 9.19179 21.8932 12.0001 23C14.8083 21.8932 17.2174 19.9649 18.9123 17.4672C20.6072 14.9695 21.5091 12.0185 21.5001 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4089 11.5203L15.2373 7.70001L17.0032 9.46964L11.3316 15.1293L7.7002 11.181L9.54027 9.48864L11.4089 11.5203Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">AXpresso 적용</p>
                       <p class="industry-card-body">국내 클라우드·거버넌스 기반의 심사·보고 업무 자동화.</p>
                     </li>
                     <li class="industry-card">
+                      <span class="industry-card-icon" aria-hidden="true">
+                        <!-- 역량 교육 매핑 — images/flat_icon_svg/006.화상회의.svg의 실제 path. 배경 rect는 빼고
+                             viewBox를 그림 범위로 잘랐다(다른 24-grid 아이콘과 광학 크기를 맞춤). -->
+                        <svg viewBox="3 1 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.9998 18H14.9998L16.7198 22.3199C16.7514 22.3951 16.7638 22.477 16.7558 22.5581C16.7478 22.6392 16.7197 22.7171 16.674 22.7846C16.6283 22.8521 16.5665 22.9072 16.4942 22.9448C16.4219 22.9824 16.3413 23.0014 16.2598 23H7.72981C7.6483 23.0014 7.56773 22.9824 7.4954 22.9448C7.42307 22.9072 7.36127 22.8521 7.31559 22.7846C7.26991 22.7171 7.2418 22.6392 7.23381 22.5581C7.22581 22.477 7.23819 22.3951 7.26982 22.3199L8.9998 18Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                          <path d="M12 19C16.9706 19 21 14.9706 21 10C21 5.02944 16.9706 1 12 1C7.02944 1 3 5.02944 3 10C3 14.9706 7.02944 19 12 19Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                          <path d="M12 12.5C13.3807 12.5 14.5 11.3807 14.5 10C14.5 8.61929 13.3807 7.5 12 7.5C10.6193 7.5 9.5 8.61929 9.5 10C9.5 11.3807 10.6193 12.5 12 12.5Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">역량 교육 매핑</p>
                       <p class="industry-card-body">컴플라이언스를 고려한 전사 AI 리터러시 진단·교육.</p>
                     </li>
                     <li class="industry-card">
+                      <span class="industry-card-icon" aria-hidden="true">
+                        <!-- 기대 효과 — images/icon/ic_lineChart.svg의 실제 path -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 15%, var(--color-surface))"/>
+                          <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"/>
+                          <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">기대 효과</p>
                       <p class="industry-card-body">보안 요건을 지키면서 안전하게 확산하는 AX.</p>
                     </li>
@@ -805,18 +839,50 @@
                 <div class="catalog-board__panel" data-catalog-panel="retail">
                   <ul class="catalog-board__items industry-cards">
                     <li class="industry-card">
+                      <span class="industry-card-icon industry-card-icon--pain" aria-hidden="true">
+                        <!-- 주의,강조 — flat_icon_svg/117.주의,강조.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" fill="color-mix(in srgb, var(--color-critical) 25%, var(--color-surface))"/>
+                          <path d="M12.702 6.5H11.2976C11.1616 6.49978 11.027 6.52424 10.9021 6.57186C10.7772 6.61947 10.6646 6.68924 10.5713 6.77687C10.478 6.86449 10.406 6.96812 10.3596 7.08136C10.3132 7.1946 10.2934 7.31506 10.3016 7.43531L10.7398 14H13.2498L13.698 7.43531C13.7062 7.31506 13.6864 7.1946 13.64 7.08136C13.5937 6.96812 13.5216 6.86449 13.4283 6.77687C13.335 6.68924 13.2224 6.61947 13.0975 6.57186C12.9726 6.52424 12.838 6.49978 12.702 6.5Z" fill="var(--color-critical)"/>
+                          <path d="M12 18.3604C12.8284 18.3604 13.5 17.6888 13.5 16.8604C13.5 16.0319 12.8284 15.3604 12 15.3604C11.1716 15.3604 10.5 16.0319 10.5 16.8604C10.5 17.6888 11.1716 18.3604 12 18.3604Z" fill="var(--color-critical)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">Pain Point</p>
                       <p class="industry-card-body">상품 등록·CS·정산 업무가 사람 손에 몰려 병목이 된다.</p>
                     </li>
                     <li class="industry-card">
+                      <span class="industry-card-icon" aria-hidden="true">
+                        <!-- AXpresso 적용 — images/icon/ic_axBuild.svg의 실제 path -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M21.5001 5L12.0001 1L2.50007 5V9C2.49107 12.0185 3.39297 14.9695 5.08786 17.4672C6.78276 19.9649 9.19179 21.8932 12.0001 23C14.8083 21.8932 17.2174 19.9649 18.9123 17.4672C20.6072 14.9695 21.5091 12.0185 21.5001 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4089 11.5203L15.2373 7.70001L17.0032 9.46964L11.3316 15.1293L7.7002 11.181L9.54027 9.48864L11.4089 11.5203Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">AXpresso 적용</p>
                       <p class="industry-card-body">CS 에이전트, 정산·콘텐츠 제작 자동화.</p>
                     </li>
                     <li class="industry-card">
+                      <span class="industry-card-icon" aria-hidden="true">
+                        <!-- 역량 교육 매핑 — images/flat_icon_svg/006.화상회의.svg의 실제 path. 배경 rect는 빼고
+                             viewBox를 그림 범위로 잘랐다(다른 24-grid 아이콘과 광학 크기를 맞춤). -->
+                        <svg viewBox="3 1 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.9998 18H14.9998L16.7198 22.3199C16.7514 22.3951 16.7638 22.477 16.7558 22.5581C16.7478 22.6392 16.7197 22.7171 16.674 22.7846C16.6283 22.8521 16.5665 22.9072 16.4942 22.9448C16.4219 22.9824 16.3413 23.0014 16.2598 23H7.72981C7.6483 23.0014 7.56773 22.9824 7.4954 22.9448C7.42307 22.9072 7.36127 22.8521 7.31559 22.7846C7.26991 22.7171 7.2418 22.6392 7.23381 22.5581C7.22581 22.477 7.23819 22.3951 7.26982 22.3199L8.9998 18Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                          <path d="M12 19C16.9706 19 21 14.9706 21 10C21 5.02944 16.9706 1 12 1C7.02944 1 3 5.02944 3 10C3 14.9706 7.02944 19 12 19Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                          <path d="M12 12.5C13.3807 12.5 14.5 11.3807 14.5 10C14.5 8.61929 13.3807 7.5 12 7.5C10.6193 7.5 9.5 8.61929 9.5 10C9.5 11.3807 10.6193 12.5 12 12.5Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">역량 교육 매핑</p>
                       <p class="industry-card-body">CS·MD 직군별 역량 진단과 직무 맞춤 학습 경로.</p>
                     </li>
                     <li class="industry-card">
+                      <span class="industry-card-icon" aria-hidden="true">
+                        <!-- 기대 효과 — images/icon/ic_lineChart.svg의 실제 path -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 15%, var(--color-surface))"/>
+                          <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"/>
+                          <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">기대 효과</p>
                       <p class="industry-card-body">응대 속도 향상, 정산·콘텐츠 리드타임 단축.</p>
                     </li>
@@ -826,18 +892,50 @@
                 <div class="catalog-board__panel" data-catalog-panel="it">
                   <ul class="catalog-board__items industry-cards">
                     <li class="industry-card">
+                      <span class="industry-card-icon industry-card-icon--pain" aria-hidden="true">
+                        <!-- 주의,강조 — flat_icon_svg/117.주의,강조.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" fill="color-mix(in srgb, var(--color-critical) 25%, var(--color-surface))"/>
+                          <path d="M12.702 6.5H11.2976C11.1616 6.49978 11.027 6.52424 10.9021 6.57186C10.7772 6.61947 10.6646 6.68924 10.5713 6.77687C10.478 6.86449 10.406 6.96812 10.3596 7.08136C10.3132 7.1946 10.2934 7.31506 10.3016 7.43531L10.7398 14H13.2498L13.698 7.43531C13.7062 7.31506 13.6864 7.1946 13.64 7.08136C13.5937 6.96812 13.5216 6.86449 13.4283 6.77687C13.335 6.68924 13.2224 6.61947 13.0975 6.57186C12.9726 6.52424 12.838 6.49978 12.702 6.5Z" fill="var(--color-critical)"/>
+                          <path d="M12 18.3604C12.8284 18.3604 13.5 17.6888 13.5 16.8604C13.5 16.0319 12.8284 15.3604 12 15.3604C11.1716 15.3604 10.5 16.0319 10.5 16.8604C10.5 17.6888 11.1716 18.3604 12 18.3604Z" fill="var(--color-critical)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">Pain Point</p>
                       <p class="industry-card-body">개발 조직 안에서도 AI 활용 편차가 크다.</p>
                     </li>
                     <li class="industry-card">
+                      <span class="industry-card-icon" aria-hidden="true">
+                        <!-- AXpresso 적용 — images/icon/ic_axBuild.svg의 실제 path -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M21.5001 5L12.0001 1L2.50007 5V9C2.49107 12.0185 3.39297 14.9695 5.08786 17.4672C6.78276 19.9649 9.19179 21.8932 12.0001 23C14.8083 21.8932 17.2174 19.9649 18.9123 17.4672C20.6072 14.9695 21.5091 12.0185 21.5001 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4089 11.5203L15.2373 7.70001L17.0032 9.46964L11.3316 15.1293L7.7002 11.181L9.54027 9.48864L11.4089 11.5203Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">AXpresso 적용</p>
                       <p class="industry-card-body">회의록·태스크 관리·지식베이스 에이전트로 협업 자동화.</p>
                     </li>
                     <li class="industry-card">
+                      <span class="industry-card-icon" aria-hidden="true">
+                        <!-- 역량 교육 매핑 — images/flat_icon_svg/006.화상회의.svg의 실제 path. 배경 rect는 빼고
+                             viewBox를 그림 범위로 잘랐다(다른 24-grid 아이콘과 광학 크기를 맞춤). -->
+                        <svg viewBox="3 1 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.9998 18H14.9998L16.7198 22.3199C16.7514 22.3951 16.7638 22.477 16.7558 22.5581C16.7478 22.6392 16.7197 22.7171 16.674 22.7846C16.6283 22.8521 16.5665 22.9072 16.4942 22.9448C16.4219 22.9824 16.3413 23.0014 16.2598 23H7.72981C7.6483 23.0014 7.56773 22.9824 7.4954 22.9448C7.42307 22.9072 7.36127 22.8521 7.31559 22.7846C7.26991 22.7171 7.2418 22.6392 7.23381 22.5581C7.22581 22.477 7.23819 22.3951 7.26982 22.3199L8.9998 18Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                          <path d="M12 19C16.9706 19 21 14.9706 21 10C21 5.02944 16.9706 1 12 1C7.02944 1 3 5.02944 3 10C3 14.9706 7.02944 19 12 19Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                          <path d="M12 12.5C13.3807 12.5 14.5 11.3807 14.5 10C14.5 8.61929 13.3807 7.5 12 7.5C10.6193 7.5 9.5 8.61929 9.5 10C9.5 11.3807 10.6193 12.5 12 12.5Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">역량 교육 매핑</p>
                       <p class="industry-card-body">AI Fluent로 편차를 진단하고 SkillFit으로 개인별 보완.</p>
                     </li>
                     <li class="industry-card">
+                      <span class="industry-card-icon" aria-hidden="true">
+                        <!-- 기대 효과 — images/icon/ic_lineChart.svg의 실제 path -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 15%, var(--color-surface))"/>
+                          <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"/>
+                          <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
                       <p class="industry-card-label">기대 효과</p>
                       <p class="industry-card-body">조직 전체의 AI 생산성 표준화.</p>
                     </li>
