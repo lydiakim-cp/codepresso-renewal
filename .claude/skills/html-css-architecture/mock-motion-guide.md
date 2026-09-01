@@ -1,22 +1,23 @@
-# 목업 연출 6종 — Mock Motion
+# 목업 연출 7종 — Mock Motion
 
 제품 화면 목업을 **정지된 그림이 아니라 실제로 돌아가는 화면처럼** 보여주는 연출 레이어. 읽어야 할 것만 텍스트로 남기고 나머지는 스켈레톤으로 가라앉힌 뒤, 확대·이동·pop으로 시선을 한 곳에 모은다.
 
 - **CSS 파일**: `css/components/ui/mock-motion.css` (공용 — `main.css`가 로드)
 - **레이아웃**: `deck`·`detail`의 뼈대(`.mock-deck-*` · `.mock-detail-*`)는 `mock-motion.css`에 함께 있다 — index.html이 쓰게 되면서 컴포넌트 레벨로 올렸다. `ticker` 뼈대도 index.html PART 1(SkillCamp)이 쓰게 되면서 함께 올렸다. `replay` 뼈대만 아직 `css/pages/designsystem.css`의 `08 MOCKUP MOTION` 블록에 남아 있고, 다른 페이지에서 쓰게 되면 같은 방식으로 올린다.
-- **카탈로그**: `codepresso-designsystem.html` → `08 · MOCKUP MOTION` 섹션에서 6종이 실제로 돌아간다
+- **카탈로그**: `codepresso-designsystem.html` → `08 · MOCKUP MOTION` 섹션에서 A~F 6종이 실제로 돌아간다(G·run은 ax-build 01이 유일한 사용처)
 - **JS 없음** — 전부 CSS 애니메이션. 스크롤 위치와 무관하게 항상 같은 리듬으로 반복한다.
-  단 `stage`만 한 번 재생이라, 다시 보여주려면 쓰는 쪽이 되감아야 한다(F 항목 참고).
+  단 `stage`·`run`은 한 번 재생이라, 다시 보여주려면 쓰는 쪽이 되감아야 한다(F·G 항목 참고).
 
 ## 사용자가 이렇게 말하면 이 문서를 편다
 
 > "B번 목업처럼 디자인해줘" · "카드 덱처럼 넘어가게" · "목업에 애니메이션 넣어줘"
 > "단계별로 하나씩 나타나게" · "프레젠테이션처럼 순서대로"
+> "AI가 반복 업무 처리하는 것처럼" · "작업이 하나씩 완료되는 화면"
 > "스켈레톤으로 하고 중요한 것만 텍스트로" · "실제 웹사이트 돌아가는 것처럼"
 
-번호(A~F)와 이름(focus·replay·deck·detail·ticker·stage)은 **고정**이다. 다시 매기지 않는다.
+번호(A~G)와 이름(focus·replay·deck·detail·ticker·stage·run)은 **고정**이다. 다시 매기지 않는다.
 
-## 6종 요약 — 무엇을 고를 것인가
+## 7종 요약 — 무엇을 고를 것인가
 
 | 번호 | `data-mock-motion` | 화면이 하는 일 | 이럴 때 쓴다 |
 |---|---|---|---|
@@ -25,7 +26,8 @@
 | **C** | `deck` | 카드가 덱처럼 쌓였다가 맨 앞 장이 좌상단으로 빠지고 뒤 카드가 당겨진다. 빠지기 직전 배지가 pop | 스크롤 중 눈에 띄어야 할 때. **움직임이 가장 크다** |
 | **D** | `detail` | 좌측 목록에서 항목이 선택되면 우측 상세가 밀려 들어오고 도넛 게이지가 그려진다 | 연출과 함께 정보도 전달해야 할 때. **밀도와 연출의 균형** |
 | **E** | `ticker` | 수치가 오버슈트로 튀어나오고, 막대가 자라고, 새 행이 위에서 밀려들며 반짝인다 | 숫자로 설득하는 자리. 관리자·대시보드 시점 |
-| **F** | `stage` | 나란히 놓인 3단계 칸이 좌→우로 하나씩 켜지고, 칸 안 요소가 이어서 올라오고, 칸 사이 화살표가 다음으로 넘긴다 | 프로세스·확산·전후 흐름. **유일하게 한 번만 재생된다** |
+| **F** | `stage` | 나란히 놓인 3단계 칸이 좌→우로 하나씩 켜지고, 칸 안 요소가 이어서 올라오고, 칸 사이 화살표가 다음으로 넘긴다 | 프로세스·확산·전후 흐름. **한 번만 재생된다** |
+| **G** | `run` | 작업 큐의 행이 위에서부터 실행→완료로 넘어가고, 우측 로그가 같은 박자로 쌓이다가, 마지막 1건만 "사람 확인"에서 멈춘다 | Agent·자동화가 **실제로 돌아가는 화면**. 결론이 화면 안에서 읽혀야 할 때. **한 번만 재생된다** |
 
 ## 공통 규칙
 
@@ -79,6 +81,10 @@
 | `is-step` | 단계 칸 하나가 통째로 올라온다. `stage` 전용. `--mock-step`(0·1·2)으로 순서를 준다 |
 | `is-cue` | 칸 안의 요소가 칸보다 조금 늦게 올라온다. `--mock-cue-delay`로 칸 안 순서를 준다 |
 | `is-flow` | 칸과 칸 사이 화살표가 한 번 밝아졌다 가라앉는다 |
+| `is-task` | 큐의 행이 대기→실행→완료로 넘어간다. `run` 전용. `--mock-run-step`으로 순서를 준다 |
+| `is-line` | 로그 한 줄이 우측에서 밀려 들어온다. 큐와 같은 `--mock-run-step`을 써야 박자가 맞는다 |
+| `is-hold` | 그 행만 완료로 안 가고 멈춘다(체크 대신 사람 아이콘, 막대 62%). `run`의 결론 |
+| `is-verdict` | 큐가 다 돈 뒤 결론 수치가 마지막에 올라온다. `run` 전용 |
 
 ## 조절 변수
 
@@ -92,6 +98,8 @@
 | `--mock-cursor-from-x/y`, `--mock-cursor-to-x/y` | 212/168, 150/118 | `replay` 커서의 이동 좌표 |
 | `--mock-step` | 0 | `stage` 칸의 순서(0·1·2). 칸마다 0.34s씩 늦게 켜진다 |
 | `--mock-cue-delay` | 0s | `stage` 칸 **안**에서 그 요소가 늦는 정도 |
+| `--mock-run-step` | 0 | `run` 큐·로그 행의 순서(0~3). 좌우가 같은 값을 써야 박자가 맞는다 |
+| `--mock-run-beat` | 1.1s | `run`에서 한 행이 처리되는 시간. 모든 지연이 이 값의 배수다 |
 
 ## 마크업 골격
 
@@ -278,6 +286,62 @@
 화면을 활성화할 때 `animation: none` → reflow → 원복으로 되감는 것이 그 예다.
 되감아 주는 스크립트가 없는 곳(디자인 가이드 카탈로그)에서는 진입 시 한 번
 재생되고 완성 상태로 머문다.
+
+### G · run
+
+`ax-build.html`의 01(What It Is)이 이 연출을 쓴다. **stage와 같은 서사를 한 화면 안에서
+푼 것이다** — 3칸을 나란히 놓으면 칸끼리 비슷해 차이가 안 읽힌다는 지적에서 나왔다.
+"Agent가 반복 업무를 돌린다"를 비교표가 아니라 **돌아가는 화면 자체**로 보여줄 때 쓴다.
+
+좌 작업 큐 · 우 실행 로그 2단이고, 양쪽 행이 **같은 `--mock-run-step`(0·1·2·3)** 을
+선언해 박자가 저절로 맞는다. 한 행이 처리되는 시간은 `--mock-run-beat`(기본 1.1s)다.
+
+```html
+<div class="run preview-frame preview-frame--flush" data-mock-motion="run" aria-hidden="true">
+  <div class="preview-frame__bar">
+    <span class="preview-frame__dots"><i></i><i></i><i></i></span>
+    <span class="run-flow">주간 실적 보고 <span class="run-flow-meta">매일 09:00 자동 실행</span></span>
+    <span class="run-state is-run-state"><i class="is-pulse"></i><b>실행 중</b></span>
+  </div>
+  <div class="run-body">
+    <div class="run-queue">
+      <ul class="run-tasks">
+        <li class="run-task is-task" style="--mock-run-step: 0">
+          <span class="run-mark"><span class="run-spin"></span></span>
+          <span class="run-task-body">
+            <span class="run-task-name">이메일 분류</span>
+            <span class="run-bar"><i></i></span>
+          </span>
+          <span class="run-task-meta">42건</span>
+        </li>
+        <!-- 마지막 칸만 is-hold — 체크 대신 사람 아이콘, 막대도 62%에서 멈춘다 -->
+        <li class="run-task is-hold is-task" style="--mock-run-step: 3">
+          <span class="run-mark"><span class="run-spin"></span><svg class="run-person">…</svg></span>
+          …
+        </li>
+      </ul>
+    </div>
+    <div class="run-log">
+      <ul class="run-lines">
+        <li class="run-line is-line" style="--mock-run-step: 0">…</li>
+      </ul>
+      <p class="run-verdict is-verdict">…결론 수치…</p>
+    </div>
+  </div>
+</div>
+```
+
+**`is-hold`가 이 연출의 핵심이다.** 마지막 행만 완료로 가지 않고 멈춰서 "사람은 예외만
+판단한다"는 결론을 만든다. 이 행은 체크(`.run-mark::after`)를 끄고 사람 아이콘을 띄우며,
+**진행 막대도 62%에서 멈춘다** — 꽉 찬 막대는 "완료"로 읽혀 확인 대기와 모순된다.
+
+stage와 같은 이유로 `both`(한 번 재생 후 완성 상태 유지)다. 다 처리된 뒤 도로 대기로
+돌아가면 방금 읽은 "Agent가 끝냈다"가 부정된다.
+
+**다크 면 위에서 강조 행을 만들 때 주의** — `--color-axpresso-bg-4`처럼 이미 어두운 면에
+`color-mix`로 브랜드를 24% 섞어도 일반 행과 구분이 안 된다(실측 `rgb(12,40,105)` vs
+`rgb(8,31,99)`). **브랜드를 60% 이상 섞어 면 자체를 밝게 올리고**, 그 위 텍스트·막대·
+아이콘을 흰 계열로 함께 뒤집어야 한다.
 
 ## 새 연출을 추가할 때
 

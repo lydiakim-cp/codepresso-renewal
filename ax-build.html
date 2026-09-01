@@ -83,10 +83,9 @@
       </div>
     </section>
 
-    <!-- 01 What It Is — 사람 손을 떠나 Agent로 넘어가는 3단계.
-         compare-panel 정적 좌우 대비였으나, "넘어간다"는 것이 이 섹션의 요점이라
-         mock-motion F·stage(is-step/is-cue/is-flow)로 좌→우 순서를 만든다.
-         stage는 한 번만 재생되고 완성 상태로 머문다 — 되감을 필요가 없는 자리다. -->
+    <!-- 01 What It Is — Agent가 반복 업무를 도는 실행 화면 하나로 결론을 보여준다.
+         3칸 나란히(stage)는 칸끼리 비슷해 차이가 안 읽혀, 한 화면 안에서 시간이
+         흐르는 mock-motion G·run으로 교체했다. 3건 자동 완료 → 1건만 사람 확인. -->
     <section class="intro fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -95,70 +94,91 @@
           <p class="desc">사람이 처음부터 끝까지 하던 일을 세 갈래로 나눕니다. <br data-break="desktop">반복 실행은 Agent가 맡고, 사람은 판단만 남깁니다.</p>
         </div>
         <div class="section-content">
-          <div class="shift" data-mock-motion="stage" aria-hidden="true">
-            <!-- 1 · 지금 — 담당자가 전 과정을 손으로. 회색 톤으로 가라앉힌다. -->
-            <article class="shift-step is-step" style="--mock-step: 0">
-              <div class="shift-head">
-                <span class="shift-no">1</span>
-                <span class="shift-label">지금</span>
-              </div>
-              <p class="shift-title">담당자가 전 과정을 손으로</p>
-              <ul class="shift-tasks">
-                <li class="shift-task is-cue"><span class="shift-actor">사람</span>자료 수집</li>
-                <li class="shift-task is-cue" style="--mock-cue-delay: .1s"><span class="shift-actor">사람</span>분류·정리</li>
-                <li class="shift-task is-cue" style="--mock-cue-delay: .2s"><span class="shift-actor">사람</span>보고서 작성</li>
-                <li class="shift-task is-cue" style="--mock-cue-delay: .3s"><span class="shift-actor">사람</span>검토·발송</li>
-              </ul>
-              <p class="shift-foot">매주 <strong>4~6시간</strong></p>
-              <span class="shift-arrow is-flow">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+          <!-- 좌 작업 큐 · 우 실행 로그 2단. 앞 3건은 Agent가 자동 완료하고
+               마지막 1건만 사람 확인에서 멈춘다 — 결론이 화면 안에서 읽힌다. -->
+          <div class="run preview-frame preview-frame--flush" data-mock-motion="run" aria-hidden="true">
+            <div class="preview-frame__bar">
+              <span class="preview-frame__dots"><i></i><i></i><i></i></span>
+              <span class="run-flow">주간 실적 보고 <span class="run-flow-meta">매일 09:00 자동 실행</span></span>
+              <span class="run-state is-run-state">
+                <i class="is-pulse"></i><b>실행 중</b>
               </span>
-            </article>
+            </div>
 
-            <!-- 2 · 20일 — 어디까지 Agent가 맡을지 가르는 단계. 아직 중립 톤. -->
-            <article class="shift-step is-step" style="--mock-step: 1">
-              <div class="shift-head">
-                <span class="shift-no">2</span>
-                <span class="shift-label">20일</span>
+            <div class="run-body">
+              <!-- 좌: 작업 큐. is-task + --mock-run-step으로 켜지는 순서를 준다 -->
+              <div class="run-queue">
+                <div class="run-queue-head">
+                  <span class="run-queue-title">작업 큐</span>
+                  <span class="run-count"><b class="is-run-count">3</b>/4 완료</span>
+                </div>
+                <ul class="run-tasks">
+                  <li class="run-task is-task" style="--mock-run-step: 0">
+                    <span class="run-mark"><span class="run-spin"></span></span>
+                    <span class="run-task-body">
+                      <span class="run-task-name">이메일 분류</span>
+                      <span class="run-bar"><i></i></span>
+                    </span>
+                    <span class="run-task-meta">42건</span>
+                  </li>
+                  <li class="run-task is-task" style="--mock-run-step: 1">
+                    <span class="run-mark"><span class="run-spin"></span></span>
+                    <span class="run-task-body">
+                      <span class="run-task-name">보고서 초안 작성</span>
+                      <span class="run-bar"><i></i></span>
+                    </span>
+                    <span class="run-task-meta">1건</span>
+                  </li>
+                  <li class="run-task is-task" style="--mock-run-step: 2">
+                    <span class="run-mark"><span class="run-spin"></span></span>
+                    <span class="run-task-body">
+                      <span class="run-task-name">부서별 데이터 취합</span>
+                      <span class="run-bar"><i></i></span>
+                    </span>
+                    <span class="run-task-meta">3건</span>
+                  </li>
+                  <!-- 마지막 칸만 사람 확인에서 멈춘다 — 이 섹션의 결론 -->
+                  <li class="run-task is-hold is-task" style="--mock-run-step: 3">
+                    <span class="run-mark">
+                      <span class="run-spin"></span>
+                      <svg class="run-person" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12a4 4 0 100-8 4 4 0 000 8Z" fill="currentColor" />
+                        <path d="M4 20a8 8 0 0116 0Z" fill="currentColor" />
+                      </svg>
+                    </span>
+                    <span class="run-task-body">
+                      <span class="run-task-name">요약 발송</span>
+                      <span class="run-bar"><i></i></span>
+                    </span>
+                    <span class="run-task-meta">확인 대기</span>
+                  </li>
+                </ul>
               </div>
-              <p class="shift-title">맡길 범위를 가릅니다</p>
-              <ul class="shift-tasks">
-                <li class="shift-task is-agent is-cue"><span class="shift-actor">Agent</span>자료 수집</li>
-                <li class="shift-task is-agent is-cue" style="--mock-cue-delay: .1s"><span class="shift-actor">Agent</span>분류·정리</li>
-                <li class="shift-task is-agent is-cue" style="--mock-cue-delay: .2s"><span class="shift-actor">Agent</span>보고서 작성</li>
-                <li class="shift-task is-cue" style="--mock-cue-delay: .3s"><span class="shift-actor">사람</span>검토·발송</li>
-              </ul>
-              <p class="shift-foot">Agent <strong>3단계</strong> · 사람 확인 1지점</p>
-              <span class="shift-arrow is-flow">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </span>
-            </article>
 
-            <!-- 3 · 이후 — 결론 칸. 유일하게 브랜드 톤으로 올려 시선이 여기서 멈춘다. -->
-            <article class="shift-step is-after is-step" style="--mock-step: 2">
-              <div class="shift-head">
-                <span class="shift-no">3</span>
-                <span class="shift-label">이후</span>
+              <!-- 우: 실행 로그. 같은 --mock-run-step으로 큐와 박자를 맞춘다 -->
+              <div class="run-log">
+                <p class="run-log-title">실행 로그</p>
+                <ul class="run-lines">
+                  <li class="run-line is-line" style="--mock-run-step: 0">
+                    <span class="run-time">09:00</span>메일함에서 <b>42건</b> 분류 완료
+                  </li>
+                  <li class="run-line is-line" style="--mock-run-step: 1">
+                    <span class="run-time">09:02</span>주간 보고서 초안 생성
+                  </li>
+                  <li class="run-line is-line" style="--mock-run-step: 2">
+                    <span class="run-time">09:04</span>부서별 데이터 <b>3건</b> 취합
+                  </li>
+                  <li class="run-line is-hold is-line" style="--mock-run-step: 3">
+                    <span class="run-time">09:05</span>승인 대기 1건 — <b>사람 확인 필요</b>
+                  </li>
+                </ul>
+                <p class="run-verdict is-verdict">
+                  <span class="run-verdict-value">3<em>건</em></span>
+                  <span class="run-verdict-label">Agent 자동 완료 · 사람은 1건만 판단</span>
+                </p>
               </div>
-              <p class="shift-title">Agent가 돌리고, 사람은 판단만</p>
-              <ul class="shift-tasks">
-                <li class="shift-task is-agent is-done is-cue"><span class="shift-actor">Agent</span>매일 자동 실행</li>
-                <li class="shift-task is-agent is-done is-cue" style="--mock-cue-delay: .1s"><span class="shift-actor">Agent</span>결과 초안 생성</li>
-                <li class="shift-task is-cue" style="--mock-cue-delay: .2s"><span class="shift-actor">사람</span>예외만 판단</li>
-              </ul>
-              <p class="shift-verdict is-cue" style="--mock-cue-delay: .34s">
-                <span class="shift-verdict-value">15분</span>
-                <span class="shift-verdict-label">주당 담당자 소요</span>
-              </p>
-            </article>
+            </div>
           </div>
-
-          <!-- 목업은 aria-hidden이라 같은 내용을 읽을 수 있는 한 줄로 남긴다 -->
-          <p class="shift-note">반복 실행은 Agent가 맡고, 담당자는 예외 처리와 최종 판단에 집중합니다.</p>
         </div>
       </div>
     </section>

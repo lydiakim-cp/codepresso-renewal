@@ -3,13 +3,14 @@
  * 제품 화면 목업(.preview-frame · .journey-mock · .skeleton-*)에 "실제로 돌아가는 화면"
  * 인상을 입히는 연출 레이어. 뼈대·색·간격은 기존 컴포넌트가 담당하고, 여기는 움직임만 정의한다.
  *
- * 5가지 연출을 부모의 data-mock-motion 값으로 고른다.
+ * 7가지 연출을 부모의 data-mock-motion 값으로 고른다.
  *   focus     현재 항목 하나만 떠올라 확대되고, 나머지는 가라앉는다
  *   replay    카메라가 밀고 들어가 한 카드를 확대한다
  *   deck      카드가 앞으로 밀려오고, 빠지기 직전 배지가 pop 된다
  *   detail    항목을 고르면 우측 상세가 밀려 들어온다
  *   ticker    수치가 pop 되고 새 행이 위에서 밀려 들어온다
  *   stage     한 화면에 나란히 놓인 3단계가 좌에서 우로 하나씩 켜진다
+ *   run       작업 큐를 Agent가 위에서부터 처리하고 마지막 1건만 사람 확인에서 멈춘다
  *
  * CSS 애니메이션만으로 무한 반복한다(JS 없음). 사이클은 --duration-cycle(5s) 기준이고
  * 단계가 많은 연출(deck·replay)은 5~6.5s로 더 길다 — --mock-cycle로 덮을 수 있다.
@@ -183,7 +184,7 @@
 
 /* detail의 2단 뼈대. index.html의 SkillPath 목업도 같은 구조를 쓴다. */
 .mock-detail { display: flex; }
-.mock-detail-aside { display: flex; flex-direction: column; gap: var(--space-12); width: 190px; flex-shrink: 0; padding: var(--space-20) var(--space-12); border-right: 1px solid var(--color-line); background: var(--color-surface-page); }
+.mock-detail-aside { display: flex; flex-direction: column; gap: var(--space-12); width: 190px; flex-shrink: 0; padding: var(--space-20) var(--space-12); border-right: 1px solid var(--color-line); background: var(--color-surface-sunken); }
 .mock-detail-list { display: flex; flex-direction: column; gap: var(--space-4); }
 .mock-detail-row { display: flex; align-items: center; gap: var(--space-10); padding: var(--space-10); border-radius: var(--radius-md); }
 .mock-detail-panel { display: flex; flex-direction: column; gap: var(--space-16); flex: 1; min-width: 0; padding: var(--space-20); }
@@ -250,7 +251,7 @@
   gap: var(--space-8);
   padding: var(--space-12);
   border-radius: var(--radius-md);
-  background: var(--color-brand-tint-1);
+  background: var(--color-surface-sunken);
 }
 
 .mock-ticker-stats > article b {
@@ -334,9 +335,9 @@
 }
 
 @keyframes mock-feed-highlight {
-  0%, 84% { background: var(--color-brand-tint-1); }
+  0%, 84% { background: var(--color-surface-sunken); }
   88% { background: var(--color-brand-tint-2); }
-  100% { background: var(--color-brand-tint-1); }
+  100% { background: var(--color-surface-sunken); }
 }
 
 /* --- stage: 한 화면에 나란히 놓인 3단계가 좌→우로 순서대로 켜진다 --- *
@@ -380,6 +381,251 @@
   100% { opacity: .55; transform: translateX(0); }
 }
 
+/* --- run: 한 화면 안에서 Agent가 작업 큐를 위에서부터 하나씩 처리한다 --- *
+ * stage가 3칸을 나란히 놓고 비교했다면, run은 화면 하나 안에서 시간이 흐른다.
+ * 네 층위:
+ *   .is-task    큐의 행이 대기 → 실행(스피너·막대) → 완료(체크) 순으로 넘어간다
+ *   .is-line    같은 박자로 우측 로그가 한 줄씩 밀려 들어온다
+ *   .is-hold    마지막 행만 완료로 안 가고 "사람 확인"에서 멈춘다(결론)
+ *   .is-verdict 다 끝난 뒤 결론 수치가 올라온다
+ *
+ * 다른 연출과 달리 무한 반복이다 — 스크롤로 도달했을 때 이미 끝나 있으면
+ * "돌아가는 화면"이 아니라 정지 그림으로 보이기 때문이다(사용자 지적).
+ *
+ * ## 사이클 구조 — 전부 --mock-run-cycle(8.8s) 한 길이를 공유한다
+ *   0~50%   네 행이 차례로 처리된다(행당 12.5%)
+ *   50~90%  결론 상태로 머문다 — 읽을 시간
+ *   90~100% 다 함께 대기 상태로 되돌아간다
+ *
+ * ## 순서를 animation-delay로 주지 않는 이유 (실측으로 두 번 갈아엎은 자리)
+ * 지연은 무한 반복에서도 위상으로 남아 "시작"은 잘 어긋나게 해 준다. 그러나
+ * 끝나는 시각도 같이 밀려서 리셋이 행마다 3.3s씩 따로 온다 — 1행은 대기로
+ * 돌아갔는데 2·3·4행은 아직 완료로 남는 어긋남이 매 회차 보인다.
+ *
+ * 그래서 모든 요소가 지연 없이 같은 사이클을 함께 돌고, 순서는 keyframes의
+ * 백분율 안에 직접 넣는다. 행이 4개로 고정이라 --mock-run-step 값마다
+ * keyframes를 하나씩 두는 것이 가장 단순하고, 리셋도 100%에서 동시에 일어난다.
+ */
+
+[data-mock-motion="run"] {
+  --mock-run-cycle: calc(var(--mock-run-beat, 1.1s) * 8);
+}
+
+/* 행 전체 — 대기(.42)로 있다가 자기 차례에 또렷해지고 사이클 끝에 함께 돌아간다.
+   0%가 "보이는" 상태여야 캡처 환경에서 빈 칸이 안 남는다. */
+[data-mock-motion="run"] .is-task,
+[data-mock-motion="run"] .is-line {
+  animation: var(--mock-run-name) var(--mock-run-cycle) var(--ease-scroll) infinite;
+  will-change: opacity;
+}
+
+[data-mock-motion="run"] .is-task { --mock-run-name: mock-run-row-0; }
+[data-mock-motion="run"] .is-line { --mock-run-name: mock-run-line-0; }
+
+/* 행별 위상 — 12.5%(1박)씩 늦게 자기 구간을 갖는다. 리셋은 넷 다 90~100%. */
+[data-mock-motion="run"] .is-task[style*="--mock-run-step: 1"] { --mock-run-name: mock-run-row-1; }
+[data-mock-motion="run"] .is-task[style*="--mock-run-step: 2"] { --mock-run-name: mock-run-row-2; }
+[data-mock-motion="run"] .is-task[style*="--mock-run-step: 3"] { --mock-run-name: mock-run-row-3; }
+[data-mock-motion="run"] .is-line[style*="--mock-run-step: 1"] { --mock-run-name: mock-run-line-1; }
+[data-mock-motion="run"] .is-line[style*="--mock-run-step: 2"] { --mock-run-name: mock-run-line-2; }
+[data-mock-motion="run"] .is-line[style*="--mock-run-step: 3"] { --mock-run-name: mock-run-line-3; }
+
+@keyframes mock-run-row-0 {
+  0% { opacity: .42; }
+  6%, 90% { opacity: 1; }
+  97%, 100% { opacity: .42; }
+}
+@keyframes mock-run-row-1 {
+  0%, 12.5% { opacity: .42; }
+  18.5%, 90% { opacity: 1; }
+  97%, 100% { opacity: .42; }
+}
+@keyframes mock-run-row-2 {
+  0%, 25% { opacity: .42; }
+  31%, 90% { opacity: 1; }
+  97%, 100% { opacity: .42; }
+}
+@keyframes mock-run-row-3 {
+  0%, 37.5% { opacity: .42; }
+  43.5%, 90% { opacity: 1; }
+  97%, 100% { opacity: .42; }
+}
+
+/* 로그 줄은 우측에서 밀려 들어온다. 큐보다 조금 늦어 "처리 → 기록" 순서가 보인다. */
+@keyframes mock-run-line-0 {
+  0%, 3% { opacity: 0; transform: translateX(8px); }
+  10%, 90% { opacity: 1; transform: translateX(0); }
+  97%, 100% { opacity: 0; transform: translateX(8px); }
+}
+@keyframes mock-run-line-1 {
+  0%, 15.5% { opacity: 0; transform: translateX(8px); }
+  22.5%, 90% { opacity: 1; transform: translateX(0); }
+  97%, 100% { opacity: 0; transform: translateX(8px); }
+}
+@keyframes mock-run-line-2 {
+  0%, 28% { opacity: 0; transform: translateX(8px); }
+  35%, 90% { opacity: 1; transform: translateX(0); }
+  97%, 100% { opacity: 0; transform: translateX(8px); }
+}
+@keyframes mock-run-line-3 {
+  0%, 40.5% { opacity: 0; transform: translateX(8px); }
+  47.5%, 90% { opacity: 1; transform: translateX(0); }
+  97%, 100% { opacity: 0; transform: translateX(8px); }
+}
+
+/* 진행 막대 — 자기 차례에 0 → 100%로 차오른다. 폭이 곧 "처리 중"의 신호다. */
+[data-mock-motion="run"] .is-task .run-bar i {
+  animation: var(--mock-fill-name, mock-run-fill-0) var(--mock-run-cycle) var(--ease-scroll) infinite;
+}
+
+[data-mock-motion="run"] .is-task[style*="--mock-run-step: 1"] .run-bar i { --mock-fill-name: mock-run-fill-1; }
+[data-mock-motion="run"] .is-task[style*="--mock-run-step: 2"] .run-bar i { --mock-fill-name: mock-run-fill-2; }
+/* 마지막 행은 62%에서 멈춘다 — 다 찬 막대는 "완료"로 읽혀 확인 대기와 모순된다. */
+[data-mock-motion="run"] .is-task[style*="--mock-run-step: 3"] .run-bar i { --mock-fill-name: mock-run-fill-hold; }
+
+@keyframes mock-run-fill-0 {
+  0% { width: 0; }
+  11%, 90% { width: 100%; }
+  97%, 100% { width: 0; }
+}
+@keyframes mock-run-fill-1 {
+  0%, 12.5% { width: 0; }
+  23.5%, 90% { width: 100%; }
+  97%, 100% { width: 0; }
+}
+@keyframes mock-run-fill-2 {
+  0%, 25% { width: 0; }
+  36%, 90% { width: 100%; }
+  97%, 100% { width: 0; }
+}
+@keyframes mock-run-fill-hold {
+  0%, 37.5% { width: 0; }
+  48.5%, 90% { width: 62%; }
+  97%, 100% { width: 0; }
+}
+
+/* 스피너 — 자기 차례에만 나타나 돈다. 끝나면 체크가 자리를 넘겨받는다.
+   회전(spin-angle)은 사이클과 무관히 계속 돌고, 등장·퇴장만 사이클을 탄다. */
+[data-mock-motion="run"] .is-task .run-spin {
+  animation:
+    spin-angle .9s linear infinite,
+    var(--mock-spin-name, mock-run-spin-0) var(--mock-run-cycle) var(--ease-scroll) infinite;
+}
+
+[data-mock-motion="run"] .is-task[style*="--mock-run-step: 1"] .run-spin { --mock-spin-name: mock-run-spin-1; }
+[data-mock-motion="run"] .is-task[style*="--mock-run-step: 2"] .run-spin { --mock-spin-name: mock-run-spin-2; }
+[data-mock-motion="run"] .is-task[style*="--mock-run-step: 3"] .run-spin { --mock-spin-name: mock-run-spin-3; }
+
+@keyframes mock-run-spin-0 {
+  0% { opacity: 1; transform: scale(1); }
+  12%, 96% { opacity: 0; transform: scale(.6); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes mock-run-spin-1 {
+  0%, 11.5% { opacity: 0; transform: scale(.6); }
+  13.5% { opacity: 1; transform: scale(1); }
+  24.5%, 96% { opacity: 0; transform: scale(.6); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes mock-run-spin-2 {
+  0%, 24% { opacity: 0; transform: scale(.6); }
+  26% { opacity: 1; transform: scale(1); }
+  37%, 96% { opacity: 0; transform: scale(.6); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes mock-run-spin-3 {
+  0%, 36.5% { opacity: 0; transform: scale(.6); }
+  38.5% { opacity: 1; transform: scale(1); }
+  49.5%, 96% { opacity: 0; transform: scale(.6); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* 완료 체크 — 막대가 다 찬 직후 pop 되어 들어온다. */
+[data-mock-motion="run"] .is-task .run-mark::after {
+  animation: var(--mock-check-name, mock-run-check-0) var(--mock-run-cycle) cubic-bezier(.34, 1.56, .64, 1) infinite;
+}
+
+[data-mock-motion="run"] .is-task[style*="--mock-run-step: 1"] .run-mark::after { --mock-check-name: mock-run-check-1; }
+[data-mock-motion="run"] .is-task[style*="--mock-run-step: 2"] .run-mark::after { --mock-check-name: mock-run-check-2; }
+/* 마지막 행은 체크 대신 사람 아이콘이 자리를 받는다 — 완료가 아니라 확인 대기다. */
+[data-mock-motion="run"] .is-hold .run-mark::after { animation: none; opacity: 0; }
+
+@keyframes mock-run-check-0 {
+  0%, 10% { opacity: 0; transform: scale(.4); }
+  15%, 90% { opacity: 1; transform: scale(1); }
+  97%, 100% { opacity: 0; transform: scale(.4); }
+}
+@keyframes mock-run-check-1 {
+  0%, 22.5% { opacity: 0; transform: scale(.4); }
+  27.5%, 90% { opacity: 1; transform: scale(1); }
+  97%, 100% { opacity: 0; transform: scale(.4); }
+}
+@keyframes mock-run-check-2 {
+  0%, 35% { opacity: 0; transform: scale(.4); }
+  40%, 90% { opacity: 1; transform: scale(1); }
+  97%, 100% { opacity: 0; transform: scale(.4); }
+}
+
+/* 사람 아이콘 — 체크와 같은 자리를 받되, 확인을 재촉하듯 한 번 더 뛴다. */
+[data-mock-motion="run"] .is-hold .run-person {
+  animation: mock-run-person var(--mock-run-cycle) cubic-bezier(.34, 1.56, .64, 1) infinite;
+}
+
+@keyframes mock-run-person {
+  0%, 47.5% { opacity: 0; transform: scale(.4); }
+  52% { opacity: 1; transform: scale(1); }
+  57% { transform: scale(1.2); }
+  62%, 90% { transform: scale(1); opacity: 1; }
+  97%, 100% { opacity: 0; transform: scale(.4); }
+}
+
+/* 상단 상태 배지의 점 — 처리 중(앞 절반)에는 뛰고, 결론 구간에는 켜진 채 멈춘다. */
+[data-mock-motion="run"] .is-run-state i {
+  animation: mock-run-beat-dot var(--mock-run-cycle) var(--ease-scroll) infinite;
+}
+
+@keyframes mock-run-beat-dot {
+  0%, 12.5%, 25%, 37.5%, 50% { opacity: 1; }
+  6%, 18.5%, 31%, 43.5% { opacity: .28; }
+  60%, 100% { opacity: 1; }
+}
+
+/* 완료 카운터 — 세 번째 행이 완료되는 시점에 한 번 튄다. */
+[data-mock-motion="run"] .is-run-count {
+  animation: mock-run-count var(--mock-run-cycle) cubic-bezier(.34, 1.56, .64, 1) infinite;
+  display: inline-block;
+  transform-origin: center;
+}
+
+@keyframes mock-run-count {
+  0%, 38% { transform: scale(1); }
+  43% { transform: scale(1.42); }
+  50%, 100% { transform: scale(1); }
+}
+
+/* 결론 수치 — 큐가 다 돈 뒤 올라와 결론 구간 내내 머문다. */
+[data-mock-motion="run"] .is-verdict {
+  animation: mock-run-verdict var(--mock-run-cycle) var(--ease-scroll) infinite;
+}
+
+@keyframes mock-run-verdict {
+  0%, 55% { opacity: 0; transform: translateY(8px); }
+  62%, 90% { opacity: 1; transform: translateY(0); }
+  97%, 100% { opacity: 0; transform: translateY(8px); }
+}
+
+/* 되감기 — 마지막 10%에 화면을 한 번 흐려 리셋이 눈에 띄지 않게 덮는다.
+   페이드가 걷힐 때 모든 행은 이미 대기 상태로 함께 돌아가 있다. */
+[data-mock-motion="run"] .run-body {
+  animation: mock-run-reset var(--mock-run-cycle) var(--ease-scroll) infinite;
+}
+
+@keyframes mock-run-reset {
+  0%, 90% { opacity: 1; }
+  95% { opacity: .12; }
+  100% { opacity: 1; }
+}
+
 /* LIVE 표시가 깜빡인다. .journey-mock-badge.is-live와 함께 쓴다. */
 [data-mock-motion] .is-pulse {
   --motion-pulse-min: .35;
@@ -421,6 +667,28 @@
   [data-mock-motion] .is-quiet { opacity: .5; }
   /* 커서는 정지 상태에서 의미가 없어 숨긴다 */
   [data-mock-motion] .is-cursor { display: none; }
+
+  /* run — 다 처리된 완성 화면으로 정지한다. 막대는 꽉 차고 체크가 보이는 상태. */
+  [data-mock-motion="run"] .is-task,
+  [data-mock-motion="run"] .is-line,
+  [data-mock-motion="run"] .is-verdict,
+  [data-mock-motion="run"] .is-run-count,
+  [data-mock-motion="run"] .is-hold .run-person,
+  [data-mock-motion="run"] .is-task .run-mark::after {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* 되감기 페이드와 깜빡이는 상태점도 멈춘다 — 완성 화면이 그대로 남아야 한다 */
+  [data-mock-motion="run"] .run-body,
+  [data-mock-motion="run"] .is-run-state i { animation: none; opacity: 1; }
+
+  [data-mock-motion="run"] .is-task .run-bar i { animation: none; width: 100%; }
+  [data-mock-motion="run"] .is-hold .run-bar i { width: 62%; }
+  /* 도는 스피너는 정지 상태에서 의미가 없다 — 체크·사람 아이콘만 남긴다 */
+  [data-mock-motion="run"] .run-spin { display: none; }
+  [data-mock-motion="run"] .is-hold .run-mark::after { opacity: 0; }
   [data-mock-motion="detail"] .is-selected { background: var(--color-brand-tint-2); }
   [data-mock-motion="deck"] .is-pop { transform: rotate(-8deg); }
   [data-mock-motion="detail"] .is-gauge { stroke-dashoffset: var(--mock-gauge-to, 56); }

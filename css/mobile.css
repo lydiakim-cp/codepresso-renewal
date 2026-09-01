@@ -205,26 +205,14 @@
   .ax-build .deliverable-list { grid-template-columns: 1fr; }
   .ax-build .sub-hero .hero-wrap { padding-top: 120px; }
 
-  /* 01 What It Is — 3칸이 좁아지면 칸 안 목록이 눌려 읽히지 않아 1열로 쌓는다.
-     같은 3단계 서사가 위→아래로 그대로 이어지므로 순서는 유지된다. */
-  .ax-build .shift {
-    grid-template-columns: 1fr;
-    gap: var(--space-24);
-    padding: var(--space-20);
-  }
+  /* 01 What It Is — 좌우 2단이 좁아지면 로그 줄이 눌려 읽히지 않아 위아래로 쌓는다.
+     큐(주인공)가 위, 로그가 아래로 가므로 읽는 순서는 그대로다. */
+  .ax-build .run-body { grid-template-columns: 1fr; }
 
-  /* 칸 사이 화살표도 아래를 가리켜야 한다 — 별도 path를 만들지 않고 회전시킨다.
-     회전은 컨테이너가 아니라 안쪽 svg에 준다 — 컨테이너의 transform은
-     mock-motion의 is-flow 애니메이션(translateX)이 매 프레임 덮어쓴다. */
-  .ax-build .shift-arrow {
-    top: auto;
-    right: auto;
-    bottom: calc(var(--space-24) / -2);
-    left: 50%;
-    margin: 0 0 0 -10px;
+  .ax-build .run-queue {
+    border-right: 0;
+    border-bottom: 1px solid var(--color-line);
   }
-
-  .ax-build .shift-arrow svg { transform: rotate(90deg); }
 }
 
 
@@ -910,30 +898,30 @@
   /* 01 What It Is — 화면이 좁아지면 이 판은 "축소된 목업"이 아니라 실제로 읽는
      콘텐츠가 되므로, 목업 4단 스케일(15/13/11)을 본문 크기로 되돌린다.
      11px 라벨류만 14px 하한까지 올려 서비스 페이지 타이포 제약을 지킨다. */
-  .ax-build .shift {
-    --shift-text-title: var(--text-card-title);
-    --shift-text-lg: var(--text-body);
-    --shift-text: var(--text-body-muted);
-
-    gap: var(--space-20);
-    padding: var(--space-16);
+  .ax-build .run {
+    --run-text-title: var(--text-card-title);
+    --run-text-lg: var(--text-body);
+    --run-text: var(--text-body-muted);
   }
 
-  .ax-build .shift-step { padding: var(--space-16); }
-  .ax-build .shift-title { line-height: var(--leading-card-title); }
-  .ax-build .shift-task { line-height: var(--leading-body-16); }
+  .ax-build .run-queue,
+  .ax-build .run-log { padding: var(--space-16); }
 
-  .ax-build .shift-actor ,
-  .ax-build .shift-label ,
-  .ax-build .shift-foot ,
-  .ax-build .shift-verdict-label { line-height: var(--leading-body-14); }
+  .ax-build .run-queue-title,
+  .ax-build .run-log-title { line-height: var(--leading-card-title); }
 
-  .ax-build .shift-no {
-    width: 24px;
-    height: 24px;
-  }
+  .ax-build .run-task-name { line-height: var(--leading-body-16); }
 
-  .ax-build .shift-verdict-value {
+  .ax-build .run-flow-meta,
+  .ax-build .run-count,
+  .ax-build .run-line,
+  .ax-build .run-task-meta,
+  .ax-build .run-verdict-label { line-height: var(--leading-body-14); }
+
+  /* 상단 바가 좁아 흐름 이름과 상태 배지가 부딪히므로 실행 주기는 감춘다 */
+  .ax-build .run-flow-meta { display: none; }
+
+  .ax-build .run-verdict-value {
     font-size: var(--text-heading-24);
     line-height: var(--leading-heading-24);
   }
