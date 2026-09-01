@@ -30,7 +30,7 @@
 | Content Panel | `content-panel.css` | `.content-panel`, `__item`, `__intro`, `__visual`, `--compact` | 설명 + 큰 시각 요소를 한 판에 담는 패널 |
 | Compare Panel | `compare-panel.css` | `.compare-panel`, `__item`(+`.is-after`), `__label`, `__title`, `__desc`, `__arrow` | "지금 → 바뀐 뒤" 두 상태를 좌우로 대비 |
 | Timeline | `timeline.css` | `.timeline > li`, `__marker`, `__term`, `__body`, `__title`, `__desc` | 기간이 있는 단계를 세로로 잇는 진행 흐름 |
-| Cycle | `cycle.css` | `.cycle > li`(+`.is-return`), `.cycle-head`, `.cycle-no`, `.cycle-en`, `.cycle-desc`, `.cycle-arrow`, `.cycle-note` | N단계 순서/순환을 가로 칸 + 경계 화살표로. 열 수는 `--cycle-columns`(기본 4). 순환형 결론 칸은 `.is-return`(유리 표면), 화살표는 반투명 글래스모피즘 노드. difference.html 03(4단계 순환)·skillcertify.html 05(5단계 선형, `.is-return`·마지막 화살표 없이)가 함께 쓰며 공용 승격 |
+| Cycle | `cycle.css` | `.cycle > li`(+`.is-return`), `.cycle-head`, `.cycle-no`, `.cycle-en`, `.cycle-desc`, `.cycle-arrow`, `.cycle-note` | N단계 순서/순환을 가로 칸 + 경계 화살표로. 열 수는 `--cycle-columns`(기본 4). 순환형 결론 칸은 `.is-return`(유리 표면), 화살표는 반투명 글래스모피즘 노드. difference.html 03(4단계 순환)·skillcertify.html 05(5단계 선형, 마지막 화살표 없이)·stories.html 공통점(3단계 선형, 결론 칸만 `.is-return`)이 함께 쓰며 공용 승격 |
 | FAQ List | `faq-list.css` | `.faq-list > details`, `__question`, `__icon`, `__answer` | 질문을 눌러 답을 펼치는 아코디언 (`<details>` native) |
 | Catalog Board | `catalog-board.css` | `.catalog-board`, `__rail`, `__category`, `__count`, `__panel`, `__items > li` | 여러 분류의 항목 묶음을 대시보드처럼 한 판에 (`js/catalog-board.js`와 짝). **`__items`는 auto-fill 그리드 + nth-child 진입 stagger를 이미 갖고 있다** — 카드 나열이 필요하면 새로 만들지 말고 이걸 쓰고 `li` 안쪽만 덮는다(difference 07이 그렇게 했다) |
 | Product Mock | `product-mock.css` | `.journey-mock`(+`.mock-detail`·`.camp-ticker`), `-head`, `-title`, `-badge`(+`.is-live`), `-progress`, `-list`, `-item`(+`.is-current`·`.is-done`), `-check`, `-speaker`, `-avatar`, `-bubble`, `.journey-app*`(SkillFit 3단 앱 화면) | 제품 학습·강의 화면 목업 셸. index PART 1과 capability 04가 함께 쓴다(원래 index.css에 있던 712줄을 공용으로 올림). 목업 내부는 `opacity: 0`이 기본이고 **쓰는 페이지가 진입 신호로 띄워야 한다** — index는 `journey-stage.js`의 `.is-popping`, capability는 `.catalog-learn.is-visible`. 움직임은 `mock-motion.css`가 담당 |
@@ -148,7 +148,6 @@ hero·catalog·cta-final 셋뿐이라 대부분 공용 컴포넌트 조합으로
 |---|---|---|
 | `case-filter` · `case-count` | 두 갈래(업무 자동화 · 역량 진단·교육)로 사례를 거르는 컨트롤 줄 + 결과 건수 | `part-nav`(`--compact --animated` segmented control)를 그대로 씀. `js/case-filter.js`와 짝 |
 | `outcome-list` · `outcome-headline` · `outcome-person` · `tag-industry` | 고객사별 로고 판 + "이전 → 이후" 사례 카드 12장, 이 페이지만의 배치·톤 차이(브랜드 틴트 테두리·auto-fill 그리드) | 카드 껍데기·로고 판·본문 골격은 `components/ui/outcome-card.css`(공용, 아래 참고). `tag`·chevron SVG도 재사용. `outcome-headline`은 before→after가 없는 사례가 `outcome-shift` 자리를 대신 채우는 한 줄 |
-| `order` · `order-arrow` | 진단 → 전환 → 증명 3단계 흐름 + 경계 화살표 | capability `loop`(4단계 순환)의 구조를 본뜸 · `heading-number`(번호 뱃지) |
 | `tag-industry` | 업종 배지 — 서비스 배지와 나란히 서는 테두리형 변형 | `tag`(채움형)를 테두리형으로 덮음. 업종별 색을 만들지 않은 이유는 아래 참고 |
 
 **`outcome-card`는 `components/ui/outcome-card.css`로 공용 승격했다** — stories(12장)와

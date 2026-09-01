@@ -204,11 +204,10 @@
   }
 
   /* ============================================================
-   * 공통 순서 — 진단 → 전환 → 증명 3단계
+   * 공통 순서 — 진단 → 전환 → 증명 3단계. 공용 cycle(components/ui/cycle.css),
+   * 열 수만 3으로 지정한다(skillcertify의 5단계 선형과 같은 패턴).
    *
    * 앞 섹션이 옅은 면, 아래 cta-final이 잉크 판이라 여기는 흰 면이다.
-   * capability 01의 loop(4단계 순환)와 같은 구조를 본떴지만 순환이 아니라
-   * 한 방향이므로 마지막 칸에 화살표가 없고, 대신 그 칸이 결론이라 브랜드 톤으로 올린다.
    * ============================================================ */
   /* 카드 한 줄로 끝나는 섹션이라 공통 96px 여백이면 위아래 빈 면이 남는다
      (capability .process와 같은 판단). */
@@ -216,114 +215,24 @@
     padding-block: 80px;
   }
 
-  .stories .order {
-    display: grid;
-    /* 3단계 균등 분할. 화살표는 칸을 차지하지 않고 각 칸의 오른쪽 경계에 얹힌다 */
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-20);
-  }
-
-  .stories .order > li {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
-    padding: var(--space-28) var(--space-24);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
-    transition: box-shadow var(--duration-hover) var(--ease-hover),
-      transform var(--duration-hover) var(--ease-hover),
-      border-color var(--duration-hover) var(--ease-hover);
-  }
-
-  .stories .order > li:hover {
-    border-color: var(--color-brand-tint-2);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
-  }
-
-  /* 마지막 단계(증명)만 브랜드 톤으로 올린다 — 위 사례 12장이 곧 이 칸의 결과다 */
-  .stories .order > li:last-child {
-    border-color: var(--color-brand-tint-2);
-    background: var(--color-brand-tint-1);
-  }
-
-  .stories .order-head {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-  }
-
-  /* heading-number는 h2 안 번호용이라 우측 여백을 갖고 있다 —
-     여기서는 order-head의 gap이 간격을 정하므로 되돌린다. */
-  .stories .order .heading-number {
-    margin-right: 0;
-  }
-
-  /* 영문 단계명 — 한글 제목 위에서 위계를 낮춰 얹는다 */
-  .stories .order-en {
-    color: var(--color-brand);
-    font-size: var(--text-body-muted);
-    line-height: var(--leading-body-muted);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: var(--tracking-body-normal);
-  }
-
-  /* h3 기본값(24px semibold)을 그대로 쓴다 — 크기를 다시 쓰지 않는다 */
-  .stories .order-title {
-    margin-top: var(--space-4);
-  }
-
-  .stories .order-desc {
-    color: var(--color-ink-light);
-    font-size: var(--text-body-muted);
-    line-height: var(--leading-body-muted);
-  }
-
-  /* 칸 사이 화살표 — 경계 위에 얹혀 다음 단계로 넘어감을 가리킨다 */
-  .stories .order-arrow {
-    position: absolute;
-    top: 50%;
-    right: calc(var(--space-20) / -2);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;
-    border-radius: var(--radius-full);
-    background: var(--color-surface);
-    color: var(--color-brand);
-    box-shadow: var(--shadow-sm);
-    z-index: 1;
-  }
-
-  .stories .order-arrow svg {
-    display: block;
-    width: 14px;
-    height: 14px;
+  .stories .cycle {
+    --cycle-columns: 3;
   }
 
   /* 진입 시 좌 → 우로 차례로 떠오른다 */
-  .stories .process.is-visible .order > li {
-    animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
-  }
-
-  .stories .process.is-visible .order > li:nth-child(2) { animation-delay: .08s; }
-  .stories .process.is-visible .order > li:nth-child(3) { animation-delay: .16s; }
+  .stories .process.is-visible .cycle > li:nth-child(2) { animation-delay: .08s; }
+  .stories .process.is-visible .cycle > li:nth-child(3) { animation-delay: .16s; }
 
   @media (prefers-reduced-motion: reduce) {
     .stories .sub-hero-copy > *,
-    .stories .catalog.is-visible .outcome-list > li,
-    .stories .process.is-visible .order > li { animation: none; }
+    .stories .catalog.is-visible .outcome-list > li { animation: none; }
 
     .stories .hero-facts .metric-card.is-visible,
     .stories .outcome-list > li,
-    .stories .outcome-arrow,
-    .stories .order > li { transition-duration: 0.001ms; }
+    .stories .outcome-arrow { transition-duration: 0.001ms; }
 
     /* part-nav--animated의 인디케이터 이동은 part-nav.css가 이미 줄여 놓는다 */
+    /* .cycle 자체의 reduced-motion 대응은 cycle.css가 담당한다 */
   }
 
   /* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다 */

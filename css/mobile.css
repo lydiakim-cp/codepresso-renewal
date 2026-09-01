@@ -389,20 +389,25 @@
   .stories .sub-hero .hero-wrap { padding-top: 120px; }
 
   /* 공통 순서 3단계 — 3칸이 좁아지면 칸 안 설명이 3줄로 늘어져 1열로 쌓는다.
-     진단 → 전환 → 증명 순서가 위→아래로 그대로 이어진다. */
-  .stories .order { grid-template-columns: 1fr; }
-
-  /* 세로로 쌓이면 화살표도 아래를 가리켜야 한다 — 회전은 컨테이너가 아니라
-     안쪽 svg에 준다(capability .loop-arrow와 같은 처리). */
-  .stories .order-arrow {
-    top: auto;
-    right: auto;
-    bottom: calc(var(--space-20) / -2);
-    left: 50%;
-    margin: 0 0 0 -10px;
+     진단 → 전환 → 증명 순서가 위→아래로 그대로 이어진다(skillcertify .cycle과 같은 처리). */
+  .stories .cycle {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 420px;
+    margin-inline: auto;
   }
 
-  .stories .order-arrow svg { transform: rotate(90deg); }
+  /* 세로로 쌓이면 화살표도 아래를 가리켜야 한다 — 회전은 컨테이너가 아니라
+     안쪽 svg에 준다. */
+  .stories .cycle-arrow {
+    top: auto;
+    right: auto;
+    bottom: -25px;
+    left: 50%;
+    margin: 0 0 0 -18px;
+  }
+
+  .stories .cycle-arrow svg { transform: rotate(90deg); }
 }
 
 
@@ -1081,7 +1086,7 @@
   /* 좌우 28px 여백은 모바일에서 고객사 이름을 두 줄로 끊는다 */
   .stories .outcome-list > li { padding: var(--space-20); }
 
-  .stories .order > li { padding: var(--space-20); }
+  .stories .cycle > li { padding: var(--space-20); }
 }
 
 
