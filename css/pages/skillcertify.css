@@ -1,17 +1,9 @@
-/*
- * Page: skillcertify.html
- * main.css 위에 얹는 이 페이지 전용 계층.
- * 범용 UI(components/ui/)는 main.css가 이미 전부 로드하므로 여기서 import하지 않는다.
- */
+/* Page: skillcertify.html — main.css 위에 얹는 페이지 전용 계층. */
 
 @layer components {
   .skillcertify { }
 
-  /* ============================================================
-   * Hero — main-hero처럼 좌우 2단(section-wrap row). 좌측 카피 + CTA,
-   * 우측 제품 목업. sub-hero(공용 골격)의 배경·텍스처는 그대로 쓰고
-   * 안쪽 정렬만 좌우 분할로 덮는다.
-   * ============================================================ */
+  /* Hero — 좌우 2단(좌 카피+CTA, 우 목업). sub-hero 배경은 유지, 정렬만 덮는다. */
   .skillcertify .sub-hero .hero-wrap {
     padding-top: 160px;
   }
@@ -41,9 +33,7 @@
     height: auto;
   }
 
-  /* ============================================================
-   * 고민 3카드 — 문제 제기 3칸. 옅은 면 위 흰 카드.
-   * ============================================================ */
+  /* 고민 3카드 — 문제 제기 3칸. 옅은 면 위 흰 카드. */
   .skillcertify .pain-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -61,11 +51,7 @@
     line-height: var(--leading-body-18);
   }
 
-  /* ============================================================
-   * 01~04 — 옅은 배경 전체 폭 판 + 좌우 2단(section-wrap row).
-   * 좌: 작은 라벨 + 제목 + 설명 + 체크리스트, 우: 제품 목업.
-   * 옅은 면과 흰 면을 번갈아 섹션 리듬을 만든다(홀수 번째만 sunken).
-   * ============================================================ */
+  /* 01~04 — 좌우 2단(좌 라벨·제목·체크리스트, 우 목업). 옅은/흰 배경 교차. */
   .skillcertify .product-feature.is-sunken {
     background: var(--color-surface-sunken);
   }
@@ -74,7 +60,7 @@
     align-items: center;
   }
 
-  /* feature-eyebrow는 공용 .tag 배지를 그대로 쓴다(브랜드 틴트 배경 + 브랜드 컬러) */
+  /* feature-eyebrow는 공용 .tag 배지를 그대로 쓴다 */
 
   .skillcertify .feature-copy {
     max-width: 480px;
@@ -119,8 +105,7 @@
     justify-content: center;
   }
 
-  /* 목업 4종의 실제 크기(616×480)에 맞춘다 — certify_0(776×608)만 원본 비율이
-     달라 이 박스 안에서 object-fit으로 통일한다. */
+  /* 목업 4종 크기(616×480) 통일 — certify_0만 비율 달라 object-fit 사용 */
   .skillcertify .feature-visual img {
     display: block;
     width: 100%;
@@ -130,90 +115,11 @@
     filter: drop-shadow(var(--shadow-md));
   }
 
-  /* ============================================================
-   * 06 · 고객 사례 — outcome-list 축소판(3장). stories.html과 같은 이름·구조를
-   * 이 페이지 스코프 안에서 다시 정의한다.
-   * ============================================================ */
-  .skillcertify .outcome-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-24);
-  }
-
-  .skillcertify .outcome-list > li {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
-    box-shadow: var(--shadow-sm);
-    transition: box-shadow var(--duration-hover) var(--ease-hover),
-      transform var(--duration-hover) var(--ease-hover),
-      border-color var(--duration-hover) var(--ease-hover);
-  }
-
-  .skillcertify .outcome-list > li:hover {
-    border-color: var(--color-line-heavy);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
-  }
-
-  .skillcertify .outcome-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 108px;
-    padding: var(--space-20);
-    background: var(--color-surface-sunken);
-    border-bottom: 1px solid var(--color-line);
-  }
-
-  .skillcertify .outcome-logo img {
-    max-width: 76%;
-    max-height: 40px;
-    object-fit: contain;
-  }
-
-  .skillcertify .outcome-logo--tall img {
-    max-height: 64px;
-  }
-
-  .skillcertify .outcome-body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-10);
-    flex: 1;
-    padding: var(--space-24);
-  }
-
-  .skillcertify .outcome-headline {
-    font-size: var(--text-heading-24);
-    line-height: var(--leading-heading-24);
-    letter-spacing: var(--tracking-heading-tight);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-brand);
-  }
-
-  .skillcertify .outcome-detail {
-    color: var(--color-ink-light);
-    font-size: var(--text-body-muted);
-    line-height: var(--leading-body-muted);
-  }
-
-  .skillcertify .outcome-client {
-    margin-top: auto;
-    padding-top: var(--space-16);
-    border-top: 1px solid var(--color-line);
-    color: var(--color-ink-light);
-    font-size: var(--text-body-muted);
-    font-weight: var(--font-weight-medium);
-  }
-
-  .skillcertify .outcome-industry {
-    color: var(--color-ink-lighter);
-    font-weight: var(--font-weight-regular);
-  }
+  /*
+   * 06 · 고객 사례 — 공용 outcome-card(components/ui/outcome-card.css) 그대로 쓴다.
+   * 카드 껍데기·그리드(3열)·로고 판·본문 골격·gap·headline/detail·고객사 텍스트가
+   * stories.html과 완전히 같아 이 페이지만의 오버라이드가 필요 없다.
+   */
 
   .skillcertify .cases-more {
     display: flex;
@@ -221,30 +127,9 @@
     margin-top: var(--space-32);
   }
 
-  /* ============================================================
-   * 05 · 2주 PoC — 5단계 순서. 공용 css/components/ui/cycle.css를 쓴다
-   * (difference.html "03 The Cycle"과 같은 구조 — 두 페이지가 함께 쓰면서
-   * 공용 승격). PoC는 순환이 아니라 선형 진행이라 마크업에 is-return·마지막
-   * 화살표가 없다. 여기서는 열 수(5)와 이 페이지만의 폭 압축만 얹는다.
-   *
-   * 카드 폭이 화면 폭을 그대로 나눠 가지니 짧은 텍스트 옆이 휑해 보였다
-   * (사용자 지적) — 5칸 전체 폭을 컨테이너의 절반 정도로 좁혀 가운데 두고,
-   * 카드 안 여백도 한 단계 줄여 밀도를 콘텐츠 길이에 맞춘다. */
-  .skillcertify .process .section-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
+  /* 05 · 2주 PoC — 공용 cycle, 5단계 선형(순환 아님). 열 수만 지정 */
   .skillcertify .cycle {
     --cycle-columns: 5;
-    width: 100%;
-    max-width: 920px;
-  }
-
-  .skillcertify .cycle > li {
-    padding: var(--space-16) var(--space-12);
-    gap: var(--space-6);
   }
 
   .skillcertify .fade-up.is-visible .cycle > li:nth-child(2) { transition-delay: .06s; }

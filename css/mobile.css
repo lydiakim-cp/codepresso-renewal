@@ -406,10 +406,7 @@
 }
 
 
-/* --- pages/skillcertify.css ---
-   1440 기준 hero·01~04 전부 좌우 2단(section-wrap row는 layout.css가 이미
-   900px에서 1열로 접는다), 05는 5칸 가로 순서.
-   900px에서 hero 전용 2단과 고민 3카드, 5칸 순서를 접는다. */
+/* --- pages/skillcertify.css --- 900px에서 hero 2단·고민 3카드·5칸 순서를 접는다 */
 @media (max-width: 900px) {
   .skillcertify .hero-row { grid-template-columns: minmax(0, 1fr); }
   .skillcertify .hero-row .sub-hero-copy { align-items: center; text-align: center; }
@@ -417,15 +414,23 @@
 
   .skillcertify .pain-grid { grid-template-columns: 1fr; }
 
-  /* 5칸이 1열로 쌓인다 — 컨테이너(640px)가 이미 화면보다 좁아지면 자동으로
-     폭이 줄어드니 별도 max-width가 필요 없다. 화살표만 아래를 가리키게 돌린다
-     (difference .cycle-arrow 900px 처리와 같은 방식). */
-  .skillcertify .cycle { grid-template-columns: 1fr; }
+  /* 5칸 1열, 폭만 좁혀 가운데로. 패딩은 공용 기본값 유지, 화살표는 아래로 회전 */
+  .skillcertify .process .section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skillcertify .cycle {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 420px;
+  }
 
   .skillcertify .cycle-arrow {
     top: auto;
     right: auto;
-    bottom: calc(var(--space-20) / -2);
+    bottom: -25px;
     left: 50%;
     margin: 0 0 0 -20px;
   }

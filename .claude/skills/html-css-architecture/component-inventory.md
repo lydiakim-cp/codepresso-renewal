@@ -24,6 +24,7 @@
 | Preview Frame | `preview-frame.css` | `.preview-frame`, `__bar`, `__dots` | 제품/서비스 화면을 보여주는 목업 프레임 |
 | Skeleton | `skeleton.css` | `.skeleton-block`, `.skeleton-line`, `.skeleton-stack` | 콘텐츠 대기/자리표시 상태 |
 | Media Card | `media-card.css` | `.media-card`, `__media`, `__body`, `__meta`, `__title` | 썸네일 + 제목형 콘텐츠 카드 (뉴스·블로그 등) |
+| Outcome Card | `outcome-card.css` | `.outcome-list > li`, `.outcome-logo`(+`--tall`·`--invert`), `.outcome-body`, `.outcome-client`, `.outcome-industry` | 고객사 로고 판 + 성과 카드. 로고는 고정 높이(132px) 판 안에서 `object-fit: contain`(잘리면 안 되므로 `media-card`의 cover와 다름). stories.html·skillcertify.html이 공용으로 쓰고, 그리드 열 수·카드 테두리/hover 색·본문 gap·`outcome-headline`/`outcome-shift` 등 수치 표시부는 페이지 스코프가 정한다 |
 | Part Nav | `part-nav.css` | `.part-nav`, `-item`, `-indicator`, `--compact` | 두 파트를 잇는 캡슐형 세그먼트 내비 (`js/part-nav.js`와 짝) |
 | Assessment Card | `assessment-card.css` | `.assessment-card`, `__head`, `__title`, `__meta`, `__action` | 자가진단/설문 시작 유도 카드 |
 | Content Panel | `content-panel.css` | `.content-panel`, `__item`, `__intro`, `__visual`, `--compact` | 설명 + 큰 시각 요소를 한 판에 담는 패널 |
@@ -146,13 +147,16 @@ hero·catalog·cta-final 셋뿐이라 대부분 공용 컴포넌트 조합으로
 | 클래스 | 역할 | 재사용한 공용 컴포넌트 |
 |---|---|---|
 | `case-filter` · `case-count` | 두 갈래(업무 자동화 · 역량 진단·교육)로 사례를 거르는 컨트롤 줄 + 결과 건수 | `part-nav`(`--compact --animated` segmented control)를 그대로 씀. `js/case-filter.js`와 짝 |
-| `outcome-list`(+ `outcome-logo`(`--tall`·`--invert`) · `outcome-body` · `outcome-headline` · `outcome-person`) | 고객사별 로고 판 + "이전 → 이후" 사례 카드 12장 | ax-build 06의 같은 이름 구조를 본뜸(`tag` · chevron SVG). `outcome-headline`은 before→after가 없는 사례가 `outcome-shift` 자리를 대신 채우는 한 줄 |
+| `outcome-list` · `outcome-headline` · `outcome-person` · `tag-industry` | 고객사별 로고 판 + "이전 → 이후" 사례 카드 12장, 이 페이지만의 배치·톤 차이(브랜드 틴트 테두리·auto-fill 그리드) | 카드 껍데기·로고 판·본문 골격은 `components/ui/outcome-card.css`(공용, 아래 참고). `tag`·chevron SVG도 재사용. `outcome-headline`은 before→after가 없는 사례가 `outcome-shift` 자리를 대신 채우는 한 줄 |
 | `order` · `order-arrow` | 진단 → 전환 → 증명 3단계 흐름 + 경계 화살표 | capability `loop`(4단계 순환)의 구조를 본뜸 · `heading-number`(번호 뱃지) |
 | `tag-industry` | 업종 배지 — 서비스 배지와 나란히 서는 테두리형 변형 | `tag`(채움형)를 테두리형으로 덮음. 업종별 색을 만들지 않은 이유는 아래 참고 |
 
-**`outcome-list`가 ax-build와 이름이 같은데 정의가 둘인 이유** — ax-build 쪽 정의는
-`.ax-build` 스코프(페이지 전용) 안이라 다른 페이지에서 로드되지 않는다. 두 페이지가
-계속 같은 카드를 쓰게 되면 그때 `components/ui/`로 공용 승격할지 사용자에게 확인한다.
+**`outcome-card`는 `components/ui/outcome-card.css`로 공용 승격했다** — stories(12장)와
+skillcertify(3장 축소판) 두 페이지가 카드 껍데기·로고 판(`outcome-logo`(`--tall`·`--invert`))·
+본문 골격(`outcome-body`)·고객사 텍스트(`outcome-client`·`outcome-industry`)를 완전히
+같은 값으로 쓰고 있어 하나로 합쳤다. 그리드 열 수·카드 테두리 색·hover 색·본문 gap·
+`outcome-headline`/`outcome-detail` 크기처럼 페이지마다 다른 값만 `.stories`/`.skillcertify`
+스코프에 남아 있다.
 
 **`part-nav`는 필터로도 쓸 수 있다** — 다만 `js/part-nav.js`는 앵커 스크롤 전용이라
 필터 동작에는 쓸 수 없다. 컨트롤(CSS)만 재사용하고 동작은 `js/case-filter.js`가 맡는다.

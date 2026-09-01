@@ -77,93 +77,13 @@
   }
 
   /*
-   * 사례 카드 — ax-build 06 Real Outcomes의 outcome-list와 같은 역할·같은 클래스 이름.
-   * 그쪽 정의는 .ax-build 스코프 안(페이지 전용)이라 이 페이지에서는 로드되지 않으므로
-   * 구조만 본떠 다시 정의한다. 다른 점은 세 가지다 —
-   *   1) 12개를 한 판에 놓아야 해서 3열 고정이 아니라 auto-fill 그리드다.
-   *   2) 카드가 로고 판(.outcome-logo) + 본문(.outcome-body) 2단이다.
-   *   3) 배지가 서비스·업종 두 개이고, 고객사 줄이 카드 맨 아래로 내려간다.
+   * 사례 카드 — 공용 outcome-card(components/ui/outcome-card.css)를 쓴다.
+   * 카드 껍데기·로고 판·그리드(3열)·본문 골격·고객사 텍스트는 공용 정의 그대로다.
+   * 이 페이지에서만 다른 것은 12장을 한 판에 놓기 위한 auto-fill 그리드와,
+   * 배지가 서비스·업종 두 개라 필요한 outcome-tags·tag-industry뿐이다.
    */
   .stories .outcome-list {
-    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: var(--space-24);
-  }
-
-  .stories .outcome-list > li {
-    display: flex;
-    flex-direction: column;
-    /* 여백은 li가 아니라 .outcome-body가 갖는다 — 로고 판이 카드 폭을 꽉 채워야
-       위쪽 판과 아래쪽 본문이 두 구역으로 갈린다(레퍼런스 배치). */
-    overflow: hidden;
-    border: 1px solid var(--color-brand-tint-2);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
-    box-shadow: var(--shadow-sm);
-    transition: box-shadow var(--duration-hover) var(--ease-hover),
-      transform var(--duration-hover) var(--ease-hover),
-      border-color var(--duration-hover) var(--ease-hover);
-  }
-
-  /* --- 로고 판 --- */
-
-  /*
-   * 12장의 로고 판이 모두 같은 크기여야 그리드가 고르다. 로고는 가로세로 비율이
-   * 제각각이라(아모레퍼시픽 10:1 ~ 우하컴퍼니 1:1) 판을 고정 높이로 두고 안에서 contain한다.
-   * media-card를 쓰지 않은 이유 — 그쪽 __media img는 object-fit: cover라 로고가
-   * 잘린다. 로고는 절대 잘리면 안 된다.
-   *
-   * 원본 파일의 여백은 CSS로 보정하지 않고 파일 자체를 잉크 범위로 잘라 두었다
-   * (SK텔레콤 1600x1600 중 세로 32%만 잉크, 현대모비스 26%). CSS로 키워 맞추면
-   * 판 밖으로 넘치거나 파일마다 다른 값을 외워야 한다.
-   */
-  .stories .outcome-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 132px;
-    padding: var(--space-24);
-    background: var(--color-surface-sunken);
-    border-bottom: 1px solid var(--color-line);
-  }
-
-  .stories .outcome-logo img {
-    /* 폭 상한이 100%면 아모레퍼시픽처럼 가로로 긴 로고(10:1)가 판 좌우를 꽉 채워
-       혼자 두 배 커 보인다. 판 안쪽에 여백이 남도록 상한을 낮춘다. */
-    max-width: 76%;
-    max-height: 44px;
-    /* 로고 원본 비율을 지킨다 — 절대 늘이거나 자르지 않는다 */
-    object-fit: contain;
-  }
-
-  /*
-   * 어두운 배경용으로 제작된 로고(흰 글자)를 위한 판.
-   * 체인로지스 로고는 잉크의 88%가 흰색이라 밝은 판에서는 글자가 사라진다.
-   * 로고 파일의 색을 우리가 바꾸는 것은 브랜드 훼손이라 하지 않는다 —
-   * 대신 그 카드의 판만 어둡게 깔아 로고가 제 색으로 읽히게 한다.
-   */
-  .stories .outcome-logo--invert {
-    background: var(--color-ink-heaviest);
-    border-bottom-color: var(--color-ink-heaviest);
-  }
-
-  /*
-   * 세로로 쌓인 로고(심볼 위 + 워드마크 아래) 전용 높이.
-   * 가로형과 같은 44px로 묶으면 2단 로고는 글자가 절반 크기가 되어 혼자 작아 보인다.
-   * 광학적으로 같은 무게가 되도록 높이만 올린다 — 폭은 판이 알아서 잡는다.
-   */
-  .stories .outcome-logo--tall img {
-    max-height: 76px;
-  }
-
-  /* --- 카드 본문 --- */
-
-  .stories .outcome-body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-12);
-    flex: 1;
-    padding: var(--space-24);
   }
 
   /* 서비스 + 업종 배지 두 개가 한 줄에. 좁아지면 아래로 접힌다 */
@@ -185,16 +105,17 @@
     color: var(--color-ink-light);
   }
 
-  .stories .outcome-list > li:hover {
+  /* 업무 자동화 사례는 공용 기본(중립 line)이 아니라 브랜드 틴트로 갈라, 두 갈래가
+     배지 글자뿐 아니라 카드 톤으로도 구분되게 한다. 역량 진단·교육 쪽은 outcome-card.css의
+     공용 중립 테두리·hover를 그대로 쓴다. */
+  .stories .outcome-list > li[data-case-axis="tool"] {
+    border-color: var(--color-brand-tint-2);
+  }
+
+  .stories .outcome-list > li[data-case-axis="tool"]:hover {
     border-color: color-mix(in srgb, var(--color-brand) 30%, var(--color-brand-tint-2));
     box-shadow: var(--shadow-md);
     transform: translateY(-3px);
-  }
-
-  /* 역량 진단·교육 사례는 브랜드 틴트가 아니라 중립 면으로 갈라, 두 갈래가 배지 글자뿐
-     아니라 카드 톤으로도 구분되게 한다(색을 새로 만들지 않고 기존 line 토큰만 쓴다). */
-  .stories .outcome-list > li[data-case-axis="people"] {
-    border-color: var(--color-line);
   }
 
   /* 옅은 면(tint-2) 위라 mist 배지는 배경과 붙는다 — 카드와 같은 흰색에
@@ -206,27 +127,8 @@
     color: var(--color-ink-light);
   }
 
-  .stories .outcome-list > li[data-case-axis="people"]:hover {
-    border-color: var(--color-line-heavy);
-  }
-
-  /*
-   * 고객사 / 업무 — 레퍼런스처럼 카드 맨 아래 한 줄로 눕힌다.
-   * 카드의 주인공은 수치(.outcome-shift / .outcome-headline)이므로 고객사 이름은
-   * 제목 크기가 아니라 본문 크기로 두고, 위계는 색으로 만든다
-   * (고객사 = ink-light / 업무 = ink-lighter).
-   */
-  .stories .outcome-client {
-    color: var(--color-ink-light);
-    font-size: var(--text-body-muted);
-    line-height: var(--leading-body-muted);
-    font-weight: var(--font-weight-medium);
-  }
-
-  .stories .outcome-industry {
-    color: var(--color-ink-lighter);
-    font-weight: var(--font-weight-regular);
-  }
+  /* 고객사 / 업무 — 레퍼런스처럼 카드 맨 아래 한 줄로 눕힌다. 색·크기는 공용
+     outcome-client/outcome-industry가 정한다(고객사 = ink-light / 업무 = ink-lighter). */
 
   /* 이전 값 → 이후 값 표시줄 */
   .stories .outcome-shift {
@@ -262,26 +164,10 @@
     transform: translateX(3px);
   }
 
-  /* before→after가 없는 사례의 결과 한 줄. .outcome-after와 같은 크기·색을 써서
-     두 형태의 카드가 같은 줄에서 같은 무게로 읽히게 한다. */
-  .stories .outcome-after,
-  .stories .outcome-headline {
-    font-size: var(--text-heading-24);
-    line-height: var(--leading-heading-24);
-    letter-spacing: var(--tracking-heading-tight);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-brand);
-  }
-
-  /* 결과 수치는 두 갈래 모두 브랜드색으로 통일한다 — 카드 톤(틴트 vs 중립)은
-     배지와 테두리가 이미 가르고 있고, "얼마나 달라졌는가"는 이 페이지 전체에서
-     같은 색으로 읽혀야 한 눈에 훑을 수 있다. */
-
-  .stories .outcome-detail {
-    color: var(--color-ink-light);
-    font-size: var(--text-body-muted);
-    line-height: var(--leading-body-muted);
-  }
+  /* .outcome-after(이후 값) / .outcome-headline(before→after 없는 결과 한 줄) /
+     .outcome-detail 크기·색은 공용 outcome-card.css가 정한다 — 결과 수치는 두
+     갈래 모두 브랜드색으로 통일해 카드 톤(틴트 vs 중립)과 별개로 "얼마나
+     달라졌는가"가 이 페이지 전체에서 같은 색으로 읽힌다. */
 
   /*
    * 상세 문장 안의 수치. 크기를 올리지 않고 색과 굵기만 바꾼다 —
@@ -303,13 +189,8 @@
     content: "· ";
   }
 
-  /* 카드 높이가 제각각이면 그리드가 들쭉날쭉해진다 —
-     고객사 줄은 항상 카드 바닥에 붙어 12장의 마지막 줄이 나란히 선다. */
-  .stories .outcome-client {
-    margin-top: auto;
-    padding-top: var(--space-16);
-    border-top: 1px solid var(--color-line);
-  }
+  /* 고객사 줄을 카드 바닥에 붙이는 레이아웃(margin-top:auto 등)은 공용
+     outcome-card.css가 정한다 — 12장의 마지막 줄이 나란히 서는 이유도 그것 때문이다. */
 
   /*
    * 카드 등장 — 섹션 진입 시, 그리고 필터를 바꿀 때마다 순차로 떠오른다.
