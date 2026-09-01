@@ -118,13 +118,13 @@
     transform: translateY(-3px);
   }
 
-  /* 업무 자동화 배지 — AXpresso 페이지(ax-build)의 다크 네이비를 그대로 끌어와, 배지 색만
-     보고도 "AXpresso 갈래"임을 알게 한다. 역량 진단·교육 배지는 공용 .tag(브랜드 틴트 파랑)
-     그대로 두어, 두 갈래가 다크 네이비 vs 파랑으로 갈린다.
+  /* 업무 자동화 배지 — 브랜드 파랑을 꽉 채우고 글자를 흰색으로 뒤집는다. 역량 진단·교육
+     배지는 공용 .tag(브랜드 틴트 파랑) 그대로 두어, 두 갈래가 같은 파랑 한 계열 안에서
+     "채움 vs 옅은 틴트"로만 갈린다 — 없는 색을 새로 만들지 않는다.
      :not(.tag-industry) — 업종 배지는 위에서 이미 테두리형이라 덮지 않는다. */
   .cases .outcome-list > li[data-case-axis="tool"] .tag:not(.tag-industry) {
-    background: var(--color-axpresso-box);
-    color: var(--color-axpresso-ink);
+    background: var(--color-brand);
+    color: var(--color-surface);
   }
 
   /* 고객사 / 업무 — 레퍼런스처럼 카드 맨 아래 한 줄로 눕힌다. 색·크기는 공용
