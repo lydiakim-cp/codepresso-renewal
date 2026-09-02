@@ -394,7 +394,7 @@
             <!-- 직군별 — 탭으로 갈아 끼운다 -->
             <div class="service-catalog__tabbed">
               <p class="service-catalog__label service-catalog__label--alt">직군별 업무</p>
-              <div class="catalog-board" data-catalog-board>
+              <div class="catalog-board" data-catalog-board data-catalog-autoplay="3000">
                 <div class="catalog-board__rail" role="tablist" aria-label="직군별 자동화 분야">
                 <button class="catalog-board__category is-active" type="button" data-catalog-category="marketing">
                   <span class="catalog-board__category-name">마케팅</span>
@@ -1111,7 +1111,8 @@
 
   <!-- 공용 스크립트 — GNB(header-scroll·nav-menu), 섹션 진입 모션(fade-up),
        Best Fit 카드 자동 순환(feature-card-cycle).
-       catalog-board.js는 이 페이지의 워크플로 보드 전용이다. -->
+       catalog-board.js는 이 페이지의 워크플로 보드 전용이며, data-catalog-autoplay로
+       3초 자동 전환을 켰다(hover 시 정지, 클릭 시 그 탭부터 재시작). -->
   <script src="js/include-partials.js"></script>
   <script src="js/fade-up.js"></script>
   <script src="js/header-scroll.js"></script>

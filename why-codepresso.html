@@ -699,8 +699,8 @@
     <!--
       07 Industry — 업종별 적용.
       "분류를 골라 그 분야 내용을 본다"가 그대로 공용 catalog-board의 역할이고
-      전환은 js/catalog-board.js가 맡는다(자동 순환하지 않는다 — 읽는 중 판이 바뀌면
-      방해라는 그 파일의 판단을 그대로 따른다).
+      전환은 js/catalog-board.js가 맡는다(data-catalog-autoplay를 안 붙였으므로
+      자동 순환 없이 클릭으로만 전환 — 읽는 중 판이 바뀌면 방해라 이 페이지는 opt-in 안 함).
       다만 ax-build 03은 판 안이 항목 나열(ul)이고, 여기는 항목마다 소제목이 붙는
       4블록(Pain Point / AXpresso 적용 / 역량 교육 매핑 / 기대 효과)이라
       __items 대신 정의형 목록 하나만 페이지 CSS로 추가한다.
