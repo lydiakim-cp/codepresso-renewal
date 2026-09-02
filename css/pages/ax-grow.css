@@ -1,23 +1,20 @@
 /*
  * Page: ax-grow.html (AX Grow 내재화형 제품 소개)
- * main.css 위에 얹는 페이지 전용 계층. ax-build와 같은 AXpresso 다크 네이비
- * 배경을 그대로 쓰고, --color-brand만 그린으로 재정의해 버튼·태그·아이콘 같은
- * 강조 자리만 그린으로 바뀌게 한다(배경·박스·텍스트는 ax-build와 동일).
+ * main.css 위에 얹는 페이지 전용 계층. AXpresso 다크 네이비 배경 + 브랜드 파랑
+ * 강조로, 같은 AXpresso 제품군인 ax-build와 색·테마를 완전히 일치시킨다.
  */
 
 @layer components {
   /* 페이지 전체 다크모드 — .ax-grow 안에서 시맨틱 토큰을 axpresso 값으로
-     재정의해 공용 컴포넌트가 코드 수정 없이 다크로 렌더링되게 한다.
-     강조색(--color-brand)만 그린으로 바꿔 "grow" 톤을 낸다. */
+     재정의해 공용 컴포넌트가 코드 수정 없이 다크로 렌더링되게 한다. */
   .ax-grow {
-    --color-brand: var(--color-axgrow-accent);
-    --color-brand-dark: var(--color-axgrow-accent-dark);
-    --color-brand-tint-2: color-mix(in srgb, var(--color-axgrow-accent) 32%, transparent);
+    --color-brand-tint-2: color-mix(in srgb, var(--color-brand) 32%, transparent);
 
     --color-ink: var(--color-axpresso-ink);
     --color-ink-light: var(--color-axpresso-ink-light);
     --color-ink-lighter: var(--color-axpresso-ink-lighter);
-    --color-surface-sunken: var(--color-axpresso-bg-2);
+    /* ax-build와 같은 값 — 가라앉은 면은 불투명 남색이 아니라 유리 톤이다 */
+    --color-surface-sunken: var(--color-axpresso-box-tint);
     --color-surface-mist: var(--color-axpresso-box-tint);
     /* 다크 배경 위 흰 테두리는 라이트 모드보다 진하게(14%→20%, 24%→32%) */
     --color-line: color-mix(in srgb, var(--color-axpresso-ink) 20%, transparent);
@@ -122,8 +119,13 @@
     -webkit-backdrop-filter: blur(16px) saturate(160%);
   }
 
-  /* 번호 배지 — 기본 cycle-no는 그린 텍스트 on 그린 tint라 대비가 2.16:1로
-     너무 낮다(같은 색 계열끼리라 구조적으로 안 갈린다). 흰 배지로 전환한다. */
+  /* cycle.css가 h3에 ink-heaviest(검정)를 직접 줘서 .ax-grow h3를 이긴다 — 다시 덮는다 */
+  .ax-grow .cycle > li h3 {
+    color: var(--color-axpresso-ink);
+  }
+
+  /* 번호 배지 — 기본 cycle-no는 브랜드 텍스트 on 브랜드 tint라 대비가 낮다
+     (같은 색 계열끼리라 구조적으로 안 갈린다). 흰 글씨 배지로 전환한다. */
   .ax-grow .cycle-no {
     background: var(--color-brand-tint-2);
     color: var(--color-axpresso-ink);
@@ -133,15 +135,31 @@
     color: var(--color-ink-lighter);
   }
 
-  /* 02 Why It Works — 공용 compare-panel을 다크 톤으로 반전 */
+  /* 02 Why It Works — 타사(일회성 교육) vs 자사(AX Grow) 경쟁 구도.
+     before는 배경에 잠기게 어둡고 연하게, after는 브랜드 기운이 도는 밝은 판으로
+     띄운다(밝기 3.3배 차이). 기본값은 before가 오히려 더 밝아 의도와 반대였다. */
   .ax-grow .compare-panel__item {
-    border-color: var(--color-line);
-    background: var(--color-axpresso-box);
+    border-color: color-mix(in srgb, var(--color-axpresso-ink) 10%, transparent);
+    background: color-mix(in srgb, white 4%, transparent);
+  }
+
+  /* before 텍스트 — 세 층 모두 위계를 한 단계씩 낮춰 "지나간 방식"으로 읽히게 한다 */
+  .ax-grow .compare-panel__item:not(.is-after) .compare-panel__label {
+    color: color-mix(in srgb, var(--color-axpresso-ink) 42%, transparent);
+  }
+
+  .ax-grow .compare-panel__item:not(.is-after) .compare-panel__title {
+    color: color-mix(in srgb, var(--color-axpresso-ink) 60%, transparent);
+  }
+
+  .ax-grow .compare-panel__item:not(.is-after) .compare-panel__desc {
+    color: color-mix(in srgb, var(--color-axpresso-ink) 50%, transparent);
   }
 
   .ax-grow .compare-panel__item.is-after {
     border-color: var(--color-brand-tint-2);
-    background: var(--color-axpresso-box-tint);
+    background: color-mix(in srgb, white 6%,
+      color-mix(in srgb, var(--color-brand) 22%, transparent));
     box-shadow: none;
   }
 
@@ -151,18 +169,28 @@
     color: color-mix(in srgb, var(--color-brand) 45%, white);
   }
 
-  .ax-grow .compare-panel__item:hover:not(.is-after) {
-    border-color: var(--color-line-heavy);
+  .ax-grow .compare-panel__item.is-after .compare-panel__desc {
+    color: var(--color-ink-light);
   }
 
-  .ax-grow .compare-panel__desc {
-    color: var(--color-ink-light);
+  .ax-grow .compare-panel__item:hover:not(.is-after) {
+    border-color: var(--color-line-heavy);
   }
 
   /* 03 Best Fit — 활성 카드만 박스 톤으로 구분 */
   .ax-grow .features .feature-card.is-active {
     background: var(--color-axpresso-box-tint);
     box-shadow: none;
+  }
+
+  /* 카드 라벨은 색 지정이 없어 body의 어두운 잉크를 상속받는다 — 흰 글씨로 올린다.
+     활성 시 브랜드 원색은 다크 배경에서 3.05:1이라 흰색을 섞어 밝힌다. */
+  .ax-grow .feature-card .section-body-title {
+    color: var(--color-axpresso-ink);
+  }
+
+  .ax-grow .feature-card.is-active .section-body-title {
+    color: color-mix(in srgb, var(--color-brand) 45%, white);
   }
 
   .ax-grow .feature-card-icon {
@@ -326,8 +354,17 @@
     color: var(--color-ink-light);
   }
 
-  /* 06 Internal Capability — 공용 statement(브랜드 판, --color-brand 재정의로
-     이미 그린이 된다) + content-panel 3열 근거 */
+  /* 06 Internal Capability — 공용 statement는 브랜드 파랑 판이 기본이라 다크 페이지에서
+     혼자 튄다. 다른 섹션과 같은 배경 리듬(bg-2)으로 내리고 질감·광원 오버레이를 끈다. */
+  .ax-grow .statement {
+    background-color: var(--color-axpresso-bg-2);
+  }
+
+  .ax-grow .statement::before,
+  .ax-grow .statement::after {
+    content: none;
+  }
+
   .ax-grow .capability-grid {
     position: relative;
     z-index: 1;
@@ -379,6 +416,28 @@
   .ax-grow .start-card.is-here {
     border-color: var(--color-brand-tint-2);
     background: var(--color-axpresso-box-tint);
+  }
+
+  /* 두 제품을 한눈에 구분하는 아이콘 — step-icon과 같은 48px 규격을 따른다 */
+  .ax-grow .start-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--space-48);
+    height: var(--space-48);
+    border-radius: var(--radius-md);
+    background: var(--color-axpresso-box-tint);
+    transition: transform var(--duration-hover) var(--ease-hover);
+  }
+
+  .ax-grow .start-icon svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  .ax-grow .start-card:hover .start-icon {
+    transform: scale(1.06);
   }
 
   .ax-grow .start-desc {
@@ -439,6 +498,7 @@
     .ax-grow .process-steps > li,
     .ax-grow .step-icon,
     .ax-grow .start-card,
+    .ax-grow .start-icon,
     .ax-grow .compare-panel__item { transition-duration: 0.001ms; }
   }
 
