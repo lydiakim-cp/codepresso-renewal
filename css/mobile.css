@@ -255,10 +255,6 @@
   /* 03 Assess 제품 2개도 1열. 특징 3줄이 카드 폭에 눌리지 않게 한다 */
   .skills .catalog .product-grid { grid-template-columns: 1fr; }
 
-  /* 04 Learn — 좌측 sticky는 layout.css 900px 규칙이 이미 풀어 놓는다.
-     보조 안내 판이 한 줄로 넓어지면 읽기 폭이 과해지므로 제한한다. */
-  .skills .learn-note { max-width: 480px; }
-
   /* 제품 목록은 sticky가 풀리면 역할이 없어진다 — 고정돼 있지 않으니 "지금
      보는 제품"을 알려줄 수 없고, 바로 아래에 제품 3장이 그대로 쌓여 목록이
      두 번 나온다. index PART 1의 .diagnosis-products와 같은 이유로 감춘다. */
@@ -1005,8 +1001,6 @@
   }
 
   .skills .loop-arrow svg { transform: rotate(90deg); }
-
-  .skills .learn-note { max-width: none; }
 
   /* 도구 연결 브릿지 — 제목을 한 단계 낮추고, 좌우 배치를 세로로 쌓는다 */
   .skills .bridge-title {

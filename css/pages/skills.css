@@ -299,24 +299,6 @@
     --stage-tail: 560px;
   }
 
-  /* sticky 좌측 하단에 붙는 보조 안내 — 세 방식을 고르는 것이 아니라 조합한다는 문장 */
-  .skills .learn-note {
-    width: 100%;
-    padding: var(--space-20);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
-    border: 1px solid color-mix(in srgb, var(--color-brand) 12%, transparent);
-    color: var(--color-ink-light);
-    font-size: var(--text-body-muted);
-    line-height: var(--leading-body-14);
-    letter-spacing: var(--tracking-body-normal);
-  }
-
-  .skills .learn-note strong {
-    color: var(--color-brand);
-    font-weight: var(--font-weight-semibold);
-  }
-
   /* 좌측 학습 방식 목록 — index PART 1의 .diagnosis-products와 같은 묶음.
      리스트 자체는 공용 .choice-list, 여기서는 라벨과의 간격만 잡는다. */
   .skills .learn-products {

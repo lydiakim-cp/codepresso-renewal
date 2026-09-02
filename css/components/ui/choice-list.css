@@ -19,7 +19,6 @@
 .choice-list__item {
   position: relative;
   display: flex;
-  width: 100%;
   text-align: start;
   background: none;
   border: 0;
@@ -27,8 +26,12 @@
   align-items: center;
   gap: var(--space-20);
   /* 좌우 padding만큼 밖으로 빼서 아이콘·텍스트가 컬럼의 다른 요소(제목·라벨)와
-     같은 선에서 시작하게 한다. hover·활성 면만 그 20px 바깥으로 번진다. */
+     같은 선에서 시작하게 한다. hover·활성 면만 그 20px 바깥으로 번진다.
+     width는 100%가 아니라 100% + 좌우 마진이어야 한다 — 100%로 두면
+     over-constrained가 돼 오른쪽 마진이 무시되고 면이 통째로 왼쪽으로
+     밀리고(좌우 비대칭), 생략하면 button이 내용 폭으로 줄어든다. */
   margin-inline: calc(-1 * var(--space-20));
+  width: calc(100% + 2 * var(--space-20));
   padding: var(--space-18) var(--space-20);
   border-radius: var(--radius-md);
   transition: background var(--duration-hover) var(--ease-hover);
