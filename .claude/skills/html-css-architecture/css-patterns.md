@@ -35,21 +35,33 @@ background: color-mix(in srgb, var(--color-brand-dark) 70%, var(--color-ink-heav
 
 ## 2. 아이콘 — 크기는 2단, chevron SVG는 하나로 통일
 
-### 아이콘 크기 — small · regular 두 단뿐이다 (large 없음)
+### 아이콘 크기 — 세 클래스로만 정한다
 
-토큰은 `tokens.css`에 있다. **새 px 값을 만들지 않는다.**
+**크기는 CSS가 아니라 마크업의 클래스가 말한다.** 컴포넌트 CSS에서 아이콘에
+`width`/`height`를 다시 쓰지 않는다(`components/ui/icon.css`).
 
-| 단 | 글리프 | 담는 박스 | 쓰는 자리 |
-|---|---|---|---|
-| small | `--icon-sm` 20px | `--icon-box-sm` 32px | 라벨·텍스트 옆 인라인 — GNB 메가메뉴 항목, FAQ 화살표, 버튼 안 |
-| regular | `--icon-md` 24px | `--icon-box` 48px | 기본 — 카드·스텝·제품 목록의 아이콘 칸 |
+| 클래스 | 크기 | 쓰는 자리 |
+|---|---|---|
+| `.icon-sm` | 20px | 라벨·텍스트 옆 인라인 — GNB 메가메뉴 항목, FAQ 화살표, 버튼 안 |
+| `.icon-md` | 24px | 기본 — 카드·스텝의 아이콘 박스 안, 제목 옆 |
+| `.icon-lg` | 32px | 한 칸의 주인공인 아이콘 — hero 보조 밴드 |
 
-- **large는 없앴다.** 26·30·32·45px로 흩어져 있던 것을 전부 regular(24px)로 내렸다.
-- 박스(면·radius를 가진 정사각)가 있으면 박스와 글리프를 **같은 단에서 짝지어** 쓴다.
-- **반응형에서 아이콘을 줄이지 않는다.** 720px에서 48→40, 24→22로 내리던 오버라이드를
-  지웠다 — 단이 3개, 4개로 늘어나는 통로였다.
-- **목업 안은 이 스케일 밖이다.** `product-mock`·`difference-mock`의 축소 아이콘
-  (13px·24px 박스 등)은 실제 제품 화면을 축소해 그린 것이라 별도 스케일을 갖는다.
+- **이 셋 말고 다른 크기를 만들지 않는다.** 26·30·45px로 흩어져 있던 것을
+  한 번 정리했다.
+- **감싼 `<span>`에 붙이면** 안쪽 `svg`·`img`가 같은 크기로 따라온다.
+- **배경·radius를 가진 아이콘 박스는 다른 개념이다** — 박스는
+  `--icon-box`(48px) / `--icon-box-sm`(32px)이고, 클래스는 박스가 아니라
+  **안쪽 그림**에 붙인다.
+
+```html
+<span class="step-icon" aria-hidden="true"><svg class="icon-md" …></span>
+<span class="hero-question-icon icon-lg" aria-hidden="true"><svg …></span>
+```
+
+- **반응형에서 아이콘을 줄이지 않는다.** 720px에서 한 단 낮추던 오버라이드를
+  지웠다 — 단이 늘어나는 통로였다.
+- **목업 안은 이 스케일 밖이다.** `product-mock`·`difference-mock`의 축소 아이콘은
+  실제 제품 화면을 축소해 그린 것이라 별도 스케일을 갖는다.
 
 ### chevron SVG는 하나로 통일
 

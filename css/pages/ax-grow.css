@@ -260,8 +260,6 @@
 
   .ax-grow .step-icon svg {
     display: block;
-    width: var(--icon-md);
-    height: var(--icon-md);
   }
 
   .ax-grow .step-body {
@@ -320,8 +318,6 @@
 
   .ax-grow .deliverable-icon svg {
     display: block;
-    width: var(--icon-md);
-    height: var(--icon-md);
   }
 
   .ax-grow .deliverable-desc {
@@ -398,8 +394,6 @@
 
   .ax-grow .start-icon svg {
     display: block;
-    width: var(--icon-md);
-    height: var(--icon-md);
   }
 
   .ax-grow .start-desc {

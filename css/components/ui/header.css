@@ -251,14 +251,7 @@
   height: var(--icon-box-sm);
   border-radius: var(--radius-md);
   background: var(--color-brand-tint-2);
-}
-
-.nav-entry-icon img {
-  width: var(--icon-sm);
-  height: var(--icon-sm);
-}
-
-.nav-entry-body {
+}.nav-entry-body {
   display: grid;
   gap: var(--space-4);
 }

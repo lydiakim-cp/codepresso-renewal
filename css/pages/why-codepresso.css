@@ -412,8 +412,6 @@
 
   .difference-page .slide-icon svg {
     display: block;
-    width: var(--icon-md);
-    height: var(--icon-md);
   }
 
   /* 카드 제목 — h3 전역(24px)은 2열 카드에서 줄이 깨진다 */
@@ -1170,8 +1168,6 @@
 
   .difference-page .industry-card-icon svg {
     display: block;
-    width: var(--icon-md);
-    height: var(--icon-md);
   }
 
   .difference-page .industry-card-label {

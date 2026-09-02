@@ -153,12 +153,13 @@
   --space-48: 48px;
   --space-60: 60px;
 
-  /* Icon — 2단만 쓴다. sm은 라벨 옆(GNB 항목·FAQ·버튼), md는 기본(카드·스텝).
-     면을 가진 정사각 박스에 담을 때는 짝이 되는 --icon-box-* 를 쓴다.
-     large는 없앴다 — 26·30·32·45px은 전부 md로 내렸다.
+  /* Icon — 3단만 쓴다. 마크업에서는 .icon-sm/.icon-md/.icon-lg 클래스로 고른다
+     (components/ui/icon.css). 컴포넌트 CSS에 아이콘 크기를 다시 쓰지 않는다.
+     면을 가진 정사각 박스는 크기가 다른 개념이라 --icon-box-* 를 쓴다.
      목업(product-mock·difference-mock) 안의 축소 아이콘은 이 스케일 밖이다. */
   --icon-sm: 20px;
   --icon-md: 24px;
+  --icon-lg: 32px;
   --icon-box-sm: 32px;
   --icon-box: 48px;
 

@@ -176,7 +176,7 @@
                   </div>
                   <ul class="hero-questions surface-glass">
                     <li>
-                      <span class="hero-question-icon" aria-hidden="true">
+                      <span class="hero-question-icon icon-lg" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="var(--color-brand)"/><path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="var(--color-brand)"/><path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="var(--color-brand)"/></svg>
                       </span>
                       <div class="hero-question-text">
@@ -185,7 +185,7 @@
                       </div>
                     </li>
                     <li>
-                      <span class="hero-question-icon" aria-hidden="true">
+                      <span class="hero-question-icon icon-lg" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/><path d="M2 17L12 22L22 17" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                       </span>
                       <div class="hero-question-text">
@@ -194,7 +194,7 @@
                       </div>
                     </li>
                     <li>
-                      <span class="hero-question-icon" aria-hidden="true">
+                      <span class="hero-question-icon icon-lg" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 17L9 11L13 15L21 7" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7H15" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7V13" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                       </span>
                       <div class="hero-question-text">
@@ -338,6 +338,7 @@
             <div><p class="tag">고객 사례 카드</p><h3>Outcome Card</h3><p>고객사 로고 판(고정 높이, <code>object-fit: contain</code>으로 절대 잘리지 않음) + "이전 → 이후" 성과 카드입니다. cases.html·skillcertify.html이 함께 쓰는 공용 컴포넌트이며, 그리드 열 수·카드 테두리 색·수치 표시부(<code>outcome-shift</code>/<code>outcome-headline</code>)는 페이지마다 다릅니다.</p><code>outcome-list · outcome-logo · outcome-body</code></div>
           </article>
           <article class="guide-component-row"><div class="guide-component-demo"><a class="btn btn-primary" href="#components">주요 행동<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/></svg></a><a class="btn btn-ghost" href="#components">보조 행동</a><a class="link-arrow link-arrow-ink" href="#components"><span class="link-underline">자세히 보기</span></a></div><div><p class="tag">버튼과 링크</p><h3>Button &amp; Link</h3><p>주요 행동에는 Primary, 보조 행동에는 Ghost와 밑줄 링크를 사용합니다.</p><code>btn · link-arrow</code></div></article>
+          <article class="guide-component-row"><div class="guide-component-demo" style="display:flex;align-items:flex-end;gap:24px"><span class="icon-sm"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="icon-md"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="icon-lg"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div><p class="tag">아이콘 크기</p><h3>Icon Size</h3><p>아이콘 크기는 이 세 클래스로만 정합니다 — <code>icon-sm</code> 20px(라벨 옆·GNB 항목·FAQ 화살표), <code>icon-md</code> 24px(기본, 카드·스텝), <code>icon-lg</code> 32px(한 칸의 주인공, hero 보조 밴드). 감싼 <code>span</code>에 붙이면 안쪽 그림이 따라옵니다. 배경이 있는 <strong>아이콘 박스</strong>(48px)는 크기가 다른 개념이라, 박스가 아니라 안쪽 그림에 붙입니다. <strong>이 셋 말고 다른 크기를 만들지 않습니다.</strong></p><code>icon-sm · icon-md · icon-lg</code></div></article>
           <article class="guide-component-row"><div class="guide-component-demo"><span class="tag">How it works</span><span class="tag">02 · Proof</span><span class="tag">뉴스</span><span class="tag">LATEST</span><span class="tag is-solid">뉴스</span><span class="tag is-solid">공지</span></div><div><p class="tag">분류 라벨</p><h3>Tag</h3><p>콘텐츠의 종류나 짧은 상태를 표시할 때 사용합니다. 제목보다 먼저 보여주되, 가장 중요한 정보처럼 보이지 않게 유지합니다. <code>is-solid</code>를 붙이면 브랜드 파랑을 채운 작은 라벨이 됩니다 — 썸네일이 있는 미디어 카드처럼 연한 틴트가 묻히는 자리에 씁니다(insight).</p><code>tag · is-solid</code></div></article>
           <article class="guide-component-row"><div class="guide-component-demo"><div class="guide-part-nav-variants"><div><p class="text-label">최대 radius · 기본</p><nav class="part-nav part-nav--animated" data-guide-part-nav aria-label="캡슐형 Part Nav"><span class="part-nav-indicator" aria-hidden="true"></span><a class="part-nav-item is-active" href="#components">PART 1 · 교육</a><a class="part-nav-item" href="#components">PART 2 · 진단</a></nav></div><div><p class="text-label">최소 radius · compact</p><nav class="part-nav part-nav--compact part-nav--animated" data-guide-part-nav aria-label="사각형 Part Nav"><span class="part-nav-indicator" aria-hidden="true"></span><a class="part-nav-item is-active" href="#components">PART 1 · 교육</a><a class="part-nav-item" href="#components">PART 2 · 진단</a></nav></div></div></div><div><p class="tag">파트 이동</p><h3>Part Nav</h3><p>코드프레소의 기본은 부드러운 캡슐형입니다. 더 정돈된 제품 UI에는 8px compact 변형을 사용합니다. 각 예시를 클릭하면 실제처럼 활성 표시가 움직입니다.</p><code>part-nav · part-nav--compact</code></div></article>
           <article class="guide-component-row"><div class="guide-component-demo"><div class="assessment-card-frame"><span class="assessment-card-frame__glow" aria-hidden="true"></span><div class="assessment-card-stack"><span class="assessment-card-eyebrow">AI 리터러시 자가 진단 (1분 소요)</span><article class="assessment-card"><div class="assessment-card__head"><h3 class="assessment-card__title">당신은 AI를 쓰는 사람인가요,<br>다루는 사람인가요?</h3><p class="assessment-card__description">AI를 쓰는 사람과 다루는 사람은 다릅니다.<br>지금 나의 AI 활용 수준을 확인해보세요.</p></div><ul class="assessment-card__meta" aria-label="진단 정보"><li class="pill">11문항</li><li class="pill">약 1분</li><li class="pill">즉시 결과</li></ul><div class="assessment-card__action"><a class="btn btn-primary btn-lg assessment-card__cta" href="#components">AI 역량 진단 시작하기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></article></div></div></div><div><p class="tag">자가 진단 CTA</p><h3>Assessment Card</h3><p>Hero나 캠페인 화면에서 진단 시작을 유도할 때 사용합니다. 카드 자체 hover와 CTA hover도 실제 서비스 규칙을 그대로 따릅니다.</p><code>assessment-card</code></div></article>
@@ -467,14 +468,14 @@
                 <details open>
                   <summary class="faq-list__question">
                     어떤 업무를 먼저 골라야 하나요?
-                    <span class="faq-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span class="faq-list__icon" aria-hidden="true"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                   </summary>
                   <p class="faq-list__answer">반복되고, 결과가 맞았는지 판단할 기준이 분명한 업무가 첫 대상으로 적합합니다.</p>
                 </details>
                 <details>
                   <summary class="faq-list__question">
                     사내 개발팀이 없어도 가능한가요?
-                    <span class="faq-list__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span class="faq-list__icon" aria-hidden="true"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                   </summary>
                   <p class="faq-list__answer">가능합니다. 구축은 FDE가 담당하고 현업은 결과 확인만 맡습니다.</p>
                 </details>

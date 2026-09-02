@@ -1,0 +1,35 @@
+/*
+ * Component: Icon Size
+ * 아이콘 크기는 이 세 클래스로만 정한다. 컴포넌트 CSS에서 아이콘에
+ * width/height를 다시 쓰지 않는다 — 크기는 마크업의 클래스가 말한다.
+ *
+ *   .icon-sm  20px  라벨·텍스트 옆 인라인 (GNB 항목, FAQ 화살표, 버튼 안)
+ *   .icon-md  24px  기본 — 카드·스텝의 아이콘 박스 안, 제목 옆 아이콘
+ *   .icon-lg  32px  한 칸의 주인공인 아이콘 (hero 보조 밴드)
+ *
+ * 감싼 <span>에 붙이면 그 안의 svg·img가 같은 크기로 따라온다. 배경·radius를
+ * 가진 아이콘 박스(--icon-box 48px)는 크기가 다른 개념이라 박스에 붙이지 말고
+ * 안쪽 svg·img에 붙인다.
+ *
+ * <span class="step-icon" aria-hidden="true"><svg class="icon-md" …></span>
+ * <span class="hero-question-icon icon-lg" aria-hidden="true"><svg …></span>
+ */
+
+.icon-sm,
+.icon-md,
+.icon-lg {
+  flex: none;
+}
+
+.icon-sm { width: var(--icon-sm); height: var(--icon-sm); }
+.icon-md { width: var(--icon-md); height: var(--icon-md); }
+.icon-lg { width: var(--icon-lg); height: var(--icon-lg); }
+
+/* 감싼 요소에 붙였을 때 — 안쪽 그림이 칸을 그대로 채운다. */
+.icon-sm > svg, .icon-sm > img,
+.icon-md > svg, .icon-md > img,
+.icon-lg > svg, .icon-lg > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

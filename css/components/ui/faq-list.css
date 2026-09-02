@@ -55,8 +55,6 @@
 
 .faq-list__icon svg {
   display: block;
-  width: var(--icon-sm);
-  height: var(--icon-sm);
 }
 
 /* 닫힘 = 아래 방향, 열림 = 위 방향. chevron 하나를 뒤집어 쓴다. */

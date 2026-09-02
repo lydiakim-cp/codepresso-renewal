@@ -557,8 +557,6 @@
 
   .ax-build .workflow-icon svg {
     display: block;
-    width: var(--icon-md);
-    height: var(--icon-md);
   }
 
   .ax-build .catalog-note {
@@ -600,8 +598,6 @@
 
   .ax-build .deliverable-icon svg {
     display: block;
-    width: var(--icon-md);
-    height: var(--icon-md);
   }
 
   .ax-build .deliverable-desc {
@@ -665,8 +661,6 @@
 
   .ax-build .step-icon svg {
     display: block;
-    width: var(--icon-md);
-    height: var(--icon-md);
   }
 
   .ax-build .step-body {

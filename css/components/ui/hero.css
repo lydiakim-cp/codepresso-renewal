@@ -127,21 +127,15 @@
 
 .hero-question-icon {
   flex: none;
-  width: var(--icon-md);
-  height: var(--icon-md);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.hero-question-icon svg {
-  width: var(--icon-md);
-  height: var(--icon-md);
-}
-
 .hero-question-text h3 {
   margin: 0 0 4px;
-  font-size: 15px;
+  font-size: var(--text-heading-20);
+  line-height: var(--leading-heading-20);
   font-weight: var(--font-weight-semibold);
   color: var(--color-ink-heaviest);
 }

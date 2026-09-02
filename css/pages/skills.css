@@ -125,8 +125,6 @@
 
   .skills .loop-icon svg {
     display: block;
-    width: var(--icon-md);
-    height: var(--icon-md);
   }
 
   .skills .loop > li:last-child .loop-icon {
