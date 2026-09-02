@@ -247,15 +247,15 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
+  width: var(--icon-box-sm);
+  height: var(--icon-box-sm);
   border-radius: var(--radius-md);
   background: var(--color-brand-tint-2);
 }
 
 .nav-entry-icon img {
-  width: 20px;
-  height: 20px;
+  width: var(--icon-sm);
+  height: var(--icon-sm);
 }
 
 .nav-entry-body {

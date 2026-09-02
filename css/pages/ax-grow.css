@@ -263,8 +263,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--space-48);
-    height: var(--space-48);
+    width: var(--icon-box);
+    height: var(--icon-box);
     border-radius: var(--radius-md);
     background: var(--color-axpresso-box-tint);
     transition: transform var(--duration-hover) var(--ease-hover);
@@ -272,8 +272,8 @@
 
   .ax-grow .step-icon svg {
     display: block;
-    width: 24px;
-    height: 24px;
+    width: var(--icon-md);
+    height: var(--icon-md);
   }
 
   .ax-grow .process-steps > li:hover .step-icon {
@@ -331,8 +331,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--space-48);
-    height: var(--space-48);
+    width: var(--icon-box);
+    height: var(--icon-box);
     border-radius: var(--radius-md);
     background: var(--color-axpresso-box);
     box-shadow: none;
@@ -342,8 +342,8 @@
 
   .ax-grow .deliverable-icon svg {
     display: block;
-    width: 24px;
-    height: 24px;
+    width: var(--icon-md);
+    height: var(--icon-md);
   }
 
   .ax-grow .deliverable-list > li:hover .deliverable-icon {
@@ -423,8 +423,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--space-48);
-    height: var(--space-48);
+    width: var(--icon-box);
+    height: var(--icon-box);
     border-radius: var(--radius-md);
     background: var(--color-axpresso-box-tint);
     transition: transform var(--duration-hover) var(--ease-hover);
@@ -432,8 +432,8 @@
 
   .ax-grow .start-icon svg {
     display: block;
-    width: 24px;
-    height: 24px;
+    width: var(--icon-md);
+    height: var(--icon-md);
   }
 
   .ax-grow .start-card:hover .start-icon {

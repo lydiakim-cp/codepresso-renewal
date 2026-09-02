@@ -417,8 +417,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--space-48);
-    height: var(--space-48);
+    width: var(--icon-box);
+    height: var(--icon-box);
     flex: none;
     border-radius: var(--radius-lg);
     background: var(--color-surface);
@@ -432,8 +432,8 @@
 
   .difference-page .slide-icon svg {
     display: block;
-    width: 26px;
-    height: 26px;
+    width: var(--icon-md);
+    height: var(--icon-md);
   }
 
   /* 카드 제목 — h3 전역(24px)은 2열 카드에서 줄이 깨진다 */
@@ -1203,8 +1203,8 @@
 
   .difference-page .industry-card-icon svg {
     display: block;
-    width: 32px;
-    height: 32px;
+    width: var(--icon-md);
+    height: var(--icon-md);
   }
 
   .difference-page .industry-cards > li:hover .industry-card-icon {

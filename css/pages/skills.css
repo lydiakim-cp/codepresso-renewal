@@ -134,8 +134,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--space-40);
-    height: var(--space-40);
+    width: var(--icon-box);
+    height: var(--icon-box);
     border-radius: var(--radius-md);
     background: var(--color-surface-sunken);
     color: var(--color-brand);
@@ -145,8 +145,8 @@
 
   .skills .loop-icon svg {
     display: block;
-    width: 22px;
-    height: 22px;
+    width: var(--icon-md);
+    height: var(--icon-md);
   }
 
   .skills .loop > li:hover .loop-icon {
@@ -463,8 +463,8 @@
    */
   .skills .product-icon {
     display: block;
-    width: var(--space-48);
-    height: var(--space-48);
+    width: var(--icon-box);
+    height: var(--icon-box);
     flex: none;
     transition: transform var(--duration-hover) var(--ease-hover);
   }

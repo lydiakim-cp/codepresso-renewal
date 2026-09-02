@@ -8,7 +8,12 @@
 .cta-final {
   position: relative;
   overflow: hidden;
-  background-color: var(--color-ink-heaviest);
+  /* 판을 잉크(거의 검정)에서 브랜드 다크로 올린다 — 마지막 화면이 어둡게
+     가라앉아 CTA가 눈에 안 들어왔다. 대비는 위 딤 레이어가 만든다. */
+  background-color: var(--color-brand-dark);
+  /* 마지막 전환 자리가 띠처럼 얇아 보이지 않게 한 판을 확보한다. */
+  min-height: 480px;
+  justify-content: center;
 }
 
 .cta-final::before {
@@ -21,16 +26,22 @@
   background-position: bottom left;
   background-size: 180%;
   filter: blur(7px);
+  opacity: 0.5;
 }
 
+/* 딤 — 밝아진 파란 판 위에서 흰 글씨와 버튼이 뜨도록 가운데를 눌러 준다.
+   질감 위를 한 겹 덮어 글자 뒤가 어지럽지 않게 하는 역할도 겸한다. */
 .cta-final::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg,
-      color-mix(in srgb, var(--color-ink-heaviest) 92%, transparent) 0%,
-      color-mix(in srgb, var(--color-brand-dark) 70%, var(--color-ink-heaviest)) 100%);
-    opacity: 0.5;
+  background:
+    radial-gradient(75% 100% at 50% 50%,
+      color-mix(in srgb, var(--color-ink-heaviest) 46%, transparent) 0%,
+      color-mix(in srgb, var(--color-ink-heaviest) 18%, transparent) 100%),
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--color-brand-dark) 55%, transparent) 0%,
+      color-mix(in srgb, var(--color-brand) 30%, transparent) 100%);
 }
 
 .cta-final-inner {
@@ -50,6 +61,17 @@
   line-height: var(--leading-heading-20);
   font-weight: var(--font-weight-regular);
   color: color-mix(in srgb, var(--color-surface) 82%, transparent);
+}
+
+/* 판이 브랜드 파랑이 되면서 파란 btn-primary가 배경에 묻힌다 —
+   이 판에서만 흰 면으로 뒤집어 주 버튼이 가장 밝은 요소가 되게 한다. */
+.cta-final .btn-primary {
+  background: var(--color-surface);
+  color: var(--color-brand-dark);
+}
+
+.cta-final .btn-primary:hover {
+  background: color-mix(in srgb, var(--color-surface) 88%, var(--color-brand));
 }
 
 .cta-final-actions {

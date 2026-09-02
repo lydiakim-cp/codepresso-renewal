@@ -563,8 +563,8 @@
 
   .ax-build .workflow-icon svg {
     display: block;
-    width: 30px;
-    height: 30px;
+    width: var(--icon-md);
+    height: var(--icon-md);
   }
 
   .ax-build .catalog-board__items > li:hover .workflow-icon {
@@ -605,8 +605,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--space-48);
-    height: var(--space-48);
+    width: var(--icon-box);
+    height: var(--icon-box);
     border-radius: var(--radius-md);
     background: var(--color-axpresso-box);
     box-shadow: none;
@@ -616,8 +616,8 @@
 
   .ax-build .deliverable-icon svg {
     display: block;
-    width: 24px;
-    height: 24px;
+    width: var(--icon-md);
+    height: var(--icon-md);
   }
 
   .ax-build .deliverable-list > li:hover .deliverable-icon {
@@ -684,8 +684,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--space-48);
-    height: var(--space-48);
+    width: var(--icon-box);
+    height: var(--icon-box);
     border-radius: var(--radius-md);
     background: var(--color-axpresso-box-tint);
     transition: transform var(--duration-hover) var(--ease-hover);
@@ -693,8 +693,8 @@
 
   .ax-build .step-icon svg {
     display: block;
-    width: 24px;
-    height: 24px;
+    width: var(--icon-md);
+    height: var(--icon-md);
   }
 
   .ax-build .process-steps > li:hover .step-icon {

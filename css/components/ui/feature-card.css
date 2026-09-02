@@ -45,7 +45,7 @@
 
 .feature-card-icon-row {
   flex-shrink: 0;
-  height: var(--space-48);
+  height: var(--icon-box);
   margin-bottom: 20px;
   overflow: hidden;
   transition: height var(--duration-scroll) var(--ease-scroll),
@@ -62,8 +62,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--space-48);
-  height: var(--space-48);
+  width: var(--icon-box);
+  height: var(--icon-box);
   padding: 4px;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
