@@ -246,6 +246,9 @@
   .cases .cycle-arrow svg { transform: rotate(90deg); }
 
   .skillcamp .features-format .start-grid { --start-columns: 1; }
+  .skillcamp .service-catalog { grid-template-columns: minmax(0, 1fr); }
+  .skillcamp .service-catalog__fixed:first-child,
+  .skillcamp .service-catalog__fixed + .service-catalog__fixed { --service-catalog-columns: 3; }
   .skillcamp .outcomes.is-dark .start-grid { --start-columns: 2; }
 
   .skillcertify .hero-row { grid-template-columns: minmax(0, 1fr); }
@@ -342,6 +345,8 @@
   }
 
   .skillcamp .outcome-list { grid-template-columns: 1fr; }
+  .skillcamp .service-catalog__fixed:first-child,
+  .skillcamp .service-catalog__fixed + .service-catalog__fixed { --service-catalog-columns: 2; }
   .skillcamp .outcomes.is-dark .start-grid { --start-columns: 1; }
 
   .skillcertify .outcome-list { grid-template-columns: 1fr; }

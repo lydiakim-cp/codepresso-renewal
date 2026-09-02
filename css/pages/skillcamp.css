@@ -54,16 +54,17 @@
     margin-top: auto;
   }
 
-  /* 대표 AI 과정 — 직군 두 묶음을 위아래로 쌓는다(좌우로 놓으면 타일이 눌린다). */
+  /* 대표 AI 과정 — 과정 수가 7 대 2라 칸도 3 대 1로 준다(반반이면 오른쪽이 텅 빈다). */
   .skillcamp .service-catalog {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: none;
-    gap: var(--space-32);
+    grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
   }
 
-  .skillcamp .service-catalog__fixed {
-    grid-row: auto;
-    grid-template-rows: none;
+  .skillcamp .service-catalog__fixed:first-child {
+    --service-catalog-columns: 3;
+  }
+
+  .skillcamp .service-catalog__fixed + .service-catalog__fixed {
+    --service-catalog-columns: 1;
   }
 
   /* 02 카드 안 대표 과정 — pill을 줄바꿈으로 흘린다. pill이 자체 margin으로 간격을 갖는다. */
@@ -71,6 +72,12 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: var(--space-4);
+  }
+
+  /* 01 장면 목록 — 기간 라벨을 쓰지 않아 공용 timeline의 96px 첫 칸을 걷어낸다. */
+  .skillcamp .scenario > li {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-20);
   }
 
   /* 03 증거 — skills 07과 같은 어두운 판 위 start-card 배치. */
