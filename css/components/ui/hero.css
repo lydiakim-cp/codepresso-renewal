@@ -201,16 +201,17 @@
   display: flex;
   align-items: baseline;
   gap: 2px;
-  font-size: var(--text-heading-32);
-  line-height: var(--leading-heading-32);
+  font-size: var(--text-heading-20);
+  line-height: var(--leading-heading-20);
   letter-spacing: var(--tracking-heading-tight);
   font-weight: var(--font-weight-bold);
   color: var(--color-ink-heaviest);
   font-variant-numeric: tabular-nums;
 }
 
+/* 값이 20px로 내려와 18px 단위는 거의 같은 크기로 읽힌다 — 14px로 한 단 더 낮춘다 */
 .hero-fact-value .unit {
-  font-size: var(--text-heading-18);
+  font-size: var(--text-body-14);
   font-weight: var(--font-weight-semibold);
 }
 
