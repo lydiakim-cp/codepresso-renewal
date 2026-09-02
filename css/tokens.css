@@ -155,7 +155,7 @@
 
   /* Container widths — wide는 GNB, medium은 섹션 본문 폭 */
   --container-wide: 1480px;
-  --container-medium: 1320px;
+  --container-medium: 1248px;
 
   /* ---------------------------------------------
    * Radius

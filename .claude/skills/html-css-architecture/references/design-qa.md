@@ -53,21 +53,21 @@ grep -oE '<section class="[^"]*(is-dark|cta-final)[^"]*"' {페이지}.html | wc 
 
 ## 2. width 100% 강조 배경 — 화면 끝까지 닿는가
 
-**강조 구간의 배경은 좌우 끝까지 닿아야 한다.** 배경이 콘텐츠 폭(1320px)에서 잘리면
+**강조 구간의 배경은 좌우 끝까지 닿아야 한다.** 배경이 콘텐츠 폭(1248px)에서 잘리면
 가운데 뜬 카드처럼 보여서, 화면을 구간으로 나누는 역할을 못 한다.
 
 **이 프로젝트의 구조가 이미 그렇게 되어 있다:**
 
 ```
 <section>        ← 배경은 여기가 그린다. 폭 제한이 없어 화면 끝까지 닿는다
-  .section-wrap  ← 콘텐츠 폭(--container-medium 1320px) + 좌우 padding
+  .section-wrap  ← 콘텐츠 폭(--container-medium 1248px) + 좌우 padding
 ```
 
 ```css
 /* 좋음 — 섹션이 칠하므로 화면 끝까지 */
 .outcomes.is-dark { background-color: var(--color-ink-heaviest); }
 
-/* 나쁨 — 1320px에서 잘려 가운데 띠처럼 보인다 */
+/* 나쁨 — 1248px에서 잘려 가운데 띠처럼 보인다 */
 .outcomes .section-wrap { background-color: var(--color-ink-heaviest); }
 ```
 

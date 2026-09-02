@@ -3,7 +3,7 @@
  * 한 문장만 던지는 강조 띠. 카드도 목록도 없고 eyebrow + 큰 한 줄이 전부다.
  *
  * 왜 따로 있는가 —
- * summary-banner.dark는 section-wrap(1320px) 안의 "배너"라 좌우가 잘린다.
+ * summary-banner.dark는 section-wrap(1248px) 안의 "배너"라 좌우가 잘린다.
  * 이건 섹션 자체가 배경을 칠해 화면 끝까지 닿는 판이다(design-qa 2번:
  * 구간을 나누는 배경은 section이 그린다). 페이지 흐름을 한 번 끊고
  * "여기서 질문을 던진다"를 하는 자리.
