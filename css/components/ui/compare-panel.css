@@ -28,8 +28,6 @@
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
-  transition: box-shadow var(--duration-hover) var(--ease-hover),
-    border-color var(--duration-hover) var(--ease-hover);
 }
 
 /* After 판만 브랜드 톤으로 올려 시선이 오른쪽에 머물게 한다. */
@@ -38,9 +36,6 @@
   background: var(--color-surface-sunken);
   box-shadow: var(--shadow-sm);
 }
-
-.compare-panel__item:hover { box-shadow: var(--shadow-md); }
-.compare-panel__item:hover:not(.is-after) { border-color: var(--color-line-heavy); }
 
 .compare-panel__label {
   color: var(--color-ink-lighter);

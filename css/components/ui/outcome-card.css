@@ -49,15 +49,6 @@
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--duration-hover) var(--ease-hover),
-    transform var(--duration-hover) var(--ease-hover),
-    border-color var(--duration-hover) var(--ease-hover);
-}
-
-.outcome-list > li:hover {
-  border-color: var(--color-line-heavy);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
 }
 
 /* --- 로고 판 --- */

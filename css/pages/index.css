@@ -315,62 +315,12 @@
    * 판(.journey-viewport)은 sticky로 고정되고, 안의 .journey-step이 교차
    * 페이드로 교체된다. 보이지 않는 .journey-track이 스크롤 길이를 만든다.
    */
-  /* 트랙과 판을 같은 그리드 셀에 겹쳐 둔다. */
+  /* 스테이지 골격은 공용 components/ui/journey-stage.css. 여기서는 이 페이지
+     판 높이(613px 실측)와 마지막 구간 여유만 넘긴다. 스텝 머리글 줄 수가
+     바뀌면 --stage-panel-height를 다시 재야 한다. */
   .journey-stage {
-    display: grid;
-  }
-
-  .journey-stage > * {
-    grid-area: 1 / 1;
-  }
-
-  /* 3단계 × 1화면 높이. */
-  .journey-track > div {
-    height: 100vh;
-  }
-
-  /* 마지막 구간(SkillFit)은 판 높이+오프셋만큼 더해 읽는 시간을 확보한다. */
-  .journey-track > div:last-child {
-    height: calc(100vh + 708px);
-  }
-
-  /* PART 2의 진단 프리뷰와 같은 판 — 구조는 공용 .content-panel, 재질은
-     .surface-glass가 담당하고 여기서는 sticky 배치만 더한다. 판은 내용
-     높이를 따른다(fit-content). */
-  .journey-viewport {
-    position: sticky;
-    /* 판을 화면 세로 중앙에. 실측 높이(613px) 기준 — 스텝 머리글 줄 수가
-       바뀌면 갱신 필요. */
-    top: calc((100vh - 613px) / 2);
-    align-self: start;
-    display: grid;
-    height: fit-content;
-  }
-
-  /* 스텝은 같은 자리에 겹쳐두고 opacity로만 교체한다. */
-  .journey-step {
-    grid-area: 1 / 1;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(12px);
-    transition:
-      opacity var(--duration-scroll) var(--ease-scroll),
-      transform var(--duration-scroll) var(--ease-scroll),
-      visibility 0s linear var(--duration-scroll);
-  }
-
-  .journey-step.is-active {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    transition-delay: 0s;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .journey-step {
-      transition-duration: 0s;
-      transform: none;
-    }
+    --stage-panel-height: 613px;
+    --stage-tail: 708px;
   }
 
   /* 제품 화면 목업(.journey-mock*)은 skills.html도 함께 써서

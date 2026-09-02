@@ -60,10 +60,8 @@
   background: rgba(255, 255, 255, .82);
   backdrop-filter: blur(24px) saturate(160%);
   box-shadow: var(--shadow-md);
-  transition: transform var(--duration-hover) var(--ease-hover), box-shadow var(--duration-hover) var(--ease-hover);
 }
 
-.assessment-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(26, 97, 234, .16); }
 .assessment-card__head { display: flex; flex-direction: column; gap: var(--space-18); text-align: center; }
 .assessment-card__description { font-size: var(--text-body-muted); line-height: var(--leading-body-muted); color: var(--color-ink-light); }
 
@@ -95,8 +93,6 @@
   box-shadow: 0 7px 29px rgba(26, 97, 234, .24);
   transition: all .5s ease;
 }
-.assessment-card:hover .assessment-card__cta { transform: scale(1.03); box-shadow: 0 10px 34px rgba(26, 97, 234, .3); }
-.assessment-card:hover .assessment-card__cta svg { transform: translateX(3px); }
 
 /* CTA 아래 떠 있는 glass 말풍선(꼬리·회전 링·부유 모션) */
 .assessment-card__hint {

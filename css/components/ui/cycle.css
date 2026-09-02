@@ -43,13 +43,6 @@
   border: 0;
   border-radius: var(--radius-lg);
   background: var(--color-surface);
-  transition: box-shadow var(--duration-hover) var(--ease-hover),
-    transform var(--duration-hover) var(--ease-hover);
-}
-
-.cycle > li:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
 }
 
 /* 결론/도착 칸 — 유리 표면으로 띄워 위계를 준다. 통짜 단색을 쓰지 않는 이유는

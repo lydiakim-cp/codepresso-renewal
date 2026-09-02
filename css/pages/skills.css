@@ -70,22 +70,12 @@
    */
   .skills .hero-questions > li {
     animation: rise-in var(--duration-scroll) var(--ease-scroll) .4s both;
-    transition: background var(--duration-hover) var(--ease-hover);
   }
 
   .skills .hero-questions > li:nth-child(2) { animation-delay: .48s; }
   .skills .hero-questions > li:nth-child(3) { animation-delay: .56s; }
 
-  .skills .hero-questions > li:hover {
-    background: color-mix(in srgb, var(--color-surface) 60%, transparent);
-  }
-
-  .skills .hero-questions > li:hover .hero-question-icon {
-    transform: translateY(-2px);
-  }
-
   .skills .hero-question-icon {
-    transition: transform var(--duration-hover) var(--ease-hover);
   }
 
   /* ============================================================
@@ -107,15 +97,6 @@
     border: 1px solid var(--color-line);
     border-radius: var(--radius-lg);
     background: var(--color-surface);
-    transition: box-shadow var(--duration-hover) var(--ease-hover),
-      transform var(--duration-hover) var(--ease-hover),
-      border-color var(--duration-hover) var(--ease-hover);
-  }
-
-  .skills .loop > li:hover {
-    border-color: var(--color-brand-tint-2);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
   }
 
   /* 마지막 단계(Prove)만 브랜드 톤으로 올려 순환의 결론임을 보인다 */
@@ -140,17 +121,12 @@
     background: var(--color-surface-sunken);
     color: var(--color-brand);
     flex: none;
-    transition: transform var(--duration-hover) var(--ease-hover);
   }
 
   .skills .loop-icon svg {
     display: block;
     width: var(--icon-md);
     height: var(--icon-md);
-  }
-
-  .skills .loop > li:hover .loop-icon {
-    transform: scale(1.06);
   }
 
   .skills .loop > li:last-child .loop-icon {
@@ -315,12 +291,13 @@
   }
 
   /*
-   * 04 Learn은 좌측 제목이 sticky로 고정된 채 우측 제품 3개가 흐른다
-   * (.section-wrap.row.is-sticky — ax-build 04 Process와 같은 공용 골격).
-   * 우측이 한 컬럼이므로 제품 카드는 1열로 쌓는다.
+   * 04 Learn은 좌측 제목이 sticky로 고정된 채 우측 제품이 교차 페이드로 바뀐다.
+   * 스테이지 골격은 공용 components/ui/journey-stage.css이고, 판 높이와
+   * 마지막 구간 여유만 이 페이지가 넘긴다(index PART 1과 같은 방식).
    */
-  .skills .catalog-learn .product-grid {
-    --product-cols: 1;
+  .skills .journey-stage {
+    --stage-panel-height: 603px;
+    --stage-tail: 560px;
   }
 
   /* sticky 좌측 하단에 붙는 보조 안내 — 세 방식을 고르는 것이 아니라 조합한다는 문장 */
@@ -341,100 +318,19 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  /*
-   * 학습 제품 인덱스 — sticky 좌측이 우측 3개 제품이 지나가는 동안 아무것도
-   * 바뀌지 않아 "어디까지 봤는지"를 알 수 없었다. 지금 보는 제품에 표시가 옮겨진다.
-   * 상태 클래스 .is-current는 js/section-index.js가 붙인다.
-   *
-   * part-nav를 쓰지 않은 이유 — 그것은 두 상위 파트를 가로 캡슐로 잇는 세그먼트
-   * 컨트롤이라, 한 섹션 안의 제품 3개를 세로로 세우는 이 역할과 형태·의미가 다르다.
-   * 자손 셀렉터로 두는 것은 이 섹션 안에서만 의미가 있기 때문이다(SKILL 4번).
-   */
-  .skills .learn-index {
+  /* 좌측 학습 방식 목록 — index PART 1의 .diagnosis-products와 같은 묶음.
+     리스트 자체는 공용 .choice-list, 여기서는 라벨과의 간격만 잡는다. */
+  .skills .learn-products {
     display: flex;
     flex-direction: column;
+    gap: var(--space-12);
     width: 100%;
-    gap: var(--space-2);
-  }
-
-  .skills .learn-index > a {
-    display: flex;
-    align-items: center;
-    gap: var(--space-10);
-    padding: var(--space-10) var(--space-12);
-    border-radius: var(--radius-md);
-    font-size: var(--text-body-muted);
-    line-height: var(--leading-body-muted);
-    letter-spacing: var(--tracking-body-muted);
-    transition: background var(--duration-hover) var(--ease-hover),
-      color var(--duration-hover) var(--ease-hover);
-  }
-
-  .skills .learn-index > a:hover {
-    background: var(--color-surface);
-  }
-
-  /* 지금 보고 있는 제품 — 면을 깔아 좌측에서 바로 눈에 들어오게 한다 */
-  .skills .learn-index > a.is-current {
-    background: var(--color-surface);
-    box-shadow: var(--shadow-sm);
-  }
-
-  /* 방식 구분(이러닝·집합교육·적응형) — 제품명보다 한 단계 낮춘다 */
-  .skills .learn-index-kind {
-    flex: none;
-    width: 56px;
-    color: var(--color-ink-lighter);
-  }
-
-  .skills .learn-index-name {
-    color: var(--color-ink-light);
-    font-weight: var(--font-weight-medium);
-    transition: color var(--duration-hover) var(--ease-hover);
-  }
-
-  .skills .learn-index > a.is-current .learn-index-name {
-    color: var(--color-brand);
-    font-weight: var(--font-weight-semibold);
-  }
-
-  /* 진행 점 — 비활성은 테두리만, 활성은 브랜드색으로 채운다 */
-  .skills .learn-index-dot {
-    flex: none;
-    width: var(--space-8);
-    height: var(--space-8);
-    border: 1.5px solid var(--color-line-heavy);
-    border-radius: var(--radius-full);
-    transition: background var(--duration-hover) var(--ease-hover),
-      border-color var(--duration-hover) var(--ease-hover),
-      transform var(--duration-hover) var(--ease-hover);
-  }
-
-  .skills .learn-index > a.is-current .learn-index-dot {
-    border-color: var(--color-brand);
-    background: var(--color-brand);
-    transform: scale(1.25);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .skills .learn-index > a.is-current .learn-index-dot {
-      transform: none;
-    }
   }
 
   .skills .product-grid .content-panel {
     height: 100%;
     border: 1px solid var(--color-line);
     background: var(--color-surface);
-    transition: box-shadow var(--duration-hover) var(--ease-hover),
-      transform var(--duration-hover) var(--ease-hover),
-      border-color var(--duration-hover) var(--ease-hover);
-  }
-
-  .skills .product-grid .content-panel:hover {
-    border-color: var(--color-brand-tint-2);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
   }
 
   /* 자세히 링크가 카드 아래에 붙어 카드 높이가 서로 달라도 밑줄이 맞는다 */
@@ -466,7 +362,6 @@
     width: var(--icon-box);
     height: var(--icon-box);
     flex: none;
-    transition: transform var(--duration-hover) var(--ease-hover);
   }
 
   .skills .product-icon img {
@@ -475,58 +370,8 @@
     object-fit: contain;
   }
 
-  .skills .product-grid .content-panel:hover .product-icon {
-    transform: scale(1.06);
-  }
-
   .skills .product-desc {
     color: var(--color-ink-light);
-  }
-
-  /*
-   * 03 Assess 제품 화면 — index.html PART 2가 쓰는 것과 같은 이미지 파일을
-   * 그대로 참조한다(images/aifluent-sample.svg · skillcertify-sample.svg).
-   * 새 에셋을 만들지 않고, 이미지를 카드 폭에 맞춰 얹기만 한다.
-   */
-  /*
-   * 03 제품 스크린샷 — 실제 제품 화면이라 이미지 안의 색(딥 네이비 + 청록·자주)은
-   * 손대지 않는다. 다만 페이지 나머지가 전부 브랜드 블루 단색 체계라 이 두 장에서
-   * 색이 튀어 보였다. 그래서 이미지를 브랜드 틴트 판 위에 앉혀 감싼다 — 이탈한
-   * 색이 판을 통해 페이지 색과 한 번 매개된다.
-   *
-   * 이미지 자체를 브랜드 색으로 다시 그리는 것이 정공법이지만, 실제 화면을
-   * 임의로 바꾸는 판단이라 하지 않았다(사용자 확인이 필요한 영역).
-   */
-  .skills .product-shot {
-    width: 100%;
-    height: auto;
-    padding: var(--space-10);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-brand-tint-2);
-    background: var(--color-surface-sunken);
-    /* 아래 특징 3줄은 .28s부터 순서대로 올라오는데 목업은 정적이라 카드가
-       위아래로 갈렸다. 이미지가 살짝 올라오며 그림자가 붙어 카드가 하나로 묶인다.
-       특징 목록보다 먼저 와야 시선이 그림 → 글 순서로 흐른다. */
-    box-shadow: var(--shadow-sm);
-    transition: box-shadow var(--duration-hover) var(--ease-hover),
-      transform var(--duration-hover) var(--ease-hover);
-  }
-
-  .skills .fade-up .product-shot {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  .skills .fade-up.is-visible .product-shot {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity var(--duration-scroll) var(--ease-scroll) .12s,
-      transform var(--duration-scroll) var(--ease-scroll) .12s,
-      box-shadow var(--duration-hover) var(--ease-hover);
-  }
-
-  .skills .product-grid .content-panel:hover .product-shot {
-    box-shadow: var(--shadow-md);
   }
 
   /*
@@ -563,37 +408,6 @@
        스텝 전환마다 들썩이지 않게 잡은 것이고, 이 페이지는 목업 3개가 각자 카드에
        정적으로 놓여 맞출 이웃이 없다. 고정하면 내용이 아래에서 잘린다. */
     height: auto;
-  }
-
-  /*
-   * 목업 안 요소는 공용 컴포넌트에서 opacity: 0으로 숨겨져 있고,
-   * index는 journey-stage.js가 붙이는 .journey-step.is-popping으로 띄운다.
-   * 이 페이지에는 스크롤 스테이지가 없어 그 훅이 오지 않으므로(목업이 빈 판으로
-   * 보였다) 섹션 진입(.fade-up.is-visible)에 맞춰 여기서 직접 띄운다.
-   * JS를 새로 붙이지 않고 이미 있는 fade-up 신호를 재사용한다.
-   */
-  .skills .catalog-learn.is-visible .journey-mock > *,
-  .skills .catalog-learn.is-visible .journey-app-rail > *,
-  .skills .catalog-learn.is-visible .journey-app-side > *,
-  .skills .catalog-learn.is-visible .journey-app-main > *,
-  .skills .catalog-learn.is-visible .journey-app-tutor > *,
-  .skills .catalog-learn.is-visible .journey-app-skill {
-    --motion-rise: 8px;
-    animation: pop-in var(--duration-scroll) var(--ease-scroll) both;
-    animation-delay: calc(var(--pop-order, 0) * .06s);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    /* 애니메이션을 끄면 opacity: 0으로 남으므로 숨김 자체를 해제한다 */
-    .skills .catalog-learn .journey-mock > *,
-    .skills .catalog-learn .journey-app-rail > *,
-    .skills .catalog-learn .journey-app-side > *,
-    .skills .catalog-learn .journey-app-main > *,
-    .skills .catalog-learn .journey-app-tutor > *,
-    .skills .catalog-learn .journey-app-skill {
-      opacity: 1;
-      animation: none;
-    }
   }
 
   /* 제품 특징 3줄 — 체크 아이콘 + 텍스트 */
@@ -1351,10 +1165,6 @@
     transition: background var(--duration-hover) var(--ease-hover);
   }
 
-  .skills .analyze-grid .content-panel:hover .analyze-points > li::before {
-    background: var(--color-brand);
-  }
-
   /* ------------------------------------------------------------
    * 06 대시보드 목업 — 직무 × 역량 히트맵.
    * 이 섹션만 목업이 없어 앞 세 섹션(03·04·05) 뒤에서 "덜 만든 칸"으로 읽혔다.
@@ -1574,41 +1384,6 @@
    * 07 Proof — 누적 수치 4개. metric-card + stat-reveal 카운트업.
    * ============================================================ */
 
-  /*
-   * 재구매율 80% 게이지 — 숫자 옆 아이콘 자리(metric-card__visual, 100×100)에
-   * 아이콘을 감싸는 얇은 링으로 얹는다. 숫자와 도형이 같은 사실을 두 번 말한다.
-   * 링만 새로 두고 아이콘은 그대로 둔 이유 — 아이콘을 빼면 넷 중 이 카드만
-   * 도형 언어가 달라져 4장의 일관성이 깨진다.
-   *
-   * 진행률은 stroke-dashoffset으로 만든다. 둘레는 2πr = 2π×32 ≈ 201이고,
-   * 80%면 남는 20%가 offset이므로 201 × .2 ≈ 40.
-   */
-  .skills .repurchase-gauge {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    /* 12시에서 시작하게 돌린다(SVG 기본 0도는 3시) */
-    transform: rotate(-90deg);
-  }
-
-  .skills .repurchase-gauge .is-gauge {
-    stroke-dashoffset: 40;
-    transition: stroke-dashoffset 1.2s var(--ease-scroll);
-  }
-
-  /* 카드가 보이기 전에는 링이 비어 있다가 카운트업과 함께 채워진다.
-     .is-visible은 stat-reveal.js가 metric-card에 붙인다. */
-  .skills .metric-card:not(.is-visible) .repurchase-gauge .is-gauge {
-    stroke-dashoffset: 201;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .skills .repurchase-gauge .is-gauge {
-      transition: none;
-    }
-  }
-
   /* ============================================================
    * 도구 연결 브릿지 — 이 페이지(진단·교육)에서 자동화 페이지로 넘기는 한 줄
    * ============================================================ */
@@ -1636,47 +1411,12 @@
     color: var(--color-surface);
   }
 
-  /*
-   * "도구 활용"에만 밑줄이 좌→우로 그려진다 — 이 섹션은 머무는 곳이 아니라
-   * 자동화 페이지로 넘어가는 통로라, 넘어갈 대상을 밑줄이 짚어 준다.
-   * 텍스트에 border-bottom을 주지 않고 ::after를 쓰는 이유 — 그려지는 과정
-   * (0 → 100%)이 있어야 "이쪽으로 간다"는 방향이 생긴다.
-   */
-  .skills .bridge-title strong {
-    position: relative;
-  }
-
-  .skills .bridge-title strong::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 100%;
-    height: 2px;
-    border-radius: var(--radius-full);
-    background: currentColor;
-    transform-origin: left;
-  }
-
-  .skills .fade-up .bridge-title strong::after {
-    transform: scaleX(0);
-  }
-
-  .skills .fade-up.is-visible .bridge-title strong::after {
-    transform: scaleX(1);
-    transition: transform var(--duration-scroll) var(--ease-scroll) .2s;
-  }
-
   /* 화살표가 한 번 오른쪽으로 튀어 이동을 예고한다 — 공용 nudge를 쓴다 */
   .skills .fade-up.is-visible .bridge-inner .btn > svg {
     animation: nudge .6s var(--ease-scroll) .7s 2;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .skills .fade-up .bridge-title strong::after {
-      transform: scaleX(1);
-    }
-
     .skills .fade-up.is-visible .bridge-inner .btn > svg {
       animation: none;
     }
@@ -1705,7 +1445,7 @@
   }
 
   /* 옅은 판 위의 카드는 흰색으로 띄운다 — 판과 카드가 같은 색이면 카드가 사라진다 */
-  .skills .catalog-learn .content-panel,
+  .skills .catalog-learn .content-panel:not(.journey-viewport),
   .skills .features-analyze .content-panel {
     border: 1px solid color-mix(in srgb, var(--color-brand) 12%, transparent);
   }
@@ -1794,14 +1534,7 @@
     .skills .sub-hero-copy > *,
     .skills .hero-questions > li { animation: none; }
 
-    .skills .hero-questions > li,
-    .skills .hero-question-icon,
-    .skills .loop-icon,
-    .skills .product-grid .content-panel,
-    .skills .product-icon { transition-duration: 0.001ms; }
-
     /* 시간차 등장은 지연 없이 완성된 상태로 정지한다 */
-    .skills .fade-up .product-shot,
     .skills .fade-up .loop > li,
     .skills .fade-up .product-grid > li,
     .skills .fade-up .product-points > li,

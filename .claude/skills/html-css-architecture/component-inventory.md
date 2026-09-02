@@ -28,6 +28,7 @@
 | Part Nav | `part-nav.css` | `.part-nav`, `-item`, `-indicator`, `--compact` | 두 파트를 잇는 캡슐형 세그먼트 내비 (`js/part-nav.js`와 짝) |
 | Assessment Card | `assessment-card.css` | `.assessment-card`, `__head`, `__title`, `__meta`, `__action` | 자가진단/설문 시작 유도 카드 |
 | Content Panel | `content-panel.css` | `.content-panel`, `__item`, `__intro`, `__visual`, `--compact` | 설명 + 큰 시각 요소를 한 판에 담는 패널 |
+| Journey Stage | `journey-stage.css` | `.journey-stage`, `.journey-track`, `.journey-viewport`, `.journey-step`(+`.is-active`) | **스크롤로 판 안의 내용만 교차 페이드**되는 스테이지. 보이지 않는 트랙이 스크롤 길이를 만들고 `js/journey-stage.js`가 활성 스텝을 옮긴다. 판은 `.content-panel` + `.surface-glass` 조합. 좌측 `.choice-list__item`에 `data-journey-program="n"`을 주면 표시이자 이동 버튼이 된다. index PART 1과 skills 04가 함께 쓴다. 페이지는 `--stage-panel-height`(판 실측 높이)와 `--stage-tail`만 넘긴다 |
 | Compare Panel | `compare-panel.css` | `.compare-panel`, `__item`(+`.is-after`), `__label`, `__title`, `__desc`, `__arrow` | "지금 → 바뀐 뒤" 두 상태를 좌우로 대비 |
 | Timeline | `timeline.css` | `.timeline > li`, `__marker`, `__term`, `__body`, `__title`, `__desc` | 기간이 있는 단계를 세로로 잇는 진행 흐름 |
 | Cycle | `cycle.css` | `.cycle > li`(+`.is-return`·`.blue`·`.dark`), `.cycle-head`, `.cycle-no`, `.cycle-en`, `.cycle-desc`, `.cycle-arrow`, `.cycle-note` | N단계 순서/순환을 가로 칸 + 경계 화살표로. 열 수는 `--cycle-columns`(기본 4). 순환형 결론 칸은 `.is-return`(유리 표면), 화살표는 반투명 글래스모피즘 노드. 칸별 컬러 테마는 `.blue`(하늘색 카드+브랜드 파랑 번호)·`.dark`(잉크 카드+흰 번호), 무클래스는 기본(흰 카드+하늘색 번호). why-codepresso.html 03(4단계 순환)·skillcertify.html 05(5단계 선형)·cases.html 공통점(3단계 선형)이 함께 쓰며 공용 승격 — 선형 페이지 둘 다 결론 칸도 기본 배경 그대로 둔다 |
@@ -66,7 +67,7 @@
 | `main-hero` | 메인 첫 화면(메인 전용 — 서브페이지는 `sub-hero`, `components/ui/hero.css`를 쓴다) | `css/pages/index.css` | — |
 | `outcomes` | 도입 사례 슬라이더(안쪽은 `proof-card`) | `css/pages/index.css` | `js/proof-card-slider.js` |
 | `features` | 3단 카드 자동 순환 | `css/pages/index.css` | `js/feature-card-cycle.js` |
-| `journey` | PART 1 교육 여정 | `css/pages/index.css` | `js/journey-stage.js` |
+| `journey` | PART 1 교육 여정 | `css/pages/index.css` (스테이지 골격은 `components/ui/journey-stage.css`) | `js/journey-stage.js` |
 | `diagnosis` | PART 2 진단 쇼케이스 | `css/pages/index.css` | `js/journey-stage.js` |
 | `difference` | PART 3 차별점 3화면 순환 | `css/pages/index.css` | `js/difference-cycle.js` |
 | `insight` | 콘텐츠·아티클 | `css/pages/index.css` | — |
@@ -95,7 +96,7 @@
 | `product-grid` · `product-points` | 03·04 제품 카드 배치와 특징 목록 | `content-panel`(카드 자체) |
 | `analyze-grid` · `analyze-points` | 06 분석·보고 2블록 | `content-panel` |
 | `analyze-mock-*` | 06 대시보드·성과 보고 목업(직무×역량 히트맵 · 전후 상승폭) | `preview-frame` · `mock-screen` · `journey-mock-badge` · `data-mock-motion="ticker"` |
-| `learn-index` | 04 sticky 좌측에서 "지금 보는 제품"을 표시하는 세로 인덱스 | — (`part-nav`는 상위 파트용 가로 캡슐이라 형태·의미가 다름). `js/section-index.js`와 짝 |
+| `learn-products` | 04 sticky 좌측 학습 방식 목록 묶음(라벨 + 목록). 목록 자체는 공용 `choice-list`이고 `data-journey-program`으로 스테이지와 연결된다 — index PART 1의 `diagnosis-products`와 같은 구성 |
 | `repurchase-gauge` | 07 재구매율 80%를 링으로 한 번 더 말하는 게이지 | `metric-card__visual` 슬롯 |
 | `blend-combo` | 05 가운데 단계의 하위 제품 배지 | `timeline`(단계 골격) · `tag` |
 | `bridge-inner` · `bridge-title` | 도구 연결 브릿지 좌우 배치 | `summary-banner.dark` |

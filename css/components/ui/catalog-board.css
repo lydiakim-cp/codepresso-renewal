@@ -141,17 +141,6 @@
   color: var(--color-ink);
   font-size: var(--text-body-14);
   line-height: var(--leading-body-14);
-  transition: border-color var(--duration-hover) var(--ease-hover),
-    background var(--duration-hover) var(--ease-hover),
-    box-shadow var(--duration-hover) var(--ease-hover),
-    transform var(--duration-hover) var(--ease-hover);
-}
-
-.catalog-board__items > li:hover {
-  border-color: var(--color-brand-tint-2);
-  background: var(--color-surface-sunken);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
 }
 
 /* 항목 앞 상태 점 */

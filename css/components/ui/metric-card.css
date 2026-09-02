@@ -93,11 +93,6 @@
   transition-delay: .08s;
 }
 
-.metric-card:hover .metric-card__glow {
-  opacity: 1;
-  transform: translate(-50%, -50%);
-}
-
 /* 720px·560px 반응형은 css/mobile.css에 모아 둔다. */
 
 @media (prefers-reduced-motion: reduce) {

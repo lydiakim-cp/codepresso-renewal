@@ -37,6 +37,7 @@
 @import url("./components/ui/statement.css") layer(components);
 @import url("./components/ui/metric-card.css") layer(components);
 @import url("./components/ui/content-panel.css") layer(components);
+@import url("./components/ui/journey-stage.css") layer(components);
 @import url("./components/ui/choice-list.css") layer(components);
 @import url("./components/ui/media-card.css") layer(components);
 @import url("./components/ui/outcome-card.css") layer(components);

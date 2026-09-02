@@ -548,27 +548,17 @@
     content: none;
   }
 
-  .ax-build .service-catalog .catalog-board__items > li:hover {
-    border-color: transparent;
-    background: var(--color-axpresso-box);
-  }
-
   .ax-build .workflow-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex: none;
-    transition: transform var(--duration-hover) var(--ease-hover);
   }
 
   .ax-build .workflow-icon svg {
     display: block;
     width: var(--icon-md);
     height: var(--icon-md);
-  }
-
-  .ax-build .catalog-board__items > li:hover .workflow-icon {
-    transform: scale(1.08);
   }
 
   .ax-build .catalog-note {
@@ -593,11 +583,6 @@
     border-radius: var(--radius-lg);
     background: var(--color-surface-sunken);
     overflow: hidden;
-    transition: background var(--duration-hover) var(--ease-hover);
-  }
-
-  .ax-build .deliverable-list > li:hover {
-    background: var(--color-brand-tint-2);
   }
 
   .ax-build .deliverable-icon {
@@ -611,17 +596,12 @@
     background: var(--color-axpresso-box);
     box-shadow: none;
     color: var(--color-brand);
-    transition: transform var(--duration-hover) var(--ease-hover);
   }
 
   .ax-build .deliverable-icon svg {
     display: block;
     width: var(--icon-md);
     height: var(--icon-md);
-  }
-
-  .ax-build .deliverable-list > li:hover .deliverable-icon {
-    transform: scale(1.06);
   }
 
   .ax-build .deliverable-desc {
@@ -644,13 +624,6 @@
     border-radius: var(--radius-lg);
     background: var(--color-axpresso-box);
     box-shadow: none;
-    transition: background var(--duration-hover) var(--ease-hover),
-      transform var(--duration-hover) var(--ease-hover);
-  }
-
-  .ax-build .process-steps > li:hover {
-    background: color-mix(in srgb, var(--color-brand) 14%, var(--color-axpresso-box));
-    transform: translateY(-3px);
   }
 
   .ax-build .step-head {
@@ -688,17 +661,12 @@
     height: var(--icon-box);
     border-radius: var(--radius-md);
     background: var(--color-axpresso-box-tint);
-    transition: transform var(--duration-hover) var(--ease-hover);
   }
 
   .ax-build .step-icon svg {
     display: block;
     width: var(--icon-md);
     height: var(--icon-md);
-  }
-
-  .ax-build .process-steps > li:hover .step-icon {
-    transform: scale(1.06);
   }
 
   .ax-build .step-body {
@@ -738,10 +706,6 @@
     display: block;
     width: 18px;
     height: 18px;
-  }
-
-  .ax-build .outcome-list > li:hover .outcome-arrow {
-    transform: translateX(3px);
   }
 
   /* 로고 판은 반투명 흰색 — box-tint(남색)에 두면 짙은 로고(#22376d 등)가
@@ -793,17 +757,9 @@
     -webkit-backdrop-filter: blur(16px) saturate(160%);
   }
 
-  .ax-build .outcomes .outcome-list > li:hover {
-    background: var(--color-axpresso-box);
-  }
-
   /* 결과 수치 — 브랜드 원색은 다크 배경에서 어두워 보여 흰색을 섞는다 */
   .ax-build .outcomes .outcome-after,
   .ax-build .outcomes .outcome-headline {
-    color: color-mix(in srgb, var(--color-brand) 45%, white);
-  }
-
-  .ax-build .outcomes .outcome-list > li:hover .outcome-arrow {
     color: color-mix(in srgb, var(--color-brand) 45%, white);
   }
 
@@ -827,14 +783,7 @@
     .ax-build .sub-hero-copy > *,
     .ax-build .hero-facts { animation: none; }
 
-    .ax-build .hero-facts .metric-card,
-    .ax-build .deliverable-list > li,
-    .ax-build .deliverable-icon,
-    .ax-build .outcome-list > li,
-    .ax-build .outcome-arrow,
-    .ax-build .process-steps > li,
-    .ax-build .step-icon,
-    .ax-build .workflow-icon { transition-duration: 0.001ms; }
+    .ax-build .hero-facts .metric-card { transition-duration: 0.001ms; }
   }
 
   /* 900px·560px 반응형은 css/mobile.css에 모아 둔다 */

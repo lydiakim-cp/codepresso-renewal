@@ -119,12 +119,6 @@
     border-color: var(--color-brand-tint-2);
   }
 
-  .cases .outcome-list > li[data-case-axis="tool"]:hover {
-    border-color: color-mix(in srgb, var(--color-brand) 30%, var(--color-brand-tint-2));
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
-  }
-
   /* 업무 자동화 배지 — 브랜드 파랑을 꽉 채우고 글자를 흰색으로 뒤집는다. 역량 진단·교육
      배지는 공용 .tag(브랜드 틴트 파랑) 그대로 두어, 두 갈래가 같은 파랑 한 계열 안에서
      "채움 vs 옅은 틴트"로만 갈린다 — 없는 색을 새로 만들지 않는다.
@@ -164,11 +158,6 @@
     display: block;
     width: 18px;
     height: 18px;
-  }
-
-  .cases .outcome-list > li:hover .outcome-arrow {
-    color: var(--color-brand);
-    transform: translateX(3px);
   }
 
   /* .outcome-after(이후 값) / .outcome-headline(before→after 없는 결과 한 줄) /
@@ -234,9 +223,7 @@
     .cases .sub-hero-copy > *,
     .cases .catalog.is-visible .outcome-list > li { animation: none; }
 
-    .cases .hero-facts .metric-card.is-visible,
-    .cases .outcome-list > li,
-    .cases .outcome-arrow { transition-duration: 0.001ms; }
+    .cases .hero-facts .metric-card.is-visible { transition-duration: 0.001ms; }
 
     /* part-nav--animated의 인디케이터 이동은 part-nav.css가 이미 줄여 놓는다 */
     /* .cycle 자체의 reduced-motion 대응은 cycle.css가 담당한다 */

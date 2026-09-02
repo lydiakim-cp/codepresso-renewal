@@ -103,6 +103,16 @@ css/
 - 그래도 카드가 평평하면 선을 넣지 말고 배경·아이콘·모션으로 간다
   ([css-patterns.md](css-patterns.md) 4번).
 
+**hover는 클릭되는 것에만 준다**
+- **눌러도 아무 일이 없는 요소에 hover 효과를 주지 않는다.** 카드가 떠오르거나
+  그림자가 붙으면 사용자는 "누를 수 있다"고 읽는다 — 그 카드가 링크·버튼이
+  아니면 거짓 신호다(전 페이지에서 한 번 걷어냈다: metric-card·process-steps·
+  deliverable-list·problem-card·slide-card·cycle·outcome-list 등).
+- **안쪽에 링크가 하나 들어 있는 것으로는 부족하다.** 판 전체가 클릭되지 않으면
+  판에 hover를 주지 않고, 그 링크에만 준다.
+- hover를 지웠으면 그것만 쓰던 `transition`과 `prefers-reduced-motion` 항목도
+  같이 지운다 — 남으면 다음 사람이 "왜 있지" 하고 다시 살린다.
+
 **모션**
 - `@keyframes`를 새로 만들기 전에 `css/keyframes.css`를 본다(rise-in·pop-in·scale-in·pulse·float·nudge·marquee 등).
 - **애니메이션을 넣으면 `prefers-reduced-motion` 대응을 같은 파일에 1:1로 함께 넣는다.** 예외 없다.

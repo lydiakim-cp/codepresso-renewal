@@ -151,19 +151,11 @@
     /* stat-reveal.js가 .is-visible을 붙여 올린다(metric-card와 같은 방식) */
     opacity: 0;
     transform: translateY(var(--motion-rise));
-    transition: opacity var(--duration-scroll) var(--ease-scroll),
-      transform var(--duration-scroll) var(--ease-scroll),
-      box-shadow var(--duration-hover) var(--ease-hover),
-      border-color var(--duration-hover) var(--ease-hover);
   }
 
   .difference-page .problem-card.is-visible {
     opacity: 1;
     transform: none;
-  }
-
-  .difference-page .problem-card:hover {
-    box-shadow: var(--shadow-md);
   }
 
   .difference-page .problem-card-body {
@@ -251,10 +243,6 @@
    */
   .difference-page .problem-card.is-gap .problem-value {
     color: var(--color-critical);
-  }
-
-  .difference-page .problem-card.is-gap:hover {
-    border-color: color-mix(in srgb, var(--color-critical) 30%, var(--color-line));
   }
 
   /*
@@ -388,17 +376,9 @@
     border: 0;
     border-radius: var(--radius-xl);
     background: var(--color-surface-raised);
-    transition: box-shadow var(--duration-hover) var(--ease-hover),
-      transform var(--duration-hover) var(--ease-hover);
   }
 
-  /* 그림자는 hover에만 — 평소에는 면·경계가 공간을 만든다 */
-  .difference-page .slide-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
-  }
-
-  /*
+  /* 그림자는 hover에만 — 평소에는 면·경계가 공간을 만든다 */  /*
    * 우리 카드 — 실패 카드가 무채색 raised 판이므로, 이쪽은 브랜드 기운이 있는
    * 옅은 면으로 구분한다. 흰 섹션 위에 흰 카드를 두면 카드가 사라지므로
    * sunken을 쓴다. 카드에 accent 선을 얹지 않는다(SKILL 3번).
@@ -1067,13 +1047,6 @@
     height: 100%;
     border: 0;
     background: var(--color-brand-tint-2);
-    transition: box-shadow var(--duration-hover) var(--ease-hover),
-      transform var(--duration-hover) var(--ease-hover);
-  }
-
-  .difference-page .start-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
   }
 
   .difference-page .start-desc {
@@ -1186,11 +1159,6 @@
     content: none;
   }
 
-  .difference-page .industry-cards > li:hover {
-    background: var(--color-brand-tint-2);
-    transform: translateY(-2px);
-  }
-
   /* 라벨 위 아이콘 — ax-build 03의 workflow-icon과 같은 인라인 SVG 관용구.
      카드가 라벨+본문 2단이라 아이콘은 그 위에 얹어 3단으로 만든다. */
   .difference-page .industry-card-icon {
@@ -1198,17 +1166,12 @@
     align-items: center;
     justify-content: center;
     flex: none;
-    transition: transform var(--duration-hover) var(--ease-hover);
   }
 
   .difference-page .industry-card-icon svg {
     display: block;
     width: var(--icon-md);
     height: var(--icon-md);
-  }
-
-  .difference-page .industry-cards > li:hover .industry-card-icon {
-    transform: scale(1.08);
   }
 
   .difference-page .industry-card-label {
@@ -1243,11 +1206,6 @@
   @media (prefers-reduced-motion: reduce) {
     /* 진입 애니메이션은 끈다 */
     .difference-page .sub-hero-copy > * { animation: none; }
-
-    .difference-page .slide-card,
-    .difference-page .cycle > li,
-    .difference-page .start-card,
-    .difference-page .industry-card-icon { transition-duration: 0.001ms; }
 
     /* 01 카드는 stat-reveal.js가 .is-visible을 붙이지만, 모션 축소에서는
        그 스크립트도 애니메이션 없이 최종 상태로 두므로 여기서 값만 고정한다.
