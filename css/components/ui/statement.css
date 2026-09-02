@@ -80,7 +80,7 @@
 }
 
 /* 한 문장이 이 판의 전부라 h2를 그대로 쓰고 색만 흰색으로 올린다.
-   (base.css가 44px semibold를 이미 준다 — 크기를 다시 쓰지 않는다) */
+   (base.css가 40px semibold를 이미 준다 — 크기를 다시 쓰지 않는다) */
 .statement-title {
   color: var(--color-surface);
 }

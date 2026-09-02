@@ -1628,7 +1628,7 @@
     min-width: 0;
   }
 
-  /* summary-banner.dark 위의 제목. base.css h2(44px)는 배너 안에서 과하고,
+  /* summary-banner.dark 위의 제목. base.css h2(40px)는 배너 안에서 과하고,
      cta-final-title은 최하단 CTA 소유라 빌려 쓰지 않는다 — 카드 제목 스케일로 낮춘다. */
   .skills .bridge-title {
     font-size: var(--text-heading-32);

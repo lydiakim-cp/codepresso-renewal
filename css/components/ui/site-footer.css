@@ -52,7 +52,7 @@
   gap: var(--space-12);
 }
 
-/* 시맨틱은 h2지만 푸터 안 그룹 제목이라 본문 크기로 낮춘다(h2 44px는 과하다). */
+/* 시맨틱은 h2지만 푸터 안 그룹 제목이라 본문 크기로 낮춘다(h2 40px는 과하다). */
 .site-footer-group-title {
   font-size: var(--text-body-muted);
   line-height: var(--leading-body-14);

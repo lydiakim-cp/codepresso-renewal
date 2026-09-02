@@ -103,8 +103,8 @@
   --leading-h1: var(--leading-heading-56);
   --tracking-h1: var(--tracking-heading-wide);
 
-  --text-h2: var(--text-heading-44);
-  --leading-h2: var(--leading-heading-44);
+  --text-h2: var(--text-heading-40);
+  --leading-h2: var(--leading-heading-40);
   --tracking-h2: var(--tracking-heading-tight);
 
   --text-h3: var(--text-heading-24);
@@ -206,16 +206,6 @@
   --color-axpresso-ink: var(--color-surface);
   --color-axpresso-ink-light: rgba(255, 255, 255, .66);
   --color-axpresso-ink-lighter: rgba(255, 255, 255, .42);
-
-  /* ---------------------------------------------
-   * Color — AX Grow (내재화형) 강조색
-   * 배경·박스·텍스트는 AXpresso 다크 네이비(--color-axpresso-*)를 그대로 쓰고,
-   * 버튼·태그·아이콘 등 강조 자리만 이 그린으로 교체한다(--color-brand 재정의용).
-   * --color-success(#1C9A6C)는 흰 글씨를 얹으면 3.57:1로 AA(4.5) 미달이라
-   * 쓰지 않는다 — 채도는 유지하되 명도를 낮춘 #0F7A50(흰 글씨 5.36:1)을 쓴다. */
-  --color-axgrow-accent: #0F7A50;
-  --color-axgrow-accent-dark: #0B5940;
-  --color-axgrow-accent-tint: rgba(15, 122, 80, .16); /* --color-axgrow-accent 16% */
 }
 
 /* ---------------------------------------------
