@@ -4,103 +4,20 @@
  * 강조로, 같은 AXpresso 제품군인 ax-build와 색·테마를 완전히 일치시킨다.
  */
 
+/* 다크모드 공통 층 — 토큰 remap·hero·공용 컴포넌트 반전은 여기가 갖는다.
+   <main class="ax-grow main-dark">가 이 층을 켠다. */
+@import url("../main-dark.css") layer(components);
+
 @layer components {
-  /* 페이지 전체 다크모드 — .ax-grow 안에서 시맨틱 토큰을 axpresso 값으로
-     재정의해 공용 컴포넌트가 코드 수정 없이 다크로 렌더링되게 한다. */
-  .ax-grow {
-    --color-brand-tint-2: color-mix(in srgb, var(--color-brand) 32%, transparent);
-
-    --color-ink: var(--color-axpresso-ink);
-    --color-ink-light: var(--color-axpresso-ink-light);
-    --color-ink-lighter: var(--color-axpresso-ink-lighter);
-    /* ax-build와 같은 값 — 가라앉은 면은 불투명 남색이 아니라 유리 톤이다 */
-    --color-surface-sunken: var(--color-axpresso-box-tint);
-    --color-surface-mist: var(--color-axpresso-box-tint);
-    /* 다크 배경 위 흰 테두리는 라이트 모드보다 진하게(14%→20%, 24%→32%) */
-    --color-line: color-mix(in srgb, var(--color-axpresso-ink) 20%, transparent);
-    --color-line-heavy: color-mix(in srgb, var(--color-axpresso-ink) 32%, transparent);
-
-    /* 바탕은 단색(bg-1) 고정 — 그라데이션 하나면 섹션 경계가 안 보인다 */
-    background: var(--color-axpresso-bg-1);
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* 섹션 경계선 — 어디서 끝나는지 보이게. sub-hero(첫 화면)는 제외 */
-  .ax-grow > section + section {
-    border-top: 1px solid var(--color-line);
-  }
-
-  /* .tag 전부 흰/회색 유리질감으로 통일(섹션 번호·hero 전부 포함) */
-  .ax-grow .tag {
-    background: color-mix(in srgb, white 14%, transparent);
+  /* 제목류 heaviest는 main-dark가 덮는다 — 이 페이지에만 있는 자리만 추가한다 */
+  .ax-grow .compare-panel__title {
     color: var(--color-axpresso-ink);
-    border: 1px solid color-mix(in srgb, white 22%, transparent);
-    backdrop-filter: blur(6px) saturate(140%);
-    -webkit-backdrop-filter: blur(6px) saturate(140%);
-  }
-
-  /* heaviest를 텍스트로 쓰는 자리 — h1·h2·hero·feature-card·faq-list 제목류 */
-  .ax-grow h1,
-  .ax-grow h2,
-  .ax-grow h3,
-  .ax-grow .hero-title,
-  .ax-grow .hero-fact-value,
-  .ax-grow .section-body-subtitle,
-  .ax-grow .faq-list__question,
-  .ax-grow .compare-panel__title,
-  .ax-grow .step-body h3 {
-    color: var(--color-axpresso-ink);
-  }
-
-  .ax-grow .faq-list > details[open] .faq-list__question {
-    color: color-mix(in srgb, var(--color-brand) 55%, white);
-  }
-
-  /* Hero — 밝은 면 전제인 배경·텍스처 오버레이를 다크용으로 무력화 */
-  .ax-grow .sub-hero {
-    background: transparent;
-    border-bottom-color: var(--color-line);
-  }
-
-  /* bg-line2 텍스처는 밝은 면 전제라 다크에서는 끈다 */
-  .ax-grow .sub-hero::before {
-    background-image: none;
-  }
-
-  .ax-grow .sub-hero::after {
-    background:
-      radial-gradient(60% 46% at 50% 20%,
-        color-mix(in srgb, var(--color-brand) 20%, transparent) 0%,
-        transparent 100%),
-      linear-gradient(180deg,
-        transparent 0%,
-        color-mix(in srgb, var(--color-axpresso-bg-1) 60%, transparent) 62%,
-        var(--color-axpresso-bg-1) 100%);
-  }
-
-  .ax-grow .sub-hero .hero-wrap {
-    padding-bottom: var(--space-60);
   }
 
   /* hero-desc 2개(타이틀 보조행 + 본문 설명)를 자연스럽게 붙인다 */
   .ax-grow .sub-hero-copy .hero-desc + .hero-desc {
     margin-top: var(--space-4);
     color: var(--color-ink-lighter);
-  }
-
-  .ax-grow .hero-facts {
-    animation: rise-in var(--duration-scroll) var(--ease-scroll) .32s both;
-  }
-
-  /* surface-glass는 밝은 배경 전제라 다크에서 박스 톤으로 반전 */
-  .ax-grow .hero-facts.surface-glass {
-    background: var(--color-axpresso-box-tint);
-    border-color: var(--color-line);
-  }
-
-  .ax-grow .hero-facts li + li {
-    border-left-color: var(--color-line-heavy);
   }
 
   /* 01 How AX Grow Works — 공용 cycle, 3단계라 열 수만 조정 */
@@ -114,12 +31,13 @@
   }
 
   .ax-grow .cycle > li.is-return {
+    border: 0;
     background: var(--color-axpresso-box-tint);
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
   }
 
-  /* cycle.css가 h3에 ink-heaviest(검정)를 직접 줘서 .ax-grow h3를 이긴다 — 다시 덮는다 */
+  /* cycle.css가 h3에 ink-heaviest(검정)를 직접 줘서 main-dark h3를 이긴다 — 다시 덮는다 */
   .ax-grow .cycle > li h3 {
     color: var(--color-axpresso-ink);
   }
@@ -139,7 +57,7 @@
      before는 배경에 잠기게 어둡고 연하게, after는 브랜드 기운이 도는 밝은 판으로
      띄운다(밝기 3.3배 차이). 기본값은 before가 오히려 더 밝아 의도와 반대였다. */
   .ax-grow .compare-panel__item {
-    border-color: color-mix(in srgb, var(--color-axpresso-ink) 10%, transparent);
+    border: 0;
     background: color-mix(in srgb, white 4%, transparent);
   }
 
@@ -157,7 +75,6 @@
   }
 
   .ax-grow .compare-panel__item.is-after {
-    border-color: var(--color-brand-tint-2);
     background: color-mix(in srgb, white 6%,
       color-mix(in srgb, var(--color-brand) 22%, transparent));
     box-shadow: none;
@@ -173,105 +90,6 @@
     color: var(--color-ink-light);
   }
 
-  /* 03 Best Fit — 활성 카드만 박스 톤으로 구분 */
-  .ax-grow .features .feature-card.is-active {
-    background: var(--color-axpresso-box-tint);
-    box-shadow: none;
-  }
-
-  /* 카드 라벨은 색 지정이 없어 body의 어두운 잉크를 상속받는다 — 흰 글씨로 올린다.
-     활성 시 브랜드 원색은 다크 배경에서 3.05:1이라 흰색을 섞어 밝힌다. */
-  .ax-grow .feature-card .section-body-title {
-    color: var(--color-axpresso-ink);
-  }
-
-  .ax-grow .feature-card.is-active .section-body-title {
-    color: color-mix(in srgb, var(--color-brand) 45%, white);
-  }
-
-  .ax-grow .feature-card-icon {
-    border-color: var(--color-line);
-    background: var(--color-axpresso-box);
-    box-shadow: none;
-  }
-
-  .ax-grow .feature-card-progress {
-    background: var(--color-line);
-  }
-
-  .ax-grow .feature-card-progress-bar {
-    background: var(--color-axpresso-ink);
-  }
-
-  /* 04 16-Day Process — 좌측 sticky는 공용 골격이 담당 */
-  .ax-grow .process-steps {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-16);
-  }
-
-  .ax-grow .process-steps > li {
-    position: relative;
-    display: grid;
-    grid-template-columns: var(--space-48) minmax(0, 1fr);
-    gap: var(--space-12) var(--space-20);
-    padding: var(--space-28);
-    border-radius: var(--radius-lg);
-    background: var(--color-axpresso-box);
-    box-shadow: none;
-  }
-
-  .ax-grow .step-head {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-12);
-  }
-
-  .ax-grow .step-term {
-    padding: 4px 8px;
-    border-radius: var(--radius-sm);
-    background: var(--color-brand);
-    color: var(--color-surface);
-    font-size: var(--text-body-muted);
-    line-height: var(--leading-body-14);
-    font-weight: var(--font-weight-medium);
-  }
-
-  /* 순번은 위계를 낮추는 게 목적 — 카드보다 밝고 본문보다 낮게 */
-  .ax-grow .step-no {
-    color: color-mix(in srgb, var(--color-axpresso-ink) 16%, transparent);
-    font-size: var(--text-heading-32);
-    line-height: var(--leading-heading-32);
-    font-weight: var(--font-weight-semibold);
-  }
-
-  .ax-grow .step-icon {
-    align-self: start;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--icon-box);
-    height: var(--icon-box);
-    border-radius: var(--radius-md);
-    background: var(--color-axpresso-box-tint);
-  }
-
-  .ax-grow .step-icon svg {
-    display: block;
-  }
-
-  .ax-grow .step-body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-  }
-
-  .ax-grow .step-desc {
-    color: var(--color-ink-light);
-  }
-
   /* AI Fluent 유도 배너 — 좌측 aside 안, CTA 버튼 아래에 붙는 보조 한 줄 */
   .ax-grow .fluent-note {
     margin-top: var(--space-8);
@@ -283,45 +101,6 @@
   .ax-grow .fluent-note .link-underline {
     display: inline-block;
     margin-top: var(--space-6);
-  }
-
-  /* 05 What Remains — ax-build deliverable-list와 같은 2열 그리드 */
-  .ax-grow .deliverable-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-20);
-  }
-
-  .ax-grow .deliverable-list > li {
-    position: relative;
-    display: grid;
-    grid-template-columns: var(--space-48) minmax(0, 1fr);
-    gap: var(--space-6) var(--space-20);
-    padding: var(--space-28);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface-sunken);
-    overflow: hidden;
-  }
-
-  .ax-grow .deliverable-icon {
-    grid-row: 1 / span 2;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--icon-box);
-    height: var(--icon-box);
-    border-radius: var(--radius-md);
-    background: var(--color-axpresso-box);
-    box-shadow: none;
-    color: var(--color-brand);
-  }
-
-  .ax-grow .deliverable-icon svg {
-    display: block;
-  }
-
-  .ax-grow .deliverable-desc {
-    color: var(--color-ink-light);
   }
 
   /* 06 Internal Capability — 공용 statement는 브랜드 파랑 판이 기본이라 다크 페이지에서
@@ -347,8 +126,8 @@
 
   .ax-grow .capability-grid .content-panel {
     --content-panel-padding: var(--space-28);
-    border: 1px solid color-mix(in srgb, white 22%, transparent);
-    background: color-mix(in srgb, white 12%, transparent);
+    border: 0;
+    background: color-mix(in srgb, white 16%, transparent);
     backdrop-filter: blur(6px) saturate(140%);
     -webkit-backdrop-filter: blur(6px) saturate(140%);
   }
@@ -372,13 +151,13 @@
 
   .ax-grow .start-card {
     height: 100%;
-    border: 1px solid var(--color-line);
+    border: 0;
     background: var(--color-axpresso-box);
   }
 
+  /* 테두리 대신 브랜드를 섞은 면으로 "지금 보고 있는 제품"을 표시한다 */
   .ax-grow .start-card.is-here {
-    border-color: var(--color-brand-tint-2);
-    background: var(--color-axpresso-box-tint);
+    background: color-mix(in srgb, var(--color-brand) 28%, var(--color-axpresso-box));
   }
 
   /* 두 제품을 한눈에 구분하는 아이콘 — step-icon과 같은 48px 규격을 따른다 */
@@ -405,16 +184,6 @@
     margin-top: auto;
   }
 
-  /* 08 FAQ — 흰 카드 전제인 faq-list를 박스 톤으로 반전 */
-  .ax-grow .faq-list > details {
-    background: var(--color-axpresso-box);
-  }
-
-  .ax-grow .faq-list > details:hover,
-  .ax-grow .faq-list > details[open] {
-    border-color: var(--color-brand-tint-2);
-  }
-
   /* 섹션 배경 리듬 — 단색 바탕 위 섹션마다 진하기를 다르게 줘서 경계를 만든다 */
   .ax-grow .intro,
   .ax-grow .deliverables,
@@ -437,17 +206,6 @@
         var(--color-axpresso-bg-2) 38%,
         var(--color-axpresso-bg-3) 68%,
         var(--color-axpresso-bg-4) 100%);
-  }
-
-  /* 최하단 CTA — 공용 cta-final 배경 위치를 우측 하단으로 변경 */
-  .ax-grow .cta-final::before {
-    background-position: bottom right;
-    background-size: 220%;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .ax-grow .sub-hero-copy > *,
-    .ax-grow .hero-facts { animation: none; }
   }
 
   /* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다 */

@@ -36,16 +36,16 @@
   display: flex;
   align-items: baseline;
   gap: 2px;
-  font-size: var(--text-heading-40);
-  line-height: var(--leading-heading-40);
-  letter-spacing: var(--tracking-heading-wide);
+  font-size: var(--text-kpi);
+  line-height: var(--leading-kpi);
+  letter-spacing: var(--tracking-kpi);
   font-weight: var(--font-weight-bold);
   color: var(--color-ink-heaviest);
   font-variant-numeric: tabular-nums;
 }
 
 .metric-card__value .unit {
-  font-size: var(--text-heading-20);
+  font-size: var(--text-kpi-unit);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -58,16 +58,20 @@
   position: absolute;
   right: var(--space-20);
   bottom: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100px;
   height: 100px;
   transform: translateY(50%);
 }
 
+/* 글로우 판은 그대로 두고 글리프만 아이콘 스케일(md)로 낮춘다. */
 .metric-card__icon {
   position: relative;
   z-index: 1;
-  width: 100%;
-  height: 100%;
+  width: var(--icon-md);
+  height: var(--icon-md);
 }
 
 .metric-card__glow {

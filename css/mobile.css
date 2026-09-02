@@ -50,11 +50,9 @@
 
   /* 서브페이지 hero 보조 밴드(질문형·수치형 공통) — 좁아지면 칸 안 문장이
      눌려 1열로 쌓는다. 스코프를 붙이지 않는다 — 어느 서브페이지든 같은 컴포넌트다. */
-  .hero-questions,
   .hero-facts { grid-template-columns: 1fr; }
 
   /* 유리 띠가 세로로 쌓이면 칸 구분선도 좌 → 상으로 돌아야 한다 */
-  .hero-questions > li + li,
   .hero-facts li + li {
     border-left: 0;
     border-top: 1px solid var(--color-line-heavy);
@@ -198,21 +196,22 @@
   }
 }
 
+
+/* --- main-dark.css (다크 페이지 공통 — ax-build · ax-grow) --- */
+@media (max-width: 900px) {
+  .main-dark .deliverable-list { grid-template-columns: 1fr; }
+  .main-dark .sub-hero .hero-wrap { padding-top: 120px; }
+}
+
+
 /* --- pages/ax-build.css ---
    1440 기준 3열 배치. 900px(2단 접힘) · 720px(카드 내부) · 560px(모바일) 3단으로 내린다. */
 @media (max-width: 900px) {
-  .ax-build .outcome-list,
-  .ax-build .deliverable-list { grid-template-columns: 1fr; }
-  .ax-build .sub-hero .hero-wrap { padding-top: 120px; }
+  .ax-build .outcome-list { grid-template-columns: 1fr; }
 
   /* 01 What It Is — 좌우 2단이 좁아지면 로그 줄이 눌려 읽히지 않아 위아래로 쌓는다.
      큐(주인공)가 위, 로그가 아래로 가므로 읽는 순서는 그대로다. */
   .ax-build .run-body { grid-template-columns: 1fr; }
-
-  .ax-build .run-queue {
-    border-right: 0;
-    border-bottom: 1px solid var(--color-line);
-  }
 }
 
 
@@ -220,9 +219,6 @@
    1440 기준 3열 배치(01 cycle · 05 deliverable · 07 start-grid).
    900px(2단 접힘) · 720px(카드 내부) · 560px(모바일) 3단으로 내린다. */
 @media (max-width: 900px) {
-  .ax-grow .deliverable-list { grid-template-columns: 1fr; }
-  .ax-grow .sub-hero .hero-wrap { padding-top: 120px; }
-
   /* 01 How It Works — 3칸이 좁아지면 설명이 눌린다. 2번째 칸이 넘어가는
      화살표가 줄 끝을 가리켜 방향이 틀리므로 감춘다(why-codepresso 03과 동일 판단). */
   .ax-grow .cycle { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -247,10 +243,10 @@
 
   /* 01 Growth Loop — 4칸이 좁아지면 각 칸의 설명이 3줄로 늘어져 2x2로 접는다.
      Assess→Design / Learn→Prove 순서가 위→아래로 그대로 이어진다. */
-  .skills .loop { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .skills .cycle { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   /* 2x2로 접히면 2번째 칸의 화살표는 줄 끝을 가리켜 방향이 틀린다 — 감춘다 */
-  .skills .loop > li:nth-child(2) .loop-arrow { display: none; }
+  .skills .cycle > li:nth-child(2) .cycle-arrow { display: none; }
 
   /* 03 Assess 제품 2개도 1열. 특징 3줄이 카드 폭에 눌리지 않게 한다 */
   .skills .catalog .product-grid { grid-template-columns: 1fr; }
@@ -265,7 +261,7 @@
   .skills .analyze-mock-screen { width: 100%; }
 
   /* 05 Blended Design — activate 폭 전환(2:1:1)은 900px 이하에서 칸이 좁아
-     목업 내부(막대·게이지)가 눌린다. loop와 같은 방식으로 세로로 접고
+     목업 내부(막대·게이지)가 눌린다. cycle와 같은 방식으로 세로로 접고
      항상 전부 펼쳐 둔다. 모바일은 hover가 없어 activate 전환을 보여줄 수 없고
      js/feature-card-cycle.js도 560px에서 전 카드에 is-active를 붙이고
      순환을 멈추므로, 그 결과와 맞춰 progress bar·폭 전환을 여기서 끈다. */
@@ -350,7 +346,7 @@
 
   /* 03 The Cycle — 4칸이 좁아지면 칸 설명이 3줄로 늘어져 2x2로 접는다.
      Data→Assess / Learn→Improve 순서가 위→아래로 그대로 이어진다
-     (skills .loop과 같은 판단). */
+     (skills .cycle과 같은 판단). */
   .difference-page .cycle { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   /* 2x2로 접히면 2번째 칸의 화살표는 줄 끝을 가리켜 방향이 틀린다 — 감춘다 */
@@ -648,14 +644,12 @@
   /* 서브페이지 hero 보조 밴드(질문형·수치형 공통) — 유리 띠는 그대로 쌓되
      (아이콘+문장 한 줄 구조는 좁은 폭에서도 유지된다) 좌우 여백만 줄인다.
      900px에서 이미 세로 구분선으로 바뀌어 있다. 스코프를 붙이지 않는다. */
-  .hero-questions,
   .hero-facts {
     margin-top: var(--space-35);
   }
 
   /* hero-facts의 칸은 metric-card라 공용 CSS도 li.metric-card로 잡는다 —
      클래스 없이 .hero-facts li로 두면 specificity에 밀려 이 여백이 통과하지 못한다. */
-  .hero-questions > li,
   .hero-facts li.metric-card {
     padding: var(--space-16) var(--space-20);
   }
@@ -681,15 +675,6 @@
 
   /* 2단으로 나란히 놓이는 카드는 안쪽 가용 폭이 좁아 수치와 아이콘이
      자리를 다툰다 — 아이콘을 수치 뒤로 내려 겹치게 하고 흐리게 깐다. */
-  .summary-banner-stats > :not(:first-child) .metric-card__value {
-    font-size: var(--text-heading-32);
-    line-height: var(--leading-heading-32);
-  }
-
-  .summary-banner-stats > :not(:first-child) .metric-card__value .unit {
-    font-size: var(--text-heading-18);
-  }
-
   .summary-banner-stats > :not(:first-child) .metric-card__visual {
     right: calc(-1 * var(--space-6));
     bottom: calc(-1 * var(--space-6));
@@ -785,7 +770,7 @@
 /* --- faq-list.css --- */
 @media (max-width: 560px) {
   .faq-list__question,
-  .faq-list__answer { padding-inline: var(--space-18); }
+  .faq-list__answer { padding: var(--space-18); }
 }
 
 /* --- statement.css --- */
@@ -879,17 +864,35 @@
   .insight-more { margin-top: 0; }
 }
 
-/* --- pages/ax-build.css --- */
+
+/* --- main-dark.css (다크 페이지 공통 — ax-build · ax-grow) --- */
 @media (max-width: 560px) {
-  .ax-build .deliverable-list > li {
+  .main-dark .sub-hero .hero-wrap { padding-top: 88px; }
+  .main-dark .sub-hero-copy > * { --motion-rise: 6px; }
+
+  .main-dark .deliverable-list > li {
     grid-template-columns: 1fr;
     gap: var(--space-10);
     padding: var(--space-20);
   }
 
-  .ax-build .sub-hero .hero-wrap { padding-top: 88px; }
-  .ax-build .sub-hero-copy > * { --motion-rise: 6px; }
+  /* Process — 아이콘 칸을 접고 기간 배지 아래로 본문을 흘린다 */
+  .main-dark .process-steps > li {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    padding: var(--space-20);
+  }
 
+  /* 순번은 좁은 화면에서 기간 배지와 경쟁하므로 한 단계 줄인다 */
+  .main-dark .step-no {
+    font-size: var(--text-heading-24);
+    line-height: var(--leading-heading-24);
+  }
+}
+
+
+/* --- pages/ax-build.css --- */
+@media (max-width: 560px) {
   /* 01 What It Is — 화면이 좁아지면 이 판은 "축소된 목업"이 아니라 실제로 읽는
      콘텐츠가 되므로, 목업 4단 스케일(15/13/11)을 본문 크기로 되돌린다.
      11px 라벨류만 14px 하한까지 올려 서비스 페이지 타이포 제약을 지킨다. */
@@ -920,27 +923,11 @@
     font-size: var(--text-heading-24);
     line-height: var(--leading-heading-24);
   }
-
-  /* 04 Process — 아이콘 칸을 접고 기간 배지 아래로 본문을 흘린다 */
-  .ax-build .process-steps > li {
-    grid-template-columns: 1fr;
-    gap: var(--space-12);
-    padding: var(--space-20);
-  }
-
-  /* 순번은 좁은 화면에서 기간 배지와 경쟁하므로 한 단계 줄인다 */
-  .ax-build .step-no {
-    font-size: var(--text-heading-24);
-    line-height: var(--leading-heading-24);
-  }
 }
 
 
 /* --- pages/ax-grow.css --- */
 @media (max-width: 560px) {
-  .ax-grow .sub-hero .hero-wrap { padding-top: 88px; }
-  .ax-grow .sub-hero-copy > * { --motion-rise: 6px; }
-
   /* 01 How It Works — 2열도 좁아 1열로 내린다(카드가 세로로 이어지므로
      칸 사이 화살표는 방향이 안 맞아 감춘다) */
   .ax-grow .cycle {
@@ -949,25 +936,6 @@
   }
 
   .ax-grow .cycle > li .cycle-arrow { display: none; }
-
-  .ax-grow .deliverable-list > li {
-    grid-template-columns: 1fr;
-    gap: var(--space-10);
-    padding: var(--space-20);
-  }
-
-  /* 04 Process — 아이콘 칸을 접고 기간 배지 아래로 본문을 흘린다 */
-  .ax-grow .process-steps > li {
-    grid-template-columns: 1fr;
-    gap: var(--space-12);
-    padding: var(--space-20);
-  }
-
-  /* 순번은 좁은 화면에서 기간 배지와 경쟁하므로 한 단계 줄인다 */
-  .ax-grow .step-no {
-    font-size: var(--text-heading-24);
-    line-height: var(--leading-heading-24);
-  }
 
   .ax-grow .fluent-note { padding: var(--space-16); }
 }
@@ -983,16 +951,16 @@
   /* 01 Growth Loop — 2x2도 좁아 1열로 내린다. 4칸이 세로로 이어지므로
      칸 사이 화살표를 아래를 가리키게 돌린다(ax-build .shift-arrow와 같은 처리:
      회전은 컨테이너가 아니라 안쪽 svg에 준다). */
-  .skills .loop {
+  .skills .cycle {
     grid-template-columns: 1fr;
     gap: var(--space-24);
   }
 
-  .skills .loop > li { padding: var(--space-20); }
+  .skills .cycle > li { padding: var(--space-20); }
 
-  .skills .loop > li:nth-child(2) .loop-arrow { display: inline-flex; }
+  .skills .cycle > li:nth-child(2) .cycle-arrow { display: inline-flex; }
 
-  .skills .loop-arrow {
+  .skills .cycle-arrow {
     top: auto;
     right: auto;
     bottom: calc(var(--space-24) / -2);
@@ -1000,7 +968,7 @@
     margin: 0 0 0 -10px;
   }
 
-  .skills .loop-arrow svg { transform: rotate(90deg); }
+  .skills .cycle-arrow svg { transform: rotate(90deg); }
 
   /* 도구 연결 브릿지 — 제목을 한 단계 낮추고, 좌우 배치를 세로로 쌓는다 */
   .skills .bridge-title {
@@ -1035,7 +1003,7 @@
   .difference-page .slide-rail-label { white-space: normal; }
 
   /* 03 The Cycle — 2x2도 좁아 1열로 내린다. 4칸이 세로로 이어지므로 칸 사이
-     화살표를 아래를 가리키게 돌린다(skills .loop-arrow와 같은 처리:
+     화살표를 아래를 가리키게 돌린다(skills .cycle-arrow와 같은 처리:
      회전은 컨테이너가 아니라 안쪽 svg에 준다). */
   .difference-page .cycle {
     grid-template-columns: 1fr;
@@ -1057,10 +1025,7 @@
 
   .difference-page .cycle-arrow svg { transform: rotate(90deg); }
 
-  /* 05 좌표 — 좁은 폭에서는 점 5개가 서로 겹쳐 좌표로 읽히지 않는다.
-     좌표를 세로로 더 눕혀 점 사이 거리를 벌리고, 축 라벨은 한 단계 낮춘다.
-     좌표 자체를 목록으로 바꾸지 않는 이유 — "오른쪽 위"라는 위치가 이 섹션의
-     주장이고, 아래 position-note가 같은 내용을 이미 글로 전한다. */
+
   .difference-page .position-map { height: 400px; }
 
   .difference-page .position-axis.is-y { left: var(--space-10); }
@@ -1117,12 +1082,12 @@
 @media (max-width: 720px) {
   /*
    * 좁은 화면에서 264px 카드는 콘텐츠의 3분의 2를 덮는다. 결과 목업과 설명을 접고
-   * 버튼 한 줄만 화면 하단에 가로로 눕힌다 — 진입 경로는 유지하되 읽기를 막지 않는다.
+   * 버튼 한 줄만 GNB 아래에 가로로 눕힌다 — 진입 경로는 유지하되 읽기를 막지 않는다.
    */
   .floating-cta {
     right: var(--space-16);
     left: var(--space-16);
-    bottom: var(--space-16);
+    top: calc(75px + var(--space-12));
     width: auto;
   }
 

@@ -6,7 +6,7 @@
  * 클래스를 분리했다 — 이름이 겹치면 같은 layer components 안에서 로드 순서에
  * 따라 서로의 규칙을 덮어써 사고가 난다(실제로 겹쳐서 메인 hero 정렬·배경이
  * 깨진 적이 있다).
- * 보조 콘텐츠(hero-questions·hero-facts·hero-compare 등)는 페이지마다 다르므로
+ * 보조 콘텐츠(hero-facts·hero-compare 등)는 페이지마다 다르므로
  * 이 컴포넌트가 정하지 않는다 — 각 페이지 css가 hero-wrap 안에 이어 붙인다.
  *
  * A/B 두 방향 중 A(Standard) 하나로 통일했다(2026-08-31 hero 통일 작업).
@@ -97,65 +97,14 @@
 }
 
 /* ============================================================
- * Hero Questions — 유리 띠 안에 세 칸(아이콘 + 제목 + 설명)을 눕힌 보조 정보.
- * skills에서 시작했지만 질문형 보조 정보가 필요한 다른 페이지도 재사용할 수 있어
- * 공용으로 올린다. surface-glass 위에 얹어 쓴다: class="hero-questions surface-glass"
- * ============================================================ */
-.hero-questions {
-  list-style: none;
-  margin: 40px 0 0;
-  padding: 28px 32px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-radius: var(--radius-xl);
-  /* surface-glass는 공용 컴포넌트라 평소에도 shadow-md를 갖지만, hero 안에서는
-     그림자 없는 원칙을 따른다 — 여기서만 무력화하고 테두리로 판을 구분한다. */
-  box-shadow: none;
-}
-
-.hero-questions li {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  padding: 0 20px;
-  text-align: left;
-}
-
-.hero-questions li + li {
-  border-left: 1px solid var(--color-line-heavy);
-}
-
-.hero-question-icon {
-  flex: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-question-text h3 {
-  margin: 0 0 4px;
-  font-size: var(--text-heading-20);
-  line-height: var(--leading-heading-20);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-ink-heaviest);
-}
-
-.hero-question-desc {
-  margin: 0;
-  font-size: var(--text-body-13);
-  line-height: var(--leading-body-13);
-  color: var(--color-ink-light);
-}
-
-/* ============================================================
- * Hero Facts — hero-questions와 같은 외피(유리 띠 1장 + 세로 구분선 + 그림자 없음)
- * 안에 질문 대신 핵심 수치를 담는 변형.
- * ax-build·cases처럼 "질문"이 아니라 "숫자"가 보조 정보의 핵심일 때 쓴다.
+ * Hero Facts — 서브페이지 hero 아래에 붙는 보조 정보 한 벌.
+ * 유리 띠 1장 + 세로 구분선 + 그림자 없음이 외피이고, 칸에는 핵심 수치(cases·ax-build)든
+ * 핵심 질문(skills)이든 같은 마크업으로 담는다.
  * class="hero-facts surface-glass"로 surface-glass 위에 얹는다.
  *
  * Markup API — 칸 안은 metric-card 슬롯을 그대로 쓴다(전용 클래스를 두지 않는다).
  * .hero-facts.surface-glass > li.metric-card
- *   .hero-question-icon            (선택 — 질문형과 같은 아이콘 슬롯)
+ *   .hero-fact-icon                 (선택 — 아이콘 슬롯)
  *   .metric-card__value > .num + .unit
  *   .metric-card__label.text-label
  *
@@ -165,13 +114,12 @@
  * data-stat-card를 따로 줄 필요가 없다).
  * ============================================================ */
 .hero-facts {
-  list-style: none;
-  margin: 40px 0 0;
-  padding: 28px 32px;
+  margin: 40px auto 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border-radius: var(--radius-xl);
   box-shadow: none;
+  max-width: 1000px;
 }
 
 /* 유리 띠 안에서는 카드가 면을 갖지 않는다 — 칸 구분은 아래 세로선이 한다 */
@@ -180,7 +128,7 @@
   gap: 14px;
   align-items: flex-start;
   min-height: 0;
-  padding: 0 20px;
+  padding: 28px 32px;
   border-radius: 0;
   background: transparent;
   overflow: visible;
@@ -188,15 +136,15 @@
 }
 
 .hero-facts li + li {
-  border-left: 1px solid var(--color-line-heavy);
+  border-left: 1px solid rgba(255, 255, 255, .7);
 }
 
-/* 아이콘 옆에서 값과 라벨이 세로로 쌓이는 묶음(질문형의 hero-question-text와 같은 자리).
-   metric-card에 없는 슬롯을 새로 만들지 않으려고 클래스 없는 div를 그대로 잡는다. */
-.hero-facts li.metric-card > div {
+
+.hero-fact-icon {
+  flex: none;
   display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
+  align-items: center;
+  justify-content: center;
 }
 
 /* hero는 h1이 주역이라 수치를 metric-card 기본값(40/20)보다 한 단 낮춘다.
@@ -211,9 +159,5 @@
   font-size: var(--text-body-14);
 }
 
-/* metric-card__label의 ink-lighter는 유리 띠 위에서 AA(4.5) 미달이라 한 단 올린다.
-   .text-label도 light를 주지만 같은 specificity에 로드가 앞서 카드 쪽이 이긴다. */
-.hero-facts .metric-card__label {
-  color: var(--color-ink-light);
-}
+
 

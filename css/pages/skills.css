@@ -68,85 +68,50 @@
    * hero-copy가 .32s에 끝나므로 그 뒤 .4s부터 이어 붙이고, 간격은 hero-copy와
    * 같은 .08s로 맞춘다. 칸·아이콘 크기·구분선은 hero.css 공통 표준을 그대로 쓴다.
    */
-  .skills .hero-questions > li {
+  .skills .hero-facts > li {
     animation: rise-in var(--duration-scroll) var(--ease-scroll) .4s both;
   }
 
-  .skills .hero-questions > li:nth-child(2) { animation-delay: .48s; }
-  .skills .hero-questions > li:nth-child(3) { animation-delay: .56s; }
-
-  .skills .hero-question-icon {
-  }
+  .skills .hero-facts > li:nth-child(2) { animation-delay: .48s; }
+  .skills .hero-facts > li:nth-child(3) { animation-delay: .56s; }
 
   /* ============================================================
    * 01 The Growth Loop — Assess → Design → Learn → Prove 순환
+   * 공용 cycle 컴포넌트(css/components/ui/cycle.css)를 그대로 쓰고, 이 페이지만의
+   * 값(번호 자리에 단계 아이콘, 마지막 칸 톤, 작은 화살표, note 되감기)만 얹는다.
    * ============================================================ */
-  .skills .loop {
-    display: grid;
-    /* 4단계 균등 분할. 화살표는 칸을 차지하지 않고 각 칸의 오른쪽 경계에 얹힌다 */
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--space-20);
-  }
-
-  .skills .loop > li {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-12);
-    padding: var(--space-28) var(--space-24);
+  .skills .cycle > li {
     border: 1px solid var(--color-line);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
   }
 
   /* 마지막 단계(Prove)만 브랜드 톤으로 올려 순환의 결론임을 보인다 */
-  .skills .loop > li:last-child {
+  .skills .cycle > li:last-child {
     border-color: var(--color-brand-tint-2);
     background: var(--color-surface-sunken);
   }
 
-  .skills .loop-head {
-    display: flex;
-    align-items: center;
-    gap: var(--space-10);
-  }
-
-  /* 박스는 안쪽 글리프와 짝을 맞춘다 — icon-sm(20px)에는 --icon-box-sm(32px) */
-  .skills .loop-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  /*
+   * 이 섹션은 번호 대신 단계 아이콘을 넣는다 — .cycle-no 자리를 아이콘 박스로
+   * 바꿔 쓴다. 박스는 안쪽 글리프와 짝을 맞춘다(icon-sm 20px → --icon-box-sm 32px).
+   */
+  .skills .cycle-no {
     width: var(--icon-box-sm);
     height: var(--icon-box-sm);
     border-radius: var(--radius-sm);
     background: var(--color-surface-sunken);
     color: var(--color-brand);
-    flex: none;
   }
 
-  .skills .loop-icon svg {
+  .skills .cycle-no svg {
     display: block;
   }
 
-  .skills .loop > li:last-child .loop-icon {
+  .skills .cycle > li:last-child .cycle-no {
     background: var(--color-surface);
   }
 
-  /* 영문 단계명 — 한글 제목 위에서 위계를 낮춰 얹는다 */
-  .skills .loop-en {
-    color: var(--color-brand);
-    font-size: var(--text-body-muted);
-    line-height: var(--leading-body-14);
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: var(--tracking-body-normal);
-  }
-
-  .skills .loop-desc {
-    color: var(--color-ink-light);
-  }
-
   /* 칸과 칸 사이 화살표. ax-build .shift-arrow와 같은 방식으로 경계에 걸터앉는다 */
-  .skills .loop-arrow {
+  .skills .cycle-arrow {
     position: absolute;
     top: 50%;
     right: calc(var(--space-20) / -2);
@@ -163,33 +128,15 @@
     z-index: 1;
   }
 
-  .skills .loop-arrow svg {
+  .skills .cycle-arrow svg {
     display: block;
     width: 14px;
     height: 14px;
   }
 
-  /* 순환이 다시 처음으로 돌아간다는 마무리 한 줄 */
-  .skills .loop-note {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-8);
-    margin-top: var(--space-20);
-    color: var(--color-brand-dark);
-  }
-
-  .skills .loop-note svg {
-    display: block;
-    width: 18px;
-    height: 18px;
-    color: var(--color-brand);
-    flex: none;
-  }
-
   /*
    * 순환을 실제로 한 번 보여준다.
-   * loop-note가 "결과는 다음 성장 계획의 출발점"이라고 말하는데 화면은 4칸이
+   * cycle-note가 "결과는 다음 성장 계획의 출발점"이라고 말하는데 화면은 4칸이
    * 올라오고 끝이라 순환이 보이지 않았다. 진입 시 화살표가 좌→우로 차례로
    * 밝아지고, 마지막에 note의 새로고침 아이콘이 한 바퀴 돌아 "처음으로 돌아감"을
    * 맺는다.
@@ -203,22 +150,22 @@
    *
    * 카드 등장이 .24s(4번째 칸)에 끝나므로 화살표는 그 뒤부터 이어 붙인다.
    */
-  .skills .fade-up .loop-arrow {
+  .skills .fade-up .cycle-arrow {
     /* 기본값을 완성 상태로 둔다 — 애니메이션이 실행되지 않는 환경(캡처·정지)에서도
        화살표가 보여야 한다(mock-motion-guide "0% 프레임은 보이는 상태"). */
     opacity: 1;
   }
 
-  .skills .fade-up.is-visible .loop-arrow {
-    animation: loop-flow .5s var(--ease-scroll) both;
+  .skills .fade-up.is-visible .cycle-arrow {
+    animation: skills-cycle-flow .5s var(--ease-scroll) both;
   }
 
-  .skills .fade-up.is-visible .loop > li:nth-child(1) .loop-arrow { animation-delay: .32s; }
-  .skills .fade-up.is-visible .loop > li:nth-child(2) .loop-arrow { animation-delay: .52s; }
-  .skills .fade-up.is-visible .loop > li:nth-child(3) .loop-arrow { animation-delay: .72s; }
+  .skills .fade-up.is-visible .cycle > li:nth-child(1) .cycle-arrow { animation-delay: .32s; }
+  .skills .fade-up.is-visible .cycle > li:nth-child(2) .cycle-arrow { animation-delay: .52s; }
+  .skills .fade-up.is-visible .cycle > li:nth-child(3) .cycle-arrow { animation-delay: .72s; }
 
   /* 화살표가 한 번 브랜드색으로 차오르며 다음 칸으로 넘긴다 */
-  @keyframes loop-flow {
+  @keyframes skills-cycle-flow {
     0% { transform: scale(1); box-shadow: var(--shadow-sm); }
     45% {
       transform: scale(1.35);
@@ -230,25 +177,25 @@
   }
 
   /* 마지막 화살표(.72s + .5s)가 끝난 뒤 note가 이어받는다 */
-  .skills .fade-up .loop-note svg {
+  .skills .fade-up .cycle-note svg {
     transform: rotate(0deg);
   }
 
   /* 공용 keyframes.css에는 요소를 회전시키는 것이 없다(spin-angle은 그라디언트용
      --spin-angle 커스텀 프로퍼티를 돌리는 것이라 여기 쓸 수 없다). 이 페이지의
      이 자리에서만 필요하므로 페이지 CSS에 둔다. */
-  .skills .fade-up.is-visible .loop-note svg {
-    animation: loop-rewind 1s var(--ease-scroll) 1.2s both;
+  .skills .fade-up.is-visible .cycle-note svg {
+    animation: cycle-rewind 1s var(--ease-scroll) 1.2s both;
   }
 
-  @keyframes loop-rewind {
+  @keyframes cycle-rewind {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .skills .fade-up.is-visible .loop-arrow,
-    .skills .fade-up.is-visible .loop-note svg {
+    .skills .fade-up.is-visible .cycle-arrow,
+    .skills .fade-up.is-visible .cycle-note svg {
       animation: none;
     }
   }
@@ -393,7 +340,7 @@
    * timeline.css가 이미 쓰는 방식과 같다(그쪽은 컴포넌트가 소유, 이쪽은 페이지가 소유).
    * 지연은 .08s 간격 — hover 리듬(.1s)보다 짧게 잡아 목록이 늘어져 보이지 않게 한다.
    */
-  .skills .fade-up .loop > li,
+  .skills .fade-up .cycle > li,
   .skills .fade-up .product-grid > li,
   .skills .fade-up .product-points > li,
   .skills .fade-up .analyze-grid > li,
@@ -402,7 +349,7 @@
     transform: translateY(var(--motion-rise));
   }
 
-  .skills .fade-up.is-visible .loop > li,
+  .skills .fade-up.is-visible .cycle > li,
   .skills .fade-up.is-visible .product-grid > li,
   .skills .fade-up.is-visible .product-points > li,
   .skills .fade-up.is-visible .analyze-grid > li,
@@ -413,9 +360,9 @@
       transform var(--duration-scroll) var(--ease-scroll);
   }
 
-  .skills .fade-up.is-visible :is(.loop, .product-grid, .analyze-grid) > li:nth-child(2) { transition-delay: .08s; }
-  .skills .fade-up.is-visible :is(.loop, .product-grid, .analyze-grid) > li:nth-child(3) { transition-delay: .16s; }
-  .skills .fade-up.is-visible :is(.loop, .product-grid, .analyze-grid) > li:nth-child(4) { transition-delay: .24s; }
+  .skills .fade-up.is-visible :is(.cycle, .product-grid, .analyze-grid) > li:nth-child(2) { transition-delay: .08s; }
+  .skills .fade-up.is-visible :is(.cycle, .product-grid, .analyze-grid) > li:nth-child(3) { transition-delay: .16s; }
+  .skills .fade-up.is-visible :is(.cycle, .product-grid, .analyze-grid) > li:nth-child(4) { transition-delay: .24s; }
 
   /* 카드 안 특징 목록은 카드가 올라온 뒤에 이어진다 — 카드 지연(.24s) 뒤로 밀어 둔다 */
   .skills .fade-up.is-visible :is(.product-points, .analyze-points) > li:nth-child(1) { transition-delay: .28s; }
@@ -1480,10 +1427,10 @@
     /* 진입 애니메이션은 끈다. 질문 카드는 ul이 아니라 li가 애니메이션을
        갖는다(좌→우 시간차) — 여기서도 li를 지목해야 꺼진다. */
     .skills .sub-hero-copy > *,
-    .skills .hero-questions > li { animation: none; }
+    .skills .hero-facts > li { animation: none; }
 
     /* 시간차 등장은 지연 없이 완성된 상태로 정지한다 */
-    .skills .fade-up .loop > li,
+    .skills .fade-up .cycle > li,
     .skills .fade-up .product-grid > li,
     .skills .fade-up .product-points > li,
     .skills .fade-up .analyze-grid > li,
@@ -1492,7 +1439,7 @@
       transform: none;
     }
 
-    .skills .fade-up.is-visible .loop > li,
+    .skills .fade-up.is-visible .cycle > li,
     .skills .fade-up.is-visible .product-grid > li,
     .skills .fade-up.is-visible .product-points > li,
     .skills .fade-up.is-visible .analyze-grid > li,

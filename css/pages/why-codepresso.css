@@ -186,15 +186,15 @@
     display: flex;
     align-items: baseline;
     gap: 2px;
-    font-size: var(--text-heading-40);
-    line-height: var(--leading-heading-40);
-    letter-spacing: var(--tracking-heading-wide);
+    font-size: var(--text-kpi);
+    line-height: var(--leading-kpi);
+    letter-spacing: var(--tracking-kpi);
     font-weight: var(--font-weight-bold);
     font-variant-numeric: tabular-nums;
   }
 
   .difference-page .problem-value .unit {
-    font-size: var(--text-heading-20);
+    font-size: var(--text-kpi-unit);
     font-weight: var(--font-weight-semibold);
   }
 
@@ -864,6 +864,10 @@
   .difference-page .positioning.is-dark h2 {
     color: var(--color-surface);
   }
+    .difference-page .positioning.is-dark .desc {
+    color: var(--color-surface-sunken);
+  }
+
 
   /* eyebrow는 어두운 판에서 브랜드 배경이 탁해진다 — 유리 표면으로 바꾼다
      (skills 07 is-dark와 같은 처리) */
@@ -1017,17 +1021,6 @@
     animation: pulse 2.4s var(--ease-scroll) infinite;
   }
 
-  .difference-page .position-note {
-    max-width: 880px;
-    margin-inline: auto;
-    text-align: center;
-    color: color-mix(in srgb, var(--color-surface) 78%, transparent);
-  }
-
-  .difference-page .position-note strong {
-    color: var(--color-surface);
-    font-weight: var(--font-weight-semibold);
-  }
 
   /* ============================================================
    * 06 Start Anywhere — 두 갈래 시작점

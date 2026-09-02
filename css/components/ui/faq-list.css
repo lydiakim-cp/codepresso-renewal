@@ -8,35 +8,40 @@
  *   details> details
  *     summary.faq-list__question   ← 안에 텍스트 + .faq-list__icon
  *     .faq-list__answer
+ *       .faq-list__info            ← (선택) 답변 안 콜아웃 한 줄
  */
 .faq-list {
-  display: grid;
-  gap: var(--space-12);
+  /* height: 0 → auto 보간을 허용해 답변이 실제 높이만큼 열리게 한다.
+     미지원 브라우저(Firefox 등)에서는 transition만 무시되고 즉시 열린다. */
+  interpolate-size: allow-keywords;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  width: 800px;
+  margin: 0 auto;
 }
 
 .faq-list > details {
-  border: 1px solid var(--color-line);
+  border: 1px solid #d9dee7;
   border-radius: var(--radius-lg);
   background: var(--color-surface);
-  transition: border-color var(--duration-hover) var(--ease-hover);
+  overflow: hidden;
+  box-shadow: 0 2px 6px #1a61ea0a;
 }
 
-.faq-list > details:hover,
-> details[open] {
-  border-color: var(--color-brand-tint-2);
-}
+
 
 .faq-list__question {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-16);
-  padding: var(--space-24) var(--space-28);
+  padding: var(--space-32);
   cursor: pointer;
   /* 기본 삼각형 마커를 지우고 오른쪽 + 아이콘으로 대체한다. */
   list-style: none;
-  font-size: var(--text-body-18);
-  line-height: var(--leading-body-18);
+  font-size: var(--text-body-16);
+  line-height: var(--leading-body-16);
   font-weight: var(--font-weight-medium);
   color: var(--color-ink-heaviest);
 }
@@ -44,7 +49,6 @@
 /* Safari는 list-style로 마커가 지워지지 않아 별도 처리가 필요하다. */
 .faq-list__question::-webkit-details-marker { display: none; }
 
-.faq-list > details[open] .faq-list__question { color: var(--color-brand-dark); }
 
 .faq-list__icon {
   flex-shrink: 0;
@@ -59,26 +63,51 @@
 
 /* 닫힘 = 아래 방향, 열림 = 위 방향. chevron 하나를 뒤집어 쓴다. */
 .faq-list > details[open] .faq-list__icon {
-  color: var(--color-brand);
   transform: rotate(180deg);
 }
 
-/* <details>는 높이 transition이 안 돼 내용에만 진입 애니메이션을 준다. */
-.faq-list__answer {
-  padding: 0 var(--space-28) var(--space-24);
-  color: var(--color-ink-light);
+/*
+ * 열림 연출 — 페이드가 아니라 높이가 늘어난다. ::details-content가
+ * <details>의 내용을 감싸는 익명 박스라, 여기에 height 0 → auto를 건다.
+ * content-visibility는 이산(discrete) 속성이라 allow-discrete로 끝까지 붙잡아
+ * 닫힐 때도 높이가 줄어드는 동안 내용이 남아 있게 한다.
+ */
+.faq-list > details::details-content {
+  height: 0;
+  overflow: hidden;
+  transition: height var(--duration-indicator) var(--ease-scroll),
+    content-visibility var(--duration-indicator) var(--ease-scroll) allow-discrete;
 }
 
-/* 답변이 위에서 내려오도록 이동폭을 음수로 준다. */
-.faq-list > details[open] .faq-list__answer {
-  --motion-rise: calc(-1 * var(--space-8));
-  animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
+.faq-list > details[open]::details-content {
+  height: auto;
+}
+
+.faq-list__answer {
+  padding: var(--space-32);
+  border-top: 1px solid #e6e9ef;
+  background: #f7f9fc;
+  color: #4e5566;
+  font-size: var(--text-body-16);
+  line-height: 24px;
+}
+
+/* 답변 안에 끼는 콜아웃(주의·참고 한 줄). 답변 면보다 한 톤 진한 브랜드 틴트로
+   묶어 본문과 구분한다. */
+.faq-list__info {
+  margin-block: var(--space-12) 0;
+  padding: var(--space-12) var(--space-16);
+  border: 1px solid rgb(24 54 122 / 0.15);
+  border-radius: var(--radius-md);
+  background: var(--color-brand-tint-2);
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .faq-list > details,
+  .faq-list > details::details-content,
   .faq-list__icon { transition-duration: 0.001ms; }
-  .faq-list > details[open] .faq-list__answer { animation: none; }
 }
 
 /* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */

@@ -131,6 +131,13 @@
   --leading-label: var(--leading-body-13);
   --tracking-label: var(--tracking-body-normal);
 
+  /* KPI 수치 — 모든 페이지의 큰 숫자(metric-card, 문제 수치 등)가 함께 쓰는 한 벌.
+     제목보다 한 단 좁은 자간으로 숫자 덩어리를 붙여 읽히게 한다. */
+  --text-kpi: var(--text-heading-36);
+  --leading-kpi: var(--leading-heading-36);
+  --tracking-kpi: -1px;
+  --text-kpi-unit: var(--text-heading-18);
+
   /* 전역 기본 자간(body 요소) */
   --tracking-base: -.16px;
 
@@ -148,6 +155,7 @@
   --space-20: 20px;
   --space-24: 24px;
   --space-28: 28px;
+  --space-32: 32px;
   --space-35: 35px;
   --space-40: 40px;
   --space-48: 48px;
@@ -240,6 +248,10 @@
 
     --text-card-title: var(--text-heading-18);
     --leading-card-title: var(--leading-heading-18);
+
+    --text-kpi: var(--text-heading-32);
+    --leading-kpi: var(--leading-heading-32);
+    --text-kpi-unit: var(--text-heading-18);
 
     /* 섹션 설명문(.desc) 등 본문 계열 */
     --text-body-18: 16px;

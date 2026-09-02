@@ -55,6 +55,16 @@
 | Fade Up | `layout.css` | `.fade-up`, `.is-visible` | 스크롤 진입 모션 (`js/fade-up.js`와 짝, [subpage-guide.md](subpage-guide.md) 4번) |
 | Header/GNB | `header.css` | `.header`, `-inner`, `.nav`, `-item`, `-trigger`, `-panel`, `.header-actions` | 최상단 GNB — [subpage-guide.md](subpage-guide.md) 2번 참고 |
 
+## B-2. 테마 층 — 다크모드
+
+| 층 | CSS 파일 | 대표 클래스 | 용도 |
+|---|---|---|---|
+| Main Dark | `css/main-dark.css` | `.main-dark` | AXpresso 다크모드. `<main class="{페이지명} main-dark">`에 붙여 시맨틱 토큰(`--color-ink`·`--color-line`·`--color-surface-*`)을 axpresso 값으로 remap하고, hero·feature-card·process-steps·deliverable-list·faq-list·tag·cta-final을 다크로 반전한다. 페이지 CSS가 맨 위에서 `@import url("../main-dark.css") layer(components)`로 켠다(`<link>`를 늘리지 않는다). 현재 사용: `ax-build.html`, `ax-grow.html` |
+
+다크 페이지를 새로 만들 때는 `main` 태그에 `main-dark`를 붙이고 `@import` 한 줄만 추가한다.
+페이지 CSS에는 **그 페이지에만 있는 것**(섹션 배경 리듬·전용 섹션)만 남긴다.
+다크에서는 테두리를 최소로 쓴다 — 공간은 면이 만들고, 선은 실제로 나누는 자리에만 둔다.
+
 ## C. index.html 전용 대형 섹션 컴포넌트 — 카탈로그에 없음
 
 **메인 랜딩 한 곳에서만 쓰도록 만들어진 컴포넌트**다. 겉모습이 비슷해 보여도 서브페이지에서 그대로 재사용하기보다, 구조(아이콘+제목+설명+CTA 같은 패턴)만 참고해서 새 페이지 전용 CSS로 만드는 것이 맞다. 다만 완전히 같은 목적(예: 다른 페이지에도 "고객 도입 사례 슬라이더"가 또 필요함)이면 그때는 이 컴포넌트를 공용으로 승격할지 사용자에게 확인한다.
@@ -93,7 +103,7 @@
 | 클래스 | 역할 | 재사용한 공용 컴포넌트 |
 |---|---|---|
 | `hero-questions` | hero의 질문 카드 3개(유리 표면) | — (수치가 없어 `metric-card` 부적합) |
-| `loop` · `loop-arrow` | 01 Growth Loop 4단계 순환 + 경계 화살표 | 화살표 방식은 ax-build `.shift-arrow`와 동일 |
+| 공용 `cycle` 재사용 | 01 Growth Loop 4단계 순환 | 번호(`cycle-no`) 자리에 단계 아이콘, 화살표만 작게 줄여 쓴다 |
 | `product-grid` · `product-points` | 03·04 제품 카드 배치와 특징 목록 | `content-panel`(카드 자체) |
 | `analyze-grid` · `analyze-points` | 06 분석·보고 2블록 | `content-panel` |
 | `analyze-mock-*` | 06 대시보드·성과 보고 목업(직무×역량 히트맵 · 전후 상승폭) | `preview-frame` · `mock-screen` · `journey-mock-badge` · `data-mock-motion="ticker"` |
@@ -138,7 +148,7 @@
 
 
 **시간차 등장(stagger)은 이 페이지 CSS가 소유한다** — `.skills .fade-up.is-visible`
-아래에서 `loop`·`product-grid`·`analyze-grid`와 그 안쪽 목록에 `transition-delay`를
+아래에서 `cycle`·`product-grid`·`analyze-grid`와 그 안쪽 목록에 `transition-delay`를
 단계로 준다. `timeline`은 컴포넌트가 이미 같은 방식을 갖고 있어 건드리지 않는다.
 
 ## E. cases.html(고객 사례 목록) 전용 섹션 컴포넌트
