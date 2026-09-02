@@ -177,10 +177,10 @@
     gap: 24px;
     text-align: center;
     border-radius: var(--radius-lg);
-    /* 흰색 알파를 낮춰 뒤 배경이 비치게 — 글래스 질감. */
-    background: linear-gradient(155deg, rgb(255 255 255 / 0.7) 0%, rgb(255 255 255 / 0.45) 100%);
-    border: 1px solid rgb(255 255 255 / 0.7);
-    backdrop-filter: blur(20px) saturate(160%);
+    /* 본문을 읽히는 게 먼저다 — 흰 면을 거의 불투명하게 올리고 글래스는 최소로. */
+    background: linear-gradient(155deg, rgb(255 255 255 / 0.96) 0%, rgb(255 255 255 / 0.9) 100%);
+    border: 1px solid rgb(255 255 255 / 0.9);
+    backdrop-filter: blur(6px);
     box-shadow: var(--shadow-md), inset 0 1px 0 rgb(255 255 255 / 0.8);
     transition: transform 0.5s var(--ease-scroll), opacity 0.5s var(--ease-scroll);
     pointer-events: none;
@@ -305,14 +305,8 @@
         color-mix(in srgb, var(--color-brand) 22%, var(--color-brand-tint-2)) 100%);
   }
 
-  /* 두 섹션이 맞닿는 지점의 여백을 줄여 하나의 영역처럼 이어지게 한다. */
-  .parts-group .journey {
-    padding-bottom: var(--space-48);
-  }
-
-  .parts-group .diagnosis {
-    padding-top: var(--space-48);
-  }
+  /* PART 1·2가 맞닿는 지점의 여백은 layout.css 공통 96px을 그대로 쓴다
+     (48px로 줄였더니 두 파트가 붙어 보였다). */
 
   /* 2컬럼·좌측 sticky 구조는 공통 .section-wrap.row.is-sticky가 담당한다. */
 

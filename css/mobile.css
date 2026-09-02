@@ -684,14 +684,6 @@
   .btn { height: 44px; }
 }
 
-/* --- text.css --- */
-@media (max-width: 560px) {
-  .stage-step-title {
-    font-size: var(--text-heading-24);
-    line-height: var(--leading-heading-24);
-  }
-}
-
 /* --- content-panel.css --- */
 @media (max-width: 560px) {
   .content-panel__intro { gap: 0; }

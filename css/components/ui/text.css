@@ -33,10 +33,10 @@
   font-weight: var(--font-weight-medium);
 }
 
-/* 스테이지 스텝 타이틀 — education-journey·diagnosis-showcase의 교차 페이드 판 32px 타이틀(태그는 h3). */
+/* 스테이지 스텝 타이틀 — education-journey·diagnosis-showcase의 교차 페이드 판 24px 타이틀(태그는 h3). */
 .stage-step-title {
-  font-size: var(--text-heading-32);
-  line-height: var(--leading-heading-32);
+  font-size: var(--text-heading-24);
+  line-height: var(--leading-heading-24);
   color: var(--color-ink-heaviest);
 }
 

@@ -85,10 +85,9 @@
   color: var(--color-surface);
 }
 
-/* 핵만 한 번 더 밝힌다 — 흰 글씨 위에서는 색이 아니라 빛으로 강조한다 */
+/* 핵만 한 번 더 강조한다 — 텍스트 블러(glow)는 랜딩 전체에서 쓰지 않는다 */
 .statement-title strong {
   font-weight: var(--font-weight-semibold);
-  text-shadow: 0 0 1px currentColor, 0 0 20px currentColor;
 }
 
 .statement-desc {

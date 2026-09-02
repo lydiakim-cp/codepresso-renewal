@@ -20,10 +20,6 @@
   color: var(--color-surface);
 }
 
-.summary-banner.dark strong {
-  text-shadow: 0 0 1px currentColor, 0 0 18px currentColor;
-}
-
 .summary-banner.dark strong.brand {
   color: color-mix(in srgb, var(--color-brand) 70%, white);
 }
