@@ -2,10 +2,18 @@
 
 이 문서는 [SKILL.md](SKILL.md)의 규범을 전제로, **"가격 페이지 만들어줘" 같은 새 서브페이지 요청을 실제로 처리하는 순서**를 다룬다. SKILL.md는 "무엇을 지켜야 하는가"를 다루고, 이 문서는 "어떤 순서로 어떤 파일을 만드는가"를 다룬다.
 
-> 지금 시점(2026-08) 기준 선례: `ax-build.html`(업무 자동화) · `skills.html`(역량
-> 진단·교육) · `why-codepresso.html`(차별점) · `cases.html`(고객 사례 목록) 네 서브페이지가
-> 이 절차로 만들어졌다. **새 페이지를 만들 때 이들을 먼저 열어 본다** — 섹션 골격·페이지 스코프·반응형·목업 재사용이 모두 여기 들어 있어,
+> 지금 시점(2026-09) 기준 선례 6개. **새 페이지를 만들 때 성격이 가장 가까운 것을
+> 먼저 열어 본다** — 섹션 골격·페이지 스코프·반응형·목업 재사용이 모두 들어 있어,
 > 문서만 읽고 새로 설계하는 것보다 빠르고 어긋나지 않는다.
+>
+> | 선례 | 성격 | 이럴 때 본다 |
+> |---|---|---|
+> | `skills.html` | 라이트, 제품 5종 + 진단·교육 서사 | 가장 표준적인 라이트 서브페이지 |
+> | `ax-grow.html` | **다크**(`main-dark`), 교육·내재화 | 다크 페이지를 만들 때 (가장 최신) |
+> | `ax-build.html` | **다크**, 20일 구축 프로세스 | 기간·프로세스 중심 페이지 |
+> | `why-codepresso.html` | 라이트, 차별점 비교·좌표 | 경쟁 구도·대비가 주제일 때 |
+> | `cases.html` | 라이트, 목록 + 필터 | 카드 목록·필터가 필요할 때 |
+> | `skillcertify.html` | 라이트, 단일 제품 소개 | 제품 하나만 다루는 페이지 |
 
 ## 0. 시작 전에 사용자(비개발자)에게 확인할 것
 
@@ -14,7 +22,11 @@ Claude가 서브페이지를 만들기 전에, 요청에 아래 정보가 없으
 1. **페이지 URL/파일명** — 예: `pricing.html`, `about.html`. GNB 링크와 맞아야 한다.
 2. **이 페이지가 GNB의 어떤 메뉴와 연결되는가** — 나중에 그 메뉴의 `href="#"`를 이 파일로 바꿔야 한다.
 3. **페이지에 들어갈 내용 블록** — 무엇을 어떤 순서로 보여줄지. "가격표 + FAQ" 같은 목록이면 충분하다.
-4. **참고할 기존 컴포넌트가 있는가** — [component-inventory.md](component-inventory.md)를 같이 보고 어떤 카드/리스트/배너를 재사용할지 고른다.
+4. **참고할 기존 컴포넌트가 있는가** — [component-inventory.md](component-inventory.md)의
+   **"콘텐츠 → 컴포넌트 역인덱스"** 를 같이 보고 어떤 카드/리스트/배너를 재사용할지 고른다.
+5. **라이트인가 다크인가** — 업무 자동화(AXpresso) 계열이면 다크다(아래 1번 분기).
+6. **한 줄 소개(meta description)와 공유 이미지** — 검색 결과와 카카오톡·슬랙 링크
+   미리보기에 그대로 나가는 문구다. 없으면 hero 설명을 그대로 쓸지 확인받는다(아래 1번).
 
 ## 1. 페이지 파일 뼈대 만들기
 
@@ -27,7 +39,17 @@ Claude가 서브페이지를 만들기 전에, 요청에 아래 정보가 없으
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>코드프레소 — {페이지 제목}</title>
+  <title>{페이지 제목} | 코드프레소</title>
+
+  <!-- 검색 결과·링크 미리보기에 그대로 나가는 문구다. 비워 두지 않는다(0번 6항목).
+       og:image는 이 페이지를 대표하는 기존 이미지를 쓴다(새로 만들지 않는다).
+       TODO: 운영 도메인이 확정되면 og:url·canonical을 절대 URL로 채운다. -->
+  <meta name="description" content="{80~120자 한 줄 소개 — hero 설명을 그대로 써도 된다}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{페이지 제목} | 코드프레소">
+  <meta property="og:description" content="{위 description과 같은 문구}">
+  <meta property="og:image" content="images/{대표 이미지}">
+
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pages/{페이지이름}.css">
   <link rel="stylesheet" href="css/mobile.css">
@@ -77,6 +99,45 @@ CSS는 **`main.css` + `pages/{페이지}.css` + `mobile.css` 3개**를 링크한
 
 **페이지 전용 규칙은 전부 `.{페이지이름}` 스코프 안에 둔다** — 그래야 여러 페이지가
 같은 섹션 이름(`hero`·`features`·`outcomes`)을 써도 서로에게 새지 않는다.
+
+### 다크 페이지일 때 (AXpresso 계열)
+
+**`<link>`를 늘리지 않는다.** 두 줄만 다르다:
+
+```html
+<main class="{페이지이름} main-dark">
+```
+```css
+/* pages/{페이지이름}.css 맨 위 */
+@import url("../main-dark.css") layer(components);
+```
+
+`main-dark.css`가 시맨틱 토큰(`--color-ink`·`--color-line`·`--color-surface-*`)을
+axpresso 값으로 remap하고 hero·feature-card·process-steps·deliverable-list·faq-list·
+tag·cta-final을 반전한다. 페이지 CSS에는 **그 페이지에만 있는 것**만 남긴다.
+다크에서는 테두리를 최소로 — 공간은 면이 만들고 선은 실제로 나누는 자리에만 둔다.
+색 값을 직접 쓰지 않는다(토큰이 이미 뒤집혀 있으므로 그대로 쓰면 두 번 뒤집힌다).
+현재 선례는 `ax-build.html` · `ax-grow.html`
+([component-inventory.md](component-inventory.md) B-2).
+
+### 반응형은 `mobile.css`의 정해진 자리에 넣는다
+
+`css/mobile.css` 한 파일이 전 페이지의 900/720/560을 담고 있어(현재 730줄)
+아무 데나 붙이면 곧 찾을 수 없게 된다. **breakpoint마다 `@media`는 한 덩어리다**
+(7개로 쪼개져 있던 것을 3개로 병합했다 — `page-audit.js`가 이 구조를 검사한다).
+그 블록 안의 순서를 지킨다:
+
+```
+@media (max-width: 900px) {
+  /* 1. 공용 컴포넌트 (스코프 없는 것) */
+  /* 2. 페이지 블록 — 페이지명 알파벳순, 페이지마다 한 덩어리로 모아 둔다 */
+  .ax-build … / .ax-grow … / .cases … / .difference-page … / .skills …
+}
+```
+
+- 페이지 블록에는 **반드시 페이지 스코프를 붙인다**(`.{페이지이름} .{섹션}`).
+- **페이지를 지우거나 섹션을 갈아치웠으면 `mobile.css`의 그 스코프도 같이 지운다** —
+  남으면 아무도 쓰지 않는 규칙이 파일에 쌓인다(6번 체크리스트).
 
 ## 2. GNB(헤더)·Footer 붙이기
 
@@ -152,6 +213,10 @@ SKILL.md의 "페이지·섹션 구조 관례"를 그대로 따른다:
 | `js/case-filter.js` | `part-nav`를 필터로 써서 목록 카드를 걸러 보여줌 | `[data-case-filter]` + `[data-case-list]`를 쓸 때만 |
 | `js/scenario-switch.js` | 좌측 단계 목록을 읽어 내려가면 우측 목업이 그 단계 화면으로 바뀜(스크롤 연동) | `[data-scenario-steps]` + `[data-scenario-screens]`를 쓸 때만 |
 
+**이 대조는 기계가 해 준다** — `node .claude/skills/html-css-architecture/scripts/page-audit.js {페이지}.html`
+이 마크업의 `data-*` 훅과 로드한 `<script>`를 양방향으로 비교해, 빠진 것과 쓰지 않는 것을
+함께 알려준다. 표는 왜 그런지를 알기 위해 읽고, 확인은 스크립트로 한다.
+
 **판단 기준**: 이 페이지의 마크업에 그 스크립트가 찾는 `data-*` 속성/클래스가 있는가? 없으면 그 `<script>` 태그를 넣지 않는다. 반대로 어떤 컴포넌트를 마크업에 썼는데 대응하는 스크립트를 빠뜨리면 인터랙션이 콘솔 에러 없이 조용히 죽으므로([references/cleanup.md](references/cleanup.md) "정리 후 확인" 3번 항목), 컴포넌트를 골랐으면 이 표에서 짝이 되는 스크립트도 함께 확인한다.
 
 ## 5. Footer
@@ -176,6 +241,12 @@ footer의 **내용**(링크 구성·사업자정보)을 바꿔야 하면 그 조
 - [ ] 새로 쓴 컴포넌트가 [component-inventory.md](component-inventory.md)에 이미 있는 것인지 먼저 확인했는가 — 있으면 그 클래스를 재사용했는가
 - [ ] 섹션마다 `<section class="{이름} fade-up">` → `.section-wrap` → `.section-title`/`.section-content` 구조를 따르는가 (첫 화면 제외)
 - [ ] 마크업에 쓴 `data-*`/클래스에 맞는 스크립트를 4번 표에서 확인해 빠짐없이 로드했는가 — 반대로 쓰지 않는 스크립트는 넣지 않았는가
+- [ ] `title` · `meta description` · `og:*` 를 채웠는가 (뼈대의 TODO 주석을 그대로 남기지 않았는가)
+- [ ] 다크 페이지면 `main-dark` 클래스와 `@import`가 짝으로 들어갔는가 — `<link>`를 늘리지 않았는가
+- [ ] `mobile.css`에 넣은 블록이 페이지 스코프를 갖고, 정해진 순서 자리에 있는가
+- [ ] 문구가 [component-inventory.md](component-inventory.md) "권장 글자 수" 상한 안에 있는가
+- [ ] `page-audit.js {페이지}.html` · `token-lint.js` 가 통과하는가 (저장 시 훅이 자동 실행한다)
+- [ ] `node .claude/skills/html-css-architecture/scripts/contrast-audit.js` 로 대비를 실측했는가
 - [ ] 타이포·토큰·중복 정리 등 SKILL.md 3~12번 규칙을 그대로 지켰는가
 - [ ] **텍스트만 반복되는 화면으로 끝나지 않았는가** — 아래 7번을 확인했는가
 

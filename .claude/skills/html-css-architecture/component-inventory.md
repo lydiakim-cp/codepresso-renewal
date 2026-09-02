@@ -9,6 +9,53 @@
 - 컴포넌트를 추가·삭제·공용 승격하면 같은 변경에서 `codepresso-designsystem.html`과 이 문서를 함께 갱신한다.
 - **`partials/` 조각(header·footer)은 컴포넌트가 아니라 마크업 조각이다** — 전 페이지가 그 파일 하나를 `data-include`로 불러온다([references/page-structure.md](references/page-structure.md)). 페이지 HTML에 `<header>`/`<footer>`를 직접 쓰지 않는다.
 
+## 콘텐츠 → 컴포넌트 역인덱스 — 이름보다 먼저 고르는 표
+
+아래 표들은 "이게 뭔지"를 알려주고, 이 표는 **"내 콘텐츠를 어디에 담는지"**를 알려준다.
+[SKILL.md](SKILL.md) 4번 어휘표가 섹션 **이름**을 정하고, 이 표가 그 안에 들어갈
+**컴포넌트**를 정한다. 둘은 짝이며, 이 표에 있는 것을 골랐으면 새로 만들지 않는다.
+
+| 담을 콘텐츠의 형태 | 고르는 것 | 고르지 않는 것 |
+|---|---|---|
+| 기능·특징 3~4개, 아이콘 + 한 줄 설명 | `feature-card` (자동 순환은 `data-feature-cycle`) | `content-panel` — 큰 시각 요소가 없으면 과하다 |
+| 분류(카테고리)가 있는 20개 이상의 목록 | `catalog-board` (좌측 rail이 분류, panel이 항목) | 카드 그리드를 새로 만들기 — `__items`가 그리드 + stagger를 이미 갖고 있다 |
+| 순서가 있고 **기간·날짜가 붙는** 단계 | `timeline` | `cycle` — 기간 칸이 없다 |
+| 순서가 있고 기간이 없는 N단계(선형·순환) | `cycle` (`--cycle-columns`, 순환 결론 칸은 `.is-return`) | `process-steps` — ax-build·ax-grow(다크) 전용이다 |
+| 두 갈래 중 하나를 고르게 한다 | `content-panel` + 페이지의 `start-card` 배치 (ax-grow 07 · why-codepresso 06) | `compare-panel` — 우열이 아니라 선택지일 때는 대비가 아니다 |
+| 지금 vs 바뀐 뒤 (우열이 있는 대비) | `compare-panel` | `content-panel` 2개 나열 |
+| 여러 항목 중 하나를 눌러 들어간다 | `choice-list` (아이콘은 공용 `.icon-box`) | `feature-card` — 클릭 대상이면 리스트가 맞다 |
+| 자랑할 성과 숫자 | `metric-card` (+ `[data-stat-reveal]`) | 나쁜 수치에 쓰지 않는다 — 큰 숫자+아이콘은 자랑으로 읽힌다 |
+| 고객사 로고 + 성과 문장 | `outcome-card` (`.outcome-list > li`) | `media-card` — 로고는 잘리면 안 되므로 contain이다 |
+| 스크롤에 따라 판 안 내용만 바뀐다 | `journey-stage` (+`content-panel`·`surface-glass`) | 섹션을 여러 개로 쪼개기 |
+| 제품 화면을 보여준다 | `preview-frame` + `product-mock` + `mock-motion` ([mock-motion-guide.md](mock-motion-guide.md)) | 스크린샷 이미지 — 움직이지 않으면 죽은 화면이 된다 |
+| 썸네일 + 제목형 콘텐츠(뉴스·아티클) | `media-card` (+`tag.is-solid`) | `content-panel` |
+| 한 문장만 던지는 강조 — 화면 끝까지 | `statement` (페이지당 1곳) | `summary-banner.dark` — 1248px 안에서 잘리는 배너다 |
+| 섹션의 결론 문장 한 줄 — 본문 폭 안 | `summary-banner`(+`.dark`) | `statement` — 전체 폭은 페이지당 1곳뿐 |
+| 질문과 답 | `faq-list` (`<details>` native) | 아코디언 새로 만들기 |
+| 설명 + 큰 시각 요소를 한 판에 | `content-panel`(+`--compact`) | 카드 새로 만들기 |
+| 자가진단·설문 시작 유도 | `assessment-card` | `cta-final` — 최하단 전환은 따로다 |
+| 두 파트를 오가는 내비 / 목록 필터 | `part-nav`(+`--compact`, `js/part-nav.js` 또는 `js/case-filter.js`) | 탭 UI 새로 만들기 |
+
+**표에 없는 형태일 때** — 가장 가까운 줄을 고르고 안쪽만 덮는다. 그래도 아니면
+[references/reuse-playbook.md](references/reuse-playbook.md)를 펴고, 그래도 아니면
+새로 만들지 말고 **사용자에게 묻는다.**
+
+## 권장 글자 수 — 문구를 바꿀 사람을 위한 상한
+
+마케팅팀이 문구를 직접 고치는 것을 전제로 한 사이트다. 아래는 **현재 8개 페이지의
+실측 분포(p90)** 로 뽑은 상한이며, 넘으면 줄 수가 늘어 카드 높이·형제 열 아래선이
+어긋난다. 넘겨야 하면 `<br data-break="desktop">`로 줄바꿈 위치를 직접 정한다.
+
+| 자리 | 권장 상한 | 실측(중앙값 / 최대) | 넘기면 |
+|---|---|---|---|
+| `h2` 섹션 제목 | 28자 | 20 / 38 | 3줄이 되어 섹션 상단이 밀린다. 38자는 `<br>`로 2줄을 고정한 경우다 |
+| `h3` 카드 제목 | 24자 | 10 / 48 | 카드마다 제목 줄 수가 달라져 본문 시작선이 어긋난다 |
+| `.desc` 섹션 설명 | 74자 | 55 / 84 | 2줄까지는 안전, 3줄이면 제목과의 위계가 흐려진다 |
+| `.tag` eyebrow | 22자 | 13 / 24 | 캡슐이 두 줄로 깨진다 |
+| `.text-label` 라벨 | 20자 | 10 / 20 | 수치 카드에서 값보다 라벨이 넓어진다 |
+
+목업 안 텍스트는 이 표의 예외다(`--mock-text-*` 4단, [mock-motion-guide.md](mock-motion-guide.md)).
+
 ## A. 범용 컴포넌트 — `codepresso-designsystem.html`에 카탈로그됨
 
 여러 페이지가 함께 쓰는 것들. `css/main.css`가 항상 로드하므로 어떤 페이지에서도 바로 쓸 수 있다.
@@ -108,9 +155,9 @@
 | `analyze-grid` · `analyze-points` | 06 분석·보고 2블록 | `content-panel` |
 | `analyze-mock-*` | 06 대시보드·성과 보고 목업(직무×역량 히트맵 · 전후 상승폭) | `preview-frame` · `mock-screen` · `journey-mock-badge` · `data-mock-motion="ticker"` |
 | `learn-products` | 04 sticky 좌측 학습 방식 목록 묶음(라벨 + 목록). 목록 자체는 공용 `choice-list`이고 `data-journey-program`으로 스테이지와 연결된다 — index PART 1의 `diagnosis-products`와 같은 구성 |
-| `repurchase-gauge` | 07 재구매율 80%를 링으로 한 번 더 말하는 게이지 | `metric-card__visual` 슬롯 |
 | `blend-combo` | 05 가운데 단계의 하위 제품 배지 | `timeline`(단계 골격) · `tag` |
 | `bridge-inner` · `bridge-title` | 도구 연결 브릿지 좌우 배치 | `summary-banner.dark` |
+| 07 `start-grid` 재사용 | 07 누적 수치 4칸 배치 | `content-panel`+`start-card`(ax-grow 07 배치) — 숫자·라벨은 `metric-card__value`/`__label` 슬롯만 물려받고 `stat-reveal.js`에는 `data-stat-card=".start-card"`로 알린다 |
 
 ## E. why-codepresso.html(코드프레소 차별점) 전용 섹션 컴포넌트
 

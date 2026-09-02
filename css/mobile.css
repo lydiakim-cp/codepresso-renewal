@@ -60,18 +60,7 @@
     flex-wrap: nowrap;
     border-bottom: 0;
   }
-}
 
-@media (max-width: 720px) {
-  .ax-build .service-catalog .catalog-board__items { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-
-@media (max-width: 560px) {
-  .ax-build .service-catalog { padding: var(--space-20); gap: var(--space-24); }
-  .ax-build .service-catalog .catalog-board__items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-@media (max-width: 900px) {
   .compare-panel { grid-template-columns: 1fr; }
 
   .compare-panel__arrow { justify-self: center; transform: rotate(90deg); }
@@ -284,9 +273,12 @@
   }
 }
 
+
 /* max-width: 720px */
 
 @media (max-width: 720px) {
+  .ax-build .service-catalog .catalog-board__items { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
   .content-panel { --content-panel-padding: var(--space-24); }
 
   .metric-card__visual { width: 64px; height: 64px; }
@@ -340,11 +332,36 @@
   }
 
   .skillcertify .outcome-list { grid-template-columns: 1fr; }
+
+  .floating-cta {
+    right: var(--space-16);
+    left: var(--space-16);
+    top: calc(75px + var(--space-12));
+    width: auto;
+  }
+
+  .floating-cta-link { padding: var(--space-12); }
+
+  .floating-cta-mock,
+  .floating-cta-copy { display: none; }
+
+  .floating-cta-action { height: 44px; }
+
+  .floating-cta-close {
+    top: -10px;
+    right: -6px;
+    width: 28px;
+    height: 28px;
+  }
 }
 
-/* max-width: 560px (모바일) */
+
+/* max-width: 560px */
 
 @media (max-width: 560px) {
+  .ax-build .service-catalog { padding: var(--space-20); gap: var(--space-24); }
+  .ax-build .service-catalog .catalog-board__items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
   br[data-break="mobile"] { display: inline; }
 
   br[data-break="desktop"] { display: none; }
@@ -710,26 +727,4 @@
   }
 }
 
-@media (max-width: 720px) {
-  .floating-cta {
-    right: var(--space-16);
-    left: var(--space-16);
-    top: calc(75px + var(--space-12));
-    width: auto;
-  }
-
-  .floating-cta-link { padding: var(--space-12); }
-
-  .floating-cta-mock,
-  .floating-cta-copy { display: none; }
-
-  .floating-cta-action { height: 44px; }
-
-  .floating-cta-close {
-    top: -10px;
-    right: -6px;
-    width: 28px;
-    height: 28px;
-  }
-}
 }

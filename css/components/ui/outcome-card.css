@@ -71,6 +71,12 @@
   border-top: 1px solid var(--color-line);
   font-size: var(--text-body-muted);
   line-height: var(--leading-body-muted);
+  font-weight: var(--font-weight-medium);
+}
+
+/* 회사명 뒤에 붙는 업종 — 한 줄 안에서 위계를 낮춰 회사명이 먼저 읽히게 한다.
+   (86c9f3b 정리 때 이 클래스가 선택자에서 사라져 회사명·업종이 같은 톤이 됐다) */
+.outcome-industry {
   color: var(--color-ink-lighter);
   font-weight: var(--font-weight-regular);
 }
