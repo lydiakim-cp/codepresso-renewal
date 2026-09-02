@@ -1,0 +1,148 @@
+<!-- Section: catalog-board — 분류 레일 + 항목 판 — 분류가 있는 긴 목록 (catalog-board · js/catalog-board.js)
+     원본: why-codepresso.html:705. 문구만 바꿔 쓰고, 클래스·구조는 그대로 둔다. -->
+    <section class="catalog fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">07 · Industry</p>
+          <h2>우리 회사에선 어떻게 쓰나요</h2>
+        </div>
+        <div class="section-content">
+          <div class="preview-frame preview-frame--flush">
+            <div class="catalog-board" data-catalog-board>
+              <div class="catalog-board__rail" role="tablist" aria-label="업종">
+                <button class="catalog-board__category is-active" type="button" data-catalog-category="manufacturing">
+                  <span class="catalog-board__category-name">제조</span>
+                </button>
+                <button class="catalog-board__category" type="button" data-catalog-category="finance">
+                  <span class="catalog-board__category-name">금융</span>
+                </button>
+                <button class="catalog-board__category" type="button" data-catalog-category="retail">
+                  <span class="catalog-board__category-name">유통</span>
+                </button>
+                <button class="catalog-board__category" type="button" data-catalog-category="it">
+                  <span class="catalog-board__category-name">IT서비스</span>
+                </button>
+              </div>
+
+              <div class="catalog-board__main">
+                <div class="catalog-board__panel is-active" data-catalog-panel="manufacturing">
+                  <ul class="catalog-board__items industry-cards">
+                    <li class="industry-card">
+                      <span class="industry-card-icon industry-card-icon" aria-hidden="true">
+                        <!-- 주의,강조 — flat_icon_svg/117.주의,강조.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" fill="color-mix(in srgb, var(--color-critical) 25%, var(--color-surface))"/>
+                          <path d="M12.702 6.5H11.2976C11.1616 6.49978 11.027 6.52424 10.9021 6.57186C10.7772 6.61947 10.6646 6.68924 10.5713 6.77687C10.478 6.86449 10.406 6.96812 10.3596 7.08136C10.3132 7.1946 10.2934 7.31506 10.3016 7.43531L10.7398 14H13.2498L13.698 7.43531C13.7062 7.31506 13.6864 7.1946 13.64 7.08136C13.5937 6.96812 13.5216 6.86449 13.4283 6.77687C13.335 6.68924 13.2224 6.61947 13.0975 6.57186C12.9726 6.52424 12.838 6.49978 12.702 6.5Z" fill="var(--color-critical)"/>
+                          <path d="M12 18.3604C12.8284 18.3604 13.5 17.6888 13.5 16.8604C13.5 16.0319 12.8284 15.3604 12 15.3604C11.1716 15.3604 10.5 16.0319 10.5 16.8604C10.5 17.6888 11.1716 18.3604 12 18.3604Z" fill="var(--color-critical)"/>
+                        </svg>
+                      </span>
+                      <p class="industry-card-label">Pain Point</p>
+                      <p class="description">설비·품질 데이터는 쌓이는데 보고서·검사·발주는 여전히 수작업.</p>
+                    </li>
+                    <li class="industry-card">
+                      <span class="industry-card-icon icon-md" aria-hidden="true">
+                        <!-- AXpresso 적용 — images/icon/ic_axBuild.svg의 실제 path -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M21.5001 5L12.0001 1L2.50007 5V9C2.49107 12.0185 3.39297 14.9695 5.08786 17.4672C6.78276 19.9649 9.19179 21.8932 12.0001 23C14.8083 21.8932 17.2174 19.9649 18.9123 17.4672C20.6072 14.9695 21.5091 12.0185 21.5001 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4089 11.5203L15.2373 7.70001L17.0032 9.46964L11.3316 15.1293L7.7002 11.181L9.54027 9.48864L11.4089 11.5203Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
+                      <p class="industry-card-label">AXpresso 적용</p>
+                      <p class="description">품질 리포트 자동화, 이슈 모니터링 에이전트, 회의록 자동화.</p>
+                    </li>
+         <!-- 항목은 위 구조를 그대로 반복한다 (원본은 더 많다) -->
+                  </ul>
+                </div>
+
+                <div class="catalog-board__panel" data-catalog-panel="finance">
+                  <ul class="catalog-board__items industry-cards">
+                    <li class="industry-card">
+                      <span class="industry-card-icon industry-card-icon" aria-hidden="true">
+                        <!-- 주의,강조 — flat_icon_svg/117.주의,강조.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" fill="color-mix(in srgb, var(--color-critical) 25%, var(--color-surface))"/>
+                          <path d="M12.702 6.5H11.2976C11.1616 6.49978 11.027 6.52424 10.9021 6.57186C10.7772 6.61947 10.6646 6.68924 10.5713 6.77687C10.478 6.86449 10.406 6.96812 10.3596 7.08136C10.3132 7.1946 10.2934 7.31506 10.3016 7.43531L10.7398 14H13.2498L13.698 7.43531C13.7062 7.31506 13.6864 7.1946 13.64 7.08136C13.5937 6.96812 13.5216 6.86449 13.4283 6.77687C13.335 6.68924 13.2224 6.61947 13.0975 6.57186C12.9726 6.52424 12.838 6.49978 12.702 6.5Z" fill="var(--color-critical)"/>
+                          <path d="M12 18.3604C12.8284 18.3604 13.5 17.6888 13.5 16.8604C13.5 16.0319 12.8284 15.3604 12 15.3604C11.1716 15.3604 10.5 16.0319 10.5 16.8604C10.5 17.6888 11.1716 18.3604 12 18.3604Z" fill="var(--color-critical)"/>
+                        </svg>
+                      </span>
+                      <p class="industry-card-label">Pain Point</p>
+                      <p class="description">규제·보안 요건 탓에 AI 도입 시도가 번번이 멈춘다.</p>
+                    </li>
+                    <li class="industry-card">
+                      <span class="industry-card-icon icon-md" aria-hidden="true">
+                        <!-- AXpresso 적용 — images/icon/ic_axBuild.svg의 실제 path -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M21.5001 5L12.0001 1L2.50007 5V9C2.49107 12.0185 3.39297 14.9695 5.08786 17.4672C6.78276 19.9649 9.19179 21.8932 12.0001 23C14.8083 21.8932 17.2174 19.9649 18.9123 17.4672C20.6072 14.9695 21.5091 12.0185 21.5001 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4089 11.5203L15.2373 7.70001L17.0032 9.46964L11.3316 15.1293L7.7002 11.181L9.54027 9.48864L11.4089 11.5203Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
+                      <p class="industry-card-label">AXpresso 적용</p>
+                      <p class="description">국내 클라우드·거버넌스 기반의 심사·보고 업무 자동화.</p>
+                    </li>
+         <!-- 항목은 위 구조를 그대로 반복한다 (원본은 더 많다) -->
+                  </ul>
+                </div>
+
+                <div class="catalog-board__panel" data-catalog-panel="retail">
+                  <ul class="catalog-board__items industry-cards">
+                    <li class="industry-card">
+                      <span class="industry-card-icon industry-card-icon" aria-hidden="true">
+                        <!-- 주의,강조 — flat_icon_svg/117.주의,강조.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" fill="color-mix(in srgb, var(--color-critical) 25%, var(--color-surface))"/>
+                          <path d="M12.702 6.5H11.2976C11.1616 6.49978 11.027 6.52424 10.9021 6.57186C10.7772 6.61947 10.6646 6.68924 10.5713 6.77687C10.478 6.86449 10.406 6.96812 10.3596 7.08136C10.3132 7.1946 10.2934 7.31506 10.3016 7.43531L10.7398 14H13.2498L13.698 7.43531C13.7062 7.31506 13.6864 7.1946 13.64 7.08136C13.5937 6.96812 13.5216 6.86449 13.4283 6.77687C13.335 6.68924 13.2224 6.61947 13.0975 6.57186C12.9726 6.52424 12.838 6.49978 12.702 6.5Z" fill="var(--color-critical)"/>
+                          <path d="M12 18.3604C12.8284 18.3604 13.5 17.6888 13.5 16.8604C13.5 16.0319 12.8284 15.3604 12 15.3604C11.1716 15.3604 10.5 16.0319 10.5 16.8604C10.5 17.6888 11.1716 18.3604 12 18.3604Z" fill="var(--color-critical)"/>
+                        </svg>
+                      </span>
+                      <p class="industry-card-label">Pain Point</p>
+                      <p class="description">상품 등록·CS·정산 업무가 사람 손에 몰려 병목이 된다.</p>
+                    </li>
+                    <li class="industry-card">
+                      <span class="industry-card-icon icon-md" aria-hidden="true">
+                        <!-- AXpresso 적용 — images/icon/ic_axBuild.svg의 실제 path -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M21.5001 5L12.0001 1L2.50007 5V9C2.49107 12.0185 3.39297 14.9695 5.08786 17.4672C6.78276 19.9649 9.19179 21.8932 12.0001 23C14.8083 21.8932 17.2174 19.9649 18.9123 17.4672C20.6072 14.9695 21.5091 12.0185 21.5001 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4089 11.5203L15.2373 7.70001L17.0032 9.46964L11.3316 15.1293L7.7002 11.181L9.54027 9.48864L11.4089 11.5203Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
+                      <p class="industry-card-label">AXpresso 적용</p>
+                      <p class="description">CS 에이전트, 정산·콘텐츠 제작 자동화.</p>
+                    </li>
+         <!-- 항목은 위 구조를 그대로 반복한다 (원본은 더 많다) -->
+                  </ul>
+                </div>
+
+                <div class="catalog-board__panel" data-catalog-panel="it">
+                  <ul class="catalog-board__items industry-cards">
+                    <li class="industry-card">
+                      <span class="industry-card-icon industry-card-icon" aria-hidden="true">
+                        <!-- 주의,강조 — flat_icon_svg/117.주의,강조.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" fill="color-mix(in srgb, var(--color-critical) 25%, var(--color-surface))"/>
+                          <path d="M12.702 6.5H11.2976C11.1616 6.49978 11.027 6.52424 10.9021 6.57186C10.7772 6.61947 10.6646 6.68924 10.5713 6.77687C10.478 6.86449 10.406 6.96812 10.3596 7.08136C10.3132 7.1946 10.2934 7.31506 10.3016 7.43531L10.7398 14H13.2498L13.698 7.43531C13.7062 7.31506 13.6864 7.1946 13.64 7.08136C13.5937 6.96812 13.5216 6.86449 13.4283 6.77687C13.335 6.68924 13.2224 6.61947 13.0975 6.57186C12.9726 6.52424 12.838 6.49978 12.702 6.5Z" fill="var(--color-critical)"/>
+                          <path d="M12 18.3604C12.8284 18.3604 13.5 17.6888 13.5 16.8604C13.5 16.0319 12.8284 15.3604 12 15.3604C11.1716 15.3604 10.5 16.0319 10.5 16.8604C10.5 17.6888 11.1716 18.3604 12 18.3604Z" fill="var(--color-critical)"/>
+                        </svg>
+                      </span>
+                      <p class="industry-card-label">Pain Point</p>
+                      <p class="description">개발 조직 안에서도 AI 활용 편차가 크다.</p>
+                    </li>
+                    <li class="industry-card">
+                      <span class="industry-card-icon icon-md" aria-hidden="true">
+                        <!-- AXpresso 적용 — images/icon/ic_axBuild.svg의 실제 path -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M21.5001 5L12.0001 1L2.50007 5V9C2.49107 12.0185 3.39297 14.9695 5.08786 17.4672C6.78276 19.9649 9.19179 21.8932 12.0001 23C14.8083 21.8932 17.2174 19.9649 18.9123 17.4672C20.6072 14.9695 21.5091 12.0185 21.5001 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4089 11.5203L15.2373 7.70001L17.0032 9.46964L11.3316 15.1293L7.7002 11.181L9.54027 9.48864L11.4089 11.5203Z" fill="var(--color-brand)"/>
+                        </svg>
+                      </span>
+                      <p class="industry-card-label">AXpresso 적용</p>
+                      <p class="description">회의록·태스크 관리·지식베이스 에이전트로 협업 자동화.</p>
+                    </li>
+         <!-- 항목은 위 구조를 그대로 반복한다 (원본은 더 많다) -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

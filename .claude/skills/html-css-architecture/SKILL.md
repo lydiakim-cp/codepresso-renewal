@@ -23,7 +23,10 @@ description: 코드프레소 리뉴얼 사이트(순수 HTML/CSS/바닐라 JS �
 2. **`codepresso-designsystem.html`** — 카탈로그에 있으면 마크업 예시를 복사해 내용만 바꾼다.
 3. **`css/tokens.css`** — 색·간격·radius·폰트는 반드시 기존 토큰으로 표현한다.
 4. **[css-patterns.md](css-patterns.md)** — hover·아이콘·색 파생 등은 이미 정해진 방식이 있다.
-5. **어디에도 없을 때만 새로 만든다.** 그때도 새 파일부터 만들지 말고 기존 파일에 합칠 수 있는지 본다.
+5. **[references/anti-patterns.md](references/anti-patterns.md)** — 예전에 넣었다가 사용자가
+   걷어낸 것 목록이다. 여기 있는 것을 또 넣으면 같은 수정이 반복된다. **섹션·페이지를
+   만들기 전에 훑는다.**
+6. **어디에도 없을 때만 새로 만든다.** 그때도 새 파일부터 만들지 말고 기존 파일에 합칠 수 있는지 본다.
 
 **판단이 흔들릴 때:**
 
@@ -223,7 +226,8 @@ css/
 | **화면이 심심하다 — 배경·아이콘·모션으로 채운다** | [css-patterns.md](css-patterns.md) 4번 |
 | 섹션 배경·카드·그림자로 위계(3층)를 정한다(실측 기반) | [references/surface-depth.md](references/surface-depth.md) |
 | 제품 화면 목업에 연출을 넣는다 | [mock-motion-guide.md](mock-motion-guide.md) |
-| 새 서브페이지를 처음부터 만든다 | [subpage-guide.md](subpage-guide.md) |
+| 새 서브페이지를 처음부터 만든다 | **`templates/README.md`(조립 재료)** → [subpage-guide.md](subpage-guide.md) |
+| 예전에 걷어낸 것을 다시 넣지 않으려 확인한다 | [references/anti-patterns.md](references/anti-patterns.md) |
 | CSS 중복을 정리한다 / 리팩터링 후 확인한다 | [references/cleanup.md](references/cleanup.md) |
 | **작업을 마친 뒤 — 색·구조·배치를 디자이너 시점으로 검수한다** | [references/design-qa.md](references/design-qa.md) (대비 자동 검수: `scripts/contrast-audit.js`) |
 | **작업을 마치기 직전** | [references/checklist.md](references/checklist.md) |
@@ -262,6 +266,11 @@ HTML·CSS를 저장하면 `.claude/settings.json`의 훅이
 - **접근성** — native 태그 우선(`<button>` > `<div role="button">`), 장식용 SVG에 `aria-hidden="true"`, 이미지 `alt`. `:focus-visible`은 `reset.css`가 전역으로 처리하므로 컴포넌트에서 다시 쓰지 않는다.
 - **텍스트만 남기지 않는다** — 마크업을 다 넣었어도 텍스트 블록만 반복되면 완성이 아니다. 적용하지 않기로 한 것은 이유를 보고에 남긴다.
 - **끝냈으면 디자이너 시점으로 다시 본다** — 페이지·섹션을 새로 만들거나 크게 고쳤으면 **강조 섹션 / 강조 배경의 화면 끝 도달 / 움직이는 목업 / 애니메이션 절제 / 색 위계 3층**을 값으로 세어 확인한다. 눈으로 "괜찮아 보인다"로 넘기지 않는다 → [references/design-qa.md](references/design-qa.md)
+- **사용자가 직접 고쳤으면 그것을 회수한다** — "내가 고친 것 반영해줘"를 들으면
+  `scripts/harvest-feedback.js`로 마지막 회수 지점 이후의 변경을 뽑고, 그중
+  "넣었다가 지워진 것"을 [references/anti-patterns.md](references/anti-patterns.md)에
+  한 줄로 올린 뒤 `--update-marker`로 마커를 옮긴다. 손수정은 취향을 알려주는
+  유일한 채널이므로 커밋 메시지에만 남기고 흘리지 않는다.
 - **보고** — 지운 것과 **의도적으로 남긴 것(및 이유)** 을 함께 보고한다. 기존부터 깨져 있던 것과 이번에 깨진 것을 구분한다.
 
 ---

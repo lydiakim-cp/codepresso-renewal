@@ -1,0 +1,70 @@
+<!-- Section: hero — 첫 화면 — 태그 + h1 + 설명 + CTA + 유리 띠 보조 정보(hero-facts)
+     원본: skills.html:27. 문구만 바꿔 쓰고, 클래스·구조는 그대로 둔다. -->
+    <section class="sub-hero">
+      <div class="hero-wrap">
+        <div class="sub-hero-copy">
+          <p class="tag">People Axis · 일하는 사람의 전환</p>
+          <h1 class="hero-title">역량 진단·교육</h1>
+          <p class="hero-desc">좋은 교육은 강의 횟수가 아니라, <strong>사람의 변화</strong>로 설명되어야 합니다. <br data-break="desktop">역량을 진단하고, 부족한 영역만 학습하고, 재진단으로 성장을 증명합니다.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#" id="hero-diagnosis-cta">
+              3분 AI 활용 진단 시작
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 교육이 답해야 하는 세 가지 질문. hero 보조 정보의 공통 골격인 hero-facts
+             (유리 띠 1장 + 세로 구분선 + metric-card 슬롯)를 cases hero와 같은 마크업으로
+             그대로 쓴다 — 숫자 대신 질문이 __value 자리에 들어갈 뿐이다.
+             hero의 주인공은 제목·CTA이므로, 세 질문은 카드 3장이 아니라 유리 띠 한 장 안의
+             세 칸으로 눕혀 보조 역할로 내린다. -->
+        <ul class="hero-facts surface-glass">
+          <li class="metric-card">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 현재 수준 — images/icon/ic_barChart.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로
+                   바꾸고, 40 그리드 파일은 그림 범위로 viewBox를 잘라 광학 크기를 맞췄다. -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="var(--color-brand)"/>
+                <path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="var(--color-brand)"/>
+                <path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="var(--color-brand)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value">현재 수준은 어디인가?</div>
+              <p class="metric-card__label text-label">감이 아니라 실무 데이터로 진단합니다</p>
+            </div>
+          </li>
+          <li class="metric-card">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 무엇을 배울지 — images/flat_icon_svg/006.화상회의.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로
+                   바꾸고, 그림 범위로 viewBox를 잘라 광학 크기를 맞췄다. -->
+              <svg viewBox="3 1 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.9998 18H14.9998L16.7198 22.3199C16.7514 22.3951 16.7638 22.477 16.7558 22.5581C16.7478 22.6392 16.7197 22.7171 16.674 22.7846C16.6283 22.8521 16.5665 22.9072 16.4942 22.9448C16.4219 22.9824 16.3413 23.0014 16.2598 23H7.72981C7.6483 23.0014 7.56773 22.9824 7.4954 22.9448C7.42307 22.9072 7.36127 22.8521 7.31559 22.7846C7.26991 22.7171 7.2418 22.6392 7.23381 22.5581C7.22581 22.477 7.23819 22.3951 7.26982 22.3199L8.9998 18Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                <path d="M12 19C16.9706 19 21 14.9706 21 10C21 5.02944 16.9706 1 12 1C7.02944 1 3 5.02944 3 10C3 14.9706 7.02944 19 12 19Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                <path d="M12 12.5C13.3807 12.5 14.5 11.3807 14.5 10C14.5 8.61929 13.3807 7.5 12 7.5C10.6193 7.5 9.5 8.61929 9.5 10C9.5 11.3807 10.6193 12.5 12 12.5Z" fill="var(--color-brand)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value">무엇을 배워야 하는가?</div>
+              <p class="metric-card__label text-label">부족한 역량에 맞춰 학습을 조합합니다</p>
+            </div>
+          </li>
+          <li class="metric-card">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 무엇이 달라졌는가 — images/icon/ic_lineChart.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로
+                   바꾸고, 40 그리드 파일은 그림 범위로 viewBox를 잘라 광학 크기를 맞췄다. -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"/>
+                <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value">교육 후 무엇이 달라졌는가?</div>
+              <p class="metric-card__label text-label">재진단과 대시보드로 변화를 증명합니다</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>

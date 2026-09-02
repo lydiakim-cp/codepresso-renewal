@@ -1,0 +1,82 @@
+<!-- Section: catalog-filtered-list — 필터(part-nav) + 카드 목록 (outcome-card · js/case-filter.js · js/part-nav.js)
+     원본: cases.html:104. 문구만 바꿔 쓰고, 클래스·구조는 그대로 둔다. -->
+    <section class="catalog fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-left">
+          <h2>일하는 방식은 두 갈래로 바뀝니다</h2>
+          <p class="desc">손이 하던 일을 넘긴 조직과, 사람의 실력을 키운 조직. <br data-break="desktop">
+            모든 사례는 고객사 이름과 실제로 잰 수치를 그대로 싣습니다.</p>
+        </div>
+
+        <div class="section-content">
+          <!-- 필터. 앵커로 이동하는 탭이 아니라 목록을 거르는 컨트롤이라
+               <a>가 아닌 <button>이고, 활성 상태를 aria-pressed가 함께 알린다. -->
+          <div class="case-filter" data-case-filter>
+            <nav class="part-nav part-nav--compact part-nav--animated" aria-label="사례 분류">
+              <span class="part-nav-indicator" aria-hidden="true"></span>
+              <button type="button" class="part-nav-item is-active" data-case-tab="all" aria-pressed="true">전체</button>
+              <button type="button" class="part-nav-item" data-case-tab="tool" aria-pressed="false">업무 자동화</button>
+              <button type="button" class="part-nav-item" data-case-tab="people" aria-pressed="false">역량 진단·교육</button>
+            </nav>
+            <!-- 지금 몇 건이 남았는지. 화면 밖 사용자에게도 알리기 위해 aria-live를 둔다.
+                 내용은 case-filter.js가 채운다(JS가 없으면 카드는 전부 보이므로 이 줄만 빈다). -->
+            <p class="case-count text-caption" data-case-count role="status" aria-live="polite"></p>
+          </div>
+
+          <!-- 카드는 ax-build 06 Real Outcomes의 outcome-list(이전 → 이후 + 상세)와 역할이
+               같아 클래스 이름을 그대로 쓴다. 다만 그 정의가 ax-build.css 안(페이지 전용)이라
+               가져다 쓰면 스타일이 로드되지 않으므로, 인벤토리 C 규칙대로 구조만 본떠
+               cases.css에 다시 정의한다.
+
+               구조는 로고 판(.outcome-logo) + 본문(.outcome-body) 2단이고,
+               12곳 모두 고객사 실제 로고를 쓴다.
+               로고는 비율이 제각각이라(아모레퍼시픽 10:1 ~ 우하컴퍼니 1:1) 판을 고정하고
+               안에서 contain한다. 세로로 쌓인 로고(우하컴퍼니·부자테이프)만
+               .outcome-logo--tall로 높이 허용치를 올린다 — 가로형과 같은 44px로 묶으면
+               2단 로고가 절반 크기로 보인다.
+
+               before→after가 없는 사례는 성과 한 줄(.outcome-headline)이 .outcome-shift
+               자리를 대신 차지한다 — 둘은 같은 크기·같은 높이라 카드 리듬이 어긋나지 않는다. -->
+          <ul class="outcome-list" data-case-list>
+            <li data-case-axis="tool">
+              <div class="outcome-logo">
+                <img src="images/logos/logo-translink.svg" alt="트랜스링크인베스트먼트 로고" loading="lazy">
+              </div>
+              <div class="outcome-body">
+                <p class="outcome-tags">
+                  <span class="tag">업무 자동화 · AXpresso</span>
+                  <span class="tag tag-industry">금융·VC</span>
+                </p>
+                <p class="outcome-shift">
+                  <span class="outcome-before">3~5일</span>
+                  <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="outcome-after">1시간</span>
+                </p>
+                <p class="outcome-detail">월 <strong>30시간</strong> 절감. "의사결정 속도가 달라졌다"</p>
+                <p class="outcome-client">트랜스링크인베스트먼트 <span class="outcome-person">박희덕 대표</span></p>
+              </div>
+            </li>
+            <li data-case-axis="tool">
+              <div class="outcome-logo outcome-logo--invert">
+                <img src="images/logos/logo-chainlogis.png" alt="체인로지스 로고" loading="lazy">
+              </div>
+              <div class="outcome-body">
+                <p class="outcome-tags">
+                  <span class="tag">업무 자동화 · AXpresso</span>
+                  <span class="tag tag-industry">물류</span>
+                </p>
+                <p class="outcome-shift">
+                  <span class="outcome-before">2~4시간</span>
+                  <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="outcome-after">3분</span>
+                </p>
+                <p class="outcome-detail">월 <strong>80시간</strong> 절감, CS 문의 <strong>90%</strong> AI 처리. "풀타임 1명"</p>
+                <p class="outcome-client">체인로지스 <span class="outcome-person">김동현 대표</span></p>
+              </div>
+            </li>
+         <!-- 항목은 위 구조를 그대로 반복한다 (원본은 더 많다) -->
+          </ul>
+
+        </div>
+      </div>
+    </section>

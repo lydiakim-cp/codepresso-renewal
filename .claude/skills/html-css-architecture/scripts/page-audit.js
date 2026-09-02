@@ -89,6 +89,33 @@ for (const f of walkCss(path.join(ROOT, 'css'))) {
 }
 const exists = (p) => fs.existsSync(path.join(ROOT, p));
 
+/* templates/ 조각은 페이지가 아니다 — 링크·meta·스크립트 검사는 뜻이 없고,
+   "CSS에 없는 클래스"와 태그 균형만 본다. 조각이 썩으면 조립 결과가 썩는다. */
+const auditTemplate = (file) => {
+  const html = read(file);
+  const err = [];
+  const warn = [];
+
+  const unknown = new Set();
+  for (const m of html.matchAll(/class="([^"]*)"/g)) {
+    for (const cls of m[1].split(/\s+/)) {
+      /* {페이지이름} 같은 치환 자리표시자는 검사 대상이 아니다 */
+      if (cls && !cls.startsWith('{') && !definedClasses.has(cls) && !jsHooks.has(cls) && !SECTION_VOCAB.has(cls)) {
+        unknown.add(cls);
+      }
+    }
+  }
+  if (unknown.size) err.push(`CSS에 없는 클래스: ${[...unknown].join(', ')}`);
+
+  for (const tag of ['section', 'div', 'ul', 'ol', 'li', 'article', 'details']) {
+    const open = (html.match(new RegExp(`<${tag}[\\s>]`, 'g')) || []).length;
+    const close = (html.match(new RegExp(`</${tag}>`, 'g')) || []).length;
+    if (open !== close) err.push(`<${tag}> 짝이 맞지 않는다 (열림 ${open} · 닫힘 ${close}) — 조각을 자를 때 깨졌다`);
+  }
+
+  return { file, err, warn };
+};
+
 const auditPage = (file) => {
   const html = read(file);
   const name = path.basename(file, '.html');
@@ -224,9 +251,21 @@ const auditMobileCss = () => {
   return warn;
 };
 
+const TEMPLATE_DIR = path.join(ROOT, 'templates');
+const templateTargets = fs.existsSync(TEMPLATE_DIR)
+  ? ['templates/subpage.template.html']
+      .concat(
+        fs
+          .readdirSync(path.join(TEMPLATE_DIR, 'sections'))
+          .filter((f) => f.endsWith('.html'))
+          .map((f) => 'templates/sections/' + f)
+      )
+      .filter((f) => fs.existsSync(path.join(ROOT, f)))
+  : [];
+
 let failed = 0;
-for (const t of targets) {
-  const { file, err, warn } = auditPage(t);
+for (const t of targets.concat(templateTargets)) {
+  const { file, err, warn } = t.indexOf('templates/') === 0 ? auditTemplate(t) : auditPage(t);
   const head = err.length ? '✗' : warn.length ? '⚠' : '✓';
   console.log(`\n${head} ${file}`);
   err.forEach((m) => console.log(`  ✗ ${m}`));
@@ -239,5 +278,5 @@ console.log(`\n${mobileWarn.length ? '⚠' : '✓'} css/mobile.css`);
 mobileWarn.forEach((m) => console.log(`  ⚠ ${m}`));
 if (!mobileWarn.length) console.log('  900/720/560 각 1블록 — 통과');
 
-console.log(`\n${targets.length}개 페이지 중 ${failed}개에 오류가 있다.`);
+console.log(`\n${targets.length}개 페이지 + 조각 ${templateTargets.length}개 중 ${failed}개에 오류가 있다.`);
 process.exit(failed ? 1 : 0);

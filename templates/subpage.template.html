@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<!-- 서브페이지 골든 템플릿 — 이 파일을 루트에 {페이지이름}.html로 복사해서 시작한다.
+     새로 설계하지 않는다. 섹션은 templates/sections/*.html을 붙여 문구만 바꾼다. -->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{페이지 제목} | 코드프레소</title>
+
+  <!-- 검색 결과·링크 미리보기에 그대로 나가는 문구다. 비워 두면 page-audit가 막는다.
+       TODO: 운영 도메인이 확정되면 og:url·canonical을 절대 URL로 채운다. -->
+  <meta name="description" content="{80~120자 한 줄 소개 — hero 설명을 그대로 써도 된다}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{페이지 제목} | 코드프레소">
+  <meta property="og:description" content="{위 description과 같은 문구}">
+
+  <!-- CSS는 이 3개뿐이다. 컴포넌트 CSS를 <link>로 더하지 않는다(main.css가 전부 로드한다).
+       다크 페이지는 pages/{페이지이름}.css 맨 위에서 main-dark.css를 @import한다. -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/{페이지이름}.css">
+  <link rel="stylesheet" href="css/mobile.css">
+</head>
+
+<body>
+  <div data-include="partials/header.html"></div>
+
+  <!-- 페이지 스코프 = 파일명. 다크면 뒤에 main-dark를 붙인다. -->
+  <main class="{페이지이름}">
+
+    <!-- 01 첫 화면 — templates/sections/hero.html
+         hero에는 fade-up을 붙이지 않는다(이미 보이는 화면이다). -->
+
+    <!-- 02~ 본문 섹션 — 아래에서 골라 붙인다. 순서는 내용이 정한다.
+         고를 때는 component-inventory.md의 "콘텐츠 → 컴포넌트 역인덱스"를 본다.
+
+         features-card-3        기능·특징 3~4개 (아이콘 + 제목 + 설명)
+         catalog-board          분류가 있는 긴 목록 (좌측 레일 + 항목 판)
+         catalog-filtered-list  필터로 걸러 보는 카드 목록
+         process-timeline       기간·날짜가 붙는 단계
+         cycle-steps            기간 없는 N단계 (선형·순환)
+         outcomes-metric        누적 수치 카드 (카운트업)
+         outcomes-cases         고객사 로고 + 성과
+         statement              한 문장 전체 폭 강조 — 페이지당 1곳만
+         faq                    질문·답 아코디언
+         cta-final              최하단 전환 유도 (항상 마지막)
+
+         섹션 이름은 SKILL.md 4번 어휘표에서만 고른다. 표에 없으면 물어본다. -->
+
+  </main>
+
+  <div data-include="partials/footer.html"></div>
+
+  <!-- include-partials.js를 항상 맨 앞에 둔다. 아래 3개는 GNB·모션을 쓰는 한 필수다.
+       조각에 딸린 스크립트(js/catalog-board.js 등)는 그 조각을 붙였을 때만 더한다 —
+       빠뜨리면 인터랙션이 콘솔 에러 없이 조용히 죽는다(page-audit가 짝을 검사한다). -->
+  <script src="js/include-partials.js"></script>
+  <script src="js/fade-up.js"></script>
+  <script src="js/header-scroll.js"></script>
+  <script src="js/nav-menu.js"></script>
+</body>
+
+</html>

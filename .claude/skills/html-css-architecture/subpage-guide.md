@@ -30,7 +30,13 @@ Claude가 서브페이지를 만들기 전에, 요청에 아래 정보가 없으
 
 ## 1. 페이지 파일 뼈대 만들기
 
-새 서브페이지는 프로젝트 루트에 `{페이지이름}.html`로 만든다 (`sample/`, `pages/` 같은 하위 폴더에 넣지 않는다 — 루트의 `index.html`과 동일한 위치).
+**뼈대를 손으로 쓰지 않는다** — `templates/subpage.template.html`을 루트에
+`{페이지이름}.html`로 복사한다(`sample/`, `pages/` 같은 하위 폴더에 넣지 않는다 —
+루트의 `index.html`과 동일한 위치). 섹션은 `templates/sections/*.html`을 붙여
+문구만 바꾼다. 어느 조각을 고르는지는 [`templates/README.md`](../../../templates/README.md)의 표가 정한다.
+
+같은 내용을 두 번 받으면 같은 결과가 나와야 하므로, **조립이 기본이고 새로 쓰는 것이 예외다.**
+아래는 그 조각들이 왜 그렇게 생겼는지와, 조각으로 덮이지 않는 부분을 다룬다.
 
 ```html
 <!DOCTYPE html>
