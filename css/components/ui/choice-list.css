@@ -26,6 +26,8 @@
   color: inherit;
   align-items: center;
   gap: var(--space-20);
+  /* 좌우 padding만큼 밖으로 빼서 아이콘·텍스트가 컬럼의 다른 요소(제목·라벨)와
+     같은 선에서 시작하게 한다. hover·활성 면만 그 20px 바깥으로 번진다. */
   margin-inline: calc(-1 * var(--space-20));
   padding: var(--space-18) var(--space-20);
   border-radius: var(--radius-md);
