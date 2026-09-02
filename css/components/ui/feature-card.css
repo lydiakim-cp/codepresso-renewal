@@ -1,7 +1,5 @@
-/*
- * Component: Feature Card
- * 아이콘 + 제목 + 화살표 + 설명 기능 소개 카드. hover/active 시 옅은 배경만 나타난다.
- */
+/* Component: Feature Card
+   아이콘 + 제목 + 화살표 + 설명 기능 소개 카드. */
 
 .feature-card-grid {
   display: grid;
@@ -54,7 +52,7 @@
 
 .feature-card .section-body {
   flex: 1;
-  /* 우측 절대 위치 화살표와 겹치지 않게 여백 */
+
   padding-right: 32px;
 }
 
@@ -65,7 +63,6 @@
   width: var(--icon-box);
   height: var(--icon-box);
   padding: 4px;
-  border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
@@ -129,8 +126,6 @@
   color: var(--color-ink-light);
 }
 
-/* Active State — hover 또는 feature-card-cycle.js(자동 순환)가 붙이는 .is-active.
-   아이콘이 사라지고 화살표가 이동하며 설명이 나타난다. */
 .feature-card.is-active {
   background: var(--color-surface-sunken);
 }
@@ -145,7 +140,6 @@
   transform: translateY(calc(-1 * var(--motion-rise)));
 }
 
-/* 활성 카드의 라벨이 브랜드 색으로 바뀐다 */
 .feature-card.is-active .section-body-title {
   color: var(--color-brand);
 }
@@ -158,8 +152,6 @@
   opacity: 1;
   transform: translateY(0);
 }
-
-/* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */
 
 @media (prefers-reduced-motion: reduce) {
   .feature-card,

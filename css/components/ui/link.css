@@ -1,7 +1,5 @@
-/*
- * Component: Link Underline
- * 밑줄이 왼쪽에서 오른쪽으로 채워지는 hover 효과. 색상은 사용하는 쪽이 정한다.
- */
+/* Component: Link Underline
+   밑줄이 왼쪽에서 오른쪽으로 채워지는 hover 효과. */
 
 .link-underline {
   background-image: linear-gradient(currentColor, currentColor);
@@ -22,11 +20,6 @@
   }
 }
 
-/*
- * Component: Link Arrow
- * "텍스트 + 우측 chevron" 보조 링크. hero·cta-final에서 쓴다. 색상은 modifier가 맡는다.
- */
-
 .link-arrow {
   display: inline-flex;
   align-items: center;
@@ -43,7 +36,6 @@
   height: 14px;
 }
 
-/* 밝은 배경 위 (hero) */
 .link-arrow-ink {
   color: var(--color-ink-light);
 }
@@ -52,7 +44,6 @@
   color: var(--color-brand);
 }
 
-/* 어두운/브랜드 배경 위 (cta-final) */
 .link-arrow-inverse {
   color: color-mix(in srgb, var(--color-surface) 82%, transparent);
 }

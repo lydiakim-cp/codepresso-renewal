@@ -1,73 +1,41 @@
-/*
- * Page: skills.html (역량 진단·교육 제품 소개)
- * main.css 위에 얹는 페이지 전용 계층. 공용 컴포넌트로 표현 안 되는 hero·Growth Loop·
- * 제품 카드 배치만 정의한다.
- * cta-final·content-panel·timeline·feature-card·metric-card·faq-list는 모두
- * components/ui/에 있는 범용 컴포넌트라 main.css가 로드한다 — 여기서 따로 import하지 않는다.
- */
+/* Page: skills.html (역량 진단·교육 제품 소개)
+   main.css 위에 얹는 페이지 전용 계층. */
 
 @layer components {
-  /* 페이지 전체 레이아웃 wrapper */
   .skills {
     background: var(--color-surface);
     display: flex;
     flex-direction: column;
   }
 
-  /*
-   * 섹션 상하 여백의 리듬.
-   * layout.css의 공통값은 96px이고 대부분의 섹션은 그대로 쓴다. 다만 이 페이지는
-   * 섹션 11개에 10,254px이라, 전부 같은 여백이면 카드가 짧은 섹션에서 상하 공백이
-   * 200px 넘게 이어져 "빈 화면"으로 읽혔다. 콘텐츠 밀도에 반비례하게 조정한다.
-   *
-   * 공통값(96px)을 건드리지 않고 페이지 스코프에서만 덮는 이유 — 이 리듬은 이
-   * 페이지의 섹션 길이 분포에서 나온 판단이라 다른 페이지에 그대로 옮길 값이 아니다.
-   */
-
-  /* 카드가 짧아 여백이 남는 섹션 — 좁힌다 */
   .skills .process,
   .skills .faq {
     padding-block: 80px;
   }
 
-  /* 목업이 커서 숨 쉴 자리가 필요한 섹션 — 넓힌다 */
   .skills .catalog-learn,
   .skills .blend {
     padding-block: 120px;
   }
 
-  /* 브릿지는 머무는 곳이 아니라 다음 페이지로 넘어가는 통로다 — 가장 좁게.
-     이 섹션은 규칙이 없어 클래스를 달지 않았으므로(아래 1600행대 주석 참고)
-     안쪽 .bridge-inner로 지목한다. */
   .skills > section:has(.bridge-inner) {
     padding-block: 72px;
   }
 
-  /* ============================================================
-   * Hero — 공통 골격은 components/ui/hero.css. 이 페이지는 텍스처 위치와
-   * 세 가지 질문 밴드의 hover 인터랙션·등장 순서만 얹는다.
-   * ============================================================ */
+  /* Hero — 공통 골격은 components/ui/hero.css. 이 페이지는 텍스처 위치와 */
   .skills .sub-hero {
     --hero-texture-position: top left;
   }
 
-  /* 한 줄이 너무 길면 중앙 정렬 문단이 읽히지 않는다 */
   .skills .hero-desc {
     max-width: 720px;
   }
 
-  /* 핵심 한 마디만 본문 색으로 올려, 설명문 안에서도 읽는 순서를 만든다 */
   .skills .hero-desc strong {
     color: var(--color-ink);
     font-weight: var(--font-weight-semibold);
   }
 
-  /*
-   * 세 가지 질문 — 칸은 좌→우로 시간차를 준다. 이 셋이 순서라는 것
-   * (현재 수준 → 무엇을 배울지 → 무엇이 달라졌는지)을 등장 순서가 알려준다.
-   * hero-copy가 .32s에 끝나므로 그 뒤 .4s부터 이어 붙이고, 간격은 hero-copy와
-   * 같은 .08s로 맞춘다. 칸·아이콘 크기·구분선은 hero.css 공통 표준을 그대로 쓴다.
-   */
   .skills .hero-facts > li {
     animation: rise-in var(--duration-scroll) var(--ease-scroll) .4s both;
   }
@@ -75,115 +43,18 @@
   .skills .hero-facts > li:nth-child(2) { animation-delay: .48s; }
   .skills .hero-facts > li:nth-child(3) { animation-delay: .56s; }
 
-  /* ============================================================
-   * 01 The Growth Loop — Assess → Design → Learn → Prove 순환
-   * 공용 cycle 컴포넌트(css/components/ui/cycle.css)를 그대로 쓰고, 이 페이지만의
-   * 값(번호 자리에 단계 아이콘, 마지막 칸 톤, 작은 화살표, note 되감기)만 얹는다.
-   * ============================================================ */
-  .skills .cycle > li {
-    border: 1px solid var(--color-line);
-  }
-
-  /* 마지막 단계(Prove)만 브랜드 톤으로 올려 순환의 결론임을 보인다 */
-  .skills .cycle > li:last-child {
-    border-color: var(--color-brand-tint-2);
-    background: var(--color-surface-sunken);
-  }
-
-  /*
-   * 이 섹션은 번호 대신 단계 아이콘을 넣는다 — .cycle-no 자리를 아이콘 박스로
-   * 바꿔 쓴다. 박스는 안쪽 글리프와 짝을 맞춘다(icon-sm 20px → --icon-box-sm 32px).
-   */
   .skills .cycle-no {
-    width: var(--icon-box-sm);
-    height: var(--icon-box-sm);
-    border-radius: var(--radius-sm);
     background: var(--color-surface-sunken);
-    color: var(--color-brand);
-  }
-
-  .skills .cycle-no svg {
-    display: block;
-  }
-
-  .skills .cycle > li:last-child .cycle-no {
-    background: var(--color-surface);
-  }
-
-  /* 칸과 칸 사이 화살표. ax-build .shift-arrow와 같은 방식으로 경계에 걸터앉는다 */
-  .skills .cycle-arrow {
-    position: absolute;
-    top: 50%;
-    right: calc(var(--space-20) / -2);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;
-    border-radius: var(--radius-full);
-    background: var(--color-surface);
-    color: var(--color-brand);
-    box-shadow: var(--shadow-sm);
-    z-index: 1;
-  }
-
-  .skills .cycle-arrow svg {
-    display: block;
-    width: 14px;
-    height: 14px;
-  }
-
-  /*
-   * 순환을 실제로 한 번 보여준다.
-   * cycle-note가 "결과는 다음 성장 계획의 출발점"이라고 말하는데 화면은 4칸이
-   * 올라오고 끝이라 순환이 보이지 않았다. 진입 시 화살표가 좌→우로 차례로
-   * 밝아지고, 마지막에 note의 새로고침 아이콘이 한 바퀴 돌아 "처음으로 돌아감"을
-   * 맺는다.
-   *
-   * 무한 반복하지 않는 이유 — 단계는 쌓이는 것이라 다 켜진 뒤 도로 사라지면
-   * 방금 읽은 순서가 부정된다(mock-motion-guide F·stage에서 확인된 판단).
-   * 그래서 both로 한 번만 재생하고 완성 상태로 머문다.
-   *
-   * 섹션의 .fade-up.is-visible을 받아 시작하므로 별도 JS가 필요 없다
-   * (아래 "시간차 등장" 블록과 같은 방식).
-   *
-   * 카드 등장이 .24s(4번째 칸)에 끝나므로 화살표는 그 뒤부터 이어 붙인다.
-   */
-  .skills .fade-up .cycle-arrow {
-    /* 기본값을 완성 상태로 둔다 — 애니메이션이 실행되지 않는 환경(캡처·정지)에서도
-       화살표가 보여야 한다(mock-motion-guide "0% 프레임은 보이는 상태"). */
-    opacity: 1;
-  }
-
-  .skills .fade-up.is-visible .cycle-arrow {
-    animation: skills-cycle-flow .5s var(--ease-scroll) both;
   }
 
   .skills .fade-up.is-visible .cycle > li:nth-child(1) .cycle-arrow { animation-delay: .32s; }
   .skills .fade-up.is-visible .cycle > li:nth-child(2) .cycle-arrow { animation-delay: .52s; }
   .skills .fade-up.is-visible .cycle > li:nth-child(3) .cycle-arrow { animation-delay: .72s; }
 
-  /* 화살표가 한 번 브랜드색으로 차오르며 다음 칸으로 넘긴다 */
-  @keyframes skills-cycle-flow {
-    0% { transform: scale(1); box-shadow: var(--shadow-sm); }
-    45% {
-      transform: scale(1.35);
-      background: var(--color-brand);
-      color: var(--color-surface);
-      box-shadow: var(--shadow-md);
-    }
-    100% { transform: scale(1); box-shadow: var(--shadow-sm); }
-  }
-
-  /* 마지막 화살표(.72s + .5s)가 끝난 뒤 note가 이어받는다 */
   .skills .fade-up .cycle-note svg {
     transform: rotate(0deg);
   }
 
-  /* 공용 keyframes.css에는 요소를 회전시키는 것이 없다(spin-angle은 그라디언트용
-     --spin-angle 커스텀 프로퍼티를 돌리는 것이라 여기 쓸 수 없다). 이 페이지의
-     이 자리에서만 필요하므로 페이지 CSS에 둔다. */
   .skills .fade-up.is-visible .cycle-note svg {
     animation: cycle-rewind 1s var(--ease-scroll) 1.2s both;
   }
@@ -194,60 +65,38 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .skills .fade-up.is-visible .cycle-arrow,
     .skills .fade-up.is-visible .cycle-note svg {
       animation: none;
     }
   }
 
-  /* ============================================================
-   * 02 Why It Matters — feature-card 자동 순환. 활성 카드만 흰색으로 구분
-   * ============================================================ */
+  /* 02 Why It Matters — feature-card 자동 순환. 활성 카드만 흰색으로 구분 */
   .skills .features .feature-card.is-active {
     background: var(--color-surface);
     box-shadow: var(--shadow-sm);
   }
 
-  /*
-   * 비활성 카드도 설명을 남긴다 — 공용 컴포넌트는 비활성 설명을 opacity: 0으로
-   * 완전히 지우는데(feature-card.css), index에서는 카드가 짧아 티가 안 났지만
-   * 이 페이지는 카드가 380px 고정이라 아래 절반이 빈 사각형으로 남았다.
-   * "지금 여기 아님"은 대비만으로 충분히 읽히므로 .45로 낮춰 형태를 유지한다.
-   * 위치(translateY)까지 되돌려야 세 카드의 글줄이 같은 높이에서 시작한다.
-   */
   .skills .features .feature-card .section-body-description {
     opacity: .45;
     transform: translateY(0);
   }
 
-  /* 활성 카드는 다시 완전히 선명하게 — 위 규칙이 컴포넌트의 .is-active보다
-     뒤에 오므로(같은 specificity) 여기서 되돌려 준다. */
   .skills .features .feature-card.is-active .section-body-description {
     opacity: 1;
   }
 
-  /* ============================================================
-   * 03 Assess · 04 Learn — 제품 카드. 공용 content-panel을 그대로 쓰고
-   * 배치(그리드)와 기능 목록·자세히 링크만 이 페이지가 정의한다.
-   * ============================================================ */
+  /* 03 Assess · 04 Learn — 제품 카드. 공용 content-panel을 그대로 쓰고 */
   .skills .product-grid {
     display: grid;
     grid-template-columns: repeat(var(--product-cols, 2), minmax(0, 1fr));
     gap: var(--space-24);
   }
 
-  /*
-   * 04 Learn은 좌측 제목이 sticky로 고정된 채 우측 제품이 교차 페이드로 바뀐다.
-   * 스테이지 골격은 공용 components/ui/journey-stage.css이고, 판 높이와
-   * 마지막 구간 여유만 이 페이지가 넘긴다(index PART 1과 같은 방식).
-   */
   .skills .journey-stage {
     --stage-panel-height: 798px;
     --stage-tail: 560px;
   }
 
-  /* 좌측 학습 방식 목록 — index PART 1의 .diagnosis-products와 같은 묶음.
-     리스트 자체는 공용 .choice-list, 여기서는 라벨과의 간격만 잡는다. */
   .skills .learn-products {
     display: flex;
     flex-direction: column;
@@ -261,7 +110,6 @@
     background: var(--color-surface);
   }
 
-  /* 자세히 링크가 카드 아래에 붙어 카드 높이가 서로 달라도 밑줄이 맞는다 */
   .skills .product-grid .content-panel__item {
     height: 100%;
   }
@@ -279,33 +127,10 @@
     gap: var(--space-12);
   }
 
-  /*
-   * 제품 아이콘 — index.html이 쓰는 images/icon/ic_*.svg를 그대로 참조한다.
-   * 아이콘 파일 자체가 둥근 판(반투명 흰 면 + 테두리)을 품고 있어서
-   * 여기서 background·border-radius를 또 주면 판이 두 겹으로 겹친다.
-   * 그래서 index의 .choice-list__icon과 같이 48px 박스 안에 이미지만 채운다.
-   */
-  .skills .product-icon {
-    display: block;
-    width: var(--icon-box);
-    height: var(--icon-box);
-    flex: none;
-  }
-
-  .skills .product-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
   .skills .product-desc {
     color: var(--color-ink-light);
   }
 
-  /* 04 Learn 목업은 index PART 1과 같은 스테이지·같은 폭이라 별도 축소·높이
-     오버라이드가 필요 없다 — 공용 components/ui/product-mock.css 그대로 쓴다. */
-
-  /* 제품 특징 3줄 — 체크 아이콘 + 텍스트 */
   .skills .product-points {
     display: flex;
     flex-direction: column;
@@ -329,17 +154,11 @@
     display: block;
     width: 20px;
     height: 20px;
-    /* 14px 본문 첫 줄 중앙과 눈높이를 맞춘다 */
+
     margin-top: 1px;
     color: var(--color-brand);
   }
 
-  /*
-   * 시간차 등장 — 항목이 여럿인 블록은 숨겨져 있다가 순서대로 올라온다(사용자 확인됨).
-   * 섹션의 .fade-up.is-visible을 받아 시작하므로 별도 JS가 필요 없고,
-   * timeline.css가 이미 쓰는 방식과 같다(그쪽은 컴포넌트가 소유, 이쪽은 페이지가 소유).
-   * 지연은 .08s 간격 — hover 리듬(.1s)보다 짧게 잡아 목록이 늘어져 보이지 않게 한다.
-   */
   .skills .fade-up .cycle > li,
   .skills .fade-up .product-grid > li,
   .skills .fade-up .product-points > li,
@@ -364,21 +183,12 @@
   .skills .fade-up.is-visible :is(.cycle, .product-grid, .analyze-grid) > li:nth-child(3) { transition-delay: .16s; }
   .skills .fade-up.is-visible :is(.cycle, .product-grid, .analyze-grid) > li:nth-child(4) { transition-delay: .24s; }
 
-  /* 카드 안 특징 목록은 카드가 올라온 뒤에 이어진다 — 카드 지연(.24s) 뒤로 밀어 둔다 */
   .skills .fade-up.is-visible :is(.product-points, .analyze-points) > li:nth-child(1) { transition-delay: .28s; }
   .skills .fade-up.is-visible :is(.product-points, .analyze-points) > li:nth-child(2) { transition-delay: .34s; }
   .skills .fade-up.is-visible :is(.product-points, .analyze-points) > li:nth-child(3) { transition-delay: .40s; }
   .skills .fade-up.is-visible :is(.product-points, .analyze-points) > li:nth-child(4) { transition-delay: .46s; }
 
-  /* ============================================================
-   * 05 Blended Design — 사전진단 → 조합 → 재진단, 가로 3단 자동 순환.
-   * js/feature-card-cycle.js를 02 Why It Matters와 공유한다(그 스크립트는
-   * .feature-card를 몰라도 되게 자식 요소를 그대로 순회하도록 일반화했다).
-   * activate된 칸은 flex-grow가 2로 커져 2:1:1 비율이 되고, 그 칸의 텍스트
-   * 위에 목업(.blend-mock)이 펼쳐진다. 폭 전환은 카드 자체가 아니라
-   * flex-basis 없이 flex-grow만 바꿔서 만든다 — 셋의 grow 합이 4일 때
-   * activate된 칸이 항상 절반을 갖는다(2:1:1).
-   * ============================================================ */
+  /* 05 Blended Design — 사전진단 → 조합 → 재진단, 가로 3단 자동 순환. */
   .skills .blend-cycle {
     display: flex;
     align-items: stretch;
@@ -406,63 +216,33 @@
     box-shadow: var(--shadow-md);
   }
 
-  /* 진행 바 — feature-card와 같은 컴포넌트(.feature-card-progress*)를 그대로 쓴다 */
   .skills .blend-step .feature-card-progress {
     margin-bottom: var(--space-16);
   }
 
-  /*
-   * 목업 — 높이는 activate 여부와 무관하게 항상 고정한다(목업 3종 중 가장 높은
-   * 조합 설계 화면이 251px이라 260px). 높이까지 트랜지션하면 그 아래 제목·설명이
-   * 매번 위아래로 밀렸다 당겨져 읽기가 불안정해진다(사용자 지적) — opacity만
-   * 바꿔 자리는 그대로 두고 화면만 나타나고 사라지게 한다.
-   */
   .skills .blend-mock {
     height: 260px;
     margin-bottom: var(--space-20);
-    /*
-     * 비활성 목업을 숨기지 않는다 — opacity: 0 + visibility: hidden이면 STEP 1·2가
-     * 아무것도 없는 흰 판으로 남아 "덜 만든 칸"으로 읽혔다. 3단계가 항상 함께
-     * 보이고 활성 하나만 살아나야 "조합을 설계한다"는 섹션의 뜻이 전달된다.
-     * 뒤로 물러난 느낌은 축소·탈채도·투명도 셋으로 만든다.
-     */
+
     opacity: .35;
     filter: grayscale(1);
     transform: scale(.94);
-    /* 축소 기준을 위쪽 가운데로 — top left면 줄어든 목업이 좌측에 쏠려
-       칸 오른쪽에 빈 띠가 생긴다. 위를 기준으로 삼아야 활성/비활성 목업의
-       상단선이 서로 맞는다. */
+
     transform-origin: top center;
     transition: opacity var(--duration-scroll) var(--ease-scroll),
       filter var(--duration-scroll) var(--ease-scroll),
       transform var(--duration-scroll) var(--ease-scroll);
   }
 
-  /*
-   * 목업은 접지 말고 비율 그대로 줄인다(SKILL 7번). 카드 폭이 좁아지면
-   * 안쪽 2단 구성(조합 설계)이 눌려 라벨이 세로로 쪼개지고 목록이 잘렸다.
-   *
-   * 공용 --mock-fit을 쓰지 않는 이유 — 그 값은 100vw 기준이라 "목업이 화면 폭을
-   * 통째로 쓰는" 경우에만 맞다. 여기서는 화면이 아니라 카드 폭에 맞춰야 하므로
-   * 컨테이너 기준(cqw)으로 계산한다(04 Learn의 journey-mock과 같은 방식).
-   * 하한 .62는 공용 규칙과 같게 맞춘다.
-   */
   .skills .blend-mock {
     container-type: inline-size;
   }
 
   .skills .blend-mock .preview-frame {
-    /* 이 목업이 데스크톱 activate 상태에서 갖는 폭 */
     --mock-fit-width: 542px;
     width: var(--mock-fit-width);
     height: 100%;
-    /*
-     * 하한이 .5인 이유 — 공용 규칙(.62)을 쓰면 모바일 카드(약 285px)에서
-     * 목업이 336px로 넘쳐 우측이 잘린다. 이 목업은 안쪽이 2단 구성이라
-     * 넘치면 설계안 패널이 통째로 사라져 화면의 뜻이 없어진다.
-     * 가장 작은 글자(9px)가 .5에서 4.5px이 되지만, 이 크기에서 읽어야 하는 것은
-     * 형태(트랙 막대·체크·색)이지 글자가 아니라 판단해 잘림보다 축소를 택했다.
-     */
+
     zoom: max(.5, min(1, calc(100cqw / var(--mock-fit-width))));
   }
 
@@ -483,7 +263,7 @@
   .skills .blend-step-desc {
     margin-top: var(--space-6);
     color: var(--color-ink-light);
-    /* activate 전에는 칸이 좁아 설명이 넘칠 수 있으므로 2줄로 자른다 */
+
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
@@ -491,14 +271,6 @@
     overflow: hidden;
   }
 
-  /* ------------------------------------------------------------
-   * 목업 내부 — 세 화면(진단·조합·비교)이 공유하는 스케일과 부품.
-   *
-   * 목업 안 타이포는 서비스 페이지 14px 제약의 예외다(읽는 UI가 아니라
-   * 화면 그림). 다만 전부 최소 크기로 깔지 않고 4단 위계를 둔다 —
-   * mock-motion-guide.md의 .difference-screen-body 표준을 따른다.
-   * 변수는 이 목업 루트 안에만 선언해 9px가 실제 UI로 새지 않게 한다.
-   * ------------------------------------------------------------ */
   .skills .blend-mock-screen {
     --blend-text-title: 13px;
     --blend-leading-title: 18px;
@@ -513,14 +285,12 @@
     flex-direction: column;
   }
 
-  /* 브라우저 chrome의 주소 — 실제 제품 도메인을 보여 "돌아가는 화면"임을 알린다 */
   .skills .blend-mock-url {
     font-size: var(--blend-text-sm);
     line-height: var(--blend-leading-sm);
     color: var(--color-ink-lighter);
   }
 
-  /* chrome이 목업 폭을 차지하지 않게 줄인다 — 안쪽 화면에 자리를 더 준다 */
   .skills .blend-mock-screen .preview-frame__bar {
     padding: var(--space-8) var(--space-12);
     gap: var(--space-8);
@@ -554,7 +324,6 @@
     color: var(--color-ink-heaviest);
   }
 
-  /* 공용 배지를 목업 스케일로 줄인다 — 색·radius는 컴포넌트 것을 그대로 쓴다 */
   .skills .blend-mock-screen .journey-mock-badge {
     padding: 2px var(--space-6);
     font-size: var(--blend-text-sm);
@@ -566,7 +335,6 @@
     height: 4px;
   }
 
-  /* --- 진단 리포트(STEP 1) --- */
   .skills .blend-mock-score {
     display: flex;
     align-items: center;
@@ -588,7 +356,7 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    /* 게이지 시작점을 12시로 (SVG 기본 0도는 3시) */
+
     transform: rotate(-90deg);
   }
 
@@ -607,7 +375,6 @@
     color: var(--color-ink-lighter);
   }
 
-  /* 역량별 점수 범례 — 색 점으로 막대 차트와 짝을 맞춘다 */
   .skills .blend-mock-legend {
     display: flex;
     flex-direction: column;
@@ -631,20 +398,6 @@
     color: var(--color-ink);
   }
 
-  /*
-   * 세 단계를 잇는 인과를 짚는 표시.
-   * STEP 1에서 가장 낮았던 항목(AI 활용 26)과 STEP 3에서 가장 크게 오른 항목이
-   * 같다는 것이 이 섹션의 결론인데, 세 목업이 각각 따로 놀아 그 연결이 보이지
-   * 않았다. 두 자리에 같은 표시를 얹어 눈이 스스로 잇게 한다.
-   *
-   * 목업 사이로 요소가 날아가는 연출은 하지 않았다 — 세 목업이 서로 다른
-   * data-mock-motion(ticker·detail·ticker) 사이클을 각자 돌리는 독립 preview-frame이라,
-   * 넘나드는 모션을 넣으려면 새 연출값과 전용 JS가 필요하고 기존 사이클과 충돌한다.
-   * 비용 대비 얻는 것이 적다고 판단해 정적 표시로 잇는다.
-   *
-   * .is-focus는 mock-motion.css가 "지금 읽어야 하는 것"으로 정의한 공통 훅이지만
-   * 스타일은 focus·replay 연출에만 있다 — 여기서는 ticker이므로 이 페이지가 준다.
-   */
   .skills .blend-mock-legend > li.is-focus,
   .skills .blend-mock-delta-list > li.is-focus {
     color: var(--color-brand-dark);
@@ -663,7 +416,6 @@
     background: var(--color-brand);
   }
 
-  /* 점수대에 따라 색을 낮춘다 — 원색 하나만 쓰면 "부족한 영역"이 안 읽힌다 */
   .skills .blend-mock-dot.is-mid {
     background: color-mix(in srgb, var(--color-brand) 55%, var(--color-surface));
   }
@@ -672,16 +424,11 @@
     background: color-mix(in srgb, var(--color-brand) 28%, var(--color-surface));
   }
 
-  /*
-   * 역량별 막대 차트 — 높이는 mock-motion의 --mock-bar-h가 정하고 is-bar가 키운다.
-   * flex-shrink: 0이 없으면 부모(.blend-mock-body) 안에서 눌려 %로 계산되는
-   * 막대 높이가 전부 비슷해지고 데이터 차이가 안 보인다.
-   */
   .skills .blend-mock-bars {
     display: flex;
     align-items: flex-end;
     gap: var(--space-6);
-    /* 막대 5개의 높이 차(26~64%)가 눈에 읽히려면 이보다 낮출 수 없다 */
+
     height: 64px;
     flex: none;
   }
@@ -698,10 +445,10 @@
 
   .skills .blend-mock-bars i {
     display: block;
-    /* 칸 폭을 꽉 채우면 차트가 아니라 색 블록으로 보인다 — 사이를 띄운다 */
+
     width: 62%;
     height: var(--mock-bar-h, 50%);
-    /* 라벨이 차지하는 만큼 빼야 막대가 100%일 때 차트 밖으로 안 나간다 */
+
     max-height: calc(100% - var(--blend-leading-sm) - 3px);
     border-radius: var(--radius-sm) var(--radius-sm) 0 0;
     background: var(--color-brand);
@@ -713,7 +460,6 @@
     color: var(--color-ink-lighter);
   }
 
-  /* 응답 피드 행 — is-feed가 위에서 밀어 넣고 틴트로 반짝인다 */
   .skills .blend-mock-row {
     display: flex;
     align-items: center;
@@ -748,7 +494,6 @@
     color: var(--color-brand);
   }
 
-  /* --- 조합 설계(STEP 2) — 좌측 선택 · 우측 설계안 2단 --- */
   .skills .blend-mock-split {
     display: flex;
     flex: 1;
@@ -791,7 +536,6 @@
     color: var(--color-ink);
   }
 
-  /* 방식 구분(이러닝·집합교육·적응형) — 제품명 뒤에 한 단계 낮춰 붙인다 */
   .skills .blend-mock-combo em {
     margin-left: auto;
     font-size: var(--blend-text-sm);
@@ -800,7 +544,6 @@
     color: var(--color-ink-lighter);
   }
 
-  /* 공용 체크를 목업 스케일로 — 체크 표시 배경 크기도 함께 줄인다 */
   .skills .blend-mock-screen .journey-mock-check {
     width: 13px;
     height: 13px;
@@ -820,7 +563,6 @@
     padding: var(--space-10);
   }
 
-  /* 12주 설계안 — 주차별 트랙이 타임라인처럼 이어 붙는다 */
   .skills .blend-mock-plan {
     display: flex;
     flex-direction: column;
@@ -853,10 +595,6 @@
     color: color-mix(in srgb, var(--color-brand) 62%, var(--color-ink));
   }
 
-  /*
-   * 트랙 막대 — 12주 전체를 100%로 놓고 그 안에서 차지하는 구간을 보인다.
-   * 좌측 위치(--blend-track-x)가 있어야 세 트랙이 이어 붙은 것으로 읽힌다.
-   */
   .skills .blend-mock-plan i {
     grid-column: 1 / -1;
     position: relative;
@@ -882,8 +620,6 @@
     background: color-mix(in srgb, var(--color-brand) 62%, var(--color-ink));
   }
 
-  /* --- 전후 비교(STEP 3) --- */
-  /* 막대 차트와 같은 이유로 flex-shrink를 막는다(위 .blend-mock-bars 주석 참고) */
   .skills .blend-mock-compare {
     display: flex;
     align-items: flex-end;
@@ -913,7 +649,7 @@
     display: block;
     width: 100%;
     height: var(--mock-bar-h, 50%);
-    /* 위아래 라벨·수치가 차지하는 만큼 빼야 막대가 칸 밖으로 안 나간다 */
+
     max-height: calc(100% - var(--blend-leading-sm) - var(--blend-leading-lg) - 6px);
     border-radius: var(--radius-sm) var(--radius-sm) 0 0;
     background: var(--color-brand-tint-2);
@@ -930,7 +666,6 @@
 
   .skills .blend-mock-compare-col.is-after b { color: var(--color-brand); }
 
-  /* 상승폭 — 두 막대 사이에서 결론을 말하는 자리라 스케일을 한 단 올린다 */
   .skills .blend-mock-delta {
     display: flex;
     flex-direction: column;
@@ -953,7 +688,6 @@
     height: 14px;
   }
 
-  /* 역량별 변화량 — 이름 · 미터 · 상승폭 3열 */
   .skills .blend-mock-delta-list {
     display: flex;
     flex-direction: column;
@@ -997,10 +731,7 @@
     }
   }
 
-  /* ============================================================
-   * 06 Analyze & Prove — 대시보드·성과 보고 2블록.
-   * 03·04와 같은 product-grid 골격을 쓰되 아이콘 없이 텍스트 위계로만 나눈다.
-   * ============================================================ */
+  /* 06 Analyze & Prove — 대시보드·성과 보고 2블록. */
   .skills .analyze-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1012,7 +743,6 @@
     background: var(--color-surface);
   }
 
-  /* 첫 블록(조직 역량 대시보드)만 브랜드 톤 — "별도 제품이 아니라 기본"이 이 섹션의 결론 */
   .skills .analyze-grid .content-panel.is-primary {
     background: var(--color-surface-sunken);
   }
@@ -1029,12 +759,6 @@
     color: var(--color-ink-light);
   }
 
-  /*
-   * 확인 항목 목록.
-   * 이전에는 li마다 좌측에 브랜드 색 띠(border-left)를 세웠는데, 카드 안에
-   * 장식용 accent 선을 넣지 않는다는 원칙에 따라 점 마커로 바꿨다 —
-   * "열거"라는 뜻은 점으로도 같고, 카드 안에 세로선이 사라져 더 조용하다.
-   */
   .skills .analyze-points {
     display: flex;
     flex-direction: column;
@@ -1053,35 +777,23 @@
     flex: none;
     width: var(--space-6);
     height: var(--space-6);
-    /* baseline 정렬에서 점이 글자 가운데에 오도록 살짝 내린다 */
+
     transform: translateY(-2px);
     border-radius: var(--radius-full);
     background: var(--color-brand-tint-2);
     transition: background var(--duration-hover) var(--ease-hover);
   }
 
-  /* ------------------------------------------------------------
-   * 06 대시보드 목업 — 직무 × 역량 히트맵.
-   * 이 섹션만 목업이 없어 앞 세 섹션(03·04·05) 뒤에서 "덜 만든 칸"으로 읽혔다.
-   * 05의 blend-mock-screen과 같은 브라우저 chrome 골격을 쓰고, 안쪽만 히트맵으로
-   * 바꾼다. 격차를 글이 아니라 색의 농담으로 보여주는 것이 이 섹션의 주장이다.
-   * ------------------------------------------------------------ */
   .skills .analyze-mock {
     margin-bottom: var(--space-24);
     container-type: inline-size;
   }
 
   .skills .analyze-mock-screen {
-    /*
-     * 목업 안 글자는 14px 제약의 예외다(mock-motion-guide 5번). 3단 위계를
-     * 이 목업 루트 안에만 선언한다 — 전역 토큰으로 올리면 9px이 실제 UI로 샌다.
-     */
     --mock-text-title: 13px;
     --mock-text: 11px;
     --mock-text-sm: 9px;
 
-    /* 이 목업이 데스크톱에서 갖는 폭. 카드가 좁아지면 접지 말고 비율 그대로
-       줄인다(SKILL) — 히트맵은 격자라 접히면 열이 어긋나 뜻이 사라진다. */
     --mock-fit-width: 420px;
     width: var(--mock-fit-width);
     zoom: max(.6, min(1, calc(100cqw / var(--mock-fit-width))));
@@ -1112,20 +824,14 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  /* 공용 배지를 목업 스케일로 줄인다 — 색·radius는 컴포넌트 것을 그대로 쓴다
-     (05 blend-mock-screen과 같은 처리). */
   .skills .analyze-mock-screen .journey-mock-badge {
     padding: 2px var(--space-6);
     font-size: var(--mock-text-sm);
   }
 
-  /*
-   * 히트맵 — 5열(직무명 + 역량 4개) 격자. 행 높이를 고정해 칸이 정사각에
-   * 가깝게 남는다. gap을 2px로 좁혀야 칸들이 하나의 판으로 읽힌다.
-   */
   .skills .analyze-mock-heat {
     display: grid;
-    /* 첫 열은 "경영관리"(4자)가 한 줄에 들어가는 폭 — 좁히면 직무명이 잘린다 */
+
     grid-template-columns: 56px repeat(4, minmax(0, 1fr));
     gap: 2px;
     align-items: center;
@@ -1144,12 +850,10 @@
   .skills .analyze-mock-heat > i {
     height: 20px;
     border-radius: var(--radius-sm);
-    /* 기본은 잘하는 영역 — 진한 브랜드. 부족한 영역만 아래에서 옅게 내린다 */
+
     background: var(--color-brand);
   }
 
-  /* 점수대에 따라 농도를 낮춘다 — 원색 하나만 쓰면 "격차"가 안 읽힌다
-     (05 blend-mock-dot과 같은 판단) */
   .skills .analyze-mock-heat > i.is-mid {
     background: color-mix(in srgb, var(--color-brand) 45%, var(--color-surface));
   }
@@ -1158,13 +862,10 @@
     background: color-mix(in srgb, var(--color-brand) 18%, var(--color-surface));
   }
 
-  /* 칸이 순서대로 켜진다. 크기만 커지는 공용 scale-in을 쓴다(위치 고정 요소) —
-     0%·100%가 모두 보이는 상태라 캡처·정지 환경에서도 판이 완성돼 있다. */
   .skills .analyze-mock-screen .is-cell {
     animation: scale-in var(--duration-scroll) var(--ease-scroll) both;
   }
 
-  /* 우선 보완 — 가장 큰 격차 3개. 히트맵이 현황이고 이쪽이 결론이다 */
   .skills .analyze-mock-gap {
     display: flex;
     flex-direction: column;
@@ -1193,10 +894,6 @@
     font-size: var(--mock-text);
   }
 
-  /*
-   * 가로 막대 — 공용 ticker의 .is-bar는 height를 키우는 세로 막대라 여기서는
-   * 쓸 수 없다. 폭이 자라는 것은 이 목업에만 필요하므로 width로 따로 둔다.
-   */
   .skills .analyze-mock-bars i {
     height: var(--space-6);
     width: var(--mock-bar-h, 50%);
@@ -1205,8 +902,6 @@
     animation: analyze-gap-grow 1.4s cubic-bezier(.22, 1, .36, 1) both;
   }
 
-  /* 시작 폭도 목표치의 일부로 둬서, 애니메이션 미실행 시에도 막대가 사라지지
-     않게 한다(mock-motion.css의 mock-bar-grow와 같은 판단). */
   @keyframes analyze-gap-grow {
     0% { width: calc(var(--mock-bar-h, 50%) * .3); }
     100% { width: var(--mock-bar-h, 50%); }
@@ -1219,8 +914,6 @@
     text-align: right;
   }
 
-  /* 성과 보고 목업 — 전체 상승폭이 결론이라 목업 스케일 위로 올린다
-     (mock-motion-guide 5번: 결론 수치는 4단 위계 위로 올려도 된다) */
   .skills .analyze-mock-lift {
     display: flex;
     align-items: center;
@@ -1246,7 +939,6 @@
     line-height: 1.5;
   }
 
-  /* 다음 투자 우선순위 — is-feed로 위에서 밀려들며 한 번 반짝인다 */
   .skills .analyze-mock-row {
     display: flex;
     align-items: center;
@@ -1268,20 +960,15 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    /* 정지 상태에서도 판과 막대가 완성돼 있어야 한다 */
     .skills .analyze-mock-screen .is-cell,
     .skills .analyze-mock-bars i {
       animation: none;
     }
   }
 
-  /* ============================================================
-   * 07 Proof — 누적 수치 4개. metric-card + stat-reveal 카운트업.
-   * ============================================================ */
+  /* 07 Proof — 누적 수치 4개. metric-card + stat-reveal 카운트업. */
 
-  /* ============================================================
-   * 도구 연결 브릿지 — 이 페이지(진단·교육)에서 자동화 페이지로 넘기는 한 줄
-   * ============================================================ */
+  /* 도구 연결 브릿지 — 이 페이지(진단·교육)에서 자동화 페이지로 넘기는 한 줄 */
   .skills .bridge-inner {
     display: flex;
     align-items: center;
@@ -1298,15 +985,12 @@
     min-width: 0;
   }
 
-  /* summary-banner.dark 위의 제목. base.css h2(40px)는 배너 안에서 과하고,
-     cta-final-title은 최하단 CTA 소유라 빌려 쓰지 않는다 — 카드 제목 스케일로 낮춘다. */
   .skills .bridge-title {
     font-size: var(--text-heading-32);
     line-height: var(--leading-heading-32);
     color: var(--color-surface);
   }
 
-  /* 화살표가 한 번 오른쪽으로 튀어 이동을 예고한다 — 공용 nudge를 쓴다 */
   .skills .fade-up.is-visible .bridge-inner .btn > svg {
     animation: nudge .6s var(--ease-scroll) .7s 2;
   }
@@ -1323,65 +1007,29 @@
     color: color-mix(in srgb, var(--color-surface) 76%, transparent);
   }
 
-  /* ============================================================
-   * 섹션 배경 리듬 — 3단으로 벌린다.
-   *
-   * 처음엔 흰 면과 --color-surface-sunken을 번갈아 뒀는데 흰색 대비 1.06
-   * (6% 차이)이라 경계가 안 보이고 화면이 통째로 허여멀건해졌다.
-   *
-   * 그래서 옅은 면을 한 단계 진한 --color-brand-tint-2(대비비 1.15)로 올리고,
-   * 그 위에 놓이는 카드를 흰색 + 경계선으로 띄워 판과 카드가 확실히 갈리게 했다.
-   * 배경만으로는 한계가 있어 위계는 배경·카드·경계선 3층으로 만든다.
-   * ============================================================ */
+  /* 섹션 배경 리듬 — 3단으로 벌린다. */
   .skills .features,
   .skills .catalog-learn,
   .skills .features-analyze {
     background: var(--color-brand-tint-2);
   }
 
-  /* 옅은 판 위의 카드는 흰색으로 띄운다 — 판과 카드가 같은 색이면 카드가 사라진다 */
   .skills .catalog-learn .content-panel:not(.journey-viewport),
   .skills .features-analyze .content-panel {
     border: 1px solid color-mix(in srgb, var(--color-brand) 12%, transparent);
   }
 
-  /* 흰 면(hero·01·03·05·08) 위의 카드는 반대로 옅은 판으로 가라앉힌다 */
   .skills .catalog .content-panel {
     background: var(--color-surface-sunken);
     border-color: var(--color-line);
   }
 
-  /* --- 강조 구간: 07 Proof만 어두운 판 --- */
   .skills .outcomes.is-dark {
     position: relative;
     overflow: hidden;
-    background-color: var(--color-ink-heaviest);
+    background-color: var(--color-axpresso-bg-2);
   }
 
-  /* 배경 질감 — cta-final과 같은 이미지지만 다른 구역·배율을 써서 반복을 피한다 */
-  .skills .outcomes.is-dark::before {
-    content: "";
-    position: absolute;
-    inset: -30px;
-    background-image: url("../../images/bg-line2.png");
-    background-repeat: no-repeat;
-    background-position: center right;
-    background-size: 150%;
-    filter: blur(8px);
-    opacity: 0.5;
-    pointer-events: none;
-  }
-
-  .skills .outcomes.is-dark::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg,
-        color-mix(in srgb, var(--color-ink-heaviest) 88%, transparent) 0%,
-        color-mix(in srgb, var(--color-brand-dark) 62%, var(--color-ink-heaviest)) 100%);
-    opacity: 0.75;
-    pointer-events: none;
-  }
 
   .skills .outcomes.is-dark .section-wrap {
     position: relative;
@@ -1392,17 +1040,48 @@
     color: var(--color-surface);
   }
 
-  /* 어두운 판 위에서는 옅은 틴트 배지가 묻히므로 반투명 흰색으로 반전한다 */
   .skills .outcomes.is-dark .tag {
-    background: color-mix(in srgb, var(--color-surface) 16%, transparent);
+    background: transparent;
     color: var(--color-surface);
   }
 
-  /* 카드는 유리 표면으로 띄운다 — 흰 단색이면 판이 뚫린 것처럼 보인다 */
-  .skills .outcomes.is-dark .metric-card {
-    background: color-mix(in srgb, var(--color-surface) 8%, transparent);
+  /* 수치 카드는 ax-grow 07과 같은 content-panel start-card 배치다(아이콘 박스 → 라벨 → 수치). */
+  .skills .outcomes.is-dark .start-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-24);
+  }
+
+  /* 어두운 판 위라 면은 흰색 8% 유리로 낸다(ax-grow는 axpresso box 토큰). */
+  .skills .outcomes.is-dark .start-card {
+    height: 100%;
+    background: var(--color-axpresso-box-tint);
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
+    opacity: 0;
+    transform: translateY(var(--motion-rise));
+    transition: opacity var(--duration-scroll) var(--ease-scroll),
+      transform var(--duration-scroll) var(--ease-scroll);
+  }
+
+  /* is-visible은 stat-reveal.js가 붙인다(마크업의 data-stat-card=".start-card"). */
+  .skills .outcomes.is-dark .start-card.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .skills .outcomes.is-dark .start-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-box);
+    height: var(--icon-box);
+    border-radius: var(--radius-md);
+    background: var(--color-axpresso-box-tint);
+  }
+
+  .skills .outcomes.is-dark .start-icon svg {
+    display: block;
   }
 
   .skills .outcomes.is-dark .metric-card__value {
@@ -1413,23 +1092,23 @@
     color: color-mix(in srgb, var(--color-surface) 76%, transparent);
   }
 
-  /* 도구 연결 브릿지 섹션은 배경을 따로 칠하지 않는다 — .skills wrapper가
-     이미 흰 면이고, 안쪽 summary-banner.dark가 어두운 판을 갖는다. 섹션 자체에
-     규칙이 없어 클래스를 달지 않았다(SKILL 5번) — 안쪽 .bridge-* 만 정의한다. */
+  @media (prefers-reduced-motion: reduce) {
+    .skills .outcomes.is-dark .start-card {
+      opacity: 1;
+      transform: none;
+      transition-duration: 0.001ms;
+    }
+  }
 
-  /* 최하단 CTA — 공용 cta-final 배경을 우측 상단 구역으로 변경 */
   .skills .cta-final::before {
     background-position: top right;
     background-size: 200%;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    /* 진입 애니메이션은 끈다. 질문 카드는 ul이 아니라 li가 애니메이션을
-       갖는다(좌→우 시간차) — 여기서도 li를 지목해야 꺼진다. */
     .skills .sub-hero-copy > *,
     .skills .hero-facts > li { animation: none; }
 
-    /* 시간차 등장은 지연 없이 완성된 상태로 정지한다 */
     .skills .fade-up .cycle > li,
     .skills .fade-up .product-grid > li,
     .skills .fade-up .product-points > li,
@@ -1448,6 +1127,4 @@
       transition-delay: 0s;
     }
   }
-
-  /* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다 */
 }

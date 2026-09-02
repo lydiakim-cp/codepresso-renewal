@@ -1,7 +1,5 @@
-/*
- * Component: Badge / Pill / Tag / Swatch
- * 숫자 뱃지(h2 내 번호), pill 라벨, 얕은 radius 태그, 컬러 스와치.
- */
+/* Component: Badge / Pill / Tag / Swatch
+   숫자 뱃지(h2 내 번호), pill 라벨, 얕은 radius 태그, 컬러 스와치. */
 
 .heading-number {
   display: inline-flex;
@@ -18,7 +16,6 @@
   flex: none;
 }
 
-/* hero(assessment-card)의 캡슐형 라벨. */
 .pill {
   display: inline-block;
   padding: var(--space-6) 14px;
@@ -40,8 +37,6 @@
   line-height: var(--leading-body-14);
 }
 
-/* 채운 변형 — 흰 카드 위에서 카테고리(뉴스·공지)를 또렷하게 찍는 라벨.
-   기본 .tag(연한 틴트)보다 작고 진하다. insight 미디어 카드가 쓴다. */
 .tag.is-solid {
   padding: 3px 8px;
   height: 20px;

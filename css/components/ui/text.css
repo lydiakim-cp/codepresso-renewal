@@ -1,10 +1,6 @@
-/*
- * Component: Text Utilities
- * 섹션이 달라도 같은 크기·굵기·색으로 반복되는 텍스트 역할을 공용 클래스로 묶는다.
- * 색만 다른 경우는 별도 클래스를 새로 만들지 않고 modifier로 붙인다.
- */
+/* Component: Text Utilities
+   섹션이 달라도 같은 크기·굵기·색으로 반복되는 텍스트 역할을 공용 클래스로 묶는다. */
 
-/* 공용 라벨 — 통계·소제목처럼 짧게 값을 짚는 자리. */
 .text-label {
   font-size: var(--text-body-14);
   line-height: var(--leading-body-14);
@@ -12,13 +8,11 @@
   color: var(--color-ink-light);
 }
 
-/* 소제목 라벨 — "01. 설계"처럼 상위 그룹을 가리키는 브랜드 컬러 라벨. */
 .text-label.brand {
   font-weight: var(--font-weight-semibold);
   color: var(--color-brand);
 }
 
-/* 캡션 — 리스트 항목의 보조 설명문. .strong은 숫자 인디케이터 등 강조용. */
 .text-caption {
   font-size: var(--text-body-14);
   line-height: var(--leading-body-14);
@@ -33,14 +27,12 @@
   font-weight: var(--font-weight-medium);
 }
 
-/* 스테이지 스텝 타이틀 — education-journey·diagnosis-showcase의 교차 페이드 판 24px 타이틀(태그는 h3). */
 .stage-step-title {
   font-size: var(--text-heading-24);
   line-height: var(--leading-heading-24);
   color: var(--color-ink-heaviest);
 }
 
-/* 섹션 설명문. education-journey의 블록 설명(journey-block-desc)도 공유. */
 .desc {
   font-size: var(--text-body-18);
   line-height: var(--leading-body-18);
@@ -48,14 +40,14 @@
   color: var(--color-ink-light);
 }
 
-/* 카탈로그 문서용 보조 설명 텍스트. .sub은 p 기본 크기(16px) 유지, 색만 낮춤. */
 .sub {
   color: var(--color-ink-lighter);
 }
 
+/* 카드 본문 설명 — 14px/ink-light. cycle·outcome·problem 카드가 함께 쓴다. */
 .description {
   color: var(--color-ink-light);
   font-size: var(--text-body-muted);
+  line-height: var(--leading-body-muted);
 }
 
-/* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */

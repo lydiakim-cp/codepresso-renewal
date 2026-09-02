@@ -3,7 +3,6 @@
 @layer components {
   .skillcertify { }
 
-  /* Hero — 좌우 2단(좌 카피+CTA, 우 목업). sub-hero 배경은 유지, 정렬만 덮는다. */
   .skillcertify .sub-hero .hero-wrap {
     padding-top: 160px;
   }
@@ -33,7 +32,6 @@
     height: auto;
   }
 
-  /* 고민 3카드 — 문제 제기 3칸. 옅은 면 위 흰 카드. */
   .skillcertify .pain-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -51,7 +49,6 @@
     line-height: var(--leading-body-18);
   }
 
-  /* 01~04 — 좌우 2단(좌 라벨·제목·체크리스트, 우 목업). 옅은/흰 배경 교차. */
   .skillcertify .product-feature.is-sunken {
     background: var(--color-surface-sunken);
   }
@@ -59,8 +56,6 @@
   .skillcertify .product-feature .section-wrap.row {
     align-items: center;
   }
-
-  /* feature-eyebrow는 공용 .tag 배지를 그대로 쓴다 */
 
   .skillcertify .feature-copy {
     max-width: 480px;
@@ -105,7 +100,6 @@
     justify-content: center;
   }
 
-  /* 목업 4종 크기(616×480) 통일 — certify_0만 비율 달라 object-fit 사용 */
   .skillcertify .feature-visual img {
     display: block;
     width: 100%;
@@ -115,19 +109,12 @@
     filter: drop-shadow(var(--shadow-md));
   }
 
-  /*
-   * 06 · 고객 사례 — 공용 outcome-card(components/ui/outcome-card.css) 그대로 쓴다.
-   * 카드 껍데기·그리드(3열)·로고 판·본문 골격·gap·headline/detail·고객사 텍스트가
-   * cases.html과 완전히 같아 이 페이지만의 오버라이드가 필요 없다.
-   */
-
   .skillcertify .cases-more {
     display: flex;
     justify-content: center;
     margin-top: var(--space-32);
   }
 
-  /* 05 · 2주 PoC — 공용 cycle, 5단계 선형(순환 아님). 열 수만 지정 */
   .skillcertify .cycle {
     --cycle-columns: 5;
   }
@@ -148,6 +135,4 @@
     color: var(--color-ink-lighter);
     text-align: center;
   }
-
-  /* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다. */
 }

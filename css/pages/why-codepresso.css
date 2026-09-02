@@ -1,63 +1,20 @@
-/*
- * Page: why-codepresso.html (코드프레소 차별점 — 데이터 선순환)
- * main.css 위에 얹는 페이지 전용 계층. 공용 컴포넌트로 표현 안 되는 것만 정의한다.
- * compare-panel·summary-banner·content-panel·timeline·catalog-board·
- * preview-frame·cta-final은 모두 components/ui/의 범용 컴포넌트라 main.css가
- * 로드한다 — 여기서 따로 import하지 않는다.
- *
- * 스코프가 .difference가 아니라 .difference-page인 이유 —
- * index.css의 PART 3 섹션이 이미 스코프 없이 `.difference`를 쓰고 있고, 그 파일은
- * designsystem.css가 통째로 @import하므로 이름을 그대로 쓰면 두 규칙이 섞인다.
- */
+/* Page: why-codepresso.html (코드프레소 차별점 — 데이터 선순환)
+   main.css 위에 얹는 페이지 전용 계층. */
 
 @layer components {
-  /*
-   * 페이지 전체 레이아웃 wrapper — 흰 면이다.
-   *
-   * 페이지 전체를 틴트로 깔았다가 되돌렸다. 페이지 한 장이 통째로 같은 면이면
-   * 섹션 경계가 사라져서 9개 섹션이 한 덩어리로 흐른다 — 스크롤해도 "넘어간다"는
-   * 감각이 없다. 배경은 페이지가 아니라 **섹션이 각자** 갖는다(아래 배경 리듬).
-   */
   .difference-page {
     background: var(--color-surface);
     display: flex;
     flex-direction: column;
   }
 
-  /* ============================================================
-   * 섹션 배경 리듬 — 흰 면과 틴트 면을 번갈아 둔다.
-   *
-   * 옅은 면으로 --color-surface-sunken을 쓰지 않는다. 흰색 대비 1.06(6% 차이)
-   * 이라 경계가 안 보인다. skills에서 정한 brand-tint-2(1.15)를 그대로 쓴다.
-   *
-   *   hero        흰 면      02는 어차피 바로 아래 판이 온다
-   *   01 outcomes 틴트       나쁜 수치 4장 — 판으로 묶는다
-   *   02 intro    흰 면      실패/우리 두 판이 스스로 면을 갖는다
-   *   03 process  틴트       순환 4단
-   *   04 journey  흰 면      좌측 타임라인 + 우측 목업
-   *   05 position 어두운 판  페이지의 유일한 강조 구간(is-dark)
-   *   06 features 흰 면
-   *   07 catalog  틴트
-   *   08 cta      (컴포넌트가 자기 배경을 갖는다)
-   * ============================================================ */
+  /* 섹션 배경 리듬 — 흰 면과 틴트 면을 번갈아 둔다. */
   .difference-page .outcomes,
   .difference-page .process,
   .difference-page .catalog {
     background: var(--color-brand-tint-2);
   }
 
-  /*
-   * 섹션 상하 여백의 리듬.
-   *
-   * 레퍼런스를 실측해보니 우리보다 세로로 훨씬 넉넉하다 —
-   * 레퍼런스 10789/1905 = 5.66 페이지높이(섹션 8개),
-   * 우리 7000/1440 = 4.86(섹션 9개). 폭 대비 16% 더 여유롭고 섹션은 더 적다.
-   * "깔끔하다"의 절반은 이 여백이었다.
-   *
-   * 처음엔 03·04를 80px로 좁혔는데(카드 한 줄이라 공백이 남아 보였다)
-   * 그건 반대 방향이었다 — 공통 96px을 되돌리고, 내용이 한 줄로 끝나는
-   * 섹션은 오히려 더 벌려 숨을 준다.
-   */
   .difference-page .process,
   .difference-page .journey,
   .difference-page .features {
@@ -68,21 +25,11 @@
     padding-block: 140px;
   }
 
-  /* ============================================================
-   * Hero — 공통 골격은 components/ui/hero.css. 이 페이지는 텍스처 위치만 정의한다.
-   * (3칸 대비 hero-compare는 뺐다 — surface-glass 판이 hero 텍스처와 겹쳐
-   * 탁해 보였고, hero-desc 한 문장과 내용도 겹쳤다.)
-   * ============================================================ */
+  /* Hero — 공통 골격은 components/ui/hero.css. 이 페이지는 텍스처 위치만 정의한다. */
   .difference-page .sub-hero {
     --hero-texture-position: top right;
   }
 
-  /*
-   * hero-compare를 뺀 뒤 태그+제목+설명 3줄만 남아, CTA·보조 3칸까지 채우는
-   * ax-build·skills(실측 615~630px)보다 hero가 눈에 띄게 낮아졌다.
-   * 콘텐츠를 더 채우는 대신 높이만 맞춘다 — hero-wrap을 세로 중앙 정렬해
-   * 내용이 판 위쪽에 쏠리지 않게 한다.
-   */
   .difference-page .hero-wrap {
     min-height: 620px;
     display: flex;
@@ -90,65 +37,40 @@
     justify-content: center;
   }
 
-  /* 중앙 정렬 문단은 한 줄이 길어지면 읽히지 않는다 */
   .difference-page .hero-desc {
     max-width: 760px;
   }
 
-  /* 결론 한 마디만 본문 색으로 올려, 설명문 안에서도 읽는 순서를 만든다 */
   .difference-page .hero-desc strong {
     color: var(--color-ink);
     font-weight: var(--font-weight-semibold);
   }
 
-  /*
-   * ── 공용 컴포넌트의 "평소 그림자" 끄기 ──
-   * catalog-board·card 등은 상시 --shadow-sm을 깔고 있다.
-   * 이 페이지는 면 반전으로 공간을 만들므로 그 그림자가 겹쳐 탁해진다.
-   * 공용 파일을 아직 건드리지 않고(다른 페이지 영향 없음) 이 페이지 안에서만 끈다 —
-   * 시안이 확정되면 components/ui/로 올린다.
-   * (hero-compare는 더 이상 compare-panel을 쓰지 않는다 — hero.css가 그림자 없음을
-   *  이미 표준으로 갖고 있어 여기서 다시 끄지 않는다.)
-   *
-   * 끄지 않는 것: preview-frame(제품 창은 페이지 위에 떠 있어야 한다) ·
-   * floating-cta(화면에 실제로 떠 있는 배너) · timeline 마커 링(색 표시) ·
-   * metric-card__glow(inset) · mock-motion 키프레임(그 자체가 상호작용 연출).
-   */
   .difference-page .catalog-board__category,
   .difference-page .card {
     box-shadow: none;
   }
 
-  /* ============================================================
-   * 01 The Problem — 나쁜 수치 4개를 2x2로
-   *
-   * metric-card를 쓰지 않는 이유 — 그 컴포넌트는 성과 지표용이라 큰 숫자 +
-   * 우측 아이콘 조합이 전부 "자랑"으로 읽힌다. 여기 네 수치 중 셋은 나쁜
-   * 수치인데 좋은 소식처럼 보였다. 숫자와 도형이 같은 방향(나쁨)을 말하도록
-   * 전용 카드로 만든다.
-   * ============================================================ */
+  /* 01 The Problem — 나쁜 수치 4개를 2x2로 */
   .difference-page .problem-grid {
     display: grid;
-    /* 1행 4열. 넷을 한 줄에 두면 88% 하나와 나머지 셋의 낙차가 한눈에 잡힌다
-       (사용자 확인 — 2x2에서 되돌렸다). */
+
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-20);
   }
 
   .difference-page .problem-card {
     display: flex;
-    /* 4열이라 카드 폭이 좁다 — 본문과 도형을 좌우로 두면 둘 다 눌린다.
-       도형을 위에 두고 본문을 아래로 흘린다. */
+
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-20);
     padding: var(--space-28) var(--space-24);
-    /* 테두리 없음 — 틴트 판(brand-tint-2) 위의 흰 카드라 면 차이만으로 뜬다.
-       경계선을 얹으면 면과 선이 같은 일을 두 번 하게 된다. */
+
     border: 0;
     border-radius: var(--radius-lg);
     background: var(--color-surface);
-    /* stat-reveal.js가 .is-visible을 붙여 올린다(metric-card와 같은 방식) */
+
     opacity: 0;
     transform: translateY(var(--motion-rise));
   }
@@ -165,7 +87,6 @@
     min-width: 0;
   }
 
-  /* 라벨이 먼저 온다 — 무슨 수치인지 모르고 큰 숫자를 먼저 보면 자랑으로 읽힌다 */
   .difference-page .problem-label {
     color: var(--color-ink-light);
     font-size: var(--text-body-14);
@@ -173,7 +94,6 @@
     font-weight: var(--font-weight-medium);
   }
 
-  /* 각주 번호 — 틴트 판 위에서 ink-lighter는 AA 미달(2.81) */
   .difference-page .problem-label sup {
     margin-left: 2px;
     color: var(--color-ink-light);
@@ -198,16 +118,6 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  /* 수치 아래 한 줄 — 이 숫자가 왜 나쁜 소식인지 말로 한 번 더 짚는다.
-     그림·색만으로는 "6%가 낮다"는 판단까지 전달되지 않는다. */
-  /* 01은 brand-tint-2 판이라 ink-lighter는 대비 2.81로 AA(4.5) 미달이다
-     (tokens.css의 진한 면 주석과 같은 이유). 한 단계 올려 ink-light를 쓴다. */
-  .difference-page .problem-note {
-    color: var(--color-ink-light);
-    font-size: var(--text-body-14);
-    line-height: var(--leading-body-14);
-  }
-
   .difference-page .problem-visual {
     flex: none;
     width: 72px;
@@ -220,13 +130,6 @@
     height: 100%;
   }
 
-  /*
-   * is-fact — 사실 진술(도입률 88%). 나쁜 수치가 아니라 "많다"는 사실이라
-   * 브랜드 톤을 유지하고, 옅은 면에 둬서 아래 세 장과 성격을 구분한다.
-   */
-  /* 사실 카드 — 나쁜 수치 셋(흰 카드)과 구분한다.
-     판이 이미 brand-tint-2이므로 같은 값으로는 카드가 사라진다.
-     한 단계 더 진한 raised로 내려 "가라앉은 카드"로 만든다. */
   .difference-page .problem-card.is-fact {
     background: var(--color-surface-raised);
   }
@@ -235,21 +138,10 @@
     color: var(--color-ink-heaviest);
   }
 
-  /*
-   * is-gap — 나쁜 수치 셋.
-   * 좌측 accent 띠를 쓰지 않는다(디자인 원칙: 카드 안에 border-left/top 같은
-   * 장식 선을 넣지 않는다). "문제"라는 신호는 이미 세 겹으로 충분하다 —
-   * 수치 색(critical) · 도형(빈 도넛·꺾인 선·깔때기) · 수치 아래 한 줄.
-   */
   .difference-page .problem-card.is-gap .problem-value {
     color: var(--color-critical);
   }
 
-  /*
-   * 출처 각주. 인용 수치의 근거라 화면에서 지우지 않되, 읽는 순서에서는
-   * 가장 아래다 — 크기가 아니라 색(ink-lighter)으로 위계를 내린다
-   * (서비스 페이지 최소 14px 제약을 지킨다).
-   */
   .difference-page .source-note {
     display: flex;
     flex-wrap: wrap;
@@ -260,7 +152,6 @@
     counter-reset: source;
   }
 
-  /* 각주도 같은 틴트 판 위다 — ink-lighter는 AA 미달 */
   .difference-page .source-note > li {
     display: flex;
     gap: var(--space-4);
@@ -270,15 +161,11 @@
     counter-increment: source;
   }
 
-  /* 번호는 마크업에 쓰지 않고 ol의 순서에서 만든다 — 순서를 바꿔도 어긋나지 않는다 */
   .difference-page .source-note > li::before {
     content: counter(source) ".";
     color: var(--color-ink-lighter);
   }
 
-  /* 도넛이 0에서 6%까지 그려진다 — 채워지는 양이 적다는 것이 이 도형의 요점이라
-     정지 그림으로 두면 그냥 원으로 읽힌다.
-     기본값은 완성 상태다(캡처·모션 정지 환경에서도 6%가 보여야 한다). */
   .difference-page .problem-donut {
     transition: stroke-dasharray var(--duration-scroll) var(--ease-scroll);
   }
@@ -287,22 +174,11 @@
     stroke-dasharray: 0 175.9;
   }
 
-  /* ============================================================
-   * 02 Diagnosis — 프레젠테이션 슬라이드형
-   *
-   * 두 줄(.slide-row)로 읽힌다. 줄마다 좌측에 캡슐 라벨 + 오른쪽으로 얇은 레일,
-   * 그 아래 카드 두 장과 가운데 노드.
-   *   is-fail — 점선 + ✕ 노드("끊겼다")
-   *   is-link — 화살표가 어두운 "데이터" 알약으로 모인다("여기서 만난다")
-   *
-   * 두 줄이 같은 문법이라 읽는 법을 두 번 배우지 않는다.
-   * 감싸는 판을 쓰지 않는다 — 판 안에 판이 겹치면 카드 더미가 된다.
-   * ============================================================ */
+  /* 02 Diagnosis — 프레젠테이션 슬라이드형 */
   .difference-page .diagnosis-slide {
     display: flex;
     flex-direction: column;
-    /* 두 슬라이드 사이 — 60px로는 한 덩이로 붙어 보였다. 카드 안 여백(35px)의
-       두 배 이상 벌려야 "다른 줄"로 읽힌다. */
+
     gap: 88px;
   }
 
@@ -312,8 +188,6 @@
     gap: var(--space-24);
   }
 
-  /* 줄 머리 — 캡슐 라벨 + 오른쪽으로 뻗는 레일.
-     레일은 라벨 뒤 남는 폭을 전부 차지해 슬라이드의 구분선 역할을 한다. */
   .difference-page .slide-rail {
     display: flex;
     align-items: center;
@@ -334,13 +208,12 @@
     border-radius: var(--radius-full);
     background: var(--color-surface);
     color: var(--color-ink-light);
-    /* 슬라이드의 머리이므로 본문(16px) 크기로 올린다 — 14px은 각주로 읽혔다 */
+
     font-size: var(--text-body-16);
     line-height: var(--leading-body-16);
     font-weight: var(--font-weight-medium);
   }
 
-  /* 우리 줄의 라벨은 어두운 알약 — 두 줄 중 어느 쪽이 결론인지 라벨이 먼저 말한다 */
   .difference-page .slide-rail-label.is-dark {
     border-color: var(--color-ink-heaviest);
     background: var(--color-ink-heaviest);
@@ -348,17 +221,9 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  /* 카드 두 장 + 가운데 노드. 노드는 내용 폭만 갖는다 */
-  /*
-   * 카드 두 장 + 가운데 노드.
-   * 노드 열을 auto가 아니라 고정 폭으로 준다 — 레퍼런스에서 이 부분이 너무
-   * 작아 "장식"으로 보였다(사용자 지적). 폭을 확보해야 노드가 두 카드를
-   * 잇는 주체로 읽힌다.
-   */
   .difference-page .slide-pair {
     display: grid;
-    /* 노드 열 폭 — 화살표(24) + 알약(96) + 화살표(24) + 간격이 들어가야 하므로
-       132 → 196px. 이전엔 화살표가 알약 위아래로 쌓여 있었다(아래 slide-join 주석). */
+
     grid-template-columns: minmax(0, 1fr) 196px minmax(0, 1fr);
     align-items: center;
     gap: var(--space-20);
@@ -371,18 +236,12 @@
     gap: var(--space-16);
     height: 100%;
     padding: var(--space-35);
-    /* 테두리 없음 — 면 차이가 경계를 대신한다.
-       흰 섹션(1.000) 위의 raised 판(1.267)이라 대비가 충분하다. */
+
     border: 0;
     border-radius: var(--radius-xl);
     background: var(--color-surface-raised);
   }
 
-  /* 그림자는 hover에만 — 평소에는 면·경계가 공간을 만든다 */  /*
-   * 우리 카드 — 실패 카드가 무채색 raised 판이므로, 이쪽은 브랜드 기운이 있는
-   * 옅은 면으로 구분한다. 흰 섹션 위에 흰 카드를 두면 카드가 사라지므로
-   * sunken을 쓴다. 카드에 accent 선을 얹지 않는다(SKILL 3번).
-   */
   .difference-page .slide-card.is-ours {
     background: var(--color-surface-sunken);
   }
@@ -414,7 +273,6 @@
     display: block;
   }
 
-  /* 카드 제목 — h3 전역(24px)은 2열 카드에서 줄이 깨진다 */
   .difference-page .slide-card-head h3 {
     font-size: var(--text-card-title);
     line-height: var(--leading-card-title);
@@ -431,13 +289,10 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  /* 제품 이름 배지 — 공용 .tag를 쓰고 자리만 잡는다 */
   .difference-page .slide-card-tag {
     margin-top: calc(-1 * var(--space-4));
   }
 
-  /* 결말 — 두 실패 카드가 같은 곳에 도착한다는 것이 이 줄의 요점이다.
-     카드 높이가 달라도 같은 줄에서 끝나도록 아래로 밀어낸다. */
   .difference-page .slide-verdict {
     display: inline-flex;
     align-items: center;
@@ -459,28 +314,21 @@
     line-height: 1;
   }
 
-  /*
-   * 실패 두 카드 사이의 끊긴 연결.
-   * 좌우로 점선을 뽑고 가운데 ✕ 원을 둔다 — 선이 이어지다 끊긴 모양이라
-   * "연결되지 않았다"가 그림으로 읽힌다.
-   */
   .difference-page .slide-break {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     justify-self: center;
-    /* 64px — 40px에서 키웠다. 두 카드를 잇는(끊는) 주체이므로 카드 안
-       아이콘(48px)보다 커야 노드로 읽힌다. */
+
     width: 64px;
     height: 64px;
     border: 2px dashed color-mix(in srgb, var(--color-critical) 55%, var(--color-line-heavy));
     border-radius: var(--radius-full);
-    /* 옅은 critical 면 — 흰 원은 회색 카드 사이에서 존재감이 약했다.
-       "데이터" 알약이 어두운 판으로 중심을 잡는 것과 짝을 맞춘다. */
+
     background: color-mix(in srgb, var(--color-critical) 7%, var(--color-surface));
     color: var(--color-critical);
-    /* 링은 색으로 지점을 표시하는 것이라 유지하고, 깊이용 그림자만 뺀다 */
+
     box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-critical) 7%, transparent);
   }
 
@@ -490,9 +338,6 @@
     height: 28px;
   }
 
-  /* 노드 좌우로 뻗는 점선 — 카드까지 닿아 "이어지려다 끊긴" 모양이 된다 */
-  /* 노드 좌우로 카드까지 닿는 점선 — 노드 열(132px)에서 노드(64px)를 뺀
-     남는 폭을 좌우로 나눠 쓴다. 여기서 끊긴 선이 "이어지지 않았다"를 말한다. */
   .difference-page .slide-break::before,
   .difference-page .slide-break::after {
     content: "";
@@ -505,25 +350,6 @@
   .difference-page .slide-break::before { right: 100%; }
   .difference-page .slide-break::after { left: 100%; }
 
-  /*
-   * 우리 두 카드가 만나는 지점.
-   * 양쪽 화살표가 가운데 어두운 알약을 향한다 — 카드가 각각 서 있는 게 아니라
-   * 데이터에서 만난다는 것이 이 줄의 전부다.
-   */
-  /*
-   * 두 카드가 만나는 지점.
-   * 레퍼런스는 알약 + 좌우 화살표를 한 줄에 뒀는데 그러면 132px 안에서
-   * 셋이 나눠 가져 전부 작아진다. 알약을 크게 세로 원형으로 세우고
-   * 화살표는 그 위아래에 둬서, 노드가 이 줄의 중심으로 읽히게 한다.
-   */
-  /*
-   * 데이터 노드 — 화살표는 가로축이다.
-   *
-   * 처음엔 flex-direction: column이라 화살표가 알약 위아래(북/남)로 쌓였다.
-   * 그런데 이 화살표가 잇는 두 카드는 좌우에 있고 SVG도 좌·우를 가리킨다 —
-   * 축이 어긋나서 오른쪽 화살표에 rotate(90deg)를 걸어 아래를 보게
-   * 만들어 놨었다(사용자 지적). 회전을 걷고 가로로 늘어놓는다.
-   */
   .difference-page .slide-join {
     display: flex;
     align-items: center;
@@ -532,7 +358,6 @@
     gap: var(--space-4);
   }
 
-  /* 원형 알약 — 어두운 판 + 흰 글씨(대비 원칙). 아이콘 위, 글자 아래 2단. */
   .difference-page .slide-join-pill {
     display: inline-flex;
     flex-direction: column;
@@ -548,8 +373,7 @@
     line-height: var(--leading-body-14);
     font-weight: var(--font-weight-semibold);
     white-space: nowrap;
-    /* 브랜드 링을 한 겹 둘러 "여기가 연결점"을 강조한다.
-       어두운 원 자체가 이미 무게를 갖고 있어 그림자는 쓰지 않는다. */
+
     box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-brand) 14%, transparent);
   }
 
@@ -560,7 +384,6 @@
     color: color-mix(in srgb, var(--color-surface) 85%, transparent);
   }
 
-  /* 화살표는 알약을 향해 안쪽(위/아래에서 가운데로)을 가리킨다 */
   .difference-page .slide-join-arrow {
     display: inline-flex;
     color: var(--color-brand);
@@ -570,11 +393,10 @@
     display: block;
     width: 26px;
     height: 26px;
-    /* 좌우를 가리키던 화살표를 세로 배치에 맞춰 돌린다 */
+
     transform: rotate(90deg);
   }
 
-  /* 화살표는 SVG가 이미 좌·우를 가리킨다 — 회전하지 않는다 */
   .difference-page .slide-join-arrow svg {
     width: var(--space-24);
     height: var(--space-24);
@@ -587,81 +409,36 @@
     color: var(--color-ink-light);
   }
 
-  /*
-   * 02의 목업 4개.
-   * 표면·radius·상단 바는 공용 preview-frame이, 움직임은 mock-motion.css가
-   * 담당한다 — 여기서는 카드 안 자리와 목업 안 타이포 스케일만 정한다.
-   *
-   * 목업 안 텍스트는 14px 제약의 예외다. 다만 9px은 하한이지 기본값이 아니라,
-   * 이 크기(카드 안 목업)에서는 13/11px 2단으로 충분하다.
-   */
-  /*
-   * 목업 면 위계 — 레퍼런스가 이렇게 한다.
-   *
-   * 지금까지 목업을 카드와 같은 흰색으로 뒀는데, 그러면 목업이 "카드 안의
-   * 또 다른 텍스트 블록"으로 읽혀 제품 화면이라는 신호가 사라진다.
-   * 레퍼런스는 반대로 텍스트 영역은 조용히 두고 **목업에 가장 진한 면**을
-   * 줘서 시선이 화면으로 가게 만든다.
-   *
-   * 그래서 목업은 자기 카드보다 한 단계 진한 면을 갖는다.
-   *   실패 카드(raised 1.267) → 목업 deep(1.510)
-   *   우리 카드(tint-1)       → 목업 tint-2 (아래 is-ours 규칙)
-   * 목업 안의 내부 요소(막대·행)는 흰색으로 남아 "화면 속 콘텐츠"가 된다.
-   */
-  /*
-   * 02 목업 — 작고 단순하게.
-   * 여기 목업은 "제품을 보여주는 화면"이 아니라 카드 주장의 **증거 한 조각**이다
-   * (04 대시보드가 그 역할을 맡는다). 처음엔 04와 같은 밀도로 만들었는데
-   * 카드 두 장 × 두 줄 = 4개가 모두 완성된 화면이라 페이지가 무거웠다.
-   * 그래서 머리 + 수치 한 줄 + 결론 한 줄까지만 남기고 여백도 줄인다.
-   */
   .difference-page .diagnosis-mock {
     --mock-text-lg: 12px;
     --mock-text: 11px;
     margin-top: var(--space-4);
-    /* 04(24px)보다 좁게 — 조각이라는 신호다 */
+
     padding: var(--space-16);
     gap: var(--space-10);
-    /* 카드보다 진한 면 — 목업이 시선의 목적지가 된다 */
+
     background: var(--color-surface-deep);
     border-color: transparent;
   }
 
-  /* 우리 카드의 목업.
-     처음엔 brand-tint-2를 줬는데 카드(tint-1)와 1.087× 차이뿐이라 목업이
-     한 판으로 안 읽혔다(실패 카드 쪽은 1.19×였다 — 두 줄의 세기가 달랐다).
-     브랜드 기운을 유지하면서 단계를 맞추려면 tint-2를 한 번 더 눌러야 한다. */
   .difference-page .slide-card.is-ours .diagnosis-mock {
     background: color-mix(in srgb, var(--color-brand) 14%, var(--color-surface));
   }
 
-  /* 진한 목업 면 위에서는 막대(기본 brand-tint-2)가 면과 거의 같은 값이 된다.
-     막대를 흰색으로 올려 "면 위의 데이터"로 읽히게 한다(is-current는 브랜드 유지). */
   .difference-page .diagnosis-mock .mock-ticker-chart span,
   .difference-page .scenario-mock .mock-ticker-chart span {
     background: var(--color-surface);
   }
 
-  /* 목업 머리띠·내부 판은 흰색 — 진한 목업 면 위에서 "화면 속 요소"로 뜬다 */
-  /* 수치 박스만 흰 판으로 띄운다.
-     mock-ticker-chart는 제외한다 — 막대가 brand-tint-2라 통을 흰색으로 칠하면
-     막대가 배경에 묻혀 차트가 빈 상자가 된다(실제로 그렇게 렌더됐다). */
   .difference-page .diagnosis-mock .mock-ticker-stats > article {
     background: var(--color-surface);
     border-color: transparent;
   }
 
-  /* 목업 프레임의 상시 그림자를 끈다.
-     preview-frame은 "화면 위에 떠 있는 제품 창"이라 평소 그림자를 갖는 예외지만,
-     02는 카드 안에 들어앉은 조각이다 — 카드가 이미 판을 만들고 있어서
-     그림자가 겹치면 목업이 카드에서 뜬 것처럼 보인다. */
   .difference-page .diagnosis-mock {
     box-shadow: none;
   }
 
-  /* 목업 머리 — journey-mock-head는 배경 없는 flex 한 줄이다(product-mock.css).
-     흰 배경만 얹었더니 padding·radius가 없어 프레임을 가로지르는 흰 띠가 됐다.
-     흰 판으로 쓰려면 안쪽 여백과 모서리를 함께 줘야 한다. */
   .difference-page .diagnosis-mock .journey-mock-head,
   .difference-page .scenario-mock .journey-mock-head {
     padding: var(--space-8) var(--space-12);
@@ -681,9 +458,6 @@
     line-height: 15px;
   }
 
-  /* 실패 카드의 진행바 — 12%(활용률 바닥)는 critical,
-     100%(수료율)는 중립이다. 수료 자체가 나쁜 게 아니고 나쁜 것은
-     그 아래 "현업 적용 0건"이다. */
   .difference-page .slide-row.is-fail .slide-card:first-child .journey-mock-progress-bar span {
     background: var(--color-critical);
   }
@@ -692,29 +466,16 @@
     background: var(--color-ink-lighter);
   }
 
-  /* focus로 떠오르는 행이 "문제"인 카드에서는 그 행을 critical 톤으로 읽힌다 */
   .difference-page .slide-row.is-fail .diagnosis-mock .is-focus .journey-mock-item-name {
     color: var(--color-critical);
   }
 
-  /*
-   * is-live 배지를 브랜드 톤으로 되돌린다.
-   * 공용값은 붉은 계열이고 그건 "라이브 방송 중"이라는 뜻으로 맞다(index SkillCamp).
-   * 다만 이 섹션에서는 빨강이 "문제"를 가리키는 색이라 — 위 줄이 전부 빨강이다 —
-   * 우리 카드에 빨간 배지가 붙으면 색이 뜻을 뒤집는다.
-   */
   .difference-page .slide-card.is-ours .journey-mock-badge.is-live {
     background: var(--color-brand-tint-2);
     color: var(--color-brand);
   }
 
-  /* ============================================================
-   * 03 The Cycle — 4단계 순환. 공용 css/components/ui/cycle.css로 승격됐다
-   * (skillcertify.html의 05 2주 PoC도 같은 구조를 쓰게 되며 공용화).
-   * 여기 남기는 건 "이 페이지만 다른 값"뿐 — 4칸(기본값)이라 --cycle-columns도
-   * 생략한다. 마지막 칸에도 화살표가 남아 첫 칸으로 되돌아가는 점(순환이라 4에서
-   * 끝나면 안 된다)은 마크업의 is-return + 화살표 유무로 표현되어 CSS가 필요 없다.
-   * ============================================================ */
+  /* 03 The Cycle — 4단계 순환. 공용 css/components/ui/cycle.css로 승격됐다 */
   .difference-page .fade-up.is-visible .cycle > li:nth-child(1) .cycle-arrow { animation-delay: .3s; }
   .difference-page .fade-up.is-visible .cycle > li:nth-child(2) .cycle-arrow { animation-delay: .5s; }
   .difference-page .fade-up.is-visible .cycle > li:nth-child(3) .cycle-arrow { animation-delay: .7s; }
@@ -723,11 +484,8 @@
   .difference-page .fade-up.is-visible .cycle > li:nth-child(3) { transition-delay: .16s; }
   .difference-page .fade-up.is-visible .cycle > li:nth-child(4) { transition-delay: .24s; }
 
-  /* ============================================================
-   * 04 Scenario — 공용 timeline 위에 단계 라벨만 얹는다
-   * ============================================================ */
+  /* 04 Scenario — 공용 timeline 위에 단계 라벨만 얹는다 */
 
-  /* 좌: 타임라인 · 우: 대시보드 목업. 목업이 이야기의 증거라 나란히 둔다 */
   .difference-page .scenario-layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
@@ -735,19 +493,10 @@
     gap: var(--space-48);
   }
 
-  /* 2단 안에 들어가므로 데스크톱에서 폭을 따로 제한하지 않는다 */
   .difference-page .scenario {
     min-width: 0;
   }
 
-  /*
-   * 3단계 목업 교체.
-   *
-   * 좌측 타임라인 3단계와 1:1로 짝을 이룬다 — 스크롤로 읽어 내려가면
-   * 우측 화면이 그 단계의 화면으로 바뀐다(scenario-switch.js).
-   * grid 한 칸에 세 판을 겹쳐 두는 이유 — 판마다 높이가 달라서 흐름 배치로 두면
-   * 교체할 때 아래 내용이 위아래로 튄다. 겹쳐 두고 가장 높은 판이 높이를 정한다.
-   */
   .difference-page .scenario-screens {
     display: grid;
     min-width: 0;
@@ -769,7 +518,6 @@
     transform: none;
   }
 
-  /* detail 뼈대는 자기 padding(aside·panel)을 갖고 있어 프레임 여백과 겹친다 */
   .difference-page .scenario-mock[data-mock-motion="detail"] {
     padding: 0;
     overflow: hidden;
@@ -779,36 +527,21 @@
     margin: var(--space-16) var(--space-16) 0;
   }
 
-  /* 진행 중인 단계의 마커·제목을 브랜드 톤으로 올려 좌우가 같은 단계를 가리킨다 */
   .difference-page .scenario > li.is-active .timeline__title {
     color: var(--color-brand-dark);
   }
 
-  /*
-   * 04 목업 — 흰 섹션 위에 놓이므로 목업이 가장 진한 면을 갖는다.
-   * 좌측은 텍스트(타임라인)만 있는 조용한 열이고, 시선은 우측 화면으로 간다.
-   * diagnosis-mock과 같은 판단이다(텍스트보다 목업에 진한 면).
-   */
   .difference-page .scenario-mock {
     min-width: 0;
     background: var(--color-surface-deep);
     border-color: transparent;
   }
 
-  /* 머리띠·수치 박스만 흰 판으로 띄운다.
-     mock-ticker-chart는 제외한다 — 막대가 brand-tint-2라 통을 흰색으로 칠하면
-     막대가 배경에 묻혀 차트가 빈 상자가 된다(실제로 그렇게 렌더됐다). */
   .difference-page .scenario-mock .mock-ticker-stats > article {
     background: var(--color-surface);
     border-color: transparent;
   }
 
-  /*
-   * 각 단계가 순환의 어느 국면인지(데이터 / 진단→학습 / 성과) 알려주는 라벨.
-   * timeline__title 위에 붙어 03의 4단계와 이 이야기를 연결한다.
-   * .tag를 쓰지 않은 이유 — .tag는 섹션 eyebrow(브랜드 배경 배지)라 한 화면에
-   * 여러 개가 깔리면 섹션 라벨과 무게가 같아진다. 여기는 글자 색만 쓴다.
-   */
   .difference-page .scenario-stage {
     color: var(--color-brand);
     font-size: var(--text-body-14);
@@ -817,19 +550,13 @@
     letter-spacing: var(--tracking-body-normal);
   }
 
-  /* ============================================================
-   * 05 Position — 경쟁 구도 2축 좌표 (어두운 강조 판)
-   *
-   * 이 페이지의 강조 구간이다(subpage-guide 7-1: 강조 구간 하나는 어두운 판).
-   * 좌표 위 점이 배경과 대비돼야 "우리가 오른쪽 위"가 한눈에 읽힌다.
-   * ============================================================ */
+  /* 05 Position — 경쟁 구도 2축 좌표 (어두운 강조 판) */
   .difference-page .positioning.is-dark {
     position: relative;
     overflow: hidden;
     background: linear-gradient(160deg, var(--color-ink-heaviest), var(--color-ink-heaviest));
   }
 
-  /* 어두운 판 위 배경 질감 — 흰 면 사이에서 이 섹션만 다른 재질이 된다 */
   .difference-page .positioning.is-dark::before {
     content: "";
     position: absolute;
@@ -839,22 +566,11 @@
     background-position: bottom right;
     background-size: 175%;
     filter: blur(8px);
-    /* 0.35는 너무 셌다 — 질감이 어두운 판을 회청색으로 들어올려서
-       페이지의 유일한 강조 구간이 "어둡다"고 안 읽혔다(측정: #535969).
-       질감은 재질만 주고 어둠은 유지한다. */
+
     opacity: 0.18;
     pointer-events: none;
   }
 
-  /*
-   * 콘텐츠 폭을 좁힌다.
-   *
-   * 레퍼런스에서 어두운 판은 **가운데 좁은 블록**이다(화면 폭의 40% 정도).
-   * 우리는 9개 섹션이 전부 1208px 한 폭이라 리듬이 없었다 — 레퍼런스는
-   * 히어로 목업은 거의 full-bleed, 탭 스크린샷은 안쪽, 어두운 판은 좁게,
-   * 가격 카드는 중간 폭으로 **섹션마다 폭을 바꾼다**.
-   * 05는 2축 좌표라 정사각에 가까울 때 읽기 쉬우므로 좁히는 게 내용에도 맞다.
-   */
   .difference-page .positioning.is-dark .section-wrap {
     position: relative;
     z-index: 1;
@@ -868,53 +584,37 @@
     color: var(--color-surface-sunken);
   }
 
-
-  /* eyebrow는 어두운 판에서 브랜드 배경이 탁해진다 — 유리 표면으로 바꾼다
-     (skills 07 is-dark와 같은 처리) */
   .difference-page .positioning.is-dark .tag {
     background: color-mix(in srgb, var(--color-surface) 16%, transparent);
     color: var(--color-surface);
   }
 
-  /*
-   * 2축 좌표. 가로 = 도구 역량, 세로 = 사람 역량.
-   * 점의 자리는 마크업의 --pos-x·--pos-y(%)가 정한다 — 값이 마크업에 보여야
-   * 비개발자가 좌표를 옮길 수 있다.
-   */
   .difference-page .position-map {
     position: relative;
     width: 100%;
     max-width: 720px;
-    /* 축 라벨을 판 바깥(좌·하)에 세우므로 그만큼 자리를 비운다 */
+
     margin: 0 auto;
     margin-left: var(--space-35);
     margin-bottom: var(--space-35);
-    /*
-     * 높이를 aspect-ratio로 주지 않는 이유 — 이 판은 .section-content(세로 flex)의
-     * 자식이라 flex item의 교차축 크기가 내용에서 결정된다. 안이 전부 absolute라
-     * 내용 높이가 0이고, aspect-ratio는 그 0을 기준으로 계산해 판이 통째로 접혔다
-     * (실제로 겪었다 — 점 5개가 한 자리에 포개지고 축 라벨이 본문을 덮었다).
-     * 두 축이 같은 무게라 정사각에 가까운 비율을 유지하되, 높이를 직접 준다.
-     */
+
     height: 520px;
     flex: none;
     margin-inline: auto;
     border-radius: var(--radius-xl);
     background:
-      /* 격자 — 좌표라는 것을 알리는 최소한의 눈금 */
+
       linear-gradient(to right,
         color-mix(in srgb, var(--color-surface) 7%, transparent) 1px, transparent 1px) 0 0 / 25% 25%,
       linear-gradient(to bottom,
         color-mix(in srgb, var(--color-surface) 7%, transparent) 1px, transparent 1px) 0 0 / 25% 25%,
-      /* 오른쪽 위(두 축 다 높은 구역)만 브랜드 광원으로 밝힌다 —
-         우리 점이 놓인 자리가 왜 좋은 자리인지 배경이 먼저 말한다 */
+
       radial-gradient(70% 70% at 100% 0%,
         color-mix(in srgb, var(--color-brand) 30%, transparent) 0%,
         transparent 100%);
     border: 1px solid color-mix(in srgb, var(--color-surface) 14%, transparent);
   }
 
-  /* 두 축의 기준선 */
   .difference-page .position-map::before,
   .difference-page .position-map::after {
     content: "";
@@ -922,7 +622,6 @@
     background: color-mix(in srgb, var(--color-surface) 26%, transparent);
   }
 
-  /* 세로축 */
   .difference-page .position-map::before {
     left: 0;
     top: 0;
@@ -930,7 +629,6 @@
     width: 1px;
   }
 
-  /* 가로축 */
   .difference-page .position-map::after {
     left: 0;
     right: 0;
@@ -947,20 +645,12 @@
     white-space: nowrap;
   }
 
-  /* 세로축 라벨은 축과 같은 방향으로 눕힌다. -90deg(반시계)여야 글자가
-     아래 → 위로 읽힌다 — +90deg면 글자가 거꾸로 선다(실제로 겪었다).
-     
-     위치 — 좌표 안쪽에 두면 격자·점과 겹친다. 회전 기준점을 left bottom으로
-     두고 left를 음수로 빼서 판 **왼쪽 바깥**에 세운다(X 라벨이 아래 바깥에
-     있는 것과 짝을 맞춘다). 처음엔 left: 16px이라 라벨이 판 안쪽 좌하단에
-     끼어 있었고, nowrap이 없어 회전한 글자가 두 줄로 접혔다(사용자 지적). */
   .difference-page .position-axis.is-y {
     bottom: 0;
     left: calc(var(--space-12) * -1);
     transform-origin: left bottom;
     transform: rotate(-90deg);
-    /* 폭은 내용만큼. absolute라 부모 폭에 맞춰 늘어나지 않게 못박는다
-       (base 규칙의 white-space: nowrap과 함께 한 줄을 보장한다) */
+
     width: max-content;
   }
 
@@ -970,10 +660,6 @@
     white-space: nowrap;
   }
 
-  /*
-   * 좌표 위의 점. --pos-x는 왼쪽에서, --pos-y는 아래에서 재는 거리다
-   * (수학 좌표와 같은 방향이라 값을 읽을 때 헷갈리지 않는다).
-   */
   .difference-page .position-dot {
     position: absolute;
     left: var(--pos-x);
@@ -991,7 +677,7 @@
     font-size: var(--text-body-14);
     line-height: var(--leading-body-14);
     white-space: nowrap;
-    /* 점이 자기 좌표에 중심을 두게 한다 */
+
     transform: translate(-50%, 50%);
   }
 
@@ -1004,7 +690,6 @@
     flex: none;
   }
 
-  /* 우리 점만 브랜드 톤 + 굵기로 올린다 — 다섯 점 중 하나만 답이다 */
   .difference-page .position-dot.is-us {
     padding: var(--space-10) var(--space-16) var(--space-10) var(--space-12);
     background: var(--color-brand);
@@ -1016,24 +701,17 @@
     box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-brand) 24%, transparent);
   }
 
-  /* 우리 점만 숨을 쉰다 — 좌표가 정지 그림이라 한 곳에 시선을 붙여 둔다 */
   .difference-page .fade-up.is-visible .position-dot.is-us::before {
     animation: pulse 2.4s var(--ease-scroll) infinite;
   }
 
-
-  /* ============================================================
-   * 06 Start Anywhere — 두 갈래 시작점
-   * ============================================================ */
+  /* 06 Start Anywhere — 두 갈래 시작점 */
   .difference-page .start-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-24);
   }
 
-  /* content-panel은 padding·간격만 담당한다 — 면은 페이지가 정한다.
-     06은 흰 섹션이므로 카드를 흰색으로 두면 사라진다 → 틴트 면으로 가라앉힌다.
-     테두리를 쓰지 않는다(면이 경계를 대신한다). */
   .difference-page .start-card {
     height: 100%;
     border: 0;
@@ -1044,18 +722,15 @@
     color: var(--color-ink-light);
   }
 
-  /* 버튼은 카드 아래쪽에 붙여, 카드 높이가 달라도 같은 줄에서 시작한다 */
   .difference-page .start-card .btn {
     align-self: flex-start;
     margin-top: auto;
   }
 
-  /* 결론 한 줄 — 공용 summary-banner를 쓰고 여백만 맞춘다 */
   .difference-page .start-note {
     margin-top: var(--space-8);
   }
 
-  /* 두 카드가 좌→우 시간차로 올라온다 */
   .difference-page .fade-up .start-grid > li {
     opacity: 0;
     transform: translateY(var(--motion-rise));
@@ -1070,88 +745,46 @@
 
   .difference-page .fade-up.is-visible .start-grid > li:nth-child(2) { transition-delay: .1s; }
 
-  /* ============================================================
-   * 07 Industry — 공용 catalog-board 안의 4블록 정의형 목록
-   * ============================================================ */
+  /* 07 Industry — 공용 catalog-board 안의 4블록 정의형 목록 */
 
-  /*
-   * catalog-board__items(항목 나열)와 달리 여기는 소제목이 붙는 4블록이라
-   * dl 하나만 추가한다. 판 자체의 padding·전환은 컴포넌트가 갖고 있다.
-   */
-  /*
-   * catalog-board의 min-height 420px는 ax-build 03의 항목 7~8줄에 맞춘 값이다.
-   * 여기는 4블록뿐이라 판 아래에 200px 넘는 빈 면이 남았다 — 내용에 맞춰 내린다.
-   * 공용값을 건드리지 않고 페이지 스코프에서만 덮는 이유: 그 높이는 ax-build의
-   * 항목 수 분포에서 나온 값이라 다른 페이지에 그대로 옮길 값이 아니다.
-   */
   .difference-page .catalog-board {
     min-height: 0;
   }
 
-  /*
-   * 업종별 4블록을 카드로 나열한다.
-   *
-   * 공용 catalog-board__items를 그대로 쓴다 — auto-fill 그리드와 진입 stagger
-   * (nth-child 딜레이)를 컴포넌트가 이미 갖고 있어 새로 만들 게 없다.
-   * 다만 그 컴포넌트의 li는 "한 줄 칩"(텍스트 한 노드 + 앞 점)이라
-   * 라벨 + 본문 2단인 우리 내용과는 골격이 다르다 — 아래에서 그만큼만 덮는다.
-   */
-  /*
-   * 판 높이 — catalog-board의 min-height 420px는 칩이 여러 줄 쌓이는
-   * ax-build 기준이라 07(카드 한 줄)에서는 아래가 크게 빈다. 그래서 풀었다.
-   *
-   * 다만 min-height만 풀면 높이가 **좌측 레일**이 정한다(실측 250px:
-   * padding 20×2 + 탭 4개 + gap). 카드는 116px이라 아래에 78px이 죽은 채로
-   * 남았다 — 1행 4열로 바꾸면서 이걸 확인하지 않았다.
-   * 카드 줄을 판 높이에 맞춰 늘려 두 열의 아래선을 맞춘다.
-   */
   .difference-page .catalog .catalog-board {
     min-height: 0;
   }
 
-  /* 활성 판은 absolute + inset 28px이라 높이가 이미 판 전체다 —
-     그 안에서 카드 줄이 남은 높이를 다 쓰게 한다 */
   .difference-page .catalog .catalog-board__panel {
     display: flex;
     flex-direction: column;
   }
 
-  /*
-   * 1행 4열 — Pain Point → 적용 → 교육 매핑 → 기대 효과가 한 줄로 흐른다.
-   * 판 폭이 928px(1208 − 레일 224 − padding 56)이라 gap 12px 3개를 빼면
-   * 카드 한 장이 223px이다. 본문이 4~5줄로 길어지므로 카드 높이를 맞추고
-   * (align-items: stretch가 기본) 안쪽 여백을 2×2 때보다 좁힌다.
-   */
   .difference-page .industry-cards {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-12);
-    /* 판(레일 높이 250px)의 남은 세로를 카드가 채운다 — 아래 빈칸을 없앤다.
-       align-content: start(컴포넌트 기본)를 stretch로 되돌리는 것이기도 하다. */
+
     flex: 1;
     align-content: stretch;
   }
 
   .difference-page .industry-cards > li {
-    /* 칩의 가로 1줄 배치를 세로 2단으로 되돌린다 */
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-10);
-    /* 4열이라 카드 폭이 223px로 좁다 — 좌우 여백을 24 → 18px로 줄여 본문 줄 수를 줄인다 */
+
     padding: var(--space-20) var(--space-18);
     height: 100%;
     border: 0;
     border-radius: var(--radius-lg);
-    /* 판이 흰 면(preview-frame)이므로 카드를 틴트로 가라앉힌다 */
+
     background: var(--color-surface-sunken);
   }
 
-  /* 칩의 앞 점은 라벨 옆에 붙지 않으므로 쓰지 않는다 */
   .difference-page .industry-cards > li::before {
     content: none;
   }
 
-  /* 라벨 위 아이콘 — ax-build 03의 workflow-icon과 같은 인라인 SVG 관용구.
-     카드가 라벨+본문 2단이라 아이콘은 그 위에 얹어 3단으로 만든다. */
   .difference-page .industry-card-icon {
     display: inline-flex;
     align-items: center;
@@ -1170,35 +803,19 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  /* Pain Point만 위험 신호라 라벨을 critical 톤으로 낮춘다(아이콘과 짝) */
   .difference-page .industry-card:has(.industry-card-icon--pain) .industry-card-label {
     color: var(--color-critical);
   }
 
-  /* 4열 카드 안에서 16px은 한 줄에 8~9자밖에 안 들어가 본문이 잘게 쪼개진다.
-     14px로 낮춘다 — 서비스 페이지 최소 폰트(14px) 안이다. */
-  .difference-page .industry-card-body {
-    color: var(--color-ink-light);
-    font-size: var(--text-body-14);
-    line-height: var(--leading-body-14);
-  }
-
-
-  /* ============================================================
-   * 최하단 CTA — 공용 cta-final 배경을 좌측 상단 구역으로 변경
-   * ============================================================ */
+  /* 최하단 CTA — 공용 cta-final 배경을 좌측 상단 구역으로 변경 */
   .difference-page .cta-final::before {
     background-position: top left;
     background-size: 195%;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    /* 진입 애니메이션은 끈다 */
     .difference-page .sub-hero-copy > * { animation: none; }
 
-    /* 01 카드는 stat-reveal.js가 .is-visible을 붙이지만, 모션 축소에서는
-       그 스크립트도 애니메이션 없이 최종 상태로 두므로 여기서 값만 고정한다.
-       도넛은 6%가 그려진 상태로 정지한다. */
     .difference-page .problem-card {
       opacity: 1;
       transform: none;
@@ -1213,14 +830,12 @@
 
     .difference-page .fade-up.is-visible .cycle-arrow { animation: none; }
 
-    /* 04 목업 교체 — 판이 바뀌는 것 자체는 정보라 유지하고 움직임만 끈다 */
     .difference-page .scenario-screens > .scenario-mock {
       transform: none;
       transition: none;
     }
     .difference-page .fade-up.is-visible .position-dot.is-us::before { animation: none; }
 
-    /* 시간차 등장은 지연 없이 완성된 상태로 정지한다 */
     .difference-page .fade-up .cycle > li,
     .difference-page .fade-up .start-grid > li {
       opacity: 1;
@@ -1233,6 +848,4 @@
       transition-delay: 0s;
     }
   }
-
-  /* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다 */
 }

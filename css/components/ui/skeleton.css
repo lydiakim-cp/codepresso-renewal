@@ -1,8 +1,5 @@
-/*
- * Component: Skeleton
- * 목업의 비식별 텍스트와 콘텐츠 빈 상태를 표현하는 공통 placeholder.
- * 실제 로딩 UI라면 부모에 aria-busy="true"를 함께 제공한다.
- */
+/* Component: Skeleton
+   목업의 비식별 텍스트와 콘텐츠 빈 상태를 표현하는 공통 placeholder. */
 .skeleton-line {
   display: block;
   width: 100%;

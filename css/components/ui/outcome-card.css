@@ -1,37 +1,5 @@
-/*
- * outcome-card — 고객사 로고 판 + "이전 → 이후"(또는 성과 한 줄) 사례 카드.
- * cases.html(12장, ax-build 06 Real Outcomes와 같은 역할)과 skillcertify.html
- * (3장 축소판)이 같은 마크업·같은 클래스 이름을 그대로 쓰고 있어 공용으로 승격했다.
- *
- * Markup API
- * <ul class="outcome-list">
- *   <li>
- *     <div class="outcome-logo[ outcome-logo--tall][ outcome-logo--invert]">
- *       <img src="..." alt="...">
- *     </div>
- *     <div class="outcome-body">
- *       <p class="outcome-tags">...</p>                 (선택 — 배지 여러 개일 때)
- *       <p class="outcome-shift">                        (선택 — 이전→이후가 있을 때)
- *         <span class="outcome-before">...</span>
- *         <span class="outcome-arrow" aria-hidden="true">...</span>
- *         <span class="outcome-after">...</span>
- *       </p>
- *       <p class="outcome-headline">...</p>              (선택 — before→after가 없는 사례)
- *       <p class="outcome-detail">...</p>
- *       <p class="outcome-client">고객사 <span class="outcome-person">...</span></p>
- *                                          또는 <span class="outcome-industry">...</span>
- *     </div>
- *   </li>
- * </ul>
- *
- * 이 파일이 정하는 것 — 카드 껍데기 구조·테두리/hover 색, 그리드(3열 고정),
- * 로고 판(고정 높이 + object-fit: contain), 본문 골격·gap, 고객사/업종 텍스트
- * 색·굵기, 고객사 줄을 카드 바닥에 붙이는 레이아웃, outcome-headline/outcome-detail
- * 크기. cases·skillcertify 두 페이지가 이 값을 완전히 같게 쓰고 있어 전부
- * 공용으로 승격했다.
- * 이 파일이 정하지 않는 것 — 카드 12장을 auto-fill로 채우는 예외(cases만 덮음),
- * 서비스/업종 두 배지 줄(outcome-tags·tag-industry, cases 전용).
- */
+/* outcome-card — 고객사 로고 판 + "이전 → 이후"(또는 성과 한 줄) 사례 카드.
+   cases.html(12장, ax-build 06 Real Outcomes와 같은 역할)과 skillcertify.html (3장 축소판)이 같은 마크업·같은… */
 
 .outcome-list {
   display: grid;
@@ -42,8 +10,7 @@
 .outcome-list > li {
   display: flex;
   flex-direction: column;
-  /* 여백은 li가 아니라 .outcome-body가 갖는다 — 로고 판이 카드 폭을 꽉 채워야
-     위쪽 판과 아래쪽 본문이 두 구역으로 갈린다. */
+
   overflow: hidden;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
@@ -51,18 +18,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* --- 로고 판 --- */
-
-/*
- * 로고 판이 모두 같은 크기여야 그리드가 고르다. 로고는 가로세로 비율이
- * 제각각이라(아모레퍼시픽 10:1 ~ 우하컴퍼니 1:1) 판을 고정 높이로 두고 안에서 contain한다.
- * media-card를 쓰지 않은 이유 — 그쪽 __media img는 object-fit: cover라 로고가
- * 잘린다. 로고는 절대 잘리면 안 된다.
- *
- * 원본 파일의 여백은 CSS로 보정하지 않고 파일 자체를 잉크 범위로 잘라 두었다
- * (SK텔레콤 1600x1600 중 세로 32%만 잉크, 현대모비스 26%). CSS로 키워 맞추면
- * 판 밖으로 넘치거나 파일마다 다른 값을 외워야 한다.
- */
 .outcome-logo {
   display: flex;
   align-items: center;
@@ -74,53 +29,34 @@
 }
 
 .outcome-logo img {
-  /* 폭 상한이 100%면 아모레퍼시픽처럼 가로로 긴 로고(10:1)가 판 좌우를 꽉 채워
-     혼자 두 배 커 보인다. 판 안쪽에 여백이 남도록 상한을 낮춘다. */
   max-width: 76%;
   max-height: 44px;
-  /* 로고 원본 비율을 지킨다 — 절대 늘이거나 자르지 않는다 */
+
   object-fit: contain;
 }
 
-/*
- * 어두운 배경용으로 제작된 로고(흰 글자)를 위한 판.
- * 체인로지스 로고는 잉크의 88%가 흰색이라 밝은 판에서는 글자가 사라진다.
- * 로고 파일의 색을 우리가 바꾸는 것은 브랜드 훼손이라 하지 않는다 —
- * 대신 그 카드의 판만 어둡게 깔아 로고가 제 색으로 읽히게 한다.
- */
 .outcome-logo--invert {
   background: var(--color-ink-heaviest);
   border-bottom-color: var(--color-ink-heaviest);
 }
 
-/*
- * 세로로 쌓인 로고(심볼 위 + 워드마크 아래) 전용 높이.
- * 가로형과 같은 44px로 묶으면 2단 로고는 글자가 절반 크기가 되어 혼자 작아 보인다.
- * 광학적으로 같은 무게가 되도록 높이만 올린다 — 폭은 판이 알아서 잡는다.
- */
 .outcome-logo--tall img {
   max-height: 76px;
 }
 
-/* --- 카드 본문 --- */
-
 .outcome-body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-12);
+  gap: var(--space-8);
   flex: 1;
   padding: var(--space-24);
 }
 
-/* before→after가 없는 사례의 결과 한 줄. .outcome-after(이전→이후 표시줄의 이후 값)와
-   같은 크기·색을 써서 두 형태의 카드가 같은 줄에서 같은 무게로 읽히게 한다. */
 .outcome-after,
 .outcome-headline {
-  font-size: var(--text-heading-24);
-  line-height: var(--leading-heading-24);
-  letter-spacing: var(--tracking-heading-tight);
+  font-size: var(--text-heading-20);
+  line-height: var(--leading-heading-20);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-brand);
 }
 
 .outcome-detail {
@@ -129,19 +65,39 @@
   line-height: var(--leading-body-muted);
 }
 
-/* 카드 높이가 제각각이면 그리드가 들쭉날쭉해진다 —
-   고객사 줄은 항상 카드 바닥에 붙어 마지막 줄이 나란히 선다. */
 .outcome-client {
   margin-top: auto;
   padding-top: var(--space-16);
   border-top: 1px solid var(--color-line);
-  color: var(--color-ink-light);
   font-size: var(--text-body-muted);
   line-height: var(--leading-body-muted);
-  font-weight: var(--font-weight-medium);
-}
-
-.outcome-industry {
   color: var(--color-ink-lighter);
   font-weight: var(--font-weight-regular);
+}
+
+
+/* "이전 → 이후" 한 줄 — ax-build 06·cases에서 같은 값으로 중복돼 여기로 올렸다. */
+.outcome-shift {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  flex-wrap: wrap;
+}
+
+.outcome-before {
+  color: var(--color-ink-lighter);
+  font-size: var(--text-body-18);
+  text-decoration: line-through;
+}
+
+.outcome-arrow {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-line-heavy);
+}
+
+.outcome-arrow svg {
+  display: block;
+  width: 18px;
+  height: 18px;
 }

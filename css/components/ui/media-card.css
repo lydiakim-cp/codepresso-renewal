@@ -1,9 +1,5 @@
-/*
- * Component: Media Card
- * 썸네일, 메타정보, 제목으로 구성하는 콘텐츠 링크.
- * 뉴스, 블로그, 사례, 자료실에서 동일한 hover와 이미지 처리 규칙을 공유한다.
- * 크기와 가로/세로 배치는 사용하는 섹션에서 결정한다.
- */
+/* Component: Media Card
+   썸네일, 메타정보, 제목으로 구성하는 콘텐츠 링크. */
 .media-card { min-width: 0; }
 .media-card__media { background: var(--color-surface-mist); overflow: hidden; }
 .media-card__media img {
@@ -23,7 +19,6 @@
   transition: color var(--duration-hover) var(--ease-hover);
 }
 .media-card:hover .media-card__title { color: var(--color-brand); }
-
 
 @media (prefers-reduced-motion: reduce) {
   .media-card__media img { transition-duration: 0.001ms; }

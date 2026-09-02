@@ -1,13 +1,9 @@
-/*
- * Component: Surface
- * 브랜드 그라디언트 배경(hero, .parts-group) 위에 얹는 glassmorphism 표면.
- * 반투명 흰 배경 + blur + 밝은 테두리 조합이 content-panel · diagnosis-preview ·
- * journey-block 등에서 반복돼 한 곳에서 정의한다. blur 강도는 변수로 열어둔다.
- */
+/* Component: Surface
+   브랜드 그라디언트 배경(hero, .parts-group) 위에 얹는 glassmorphism 표면. */
 .surface-glass {
   --surface-glass-blur: 20px;
-  background: rgba(255, 255, 255, .55);
-  border: 1px solid rgba(255, 255, 255, .7);
+  background: var(--color-glass-surface);
+  border: 1px solid var(--color-glass-line);
   box-shadow: var(--shadow-md);
   backdrop-filter: blur(var(--surface-glass-blur)) saturate(160%);
   -webkit-backdrop-filter: blur(var(--surface-glass-blur)) saturate(160%);

@@ -1,29 +1,6 @@
-/*
- * Component: Journey Stage
- * 스크롤에 따라 판 하나가 고정된 채 안의 내용만 교차 페이드로 바뀌는 스테이지.
- * 보이지 않는 트랙이 스크롤 길이를 만들고, js/journey-stage.js가 활성 스텝을 옮긴다.
- *
- * index.html PART 1(교육)과 skills.html 04 Learn이 함께 쓴다.
- *
- * Markup API
- * .section-wrap.row.is-sticky
- *   .section-aside                      ← 좌측 sticky 제목·목록
- *   .journey-stage[data-journey-stage]
- *     .journey-track[data-journey-track] ← 스크롤 길이만 만드는 빈 구간들
- *       div[data-journey-track-step="0|1|…"]
- *     .content-panel.journey-viewport.surface-glass
- *       article.content-panel__item.journey-step.is-active[data-journey-step="0"]
- *
- * 좌측 목록의 .choice-list__item에 data-journey-program="0|1|…"을 주면
- * 지금 보는 스텝이 .is-active로 표시되고, 눌러서 그 스텝으로 이동할 수 있다.
- *
- * 페이지가 정하는 값 — 판 높이가 페이지마다 달라 두 값만 넘겨받는다.
- *   --stage-panel-height  판 실측 높이. 판을 화면 세로 중앙에 놓는 데 쓴다.
- *   --stage-tail          마지막 구간에 더할 여유(읽는 시간).
- */
+/* Component: Journey Stage
+   스크롤에 따라 판 하나가 고정된 채 안의 내용만 교차 페이드로 바뀌는 스테이지. */
 
-/* 트랙과 판을 같은 그리드 셀에 겹쳐 둔다 — 세로로 쌓으면 판이 고정될
-   스크롤 구간이 트랙에 남지 않는다. */
 .journey-stage {
   display: grid;
 }
@@ -32,30 +9,24 @@
   grid-area: 1 / 1;
 }
 
-/* 한 구간 = 한 화면. 구간 수가 곧 스텝 수다. */
 .journey-track > div {
   height: 100vh;
 }
 
-/* 마지막 구간은 판 높이만큼 더해 읽는 시간을 확보한다. */
 .journey-track > div:last-child {
   height: calc(100vh + var(--stage-tail, 708px));
 }
 
-/* 판은 내용 높이를 따르고(fit-content) 화면 세로 중앙에 고정된다.
-   .content-panel의 flex column을 grid로 덮어 스텝을 같은 셀에 포갠다. */
 .journey-viewport {
   position: sticky;
-  /* 화면 세로 중앙. 판이 높아 중앙값이 헤더(75px) 아래로 못 내려가면
-     96px을 하한으로 잡아 고정 헤더에 판 머리가 가리지 않게 한다. */
+
   top: max(96px, calc((100vh - var(--stage-panel-height, 613px)) / 2));
-  /* 겹쳐진 그리드 셀에서 트랙 높이만큼 늘어나면 sticky가 동작하지 않는다. */
+
   align-self: start;
   display: grid;
   height: fit-content;
 }
 
-/* 스텝은 같은 자리에 겹쳐두고 opacity로만 교체한다. */
 .journey-step {
   grid-area: 1 / 1;
   opacity: 0;
@@ -81,4 +52,3 @@
   }
 }
 
-/* 900px 이하에서 1단으로 접히는 규칙은 css/mobile.css에 모아 둔다. */

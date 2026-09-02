@@ -1,9 +1,6 @@
-/*
- * Component: Layout
- * 문서 컨테이너, 섹션 뼈대, 카드, 그리드 wrapper 등 페이지 공통 레이아웃 단위.
- */
+/* Component: Layout
+   문서 컨테이너, 섹션 뼈대, 카드, 그리드 wrapper 등 페이지 공통 레이아웃 단위. */
 
-/* 최상위 콘텐츠 섹션의 공통 여백. */
 .wrap > section,
 main > section,
 .parts-group > section {
@@ -13,7 +10,6 @@ main > section,
   padding-block: 96px;
 }
 
-/* 카탈로그 문서용 컨테이너. */
 .wrap {
   max-width: var(--container-medium);
   margin: 0 auto;
@@ -29,10 +25,6 @@ main > section,
   padding: 20px;
 }
 
-/*
- * Component: Section Layout
- * col: 위→아래 단일 컬럼. row: 좌→우 2컬럼(sticky는 is-sticky로 선택).
- */
 .section-wrap.col {
   --section-gap: 40px;
   display: flex;
@@ -48,7 +40,6 @@ main > section,
   gap: var(--section-gap);
 }
 
-/* is-sticky일 때 좌측 aside를 고정한다. */
 .section-wrap.row.is-sticky > .section-aside {
   position: sticky;
   top: 96px;
@@ -58,12 +49,6 @@ main > section,
   gap: var(--space-48);
 }
 
-/* 900px·560px 반응형은 css/mobile.css에 모아 둔다. */
-
-/*
- * Component: Section Title
- * 섹션 상단 라벨 + 타이틀 + 설명 블록.
- */
 .section-title {
   display: flex;
   flex-direction: column;
@@ -89,7 +74,6 @@ main > section,
   flex-shrink: 0;
 }
 
-/* 섹션 타이틀 + CTA 좌우 배치 헤더 로우. */
 .section-header {
   display: flex;
   align-items: flex-end;
@@ -98,7 +82,6 @@ main > section,
   flex-wrap: wrap;
 }
 
-/* Component: Dot Line — 섹션 사이 구분용 점선 가로줄. */
 .dot-line {
   width: 100%;
   border-top: 1px dashed rgba(0, 0, 0, 0.09);
@@ -128,10 +111,6 @@ main > section,
   gap: 4px;
 }
 
-/*
- * Component: Fade Up
- * 스크롤 진입 시 떠오르는 공통 모션. .is-visible은 fade-up.js(IntersectionObserver)가 붙인다.
- */
 .fade-up {
   opacity: 0;
   transform: translateY(var(--motion-rise));
@@ -139,13 +118,11 @@ main > section,
     transform var(--duration-scroll) var(--ease-scroll);
 }
 
-/* transform은 none으로 되돌린다 — sticky 자손의 containing block이 되지 않게. */
 .fade-up.is-visible {
   opacity: 1;
   transform: none;
 }
 
-/* sticky 컬럼을 품은 섹션(journey 등)은 transform을 쓰지 않는다. */
 .fade-up.journey,
 .fade-up.diagnosis,
 .fade-up.difference {

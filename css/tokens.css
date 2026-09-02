@@ -1,74 +1,51 @@
-/*
- * Design Tokens — 원본: codepresso-designsystem.html.
- * 값을 하드코딩하지 말고 항상 이 변수를 참조한다. 같은 값을 쓰는 토큰은 만들지 않는다.
- */
+/* Design Tokens — 원본: codepresso-designsystem.html.
+   값을 하드코딩하지 말고 항상 이 변수를 참조한다. */
 
 :root {
-  /* ---------------------------------------------
-   * Color — Brand
-   * --------------------------------------------- */
   --color-brand: #1A61EA;
   --color-brand-dark: #0D33A3;
   --color-brand-tint-2: #E9EFFF;
 
-  /* Color — Ink (본문 텍스트는 --color-ink 하나로 통일)
-   * heaviest는 Dark Mode 배경도 겸한다. */
   --color-ink-heaviest: #04091A;
   --color-ink: #0E1B3D;
   --color-ink-light: #41496B;
   --color-ink-lighter: #7C88A3;
 
-  /* Color — Line */
   --color-line: #EAECF3;
   --color-line-heavy: #D3D6E0;
 
-  /* Color — Surface
-   * sunken은 페이지 기본 배경(로그인전 페이지 색)도 겸한다. */
   --color-surface: #FFFFFF;
   --color-surface-sunken: #F5F8FF;
   --color-surface-mist: #EEF0F3;
 
-  /* Color — Surface (진한 면 2단, 흰색과 1.03~1.18× 차이뿐인 밝은 면과
-   * 어두운 판(19.6×) 사이를 메운다. 둘 다 브랜드 블루 기운을 유지)
-   *
-   * raised — 틴트 페이지 위에 얹는 판·묶음 배경 (흰 대비 1.267×)
-   * deep   — 더 강하게 묶어야 할 때. 밝은 면의 한계 (1.510×)
-   *
-   * 이 두 면 위 텍스트는 --color-ink / --color-ink-light 까지만.
-   * --color-ink-lighter는 2.8×/2.35×로 AA(4.5) 미달. */
   --color-surface-raised: #DDE5F3;
   --color-surface-deep: #C6D3EA;
 
-  /* Color — State (success/warning은 예비 토큰) */
+  /* 유리 면(라이트) · 다크 면 위 텍스트 — 흰색 알파를 하드코딩하지 않는다. */
+  --color-glass-surface: rgb(255 255 255 / .55);
+  --color-glass-surface-strong: rgb(255 255 255 / .82);
+  --color-glass-line: rgb(255 255 255 / .7);
+  --color-glass-line-strong: rgb(255 255 255 / .9);
+  --color-glass-active: rgb(255 255 255 / .6);
+  --color-ink-on-dark: rgb(255 255 255 / .78);
+  --color-ink-on-dark-light: rgb(255 255 255 / .6);
+
   --color-success: #1C9A6C;
   --color-warning: #D98A1B;
   --color-critical: #E1435A;
 
-  /* Color — Shadow (블루 섀도우, 코드프레소 시각적 서명)
-   *
-   * 그림자는 hover·활성 신호 전용 — 평소 상태에는 깔지 않는다. 공간은
-   * 면(surface ramp)과 경계선이 만든다. 예외는 실제로 떠 있는 것
-   * (floating-cta, 목업 프레임)뿐.
-   *
-   * sm — hover 기본 / md — hover 강조·활성 */
   --shadow-sm: 0 2px 6px rgba(26, 97, 234, .04);
   --shadow-md: 0 6px 16px rgba(26, 97, 234, .12);
 
-  /* ---------------------------------------------
-   * Typography — Font Family
-   * --------------------------------------------- */
   --font-family-sans: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Malgun Gothic", sans-serif;
   --font-family-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Typography — Weight (3단 고정, Bold 미사용 원칙) */
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
-  /* Bold — 3단 원칙의 예외. proof-card 지표 등 강한 강조 전용 */
+
   --font-weight-bold: 700;
 
-  /* Typography — Heading Scale (9단, Semibold 고정)
-   * 표기: --text-heading-{size}px / 대응 line-height --leading-heading-{size}px */
   --text-heading-18: 18px; --leading-heading-18: 26px;
   --text-heading-20: 20px; --leading-heading-20: 28px;
   --text-heading-24: 24px; --leading-heading-24: 32px;
@@ -79,22 +56,17 @@
   --text-heading-56: 56px; --leading-heading-56: 66px;
   --text-heading-64: 64px; --leading-heading-64: 74px;
 
-  /* Typography — Heading 자간: 40px 이하 -0.1px 고정, 56px 이상 -0.5px */
   --tracking-heading-tight: -0.1px;
   --tracking-heading-wide: -0.5px;
 
-  /* Typography — Body Scale (서비스 페이지 최소 14px, 13px은 designsystem.html 전용)
-   * 주의: .text-label 클래스(text.css)는 14px, --text-label 토큰은 13px. */
   --text-body-13: 13px; --leading-body-13: 20px;
   --text-body-14: 14px; --leading-body-14: 22px;
   --text-body-16: 16px; --leading-body-16: 24px;
   --text-body-18: 18px; --leading-body-18: 28px;
 
-  /* Typography — Body 자간: 16px만 -0.1px, 13/14px은 0px */
   --tracking-body-tight: -0.1px;
   --tracking-body-normal: 0px;
 
-  /* Typography — 용도별 시맨틱 토큰 (리뉴얼안: 상위 위계 확대, 본문 16px 유지) */
   --text-hero: var(--text-heading-56);
   --leading-hero: var(--leading-heading-56);
   --tracking-hero: var(--tracking-heading-wide);
@@ -131,19 +103,13 @@
   --leading-label: var(--leading-body-13);
   --tracking-label: var(--tracking-body-normal);
 
-  /* KPI 수치 — 모든 페이지의 큰 숫자(metric-card, 문제 수치 등)가 함께 쓰는 한 벌.
-     제목보다 한 단 좁은 자간으로 숫자 덩어리를 붙여 읽히게 한다. */
   --text-kpi: var(--text-heading-36);
   --leading-kpi: var(--leading-heading-36);
   --tracking-kpi: -1px;
   --text-kpi-unit: var(--text-heading-18);
 
-  /* 전역 기본 자간(body 요소) */
   --tracking-base: -.16px;
 
-  /* ---------------------------------------------
-   * Spacing — 4px 그리드 + 6px 하이브리드
-   * --------------------------------------------- */
   --space-2: 2px;
   --space-4: 4px;
   --space-6: 6px;
@@ -161,34 +127,22 @@
   --space-48: 48px;
   --space-60: 60px;
 
-  /* Icon — 3단만 쓴다. 마크업에서는 .icon-sm/.icon-md/.icon-lg 클래스로 고른다
-     (components/ui/icon.css). 컴포넌트 CSS에 아이콘 크기를 다시 쓰지 않는다.
-     면을 가진 정사각 박스는 크기가 다른 개념이라 --icon-box-* 를 쓴다.
-     목업(product-mock·difference-mock) 안의 축소 아이콘은 이 스케일 밖이다. */
   --icon-sm: 20px;
   --icon-md: 24px;
   --icon-lg: 32px;
   --icon-box-sm: 32px;
   --icon-box: 48px;
 
-  /* Container widths — wide는 GNB, medium은 섹션 본문 폭 */
   --container-wide: 1480px;
   --container-medium: 1248px;
 
-  /* ---------------------------------------------
-   * Radius
-   * --------------------------------------------- */
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-lg: 12px;
-  /* 큰 판(목업 배경·카드 스테이지·프레임) 전용 */
+
   --radius-xl: 20px;
   --radius-full: 999px;
 
-
-  /* ---------------------------------------------
-   * Motion — hover(0.1s)와 스크롤 페이드(0.5s)의 이중 리듬
-   * --------------------------------------------- */
   --duration-hover: 0.1s;
   --duration-indicator: 0.25s;
   --duration-scroll: 0.5s;
@@ -196,39 +150,26 @@
   --ease-hover: ease-out;
   --ease-scroll: ease-out;
 
-  /* 스크롤 페이드 진입 시 떠오르는 거리 */
   --motion-rise: 12px;
 
-  /* keyframes.css 공용 애니메이션 기본값. 쓰는 쪽에서 덮어써 세기만 조절 */
   --motion-pop-scale: .96;
   --motion-pulse-min: .5;
   --motion-float-y: -5px;
   --motion-nudge-x: 3px;
 
-  /* ---------------------------------------------
-   * Color — AXpresso (업무 자동화) 전용 다크톤
-   * AXpresso 관련 화면만 이 다크 네이비 팔레트를 쓴다.
-   * --------------------------------------------- */
-  /* 그라데이션 배경 4단 (진한 순 → 옅은 순) */
   --color-axpresso-bg-1: #050C21;
   --color-axpresso-bg-2: #06102E;
   --color-axpresso-bg-3: #07143B;
   --color-axpresso-bg-4: #081640;
 
-  /* 박스(카드·패널) 면 — 단독 배경 또는 --color-brand + 16% 투명도 중 상황에 맞게 선택 */
   --color-axpresso-box: #081F63;
-  --color-axpresso-box-tint: rgba(26, 97, 234, .16); /* --color-brand 16% */
+  --color-axpresso-box-tint: rgba(26, 97, 234, .16);
 
-  /* 텍스트 — 화이트 + opacity로 위계만 조절한다. 순백 100%는 제목처럼
-   * 면적이 작은 자리 전용 — 넓은 면적에 깔면 눈부시므로 66%/42%로 낮춘다. */
   --color-axpresso-ink: var(--color-surface);
   --color-axpresso-ink-light: rgba(255, 255, 255, .66);
   --color-axpresso-ink-lighter: rgba(255, 255, 255, .42);
 }
 
-/* ---------------------------------------------
- * 모바일 타이포 스케일 — base.css의 h1~h3가 참조하는 시맨틱 토큰 재정의
- * --------------------------------------------- */
 @media (max-width: 560px) {
   :root {
     --text-hero: var(--text-heading-36);
@@ -239,7 +180,6 @@
     --leading-h1: var(--leading-heading-36);
     --tracking-h1: var(--tracking-heading-tight);
 
-    /* .section-title h2 전용 확대 */
     --text-h2: var(--text-heading-32);
     --leading-h2: var(--leading-heading-32);
 
@@ -253,7 +193,6 @@
     --leading-kpi: var(--leading-heading-32);
     --text-kpi-unit: var(--text-heading-18);
 
-    /* 섹션 설명문(.desc) 등 본문 계열 */
     --text-body-18: 16px;
     --leading-body-18: 24px;
   }

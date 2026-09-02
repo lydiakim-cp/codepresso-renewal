@@ -1,17 +1,12 @@
-/*
- * Component: CTA Final
- * 페이지 최하단 전환 유도 섹션. 어두운 배경 + 화이트 타이포 + 2버튼 + 보조 링크.
- * index.html · ax-build.html 두 페이지가 함께 쓰는 범용 컴포넌트라 ui/에 둔다.
- * (클래스명은 하이픈 표기를 그대로 유지 — 사용자 확인됨)
- */
+/* Component: CTA Final
+   페이지 최하단 전환 유도 섹션. */
 
 .cta-final {
   position: relative;
   overflow: hidden;
-  /* 판을 잉크(거의 검정)에서 브랜드 다크로 올린다 — 마지막 화면이 어둡게
-     가라앉아 CTA가 눈에 안 들어왔다. 대비는 위 딤 레이어가 만든다. */
+
   background-color: var(--color-brand-dark);
-  /* 마지막 전환 자리가 띠처럼 얇아 보이지 않게 한 판을 확보한다. */
+
   min-height: 480px;
   justify-content: center;
 }
@@ -19,7 +14,7 @@
 .cta-final::before {
   content: "";
   position: absolute;
-  /* 배경 질감 이미지 */
+
   inset: -20px;
   background-image: url("../../../images/bg-line2.png");
   background-repeat: no-repeat;
@@ -29,8 +24,6 @@
   opacity: 0.5;
 }
 
-/* 딤 — 밝아진 파란 판 위에서 흰 글씨와 버튼이 뜨도록 가운데를 눌러 준다.
-   질감 위를 한 겹 덮어 글자 뒤가 어지럽지 않게 하는 역할도 겸한다. */
 .cta-final::after {
   content: "";
   position: absolute;
@@ -63,8 +56,6 @@
   color: color-mix(in srgb, var(--color-surface) 82%, transparent);
 }
 
-/* 판이 브랜드 파랑이 되면서 파란 btn-primary가 배경에 묻힌다 —
-   이 판에서만 흰 면으로 뒤집어 주 버튼이 가장 밝은 요소가 되게 한다. */
 .cta-final .btn-primary {
   background: var(--color-surface);
   color: var(--color-brand-dark);
@@ -80,4 +71,3 @@
   margin-top: var(--space-12);
 }
 
-/* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */

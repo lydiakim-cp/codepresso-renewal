@@ -63,7 +63,7 @@
               <article class="assessment-card">
                 <div class="assessment-card__head">
                   <h3>당신은 AI를 쓰는 사람인가요,<br>다루는 사람인가요?</h3>
-                  <p class="assessment-card__description">AI를 쓰는 사람과 다루는 사람은 다릅니다.<br>지금 나의 AI 활용 수준을 확인해보세요.</p>
+                  <p class="description">AI를 쓰는 사람과 다루는 사람은 다릅니다.<br>지금 나의 AI 활용 수준을 확인해보세요.</p>
                 </div>
 
                 <ul class="assessment-card__meta" aria-label="진단 정보">
@@ -338,7 +338,7 @@
               <ul class="choice-list diagnosis-product-list">
                 <li>
                   <button class="choice-list__item diagnosis-product" type="button" data-journey-program="0">
-                    <span class="choice-list__icon diagnosis-product-icon" aria-hidden="true">
+                    <span class="icon-box" aria-hidden="true">
                       <img src="images/icon/ic_skillPath.svg" alt="">
                     </span>
                     <span class="choice-list__body diagnosis-product-body">
@@ -350,7 +350,7 @@
                 </li>
                 <li>
                   <button class="choice-list__item diagnosis-product" type="button" data-journey-program="1">
-                    <span class="choice-list__icon diagnosis-product-icon" aria-hidden="true">
+                    <span class="icon-box" aria-hidden="true">
                       <img src="images/icon/ic_edu.svg" alt="">
                     </span>
                     <span class="choice-list__body diagnosis-product-body">
@@ -362,7 +362,7 @@
                 </li>
                 <li>
                   <button class="choice-list__item diagnosis-product" type="button" data-journey-program="2">
-                    <span class="choice-list__icon diagnosis-product-icon" aria-hidden="true">
+                    <span class="icon-box" aria-hidden="true">
                       <img src="images/icon/ic_skillFit.svg" alt="">
                     </span>
                     <span class="choice-list__body diagnosis-product-body">
@@ -679,7 +679,7 @@
               <ul class="choice-list diagnosis-product-list">
                 <li>
                   <button class="choice-list__item diagnosis-product" type="button" data-diagnosis-program="0">
-                    <span class="choice-list__icon diagnosis-product-icon" aria-hidden="true">
+                    <span class="icon-box" aria-hidden="true">
                       <img src="images/icon/ic_aiFluent.svg" alt="">
                     </span>
                     <span class="choice-list__body diagnosis-product-body">
@@ -691,7 +691,7 @@
                 </li>
                 <li>
                   <button class="choice-list__item diagnosis-product" type="button" data-diagnosis-program="1">
-                    <span class="choice-list__icon diagnosis-product-icon" aria-hidden="true">
+                    <span class="icon-box" aria-hidden="true">
                       <img src="images/icon/ic_skillCertify.svg" alt="">
                     </span>
                     <span class="choice-list__body diagnosis-product-body">
@@ -707,17 +707,15 @@
             <a href="#" class="btn btn-primary">역량 진단 자세히 보기<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
 
-          <div class="diagnosis-preview" data-diagnosis-stage>
-            <!-- PART 1의 journey-stage와 같은 뼈대 — 보이지 않는 트랙이
-                 스크롤 길이를 만들고, 판은 sticky로 고정된 채 안의 스텝만 교차
-                 페이드된다(js/journey-stage.js). -->
-            <div class="diagnosis-track" data-diagnosis-track>
+          <!-- PART 1과 같은 journey-stage 컴포넌트 — data 접두사만 diagnosis다. -->
+          <div class="journey-stage diagnosis-preview" data-diagnosis-stage>
+            <div class="journey-track" data-diagnosis-track>
               <div data-diagnosis-track-step="0"></div>
               <div data-diagnosis-track-step="1"></div>
             </div>
 
-            <div class="content-panel diagnosis-preview-panel surface-glass">
-              <figure class="content-panel__item diagnosis-preview-step is-active" data-diagnosis-step="0">
+            <div class="content-panel journey-viewport diagnosis-preview-panel surface-glass">
+              <figure class="content-panel__item journey-step is-active" data-diagnosis-step="0">
                 <img class="content-panel__visual diagnosis-preview-image" src="images/aifluent-sample.svg"
                   alt="AI Fluent 전 직군 AI 활용 역량 진단 리포트 화면">
                 <figcaption class="content-panel__intro diagnosis-preview-caption">
@@ -727,7 +725,7 @@
                 </figcaption>
               </figure>
 
-              <figure class="content-panel__item diagnosis-preview-step" data-diagnosis-step="1">
+              <figure class="content-panel__item journey-step" data-diagnosis-step="1">
                 <img class="content-panel__visual diagnosis-preview-image" src="images/skillcertify-sample.svg"
                   alt="SkillCertify 개발자 IT 실무 역량 평가 리포트 화면">
                 <figcaption class="content-panel__intro diagnosis-preview-caption">

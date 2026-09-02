@@ -1,8 +1,5 @@
-/*
- * Component: Summary Banner
- * 섹션의 결론 문장 또는 metric-card 묶음을 담는 수평 컨테이너.
- * 배경·여백만 책임지고 내부 카드 디자인은 metric-card.css가 담당한다.
- */
+/* Component: Summary Banner
+   섹션의 결론 문장 또는 metric-card 묶음을 담는 수평 컨테이너. */
 .summary-banner {
   padding: var(--space-48);
   border-radius: var(--radius-lg);
@@ -24,7 +21,6 @@
   color: color-mix(in srgb, var(--color-brand) 70%, white);
 }
 
-/* 카드 컬렉션형 배너. 카드 수가 달라져도 가능한 폭 안에서 자동 열을 만든다. */
 .summary-banner.stats-light {
   padding: 0;
   background: transparent;
@@ -37,4 +33,3 @@
   gap: var(--space-24);
 }
 
-/* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */

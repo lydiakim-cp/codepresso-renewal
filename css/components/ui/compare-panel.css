@@ -1,20 +1,8 @@
-/*
- * Component: Compare Panel
- * "지금(Before) → 바뀐 뒤(After)" 두 상태를 나란히 대비시키는 범용 패널.
- * 왼쪽 문제 상황(중립 회색) · 오른쪽 개선 결과(브랜드 톤)로 색을 갈라 지향점이
- * 읽는 순간 드러나게 한다.
- *
- * Markup API
- * .compare-panel
- *   .compare-panel__item (+ .is-after)
- *     .compare-panel__label
- *     .compare-panel__title
- *     .compare-panel__desc
- *   .compare-panel__arrow   ← 두 item 사이. 장식이라 aria-hidden.
- */
+/* Component: Compare Panel
+   "지금(Before) → 바뀐 뒤(After)" 두 상태를 나란히 대비시키는 범용 패널. */
 .compare-panel {
   display: grid;
-  /* 가운데 화살표는 내용 폭만 차지하고, 양쪽 판이 남는 폭을 반씩 갖는다. */
+
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: stretch;
   gap: var(--space-20);
@@ -30,7 +18,6 @@
   background: var(--color-surface);
 }
 
-/* After 판만 브랜드 톤으로 올려 시선이 오른쪽에 머물게 한다. */
 .compare-panel__item.is-after {
   border-color: var(--color-brand-tint-2);
   background: var(--color-surface-sunken);
@@ -48,7 +35,6 @@
   color: var(--color-brand);
 }
 
-/* h3 전역 스타일(24px semibold)을 그대로 쓰고 색만 맞춘다. */
 .compare-panel__title {
   color: var(--color-ink-heaviest);
 }
@@ -67,7 +53,7 @@
   display: block;
   width: 28px;
   height: 28px;
-  /* Before → After 방향을 짚어주는 미세한 왕복. */
+
   animation: nudge 2.4s var(--ease-scroll) infinite;
 }
 
@@ -75,4 +61,3 @@
   .compare-panel__arrow svg { animation: none; }
 }
 
-/* 900px 반응형은 css/mobile.css에 모아 둔다. */

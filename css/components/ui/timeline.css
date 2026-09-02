@@ -1,17 +1,5 @@
-/*
- * Component: Timeline
- * 기간이 있는 단계를 위→아래로 잇는 범용 세로 타임라인.
- * 왼쪽 기간 라벨 · 가운데 연결선+점 · 오른쪽 내용. 단계를 추가하면 선도 자동으로 이어진다.
- *
- * Markup API
- * ol.timeline
- *   li> li
- *     .timeline__marker   ← 기간 라벨 + 점. 선은 ::before로 그린다.
- *       .timeline__term
- *     .timeline__body
- *       .timeline__title
- *       .timeline__desc
- */
+/* Component: Timeline
+   기간이 있는 단계를 위→아래로 잇는 범용 세로 타임라인. */
 .timeline {
   display: grid;
   gap: 0;
@@ -32,7 +20,6 @@
   width: var(--space-16);
 }
 
-/* 단계를 잇는 세로선. 마지막 단계는 아래로 선을 내리지 않는다. */
 .timeline > li:not(:last-child) .timeline__marker::before {
   content: "";
   position: absolute;
@@ -44,14 +31,13 @@
   transform: translateX(-50%);
 }
 
-/* 단계 지점을 나타내는 점(브랜드 색). */
 .timeline__marker::after {
   content: "";
   position: relative;
   z-index: 1;
   width: 11px;
   height: 11px;
-  /* 기간 라벨 첫 줄 중앙과 높이를 맞춘다. */
+
   margin-top: 6px;
   border-radius: var(--radius-full);
   background: var(--color-brand);
@@ -70,13 +56,12 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
-  /* 다음 단계와의 간격. 선이 이 구간을 지나 아래 단계까지 이어진다. */
+
   padding-bottom: var(--space-35);
 }
 
 .timeline > li:last-child .timeline__body { padding-bottom: 0; }
 
-/* h3 대신 카드 제목 스케일(20px)을 쓴다. */
 .timeline__title {
   font-size: var(--text-card-title);
   line-height: var(--leading-card-title);
@@ -88,7 +73,6 @@
   color: var(--color-ink-light);
 }
 
-/* 진입 모션 — 섹션의 .fade-up.is-visible을 받아 단계가 순서대로 들어온다. */
 .fade-up .timeline > li {
   opacity: 0;
   transform: translateY(var(--motion-rise));
@@ -107,7 +91,6 @@
 .fade-up.is-visible .timeline > li:nth-child(4) { transition-delay: .3s; }
 .fade-up.is-visible .timeline > li:nth-child(5) { transition-delay: .4s; }
 
-/* 점도 함께 커지며 자리를 잡는다. */
 .fade-up.is-visible .timeline__marker::after {
   --motion-pop-scale: .4;
   animation: scale-in var(--duration-scroll) var(--ease-scroll) both;
@@ -119,4 +102,3 @@
   .fade-up.is-visible .timeline__marker::after { animation: none; }
 }
 
-/* 720px 반응형은 css/mobile.css에 모아 둔다. */

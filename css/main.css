@@ -1,15 +1,5 @@
-/*
- * Main Entry (모든 페이지 공통)
- * Reset → Design Tokens → Base → 공통 Components 순서로 로드. Cascade Layer로
- * 우선순위를 명시한다.
- *
- * 범용 UI(components/ui/)만 여기서 로드한다. index.html 전용 섹션 컴포넌트
- * (Hero · Proof Card · Education Journey · Diagnosis Showcase · Difference · Insight)는
- * css/pages/index.css에 직접 통합돼 있다.
- *   - index.html               → main.css + css/pages/index.css
- *   - ax-build.html            → main.css + css/pages/ax-build.css
- *   - codepresso-designsystem  → main.css + css/pages/designsystem.css (index.css를 import)
- */
+/* Main Entry (모든 페이지 공통)
+   Reset → Design Tokens → Base → 공통 Components 순서로 로드. */
 
 @layer reset, tokens, base, components;
 
@@ -17,16 +7,13 @@
 @import url("./tokens.css") layer(tokens);
 @import url("./base.css") layer(base);
 
-/* 공용 @keyframes 라이브러리. @layer 우선순위를 받지 않아 레이어에 넣지 않는다. */
 @import url("./keyframes.css");
 
-/* 레이아웃 뼈대 · 텍스트 유틸리티 */
 @import url("./components/ui/layout.css") layer(components);
 @import url("./components/ui/section-body.css") layer(components);
 @import url("./components/ui/text.css") layer(components);
 @import url("./components/ui/surface.css") layer(components);
 
-/* 공통 UI 컴포넌트 — components/ui/ */
 @import url("./components/ui/button.css") layer(components);
 @import url("./components/ui/link.css") layer(components);
 @import url("./components/ui/badge.css") layer(components);

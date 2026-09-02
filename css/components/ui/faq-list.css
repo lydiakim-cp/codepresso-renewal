@@ -1,18 +1,6 @@
-/*
- * Component: FAQ List
- * 질문을 눌러 답을 펼치는 범용 아코디언. <details>/<summary> native 동작을 그대로
- * 써서 열림 상태·키보드·스크린리더 안내를 브라우저가 처리한다(JS·aria 불필요).
- *
- * Markup API
- * .faq-list
- *   details> details
- *     summary.faq-list__question   ← 안에 텍스트 + .faq-list__icon
- *     .faq-list__answer
- *       .faq-list__info            ← (선택) 답변 안 콜아웃 한 줄
- */
+/* Component: FAQ List
+   질문을 눌러 답을 펼치는 범용 아코디언. */
 .faq-list {
-  /* height: 0 → auto 보간을 허용해 답변이 실제 높이만큼 열리게 한다.
-     미지원 브라우저(Firefox 등)에서는 transition만 무시되고 즉시 열린다. */
   interpolate-size: allow-keywords;
   display: flex;
   flex-direction: column;
@@ -22,14 +10,11 @@
 }
 
 .faq-list > details {
-  border: 1px solid #d9dee7;
+  border: 1px solid var(--color-line-heavy);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   overflow: hidden;
-  box-shadow: 0 2px 6px #1a61ea0a;
 }
-
-
 
 .faq-list__question {
   display: flex;
@@ -38,7 +23,7 @@
   gap: var(--space-16);
   padding: var(--space-32);
   cursor: pointer;
-  /* 기본 삼각형 마커를 지우고 오른쪽 + 아이콘으로 대체한다. */
+
   list-style: none;
   font-size: var(--text-body-16);
   line-height: var(--leading-body-16);
@@ -46,9 +31,7 @@
   color: var(--color-ink-heaviest);
 }
 
-/* Safari는 list-style로 마커가 지워지지 않아 별도 처리가 필요하다. */
 .faq-list__question::-webkit-details-marker { display: none; }
-
 
 .faq-list__icon {
   flex-shrink: 0;
@@ -61,17 +44,10 @@
   display: block;
 }
 
-/* 닫힘 = 아래 방향, 열림 = 위 방향. chevron 하나를 뒤집어 쓴다. */
 .faq-list > details[open] .faq-list__icon {
   transform: rotate(180deg);
 }
 
-/*
- * 열림 연출 — 페이드가 아니라 높이가 늘어난다. ::details-content가
- * <details>의 내용을 감싸는 익명 박스라, 여기에 height 0 → auto를 건다.
- * content-visibility는 이산(discrete) 속성이라 allow-discrete로 끝까지 붙잡아
- * 닫힐 때도 높이가 줄어드는 동안 내용이 남아 있게 한다.
- */
 .faq-list > details::details-content {
   height: 0;
   overflow: hidden;
@@ -85,19 +61,17 @@
 
 .faq-list__answer {
   padding: var(--space-32);
-  border-top: 1px solid #e6e9ef;
-  background: #f7f9fc;
-  color: #4e5566;
+  border-top: 1px solid var(--color-line);
+  background: var(--color-surface-sunken);
+  color: var(--color-ink-light);
   font-size: var(--text-body-16);
-  line-height: 24px;
+  line-height: var(--leading-body-16);
 }
 
-/* 답변 안에 끼는 콜아웃(주의·참고 한 줄). 답변 면보다 한 톤 진한 브랜드 틴트로
-   묶어 본문과 구분한다. */
 .faq-list__info {
   margin-block: var(--space-12) 0;
   padding: var(--space-12) var(--space-16);
-  border: 1px solid rgb(24 54 122 / 0.15);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent);
   border-radius: var(--radius-md);
   background: var(--color-brand-tint-2);
   font-size: var(--text-body-14);
@@ -110,4 +84,3 @@
   .faq-list__icon { transition-duration: 0.001ms; }
 }
 
-/* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */

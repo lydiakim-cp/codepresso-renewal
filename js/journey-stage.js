@@ -65,11 +65,9 @@ const animateScrollTo = (targetY) => {
   requestAnimationFrame(step);
 };
 
-/* name은 data 속성 접두사이자 dataset 키의 어근이다 — 'journey' → data-journey-step /
-   dataset.journeyStep. sectionSelector는 좌측 프로그램 리스트를 찾을 범위,
-   panelSelector는 sticky로 고정되는 우측 판(클릭 이동의 도착 지점 계산에 쓴다),
-   pop은 스텝 내부 요소의 pop-in 연출 사용 여부(PART 1 목업 전용). */
-const setupStage = ({ name, sectionSelector, panelSelector, pop = false }) => {
+/* name은 data 속성 접두사(dataset 키의 어근), sectionSelector는 좌측 프로그램
+   리스트를 찾을 범위, pop은 스텝 내부 pop-in 연출 사용 여부(PART 1 목업 전용). */
+const setupStage = ({ name, sectionSelector, pop = false }) => {
   const key = (suffix) => name + suffix;
   const attr = (suffix) => `[data-${name}${suffix}]`;
 
@@ -87,7 +85,7 @@ const setupStage = ({ name, sectionSelector, panelSelector, pop = false }) => {
 
   /* sticky로 고정되는 우측 판. 클릭 이동이 "판이 자리를 잡은 뒤"에 멈추도록
      도착 지점의 하한을 계산하는 데 쓴다(scrollToStep 참고). */
-  const panel = stage.querySelector(panelSelector);
+  const panel = stage.querySelector('.journey-viewport');
 
   let activeIndex = 0;
 
@@ -230,15 +228,5 @@ const setupStage = ({ name, sectionSelector, panelSelector, pop = false }) => {
   trackSteps.forEach((trackStep) => observer.observe(trackStep));
 };
 
-setupStage({
-  name: 'journey',
-  sectionSelector: '.journey',
-  panelSelector: '.journey-viewport',
-  pop: true,
-});
-
-setupStage({
-  name: 'diagnosis',
-  sectionSelector: '.diagnosis',
-  panelSelector: '.diagnosis-preview-panel',
-});
+setupStage({ name: 'journey', sectionSelector: '.journey', pop: true });
+setupStage({ name: 'diagnosis', sectionSelector: '.diagnosis' });

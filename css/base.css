@@ -1,6 +1,4 @@
-/*
- * Base Styles — Reset 이후 프로젝트 전역 기본 스타일. Design Token만 참조한다.
- */
+/* Base Styles — Reset 이후 프로젝트 전역 기본 스타일. Design Token만 참조한다. */
 
 body {
   font-family: var(--font-family-sans);
@@ -14,7 +12,7 @@ body {
 h1 {
   font-size: var(--text-h1);
   line-height: var(--leading-h1);
-  /* h1만 예외적으로 Bold 고정(사용자 확인). h2·h3는 Semibold 유지. */
+
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--tracking-h1);
   color: var(--color-ink-heaviest);
@@ -79,7 +77,4 @@ footer {
   color: var(--color-ink-lighter);
 }
 
-/* 반응형 줄바꿈 — <br data-break="desktop">은 데스크톱에서만, <br data-break="mobile">은
-   모바일(560px 이하)에서만 줄바꿈한다. 기본(데스크톱)은 여기서, 560px 반전은
-   css/mobile.css의 560px 섹션이 담당한다. */
 br[data-break="mobile"] { display: none; }

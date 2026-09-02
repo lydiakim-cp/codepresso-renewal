@@ -98,7 +98,7 @@
         </div>
         <div class="section-content">
           <ol class="cycle">
-            <li>
+            <li class="blue">
               <div class="cycle-head">
                 <span class="cycle-no" aria-hidden="true">
                   <!-- 진단 — images/icon/ic_skillCertify.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로
@@ -113,12 +113,12 @@
                 <p class="cycle-en">Assess</p>
               </div>
               <h3>진단</h3>
-              <p class="cycle-desc">실무 과제로 현재 역량과 부족한 영역을 확인</p>
+              <p class="description">실무 과제로 현재 역량과 부족한 영역을 확인</p>
               <span class="cycle-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
             </li>
-            <li>
+            <li class="blue">
               <div class="cycle-head">
                 <span class="cycle-no" aria-hidden="true">
                   <!-- 설계 — images/icon/ic_structure.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로
@@ -135,12 +135,12 @@
                 <p class="cycle-en">Design</p>
               </div>
               <h3>설계</h3>
-              <p class="cycle-desc">조직 목표와 역량 격차에 맞춘 학습 경로</p>
+              <p class="description">조직 목표와 역량 격차에 맞춘 학습 경로</p>
               <span class="cycle-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
             </li>
-            <li>
+            <li class="blue">
               <div class="cycle-head">
                 <span class="cycle-no" aria-hidden="true">
                   <!-- 학습 — images/flat_icon_svg/006.화상회의.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로
@@ -154,12 +154,12 @@
                 <p class="cycle-en">Learn</p>
               </div>
               <h3>학습</h3>
-              <p class="cycle-desc">이러닝 · 집합교육 · 적응형 학습 조합</p>
+              <p class="description">이러닝 · 집합교육 · 적응형 학습 조합</p>
               <span class="cycle-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
             </li>
-            <li>
+            <li class="blue">
               <div class="cycle-head">
                 <span class="cycle-no" aria-hidden="true">
                   <!-- 증명 — images/icon/ic_skillMonitor.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로
@@ -175,7 +175,7 @@
                 <p class="cycle-en">Prove</p>
               </div>
               <h3>증명</h3>
-              <p class="cycle-desc">재진단과 대시보드로 전후 변화 확인</p>
+              <p class="description">재진단과 대시보드로 전후 변화 확인</p>
             </li>
           </ol>
           <p class="cycle-note">
@@ -316,7 +316,7 @@
                 <div class="content-panel__item">
                   <div class="content-panel__intro">
                     <div class="product-name">
-                      <span class="product-icon" aria-hidden="true">
+                      <span class="icon-box" aria-hidden="true">
                         <img src="images/icon/ic_aiFluent.svg" alt="">
                       </span>
                       <div>
@@ -353,7 +353,7 @@
                 <div class="content-panel__item">
                   <div class="content-panel__intro">
                     <div class="product-name">
-                      <span class="product-icon" aria-hidden="true">
+                      <span class="icon-box" aria-hidden="true">
                         <img src="images/icon/ic_skillCertify.svg" alt="">
                       </span>
                       <div>
@@ -411,7 +411,7 @@
             <ul class="choice-list learn-index">
               <li>
                 <button class="choice-list__item" type="button" data-journey-program="0">
-                  <span class="choice-list__icon" aria-hidden="true">
+                  <span class="icon-box" aria-hidden="true">
                     <img src="images/icon/ic_skillPath.svg" alt="">
                   </span>
                   <span class="choice-list__body">
@@ -423,7 +423,7 @@
               </li>
               <li>
                 <button class="choice-list__item" type="button" data-journey-program="1">
-                  <span class="choice-list__icon" aria-hidden="true">
+                  <span class="icon-box" aria-hidden="true">
                     <img src="images/icon/ic_edu.svg" alt="">
                   </span>
                   <span class="choice-list__body">
@@ -435,7 +435,7 @@
               </li>
               <li>
                 <button class="choice-list__item" type="button" data-journey-program="2">
-                  <span class="choice-list__icon" aria-hidden="true">
+                  <span class="icon-box" aria-hidden="true">
                     <img src="images/icon/ic_skillFit.svg" alt="">
                   </span>
                   <span class="choice-list__body">
@@ -1145,7 +1145,8 @@
 
     <!-- 07 Proof — 이 페이지에서 유일하게 어두운 섹션.
          ax-build 06과 같은 판단이다(옅은 틴트로는 강조가 서지 않아 어두운 판으로 올림).
-         누적 수치라 metric-card + stat-reveal 카운트업을 그대로 쓴다. -->
+         누적 수치는 ax-grow 07과 같은 content-panel start-card 배치로 두고
+         stat-reveal 카운트업만 그대로 쓴다. -->
     <section class="outcomes is-dark fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -1153,20 +1154,15 @@
           <h2>교육을 했다면, <br data-break="desktop">역량의 변화가 있어야 합니다</h2>
         </div>
         <div class="section-content">
-          <div class="summary-banner stats-light">
-            <!-- data-stat-reveal은 카드를 감싼 grid에 둔다(index proof와 같은 자리).
-                 stat-reveal.js가 .num[data-target]을 0에서 카운트업한다. -->
-            <div class="summary-banner-stats" data-stat-reveal>
-              <article class="metric-card">
-                <div class="metric-card__value">
-                  <span class="num" data-target="39355">0</span><span class="unit">명</span>
-                </div>
-                <p class="metric-card__label text-label">누적 수강생</p>
-                <div class="metric-card__visual" aria-hidden="true">
-                  <span class="metric-card__glow"></span>
-                  <span class="metric-card__glow"></span>
+          <!-- data-stat-reveal은 카드를 감싼 grid에 둔다. start-card를 쓰므로
+               data-stat-card로 대상 선택자를 알린다(기본값은 .metric-card).
+               stat-reveal.js가 .num[data-target]을 0에서 카운트업한다. -->
+          <ul class="start-grid" data-stat-reveal data-stat-card=".start-card">
+            <li>
+              <div class="content-panel content-panel--compact start-card">
+                <span class="start-icon" aria-hidden="true">
                   <!-- 수강생 — ic_team.svg 기반, 하드코딩 색을 브랜드 토큰으로 교체 -->
-                  <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
+                  <svg class="icon-md" viewBox="0 0 24 24" fill="none">
                     <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
                     <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
                     <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
@@ -1174,19 +1170,18 @@
                     <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)" />
                     <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)" />
                   </svg>
+                </span>
+                <div class="content-panel__intro">
+                  <p class="text-label metric-card__label">누적 수강생</p>
+                  <p class="metric-card__value"><span class="num" data-target="39355">0</span><span class="unit">명</span></p>
                 </div>
-              </article>
-
-              <article class="metric-card">
-                <div class="metric-card__value">
-                  <span class="num" data-target="1531">0</span><span class="unit">회</span>
-                </div>
-                <p class="metric-card__label text-label">교육 운영</p>
-                <div class="metric-card__visual" aria-hidden="true">
-                  <span class="metric-card__glow"></span>
-                  <span class="metric-card__glow"></span>
+              </div>
+            </li>
+            <li>
+              <div class="content-panel content-panel--compact start-card">
+                <span class="start-icon" aria-hidden="true">
                   <!-- 운영 횟수 — ic_calendar.svg 기반 -->
-                  <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
+                  <svg class="icon-md" viewBox="0 0 24 24" fill="none">
                     <path d="M19.5 4.01953H4.5C3.39543 4.01953 2.5 4.91496 2.5 6.01953V19.0195C2.5 20.1241 3.39543 21.0195 4.5 21.0195H19.5C20.6046 21.0195 21.5 20.1241 21.5 19.0195V6.01953C21.5 4.91496 20.6046 4.01953 19.5 4.01953Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
                     <path d="M8.48001 3.01953H7.5C7.22386 3.01953 7 3.24339 7 3.51953V5.51953C7 5.79567 7.22386 6.01953 7.5 6.01953H8.48001C8.75615 6.01953 8.98001 5.79567 8.98001 5.51953V3.51953C8.98001 3.24339 8.75615 3.01953 8.48001 3.01953Z" fill="var(--color-brand)" />
                     <path d="M8.74023 9.5H7.24023C6.96409 9.5 6.74023 9.72386 6.74023 10V11.5C6.74023 11.7761 6.96409 12 7.24023 12H8.74023C9.01638 12 9.24023 11.7761 9.24023 11.5V10C9.24023 9.72386 9.01638 9.5 8.74023 9.5Z" fill="var(--color-surface)" />
@@ -1197,54 +1192,53 @@
                     <path d="M12.75 14H11.25C10.9739 14 10.75 14.2239 10.75 14.5V16C10.75 16.2761 10.9739 16.5 11.25 16.5H12.75C13.0261 16.5 13.25 16.2761 13.25 16V14.5C13.25 14.2239 13.0261 14 12.75 14Z" fill="var(--color-surface)" />
                     <path d="M16.7598 14H15.2598C14.9836 14 14.7598 14.2239 14.7598 14.5V16C14.7598 16.2761 14.9836 16.5 15.2598 16.5H16.7598C17.0359 16.5 17.2598 16.2761 17.2598 16V14.5C17.2598 14.2239 17.0359 14 16.7598 14Z" fill="var(--color-surface)" />
                   </svg>
+                </span>
+                <div class="content-panel__intro">
+                  <p class="text-label metric-card__label">교육 운영</p>
+                  <p class="metric-card__value"><span class="num" data-target="1531">0</span><span class="unit">회</span></p>
                 </div>
-              </article>
-
-              <article class="metric-card">
-                <div class="metric-card__value">
-                  <span class="num" data-target="80">0</span><span class="unit">%</span>
-                </div>
-                <p class="metric-card__label text-label">기업 교육 재구매율</p>
-                <div class="metric-card__visual" aria-hidden="true">
-                  <span class="metric-card__glow"></span>
-                  <span class="metric-card__glow"></span>
+              </div>
+            </li>
+            <li>
+              <div class="content-panel content-panel--compact start-card">
+                <span class="start-icon" aria-hidden="true">
                   <!-- 재구매율 — ic_lineChart.svg 기반 -->
-                  <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
+                  <svg class="icon-md" viewBox="0 0 24 24" fill="none">
                     <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
                     <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)" />
                     <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)" />
                   </svg>
+                </span>
+                <div class="content-panel__intro">
+                  <p class="text-label metric-card__label">기업 교육 재구매율</p>
+                  <p class="metric-card__value"><span class="num" data-target="80">0</span><span class="unit">%</span></p>
                 </div>
-              </article>
-
-              <article class="metric-card">
-                <!-- 소수점 값이라 data-decimals="1"을 함께 준다 — stat-reveal.js가
-                     이 속성을 보고 소수 첫째 자리를 살려 카운트업한다(없으면 정수).
-                     넷 중 하나만 정지해 있으면 그 카드가 더 눈에 띄어서, 4개가
-                     함께 올라가도록 맞췄다. -->
-                <div class="metric-card__value">
-                  <span class="num" data-target="4.5" data-decimals="1">0.0</span><span class="unit">/5</span>
-                </div>
-                <p class="metric-card__label text-label">교육 만족도</p>
-                <div class="metric-card__visual" aria-hidden="true">
-                  <span class="metric-card__glow"></span>
-                  <span class="metric-card__glow"></span>
+              </div>
+            </li>
+            <li>
+              <div class="content-panel content-panel--compact start-card">
+                <span class="start-icon" aria-hidden="true">
                   <!-- 만족도 — images/icon/ic_award.svg의 실제 path를 그대로 옮기고
                        하드코딩 #1A61EA만 브랜드 토큰으로 바꿨다. 아이콘 파일이 품고 있는
-                       배경 판(rect)은 metric-card가 이미 자기 면을 갖고 있어 뺐다.
+                       배경 판(rect)은 카드가 이미 자기 면을 갖고 있어 뺐다.
                        index PART의 세 카드와 같은 방식(인라인 SVG + 토큰 fill)이며,
                        40 그리드 파일이라 그림 범위로 viewBox를 잘라 크기를 맞췄다. -->
-                  <svg class="metric-card__icon" viewBox="8.44 8.44 23.13 23.13" fill="none">
+                  <svg class="icon-md" viewBox="8.44 8.44 23.13 23.13" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M13.4167 13.4993C13.4167 12.0851 14.5858 10.916 16 10.916H24C25.4143 10.916 26.5834 12.0851 26.5834 13.4993V17.3327C26.5834 20.8759 23.711 24.0966 20.0001 24.0966C16.2956 24.0966 13.4167 20.966 13.4167 17.3327V13.4993ZM16 12.416C15.4143 12.416 14.9167 12.9136 14.9167 13.4993V17.3327C14.9167 20.1993 17.1845 22.5966 20.0001 22.5966C22.8092 22.5966 25.0834 20.1228 25.0834 17.3327V13.4993C25.0834 12.9136 24.5858 12.416 24 12.416H16Z" fill="var(--color-brand)" />
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M19.9997 22.6382C20.4139 22.6382 20.7497 22.974 20.7497 23.3882V25.8326C20.7497 26.2468 20.4139 26.5826 19.9997 26.5826C19.5855 26.5826 19.2497 26.2468 19.2497 25.8326V23.3882C19.2497 22.974 19.5855 22.6382 19.9997 22.6382Z" fill="var(--color-brand)" />
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M17.1762 26.7495C16.9347 26.7495 16.7497 26.942 16.7497 27.1662C16.7497 27.3904 16.9347 27.5828 17.1762 27.5828H22.8232C23.0647 27.5828 23.2497 27.3904 23.2497 27.1662C23.2497 26.942 23.0647 26.7495 22.8232 26.7495H17.1762ZM15.2497 27.1662C15.2497 26.1017 16.1182 25.2495 17.1762 25.2495H22.8232C23.8813 25.2495 24.7497 26.1017 24.7497 27.1662C24.7497 28.2306 23.8813 29.0828 22.8232 29.0828H17.1762C16.1182 29.0828 15.2497 28.2306 15.2497 27.1662Z" fill="var(--color-brand)" />
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M25.4161 13.666C25.4161 13.2518 25.7519 12.916 26.1661 12.916C27.7121 12.916 29.2494 14.2177 29.2494 15.9993C29.2494 16.3985 29.2426 17.8502 27.8209 19.0688C27.8085 19.0794 27.7958 19.0896 27.7828 19.0993L25.7828 20.5993C25.4514 20.8479 24.9813 20.7807 24.7328 20.4493C24.4842 20.118 24.5514 19.6479 24.8828 19.3993L26.8622 17.9148C27.7496 17.1429 27.7495 16.278 27.7494 16.0053V15.9993C27.7494 15.1143 26.9535 14.416 26.1661 14.416C25.7519 14.416 25.4161 14.0802 25.4161 13.666Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5833 13.666C14.5833 13.2518 14.2475 12.916 13.8333 12.916C12.2874 12.916 10.75 14.2177 10.75 15.9993C10.75 16.3985 10.7568 17.8502 12.1786 19.0688C12.1909 19.0794 12.2036 19.0896 12.2167 19.0993L14.2167 20.5993C14.548 20.8479 15.0181 20.7807 15.2667 20.4493C15.5152 20.118 15.448 19.6479 15.1167 19.3993L13.1372 17.9148C12.2498 17.1429 12.2499 16.278 12.25 16.0053L12.25 15.9993C12.25 15.1143 13.046 14.416 13.8333 14.416C14.2475 14.416 14.5833 14.0802 14.5833 13.666Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
                   </svg>
+                </span>
+                <div class="content-panel__intro">
+                  <!-- 소수점 값이라 data-decimals="1"을 준다 — 없으면 정수로 카운트업된다. -->
+                  <p class="text-label metric-card__label">교육 만족도</p>
+                  <p class="metric-card__value"><span class="num" data-target="4.5" data-decimals="1">0.0</span><span class="unit">/5</span></p>
                 </div>
-              </article>
-            </div>
-          </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

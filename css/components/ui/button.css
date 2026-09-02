@@ -1,7 +1,5 @@
-/*
- * Component: Button
- * 공용 버튼. Primary(브랜드 블루) / Ghost(밝은 배경 보조) / Outline Inverse(어두운 배경 보조) / Pill(플로팅 CTA).
- */
+/* Component: Button
+   공용 버튼. */
 
 .btn {
   width: fit-content;
@@ -42,7 +40,6 @@
   color: var(--color-brand);
 }
 
-/* Outline Inverse — 어두운 배경 위 보조 버튼(.btn-ghost의 다크 버전). */
 .btn-outline-inverse {
   background: transparent;
   color: var(--color-surface);
@@ -53,7 +50,6 @@
   border-color: var(--color-surface);
 }
 
-/* 버튼 우측 chevron 아이콘. */
 .btn > svg {
   display: block;
   flex-shrink: 0;
@@ -71,7 +67,6 @@
   font-size: var(--text-body);
 }
 
-/* Pill CTA — 흰색 캡슐 + 우측 원형 화살표. 그라디언트/이미지 배경 위 플로팅 CTA. */
 .btn-pill {
   gap: var(--space-12);
   height: 56px;
@@ -110,4 +105,3 @@
   }
 }
 
-/* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */

@@ -1,31 +1,14 @@
-/*
- * Component: Sub Hero
- * 서브페이지 첫 화면 공통 골격 — 태그 + h1 + desc(+ CTA) 중앙정렬, sunken 배경,
- * bg-line2 텍스처, 상단 브랜드 광원, GNB와 이어지는 하단 페이드.
- * 메인페이지 hero(main-hero, css/pages/index.css)와는 완전히 다른 컴포넌트라
- * 클래스를 분리했다 — 이름이 겹치면 같은 layer components 안에서 로드 순서에
- * 따라 서로의 규칙을 덮어써 사고가 난다(실제로 겹쳐서 메인 hero 정렬·배경이
- * 깨진 적이 있다).
- * 보조 콘텐츠(hero-facts·hero-compare 등)는 페이지마다 다르므로
- * 이 컴포넌트가 정하지 않는다 — 각 페이지 css가 hero-wrap 안에 이어 붙인다.
- *
- * A/B 두 방향 중 A(Standard) 하나로 통일했다(2026-08-31 hero 통일 작업).
- * 배경 텍스처 위치만 페이지별로 반복을 피해 --hero-texture-position으로 연다.
- *
- * 그림자 원칙 — hero 안에서는 평소 상태에 box-shadow를 두지 않는다. hover만 예외
- * (버튼은 button.css가 이미 그렇게 되어 있다). 판 구분은 배경·테두리로 한다.
- */
+/* Component: Sub Hero
+   서브페이지 첫 화면 공통 골격 — 태그 + h1 + desc(+ CTA) 중앙정렬, sunken 배경, bg-line2 텍스처, 상단 브랜드 광원, GNB와… */
 .sub-hero {
   position: relative;
   overflow: hidden;
   background: var(--color-surface-sunken);
-  /* layout.css의 공통 96px 위에 section-wrap 여백이 겹치지 않도록 되돌린다.
-     hero는 자기 여백을 hero-wrap에서 직접 정한다. */
+
   padding-block: 0;
   border-bottom: 1px solid var(--color-line);
 }
 
-/* 배경 질감 — bg-line2 확대 + blur. 위치는 페이지마다 반복을 피해 변수로 연다. */
 .sub-hero::before {
   content: "";
   position: absolute;
@@ -39,7 +22,6 @@
   pointer-events: none;
 }
 
-/* 상단 브랜드 광원 + 하단은 sunken을 유지해 다음 섹션(흰 면)과의 경계를 선 하나로 정리한다. */
 .sub-hero::after {
   content: "";
   position: absolute;
@@ -72,7 +54,6 @@
   text-align: center;
 }
 
-/* hero 진입 애니메이션 — 순차 지연. 첫 화면이라 fade-up(IntersectionObserver) 대신 즉시 재생한다. */
 .sub-hero-copy > * {
   animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
 }
@@ -96,23 +77,7 @@
   margin-top: var(--space-12);
 }
 
-/* ============================================================
- * Hero Facts — 서브페이지 hero 아래에 붙는 보조 정보 한 벌.
- * 유리 띠 1장 + 세로 구분선 + 그림자 없음이 외피이고, 칸에는 핵심 수치(cases·ax-build)든
- * 핵심 질문(skills)이든 같은 마크업으로 담는다.
- * class="hero-facts surface-glass"로 surface-glass 위에 얹는다.
- *
- * Markup API — 칸 안은 metric-card 슬롯을 그대로 쓴다(전용 클래스를 두지 않는다).
- * .hero-facts.surface-glass > li.metric-card
- *   .hero-fact-icon                 (선택 — 아이콘 슬롯)
- *   .metric-card__value > .num + .unit
- *   .metric-card__label.text-label
- *
- * 카드 껍데기(sunken 면·min-height·padding·아이콘 절대배치)는 유리 띠가 대신
- * 가지므로 아래에서 무력화하고, 타이포·카운트업 슬롯만 물려받는다.
- * 진입 상태 .is-visible은 stat-reveal.js가 붙인다(대상 기본값이 .metric-card라
- * data-stat-card를 따로 줄 필요가 없다).
- * ============================================================ */
+/* Hero Facts — 서브페이지 hero 아래에 붙는 보조 정보 한 벌. */
 .hero-facts {
   margin: 40px auto 0;
   display: grid;
@@ -122,7 +87,6 @@
   max-width: 1000px;
 }
 
-/* 유리 띠 안에서는 카드가 면을 갖지 않는다 — 칸 구분은 아래 세로선이 한다 */
 .hero-facts li.metric-card {
   flex-direction: row;
   gap: 14px;
@@ -136,9 +100,8 @@
 }
 
 .hero-facts li + li {
-  border-left: 1px solid rgba(255, 255, 255, .7);
+  border-left: 1px solid var(--color-glass-line);
 }
-
 
 .hero-fact-icon {
   flex: none;
@@ -147,8 +110,6 @@
   justify-content: center;
 }
 
-/* hero는 h1이 주역이라 수치를 metric-card 기본값(40/20)보다 한 단 낮춘다.
-   20px 값에 18px 단위는 거의 같은 크기로 읽혀 단위도 14px로 함께 내린다. */
 .hero-facts .metric-card__value {
   font-size: var(--text-heading-20);
   line-height: var(--leading-heading-20);
@@ -158,6 +119,4 @@
 .hero-facts .metric-card__value .unit {
   font-size: var(--text-body-14);
 }
-
-
 

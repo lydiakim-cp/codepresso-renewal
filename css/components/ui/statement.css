@@ -1,39 +1,14 @@
-/*
- * Component: Statement
- * 한 문장만 던지는 강조 띠. 카드도 목록도 없고 eyebrow + 큰 한 줄이 전부다.
- *
- * 왜 따로 있는가 —
- * summary-banner.dark는 section-wrap(1248px) 안의 "배너"라 좌우가 잘린다.
- * 이건 섹션 자체가 배경을 칠해 화면 끝까지 닿는 판이다(design-qa 2번:
- * 구간을 나누는 배경은 section이 그린다). 페이지 흐름을 한 번 끊고
- * "여기서 질문을 던진다"를 하는 자리.
- *
- * 페이지마다 하나씩 두는 어두운 강조 구간의 표준 후보다 — 본문 중간의 강조 1곳
- * + 최하단 cta-final로 페이지당 2곳이 된다(design-qa 1번 기준).
- *
- * Markup API
- * <section class="statement fade-up">
- *   .section-wrap.col
- *     .statement-inner
- *       .statement-eyebrow   ← 짧은 대비 문구(선택)
- *       .statement-title     ← h2. 한 문장. strong으로 핵을 강조
- *       .statement-desc      ← 보조 한 줄(선택)
- *
- * 색 변형 — 기본은 브랜드 블루 판(레퍼런스의 파란 띠).
- * .is-ink을 붙이면 잉크 판이 된다 — cta-final이 브랜드 다크 판이라 두 판을 갈라야 할 때.
- */
+/* Component: Statement
+   한 문장만 던지는 강조 띠. */
 .statement {
   position: relative;
   overflow: hidden;
-  /* 한 문장만 있는 판이라 상하 여백이 콘텐츠 높이를 대신한다.
-     layout.css 공통 96px보다 좁게 — 길면 빈 파란 면이 남는다. */
+
   padding-block: 72px;
   background-color: var(--color-brand);
   text-align: center;
 }
 
-/* 배경 질감 — 단색 파란 면은 넓을 때 인쇄물처럼 납작해 보인다.
-   cta-final과 같은 이미지를 쓰되 구역·배율을 달리해 반복을 피한다. */
 .statement::before {
   content: "";
   position: absolute;
@@ -47,7 +22,6 @@
   pointer-events: none;
 }
 
-/* 위아래로 살짝 어두워지는 광원 — 가운데 문장이 떠오른다 */
 .statement::after {
   content: "";
   position: absolute;
@@ -70,8 +44,6 @@
   gap: var(--space-12);
 }
 
-/* eyebrow — 어두운 판이라 .tag(브랜드 배경 배지)는 배경과 붙어 안 읽힌다.
-   배지 대신 반투명 흰 글씨로 둔다. */
 .statement-eyebrow {
   color: color-mix(in srgb, var(--color-surface) 72%, transparent);
   font-size: var(--text-body-16);
@@ -79,13 +51,10 @@
   font-weight: var(--font-weight-medium);
 }
 
-/* 한 문장이 이 판의 전부라 h2를 그대로 쓰고 색만 흰색으로 올린다.
-   (base.css가 40px semibold를 이미 준다 — 크기를 다시 쓰지 않는다) */
 .statement-title {
   color: var(--color-surface);
 }
 
-/* 핵만 한 번 더 강조한다 — 텍스트 블러(glow)는 랜딩 전체에서 쓰지 않는다 */
 .statement-title strong {
   font-weight: var(--font-weight-semibold);
 }
@@ -95,7 +64,6 @@
   color: color-mix(in srgb, var(--color-surface) 80%, transparent);
 }
 
-/* 잉크 판 변형 — cta-final과 같은 색 계열이 연달아 올 때 쓴다 */
 .statement.is-ink {
   background-color: var(--color-ink-heaviest);
 }
@@ -106,4 +74,3 @@
       color-mix(in srgb, var(--color-ink-heaviest) 60%, transparent) 100%);
 }
 
-/* 560px 반응형은 css/mobile.css에 모아 둔다. */

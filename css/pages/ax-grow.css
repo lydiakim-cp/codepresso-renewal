@@ -1,26 +1,18 @@
-/*
- * Page: ax-grow.html (AX Grow 내재화형 제품 소개)
- * main.css 위에 얹는 페이지 전용 계층. AXpresso 다크 네이비 배경 + 브랜드 파랑
- * 강조로, 같은 AXpresso 제품군인 ax-build와 색·테마를 완전히 일치시킨다.
- */
+/* Page: ax-grow.html (AX Grow 내재화형 제품 소개)
+   main.css 위에 얹는 페이지 전용 계층. */
 
-/* 다크모드 공통 층 — 토큰 remap·hero·공용 컴포넌트 반전은 여기가 갖는다.
-   <main class="ax-grow main-dark">가 이 층을 켠다. */
 @import url("../main-dark.css") layer(components);
 
 @layer components {
-  /* 제목류 heaviest는 main-dark가 덮는다 — 이 페이지에만 있는 자리만 추가한다 */
   .ax-grow .compare-panel__title {
     color: var(--color-axpresso-ink);
   }
 
-  /* hero-desc 2개(타이틀 보조행 + 본문 설명)를 자연스럽게 붙인다 */
   .ax-grow .sub-hero-copy .hero-desc + .hero-desc {
     margin-top: var(--space-4);
     color: var(--color-ink-lighter);
   }
 
-  /* 01 How AX Grow Works — 공용 cycle, 3단계라 열 수만 조정 */
   .ax-grow .cycle {
     --cycle-columns: 3;
   }
@@ -37,13 +29,10 @@
     -webkit-backdrop-filter: blur(16px) saturate(160%);
   }
 
-  /* cycle.css가 h3에 ink-heaviest(검정)를 직접 줘서 main-dark h3를 이긴다 — 다시 덮는다 */
   .ax-grow .cycle > li h3 {
     color: var(--color-axpresso-ink);
   }
 
-  /* 번호 배지 — 기본 cycle-no는 브랜드 텍스트 on 브랜드 tint라 대비가 낮다
-     (같은 색 계열끼리라 구조적으로 안 갈린다). 흰 글씨 배지로 전환한다. */
   .ax-grow .cycle-no {
     background: var(--color-brand-tint-2);
     color: var(--color-axpresso-ink);
@@ -53,15 +42,11 @@
     color: var(--color-ink-lighter);
   }
 
-  /* 02 Why It Works — 타사(일회성 교육) vs 자사(AX Grow) 경쟁 구도.
-     before는 배경에 잠기게 어둡고 연하게, after는 브랜드 기운이 도는 밝은 판으로
-     띄운다(밝기 3.3배 차이). 기본값은 before가 오히려 더 밝아 의도와 반대였다. */
   .ax-grow .compare-panel__item {
     border: 0;
     background: color-mix(in srgb, white 4%, transparent);
   }
 
-  /* before 텍스트 — 세 층 모두 위계를 한 단계씩 낮춰 "지나간 방식"으로 읽히게 한다 */
   .ax-grow .compare-panel__item:not(.is-after) .compare-panel__label {
     color: color-mix(in srgb, var(--color-axpresso-ink) 42%, transparent);
   }
@@ -80,8 +65,6 @@
     box-shadow: none;
   }
 
-  /* 라벨 원색은 다크 배경에서 3.18:1로 AA 미달 — 흰색을 섞어 밝힌다(ax-build
-     .outcomes .outcome-after와 같은 처리) */
   .ax-grow .compare-panel__item.is-after .compare-panel__label {
     color: color-mix(in srgb, var(--color-brand) 45%, white);
   }
@@ -90,7 +73,6 @@
     color: var(--color-ink-light);
   }
 
-  /* AI Fluent 유도 배너 — 좌측 aside 안, CTA 버튼 아래에 붙는 보조 한 줄 */
   .ax-grow .fluent-note {
     margin-top: var(--space-8);
     padding: var(--space-20);
@@ -103,8 +85,6 @@
     margin-top: var(--space-6);
   }
 
-  /* 06 Internal Capability — 공용 statement는 브랜드 파랑 판이 기본이라 다크 페이지에서
-     혼자 튄다. 다른 섹션과 같은 배경 리듬(bg-2)으로 내리고 질감·광원 오버레이를 끈다. */
   .ax-grow .statement {
     background-color: var(--color-axpresso-bg-2);
   }
@@ -141,8 +121,6 @@
     color: var(--color-surface);
   }
 
-  /* 07 Build vs Grow — why-codepresso start-grid와 같은 역할·마크업.
-     현재 페이지(AX Grow) 쪽만 강조 톤으로 올려 "지금 보고 있는 제품"을 표시한다. */
   .ax-grow .start-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -155,12 +133,10 @@
     background: var(--color-axpresso-box);
   }
 
-  /* 테두리 대신 브랜드를 섞은 면으로 "지금 보고 있는 제품"을 표시한다 */
   .ax-grow .start-card.is-here {
     background: color-mix(in srgb, var(--color-brand) 28%, var(--color-axpresso-box));
   }
 
-  /* 두 제품을 한눈에 구분하는 아이콘 — step-icon과 같은 48px 규격을 따른다 */
   .ax-grow .start-icon {
     display: inline-flex;
     align-items: center;
@@ -184,7 +160,6 @@
     margin-top: auto;
   }
 
-  /* 섹션 배경 리듬 — 단색 바탕 위 섹션마다 진하기를 다르게 줘서 경계를 만든다 */
   .ax-grow .intro,
   .ax-grow .deliverables,
   .ax-grow .positioning,
@@ -197,7 +172,6 @@
     background: var(--color-axpresso-bg-2);
   }
 
-  /* 강조 구간 — 01 프로세스 소개는 그라데이션으로 흐름의 시작을 알린다 */
   .ax-grow .process {
     position: relative;
     overflow: hidden;
@@ -207,6 +181,4 @@
         var(--color-axpresso-bg-3) 68%,
         var(--color-axpresso-bg-4) 100%);
   }
-
-  /* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다 */
 }

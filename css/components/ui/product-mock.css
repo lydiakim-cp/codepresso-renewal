@@ -1,57 +1,20 @@
-/*
- * Component: Product Mock
- * 제품 학습·강의 화면을 "실제로 돌아가는 화면"처럼 보여주는 목업 셸.
- * index.html PART 1(교육 여정)과 skills.html 04 Learn이 함께 쓴다.
- *
- * 원래 css/pages/index.css 안에 있었는데 skills.html이 같은 목업을 쓰게 되면서
- * 공용으로 올렸다 — 같은 마크업·CSS를 페이지마다 복붙하지 않기 위함(사용자 지시).
- * 클래스명(journey-mock-*)은 그대로 둔다: index.html과
- * codepresso-designsystem.html이 이미 쓰고 있어, 이름만 바꾸면 마크업·CSS·JS
- * 3자를 다시 맞춰야 하는데 얻는 것은 이름뿐이다(SKILL 5번 "기존 이름은 그 섹션을
- * 고칠 때 함께 정리한다").
- *
- * Markup API
- * .journey-mock (+ .mock-detail | .camp-ticker 변형)
- *   .journey-mock-head > .journey-mock-title + .journey-mock-badge(+.is-live)
- *   .journey-mock-progress > .journey-mock-progress-bar > span
- *   .journey-mock-list > .journey-mock-item (+ .is-current | .is-done)
- *     .journey-mock-check + .journey-mock-item-name
- *   .journey-mock-speaker > .journey-mock-avatar + .journey-mock-speaker-body
- *   .journey-mock-bubble (+ .is-mine)
- *
- * 움직임은 공용 mock-motion.css가 담당한다(data-mock-motion="detail|ticker|stage").
- * 목업 안 텍스트는 서비스 페이지 14px 제약의 예외다 — 읽는 UI가 아니라 화면
- * 그림이기 때문(사용자 확인됨). 9px는 하한이지 기본값이 아니다.
- *
- * 스크롤 전환(.journey-step.is-active/.is-popping)과 skeleton 조합은
- * index.html 전용이라 여기 두지 않고 css/pages/index.css에 남겼다.
- */
-/*
- * 제품 화면 목업 — 각 프로그램이 실제로 어떤 화면인지 보여주는 공통 창.
- * .surface-glass(반투명)를 쓰지 않는 이유 — 스텝이 겹쳐 쌓여 있어
- * 반투명이면 전환 중 다음 스텝이 비쳐 보인다.
- */
+/* Component: Product Mock
+   제품 학습·강의 화면을 "실제로 돌아가는 화면"처럼 보여주는 목업 셸. */
+
 .journey-mock {
   display: flex;
   flex-direction: column;
   gap: var(--space-20);
-  /* 세 스텝의 목업 높이가 다 달라 전환마다 판이 들썩여 355px로 고정한다.
-     flex-shrink를 안 끄면 padding이 늘 때 목업이 찌그러진다. */
+
   flex-shrink: 0;
   height: 355px;
 }
 
-/* SkillPath 목업은 공용 detail 연출(mock-motion.css)의 2단 구조를 쓴다.
-   .journey-mock의 세로 flex를 두 클래스가 함께 붙었을 때만 가로 2단으로
-   되돌린다. */
 .journey-mock.mock-detail {
   flex-direction: row;
   gap: 0;
 }
 
-/* SkillPath 목업 전용 소형 타이포 — '화면 그림'이라 메인페이지 최소 14px
-   제약을 적용하지 않는다(사용자 확인됨). 전역 토큰으로 올리지 않고 이
-   목업 안에만 가둔다. */
 .journey-mock.mock-detail {
   --mock-text: 12px;
   --mock-leading: 16px;
@@ -70,9 +33,6 @@
   line-height: var(--mock-leading-lg);
 }
 
-/* 체크·게이지도 함께 줄여야 어색한 비율이 안 생긴다. background-size를
-   따로 두는 이유 — .is-done이 체크 아이콘을 깔며 size도 되돌리므로,
-   그 뒤에서 다시 잡아야 아이콘이 원 밖으로 넘치지 않는다. */
 .journey-mock.mock-detail .journey-mock-check {
   width: 14px;
   height: 14px;
@@ -83,8 +43,6 @@
   height: 46px;
 }
 
-/* 목업 높이가 355px로 고정돼 STEP 행 4개만으로는 아래가 비어 보인다.
-   행을 늘려 여백을 나눠 갖게 한다. */
 .journey-mock.mock-detail .mock-detail-panel > .journey-mock-list {
   flex: 1;
   justify-content: space-between;
@@ -94,11 +52,6 @@
   flex: 1;
 }
 
-/*
- * SkillCamp 목업 — 라이브 강의 현황판. 수치·막대·피드 연출은 공용
- * ticker(mock-motion.css)가 담당하고, 여기서는 355px 판에 맞추는
- * 치수와 목업 전용 소형 타이포만 둔다.
- */
 .journey-mock.camp-ticker {
   --mock-text: 12px;
   --mock-leading: 16px;
@@ -112,7 +65,6 @@
   line-height: var(--mock-leading);
 }
 
-/* 헤드의 강사 블록은 카드가 아니라 한 줄짜리 화자 표시다. */
 .journey-mock.camp-ticker .journey-mock-speaker {
   padding: 0;
   background: none;
@@ -126,7 +78,6 @@
   font-size: var(--mock-text);
 }
 
-/* 수치는 목업 안에서 가장 크게 읽혀야 한다 — 목업 안 최대 크기. */
 .journey-mock.camp-ticker .mock-ticker-stats > article b {
   font-size: var(--text-heading-18);
   line-height: var(--leading-heading-18);
@@ -139,7 +90,6 @@
   padding: var(--space-10);
 }
 
-/* 차트는 남는 세로를 쓴다 — 판(355px) 안에서 넘치지 않게. */
 .journey-mock.camp-ticker .mock-ticker-chart {
   flex: 1;
   min-height: 0;
@@ -173,7 +123,6 @@
   white-space: nowrap;
 }
 
-/* 진행 중인 라이브 세션 표시 — 브랜드 블루와 구분되는 붉은 계열(critical). */
 .journey-mock-badge.is-live {
   display: flex;
   align-items: center;
@@ -182,7 +131,6 @@
   color: var(--color-critical);
 }
 
-/* LIVE 점은 깜빡여야 "지금 진행 중"이 읽힌다. 공용 pulse를 가져다 쓴다. */
 .journey-mock-badge.is-live::before {
   content: "";
   width: 6px;
@@ -197,7 +145,6 @@
   .journey-mock-badge.is-live::before { animation: none; }
 }
 
-/* SkillPath: 진도 */
 .journey-mock-progress {
   display: flex;
   align-items: center;
@@ -219,7 +166,6 @@
   background: var(--color-brand);
 }
 
-/* 공용 항목 리스트(SkillPath 커리큘럼 · SkillFit 학습 경로) */
 .journey-mock-list {
   display: flex;
   flex-direction: column;
@@ -247,7 +193,6 @@
   color: var(--color-ink);
 }
 
-/* 이수 체크 — 완료는 채운 원 + 체크, 진행 중은 브랜드 테두리만. */
 .journey-mock-check {
   width: 20px;
   height: 20px;
@@ -256,7 +201,6 @@
   background: var(--color-surface);
 }
 
-/* is-done은 행(.journey-mock-item)이나 체크 자신에게 붙는다 — 둘 다 받는다. */
 .journey-mock-item.is-done .journey-mock-check,
 .journey-mock-check.is-done {
   border-color: var(--color-brand);
@@ -272,7 +216,6 @@
   border-color: var(--color-brand);
 }
 
-/* SkillCamp: 라이브 세션 */
 .journey-mock-speaker {
   display: flex;
   align-items: center;
@@ -298,7 +241,6 @@
   flex-direction: column;
 }
 
-/* 말풍선 — 강사/동료 발화는 좌측 틴트, 내 발화(.is-mine)는 우측 브랜드 틴트. */
 .journey-mock-bubble {
   max-width: 82%;
   padding: var(--space-10) var(--space-12);
@@ -315,26 +257,15 @@
   color: var(--color-brand-dark);
 }
 
+/* SkillFit 앱 목업(.journey-app*) — index.html PART 1과 */
 
-/* ===============================================================
- * SkillFit 앱 목업(.journey-app*) — index.html PART 1과
- * skills.html 04 Learn이 함께 쓴다. 위 .journey-mock 셸 안에 놓인다.
- * =============================================================== */
-/*
- * SkillFit — 실제 학습 화면(스킬 목록 · 레슨 · AI 튜터 3단)을 옮긴 앱 목업.
- * 3단 비율만 유지한 채 확대해서 잘라낸 것처럼 보여준다. 글자 많은 영역은
- * 스켈레톤으로 접고 강조할 것(진행률 · 현재 스킬 · 난이도 상향 · AI 튜터)만
- * 실제 문구로 남긴다.
- */
 .journey-app {
   display: grid;
-  /* 아이콘 레일(고정폭) + 스킬목록 · 레슨 · 튜터. 실제 화면의 비율을 따른다. */
+
   grid-template-columns: 26px 0.95fr 1.1fr 1fr;
   gap: var(--space-10);
   padding: var(--space-12);
 
-  /* 목업 전용 소형 타이포 — '화면 그림'이라 메인페이지 최소 14px 제약을
-     적용하지 않는다(사용자 확인됨). 전역 토큰으로 올리지 않는다. */
   --mock-text: 10px;
   --mock-leading: 14px;
   --mock-text-lg: 12px;
@@ -351,19 +282,15 @@
   border-radius: var(--radius-md);
   background: var(--color-surface-sunken);
   min-width: 0;
-  /* 3단이 같은 높이로 맞춰져야 잘라낸 화면처럼 보인다. */
+
   height: 100%;
 }
 
-/* AI 튜터는 이 화면의 주인공이라 흰 판 + 브랜드 테두리로 한 단계 띄운다. */
 .journey-app-tutor {
   background: var(--color-surface);
   border: 1px solid var(--color-brand-tint-2);
 }
 
-/* 좌: 트랙 헤더 + 스킬 목록 */
-
-/* 학습 중인 트랙 카드 — 실제 화면에서 사이드바 최상단을 차지하는 블록이다. */
 .journey-app-track {
   display: flex;
   flex-wrap: wrap;
@@ -392,7 +319,6 @@
   color: var(--color-ink-heaviest);
 }
 
-/* 난이도 — 적응형 학습의 기준점이라 브랜드 컬러로 띄운다. */
 .journey-app-level {
   padding: 0 var(--space-6);
   border-radius: var(--radius-full);
@@ -407,7 +333,7 @@
   flex-basis: 100%;
   height: 4px;
   border-radius: var(--radius-full);
-  /* 트랙 카드 배경이 tint-2라 트랙 바탕은 흰색으로 둬야 진행분이 읽힌다. */
+
   background: var(--color-surface);
   overflow: hidden;
 }
@@ -435,13 +361,11 @@
   overflow: hidden;
 }
 
-/* 지금 학습 중인 스킬만 흰 판으로 띄운다(실제 화면의 선택 상태). */
 .journey-app-skill.is-current {
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
 }
 
-/* 스킬 번호 뱃지 — 완료/진행 중은 브랜드로 채우고 나머지는 비워 둔다. */
 .journey-app-num {
   display: flex;
   align-items: center;
@@ -475,7 +399,6 @@
   color: var(--color-brand);
 }
 
-/* 중앙: 레슨 */
 .journey-app-eyebrow {
   font-size: var(--mock-text);
   line-height: var(--mock-leading);
@@ -490,7 +413,6 @@
   color: var(--color-ink-heaviest);
 }
 
-/* 난이도가 올라갔다는 사실이 이 목업의 결론이라 본문 아래에 못 박아둔다. */
 .journey-app-adapt {
   margin-top: auto;
   padding: var(--space-8) var(--space-10);
@@ -505,7 +427,6 @@
   font-weight: var(--font-weight-semibold);
 }
 
-/* 우: AI 튜터 */
 .journey-app-tutor-name {
   font-size: var(--mock-text);
   line-height: var(--mock-leading);
@@ -513,7 +434,6 @@
   color: var(--color-ink-heaviest);
 }
 
-/* 튜터 패널은 폭이 좁아 말풍선 최대폭 제한(82%)을 풀고 꽉 채운다. */
 .journey-app-tutor .journey-mock-bubble {
   max-width: 100%;
   padding: var(--space-8) var(--space-10);
@@ -521,8 +441,6 @@
   line-height: var(--mock-leading);
 }
 
-/* 스켈레톤 — 글자 많은 영역을 회색 바로 접는다. 목업 안에서 반복되는 공용 클래스. */
-/* 스킬 항목의 이름 자리 — 여기서만 남는 폭을 채운다. */
 .journey-app-skill .skeleton-line {
   flex: 1;
   min-width: 0;
@@ -530,7 +448,6 @@
 }
 
 .journey-mock .skeleton-line {
-  /* 목업 안에서는 브랜드 틴트로 공통 스켈레톤을 표현한다. */
   height: 8px;
   border-radius: var(--radius-full);
   background: var(--color-brand-tint-2);
@@ -540,19 +457,11 @@
   width: 60%;
 }
 
-/* 목업 안에서 쓰는 공용 캐션도 같은 소형 스케일로 내린다. */
 .journey-app .text-caption {
   font-size: var(--mock-text);
   line-height: var(--mock-leading);
 }
 
-/*
- * 목업 요소 pop-in — 스텝 활성화 시 안의 요소가 하나씩 튀어나오듯 나타난다.
- * 재생은 .is-active가 아니라 js가 붙이는 .is-popping으로 트리거한다(재진입
- * 시에도 재생되도록). 지연은 --pop-order(마크업 순서, js가 부여)로 계산한다.
- */
-/* pop 대상 — 목업의 직자식. SkillFit 앱 목업은 3단 패널 안의 항목까지
-   한 단계 더 쪼개서 띄운다. */
 .journey-mock > *,
 .journey-app-rail > *,
 .journey-app-side > *,
@@ -562,12 +471,10 @@
   opacity: 0;
 }
 
-/* fill-mode는 both여야 한다 — backwards는 재생이 끝나면 opacity:0으로
-   돌아가 요소가 다시 사라진다. */
 .journey-step.is-popping .journey-mock > * {
   --motion-rise: 8px;
   animation: pop-in var(--duration-scroll) var(--ease-scroll) both;
-  /* 스텝 자체의 페이드(0.5s)가 끝나가는 무렵부터 순서대로 터진다. */
+
   animation-delay: calc(.18s + var(--pop-order, 0) * .09s);
 }
 
@@ -581,9 +488,7 @@
   animation-delay: calc(.32s + var(--pop-order, 0) * .07s);
 }
 
-/* 애니메이션을 끄면 요소가 opacity:0으로 남으므로 감춰두는 규칙까지 해제한다. */
 @media (prefers-reduced-motion: reduce) {
-
   .journey-mock > *,
   .journey-app-rail > *,
   .journey-app-side > *,
@@ -595,7 +500,6 @@
   }
 }
 
-/* 아이콘 메뉴 레일 — 실제 앱 좌측 네비. 형태(원/사각)만 남겨 '앱 화면' 맥락을 전달한다. */
 .journey-app-rail {
   display: flex;
   flex-direction: column;
@@ -614,7 +518,6 @@
   background: var(--color-brand);
 }
 
-/* 실제 아이콘 SVG. currentColor로 그려 상태에 따라 색만 바꾼다. */
 .journey-app-rail-icon {
   width: 13px;
   height: 13px;
@@ -625,7 +528,6 @@
   color: var(--color-brand);
 }
 
-/* 중앙: 실무 시나리오 — 레슨 본문보다 먼저 오는 상황 제시 블록. */
 .journey-app-scenario {
   display: flex;
   flex-direction: column;
@@ -642,12 +544,10 @@
   color: var(--color-brand);
 }
 
-/* 시나리오 안의 스켈레톤은 tint-2 배경 위라 흰색이어야 읽힌다. */
 .journey-app-scenario .skeleton-line {
   background: var(--color-surface);
 }
 
-/* 우: AI 튜터 대화 */
 .journey-app-tutor-head {
   display: flex;
   align-items: center;
@@ -655,7 +555,6 @@
   gap: var(--space-6);
 }
 
-/* "답변 중" — 막힐 때 물으면 바로 반응한다는 신호. */
 .journey-app-tutor-status {
   display: flex;
   align-items: center;
@@ -674,7 +573,6 @@
   background: currentColor;
 }
 
-/* 타이핑 인디케이터 — 점 3개가 차례로 부풀어 답변이 오는 중임을 보여준다. */
 .journey-app-typing {
   display: flex;
   align-items: center;
@@ -699,7 +597,6 @@
 }
 
 @keyframes journey-typing {
-
   0%,
   60%,
   100% {
@@ -713,7 +610,6 @@
   }
 }
 
-/* 질문 입력창 — 하단에 고정한다. */
 .journey-app-ask {
   display: flex;
   align-items: center;

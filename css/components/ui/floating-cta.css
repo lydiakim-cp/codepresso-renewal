@@ -1,37 +1,19 @@
-/*
- * Component: Floating CTA
- * hero의 진단 CTA가 화면 밖으로 나간 순간부터 우측에 따라다니는 배너.
- * hero 버튼과 같은 행선지를 갖는 "두 번째 기회" CTA다.
- *
- * Markup API
- *   <aside class="floating-cta" data-floating-cta="hero-cta-id" hidden>
- *     <button class="floating-cta-close" …>          닫기(세션 동안 다시 뜨지 않음)
- *     <a class="floating-cta-link" href="…">
- *       <span class="floating-cta-mock" aria-hidden="true">  결과 게이지 목업
- *       <span class="floating-cta-copy">                     라벨 + 문구
- *       <span class="floating-cta-action">                   버튼 모양 행
- *
- * position은 fixed다 — sticky는 조상 컨테이너 안에서만 따라다니므로 페이지 전체를
- * 따라오는 이 배너에는 맞지 않는다. z-index는 header(100) 아래인 90에 둬서
- * GNB 드롭다운을 가리지 않는다.
- *
- * 표시 상태는 js/floating-cta.js가 .is-shown으로 토글한다 —
- * hidden 속성만 벗기면 등장 트랜지션이 걸리지 않아 두 단계로 나눴다.
- */
+/* Component: Floating CTA
+   hero의 진단 CTA가 화면 밖으로 나간 순간부터 우측에 따라다니는 배너. */
 
 .floating-cta {
   position: fixed;
   right: var(--space-24);
-  /* GNB(header-inner 75px) 바로 아래 — 로고·네비를 가리지 않는 우측 상단. */
+
   top: calc(75px + var(--space-16));
   z-index: 90;
   width: 280px;
-  /* 등장 전 상태 — 우측 위에서 살짝 밀려 내려온다. */
+
   opacity: 0;
   transform: translateY(-12px);
   transition: opacity var(--duration-scroll) var(--ease-scroll),
     transform var(--duration-scroll) var(--ease-scroll);
-  /* 숨어 있는 동안 아래 콘텐츠의 클릭을 막지 않는다. */
+
   pointer-events: none;
 }
 
@@ -53,14 +35,11 @@
     transform var(--duration-hover) var(--ease-hover);
 }
 
-/* hover에서 테두리를 브랜드색으로 바꾸지 않는다 — 카드가 파랗게 둘러지면
-   아래 CTA 버튼과 색이 경쟁한다. 떠오르는 정도만 키운다. */
 .floating-cta-link:hover {
   border-color: var(--color-line-heavy);
   transform: translateY(-2px);
 }
 
-/* 닫기 — 배너 우상단 모서리에 걸친다. */
 .floating-cta-close {
   position: absolute;
   top: -8px;
@@ -87,27 +66,11 @@
 
 .floating-cta-close svg { display: block; width: 12px; height: 12px; }
 
-/*
- * 결과 게이지 목업 — "진단하면 이런 게 나온다"를 한 눈에 보여주는 장치.
- * 텍스트만 있는 배너는 광고로 읽혀 무시되므로 제품의 산출물을 미리 보여준다.
- */
-/*
- * 진단 결과 목업 — "나의 AI 활용 레벨은?" 아래로 4개 레벨이 차례로 나타났다 사라진다.
- * 결과가 무엇 하나로 정해져 보이지 않게 네 답을 다 보여주고 "그래서 나는?"을 남긴다.
- *
- * 목업 안 타이포는 14px 제약의 예외다(mock-motion-guide 5번). 전부 최소 크기로
- * 깔지 않고 질문·레벨·이름 3단 위계를 준다. 변수는 이 목업 루트 안에만 선언한다 —
- * 전역 토큰으로 올리면 9px대가 실제 UI로 새어나간다.
- *
- * JS 없이 CSS 애니메이션만 쓴다(mock-motion-guide 공통 규칙) — 스크롤 위치와
- * 무관하게 늘 같은 리듬으로 돈다.
- */
 .floating-cta-mock {
-  --mock-text-level: 20px;  --mock-leading-level: 26px;  /* Lv.4 */
-  --mock-text-name: 15px;   --mock-leading-name: 20px;   /* 선도자 */
-  --mock-text-q: 11px;      --mock-leading-q: 15px;      /* 질문 */
+  --mock-text-level: 20px;  --mock-leading-level: 26px;
+  --mock-text-name: 15px;   --mock-leading-name: 20px;
+  --mock-text-q: 11px;      --mock-leading-q: 15px;
 
-  /* 한 레벨이 머무는 시간 × 4개 = 전체 사이클. */
   --mock-slot: 1.6s;
   --mock-cycle: calc(var(--mock-slot) * 4);
 
@@ -125,11 +88,6 @@
   color: var(--color-ink-light);
 }
 
-/*
- * 4개 레벨이 같은 자리에서 교대한다 — grid 한 칸에 전부 겹쳐 두고 opacity로 바꾼다.
- * position: absolute를 쓰지 않는 이유 — 겹친 항목 중 가장 큰 것이 높이를 잡아 줘야
- * 레벨 이름 길이가 달라도 배너가 흔들리지 않는다.
- */
 .floating-cta-mock-levels {
   display: grid;
   margin-top: var(--space-10);
@@ -141,19 +99,10 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-2);
-  /* 애니메이션이 돌지 않는 환경(헤드리스 캡처·모션 축소)에서는 이 상태가 남는다 —
-     그래서 기본값은 "보이는" 쪽이다(mock-motion-guide: 0% 프레임은 보이는 상태). */
+
   opacity: 1;
 }
 
-/* 사이클 안에서 자기 차례에만 떠오른다. 순서는 마크업이 --mock-slot-index로 준다. */
-/*
- * 사이클 안에서 자기 차례에만 떠오른다. 순서는 마크업이 --mock-slot-index로 준다.
- *
- * delay를 양수로 주면 대기하는 동안 요소의 기본 상태(opacity: 1)가 그대로 보여
- * 레벨 넷이 한꺼번에 겹쳐 보인다(실제로 겪었다). 음수 delay로 사이클의
- * 중간부터 시작시키면 대기 구간 없이 처음부터 각자 다른 위치에서 돈다.
- */
 .floating-cta-mock-levels > li {
   animation: floating-cta-level-turn var(--mock-cycle) var(--ease-scroll) infinite both;
   animation-delay: calc(var(--mock-slot) * var(--mock-slot-index, 0) - var(--mock-cycle));
@@ -176,16 +125,10 @@
   color: var(--color-brand);
 }
 
-/*
- * 한 항목의 일생 — 4칸 중 자기 칸(25%)에서만 보인다.
- * rise-in을 그대로 쓰지 못하는 이유: 그것은 나타나기만 하고 사라지지 않는데,
- * 여기는 한 사이클 안에서 나타났다 물러나야 다음 항목과 자리를 바꿀 수 있다.
- */
 @keyframes floating-cta-level-turn {
   0%       { opacity: 0; transform: translateY(var(--motion-rise)); }
   6%, 19%  { opacity: 1; transform: none; }
-  /* 자기 칸(25%)이 끝나기 전에 완전히 비운다 — 다음 항목이 6%에서 들어오므로
-     여기서 늦게 사라지면 두 레벨이 같은 자리에 겹쳐 글자가 포개진다. */
+
   24%      { opacity: 0; transform: translateY(calc(var(--motion-rise) * -1)); }
   25%, 100% { opacity: 0; transform: translateY(var(--motion-rise)); }
 }
@@ -196,7 +139,7 @@
   font-size: var(--text-body-muted);
   line-height: var(--leading-body-14);
   color: var(--color-ink);
-  /* 목업·버튼이 모두 가운데 정렬이라 문구만 좌측이면 축이 어긋난다. */
+
   text-align: center;
 }
 
@@ -208,8 +151,6 @@
   color: var(--color-ink-heaviest);
 }
 
-/* 버튼 모양이지만 실제 링크는 바깥 <a>라 여기는 <span>이다 —
-   중첩 링크를 만들지 않으려는 선택. */
 .floating-cta-action {
   display: flex;
   align-items: center;
@@ -250,8 +191,6 @@
 
   .floating-cta-link:hover { transform: none; }
 
-  /* 순환을 멈추고 완성된 화면 하나로 정지한다(mock-motion-guide 7번).
-     겹쳐 둔 4개 중 마지막 하나만 남긴다 — 전부 보이면 글자가 포개진다. */
   .floating-cta-mock-levels > li {
     animation: none;
     opacity: 0;
@@ -260,4 +199,3 @@
   .floating-cta-mock-levels > li:last-child { opacity: 1; }
 }
 
-/* 모바일(720px 이하) 반응형은 css/mobile.css에 모아 둔다. */

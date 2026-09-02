@@ -1,8 +1,5 @@
-/*
- * Component: Section Body
- * 카드·패널 안에서 반복되는 텍스트 묶음의 기본 배치.
- * 색상과 상태 변화는 .how-it-works .section-body-title처럼 사용처에서 재정의한다.
- */
+/* Component: Section Body
+   카드·패널 안에서 반복되는 텍스트 묶음의 기본 배치. */
 .section-body {
   display: flex;
   flex-direction: column;

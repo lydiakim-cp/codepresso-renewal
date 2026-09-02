@@ -1,7 +1,5 @@
-/*
- * Component: Assessment Card
- * Hero·캠페인 영역에서 자가진단으로 진입시키는 정적 CTA 카드.
- */
+/* Component: Assessment Card
+   Hero·캠페인 영역에서 자가진단으로 진입시키는 정적 CTA 카드. */
 .assessment-card-frame {
   position: relative;
   display: flex;
@@ -38,9 +36,9 @@
   justify-content: center;
   gap: var(--space-8);
   padding: var(--space-12) var(--space-24);
-  border: 1px solid rgba(255, 255, 255, .7);
+  border: 1px solid var(--color-glass-line);
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, .55);
+  background: var(--color-glass-surface);
   backdrop-filter: blur(16px) saturate(160%);
   box-shadow: var(--shadow-sm);
   font-size: var(--text-body-muted);
@@ -55,15 +53,14 @@
   flex-direction: column;
   gap: var(--space-24);
   padding: var(--space-35);
-  border: 1px solid rgba(255, 255, 255, .9);
+  border: 1px solid var(--color-glass-line-strong);
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, .82);
+  background: var(--color-glass-surface-strong);
   backdrop-filter: blur(24px) saturate(160%);
   box-shadow: var(--shadow-md);
 }
 
 .assessment-card__head { display: flex; flex-direction: column; gap: var(--space-18); text-align: center; }
-.assessment-card__description { font-size: var(--text-body-muted); line-height: var(--leading-body-muted); color: var(--color-ink-light); }
 
 .assessment-card__meta {
   display: flex;
@@ -79,7 +76,7 @@
   gap: var(--space-6);
   margin: 0;
   border: 1px solid var(--color-line);
-  background: rgba(255, 255, 255, .7);
+  background: var(--color-glass-line);
   color: var(--color-ink-light);
 }
 
@@ -94,7 +91,6 @@
   transition: all .5s ease;
 }
 
-/* CTA 아래 떠 있는 glass 말풍선(꼬리·회전 링·부유 모션) */
 .assessment-card__hint {
   position: absolute;
   left: 50%;
@@ -116,16 +112,15 @@
   color: var(--color-brand-dark);
   white-space: nowrap;
   isolation: isolate;
-  /* 가운데 정렬(transform)을 float 모션에서도 유지 */
+
   --motion-float-x: -50%;
   animation: float 2.4s var(--ease-scroll) infinite;
 }
 
-/* 말풍선 꼬리 외곽. 본체와 같은 회전 그라데이션을 쓰는 독립 span. */
 .assessment-card__hint-tail {
   position: absolute;
   z-index: 0;
-  /* 높이 7px 중 마지막 1px을 본체 안으로 넣어 삼각형 밑변을 말풍선 border가 덮는다. */
+
   top: -7px;
   left: 50%;
   width: 14px;
@@ -143,7 +138,6 @@
   pointer-events: none;
 }
 
-/* 꼬리와 본체 접합부를 glass 배경으로 덮는 덮개 */
 .assessment-card__hint::before {
   content: "";
     position: absolute;
@@ -163,7 +157,6 @@
   z-index: 3;
 }
 
-/* 꼬리 내부. 외곽보다 사방 1px 작게 겹쳐 glass 색으로 비운다. */
 .assessment-card__hint-tail::after {
   content: "";
   position: absolute;
@@ -175,7 +168,6 @@
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
 }
 
-/* 말풍선 회전 테두리 */
 .assessment-card__hint::after {
   content: "";
   position: absolute;
@@ -196,8 +188,6 @@
   pointer-events: none;
   z-index: 2;
 }
-
-/* 720px·560px 반응형은 css/mobile.css에 모아 둔다. */
 
 @media (prefers-reduced-motion: reduce) {
   .assessment-card__hint,

@@ -1,59 +1,44 @@
-/*
- * Theme: main-dark (AXpresso 다크모드)
- *
- * `<main class="{페이지명} main-dark">` 에 붙는 다크모드 테마 층.
- * 시맨틱 토큰(--color-ink·--color-line·--color-surface-*)을 axpresso 값으로
- * 재정의해, 공용 컴포넌트가 코드 수정 없이 다크로 렌더링되게 한다.
- * AXpresso 제품군(ax-build·ax-grow)이 공유하며, 다크 페이지가 늘면 클래스만 붙인다.
- *
- * 여기에 두는 것 — 다크 페이지면 어디서나 같아야 하는 것(토큰 remap · hero ·
- * 공용 컴포넌트 다크 반전). 페이지마다 다른 것(섹션 배경 리듬 · 그 페이지 전용
- * 섹션)은 css/pages/{페이지}.css가 갖는다.
- *
- * 로드 — 페이지 CSS가 맨 위에서 @import한다(<link>를 늘리지 않는다).
- *   @import url("../main-dark.css") layer(components);
- *
- * 다크에서는 테두리를 최소로 쓴다 — 공간은 면(surface)이 만들고, 선은 실제로
- * 나누거나 잇는 자리(섹션 경계 · hero 수치 3칸 · 카드 안 구분선)에만 남긴다.
- */
+/* Theme: main-dark (AXpresso 다크모드)
+   `<main class="{페이지명} main-dark">` 에 붙는 다크모드 테마 층. */
 
 .main-dark {
-  /* heaviest는 cta-final 등 "배경"으로도 쓰여 재정의 안 함 — 텍스트 자리는
-     아래서 개별적으로 axpresso-ink를 참조한다. */
   --color-ink: var(--color-axpresso-ink);
   --color-ink-light: var(--color-axpresso-ink-light);
   --color-ink-lighter: var(--color-axpresso-ink-lighter);
-  /* 가라앉은 면은 불투명 남색이 아니라 유리 톤이다 */
+
   --color-surface-sunken: var(--color-axpresso-box-tint);
   --color-surface-mist: var(--color-axpresso-box-tint);
-  /* 다크 배경 위 흰 테두리는 라이트 모드보다 진하게(14%→20%, 24%→32%) */
+
   --color-line: color-mix(in srgb, var(--color-axpresso-ink) 20%, transparent);
   --color-line-heavy: color-mix(in srgb, var(--color-axpresso-ink) 32%, transparent);
   --color-brand-tint-2: color-mix(in srgb, var(--color-brand) 32%, transparent);
 
-  /* 바탕은 단색(bg-1) 고정 — 그라데이션 하나면 섹션 경계가 안 보인다 */
+  /* 유리 면·다크 위 텍스트 토큰을 여기서 한 번 뒤집는다 — 컴포넌트별 override 대신. */
+  --color-glass-surface: var(--color-axpresso-box-tint);
+  --color-glass-surface-strong: color-mix(in srgb, var(--color-brand) 26%, transparent);
+  --color-glass-line: color-mix(in srgb, var(--color-axpresso-ink) 12%, transparent);
+  --color-glass-line-strong: color-mix(in srgb, var(--color-axpresso-ink) 18%, transparent);
+  --color-glass-active: color-mix(in srgb, var(--color-brand) 28%, transparent);
+  --color-ink-on-dark: var(--color-axpresso-ink-light);
+  --color-ink-on-dark-light: var(--color-axpresso-ink-lighter);
+
   background: var(--color-axpresso-bg-1);
   display: flex;
   flex-direction: column;
 }
 
-/* 섹션 경계선 — 어디서 끝나는지 보이게. sub-hero(첫 화면)는 제외 */
 .main-dark > section + section {
   border-top: 1px solid var(--color-line);
 }
 
-/* .tag 전부 흰/회색 유리질감으로 통일(섹션 번호·hero·업종 배지 전부 포함).
-   다크에서는 테두리를 빼고 면(18%)만으로 형태를 잡는다 */
 .main-dark .tag {
-  background: color-mix(in srgb, white 18%, transparent);
+  background: var(--color-glass-line-strong);
   color: var(--color-axpresso-ink);
   border: 0;
   backdrop-filter: blur(6px) saturate(140%);
   -webkit-backdrop-filter: blur(6px) saturate(140%);
 }
 
-/* heaviest를 텍스트로 쓰는 자리 — 제목류. h3는 cycle.css처럼 컴포넌트가
-   ink-heaviest를 직접 주는 경우가 있어 함께 덮는다 */
 .main-dark h1,
 .main-dark h2,
 .main-dark h3,
@@ -63,16 +48,13 @@
   color: var(--color-axpresso-ink);
 }
 
-/* ============================================================
- * Hero — 밝은 면 전제인 배경·텍스처 오버레이를 다크용으로 무력화
- * ============================================================ */
+/* Hero — 밝은 면 전제인 배경·텍스처 오버레이를 다크용으로 무력화 */
 .main-dark .sub-hero {
   background: transparent;
-  /* ::after 그라데이션이 bg-1으로 내려앉아 경계를 만든다 — 선은 뺀다 */
+
   border-bottom: 0;
 }
 
-/* bg-line2 텍스처는 밝은 면 전제라 다크에서는 끈다 */
 .main-dark .sub-hero::before {
   background-image: none;
 }
@@ -96,34 +78,24 @@
   animation: rise-in var(--duration-scroll) var(--ease-scroll) .32s both;
 }
 
-/* surface-glass는 밝은 배경 전제라 다크에서 박스 톤으로 반전. 외곽선 없이
-   면만으로 띠를 세운다 */
 .main-dark .hero-facts.surface-glass {
-  background: var(--color-axpresso-box-tint);
   border: 0;
 }
 
-/* 수치 칸을 나누는 선만 남긴다(구분선) — 다크에서는 12%까지 낮춘다.
-   border-color로 써서 모바일(좌 → 상 전환)에도 같이 걸린다 */
 .main-dark .hero-facts li + li {
-  border-color: color-mix(in srgb, white 12%, transparent);
+  border-color: var(--color-glass-line);
 }
 
 .main-dark .hero-facts .metric-card__value {
-  color: white;
+  color: var(--color-axpresso-ink);
 }
-/* ============================================================
- * 공용 컴포넌트 다크 반전
- * ============================================================ */
+/* 공용 컴포넌트 다크 반전 */
 
-/* Best Fit(features) — 활성 카드만 박스 톤으로 구분 */
 .main-dark .features .feature-card.is-active {
   background: var(--color-axpresso-box-tint);
   box-shadow: none;
 }
 
-/* 카드 라벨은 색 지정이 없어 body의 어두운 잉크를 상속받는다 — 흰 글씨로 올린다.
-   활성 시 브랜드 원색은 다크 배경에서 3.05:1이라 흰색을 섞어 밝힌다. */
 .main-dark .feature-card .section-body-title {
   color: var(--color-axpresso-ink);
 }
@@ -146,7 +118,6 @@
   background: var(--color-axpresso-ink);
 }
 
-/* Process — 좌측 sticky는 공용 골격이 담당. 단계 카드만 다크 면으로 세운다 */
 .main-dark .process-steps {
   display: flex;
   flex-direction: column;
@@ -182,7 +153,6 @@
   font-weight: var(--font-weight-medium);
 }
 
-/* 순번은 위계를 낮추는 게 목적 — 카드보다 밝고 본문보다 낮게 */
 .main-dark .step-no {
   color: color-mix(in srgb, var(--color-axpresso-ink) 16%, transparent);
   font-size: var(--text-heading-32);
@@ -215,7 +185,6 @@
   color: var(--color-ink-light);
 }
 
-/* Deliverables — 산출물 2열 그리드 */
 .main-dark .deliverable-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -254,33 +223,26 @@
   color: var(--color-ink-light);
 }
 
-/* FAQ — 흰 카드 전제인 faq-list를 박스 톤으로 반전. 테두리를 빼는 대신
-   hover·열림 신호를 면 밝기로 옮긴다(details는 실제로 눌리는 요소다) */
 .main-dark .faq-list > details {
   border: 0;
-  /* 밝은 판 전제의 블루 섀도우는 어두운 면에서 얼룩으로 보여 지운다. */
+
   box-shadow: none;
   background: color-mix(in srgb, var(--color-brand) 22%, var(--color-axpresso-box));
   transition: background var(--duration-hover) var(--ease-hover);
 }
 
-/* 답변 면도 밝은 sunken 대신 어두운 판 톤으로 되돌린다. */
 .main-dark .faq-list__answer {
   border-top-color: rgb(255 255 255 / 0.1);
   color:#ffffffc9;
   background: var(--color-axpresso-box);
-  
 }
 
-
-/* 답변 안 콜아웃 — 브랜드 틴트(밝은 면) 대신 반투명 흰 판으로 낮춘다. */
 .main-dark .faq-list__info {
   border-color: rgb(255 255 255 / 0.14);
   background: rgb(255 255 255 / 0.06);
   color: var(--color-ink-light);
 }
 
-/* 최하단 CTA — 공용 cta-final 배경 위치를 우측 하단으로 변경 */
 .main-dark .cta-final::before {
   background-position: bottom right;
   background-size: 220%;
@@ -292,6 +254,4 @@
 
   .main-dark .hero-facts .metric-card { transition-duration: 0.001ms; }
 }
-
-/* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다 */
 

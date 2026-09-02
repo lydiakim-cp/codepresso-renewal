@@ -1,10 +1,5 @@
-/*
- * Component: Part Nav
- * PART 1(교육)·PART 2(진단)을 묶어 보여주는 상위 앵커 내비게이션.
- * 각 파트의 .section-title 맨 위, 좌측 sticky 컬럼과 함께 고정된다.
- * Segmented Control(캡슐+슬라이딩 인디케이터) 스타일의 <a href="#id"> 스크롤 링크.
- * part-nav.js가 스크롤 위치로 활성 링크(.is-active)를 갱신한다.
- */
+/* Component: Part Nav
+   PART 1(교육)·PART 2(진단)을 묶어 보여주는 상위 앵커 내비게이션. */
 
 .part-nav {
   position: relative;
@@ -13,9 +8,9 @@
   width: fit-content;
   gap: var(--space-2);
   padding: var(--space-4);
-  /* 글래스모피즘 캡슐 배경 */
-  background: rgba(255, 255, 255, .55);
-  border: 1px solid rgba(255, 255, 255, .8);
+
+  background: var(--color-glass-surface);
+  border: 1px solid var(--color-glass-line);
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-sm);
   backdrop-filter: blur(16px) saturate(160%);
@@ -29,10 +24,9 @@
   left: var(--space-4);
   height: calc(100% - var(--space-4) * 2);
   border-radius: var(--radius-full);
-  /* 디자인 시스템 Segmented Control과 같은 검정 인디케이터 */
+
   background: var(--color-ink-heaviest);
   box-shadow: var(--shadow-md);
-  /* transition 없음 — 이동감은 클릭 시 페이지 스크롤로 전달된다. */
 }
 
 .part-nav-item {
@@ -59,14 +53,12 @@
   color: var(--color-surface);
 }
 
-/* 최소 radius 변형 — 제품 화면처럼 정돈된 직사각형 UI에 사용한다. */
 .part-nav--compact,
 .part-nav--compact .part-nav-indicator,
 .part-nav--compact .part-nav-item {
   border-radius: var(--radius-md);
 }
 
-/* 가이드·탭형 인터랙션에서만 인디케이터 이동을 보여주는 선택적 모션. */
 .part-nav--animated .part-nav-indicator {
   transition: transform var(--duration-indicator) var(--ease-hover),
     width var(--duration-indicator) var(--ease-hover);
@@ -76,6 +68,3 @@
   .part-nav--animated .part-nav-indicator { transition-duration: 0.001ms; }
 }
 
-/* 클릭 시 smooth scroll은 part-nav.js가 reduced-motion 설정을 확인해 즉시 이동으로 바꾼다. */
-
-/* 모바일(560px) 반응형은 css/mobile.css에 모아 둔다. */

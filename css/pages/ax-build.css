@@ -1,27 +1,19 @@
-/*
- * Page: ax-build.html (AX Build 제품 소개)
- * main.css 위에 얹는 페이지 전용 계층. 공용 컴포넌트로 표현 안 되는 hero·성과 비교만 정의한다.
- * cta-final은 css/components/ui/의 범용 컴포넌트라 여기서 따로 import하지 않는다.
- */
+/* Page: ax-build.html (AX Build 제품 소개)
+   main.css 위에 얹는 페이지 전용 계층. */
 
-/* 다크모드 공통 층 — 토큰 remap·hero·공용 컴포넌트 반전은 여기가 갖는다.
-   <main class="ax-build main-dark">가 이 층을 켠다. */
 @import url("../main-dark.css") layer(components);
 
 @layer components {
-  /* 제목류 heaviest는 main-dark가 덮는다 — 이 페이지에만 있는 자리만 추가한다 */
   .ax-build .outcome-client {
     color: var(--color-axpresso-ink);
   }
 
-  /* 01 What It Is — Agent 실행 화면. mock-motion run이 큐를 위에서부터 처리한다.
-     목업 안 텍스트는 14px 예외 — 4단 위계를 이 루트 안에만 선언 */
   .ax-build .run {
     --run-text-title: 15px;
     --run-text-lg: 13px;
     --run-text: 11px;
     --run-text-sm: 9px;
-    /* 한 행이 처리되는 데 걸리는 시간. mock-motion의 모든 지연이 이 값의 배수다 */
+
     --mock-run-beat: 1.1s;
 
     border: 0;
@@ -31,7 +23,6 @@
     margin: 0 auto;
   }
 
-  /* 상단 바 — 다크 면 위라 흰 배경을 box로 되돌리고, 면이 갈리니 아래 선은 뺀다 */
   .ax-build .run .preview-frame__bar {
     background: var(--color-axpresso-box);
     border-bottom: 0;
@@ -56,7 +47,6 @@
     font-weight: var(--font-weight-regular);
   }
 
-  /* 실행 상태 배지 — 점이 뛰는 동안 "돌고 있다"가 읽힌다 */
   .ax-build .run-state {
     display: inline-flex;
     align-items: center;
@@ -77,7 +67,6 @@
     background: currentColor;
   }
 
-  /* 좌 큐 · 우 로그 2단. 로그가 좁아야 큐(주인공)가 먼저 읽힌다 */
   .ax-build .run-body {
     display: grid;
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
@@ -131,13 +120,10 @@
     background: var(--color-axpresso-box);
   }
 
-  /* 사람 확인에서 멈추는 행만 밝은 면으로 — 이 섹션의 결론이 여기 있다.
-     bg-4가 이미 어두워 brand를 섞어도 안 밝아지므로 brand 자체를 면으로 쓴다 */
   .ax-build .run-task.is-hold {
     background: color-mix(in srgb, var(--color-brand) 62%, var(--color-axpresso-bg-1));
   }
 
-  /* 상태 자리 — 스피너(실행 중)와 체크(::after)가 겹쳐 있다가 순서대로 바뀐다 */
   .ax-build .run-mark {
     position: relative;
     width: 18px;
@@ -151,14 +137,13 @@
     inset: 0;
     border-radius: var(--radius-full);
     background: var(--color-brand);
-    /* 체크 표시는 배경 이미지로 — 아이콘 하나 때문에 SVG를 4번 반복하지 않는다 */
+
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 13l4 4L19 7' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-size: 12px;
     background-position: center;
     background-repeat: no-repeat;
   }
 
-  /* 도는 링 — 자기 차례에만 나타난다(mock-motion이 spin-angle로 돌린다) */
   .ax-build .run-spin {
     position: absolute;
     inset: 0;
@@ -167,7 +152,6 @@
     border-top-color: var(--color-brand);
   }
 
-  /* 마지막 행의 사람 아이콘 — 체크 대신 이 자리를 넘겨받는다 */
   .ax-build .run-person {
     position: absolute;
     inset: 0;
@@ -187,7 +171,6 @@
     min-width: 0;
   }
 
-  /* 완료된 행은 넘긴 일이라 한 단 가라앉히고, 확인 대기 행만 흰색으로 남긴다 */
   .ax-build .run-task-name {
     color: var(--color-ink-light);
     font-size: var(--run-text-lg);
@@ -200,7 +183,6 @@
     font-weight: var(--font-weight-medium);
   }
 
-  /* 진행 막대 — 폭이 곧 "얼마나 처리됐나"다. 채우기는 mock-motion이 한다 */
   .ax-build .run-bar {
     height: 3px;
     border-radius: var(--radius-full);
@@ -222,7 +204,6 @@
     flex: none;
   }
 
-  /* hold 행은 면이 밝아졌으니 그 위 요소도 흰 계열로 뒤집는다 */
   .ax-build .run-task.is-hold .run-task-meta {
     color: color-mix(in srgb, var(--color-surface) 82%, transparent);
   }
@@ -234,7 +215,6 @@
     color: var(--color-brand);
   }
 
-  /* 우측 로그 — 실제 실행 기록처럼 등폭 숫자 + 한 줄씩 밀려 들어온다 */
   .ax-build .run-log {
     display: flex;
     flex-direction: column;
@@ -271,7 +251,6 @@
     flex: none;
   }
 
-  /* 결론 수치 — 목업 4단 스케일 위로 올려도 되는 자리 */
   .ax-build .run-verdict {
     margin-top: auto;
     display: flex;
@@ -302,12 +281,11 @@
     line-height: 15px;
   }
 
-  /* 03 워크플로 — 공통(고정) + 직군별(탭) 두 묶음을 나란히 둔 어두운 판 */
   .ax-build .service-catalog {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-28);
-    /* 공통은 탭이 없어 타일을 3행으로 밀어 직군별과 y를 맞춘다 */
+
     grid-template-rows: auto auto minmax(0, 1fr);
     align-items: start;
     padding: var(--space-28);
@@ -315,7 +293,6 @@
     background: var(--color-axpresso-bg-4);
   }
 
-  /* 묶음 이름 — 레퍼런스의 알약 배지 */
   .ax-build .service-catalog__label {
     display: inline-block;
     align-self: start;
@@ -329,13 +306,11 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  /* 직군별은 박스 톤으로 가라앉혀 공통과 구분 */
   .ax-build .service-catalog__label--alt {
     background: var(--color-axpresso-box);
     color: var(--color-axpresso-ink);
   }
 
-  /* 배지/탭 레일/타일 3행을 좌우가 같은 y에서 시작하게 맞춘다 */
   .ax-build .service-catalog__fixed,
   .ax-build .service-catalog__tabbed {
     display: grid;
@@ -369,7 +344,6 @@
     background: none;
   }
 
-  /* 폴더 탭 — 아래 판과 이어지도록 위쪽만 둥글린다 */
   .ax-build .service-catalog .catalog-board__category {
     padding: var(--space-10) var(--space-16);
     border-radius: var(--radius-md) var(--radius-md) 0 0;
@@ -398,7 +372,6 @@
     color: var(--color-axpresso-ink);
   }
 
-  /* 판이 absolute라 가장 항목 많은 분야(8개)만큼 높이를 잡는다 */
   .ax-build .service-catalog .catalog-board__main {
     flex: 1;
     min-height: 292px;
@@ -450,50 +423,16 @@
     text-align: center;
   }
 
-  /* 06 Real Outcomes — 마크업은 공용 outcome-card API로 통일(cases와 동일).
-     outcome-shift/before/arrow는 outcome-card.css가 정하지 않아 여기서 정의 */
-  .ax-build .outcome-shift {
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-10);
-    flex-wrap: wrap;
-  }
-
-  .ax-build .outcome-before {
-    color: var(--color-ink-lighter);
-    font-size: var(--text-body-18);
-    text-decoration: line-through;
-  }
-
-  .ax-build .outcome-arrow {
-    display: inline-flex;
-    align-items: center;
-    color: var(--color-line-heavy);
-    transition: transform var(--duration-hover) var(--ease-hover),
-      color var(--duration-hover) var(--ease-hover);
-  }
-
-  .ax-build .outcome-arrow svg {
-    display: block;
-    width: 18px;
-    height: 18px;
-  }
-
-  /* 로고 판은 반투명 흰색 — box-tint(남색)에 두면 짙은 로고(#22376d 등)가
-     대비 1.32로 묻힌다. 흰 88%면 9.0까지 올라가고 hover에도 색이 안 흔들린다. */
   .ax-build .outcome-logo {
     background: color-mix(in srgb, white 88%, transparent);
-    /* 흰 로고판과 유리 카드 본문은 면 차이만으로 갈린다 */
+
     border-bottom: 0;
   }
 
-  /* invert 로고판(체인로지스)만 별도 지킴 — ax-build.css가 언레이어드라
-     안 지키면 layer(components) 안 원본을 덮어써 버린다 */
   .ax-build .outcome-logo--invert {
     background: var(--color-ink-heaviest);
   }
 
-  /* 섹션 배경 리듬 — 단색 바탕 위 섹션마다 진하기를 다르게 줘서 경계를 만든다 */
   .ax-build .intro,
   .ax-build .catalog,
   .ax-build .deliverables,
@@ -506,7 +445,6 @@
     background: var(--color-axpresso-bg-2);
   }
 
-  /* 강조 구간 — 06은 03 워크플로 보드와 같은 그라데이션으로 톤을 맞춘다 */
   .ax-build .outcomes {
     position: relative;
     overflow: hidden;
@@ -522,7 +460,6 @@
     z-index: 1;
   }
 
-  /* 카드는 유리 표면 — 옅은 판 위 구분을 위해 배경에 블러를 얹는다 */
   .ax-build .outcomes .outcome-list > li {
     border: 0;
     background: var(--color-axpresso-box-tint);
@@ -530,11 +467,8 @@
     -webkit-backdrop-filter: blur(16px) saturate(160%);
   }
 
-  /* 결과 수치 — 브랜드 원색은 다크 배경에서 어두워 보여 흰색을 섞는다 */
   .ax-build .outcomes .outcome-after,
   .ax-build .outcomes .outcome-headline {
     color: color-mix(in srgb, var(--color-brand) 45%, white);
   }
-
-  /* 900px·560px 반응형은 css/mobile.css에 모아 둔다 */
 }

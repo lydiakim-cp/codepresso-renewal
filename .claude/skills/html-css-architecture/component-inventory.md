@@ -17,19 +17,19 @@
 |---|---|---|---|
 | Button | `button.css` | `.btn`, `.btn-primary`, `.btn-ghost`, `.btn-outline-inverse`, `.btn-lg` | 주요/보조 행동 버튼 |
 | Link Arrow | `link.css` | `.link-arrow`, `.link-arrow-ink`, `.link-arrow-inverse`, `.link-underline` | 화살표가 붙는 **보조** 텍스트 링크. **색 modifier(`-ink`/`-inverse`) 필수** — 맨몸이면 hover 없는 검은 글씨가 된다. 카드·패널의 행동에는 이것이 아니라 `btn-ghost`를 쓴다 |
-| Icon Size | `icon.css` | `.icon-sm`(20) · `.icon-md`(24) · `.icon-lg`(32) | **아이콘 크기는 이 세 클래스로만 정한다.** 감싼 span에 붙이면 안쪽 svg·img가 따라온다. 배경 있는 아이콘 박스(`--icon-box` 48 / `--icon-box-sm` 32)는 다른 개념이라 박스가 아니라 안쪽 그림에 붙인다. **박스와 글리프는 짝** — sm↔32/radius-sm, md↔48/radius-md |
+| Icon Size | `icon.css` | `.icon-sm`(20) · `.icon-md`(24) · `.icon-lg`(32) · `.icon-box`(48, 이미지용) | **아이콘 크기는 이 세 클래스로만 정한다.** 감싼 span에 붙이면 안쪽 svg·img가 따라온다. 제품 로고처럼 이미지를 담는 48px 박스는 `.icon-box`(안쪽 `img`가 contain으로 채워진다) — choice-list·skills 제품 카드가 함께 쓴다. 배경 있는 아이콘 박스(`--icon-box` 48 / `--icon-box-sm` 32)는 다른 개념이라 박스가 아니라 안쪽 그림에 붙인다. **박스와 글리프는 짝** — sm↔32/radius-sm, md↔48/radius-md |
 | Badge / Tag | `badge.css` | `.tag`(+`.is-solid`) | 콘텐츠 분류·상태 라벨. `is-solid`는 브랜드 파랑을 채운 11px 작은 라벨(썸네일 있는 미디어 카드용) |
 | Hero | `hero.css` | `.hero`, `.hero-wrap`, `.hero-copy`, `.hero-title`, `.hero-desc`, `.hero-actions`, `.hero-questions`(+`surface-glass`), `.hero-facts`(+`surface-glass`) | 서브페이지 첫 화면 공통 골격(태그+h1+desc+CTA 중앙정렬, sunken 배경, bg-line2 텍스처, 상단 광원). 보조 정보 밴드는 유리 띠 1장 안에 세로 구분선으로 나뉜 3칸이 표준 외피다 — 질문형은 `.hero-questions`(아이콘+제목+설명), 수치형은 `.hero-facts`(**칸이 `li.metric-card`** — 전용 클래스를 두지 않고 `metric-card__value`+`.unit`+`metric-card__label.text-label` 슬롯을 그대로 쓴다. 유리 띠가 면을 가지므로 카드 껍데기(sunken 면·min-height·padding)는 `.hero-facts li.metric-card`가 무력화하고, 크기만 20/14/14px로 한 단 낮춘다 — hero는 h1이 주역이라 `metric-card` 기본값 40/20보다 작다. 칸이 `.metric-card`라 `stat-reveal.js`의 기본 대상에 그대로 걸린다). 독립 카드로 늘어놓지 않는다. 보조 콘텐츠 내용 자체는 페이지 CSS가 `.hero-wrap` 안에 이어 붙인다. **hero 안에서는 그림자를 쓰지 않는다**(hover 제외) — `.hero-questions`/`.hero-facts`가 `surface-glass`의 평소 그림자를 무력화하는 이유. 배경 텍스처 위치는 `--hero-texture-position`으로 페이지마다 반복을 피한다 |
 | Metric Card | `metric-card.css` | `.metric-card`, `__value`, `__label`, `__visual`, `__glow`, `__icon` | 숫자 **성과** 지표 카드 (`js/stat-reveal.js`와 짝). **나쁜 수치에는 쓰지 않는다** — 큰 숫자+아이콘이 자랑으로 읽힌다(difference 01이 `problem-card`를 따로 만든 이유). `stat-reveal.js`는 그룹에 `data-stat-card="{선택자}"`를 주면 다른 카드도 카운트업한다. **껍데기 없이 슬롯만 쓸 수도 있다** — hero의 `.hero-facts`가 유리 띠 안에서 카드 면·min-height·padding을 무력화하고 타이포·카운트업 슬롯만 물려받는다 |
-| Choice List | `choice-list.css` | `.choice-list`, `__item`, `__icon`, `__body`, `__arrow` | 여러 항목 중 하나를 고르는 리스트 |
+| Choice List | `choice-list.css` | `.choice-list`, `__item`, `__body`, `__arrow` (아이콘은 공용 `.icon-box`) | 여러 항목 중 하나를 고르는 리스트 |
 | Preview Frame | `preview-frame.css` | `.preview-frame`, `__bar`, `__dots` | 제품/서비스 화면을 보여주는 목업 프레임 |
 | Skeleton | `skeleton.css` | `.skeleton-block`, `.skeleton-line`, `.skeleton-stack` | 콘텐츠 대기/자리표시 상태 |
 | Media Card | `media-card.css` | `.media-card`, `__media`, `__body`, `__meta`, `__title` | 썸네일 + 제목형 콘텐츠 카드 (뉴스·블로그 등) |
-| Outcome Card | `outcome-card.css` | `.outcome-list > li`, `.outcome-logo`(+`--tall`·`--invert`), `.outcome-body`, `.outcome-client`, `.outcome-industry` | 고객사 로고 판 + 성과 카드. 로고는 고정 높이(132px) 판 안에서 `object-fit: contain`(잘리면 안 되므로 `media-card`의 cover와 다름). cases.html·skillcertify.html이 공용으로 쓰고, 그리드 열 수·카드 테두리/hover 색·본문 gap·`outcome-headline`/`outcome-shift` 등 수치 표시부는 페이지 스코프가 정한다 |
+| Outcome Card | `outcome-card.css` | `.outcome-list > li`, `.outcome-logo`(+`--tall`·`--invert`), `.outcome-body`, `.outcome-client`, `.outcome-industry` | 고객사 로고 판 + 성과 카드. 로고는 고정 높이(132px) 판 안에서 `object-fit: contain`(잘리면 안 되므로 `media-card`의 cover와 다름). cases.html·skillcertify.html이 공용으로 쓰고, 그리드 열 수·카드 테두리/hover 색·본문 gap·`outcome-headline` 등 수치 표시부는 페이지 스코프가 정한다. `outcome-shift`·`outcome-before`·`outcome-arrow`는 ax-build·cases가 같은 값으로 중복돼 컴포넌트로 올렸다 |
 | Part Nav | `part-nav.css` | `.part-nav`, `-item`, `-indicator`, `--compact` | 두 파트를 잇는 캡슐형 세그먼트 내비 (`js/part-nav.js`와 짝) |
 | Assessment Card | `assessment-card.css` | `.assessment-card`, `__head`, `__title`, `__meta`, `__action` | 자가진단/설문 시작 유도 카드 |
 | Content Panel | `content-panel.css` | `.content-panel`, `__item`, `__intro`, `__visual`, `--compact` | 설명 + 큰 시각 요소를 한 판에 담는 패널 |
-| Journey Stage | `journey-stage.css` | `.journey-stage`, `.journey-track`, `.journey-viewport`, `.journey-step`(+`.is-active`) | **스크롤로 판 안의 내용만 교차 페이드**되는 스테이지. 보이지 않는 트랙이 스크롤 길이를 만들고 `js/journey-stage.js`가 활성 스텝을 옮긴다. 판은 `.content-panel` + `.surface-glass` 조합. 좌측 `.choice-list__item`에 `data-journey-program="n"`을 주면 표시이자 이동 버튼이 된다. index PART 1과 skills 04가 함께 쓴다. 페이지는 `--stage-panel-height`(판 실측 높이)와 `--stage-tail`만 넘긴다 |
+| Journey Stage | `journey-stage.css` | `.journey-stage`, `.journey-track`, `.journey-viewport`, `.journey-step`(+`.is-active`) | **스크롤로 판 안의 내용만 교차 페이드**되는 스테이지. 보이지 않는 트랙이 스크롤 길이를 만들고 `js/journey-stage.js`가 활성 스텝을 옮긴다. 판은 `.content-panel` + `.surface-glass` 조합. 좌측 `.choice-list__item`에 `data-journey-program="n"`을 주면 표시이자 이동 버튼이 된다. index PART 1·PART 2(진단 쇼케이스)와 skills 04가 함께 쓴다. 페이지는 `--stage-panel-height`(판 실측 높이)와 `--stage-tail`만 넘긴다 — data 접두사만 다르면(`data-diagnosis-*`) 같은 컴포넌트로 두 번째 스테이지를 만든다 |
 | Compare Panel | `compare-panel.css` | `.compare-panel`, `__item`(+`.is-after`), `__label`, `__title`, `__desc`, `__arrow` | "지금 → 바뀐 뒤" 두 상태를 좌우로 대비 |
 | Timeline | `timeline.css` | `.timeline > li`, `__marker`, `__term`, `__body`, `__title`, `__desc` | 기간이 있는 단계를 세로로 잇는 진행 흐름 |
 | Cycle | `cycle.css` | `.cycle > li`(+`.is-return`·`.blue`·`.dark`), `.cycle-head`, `.cycle-no`, `.cycle-en`, `.cycle-desc`, `.cycle-arrow`, `.cycle-note` | N단계 순서/순환을 가로 칸 + 경계 화살표로. 열 수는 `--cycle-columns`(기본 4). 순환형 결론 칸은 `.is-return`(유리 표면), 화살표는 반투명 글래스모피즘 노드. 칸별 컬러 테마는 `.blue`(하늘색 카드+브랜드 파랑 번호)·`.dark`(잉크 카드+흰 번호), 무클래스는 기본(흰 카드+하늘색 번호). why-codepresso.html 03(4단계 순환)·skillcertify.html 05(5단계 선형)·cases.html 공통점(3단계 선형)이 함께 쓰며 공용 승격 — 선형 페이지 둘 다 결론 칸도 기본 배경 그대로 둔다 |
@@ -46,7 +46,7 @@
 |---|---|---|---|
 | Section 뼈대 | `layout.css` | `.section-wrap`, `.col`, `.row`, `.is-sticky`, `.section-title`, `.section-content`, `.section-header`, `.section-cta` | 모든 섹션의 기본 골격. [subpage-guide.md](subpage-guide.md) 3번 참고 |
 | Section Body | `section-body.css` | `.section-body`, `-heading`, `-title`, `-subtitle`, `-description` | 카드/패널 내부 텍스트 묶음(제목+부제+설명) |
-| Text 유틸리티 | `text.css` | `.text-label`, `.text-caption` 등 | 자잘한 보조 텍스트 스타일 |
+| Text 유틸리티 | `text.css` | `.text-label`, `.text-caption`, `.desc`, `.description` 등 | 자잘한 보조 텍스트 스타일. **14px/ink-light 카드 설명은 `.description` 하나로 통일**(cycle·problem·industry 카드가 각자 갖고 있던 같은 3줄을 걷어냈다) |
 | Surface | `surface.css` | `.surface-glass` 등 | 배경 표면(유리 질감 등) 유틸리티 |
 | Summary Banner | `summary-banner.css` | `.summary-banner`, `.dark`, `.stats-light` | 한 줄 강조 배너, 통계 묶음 배경 |
 | Feature Card | `feature-card.css` | `.feature-card`, `-icon-row`, `-icon`, `-arrow`, `-progress` | 아이콘+제목+설명형 카드 (자동 순환 가능, `js/feature-card-cycle.js`) |
@@ -103,7 +103,7 @@
 | 클래스 | 역할 | 재사용한 공용 컴포넌트 |
 |---|---|---|
 | `hero-questions` | hero의 질문 카드 3개(유리 표면) | — (수치가 없어 `metric-card` 부적합) |
-| 공용 `cycle` 재사용 | 01 Growth Loop 4단계 순환 | 번호(`cycle-no`) 자리에 단계 아이콘, 화살표만 작게 줄여 쓴다 |
+| 공용 `cycle` 재사용 | 01 Growth Loop 4단계 순환 | 디자인은 공용 그대로 — 번호(`cycle-no`) 자리에 단계 아이콘만 넣는다 |
 | `product-grid` · `product-points` | 03·04 제품 카드 배치와 특징 목록 | `content-panel`(카드 자체) |
 | `analyze-grid` · `analyze-points` | 06 분석·보고 2블록 | `content-panel` |
 | `analyze-mock-*` | 06 대시보드·성과 보고 목업(직무×역량 히트맵 · 전후 상승폭) | `preview-frame` · `mock-screen` · `journey-mock-badge` · `data-mock-motion="ticker"` |
