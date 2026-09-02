@@ -127,13 +127,19 @@
 
   .ax-grow .capability-grid { grid-template-columns: 1fr; }
 
-  .ax-grow .start-grid { grid-template-columns: 1fr; }
+  .ax-grow .start-grid { --start-columns: 1; }
+
+  .axpresso .outcome-list { grid-template-columns: 1fr; }
+
+  .axpresso .start-grid { --start-columns: 1; }
+
+  .axpresso .intro-pair { grid-template-columns: 1fr; }
 
   .skills .sub-hero .hero-wrap { padding-top: 120px; }
 
   .skills .analyze-grid { grid-template-columns: 1fr; }
 
-  .skills .outcomes.is-dark .start-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .skills .outcomes.is-dark .start-grid { --start-columns: 2; }
 
   .skills .cycle { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
@@ -169,7 +175,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .difference-page .start-grid { grid-template-columns: 1fr; }
+  .difference-page .start-grid { --start-columns: 1; }
 
   .difference-page .slide-pair {
     grid-template-columns: 1fr;

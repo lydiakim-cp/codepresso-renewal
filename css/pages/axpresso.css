@@ -1,0 +1,169 @@
+/* Page: axpresso.html (AXpresso 업무 자동화 허브)
+   main.css 위에 얹는 페이지 전용 계층. */
+
+@import url("../main-dark.css") layer(components);
+
+@layer components {
+  /* 03 Redesign — 도구 5개가 하나의 실행 시스템으로 모이는 그림 */
+  .axpresso .intro .content-panel {
+    background: var(--color-axpresso-box);
+  }
+
+  .axpresso .tool-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-16);
+  }
+
+  .axpresso .tool-flow-tools {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-12);
+  }
+
+  /* 칩은 섹션이 화면에 들어올 때 왼쪽부터 시간차로 들어온다 */
+  .axpresso .fade-up .tool-flow-tools > li {
+    opacity: 0;
+    transform: translateY(var(--motion-rise));
+  }
+
+  .axpresso .fade-up.is-visible .tool-flow-tools > li {
+    opacity: 1;
+    transform: none;
+    transition: opacity var(--duration-scroll) var(--ease-scroll),
+      transform var(--duration-scroll) var(--ease-scroll);
+  }
+
+  .axpresso .fade-up.is-visible .tool-flow-tools > li:nth-child(2) { transition-delay: .08s; }
+  .axpresso .fade-up.is-visible .tool-flow-tools > li:nth-child(3) { transition-delay: .16s; }
+  .axpresso .fade-up.is-visible .tool-flow-tools > li:nth-child(4) { transition-delay: .24s; }
+  .axpresso .fade-up.is-visible .tool-flow-tools > li:nth-child(5) { transition-delay: .32s; }
+
+  .axpresso .tool-flow-join {
+    color: var(--color-ink-lighter);
+  }
+
+  .axpresso .tool-flow-join svg {
+    display: block;
+    width: var(--icon-box-sm);
+    height: var(--icon-box-sm);
+  }
+
+  .axpresso .fade-up.is-visible .tool-flow-join {
+    animation: nudge 2.4s var(--ease-scroll) .4s infinite;
+  }
+
+  .axpresso .tool-flow-hub {
+    padding: var(--space-12) var(--space-24);
+    border-radius: var(--radius-full);
+    background: var(--color-brand);
+    color: var(--color-surface);
+    font-size: var(--text-body-16);
+    line-height: var(--leading-body-16);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .axpresso .intro-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-24);
+  }
+
+  /* FDE 강조 띠 — 공용 statement 위에 CTA 한 개만 얹는다 */
+  .axpresso .statement-inner .btn {
+    margin-top: var(--space-12);
+  }
+
+  /* 01 Engagement Models — 면만 정한다(골격은 공용 start-card) */
+  .axpresso .start-card {
+    background: var(--color-axpresso-box);
+  }
+
+  .axpresso .start-icon {
+    background: var(--color-axpresso-box-tint);
+  }
+
+  /* 05 Results — 결론 배너. 다크 위라 잉크색·브랜드 강조를 밝은 쪽으로 뒤집는다 */
+  .axpresso .summary-banner {
+    margin-top: var(--space-32);
+    color: var(--color-axpresso-ink);
+  }
+
+  .axpresso .summary-banner strong.brand {
+    color: color-mix(in srgb, var(--color-brand) 45%, white);
+  }
+
+  .axpresso .summary-banner .description {
+    display: block;
+    margin-top: var(--space-8);
+  }
+
+  .axpresso .summary-banner .link-arrow {
+    margin-top: var(--space-16);
+  }
+
+  .axpresso .outcome-client {
+    color: var(--color-axpresso-ink);
+  }
+
+  .axpresso .outcome-logo {
+    background: color-mix(in srgb, white 88%, transparent);
+
+    border-bottom: 0;
+  }
+
+  .axpresso .outcome-logo--invert {
+    background: var(--color-ink-heaviest);
+  }
+
+  /* 섹션 배경 리듬 — 옅은 판과 진한 판을 번갈아, 성과 구간만 대각 그라데이션으로 */
+  .axpresso .positioning,
+  .axpresso .intro {
+    background: var(--color-axpresso-bg-1);
+  }
+
+  .axpresso .process,
+  .axpresso .features {
+    background: var(--color-axpresso-bg-2);
+  }
+
+  .axpresso .outcomes {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg,
+        var(--color-axpresso-bg-1) 0%,
+        var(--color-axpresso-bg-2) 38%,
+        var(--color-axpresso-bg-3) 68%,
+        var(--color-axpresso-bg-4) 100%);
+  }
+
+  .axpresso .outcomes .section-wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  .axpresso .outcomes .outcome-list > li {
+    border: 0;
+    background: var(--color-axpresso-box-tint);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+  }
+
+  .axpresso .outcomes .outcome-after {
+    color: color-mix(in srgb, var(--color-brand) 45%, white);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .axpresso .fade-up .tool-flow-tools > li {
+      opacity: 1;
+      transform: none;
+      transition-duration: 0.001ms;
+    }
+
+    .axpresso .fade-up.is-visible .tool-flow-join { animation: none; }
+  }
+}
+
+/* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다 */

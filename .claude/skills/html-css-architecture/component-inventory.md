@@ -21,7 +21,7 @@
 | 분류(카테고리)가 있는 20개 이상의 목록 | `catalog-board` (좌측 rail이 분류, panel이 항목) | 카드 그리드를 새로 만들기 — `__items`가 그리드 + stagger를 이미 갖고 있다 |
 | 순서가 있고 **기간·날짜가 붙는** 단계 | `timeline` | `cycle` — 기간 칸이 없다 |
 | 순서가 있고 기간이 없는 N단계(선형·순환) | `cycle` (`--cycle-columns`, 순환 결론 칸은 `.is-return`) | `process-steps` — ax-build·ax-grow(다크) 전용이다 |
-| 두 갈래 중 하나를 고르게 한다 | `content-panel` + 페이지의 `start-card` 배치 (ax-grow 07 · why-codepresso 06) | `compare-panel` — 우열이 아니라 선택지일 때는 대비가 아니다 |
+| 두 갈래 중 하나를 고르게 한다 | `content-panel` + 공용 `start-card` (ax-grow 07 · why-codepresso 06 · axpresso 01) | `compare-panel` — 우열이 아니라 선택지일 때는 대비가 아니다 |
 | 지금 vs 바뀐 뒤 (우열이 있는 대비) | `compare-panel` | `content-panel` 2개 나열 |
 | 여러 항목 중 하나를 눌러 들어간다 | `choice-list` (아이콘은 공용 `.icon-box`) | `feature-card` — 클릭 대상이면 리스트가 맞다 |
 | 자랑할 성과 숫자 | `metric-card` (+ `[data-stat-reveal]`) | 나쁜 수치에 쓰지 않는다 — 큰 숫자+아이콘은 자랑으로 읽힌다 |
@@ -76,6 +76,7 @@
 | Part Nav | `part-nav.css` | `.part-nav`, `-item`, `-indicator`, `--compact` | 두 파트를 잇는 캡슐형 세그먼트 내비 (`js/part-nav.js`와 짝) |
 | Assessment Card | `assessment-card.css` | `.assessment-card`, `__head`, `__title`, `__meta`, `__action` | 자가진단/설문 시작 유도 카드 |
 | Content Panel | `content-panel.css` | `.content-panel`, `__item`, `__intro`, `__visual`, `--compact` | 설명 + 큰 시각 요소를 한 판에 담는 패널 |
+| Start Card | `start-card.css` | `.start-grid`(열 수는 `--start-columns`, 기본 2), `.start-card`, `.start-icon`, `.start-desc` | content-panel을 "둘 중 어디서 시작할지" 고르는 갈래 카드로 배치하는 골격. 우열이 아니라 선택지일 때 쓴다(우열 대비는 `compare-panel`). **면(배경)만 쓰는 페이지가 정한다** — ax-grow 07·why-codepresso 06·axpresso 01(다크 box)·skills 04(수치 4열)가 같은 골격을 공유한다 |
 | Journey Stage | `journey-stage.css` | `.journey-stage`, `.journey-track`, `.journey-viewport`, `.journey-step`(+`.is-active`) | **스크롤로 판 안의 내용만 교차 페이드**되는 스테이지. 보이지 않는 트랙이 스크롤 길이를 만들고 `js/journey-stage.js`가 활성 스텝을 옮긴다. 판은 `.content-panel` + `.surface-glass` 조합. 좌측 `.choice-list__item`에 `data-journey-program="n"`을 주면 표시이자 이동 버튼이 된다. index PART 1·PART 2(진단 쇼케이스)와 skills 04가 함께 쓴다. 페이지는 `--stage-panel-height`(판 실측 높이)와 `--stage-tail`만 넘긴다 — data 접두사만 다르면(`data-diagnosis-*`) 같은 컴포넌트로 두 번째 스테이지를 만든다 |
 | Compare Panel | `compare-panel.css` | `.compare-panel`, `__item`(+`.is-after`), `__label`, `__title`, `__desc`, `__arrow` | "지금 → 바뀐 뒤" 두 상태를 좌우로 대비 |
 | Timeline | `timeline.css` | `.timeline > li`, `__marker`, `__term`, `__body`, `__title`, `__desc` | 기간이 있는 단계를 세로로 잇는 진행 흐름 |
@@ -106,7 +107,7 @@
 
 | 층 | CSS 파일 | 대표 클래스 | 용도 |
 |---|---|---|---|
-| Main Dark | `css/main-dark.css` | `.main-dark` | AXpresso 다크모드. `<main class="{페이지명} main-dark">`에 붙여 시맨틱 토큰(`--color-ink`·`--color-line`·`--color-surface-*`)을 axpresso 값으로 remap하고, hero·feature-card·process-steps·deliverable-list·faq-list·tag·cta-final을 다크로 반전한다. 페이지 CSS가 맨 위에서 `@import url("../main-dark.css") layer(components)`로 켠다(`<link>`를 늘리지 않는다). 현재 사용: `ax-build.html`, `ax-grow.html` |
+| Main Dark | `css/main-dark.css` | `.main-dark` | AXpresso 다크모드. `<main class="{페이지명} main-dark">`에 붙여 시맨틱 토큰(`--color-ink`·`--color-line`·`--color-surface-*`)을 axpresso 값으로 remap하고, hero·feature-card·process-steps·deliverable-list·faq-list·tag·cta-final을 다크로 반전한다. 페이지 CSS가 맨 위에서 `@import url("../main-dark.css") layer(components)`로 켠다(`<link>`를 늘리지 않는다). 현재 사용: `ax-build.html`, `ax-grow.html`, `axpresso.html` |
 
 다크 페이지를 새로 만들 때는 `main` 태그에 `main-dark`를 붙이고 `@import` 한 줄만 추가한다.
 페이지 CSS에는 **그 페이지에만 있는 것**(섹션 배경 리듬·전용 섹션)만 남긴다.

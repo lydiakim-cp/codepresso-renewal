@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AXpresso — 업무 시스템을 AI 중심으로 다시 설계합니다 | 코드프레소</title>
+
+  <!-- 검색 결과·링크 미리보기 문구. hero 설명을 그대로 쓴다(마케팅팀 검수 대상).
+       TODO: og:image(1200x630) 에셋과 운영 도메인(og:url·canonical)이 확정되면 채운다. -->
+  <meta name="description" content="흩어진 도구와 수작업을 그대로 두지 않습니다. 업무 시스템을 AI 중심으로 다시 설계하고, 하나의 자동화된 흐름으로 연결해 실제 운영까지 완성합니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AXpresso — 업무 시스템을 AI 중심으로 다시 설계합니다 | 코드프레소">
+  <meta property="og:description" content="흩어진 도구와 수작업을 그대로 두지 않습니다. 업무 시스템을 AI 중심으로 다시 설계하고, 하나의 자동화된 흐름으로 연결해 실제 운영까지 완성합니다.">
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/axpresso.css">
+  <link rel="stylesheet" href="css/mobile.css">
+</head>
+
+<body>
+  <!-- GNB는 partials/header.html 하나로 관리한다. js/include-partials.js가 fetch해 삽입한다. -->
+  <div data-include="partials/header.html"></div>
+
+  <main class="axpresso main-dark">
+    <!-- Hero — 제품 한 줄 정의 + CTA 2개 + 핵심 수치 3개. 첫 화면이라 fade-up을 붙이지 않는다. -->
+    <section class="sub-hero">
+      <div class="hero-wrap">
+        <div class="sub-hero-copy">
+          <p class="tag">Tool Axis · 일하는 방식의 전환</p>
+          <h1 class="hero-title">AXpresso</h1>
+          <p class="hero-desc">흩어진 도구와 수작업을 그대로 두지 않습니다. <br data-break="desktop">업무 시스템을 AI 중심으로 다시 설계하고, 하나의 자동화된 흐름으로 연결해 실제 운영까지 완성합니다.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#">
+              도입 문의
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-outline-inverse btn-lg" href="cases.html">
+              AX 사례 보기
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 핵심 수치 3개. ax-build·ax-grow hero와 같은 유리 띠 외피(1장 + 세로 구분선 +
+             그림자 없음)에 metric-card 슬롯을 담는다. -->
+        <ul class="hero-facts surface-glass">
+          <li class="metric-card is-visible">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 캘린더 — ic_calendar.svg 기반, 하드코딩 색을 브랜드 톤으로 교체 -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"/>
+                <path d="M16.5 3H15.5C15.2239 3 15 3.22386 15 3.5V5.5C15 5.77614 15.2239 6 15.5 6H16.5C16.7761 6 17 5.77614 17 5.5V3.5C17 3.22386 16.7761 3 16.5 3Z" fill="var(--color-brand)"/>
+                <path d="M2.5 9H21.5V10.5H2.5V9Z" fill="var(--color-brand)"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2 17.6L8.4 14.8L9.6 13.6L11.2 15.2L14.9 11.5L16.1 12.7L11.2 17.6Z" fill="var(--color-brand-dark)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value"><span>3</span><span class="unit">주</span></div>
+              <p class="metric-card__label text-label">평균 운영 도입 기간</p>
+            </div>
+          </li>
+          <li class="metric-card is-visible">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 성과 그래프 — ic_lineChart.svg 기반 -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"/>
+                <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value"><span>99</span><span class="unit">%</span></div>
+              <p class="metric-card__label text-label">최대 업무 시간 단축</p>
+            </div>
+          </li>
+          <li class="metric-card is-visible">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 조직 구조 — ic_structure.svg 기반 -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.75 16V7H13.25V16H10.75Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25 12.26V16H3.75V11.51C3.75 11.05 3.93 10.6 4.26 10.27C4.59 9.94 5.04 9.76 5.5 9.76H18.5C18.96 9.76 19.41 9.94 19.74 10.27C20.07 10.6 20.25 11.05 20.25 11.51V16H17.75V12.26H6.25Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                <path d="M8 17H4C3.44772 17 3 17.4477 3 18V20C3 20.5523 3.44772 21 4 21H8C8.55228 21 9 20.5523 9 20V18C9 17.4477 8.55228 17 8 17Z" fill="var(--color-brand)"/>
+                <path d="M20 17H16C15.4477 17 15 17.4477 15 18V20C15 20.5523 15.4477 21 16 21H20C20.5523 21 21 20.5523 21 20V18C21 17.4477 20.5523 17 20 17Z" fill="var(--color-brand)"/>
+                <path d="M14 3H10C9.44772 3 9 3.44772 9 4V6C9 6.55228 9.44772 7 10 7H14C14.5523 7 15 6.55228 15 6V4C15 3.44772 14.5523 3 14 3Z" fill="var(--color-brand-dark)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value"><span>10</span><span class="unit">+</span></div>
+              <p class="metric-card__label text-label">엔터프라이즈 고객</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 01 Engagement Models — 두 제품 중 조직 목표에 맞는 쪽을 고르게 한다.
+         ax-grow 07 · why-codepresso 06과 같은 역할 · 같은 공용 start-card 배치. -->
+    <section class="positioning fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">01 · Engagement Models</p>
+          <h2>목적에 맞는 두 가지 시작 방식</h2>
+          <p class="desc">빠른 현장 구축과 내부 실행 역량 중 <br data-break="desktop">지금 조직에 가장 필요한 목표에서 시작합니다.</p>
+        </div>
+        <div class="section-content">
+          <ul class="start-grid">
+            <li>
+              <div class="content-panel start-card">
+                <span class="start-icon" aria-hidden="true">
+                  <!-- 톱니바퀴 — flat_icon_svg/027.설정,관리.svg 기반, 색만 브랜드 톤으로 -->
+                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 19.75C16.2802 19.75 19.75 16.2802 19.75 12C19.75 7.71979 16.2802 4.25 12 4.25C7.71979 4.25 4.25 7.71979 4.25 12C4.25 16.2802 7.71979 19.75 12 19.75Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"/>
+                    <path d="M10 2H14C14.2652 2 14.5196 2.10536 14.7071 2.29289C14.8946 2.48043 15 2.73478 15 3V5H9V3C9 2.73478 9.10536 2.48043 9.29289 2.29289C9.48043 2.10536 9.73478 2 10 2Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"/>
+                    <path d="M2.34082 8.73944L4.34082 5.27534C4.47343 5.04566 4.69187 4.87805 4.94805 4.80941C5.20423 4.74077 5.47716 4.77671 5.70685 4.90932L7.4389 5.90932L4.4389 11.1055L2.70685 10.1055C2.47716 9.97286 2.30958 9.75444 2.24094 9.49826C2.1723 9.24208 2.20821 8.96913 2.34082 8.73944Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"/>
+                    <path d="M4.3418 18.7394L2.3418 15.2753C2.20919 15.0457 2.17326 14.7727 2.2419 14.5165C2.31054 14.2603 2.47814 14.0419 2.70782 13.9093L4.43987 12.9093L7.43987 18.1055L5.70782 19.1055C5.47814 19.2381 5.20519 19.274 4.94901 19.2053C4.69283 19.1367 4.47441 18.9691 4.3418 18.7394Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"/>
+                    <path d="M13.9902 22H9.99023C9.72502 22 9.47068 21.8946 9.28314 21.7071C9.09561 21.5196 8.99023 21.2652 8.99023 21V19H14.9902V21C14.9902 21.2652 14.8849 21.5196 14.6974 21.7071C14.5098 21.8946 14.2555 22 13.9902 22Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"/>
+                    <path d="M21.6533 15.2762L19.6533 18.7403C19.5207 18.97 19.3023 19.1376 19.0461 19.2062C18.7899 19.2749 18.517 19.2389 18.2873 19.1063L16.5552 18.1063L19.5552 12.9102L21.2873 13.9102C21.517 14.0428 21.6846 14.2612 21.7532 14.5174C21.8218 14.7735 21.7859 15.0465 21.6533 15.2762Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"/>
+                    <path d="M19.6543 5.27618L21.6543 8.74028C21.7869 8.96997 21.8228 9.24294 21.7542 9.49912C21.6855 9.7553 21.518 9.9737 21.2883 10.1063L19.5562 11.1063L16.5562 5.91016L18.2883 4.91016C18.518 4.77755 18.7909 4.74163 19.0471 4.81028C19.3033 4.87892 19.5217 5.0465 19.6543 5.27618Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"/>
+                    <path d="M12 14.5C13.3807 14.5 14.5 13.3807 14.5 12C14.5 10.6193 13.3807 9.5 12 9.5C10.6193 9.5 9.5 10.6193 9.5 12C9.5 13.3807 10.6193 14.5 12 14.5Z" fill="var(--color-surface)"/>
+                  </svg>
+                </span>
+                <div class="content-panel__intro">
+                  <p class="text-label">가장 빠른 구축형</p>
+                  <h3>AX Build · 20일</h3>
+                  <p class="start-desc">AXpresso가 현장을 진단하고, 업무에 맞는 AI Agent를 구축해 실제 운영 가능한 상태로 배포합니다.</p>
+                </div>
+                <a class="btn btn-outline-inverse" href="ax-build.html">
+                  AX Build 자세히
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class="content-panel start-card">
+                <span class="start-icon" aria-hidden="true">
+                  <!-- 깃발 — flat_icon_svg/034.깃발,목표.svg 기반, 색만 브랜드 톤으로 -->
+                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 16H5V4H22L18 10L22 16Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"/>
+                    <path d="M3.75 3H4.25C4.51522 3 4.76962 3.10534 4.95715 3.29288C5.14469 3.48041 5.25 3.73478 5.25 4V22H2.75V4C2.75 3.73478 2.85537 3.48041 3.04291 3.29288C3.23044 3.10534 3.48478 3 3.75 3Z" fill="var(--color-surface)"/>
+                  </svg>
+                </span>
+                <div class="content-panel__intro">
+                  <p class="text-label">팀과 함께 만드는 내재화형</p>
+                  <h3>AX Grow · 16일</h3>
+                  <p class="start-desc">현업 팀을 교육하고 AI Agent를 함께 구축하며, 역량 진단과 확산 로드맵까지 조직에 남깁니다.</p>
+                </div>
+                <a class="btn btn-outline-inverse" href="ax-grow.html">
+                  AX Grow 자세히
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 How It Works — 좌측 제목 sticky + 우측 3주 단계. ax-build 04와 같은 process-steps. -->
+    <section class="process fade-up">
+      <div class="section-wrap row is-sticky">
+        <div class="section-aside">
+          <div class="section-title text-left">
+            <p class="tag">02 · How It Works</p>
+            <h2>연결하고, 배포하고,<br>운영합니다</h2>
+            <p class="desc">진단 보고서에서 끝나지 않습니다. <br data-break="desktop">실제 업무를 수행하는 AI Agent를 3주 안에 운영에 올립니다.</p>
+          </div>
+        </div>
+
+        <ol class="process-steps">
+          <li>
+            <div class="step-head">
+              <span class="step-term">Week 1 · Integrate</span>
+              <span class="step-no" aria-hidden="true">01</span>
+            </div>
+            <span class="step-icon" aria-hidden="true">
+              <!-- 현장 관찰 — ic_proof.svg 기반. 단색을 면·강조 2단으로 나눴다 -->
+              <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 2H16C16.5304 2 17.0391 2.21074 17.4142 2.58582C17.7893 2.96089 18 3.46957 18 4V12C18 13.5913 17.3679 15.1175 16.2426 16.2427C15.1174 17.3679 13.5913 18 12 18C10.4087 18 8.88257 17.3679 7.75735 16.2427C6.63214 15.1175 6 13.5913 6 12V4C6 3.46957 6.21071 2.96089 6.58578 2.58582C6.96086 2.21074 7.46957 2 8 2Z" fill="color-mix(in srgb, var(--color-brand) 30%, var(--color-surface))"/>
+                <path d="M13.25 15H10.75V23H13.25V15Z" fill="var(--color-brand)"/>
+                <path d="M19.5 7.5V10C19.5 10.3978 19.342 10.7794 19.0607 11.0607C18.7794 11.342 18.3978 11.5 18 11.5H17.5V7.5H19.5ZM20 5H15V14H18C19.0609 14 20.0783 13.5786 20.8284 12.8284C21.5786 12.0783 22 11.0609 22 10V7C22 6.46957 21.7893 5.96086 21.4142 5.58579C21.0391 5.21071 20.5304 5 20 5Z" fill="var(--color-brand)"/>
+                <path d="M6.5 7.5V11.5H6C5.60218 11.5 5.22065 11.342 4.93935 11.0607C4.65804 10.7794 4.5 10.3978 4.5 10V7.5H6.5ZM9 5H4C3.46957 5 2.96086 5.21071 2.58578 5.58579C2.21071 5.96086 2 6.46957 2 7V10C2 11.0609 2.42144 12.0783 3.17159 12.8284C3.92173 13.5786 4.93913 14 6 14H9V5Z" fill="var(--color-brand)"/>
+                <path d="M9.00062 20.5H15.0006C15.5934 20.5752 16.1337 20.8783 16.507 21.3449C16.8803 21.8115 17.0573 22.4051 17.0006 23H7.00062C6.9439 22.4051 7.12094 21.8115 7.49425 21.3449C7.86755 20.8783 8.4078 20.5752 9.00062 20.5Z" fill="var(--color-brand-dark)"/>
+              </svg>
+            </span>
+            <div class="step-body">
+              <h3>업무와 시스템 진단</h3>
+              <p class="step-desc">현장 업무, 데이터, 사용 도구와 수작업 인계 지점을 함께 매핑합니다.</p>
+            </div>
+          </li>
+
+          <li>
+            <div class="step-head">
+              <span class="step-term">Week 2 · Deploy</span>
+              <span class="step-no" aria-hidden="true">02</span>
+            </div>
+            <span class="step-icon" aria-hidden="true">
+              <!-- Agent 구축 — ic_axBuild.svg 기반. 면·강조로 나누고 코어를 진하게 -->
+              <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 19.75C16.2802 19.75 19.75 16.2802 19.75 12C19.75 7.71979 16.2802 4.25 12 4.25C7.71979 4.25 4.25 7.71979 4.25 12C4.25 16.2802 7.71979 19.75 12 19.75Z" fill="color-mix(in srgb, var(--color-brand) 30%, var(--color-surface))"/>
+                <path d="M10 2H14C14.2652 2 14.5196 2.10536 14.7071 2.29289C14.8946 2.48043 15 2.73478 15 3V5H9V3C9 2.73478 9.10536 2.48043 9.29289 2.29289C9.48043 2.10536 9.73478 2 10 2Z" fill="var(--color-brand)"/>
+                <path d="M2.34082 8.73944L4.34082 5.27534C4.47343 5.04566 4.69187 4.87805 4.94805 4.80941C5.20423 4.74077 5.47716 4.77671 5.70685 4.90932L7.4389 5.90932L4.4389 11.1055L2.70685 10.1055C2.47716 9.97286 2.30958 9.75444 2.24094 9.49826C2.1723 9.24208 2.20821 8.96913 2.34082 8.73944Z" fill="var(--color-brand)"/>
+                <path d="M4.3418 18.7394L2.3418 15.2753C2.20919 15.0457 2.17326 14.7727 2.2419 14.5165C2.31054 14.2603 2.47814 14.0419 2.70782 13.9093L4.43987 12.9093L7.43987 18.1055L5.70782 19.1055C5.47814 19.2381 5.20519 19.274 4.94901 19.2053C4.69283 19.1367 4.47441 18.9691 4.3418 18.7394Z" fill="var(--color-brand)"/>
+                <path d="M13.9902 22H9.99023C9.72502 22 9.47068 21.8946 9.28314 21.7071C9.09561 21.5196 8.99023 21.2652 8.99023 21V19H14.9902V21C14.9902 21.2652 14.8849 21.5196 14.6974 21.7071C14.5098 21.8946 14.2555 22 13.9902 22Z" fill="var(--color-brand)"/>
+                <path d="M21.6533 15.2762L19.6533 18.7403C19.5207 18.97 19.3023 19.1376 19.0461 19.2062C18.7899 19.2749 18.517 19.2389 18.2873 19.1063L16.5552 18.1063L19.5552 12.9102L21.2873 13.9102C21.517 14.0428 21.6846 14.2612 21.7532 14.5174C21.8218 14.7735 21.7859 15.0465 21.6533 15.2762Z" fill="var(--color-brand)"/>
+                <path d="M19.6543 5.27618L21.6543 8.74028C21.7869 8.96997 21.8228 9.24294 21.7542 9.49912C21.6855 9.7553 21.518 9.9737 21.2883 10.1063L19.5562 11.1063L16.5562 5.91016L18.2883 4.91016C18.518 4.77755 18.7909 4.74163 19.0471 4.81028C19.3033 4.87892 19.5217 5.0465 19.6543 5.27618Z" fill="var(--color-brand)"/>
+                <path d="M12 14.5C13.3807 14.5 14.5 13.3807 14.5 12C14.5 10.6193 13.3807 9.5 12 9.5C10.6193 9.5 9.5 10.6193 9.5 12C9.5 13.3807 10.6193 14.5 12 14.5Z" fill="var(--color-brand-dark)"/>
+              </svg>
+            </span>
+            <div class="step-body">
+              <h3>AI Agent 구축</h3>
+              <p class="step-desc">핵심 업무를 수행하는 Agent를 설계하고 기존 시스템과 연결해 배포합니다.</p>
+            </div>
+          </li>
+
+          <li>
+            <div class="step-head">
+              <span class="step-term">Week 3 · Operate</span>
+              <span class="step-no" aria-hidden="true">03</span>
+            </div>
+            <span class="step-icon" aria-hidden="true">
+              <!-- 검증·운영 — ic_lineChart.svg 기반 -->
+              <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"/>
+                <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand-dark)"/>
+                <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"/>
+              </svg>
+            </span>
+            <div class="step-body">
+              <h3>검증과 운영</h3>
+              <p class="step-desc">KPI로 효과를 검증하고, 승인·모니터링 체계와 함께 실제 운영에 안착시킵니다.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 03 Redesign — 흩어진 도구가 하나의 실행 시스템으로 모이는 그림 + 재설계 두 축. -->
+    <section class="intro fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">03 · Redesign</p>
+          <h2>흩어진 도구를 하나의 실행 시스템으로<br>다시 설계합니다</h2>
+          <p class="desc">단순 연동을 넘어, 도구·데이터·업무 인계를 <br data-break="desktop">AI가 실행할 수 있는 하나의 구조로 바꿉니다.</p>
+        </div>
+        <div class="section-content">
+          <div class="content-panel">
+            <!-- 도구 5개가 하나의 실행 시스템으로 모이는 그림. 칩은 공용 .tag를 그대로 쓴다. -->
+            <div class="content-panel__visual tool-flow">
+              <ul class="tool-flow-tools">
+                <li class="tag">Slack</li>
+                <li class="tag">Gmail</li>
+                <li class="tag">Excel</li>
+                <li class="tag">CRM</li>
+                <li class="tag">ERP</li>
+              </ul>
+              <span class="tool-flow-join" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5V19M12 19L6 13M12 19L18 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <p class="tool-flow-hub">AXpresso · 하나의 자동화된 흐름</p>
+            </div>
+
+            <div class="intro-pair">
+              <div class="content-panel__item">
+                <div class="content-panel__intro">
+                  <p class="text-label">시스템 재설계</p>
+                  <h3>읽고, 분류하고, 기록하는 흐름을 하나로</h3>
+                  <p class="description">Slack의 요청을 읽고, Gmail을 분류하고, Excel을 구조화하며, CRM을 최신 상태로 유지하는 흐름을 연결합니다.</p>
+                </div>
+              </div>
+              <div class="content-panel__item">
+                <div class="content-panel__intro">
+                  <p class="text-label">맥락 기반 실행</p>
+                  <h3>정해진 규칙을 넘어 예외까지 처리합니다</h3>
+                  <p class="description">단순 RPA가 멈추는 예외 상황에서도 업무 맥락을 바탕으로 판단하고, 필요한 경우 사람에게 승인을 요청합니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FDE — 이 페이지의 단 하나뿐인 전체 폭 강조 띠. -->
+    <section class="statement fade-up">
+      <div class="section-wrap col">
+        <div class="statement-inner">
+          <p class="statement-eyebrow">Forward Deployed Engineer</p>
+          <h2 class="statement-title">도구만 전달하지 않습니다.<br><strong>FDE가 현장에 들어갑니다</strong></h2>
+          <p class="statement-desc">FDE(Forward Deployed Engineer)는 고객 업무 한가운데서 문제를 찾고, 솔루션을 배포하고, KPI로 효과를 증명하는 AI 엔지니어입니다.</p>
+          <a class="btn btn-outline-inverse" href="#">
+            프로젝트 상담
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 Security & Governance — ax-build 02와 같은 feature-card 자동 순환(5초). -->
+    <section class="features fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">04 · Security &amp; Governance</p>
+          <h2>엔터프라이즈 운영을 전제로 설계합니다</h2>
+          <p class="desc">실제 기업의 보안 검토와 컴플라이언스 요구를 반영해 운영 구조를 설계합니다.</p>
+        </div>
+        <div class="section-content">
+          <div class="feature-card-grid" data-feature-cycle>
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 데이터 스택 — 지역이 분리된 전용 저장 환경 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C7.58 2 4 3.34 4 5C4 6.66 7.58 8 12 8C16.42 8 20 6.66 20 5C20 3.34 16.42 2 12 2Z" fill="var(--color-brand)" />
+                    <path d="M4 8.5V12C4 13.66 7.58 15 12 15C16.42 15 20 13.66 20 12V8.5C18.3 9.7 15.4 10.4 12 10.4C8.6 10.4 5.7 9.7 4 8.5Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))" />
+                    <path d="M4 15.5V19C4 20.66 7.58 22 12 22C16.42 22 20 20.66 20 19V15.5C18.3 16.7 15.4 17.4 12 17.4C8.6 17.4 5.7 16.7 4 15.5Z" fill="color-mix(in srgb, var(--color-brand) 20%, var(--color-surface))" />
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">01 · 격리</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle">지역 분리형 클라우드</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>데이터는 지역이 분리된 전용 환경에서 처리되며, 다른 고객의 데이터와 합쳐지거나 공유되지 않습니다.</p>
+                  </div>
+                </div>
+              </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 방패 + 체크 — 기존 보안 정책 기준을 그대로 따른다 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.5 5L12 1L2.5 5V9C2.49 12.02 3.39 14.97 5.09 17.47C6.78 19.96 9.19 21.89 12 23C14.81 21.89 17.22 19.96 18.91 17.47C20.61 14.97 21.51 12.02 21.5 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.41 11.52L15.24 7.7L17 9.47L11.33 15.13L7.7 11.18L9.54 9.49L11.41 11.52Z" fill="var(--color-brand)" />
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">02 · 정책</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle">조직 기준에 맞춘 운영</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>기존 보안 정책과 컴플라이언스 체계를 기준으로 배포 방식과 운영 범위를 함께 정의합니다.</p>
+                  </div>
+                </div>
+              </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 모니터링 그래프 — 운영 결과를 추적한다. ic_lineChart.svg 기반 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.88 3H5.12C3.95 3 3 3.9 3 5V19C3 20.1 3.95 21 5.12 21H18.88C20.05 21 21 20.1 21 19V5C21 3.9 20.05 3 18.88 3Z" fill="color-mix(in srgb, var(--color-brand) 18%, var(--color-surface))" />
+                    <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand-dark)" />
+                    <path d="M16.3 8.22L11 13.51L8 10.51L3 15.5V18.49L8 13.5L11 16.5L17.71 9.8L16.3 8.22Z" fill="var(--color-brand)" />
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">03 · 통제</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle">승인과 모니터링</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>중요 판단에는 사람의 승인을 두고, 운영 결과를 추적할 수 있도록 검증·모니터링 구조를 설계합니다.</p>
+                  </div>
+                </div>
+              </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 Results — 공용 outcome-card 마크업. ax-build 06과 같은 3장 + 결론 배너. -->
+    <section class="outcomes fade-up">
+      <div class="section-wrap col">
+        <div class="section-header">
+          <div class="section-title text-left">
+            <p class="tag">05 · Results</p>
+            <h2>이미 실제 업무에서 <br data-break="desktop">운영되고 있습니다</h2>
+            <p class="desc">발표용 데모가 아니라, 고객 현장에서 반복 업무를 수행하고 있는 결과입니다.</p>
+          </div>
+          <div class="section-cta">
+            <a href="cases.html" class="btn btn-outline-inverse">
+              고객 사례 전체 보기
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="section-content">
+          <ul class="outcome-list">
+            <li>
+              <div class="outcome-logo">
+                <img src="images/logos/logo-translink.svg" alt="트랜스링크인베스트먼트 로고" loading="lazy">
+              </div>
+              <div class="outcome-body">
+                <p class="tag">금융·VC</p>
+                <p class="outcome-shift">
+                  <span class="outcome-before">3~5일</span>
+                  <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="outcome-after">1시간 이내</span>
+                </p>
+                <p class="outcome-detail">100개 이상 포트폴리오사 실사 자동화 · 월 30시간 절감</p>
+                <p class="outcome-client">트랜스링크인베스트먼트</p>
+              </div>
+            </li>
+            <li>
+              <div class="outcome-logo outcome-logo--invert">
+                <img src="images/logos/logo-chainlogis.png" alt="체인로지스 로고" loading="lazy">
+              </div>
+              <div class="outcome-body">
+                <p class="tag">물류·마케팅</p>
+                <p class="outcome-shift">
+                  <span class="outcome-before">2~4시간</span>
+                  <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="outcome-after">3분</span>
+                </p>
+                <p class="outcome-detail">분류·게시 자동화 · 처리량 20배 향상</p>
+                <p class="outcome-client">체인로지스</p>
+              </div>
+            </li>
+            <li>
+              <div class="outcome-logo">
+                <img src="images/logos/logo-wooha.png" alt="우하컴퍼니 로고" loading="lazy">
+              </div>
+              <div class="outcome-body">
+                <p class="tag">이커머스·정산</p>
+                <p class="outcome-shift">
+                  <span class="outcome-before">2~3시간</span>
+                  <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="outcome-after">30초</span>
+                </p>
+                <p class="outcome-detail">주문 정산 자동화 · 월 60시간 절감</p>
+                <p class="outcome-client">UHA Company</p>
+              </div>
+            </li>
+          </ul>
+
+          <!-- 섹션 결론 한 줄 — People Axis(역량 진단)로 넘기는 연결 고리. -->
+          <p class="summary-banner">
+            도구가 만든 데이터는, <strong class="brand">사람의 성장 근거</strong>가 됩니다<br>
+            <span class="description">에이전트 사용 로그는 역량 진단과 맞춤 학습의 출발점입니다.</span>
+            <a class="link-arrow link-arrow-inverse" href="why-codepresso.html">차별점 보기<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-final fade-up">
+      <div class="section-wrap col cta-final-inner">
+        <h2 class="cta-final-title">AI 전략에서 실제 운영까지,<br>3주 안에 시작합니다</h2>
+        <p class="cta-final-desc">첫 미팅에서 자동화할 업무와 기대 효과를 함께 정리합니다.</p>
+        <div class="cta-final-actions">
+          <a href="#" class="btn btn-primary btn-lg">
+            도입 문의
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="cases.html" class="btn btn-outline-inverse btn-lg">
+            AX 사례 보기
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer도 partials/footer.html 하나로 관리한다. -->
+  <div data-include="partials/footer.html"></div>
+
+  <!-- 공용 스크립트 3개 + Security 카드 자동 순환(feature-card-cycle). -->
+  <script src="js/include-partials.js"></script>
+  <script src="js/fade-up.js"></script>
+  <script src="js/header-scroll.js"></script>
+  <script src="js/nav-menu.js"></script>
+  <script src="js/feature-card-cycle.js"></script>
+</body>
+
+</html>
