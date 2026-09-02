@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillCamp — 짧고 강하게 몰입하는 오프라인 집체교육 | 코드프레소</title>
+
+  <!-- 검색 결과·링크 미리보기 문구. hero 문구를 그대로 쓴다(마케팅팀 검수 대상).
+       TODO: og:image(1200x630) 에셋과 운영 도메인(og:url·canonical)이 확정되면 채운다. -->
+  <meta name="description" content="SkillCamp. 강사 주도 집합·부트캠프 교육. 실전 미션과 팀 프로젝트, 전문가 피드백으로 짧고 강하게 실전 역량을 끌어올립니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SkillCamp — 짧고 강하게 몰입하는 오프라인 집체교육 | 코드프레소">
+  <meta property="og:description" content="SkillCamp. 강사 주도 집합·부트캠프 교육. 실전 미션과 팀 프로젝트, 전문가 피드백으로 짧고 강하게 실전 역량을 끌어올립니다.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/skillcamp.css">
+  <link rel="stylesheet" href="css/mobile.css">
+</head>
+
+<body>
+  <div data-include="partials/header.html"></div>
+
+  <main class="skillcamp">
+    <!-- Hero — 첫 화면이라 fade-up 없음. 보조 띠에는 운영 포맷 3종의 기간만 미리 보인다. -->
+    <section class="sub-hero">
+      <div class="hero-wrap">
+        <div class="sub-hero-copy">
+          <p class="tag">Learn · 오프라인 집체교육</p>
+          <h1 class="hero-title">SkillCamp</h1>
+          <p class="hero-desc">짧고 강하게 몰입해서, <br data-break="desktop">실전 역량을 끌어올립니다</p>
+          <p class="hero-desc">강사 주도 집합·부트캠프 교육. 실전 미션과 팀 프로젝트, 전문가 피드백으로 배웁니다.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#">
+              교육 과정 문의
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 운영 포맷 3종의 기간. ax-grow hero-facts와 같은 유리 띠 마크업을 그대로 쓴다. -->
+        <ul class="hero-facts surface-glass">
+          <li class="metric-card is-visible">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 캘린더 — ic_calendar.svg 기반, 하드코딩 색을 브랜드 토큰으로 교체 -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"/>
+                <path d="M16.5 3H15.5C15.2239 3 15 3.22386 15 3.5V5.5C15 5.77614 15.2239 6 15.5 6H16.5C16.7761 6 17 5.77614 17 5.5V3.5C17 3.22386 16.7761 3 16.5 3Z" fill="var(--color-brand)"/>
+                <path d="M2.5 9H21.5V10.5H2.5V9Z" fill="var(--color-brand)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value"><span>1~2</span><span class="unit">일</span></div>
+              <p class="metric-card__label text-label">인식 전환과 빠른 스킬업, 특강</p>
+            </div>
+          </li>
+          <li class="metric-card is-visible">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 구성원 — ic_team.svg 기반, 하드코딩 색을 브랜드 토큰으로 교체 -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)"/>
+                <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value"><span>1~2</span><span class="unit">주</span></div>
+              <p class="metric-card__label text-label">직무 단위 심화, 집합 과정</p>
+            </div>
+          </li>
+          <li class="metric-card is-visible">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 선발·검증 — ic_shield.svg 기반, 하드코딩 색을 브랜드 토큰으로 교체 -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21.5 5L12 1L2.5 5V9C2.49 12.02 3.39 14.97 5.09 17.47C6.78 19.96 9.19 21.89 12 23C14.81 21.89 17.22 19.96 18.91 17.47C20.61 14.97 21.51 12.02 21.5 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.41 11.52L15.24 7.7L17 9.47L11.33 15.13L7.7 11.18L9.54 9.49L11.41 11.52Z" fill="var(--color-brand)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value"><span>수주</span></div>
+              <p class="metric-card__label text-label">선발형 몰입 과정, 부트캠프</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 01 배우는 방식 — feature-card 3장 자동 순환(js/feature-card-cycle.js). -->
+    <section class="features fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">01 · 배우는 방식</p>
+          <h2>듣는 교육이 아니라, 해내는 교육</h2>
+        </div>
+        <div class="section-content">
+          <div class="feature-card-grid" data-feature-cycle>
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 실전 미션 — ic_todo.svg의 실제 path, 하드코딩 색만 브랜드 토큰으로 교체 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                    <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="var(--color-brand)"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0001 8.58579L17.293 6.29289L18.7072 7.70711L15.0001 11.4142L12.293 8.70711L13.7072 7.29289L15.0001 8.58579Z" fill="var(--color-brand-dark)"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0001 14.5858L17.293 12.2929L18.7072 13.7071L15.0001 17.4142L12.293 14.7071L13.7072 13.2929L15.0001 14.5858Z" fill="var(--color-brand-dark)"/>
+                    <path d="M10.4998 14H6.50977C6.23362 14 6.00977 14.2239 6.00977 14.5V15.53C6.00977 15.8061 6.23362 16.03 6.50977 16.03H10.4998C10.7759 16.03 10.9998 15.8061 10.9998 15.53V14.5C10.9998 14.2239 10.7759 14 10.4998 14Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">실전 미션</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle">현업을 닮은 과제</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>실제 업무 데이터를 닮은 미션으로 실습합니다. 배운 것을 그 자리에서 써봅니다.</p>
+                  </div>
+                </div>
+              </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 팀 프로젝트 — ic_team.svg의 실제 path, 하드코딩 색만 브랜드 토큰으로 교체 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                    <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                    <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                    <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                    <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)"/>
+                    <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">팀 프로젝트</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle">함께 만드는 결과물</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>팀 단위 프로젝트와 미션으로 협업 속에서 역량을 검증합니다.</p>
+                  </div>
+                </div>
+              </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 전문가 피드백 — ic_skillFit.svg의 실제 path, 그림 범위로 viewBox를 잘라 광학 크기를 맞췄다 -->
+                  <svg viewBox="8.1 5 28.99 28.99" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11 23.5C11 22.6716 11.6716 22 12.5 22H16C16.8284 22 17.5 22.6716 17.5 23.5V27.5C17.5 28.3284 16.8284 29 16 29H12.5C11.6716 29 11 28.3284 11 27.5V23.5ZM12.5 23.5V27.5H16V23.5H12.5Z" fill="var(--color-brand)"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5 19.5C17.5 18.6716 18.1716 18 19 18H22.5C23.3284 18 24 18.6716 24 19.5V27.5C24 28.3284 23.3284 29 22.5 29H19C18.1716 29 17.5 28.3284 17.5 27.5V19.5ZM19 19.5V27.5H22.5V19.5H19Z" fill="var(--color-brand)"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M24 16.5C24 15.6716 24.6716 15 25.5 15H27C27.4142 15 27.75 15.3358 27.75 15.75C27.75 16.1642 27.4142 16.5 27 16.5H25.5V27.5H29V20.75C29 20.3358 29.3358 20 29.75 20C30.1642 20 30.5 20.3358 30.5 20.75V27.5C30.5 28.3284 29.8284 29 29 29H25.5C24.6716 29 24 28.3284 24 27.5V16.5Z" fill="var(--color-brand)"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M29.1438 10.4943C29.2506 10.1963 29.533 10 29.8496 10C30.1662 10 30.4486 10.1963 30.5554 10.4943L31.0982 12.0092C31.2796 12.5154 31.6782 12.914 32.1844 13.0954L33.6993 13.6382C33.9973 13.745 34.1936 14.0274 34.1936 14.344C34.1936 14.6606 33.9973 14.943 33.6993 15.0498L32.1844 15.5926C31.6782 15.774 31.2796 16.1726 31.0982 16.6788L30.5554 18.1937C30.4486 18.4917 30.1662 18.688 29.8496 18.688C29.533 18.688 29.2506 18.4917 29.1438 18.1937L28.601 16.6788C28.4196 16.1726 28.021 15.774 27.5148 15.5926L25.9999 15.0498C25.7019 14.943 25.5056 14.6606 25.5056 14.344C25.5056 14.0274 25.7019 13.745 25.9999 13.6382L27.5148 13.0954C28.021 12.914 28.4196 12.5154 28.601 12.0092L29.1438 10.4943ZM29.8496 12.9298C29.5326 13.544 29.0496 14.027 28.4354 14.344C29.0496 14.661 29.5326 15.144 29.8496 15.7582C30.1666 15.144 30.6496 14.661 31.2638 14.344C30.6496 14.027 30.1666 13.544 29.8496 12.9298Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">전문가 피드백</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle">강사 121명</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>현업 전문가 강사진이 결과물에 직접 피드백합니다.</p>
+                  </div>
+                </div>
+              </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 운영 포맷 — 기간이 길어지는 순서로 3장. 골격은 공용 start-card. -->
+    <section class="features-format fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">02 · 운영 포맷</p>
+          <h2>하루 특강부터 수주 부트캠프까지</h2>
+        </div>
+        <div class="section-content">
+          <ul class="start-grid">
+            <li>
+              <div class="content-panel start-card">
+                <span class="start-icon" aria-hidden="true">
+                  <!-- 특강 — ic_calendar.svg 기반 -->
+                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"/>
+                    <path d="M16.5 3H15.5C15.2239 3 15 3.22386 15 3.5V5.5C15 5.77614 15.2239 6 15.5 6H16.5C16.7761 6 17 5.77614 17 5.5V3.5C17 3.22386 16.7761 3 16.5 3Z" fill="var(--color-brand)"/>
+                    <path d="M2.5 9H21.5V10.5H2.5V9Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+                <div class="content-panel__intro">
+                  <p class="text-label">1~2일</p>
+                  <h3>특강</h3>
+                  <p class="start-desc">인식 전환과 빠른 스킬업. 비개발 직군 AI 활용 특강 등.</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="content-panel start-card">
+                <span class="start-icon" aria-hidden="true">
+                  <!-- 집합 과정 — ic_team.svg 기반 -->
+                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)"/>
+                    <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+                <div class="content-panel__intro">
+                  <p class="text-label">1~2주</p>
+                  <h3>집합 과정</h3>
+                  <p class="start-desc">직무 단위 심화 과정. Python 프로그래밍, Excel 데이터 분석 등.</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="content-panel start-card">
+                <span class="start-icon" aria-hidden="true">
+                  <!-- 부트캠프 — ic_shield.svg 기반(선발·검증) -->
+                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.5 5L12 1L2.5 5V9C2.49 12.02 3.39 14.97 5.09 17.47C6.78 19.96 9.19 21.89 12 23C14.81 21.89 17.22 19.96 18.91 17.47C20.61 14.97 21.51 12.02 21.5 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.41 11.52L15.24 7.7L17 9.47L11.33 15.13L7.7 11.18L9.54 9.49L11.41 11.52Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+                <div class="content-panel__intro">
+                  <p class="text-label">수주</p>
+                  <h3>부트캠프</h3>
+                  <p class="start-desc">선발형 몰입 과정. AI Agent Engineer, 모비우스 SW 부트캠프 등.</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 대표 AI 과정 — 직군 두 갈래를 pill 목록으로. 과정 수가 달라 카드 높이는 내용이 정한다. -->
+    <section class="catalog fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">대표 AI 과정</p>
+          <h2>직군에 맞는 과정으로 시작합니다</h2>
+        </div>
+        <div class="section-content">
+          <ul class="start-grid">
+            <li>
+              <div class="content-panel">
+                <div class="content-panel__intro">
+                  <p class="text-label">비개발 직군</p>
+                  <ul class="course-list">
+                    <li class="pill">생성 AI 도구 입문</li>
+                    <li class="pill">생성 AI 실전 활용</li>
+                    <li class="pill">생성 AI로 사업계획 수립</li>
+                    <li class="pill">노코딩 뉴스 요약 서비스 만들기</li>
+                    <li class="pill">생성 AI 활용 (Copilot)</li>
+                    <li class="pill">ChatGPT 실습</li>
+                    <li class="pill">마케터를 위한 생성형 AI</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="content-panel">
+                <div class="content-panel__intro">
+                  <p class="text-label">개발 직군</p>
+                  <ul class="course-list">
+                    <li class="pill">개발자를 위한 생성 AI 도구 활용</li>
+                    <li class="pill">OpenAI API 기반 생성형 AI 서비스 개발</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 증거 — 누적 수치는 skills 07과 같은 content-panel start-card 배치(어두운 판). -->
+    <section class="outcomes is-dark fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">03 · 증거</p>
+          <h2>숫자와 이름이 증명합니다</h2>
+        </div>
+        <div class="section-content">
+          <!-- data-stat-reveal은 카드를 감싼 grid에 둔다. start-card를 쓰므로 대상 선택자를 알린다. -->
+          <ul class="start-grid" data-stat-reveal data-stat-card=".start-card">
+            <li>
+              <div class="content-panel content-panel--compact start-card">
+                <span class="start-icon" aria-hidden="true">
+                  <!-- 교육 차수 — ic_calendar.svg 기반 -->
+                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"/>
+                    <path d="M16.5 3H15.5C15.2239 3 15 3.22386 15 3.5V5.5C15 5.77614 15.2239 6 15.5 6H16.5C16.7761 6 17 5.77614 17 5.5V3.5C17 3.22386 16.7761 3 16.5 3Z" fill="var(--color-brand)"/>
+                    <path d="M2.5 9H21.5V10.5H2.5V9Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+                <div class="content-panel__intro">
+                  <p class="text-label metric-card__label">교육 차수</p>
+                  <p class="metric-card__value"><span class="num" data-target="1531">0</span><span class="unit">회</span></p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="content-panel content-panel--compact start-card">
+                <span class="start-icon" aria-hidden="true">
+                  <!-- 전문 강사진 — ic_team.svg 기반 -->
+                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)"/>
+                    <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+                <div class="content-panel__intro">
+                  <p class="text-label metric-card__label">전문 강사진</p>
+                  <p class="metric-card__value"><span class="num" data-target="121">0</span><span class="unit">명</span></p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="content-panel content-panel--compact start-card">
+                <span class="start-icon" aria-hidden="true">
+                  <!-- 재구매율 — ic_lineChart.svg 기반 -->
+                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"/>
+                    <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+                <div class="content-panel__intro">
+                  <p class="text-label metric-card__label">기업 교육 재구매율</p>
+                  <p class="metric-card__value"><span class="num" data-target="80">0</span><span class="unit">%</span></p>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <p class="outcomes-note">코드프레소 교육사업 누적 집계 (2026 Q1 기준)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 고객 사례 — 공용 outcome-list 3장 + 진단 연계 배너. -->
+    <section class="outcomes-cases fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">고객 사례</p>
+          <h2>이름으로 남은 운영 실적</h2>
+        </div>
+        <div class="section-content">
+          <ul class="outcome-list">
+            <li>
+              <div class="outcome-logo">
+                <img src="images/logos/logo_1_삼성_(h36).svg" alt="삼성전자 로고" loading="lazy">
+              </div>
+              <div class="outcome-body">
+                <p class="tag">역량 평가·교육 운영</p>
+                <p class="outcome-headline">50회+ · 1,000명+</p>
+                <p class="outcome-detail">Python, Excel 데이터 분석 등 지속 운영</p>
+                <p class="outcome-client">삼성전자 <span class="outcome-industry">/ 재직자 교육</span></p>
+              </div>
+            </li>
+            <li>
+              <div class="outcome-logo">
+                <img src="images/logos/logo-hyundai-mobis.png" alt="현대모비스 로고" loading="lazy">
+              </div>
+              <div class="outcome-body">
+                <p class="tag">선발형 부트캠프</p>
+                <p class="outcome-headline">재직자·구직자 트랙</p>
+                <p class="outcome-detail">단일 평가 기준의 선발·육성 체계</p>
+                <p class="outcome-client">현대모비스 <span class="outcome-industry">/ 모비우스</span></p>
+              </div>
+            </li>
+            <li>
+              <div class="outcome-logo">
+                <img src="images/logos/logo_6_서강대_(h36).svg" alt="서강대학교 로고" loading="lazy">
+              </div>
+              <div class="outcome-body">
+                <p class="tag">대학 러너톤</p>
+                <p class="outcome-headline">63명 · 41개 프로젝트</p>
+                <p class="outcome-detail">만족도 <strong>4.5/5</strong> · 2회 연속 운영</p>
+                <p class="outcome-client">서강대학교 <span class="outcome-industry">/ 러너톤</span></p>
+              </div>
+            </li>
+          </ul>
+          <!-- 진단 연계 유도 — ax-grow와 같은 공용 summary-banner.dark 한 줄로 흐름을 끊지 않는다. -->
+          <p class="summary-banner dark">교육 효과를 <strong class="brand">숫자</strong>로 증명합니다<br>사전·사후 평가를 붙이면 교육 전후의 역량 변화가 리포트로 남습니다.<br><a class="link-underline" href="skills.html">진단 연계 보기</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 FAQ -->
+    <section class="faq fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">04 · FAQ</p>
+          <h2>도입 전에 많이 묻는 질문</h2>
+        </div>
+        <div class="section-content">
+          <div class="faq-list">
+            <details>
+              <summary class="faq-list__question">
+                어떤 형태로 운영할 수 있나요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">1~2일 특강, 1~2주 집합 과정, 수주 단위 부트캠프까지 목표와 일정에 맞춰 구성합니다. 인식 전환이 목적이면 특강을, 실무 역량 확보가 목적이면 집합 과정 이상을 권합니다.</p>
+            </details>
+            <details>
+              <summary class="faq-list__question">
+                우리 회사에 맞는 과정으로 바꿀 수 있나요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">가능합니다. 표준 커리큘럼을 기반으로 산업·직무·수준에 맞춰 사내 맞춤 과정으로 설계해 운영합니다.</p>
+            </details>
+            <details>
+              <summary class="faq-list__question">
+                교육 효과는 어떻게 확인하나요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">교육 전후에 같은 기준으로 진단을 연계하면 역량 변화가 리포트로 남습니다. 이수율과 만족도가 아니라 변화를 보고합니다.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 이 페이지의 단 하나뿐인 전체 폭 강조 띠 — 진단으로 시작해 재진단으로 끝난다. -->
+    <section class="statement fade-up">
+      <div class="section-wrap col">
+        <div class="statement-inner">
+          <p class="statement-eyebrow">Assess → Learn → Assess</p>
+          <h2 class="statement-title">교육이 끝나면,<br><strong>변화를 숫자로 확인하세요</strong></h2>
+          <p class="statement-desc">코드프레소의 교육은 진단으로 시작해 재진단으로 끝납니다. 이수율이 아니라 역량 변화를 리포트로 보고합니다.</p>
+          <div class="hero-actions">
+            <a class="btn btn-outline-inverse" href="skills.html">
+              AI Fluent로 효과 검증
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-outline-inverse" href="skillcertify.html">
+              SkillCertify 보기
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 최하단 전환 — 공용 컴포넌트 -->
+    <section class="cta-final fade-up">
+      <div class="section-wrap col cta-final-inner">
+        <h2 class="cta-final-title">다음 분기 교육, 몰입형으로 바꿔보세요</h2>
+        <p class="cta-final-desc">목표와 일정에 맞는 커리큘럼을 제안해 드립니다.</p>
+        <div class="cta-final-actions">
+          <a class="btn btn-primary btn-lg" href="#">
+            커리큘럼 제안 받기
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="partials/footer.html"></div>
+
+  <script src="js/include-partials.js"></script>
+  <script src="js/fade-up.js"></script>
+  <script src="js/header-scroll.js"></script>
+  <script src="js/nav-menu.js"></script>
+  <script src="js/feature-card-cycle.js"></script>
+  <script src="js/stat-reveal.js"></script>
+</body>
+
+</html>

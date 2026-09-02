@@ -244,6 +244,10 @@
 
   .cases .cycle-arrow svg { transform: rotate(90deg); }
 
+  .skillcamp .features-format .start-grid { --start-columns: 1; }
+  .skillcamp .catalog .start-grid { --start-columns: 1; }
+  .skillcamp .outcomes.is-dark .start-grid { --start-columns: 2; }
+
   .skillcertify .hero-row { grid-template-columns: minmax(0, 1fr); }
   .skillcertify .hero-row .sub-hero-copy { align-items: center; text-align: center; }
   .skillcertify .hero-row .hero-visual { order: -1; }
@@ -336,6 +340,9 @@
     font-size: var(--text-body-14);
     line-height: var(--leading-body-14);
   }
+
+  .skillcamp .outcome-list { grid-template-columns: 1fr; }
+  .skillcamp .outcomes.is-dark .start-grid { --start-columns: 1; }
 
   .skillcertify .outcome-list { grid-template-columns: 1fr; }
 
