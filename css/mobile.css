@@ -670,8 +670,10 @@
     margin-top: var(--space-35);
   }
 
+  /* hero-facts의 칸은 metric-card라 공용 CSS도 li.metric-card로 잡는다 —
+     클래스 없이 .hero-facts li로 두면 specificity에 밀려 이 여백이 통과하지 못한다. */
   .hero-questions > li,
-  .hero-facts li {
+  .hero-facts li.metric-card {
     padding: var(--space-16) var(--space-20);
   }
 }

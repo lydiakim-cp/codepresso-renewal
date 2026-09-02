@@ -28,11 +28,12 @@
         </div>
 
         <!-- 누적 성과 3개. hero-questions와 같은 유리 띠 외피에 수치를 담는 hero-facts
-             변형(질문형과 짝) + 카운트업(data-stat-reveal, 대상은 li). ax-build hero는
-             기간·산출물이라 세는 수치가 아니어서 카운트업이 없는데, 여기는 반대 판단이다.
-             75,000+처럼 접미사가 붙는 값은 .unit이 받는다. -->
-        <ul class="hero-facts surface-glass" data-stat-reveal data-stat-card="li">
-          <li>
+             변형(질문형과 짝) + 카운트업(data-stat-reveal). 칸은 metric-card라
+             stat-reveal.js의 기본 대상에 그대로 걸린다(data-stat-card 불필요).
+             ax-build hero는 기간·산출물이라 세는 수치가 아니어서 카운트업이 없는데,
+             여기는 반대 판단이다. 75,000+처럼 접미사가 붙는 값은 .unit이 받는다. -->
+        <ul class="hero-facts surface-glass" data-stat-reveal>
+          <li class="metric-card">
             <span class="hero-question-icon" aria-hidden="true">
               <!-- 고객사 — 건물 형태. 하드코딩 색만 브랜드 토큰으로 바꿨다.
                    앞판은 25% 틴트, 뒷판·창은 원색으로 두어 index outcomes 카드들과
@@ -45,11 +46,11 @@
               </svg>
             </span>
             <div>
-              <div class="hero-fact-value"><span class="num" data-target="102">0</span><span class="unit">개</span></div>
-              <p class="hero-fact-label">고객사</p>
+              <div class="metric-card__value"><span class="num" data-target="102">0</span><span class="unit">개</span></div>
+              <p class="metric-card__label text-label">고객사</p>
             </div>
           </li>
-          <li>
+          <li class="metric-card">
             <span class="hero-question-icon" aria-hidden="true">
               <!-- 누적 사용자 — index outcomes 첫 카드(누적 수강)와 같은 사람 아이콘 path -->
               <svg viewBox="0 0 24 24" fill="none">
@@ -62,11 +63,11 @@
               </svg>
             </span>
             <div>
-              <div class="hero-fact-value"><span class="num" data-target="75000">0</span><span class="unit">+</span></div>
-              <p class="hero-fact-label">누적 사용자</p>
+              <div class="metric-card__value"><span class="num" data-target="75000">0</span><span class="unit">+</span></div>
+              <p class="metric-card__label text-label">누적 사용자</p>
             </div>
           </li>
-          <li>
+          <li class="metric-card">
             <span class="hero-question-icon" aria-hidden="true">
               <!-- 고객 만족도 — index outcomes 재구매율 카드와 같은 상승 그래프 path -->
               <svg viewBox="0 0 24 24" fill="none">
@@ -76,8 +77,8 @@
               </svg>
             </span>
             <div>
-              <div class="hero-fact-value"><span class="num" data-target="96">0</span><span class="unit">%</span></div>
-              <p class="hero-fact-label">고객 만족도</p>
+              <div class="metric-card__value"><span class="num" data-target="96">0</span><span class="unit">%</span></div>
+              <p class="metric-card__label text-label">고객 만족도</p>
             </div>
           </li>
         </ul>

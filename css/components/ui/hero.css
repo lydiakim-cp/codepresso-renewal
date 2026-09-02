@@ -155,10 +155,20 @@
 
 /* ============================================================
  * Hero Facts — hero-questions와 같은 외피(유리 띠 1장 + 세로 구분선 + 그림자 없음)
- * 안에 질문 대신 핵심 수치(큰 숫자 + 단위 + 라벨)를 담는 변형.
+ * 안에 질문 대신 핵심 수치를 담는 변형.
  * ax-build·cases처럼 "질문"이 아니라 "숫자"가 보조 정보의 핵심일 때 쓴다.
  * class="hero-facts surface-glass"로 surface-glass 위에 얹는다.
- * 아이콘은 선택 — 숫자 자체가 중심이라 없어도 되고, hero-question-icon을 그대로 써도 된다.
+ *
+ * Markup API — 칸 안은 metric-card 슬롯을 그대로 쓴다(전용 클래스를 두지 않는다).
+ * .hero-facts.surface-glass > li.metric-card
+ *   .hero-question-icon            (선택 — 질문형과 같은 아이콘 슬롯)
+ *   .metric-card__value > .num + .unit
+ *   .metric-card__label.text-label
+ *
+ * 카드 껍데기(sunken 면·min-height·padding·아이콘 절대배치)는 유리 띠가 대신
+ * 가지므로 아래에서 무력화하고, 타이포·카운트업 슬롯만 물려받는다.
+ * 진입 상태 .is-visible은 stat-reveal.js가 붙인다(대상 기본값이 .metric-card라
+ * data-stat-card를 따로 줄 필요가 없다).
  * ============================================================ */
 .hero-facts {
   list-style: none;
@@ -170,11 +180,16 @@
   box-shadow: none;
 }
 
-.hero-facts li {
-  display: flex;
+/* 유리 띠 안에서는 카드가 면을 갖지 않는다 — 칸 구분은 아래 세로선이 한다 */
+.hero-facts li.metric-card {
+  flex-direction: row;
   gap: 14px;
   align-items: flex-start;
+  min-height: 0;
   padding: 0 20px;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
   text-align: left;
 }
 
@@ -182,43 +197,29 @@
   border-left: 1px solid var(--color-line-heavy);
 }
 
-/* stat-reveal.js가 카운트업과 함께 붙이는 진입 상태(metric-card와 같은 규칙).
-   카운트업을 쓰지 않는 페이지(ax-build)는 마크업에 .is-visible을 직접 둬서
-   고정하면 되므로 이 트랜지션이 그대로 통과한다. */
-.hero-facts li {
-  opacity: 0;
-  transform: translateY(var(--motion-rise));
-  transition: opacity var(--duration-scroll) var(--ease-scroll),
-    transform var(--duration-scroll) var(--ease-scroll);
-}
-
-.hero-facts li.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-.hero-fact-value {
+/* 아이콘 옆에서 값과 라벨이 세로로 쌓이는 묶음(질문형의 hero-question-text와 같은 자리).
+   metric-card에 없는 슬롯을 새로 만들지 않으려고 클래스 없는 div를 그대로 잡는다. */
+.hero-facts li.metric-card > div {
   display: flex;
-  align-items: baseline;
-  gap: 2px;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* hero는 h1이 주역이라 수치를 metric-card 기본값(40/20)보다 한 단 낮춘다.
+   20px 값에 18px 단위는 거의 같은 크기로 읽혀 단위도 14px로 함께 내린다. */
+.hero-facts .metric-card__value {
   font-size: var(--text-heading-20);
   line-height: var(--leading-heading-20);
   letter-spacing: var(--tracking-heading-tight);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-ink-heaviest);
-  font-variant-numeric: tabular-nums;
 }
 
-/* 값이 20px로 내려와 18px 단위는 거의 같은 크기로 읽힌다 — 14px로 한 단 더 낮춘다 */
-.hero-fact-value .unit {
+.hero-facts .metric-card__value .unit {
   font-size: var(--text-body-14);
-  font-weight: var(--font-weight-semibold);
 }
 
-.hero-fact-label {
-  margin: 0;
-  font-size: var(--text-body-13);
-  line-height: var(--leading-body-13);
+/* metric-card__label의 ink-lighter는 유리 띠 위에서 AA(4.5) 미달이라 한 단 올린다.
+   .text-label도 light를 주지만 같은 specificity에 로드가 앞서 카드 쪽이 이긴다. */
+.hero-facts .metric-card__label {
   color: var(--color-ink-light);
 }
 
