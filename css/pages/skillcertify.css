@@ -118,7 +118,7 @@
   /*
    * 06 · 고객 사례 — 공용 outcome-card(components/ui/outcome-card.css) 그대로 쓴다.
    * 카드 껍데기·그리드(3열)·로고 판·본문 골격·gap·headline/detail·고객사 텍스트가
-   * stories.html과 완전히 같아 이 페이지만의 오버라이드가 필요 없다.
+   * cases.html과 완전히 같아 이 페이지만의 오버라이드가 필요 없다.
    */
 
   .skillcertify .cases-more {

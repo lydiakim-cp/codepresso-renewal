@@ -6,7 +6,7 @@
 .summary-banner {
   padding: var(--space-48);
   border-radius: var(--radius-lg);
-  background: var(--color-bg-login-pre);
+  background: var(--color-surface-sunken);
   color: var(--color-ink-heaviest);
   text-align: center;
   font-size: 20px;
@@ -16,7 +16,7 @@
 .summary-banner strong.brand { color: var(--color-brand); }
 
 .summary-banner.dark {
-  background: linear-gradient(135deg, var(--color-bg-dark), var(--color-ink-heaviest));
+  background: linear-gradient(135deg, var(--color-ink-heaviest), var(--color-ink-heaviest));
   color: var(--color-surface);
 }
 

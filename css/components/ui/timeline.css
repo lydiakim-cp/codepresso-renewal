@@ -55,7 +55,7 @@
   margin-top: 6px;
   border-radius: var(--radius-full);
   background: var(--color-brand);
-  box-shadow: 0 0 0 4px var(--color-brand-tint-1);
+  box-shadow: 0 0 0 4px var(--color-surface-sunken);
 }
 
 .timeline__term {

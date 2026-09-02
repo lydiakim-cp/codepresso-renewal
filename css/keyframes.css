@@ -79,7 +79,7 @@
 }
 
 /* cycle 컴포넌트의 화살표가 한 번 밝아지며 다음 칸으로 순서를 넘긴다.
-   원래 difference.html 전용이었으나 skillcertify.html도 같은 연출이 필요해
+   원래 why-codepresso.html 전용이었으나 skillcertify.html도 같은 연출이 필요해
    공용으로 올렸다(css/components/ui/cycle.css가 사용). */
 @keyframes cycle-flow {
   0% { transform: scale(1); box-shadow: var(--shadow-sm); }

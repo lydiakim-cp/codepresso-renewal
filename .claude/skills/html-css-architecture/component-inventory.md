@@ -24,19 +24,19 @@
 | Preview Frame | `preview-frame.css` | `.preview-frame`, `__bar`, `__dots` | 제품/서비스 화면을 보여주는 목업 프레임 |
 | Skeleton | `skeleton.css` | `.skeleton-block`, `.skeleton-line`, `.skeleton-stack` | 콘텐츠 대기/자리표시 상태 |
 | Media Card | `media-card.css` | `.media-card`, `__media`, `__body`, `__meta`, `__title` | 썸네일 + 제목형 콘텐츠 카드 (뉴스·블로그 등) |
-| Outcome Card | `outcome-card.css` | `.outcome-list > li`, `.outcome-logo`(+`--tall`·`--invert`), `.outcome-body`, `.outcome-client`, `.outcome-industry` | 고객사 로고 판 + 성과 카드. 로고는 고정 높이(132px) 판 안에서 `object-fit: contain`(잘리면 안 되므로 `media-card`의 cover와 다름). stories.html·skillcertify.html이 공용으로 쓰고, 그리드 열 수·카드 테두리/hover 색·본문 gap·`outcome-headline`/`outcome-shift` 등 수치 표시부는 페이지 스코프가 정한다 |
+| Outcome Card | `outcome-card.css` | `.outcome-list > li`, `.outcome-logo`(+`--tall`·`--invert`), `.outcome-body`, `.outcome-client`, `.outcome-industry` | 고객사 로고 판 + 성과 카드. 로고는 고정 높이(132px) 판 안에서 `object-fit: contain`(잘리면 안 되므로 `media-card`의 cover와 다름). cases.html·skillcertify.html이 공용으로 쓰고, 그리드 열 수·카드 테두리/hover 색·본문 gap·`outcome-headline`/`outcome-shift` 등 수치 표시부는 페이지 스코프가 정한다 |
 | Part Nav | `part-nav.css` | `.part-nav`, `-item`, `-indicator`, `--compact` | 두 파트를 잇는 캡슐형 세그먼트 내비 (`js/part-nav.js`와 짝) |
 | Assessment Card | `assessment-card.css` | `.assessment-card`, `__head`, `__title`, `__meta`, `__action` | 자가진단/설문 시작 유도 카드 |
 | Content Panel | `content-panel.css` | `.content-panel`, `__item`, `__intro`, `__visual`, `--compact` | 설명 + 큰 시각 요소를 한 판에 담는 패널 |
 | Compare Panel | `compare-panel.css` | `.compare-panel`, `__item`(+`.is-after`), `__label`, `__title`, `__desc`, `__arrow` | "지금 → 바뀐 뒤" 두 상태를 좌우로 대비 |
 | Timeline | `timeline.css` | `.timeline > li`, `__marker`, `__term`, `__body`, `__title`, `__desc` | 기간이 있는 단계를 세로로 잇는 진행 흐름 |
-| Cycle | `cycle.css` | `.cycle > li`(+`.is-return`), `.cycle-head`, `.cycle-no`, `.cycle-en`, `.cycle-desc`, `.cycle-arrow`, `.cycle-note` | N단계 순서/순환을 가로 칸 + 경계 화살표로. 열 수는 `--cycle-columns`(기본 4). 순환형 결론 칸은 `.is-return`(유리 표면), 화살표는 반투명 글래스모피즘 노드. difference.html 03(4단계 순환)·skillcertify.html 05(5단계 선형, 마지막 화살표 없이)·stories.html 공통점(3단계 선형, 결론 칸만 `.is-return`)이 함께 쓰며 공용 승격 |
+| Cycle | `cycle.css` | `.cycle > li`(+`.is-return`·`.blue`·`.dark`), `.cycle-head`, `.cycle-no`, `.cycle-en`, `.cycle-desc`, `.cycle-arrow`, `.cycle-note` | N단계 순서/순환을 가로 칸 + 경계 화살표로. 열 수는 `--cycle-columns`(기본 4). 순환형 결론 칸은 `.is-return`(유리 표면), 화살표는 반투명 글래스모피즘 노드. 칸별 컬러 테마는 `.blue`(하늘색 카드+브랜드 파랑 번호)·`.dark`(잉크 카드+흰 번호), 무클래스는 기본(흰 카드+하늘색 번호). why-codepresso.html 03(4단계 순환)·skillcertify.html 05(5단계 선형)·cases.html 공통점(3단계 선형)이 함께 쓰며 공용 승격 — 선형 페이지 둘 다 결론 칸도 기본 배경 그대로 둔다 |
 | FAQ List | `faq-list.css` | `.faq-list > details`, `__question`, `__icon`, `__answer` | 질문을 눌러 답을 펼치는 아코디언 (`<details>` native) |
 | Catalog Board | `catalog-board.css` | `.catalog-board`, `__rail`, `__category`, `__count`, `__panel`, `__items > li` | 여러 분류의 항목 묶음을 대시보드처럼 한 판에 (`js/catalog-board.js`와 짝). **`__items`는 auto-fill 그리드 + nth-child 진입 stagger를 이미 갖고 있다** — 카드 나열이 필요하면 새로 만들지 말고 이걸 쓰고 `li` 안쪽만 덮는다(difference 07이 그렇게 했다) |
-| Product Mock | `product-mock.css` | `.journey-mock`(+`.mock-detail`·`.camp-ticker`), `-head`, `-title`, `-badge`(+`.is-live`), `-progress`, `-list`, `-item`(+`.is-current`·`.is-done`), `-check`, `-speaker`, `-avatar`, `-bubble`, `.journey-app*`(SkillFit 3단 앱 화면) | 제품 학습·강의 화면 목업 셸. index PART 1과 capability 04가 함께 쓴다(원래 index.css에 있던 712줄을 공용으로 올림). 목업 내부는 `opacity: 0`이 기본이고 **쓰는 페이지가 진입 신호로 띄워야 한다** — index는 `journey-stage.js`의 `.is-popping`, capability는 `.catalog-learn.is-visible`. 움직임은 `mock-motion.css`가 담당 |
-| Statement | `statement.css` | `.statement`(+`.is-ink`), `-inner`, `-eyebrow`, `-title`, `-desc` | 한 문장만 던지는 **전체 폭 강조 띠**. 섹션 자체가 배경을 칠해 화면 끝까지 닿는다(`summary-banner.dark`는 1320px 안에서 잘리는 배너라 역할이 다르다). 어두운 판 위 글씨는 흰색. **페이지마다 본문 중간 강조 1곳**의 표준 후보 — index·stories가 쓴다 |
+| Product Mock | `product-mock.css` | `.journey-mock`(+`.mock-detail`·`.camp-ticker`), `-head`, `-title`, `-badge`(+`.is-live`), `-progress`, `-list`, `-item`(+`.is-current`·`.is-done`), `-check`, `-speaker`, `-avatar`, `-bubble`, `.journey-app*`(SkillFit 3단 앱 화면) | 제품 학습·강의 화면 목업 셸. index PART 1과 skills 04가 함께 쓴다(원래 index.css에 있던 712줄을 공용으로 올림). 목업 내부는 `opacity: 0`이 기본이고 **쓰는 페이지가 진입 신호로 띄워야 한다** — index는 `journey-stage.js`의 `.is-popping`, skills는 `.catalog-learn.is-visible`. 움직임은 `mock-motion.css`가 담당 |
+| Statement | `statement.css` | `.statement`(+`.is-ink`), `-inner`, `-eyebrow`, `-title`, `-desc` | 한 문장만 던지는 **전체 폭 강조 띠**. 섹션 자체가 배경을 칠해 화면 끝까지 닿는다(`summary-banner.dark`는 1320px 안에서 잘리는 배너라 역할이 다르다). 어두운 판 위 글씨는 흰색. **페이지마다 본문 중간 강조 1곳**의 표준 후보 — index·cases가 쓴다 |
 | Site Footer | `site-footer.css` | `.site-footer`, `-inner`, `-brand`, `-tagline`, `-nav`, `-group`, `-group-title`, `-legal`, `-company`, `-copyright` | 전 페이지 공용 최하단 푸터. 마크업은 `partials/footer.html` 하나이며 `js/include-partials.js`가 삽입한다 |
-| Mock Motion | `mock-motion.css` | `.mock-screen`, `[data-mock-motion]`(focus·replay·deck·detail·ticker·stage·run), `.mock-deck-*`, `.mock-detail-*`, `.is-quiet`, `.is-focus`, `.is-pop`, `.is-shimmer`, `.is-task`/`.is-line`/`.is-hold`(run) | 제품 화면 목업을 실제로 돌아가는 화면처럼 연출 (CSS만, JS 없음). 목업 안은 드래그 선택이 꺼져 있다(`user-select: none`). deck·detail의 2단·겹침 뼈대도 여기 있다(index.html이 쓰면서 designsystem.css에서 올림). `stage`는 한 번 재생이라 다시 보여주려면 쓰는 쪽이 되감는다(`difference-cycle.js`의 `replayStage()`). `run`은 작업 큐를 Agent가 처리하고 마지막 1건만 `is-hold`로 멈추는 연출(ax-build 01) — 무한 반복이라 되감기가 필요 없고, 뼈대(`.run-*`)는 페이지 CSS가 갖고 여기는 움직임만 정의한다. 목업 안 텍스트는 14px 제약의 예외 — **9px는 하한이지 기본값이 아니다**(`--mock-text-title` 15px ~ `--mock-text-sm` 9px 4단). 7종 사용법은 [mock-motion-guide.md](mock-motion-guide.md) |
+| Mock Motion | `mock-motion.css` | `.mock-screen`, `[data-mock-motion]`(focus·replay·deck·detail·ticker·stage·run), `.mock-deck-*`, `.mock-detail-*`, `.is-quiet`, `.is-focus`, `.is-pop`, `.is-shimmer`, `.is-task`/`.is-line`/`.is-hold`(run) | 제품 화면 목업을 실제로 돌아가는 화면처럼 연출 (CSS만, JS 없음). 목업 안은 드래그 선택이 꺼져 있다(`user-select: none`). deck·detail의 2단·겹침 뼈대도 여기 있다(index.html이 쓰면서 designsystem.css에서 올림). `stage`·`run`은 무한 반복이 아니라 한 번 재생이라, 다시 보여주려면 쓰는 쪽이 되감는다(`difference-cycle.js`의 `replayStage()`). `run`은 작업 큐를 Agent가 처리하고 마지막 1건만 `is-hold`로 멈추는 연출(ax-build 01) — 뼈대(`.run-*`)는 페이지 CSS가 갖고 여기는 움직임만 정의한다. 목업 안 텍스트는 14px 제약의 예외 — **9px는 하한이지 기본값이 아니다**(`--mock-text-title` 15px ~ `--mock-text-sm` 9px 4단). 7종 사용법은 [mock-motion-guide.md](mock-motion-guide.md) |
 
 ## B. 레이아웃/텍스트 프리미티브 — 카탈로그에 없지만 전 페이지 공용
 
@@ -75,16 +75,16 @@
 
 **`index.css`는 스코프로 감싸지 않는다** — `designsystem.css`가 통째로
 `@import`해서 카탈로그 페이지가 같은 규칙을 쓰기 때문이다. 대신 `ax-build.css`·
-`capability.css`는 각각 `.ax-build`·`.capability` 스코프로 감싸, 여러 페이지가
+`skills.css`는 각각 `.ax-build`·`.skills` 스코프로 감싸, 여러 페이지가
 같은 `features`·`outcomes` 이름을 써도 서로에게 새지 않는다. hero만은 스코프로
 가르지 않고 메인·서브페이지가 아예 클래스명 자체를 나눴다(`main-hero` vs `sub-hero`) —
 서브페이지 hero는 공용 골격(`components/ui/hero.css`)이라 `main.css`가 전역 로드하므로
 스코프만으로는 메인 hero와의 충돌을 막을 수 없었다.
 모든 페이지가 함께 로드하는 `mobile.css`에서도 페이지 전용 블록에 스코프를 붙인다.
 
-## D. capability.html(역량 진단·교육) 전용 섹션 컴포넌트
+## D. skills.html(역량 진단·교육) 전용 섹션 컴포넌트
 
-`css/pages/capability.css`가 정의하고 `.capability` 스코프 안에만 있다. 서브페이지의
+`css/pages/skills.css`가 정의하고 `.skills` 스코프 안에만 있다. 서브페이지의
 섹션 구성은 대부분 공용 컴포넌트 조합으로 해결되므로, 아래는 **공용 컴포넌트로
 표현되지 않은 것만** 남은 목록이다.
 
@@ -100,9 +100,9 @@
 | `blend-combo` | 05 가운데 단계의 하위 제품 배지 | `timeline`(단계 골격) · `tag` |
 | `bridge-inner` · `bridge-title` | 도구 연결 브릿지 좌우 배치 | `summary-banner.dark` |
 
-## E. difference.html(코드프레소 차별점) 전용 섹션 컴포넌트
+## E. why-codepresso.html(코드프레소 차별점) 전용 섹션 컴포넌트
 
-`css/pages/difference.css`가 정의하고 `.difference-page` 스코프 안에만 있다.
+`css/pages/why-codepresso.css`가 정의하고 `.difference-page` 스코프 안에만 있다.
 **스코프가 `.difference`가 아닌 이유** — `index.css`의 PART 3 섹션이 이미 스코프 없이
 `.difference`를 쓰고 있고 그 파일은 `designsystem.css`가 통째로 `@import`하므로,
 같은 이름을 쓰면 두 규칙이 섞인다.
@@ -135,13 +135,13 @@
 높이는 px로 주고 반응형에서 단계로 낮춘다(520 → 440 → 400px).
 
 
-**시간차 등장(stagger)은 이 페이지 CSS가 소유한다** — `.capability .fade-up.is-visible`
+**시간차 등장(stagger)은 이 페이지 CSS가 소유한다** — `.skills .fade-up.is-visible`
 아래에서 `loop`·`product-grid`·`analyze-grid`와 그 안쪽 목록에 `transition-delay`를
 단계로 준다. `timeline`은 컴포넌트가 이미 같은 방식을 갖고 있어 건드리지 않는다.
 
-## E. stories.html(고객 사례 목록) 전용 섹션 컴포넌트
+## E. cases.html(고객 사례 목록) 전용 섹션 컴포넌트
 
-`css/pages/stories.css`가 정의하고 `.stories` 스코프 안에만 있다. 이 페이지는 섹션이
+`css/pages/cases.css`가 정의하고 `.cases` 스코프 안에만 있다. 이 페이지는 섹션이
 hero·catalog·cta-final 셋뿐이라 대부분 공용 컴포넌트 조합으로 끝났고, 아래만 남았다.
 
 | 클래스 | 역할 | 재사용한 공용 컴포넌트 |
@@ -150,11 +150,11 @@ hero·catalog·cta-final 셋뿐이라 대부분 공용 컴포넌트 조합으로
 | `outcome-list` · `outcome-headline` · `outcome-person` · `tag-industry` | 고객사별 로고 판 + "이전 → 이후" 사례 카드 12장, 이 페이지만의 배치·톤 차이(브랜드 틴트 테두리·auto-fill 그리드) | 카드 껍데기·로고 판·본문 골격은 `components/ui/outcome-card.css`(공용, 아래 참고). `tag`·chevron SVG도 재사용. `outcome-headline`은 before→after가 없는 사례가 `outcome-shift` 자리를 대신 채우는 한 줄 |
 | `tag-industry` | 업종 배지 — 서비스 배지와 나란히 서는 테두리형 변형 | `tag`(채움형)를 테두리형으로 덮음. 업종별 색을 만들지 않은 이유는 아래 참고 |
 
-**`outcome-card`는 `components/ui/outcome-card.css`로 공용 승격했다** — stories(12장)와
+**`outcome-card`는 `components/ui/outcome-card.css`로 공용 승격했다** — cases(12장)와
 skillcertify(3장 축소판) 두 페이지가 카드 껍데기·로고 판(`outcome-logo`(`--tall`·`--invert`))·
 본문 골격(`outcome-body`)·고객사 텍스트(`outcome-client`·`outcome-industry`)를 완전히
 같은 값으로 쓰고 있어 하나로 합쳤다. 그리드 열 수·카드 테두리 색·hover 색·본문 gap·
-`outcome-headline`/`outcome-detail` 크기처럼 페이지마다 다른 값만 `.stories`/`.skillcertify`
+`outcome-headline`/`outcome-detail` 크기처럼 페이지마다 다른 값만 `.cases`/`.skillcertify`
 스코프에 남아 있다.
 
 **`part-nav`는 필터로도 쓸 수 있다** — 다만 `js/part-nav.js`는 앵커 스크롤 전용이라

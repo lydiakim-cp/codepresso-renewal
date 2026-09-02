@@ -1,5 +1,5 @@
 /*
- * Page: difference.html (코드프레소 차별점 — 데이터 선순환)
+ * Page: why-codepresso.html (코드프레소 차별점 — 데이터 선순환)
  * main.css 위에 얹는 페이지 전용 계층. 공용 컴포넌트로 표현 안 되는 것만 정의한다.
  * compare-panel·summary-banner·content-panel·timeline·catalog-board·
  * preview-frame·cta-final은 모두 components/ui/의 범용 컴포넌트라 main.css가
@@ -28,9 +28,7 @@
    * 섹션 배경 리듬 — 흰 면과 틴트 면을 번갈아 둔다.
    *
    * 옅은 면으로 --color-surface-sunken을 쓰지 않는다. 흰색 대비 1.06(6% 차이)
-   * 이라 경계가 안 보이고, brand-tint-1과 값이 같아 "옅은 면"과 "강조 면"이
-   * 실제로는 한 색이 된다. capability에서 이미 같은 실수를 했고 화면이
-   * 허여멀건해진다는 지적을 받았다 — 그때 정한 brand-tint-2(1.15)를 그대로 쓴다.
+   * 이라 경계가 안 보인다. skills에서 정한 brand-tint-2(1.15)를 그대로 쓴다.
    *
    *   hero        흰 면      02는 어차피 바로 아래 판이 온다
    *   01 outcomes 틴트       나쁜 수치 4장 — 판으로 묶는다
@@ -81,7 +79,7 @@
 
   /*
    * hero-compare를 뺀 뒤 태그+제목+설명 3줄만 남아, CTA·보조 3칸까지 채우는
-   * ax-build·capability(실측 615~630px)보다 hero가 눈에 띄게 낮아졌다.
+   * ax-build·skills(실측 615~630px)보다 hero가 눈에 띄게 낮아졌다.
    * 콘텐츠를 더 채우는 대신 높이만 맞춘다 — hero-wrap을 세로 중앙 정렬해
    * 내용이 판 위쪽에 쏠리지 않게 한다.
    */
@@ -403,10 +401,10 @@
   /*
    * 우리 카드 — 실패 카드가 무채색 raised 판이므로, 이쪽은 브랜드 기운이 있는
    * 옅은 면으로 구분한다. 흰 섹션 위에 흰 카드를 두면 카드가 사라지므로
-   * brand-tint-1을 쓴다. 카드에 accent 선을 얹지 않는다(SKILL 3번).
+   * sunken을 쓴다. 카드에 accent 선을 얹지 않는다(SKILL 3번).
    */
   .difference-page .slide-card.is-ours {
-    background: var(--color-brand-tint-1);
+    background: var(--color-surface-sunken);
   }
 
   .difference-page .slide-card-head {
@@ -428,7 +426,7 @@
   }
 
   .difference-page .slide-card.is-ours .slide-icon {
-    background: var(--color-brand-tint-1);
+    background: var(--color-surface-sunken);
     color: var(--color-brand);
   }
 
@@ -850,7 +848,7 @@
   .difference-page .positioning.is-dark {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(160deg, var(--color-bg-dark), var(--color-ink-heaviest));
+    background: linear-gradient(160deg, var(--color-ink-heaviest), var(--color-ink-heaviest));
   }
 
   /* 어두운 판 위 배경 질감 — 흰 면 사이에서 이 섹션만 다른 재질이 된다 */
@@ -890,7 +888,7 @@
   }
 
   /* eyebrow는 어두운 판에서 브랜드 배경이 탁해진다 — 유리 표면으로 바꾼다
-     (capability 07 is-dark와 같은 처리) */
+     (skills 07 is-dark와 같은 처리) */
   .difference-page .positioning.is-dark .tag {
     background: color-mix(in srgb, var(--color-surface) 16%, transparent);
     color: var(--color-surface);
@@ -1180,7 +1178,7 @@
     border: 0;
     border-radius: var(--radius-lg);
     /* 판이 흰 면(preview-frame)이므로 카드를 틴트로 가라앉힌다 */
-    background: var(--color-brand-tint-1);
+    background: var(--color-surface-sunken);
   }
 
   /* 칩의 앞 점은 라벨 옆에 붙지 않으므로 쓰지 않는다 */

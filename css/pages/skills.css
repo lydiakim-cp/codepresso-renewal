@@ -1,5 +1,5 @@
 /*
- * Page: capability.html (역량 진단·교육 제품 소개)
+ * Page: skills.html (역량 진단·교육 제품 소개)
  * main.css 위에 얹는 페이지 전용 계층. 공용 컴포넌트로 표현 안 되는 hero·Growth Loop·
  * 제품 카드 배치만 정의한다.
  * cta-final·content-panel·timeline·feature-card·metric-card·faq-list는 모두
@@ -8,7 +8,7 @@
 
 @layer components {
   /* 페이지 전체 레이아웃 wrapper */
-  .capability {
+  .skills {
     background: var(--color-surface);
     display: flex;
     flex-direction: column;
@@ -25,21 +25,21 @@
    */
 
   /* 카드가 짧아 여백이 남는 섹션 — 좁힌다 */
-  .capability .process,
-  .capability .faq {
+  .skills .process,
+  .skills .faq {
     padding-block: 80px;
   }
 
   /* 목업이 커서 숨 쉴 자리가 필요한 섹션 — 넓힌다 */
-  .capability .catalog-learn,
-  .capability .blend {
+  .skills .catalog-learn,
+  .skills .blend {
     padding-block: 120px;
   }
 
   /* 브릿지는 머무는 곳이 아니라 다음 페이지로 넘어가는 통로다 — 가장 좁게.
      이 섹션은 규칙이 없어 클래스를 달지 않았으므로(아래 1600행대 주석 참고)
      안쪽 .bridge-inner로 지목한다. */
-  .capability > section:has(.bridge-inner) {
+  .skills > section:has(.bridge-inner) {
     padding-block: 72px;
   }
 
@@ -47,17 +47,17 @@
    * Hero — 공통 골격은 components/ui/hero.css. 이 페이지는 텍스처 위치와
    * 세 가지 질문 밴드의 hover 인터랙션·등장 순서만 얹는다.
    * ============================================================ */
-  .capability .sub-hero {
+  .skills .sub-hero {
     --hero-texture-position: top left;
   }
 
   /* 한 줄이 너무 길면 중앙 정렬 문단이 읽히지 않는다 */
-  .capability .hero-desc {
+  .skills .hero-desc {
     max-width: 720px;
   }
 
   /* 핵심 한 마디만 본문 색으로 올려, 설명문 안에서도 읽는 순서를 만든다 */
-  .capability .hero-desc strong {
+  .skills .hero-desc strong {
     color: var(--color-ink);
     font-weight: var(--font-weight-semibold);
   }
@@ -68,37 +68,37 @@
    * hero-copy가 .32s에 끝나므로 그 뒤 .4s부터 이어 붙이고, 간격은 hero-copy와
    * 같은 .08s로 맞춘다. 칸·아이콘 크기·구분선은 hero.css 공통 표준을 그대로 쓴다.
    */
-  .capability .hero-questions > li {
+  .skills .hero-questions > li {
     animation: rise-in var(--duration-scroll) var(--ease-scroll) .4s both;
     transition: background var(--duration-hover) var(--ease-hover);
   }
 
-  .capability .hero-questions > li:nth-child(2) { animation-delay: .48s; }
-  .capability .hero-questions > li:nth-child(3) { animation-delay: .56s; }
+  .skills .hero-questions > li:nth-child(2) { animation-delay: .48s; }
+  .skills .hero-questions > li:nth-child(3) { animation-delay: .56s; }
 
-  .capability .hero-questions > li:hover {
+  .skills .hero-questions > li:hover {
     background: color-mix(in srgb, var(--color-surface) 60%, transparent);
   }
 
-  .capability .hero-questions > li:hover .hero-question-icon {
+  .skills .hero-questions > li:hover .hero-question-icon {
     transform: translateY(-2px);
   }
 
-  .capability .hero-question-icon {
+  .skills .hero-question-icon {
     transition: transform var(--duration-hover) var(--ease-hover);
   }
 
   /* ============================================================
    * 01 The Growth Loop — Assess → Design → Learn → Prove 순환
    * ============================================================ */
-  .capability .loop {
+  .skills .loop {
     display: grid;
     /* 4단계 균등 분할. 화살표는 칸을 차지하지 않고 각 칸의 오른쪽 경계에 얹힌다 */
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-20);
   }
 
-  .capability .loop > li {
+  .skills .loop > li {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -112,25 +112,25 @@
       border-color var(--duration-hover) var(--ease-hover);
   }
 
-  .capability .loop > li:hover {
+  .skills .loop > li:hover {
     border-color: var(--color-brand-tint-2);
     box-shadow: var(--shadow-md);
     transform: translateY(-3px);
   }
 
   /* 마지막 단계(Prove)만 브랜드 톤으로 올려 순환의 결론임을 보인다 */
-  .capability .loop > li:last-child {
+  .skills .loop > li:last-child {
     border-color: var(--color-brand-tint-2);
-    background: var(--color-brand-tint-1);
+    background: var(--color-surface-sunken);
   }
 
-  .capability .loop-head {
+  .skills .loop-head {
     display: flex;
     align-items: center;
     gap: var(--space-10);
   }
 
-  .capability .loop-icon {
+  .skills .loop-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -143,22 +143,22 @@
     transition: transform var(--duration-hover) var(--ease-hover);
   }
 
-  .capability .loop-icon svg {
+  .skills .loop-icon svg {
     display: block;
     width: 22px;
     height: 22px;
   }
 
-  .capability .loop > li:hover .loop-icon {
+  .skills .loop > li:hover .loop-icon {
     transform: scale(1.06);
   }
 
-  .capability .loop > li:last-child .loop-icon {
+  .skills .loop > li:last-child .loop-icon {
     background: var(--color-surface);
   }
 
   /* 영문 단계명 — 한글 제목 위에서 위계를 낮춰 얹는다 */
-  .capability .loop-en {
+  .skills .loop-en {
     color: var(--color-brand);
     font-size: var(--text-body-muted);
     line-height: var(--leading-body-14);
@@ -166,12 +166,12 @@
     letter-spacing: var(--tracking-body-normal);
   }
 
-  .capability .loop-desc {
+  .skills .loop-desc {
     color: var(--color-ink-light);
   }
 
   /* 칸과 칸 사이 화살표. ax-build .shift-arrow와 같은 방식으로 경계에 걸터앉는다 */
-  .capability .loop-arrow {
+  .skills .loop-arrow {
     position: absolute;
     top: 50%;
     right: calc(var(--space-20) / -2);
@@ -188,14 +188,14 @@
     z-index: 1;
   }
 
-  .capability .loop-arrow svg {
+  .skills .loop-arrow svg {
     display: block;
     width: 14px;
     height: 14px;
   }
 
   /* 순환이 다시 처음으로 돌아간다는 마무리 한 줄 */
-  .capability .loop-note {
+  .skills .loop-note {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -204,7 +204,7 @@
     color: var(--color-brand-dark);
   }
 
-  .capability .loop-note svg {
+  .skills .loop-note svg {
     display: block;
     width: 18px;
     height: 18px;
@@ -228,19 +228,19 @@
    *
    * 카드 등장이 .24s(4번째 칸)에 끝나므로 화살표는 그 뒤부터 이어 붙인다.
    */
-  .capability .fade-up .loop-arrow {
+  .skills .fade-up .loop-arrow {
     /* 기본값을 완성 상태로 둔다 — 애니메이션이 실행되지 않는 환경(캡처·정지)에서도
        화살표가 보여야 한다(mock-motion-guide "0% 프레임은 보이는 상태"). */
     opacity: 1;
   }
 
-  .capability .fade-up.is-visible .loop-arrow {
+  .skills .fade-up.is-visible .loop-arrow {
     animation: loop-flow .5s var(--ease-scroll) both;
   }
 
-  .capability .fade-up.is-visible .loop > li:nth-child(1) .loop-arrow { animation-delay: .32s; }
-  .capability .fade-up.is-visible .loop > li:nth-child(2) .loop-arrow { animation-delay: .52s; }
-  .capability .fade-up.is-visible .loop > li:nth-child(3) .loop-arrow { animation-delay: .72s; }
+  .skills .fade-up.is-visible .loop > li:nth-child(1) .loop-arrow { animation-delay: .32s; }
+  .skills .fade-up.is-visible .loop > li:nth-child(2) .loop-arrow { animation-delay: .52s; }
+  .skills .fade-up.is-visible .loop > li:nth-child(3) .loop-arrow { animation-delay: .72s; }
 
   /* 화살표가 한 번 브랜드색으로 차오르며 다음 칸으로 넘긴다 */
   @keyframes loop-flow {
@@ -255,14 +255,14 @@
   }
 
   /* 마지막 화살표(.72s + .5s)가 끝난 뒤 note가 이어받는다 */
-  .capability .fade-up .loop-note svg {
+  .skills .fade-up .loop-note svg {
     transform: rotate(0deg);
   }
 
   /* 공용 keyframes.css에는 요소를 회전시키는 것이 없다(spin-angle은 그라디언트용
      --spin-angle 커스텀 프로퍼티를 돌리는 것이라 여기 쓸 수 없다). 이 페이지의
      이 자리에서만 필요하므로 페이지 CSS에 둔다. */
-  .capability .fade-up.is-visible .loop-note svg {
+  .skills .fade-up.is-visible .loop-note svg {
     animation: loop-rewind 1s var(--ease-scroll) 1.2s both;
   }
 
@@ -272,8 +272,8 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .capability .fade-up.is-visible .loop-arrow,
-    .capability .fade-up.is-visible .loop-note svg {
+    .skills .fade-up.is-visible .loop-arrow,
+    .skills .fade-up.is-visible .loop-note svg {
       animation: none;
     }
   }
@@ -281,7 +281,7 @@
   /* ============================================================
    * 02 Why It Matters — feature-card 자동 순환. 활성 카드만 흰색으로 구분
    * ============================================================ */
-  .capability .features .feature-card.is-active {
+  .skills .features .feature-card.is-active {
     background: var(--color-surface);
     box-shadow: var(--shadow-sm);
   }
@@ -293,14 +293,14 @@
    * "지금 여기 아님"은 대비만으로 충분히 읽히므로 .45로 낮춰 형태를 유지한다.
    * 위치(translateY)까지 되돌려야 세 카드의 글줄이 같은 높이에서 시작한다.
    */
-  .capability .features .feature-card .section-body-description {
+  .skills .features .feature-card .section-body-description {
     opacity: .45;
     transform: translateY(0);
   }
 
   /* 활성 카드는 다시 완전히 선명하게 — 위 규칙이 컴포넌트의 .is-active보다
      뒤에 오므로(같은 specificity) 여기서 되돌려 준다. */
-  .capability .features .feature-card.is-active .section-body-description {
+  .skills .features .feature-card.is-active .section-body-description {
     opacity: 1;
   }
 
@@ -308,7 +308,7 @@
    * 03 Assess · 04 Learn — 제품 카드. 공용 content-panel을 그대로 쓰고
    * 배치(그리드)와 기능 목록·자세히 링크만 이 페이지가 정의한다.
    * ============================================================ */
-  .capability .product-grid {
+  .skills .product-grid {
     display: grid;
     grid-template-columns: repeat(var(--product-cols, 2), minmax(0, 1fr));
     gap: var(--space-24);
@@ -319,12 +319,12 @@
    * (.section-wrap.row.is-sticky — ax-build 04 Process와 같은 공용 골격).
    * 우측이 한 컬럼이므로 제품 카드는 1열로 쌓는다.
    */
-  .capability .catalog-learn .product-grid {
+  .skills .catalog-learn .product-grid {
     --product-cols: 1;
   }
 
   /* sticky 좌측 하단에 붙는 보조 안내 — 세 방식을 고르는 것이 아니라 조합한다는 문장 */
-  .capability .learn-note {
+  .skills .learn-note {
     width: 100%;
     padding: var(--space-20);
     border-radius: var(--radius-lg);
@@ -336,7 +336,7 @@
     letter-spacing: var(--tracking-body-normal);
   }
 
-  .capability .learn-note strong {
+  .skills .learn-note strong {
     color: var(--color-brand);
     font-weight: var(--font-weight-semibold);
   }
@@ -350,14 +350,14 @@
    * 컨트롤이라, 한 섹션 안의 제품 3개를 세로로 세우는 이 역할과 형태·의미가 다르다.
    * 자손 셀렉터로 두는 것은 이 섹션 안에서만 의미가 있기 때문이다(SKILL 4번).
    */
-  .capability .learn-index {
+  .skills .learn-index {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: var(--space-2);
   }
 
-  .capability .learn-index > a {
+  .skills .learn-index > a {
     display: flex;
     align-items: center;
     gap: var(--space-10);
@@ -370,36 +370,36 @@
       color var(--duration-hover) var(--ease-hover);
   }
 
-  .capability .learn-index > a:hover {
+  .skills .learn-index > a:hover {
     background: var(--color-surface);
   }
 
   /* 지금 보고 있는 제품 — 면을 깔아 좌측에서 바로 눈에 들어오게 한다 */
-  .capability .learn-index > a.is-current {
+  .skills .learn-index > a.is-current {
     background: var(--color-surface);
     box-shadow: var(--shadow-sm);
   }
 
   /* 방식 구분(이러닝·집합교육·적응형) — 제품명보다 한 단계 낮춘다 */
-  .capability .learn-index-kind {
+  .skills .learn-index-kind {
     flex: none;
     width: 56px;
     color: var(--color-ink-lighter);
   }
 
-  .capability .learn-index-name {
+  .skills .learn-index-name {
     color: var(--color-ink-light);
     font-weight: var(--font-weight-medium);
     transition: color var(--duration-hover) var(--ease-hover);
   }
 
-  .capability .learn-index > a.is-current .learn-index-name {
+  .skills .learn-index > a.is-current .learn-index-name {
     color: var(--color-brand);
     font-weight: var(--font-weight-semibold);
   }
 
   /* 진행 점 — 비활성은 테두리만, 활성은 브랜드색으로 채운다 */
-  .capability .learn-index-dot {
+  .skills .learn-index-dot {
     flex: none;
     width: var(--space-8);
     height: var(--space-8);
@@ -410,19 +410,19 @@
       transform var(--duration-hover) var(--ease-hover);
   }
 
-  .capability .learn-index > a.is-current .learn-index-dot {
+  .skills .learn-index > a.is-current .learn-index-dot {
     border-color: var(--color-brand);
     background: var(--color-brand);
     transform: scale(1.25);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .capability .learn-index > a.is-current .learn-index-dot {
+    .skills .learn-index > a.is-current .learn-index-dot {
       transform: none;
     }
   }
 
-  .capability .product-grid .content-panel {
+  .skills .product-grid .content-panel {
     height: 100%;
     border: 1px solid var(--color-line);
     background: var(--color-surface);
@@ -431,25 +431,25 @@
       border-color var(--duration-hover) var(--ease-hover);
   }
 
-  .capability .product-grid .content-panel:hover {
+  .skills .product-grid .content-panel:hover {
     border-color: var(--color-brand-tint-2);
     box-shadow: var(--shadow-md);
     transform: translateY(-3px);
   }
 
   /* 자세히 링크가 카드 아래에 붙어 카드 높이가 서로 달라도 밑줄이 맞는다 */
-  .capability .product-grid .content-panel__item {
+  .skills .product-grid .content-panel__item {
     height: 100%;
   }
 
-  .capability .product-grid .content-panel__visual {
+  .skills .product-grid .content-panel__visual {
     display: flex;
     flex-direction: column;
     gap: var(--space-20);
     margin-top: auto;
   }
 
-  .capability .product-name {
+  .skills .product-name {
     display: flex;
     align-items: center;
     gap: var(--space-12);
@@ -461,7 +461,7 @@
    * 여기서 background·border-radius를 또 주면 판이 두 겹으로 겹친다.
    * 그래서 index의 .choice-list__icon과 같이 48px 박스 안에 이미지만 채운다.
    */
-  .capability .product-icon {
+  .skills .product-icon {
     display: block;
     width: var(--space-48);
     height: var(--space-48);
@@ -469,17 +469,17 @@
     transition: transform var(--duration-hover) var(--ease-hover);
   }
 
-  .capability .product-icon img {
+  .skills .product-icon img {
     width: 100%;
     height: 100%;
     object-fit: contain;
   }
 
-  .capability .product-grid .content-panel:hover .product-icon {
+  .skills .product-grid .content-panel:hover .product-icon {
     transform: scale(1.06);
   }
 
-  .capability .product-desc {
+  .skills .product-desc {
     color: var(--color-ink-light);
   }
 
@@ -497,13 +497,13 @@
    * 이미지 자체를 브랜드 색으로 다시 그리는 것이 정공법이지만, 실제 화면을
    * 임의로 바꾸는 판단이라 하지 않았다(사용자 확인이 필요한 영역).
    */
-  .capability .product-shot {
+  .skills .product-shot {
     width: 100%;
     height: auto;
     padding: var(--space-10);
     border-radius: var(--radius-md);
     border: 1px solid var(--color-brand-tint-2);
-    background: var(--color-brand-tint-1);
+    background: var(--color-surface-sunken);
     /* 아래 특징 3줄은 .28s부터 순서대로 올라오는데 목업은 정적이라 카드가
        위아래로 갈렸다. 이미지가 살짝 올라오며 그림자가 붙어 카드가 하나로 묶인다.
        특징 목록보다 먼저 와야 시선이 그림 → 글 순서로 흐른다. */
@@ -512,12 +512,12 @@
       transform var(--duration-hover) var(--ease-hover);
   }
 
-  .capability .fade-up .product-shot {
+  .skills .fade-up .product-shot {
     opacity: 0;
     transform: translateY(8px);
   }
 
-  .capability .fade-up.is-visible .product-shot {
+  .skills .fade-up.is-visible .product-shot {
     opacity: 1;
     transform: translateY(0);
     transition: opacity var(--duration-scroll) var(--ease-scroll) .12s,
@@ -525,7 +525,7 @@
       box-shadow var(--duration-hover) var(--ease-hover);
   }
 
-  .capability .product-grid .content-panel:hover .product-shot {
+  .skills .product-grid .content-panel:hover .product-shot {
     box-shadow: var(--shadow-md);
   }
 
@@ -542,11 +542,11 @@
    * 통째로 쓰는" 경우에만 맞다. 여기서는 화면이 아니라 카드 폭에 맞춰야 하므로
    * 컨테이너 기준(cqw)으로 따로 계산한다. 하한 .62는 공용 규칙과 같게 맞춘다.
    */
-  .capability .catalog-learn .content-panel__visual {
+  .skills .catalog-learn .content-panel__visual {
     container-type: inline-size;
   }
 
-  .capability .catalog-learn .journey-mock {
+  .skills .catalog-learn .journey-mock {
     /* index에서 이 목업이 갖던 데스크톱 폭 */
     --mock-fit-width: 566px;
     width: var(--mock-fit-width);
@@ -572,12 +572,12 @@
    * 보였다) 섹션 진입(.fade-up.is-visible)에 맞춰 여기서 직접 띄운다.
    * JS를 새로 붙이지 않고 이미 있는 fade-up 신호를 재사용한다.
    */
-  .capability .catalog-learn.is-visible .journey-mock > *,
-  .capability .catalog-learn.is-visible .journey-app-rail > *,
-  .capability .catalog-learn.is-visible .journey-app-side > *,
-  .capability .catalog-learn.is-visible .journey-app-main > *,
-  .capability .catalog-learn.is-visible .journey-app-tutor > *,
-  .capability .catalog-learn.is-visible .journey-app-skill {
+  .skills .catalog-learn.is-visible .journey-mock > *,
+  .skills .catalog-learn.is-visible .journey-app-rail > *,
+  .skills .catalog-learn.is-visible .journey-app-side > *,
+  .skills .catalog-learn.is-visible .journey-app-main > *,
+  .skills .catalog-learn.is-visible .journey-app-tutor > *,
+  .skills .catalog-learn.is-visible .journey-app-skill {
     --motion-rise: 8px;
     animation: pop-in var(--duration-scroll) var(--ease-scroll) both;
     animation-delay: calc(var(--pop-order, 0) * .06s);
@@ -585,19 +585,19 @@
 
   @media (prefers-reduced-motion: reduce) {
     /* 애니메이션을 끄면 opacity: 0으로 남으므로 숨김 자체를 해제한다 */
-    .capability .catalog-learn .journey-mock > *,
-    .capability .catalog-learn .journey-app-rail > *,
-    .capability .catalog-learn .journey-app-side > *,
-    .capability .catalog-learn .journey-app-main > *,
-    .capability .catalog-learn .journey-app-tutor > *,
-    .capability .catalog-learn .journey-app-skill {
+    .skills .catalog-learn .journey-mock > *,
+    .skills .catalog-learn .journey-app-rail > *,
+    .skills .catalog-learn .journey-app-side > *,
+    .skills .catalog-learn .journey-app-main > *,
+    .skills .catalog-learn .journey-app-tutor > *,
+    .skills .catalog-learn .journey-app-skill {
       opacity: 1;
       animation: none;
     }
   }
 
   /* 제품 특징 3줄 — 체크 아이콘 + 텍스트 */
-  .capability .product-points {
+  .skills .product-points {
     display: flex;
     flex-direction: column;
     gap: var(--space-10);
@@ -605,7 +605,7 @@
     border-top: 1px solid var(--color-line);
   }
 
-  .capability .product-points > li {
+  .skills .product-points > li {
     display: grid;
     grid-template-columns: 20px minmax(0, 1fr);
     align-items: start;
@@ -616,7 +616,7 @@
     letter-spacing: var(--tracking-body-normal);
   }
 
-  .capability .product-points svg {
+  .skills .product-points svg {
     display: block;
     width: 20px;
     height: 20px;
@@ -631,35 +631,35 @@
    * timeline.css가 이미 쓰는 방식과 같다(그쪽은 컴포넌트가 소유, 이쪽은 페이지가 소유).
    * 지연은 .08s 간격 — hover 리듬(.1s)보다 짧게 잡아 목록이 늘어져 보이지 않게 한다.
    */
-  .capability .fade-up .loop > li,
-  .capability .fade-up .product-grid > li,
-  .capability .fade-up .product-points > li,
-  .capability .fade-up .analyze-grid > li,
-  .capability .fade-up .analyze-points > li {
+  .skills .fade-up .loop > li,
+  .skills .fade-up .product-grid > li,
+  .skills .fade-up .product-points > li,
+  .skills .fade-up .analyze-grid > li,
+  .skills .fade-up .analyze-points > li {
     opacity: 0;
     transform: translateY(var(--motion-rise));
   }
 
-  .capability .fade-up.is-visible .loop > li,
-  .capability .fade-up.is-visible .product-grid > li,
-  .capability .fade-up.is-visible .product-points > li,
-  .capability .fade-up.is-visible .analyze-grid > li,
-  .capability .fade-up.is-visible .analyze-points > li {
+  .skills .fade-up.is-visible .loop > li,
+  .skills .fade-up.is-visible .product-grid > li,
+  .skills .fade-up.is-visible .product-points > li,
+  .skills .fade-up.is-visible .analyze-grid > li,
+  .skills .fade-up.is-visible .analyze-points > li {
     opacity: 1;
     transform: none;
     transition: opacity var(--duration-scroll) var(--ease-scroll),
       transform var(--duration-scroll) var(--ease-scroll);
   }
 
-  .capability .fade-up.is-visible :is(.loop, .product-grid, .analyze-grid) > li:nth-child(2) { transition-delay: .08s; }
-  .capability .fade-up.is-visible :is(.loop, .product-grid, .analyze-grid) > li:nth-child(3) { transition-delay: .16s; }
-  .capability .fade-up.is-visible :is(.loop, .product-grid, .analyze-grid) > li:nth-child(4) { transition-delay: .24s; }
+  .skills .fade-up.is-visible :is(.loop, .product-grid, .analyze-grid) > li:nth-child(2) { transition-delay: .08s; }
+  .skills .fade-up.is-visible :is(.loop, .product-grid, .analyze-grid) > li:nth-child(3) { transition-delay: .16s; }
+  .skills .fade-up.is-visible :is(.loop, .product-grid, .analyze-grid) > li:nth-child(4) { transition-delay: .24s; }
 
   /* 카드 안 특징 목록은 카드가 올라온 뒤에 이어진다 — 카드 지연(.24s) 뒤로 밀어 둔다 */
-  .capability .fade-up.is-visible :is(.product-points, .analyze-points) > li:nth-child(1) { transition-delay: .28s; }
-  .capability .fade-up.is-visible :is(.product-points, .analyze-points) > li:nth-child(2) { transition-delay: .34s; }
-  .capability .fade-up.is-visible :is(.product-points, .analyze-points) > li:nth-child(3) { transition-delay: .40s; }
-  .capability .fade-up.is-visible :is(.product-points, .analyze-points) > li:nth-child(4) { transition-delay: .46s; }
+  .skills .fade-up.is-visible :is(.product-points, .analyze-points) > li:nth-child(1) { transition-delay: .28s; }
+  .skills .fade-up.is-visible :is(.product-points, .analyze-points) > li:nth-child(2) { transition-delay: .34s; }
+  .skills .fade-up.is-visible :is(.product-points, .analyze-points) > li:nth-child(3) { transition-delay: .40s; }
+  .skills .fade-up.is-visible :is(.product-points, .analyze-points) > li:nth-child(4) { transition-delay: .46s; }
 
   /* ============================================================
    * 05 Blended Design — 사전진단 → 조합 → 재진단, 가로 3단 자동 순환.
@@ -670,13 +670,13 @@
    * flex-basis 없이 flex-grow만 바꿔서 만든다 — 셋의 grow 합이 4일 때
    * activate된 칸이 항상 절반을 갖는다(2:1:1).
    * ============================================================ */
-  .capability .blend-cycle {
+  .skills .blend-cycle {
     display: flex;
     align-items: stretch;
     gap: var(--space-20);
   }
 
-  .capability .blend-step {
+  .skills .blend-step {
     display: flex;
     flex-direction: column;
     flex: 1 1 0;
@@ -691,14 +691,14 @@
       box-shadow var(--duration-hover) var(--ease-hover);
   }
 
-  .capability .blend-step.is-active {
+  .skills .blend-step.is-active {
     flex-grow: 2;
     border-color: var(--color-brand-tint-2);
     box-shadow: var(--shadow-md);
   }
 
   /* 진행 바 — feature-card와 같은 컴포넌트(.feature-card-progress*)를 그대로 쓴다 */
-  .capability .blend-step .feature-card-progress {
+  .skills .blend-step .feature-card-progress {
     margin-bottom: var(--space-16);
   }
 
@@ -708,7 +708,7 @@
    * 매번 위아래로 밀렸다 당겨져 읽기가 불안정해진다(사용자 지적) — opacity만
    * 바꿔 자리는 그대로 두고 화면만 나타나고 사라지게 한다.
    */
-  .capability .blend-mock {
+  .skills .blend-mock {
     height: 260px;
     margin-bottom: var(--space-20);
     /*
@@ -738,11 +738,11 @@
    * 컨테이너 기준(cqw)으로 계산한다(04 Learn의 journey-mock과 같은 방식).
    * 하한 .62는 공용 규칙과 같게 맞춘다.
    */
-  .capability .blend-mock {
+  .skills .blend-mock {
     container-type: inline-size;
   }
 
-  .capability .blend-mock .preview-frame {
+  .skills .blend-mock .preview-frame {
     /* 이 목업이 데스크톱 activate 상태에서 갖는 폭 */
     --mock-fit-width: 542px;
     width: var(--mock-fit-width);
@@ -757,13 +757,13 @@
     zoom: max(.5, min(1, calc(100cqw / var(--mock-fit-width))));
   }
 
-  .capability .blend-step.is-active .blend-mock {
+  .skills .blend-step.is-active .blend-mock {
     opacity: 1;
     filter: none;
     transform: scale(1);
   }
 
-  .capability .blend-step-title {
+  .skills .blend-step-title {
     margin-top: var(--space-4);
     font-size: var(--text-card-title);
     line-height: var(--leading-card-title);
@@ -771,7 +771,7 @@
     color: var(--color-ink-heaviest);
   }
 
-  .capability .blend-step-desc {
+  .skills .blend-step-desc {
     margin-top: var(--space-6);
     color: var(--color-ink-light);
     /* activate 전에는 칸이 좁아 설명이 넘칠 수 있으므로 2줄로 자른다 */
@@ -790,7 +790,7 @@
    * mock-motion-guide.md의 .difference-screen-body 표준을 따른다.
    * 변수는 이 목업 루트 안에만 선언해 9px가 실제 UI로 새지 않게 한다.
    * ------------------------------------------------------------ */
-  .capability .blend-mock-screen {
+  .skills .blend-mock-screen {
     --blend-text-title: 13px;
     --blend-leading-title: 18px;
     --blend-text-lg: 11px;
@@ -805,24 +805,24 @@
   }
 
   /* 브라우저 chrome의 주소 — 실제 제품 도메인을 보여 "돌아가는 화면"임을 알린다 */
-  .capability .blend-mock-url {
+  .skills .blend-mock-url {
     font-size: var(--blend-text-sm);
     line-height: var(--blend-leading-sm);
     color: var(--color-ink-lighter);
   }
 
   /* chrome이 목업 폭을 차지하지 않게 줄인다 — 안쪽 화면에 자리를 더 준다 */
-  .capability .blend-mock-screen .preview-frame__bar {
+  .skills .blend-mock-screen .preview-frame__bar {
     padding: var(--space-8) var(--space-12);
     gap: var(--space-8);
   }
 
-  .capability .blend-mock-screen .preview-frame__dots i {
+  .skills .blend-mock-screen .preview-frame__dots i {
     width: 5px;
     height: 5px;
   }
 
-  .capability .blend-mock-body {
+  .skills .blend-mock-body {
     display: flex;
     flex-direction: column;
     gap: var(--space-10);
@@ -831,14 +831,14 @@
     padding: var(--space-12);
   }
 
-  .capability .blend-mock-head {
+  .skills .blend-mock-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-8);
   }
 
-  .capability .blend-mock-title {
+  .skills .blend-mock-title {
     font-size: var(--blend-text-title);
     line-height: var(--blend-leading-title);
     font-weight: var(--font-weight-semibold);
@@ -846,25 +846,25 @@
   }
 
   /* 공용 배지를 목업 스케일로 줄인다 — 색·radius는 컴포넌트 것을 그대로 쓴다 */
-  .capability .blend-mock-screen .journey-mock-badge {
+  .skills .blend-mock-screen .journey-mock-badge {
     padding: 2px var(--space-6);
     font-size: var(--blend-text-sm);
     line-height: var(--blend-leading-sm);
   }
 
-  .capability .blend-mock-screen .journey-mock-badge.is-live::before {
+  .skills .blend-mock-screen .journey-mock-badge.is-live::before {
     width: 4px;
     height: 4px;
   }
 
   /* --- 진단 리포트(STEP 1) --- */
-  .capability .blend-mock-score {
+  .skills .blend-mock-score {
     display: flex;
     align-items: center;
     gap: var(--space-12);
   }
 
-  .capability .blend-mock-gauge {
+  .skills .blend-mock-gauge {
     position: relative;
     display: flex;
     align-items: center;
@@ -874,7 +874,7 @@
     height: 44px;
   }
 
-  .capability .blend-mock-gauge svg {
+  .skills .blend-mock-gauge svg {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -883,7 +883,7 @@
     transform: rotate(-90deg);
   }
 
-  .capability .blend-mock-gauge b {
+  .skills .blend-mock-gauge b {
     position: relative;
     font-size: var(--blend-text-title);
     line-height: var(--blend-leading-title);
@@ -891,7 +891,7 @@
     color: var(--color-ink-heaviest);
   }
 
-  .capability .blend-mock-gauge em {
+  .skills .blend-mock-gauge em {
     font-size: var(--blend-text-sm);
     font-style: normal;
     font-weight: var(--font-weight-medium);
@@ -899,7 +899,7 @@
   }
 
   /* 역량별 점수 범례 — 색 점으로 막대 차트와 짝을 맞춘다 */
-  .capability .blend-mock-legend {
+  .skills .blend-mock-legend {
     display: flex;
     flex-direction: column;
     gap: 3px;
@@ -907,7 +907,7 @@
     min-width: 0;
   }
 
-  .capability .blend-mock-legend > li {
+  .skills .blend-mock-legend > li {
     display: flex;
     align-items: center;
     gap: var(--space-6);
@@ -916,7 +916,7 @@
     color: var(--color-ink-light);
   }
 
-  .capability .blend-mock-legend b {
+  .skills .blend-mock-legend b {
     margin-left: auto;
     font-weight: var(--font-weight-semibold);
     color: var(--color-ink);
@@ -936,17 +936,17 @@
    * .is-focus는 mock-motion.css가 "지금 읽어야 하는 것"으로 정의한 공통 훅이지만
    * 스타일은 focus·replay 연출에만 있다 — 여기서는 ticker이므로 이 페이지가 준다.
    */
-  .capability .blend-mock-legend > li.is-focus,
-  .capability .blend-mock-delta-list > li.is-focus {
+  .skills .blend-mock-legend > li.is-focus,
+  .skills .blend-mock-delta-list > li.is-focus {
     color: var(--color-brand-dark);
     font-weight: var(--font-weight-semibold);
   }
 
-  .capability .blend-mock-legend > li.is-focus b {
+  .skills .blend-mock-legend > li.is-focus b {
     color: var(--color-brand-dark);
   }
 
-  .capability .blend-mock-dot {
+  .skills .blend-mock-dot {
     width: 6px;
     height: 6px;
     flex: none;
@@ -955,11 +955,11 @@
   }
 
   /* 점수대에 따라 색을 낮춘다 — 원색 하나만 쓰면 "부족한 영역"이 안 읽힌다 */
-  .capability .blend-mock-dot.is-mid {
+  .skills .blend-mock-dot.is-mid {
     background: color-mix(in srgb, var(--color-brand) 55%, var(--color-surface));
   }
 
-  .capability .blend-mock-dot.is-low {
+  .skills .blend-mock-dot.is-low {
     background: color-mix(in srgb, var(--color-brand) 28%, var(--color-surface));
   }
 
@@ -968,7 +968,7 @@
    * flex-shrink: 0이 없으면 부모(.blend-mock-body) 안에서 눌려 %로 계산되는
    * 막대 높이가 전부 비슷해지고 데이터 차이가 안 보인다.
    */
-  .capability .blend-mock-bars {
+  .skills .blend-mock-bars {
     display: flex;
     align-items: flex-end;
     gap: var(--space-6);
@@ -977,7 +977,7 @@
     flex: none;
   }
 
-  .capability .blend-mock-bars > li {
+  .skills .blend-mock-bars > li {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -987,7 +987,7 @@
     height: 100%;
   }
 
-  .capability .blend-mock-bars i {
+  .skills .blend-mock-bars i {
     display: block;
     /* 칸 폭을 꽉 채우면 차트가 아니라 색 블록으로 보인다 — 사이를 띄운다 */
     width: 62%;
@@ -998,30 +998,30 @@
     background: var(--color-brand);
   }
 
-  .capability .blend-mock-bars span {
+  .skills .blend-mock-bars span {
     font-size: var(--blend-text-sm);
     line-height: var(--blend-leading-sm);
     color: var(--color-ink-lighter);
   }
 
   /* 응답 피드 행 — is-feed가 위에서 밀어 넣고 틴트로 반짝인다 */
-  .capability .blend-mock-row {
+  .skills .blend-mock-row {
     display: flex;
     align-items: center;
     gap: var(--space-8);
     padding: var(--space-6) var(--space-8);
     border-radius: var(--radius-sm);
-    background: var(--color-brand-tint-1);
+    background: var(--color-surface-sunken);
   }
 
-  .capability .blend-mock-screen .journey-mock-avatar {
+  .skills .blend-mock-screen .journey-mock-avatar {
     width: 18px;
     height: 18px;
     flex: none;
     font-size: var(--blend-text-sm);
   }
 
-  .capability .blend-mock-row-name {
+  .skills .blend-mock-row-name {
     flex: 1;
     min-width: 0;
     font-size: var(--blend-text);
@@ -1032,7 +1032,7 @@
     white-space: nowrap;
   }
 
-  .capability .blend-mock-row-meta {
+  .skills .blend-mock-row-meta {
     font-size: var(--blend-text-sm);
     line-height: var(--blend-leading-sm);
     font-weight: var(--font-weight-semibold);
@@ -1040,13 +1040,13 @@
   }
 
   /* --- 조합 설계(STEP 2) — 좌측 선택 · 우측 설계안 2단 --- */
-  .capability .blend-mock-split {
+  .skills .blend-mock-split {
     display: flex;
     flex: 1;
     min-height: 0;
   }
 
-  .capability .blend-mock-aside {
+  .skills .blend-mock-aside {
     display: flex;
     flex-direction: column;
     gap: var(--space-8);
@@ -1054,23 +1054,23 @@
     flex: none;
     padding: var(--space-10);
     border-right: 1px solid var(--color-line);
-    background: var(--color-surface-page);
+    background: var(--color-surface-sunken);
   }
 
-  .capability .blend-mock-aside-label {
+  .skills .blend-mock-aside-label {
     font-size: var(--blend-text-sm);
     line-height: var(--blend-leading-sm);
     font-weight: var(--font-weight-semibold);
     color: var(--color-ink-lighter);
   }
 
-  .capability .blend-mock-combo {
+  .skills .blend-mock-combo {
     display: flex;
     flex-direction: column;
     gap: 3px;
   }
 
-  .capability .blend-mock-combo > li {
+  .skills .blend-mock-combo > li {
     display: flex;
     align-items: center;
     gap: var(--space-6);
@@ -1083,7 +1083,7 @@
   }
 
   /* 방식 구분(이러닝·집합교육·적응형) — 제품명 뒤에 한 단계 낮춰 붙인다 */
-  .capability .blend-mock-combo em {
+  .skills .blend-mock-combo em {
     margin-left: auto;
     font-size: var(--blend-text-sm);
     font-style: normal;
@@ -1092,17 +1092,17 @@
   }
 
   /* 공용 체크를 목업 스케일로 — 체크 표시 배경 크기도 함께 줄인다 */
-  .capability .blend-mock-screen .journey-mock-check {
+  .skills .blend-mock-screen .journey-mock-check {
     width: 13px;
     height: 13px;
     flex: none;
   }
 
-  .capability .blend-mock-screen .journey-mock-check.is-done {
+  .skills .blend-mock-screen .journey-mock-check.is-done {
     background-size: 8px;
   }
 
-  .capability .blend-mock-panel {
+  .skills .blend-mock-panel {
     display: flex;
     flex-direction: column;
     gap: var(--space-8);
@@ -1112,35 +1112,35 @@
   }
 
   /* 12주 설계안 — 주차별 트랙이 타임라인처럼 이어 붙는다 */
-  .capability .blend-mock-plan {
+  .skills .blend-mock-plan {
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
   }
 
-  .capability .blend-mock-plan > li {
+  .skills .blend-mock-plan > li {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
     gap: 2px var(--space-6);
   }
 
-  .capability .blend-mock-week {
+  .skills .blend-mock-week {
     font-size: var(--blend-text-sm);
     line-height: var(--blend-leading-sm);
     color: var(--color-ink-lighter);
     white-space: nowrap;
   }
 
-  .capability .blend-mock-track {
+  .skills .blend-mock-track {
     font-size: var(--blend-text);
     line-height: var(--blend-leading);
     font-weight: var(--font-weight-medium);
     color: var(--color-brand);
   }
 
-  .capability .blend-mock-track.is-camp { color: var(--color-brand-dark); }
-  .capability .blend-mock-track.is-fit {
+  .skills .blend-mock-track.is-camp { color: var(--color-brand-dark); }
+  .skills .blend-mock-track.is-fit {
     color: color-mix(in srgb, var(--color-brand) 62%, var(--color-ink));
   }
 
@@ -1148,7 +1148,7 @@
    * 트랙 막대 — 12주 전체를 100%로 놓고 그 안에서 차지하는 구간을 보인다.
    * 좌측 위치(--blend-track-x)가 있어야 세 트랙이 이어 붙은 것으로 읽힌다.
    */
-  .capability .blend-mock-plan i {
+  .skills .blend-mock-plan i {
     grid-column: 1 / -1;
     position: relative;
     display: block;
@@ -1157,7 +1157,7 @@
     background: var(--color-brand-tint-2);
   }
 
-  .capability .blend-mock-plan i::after {
+  .skills .blend-mock-plan i::after {
     content: "";
     position: absolute;
     top: 0;
@@ -1168,14 +1168,14 @@
     background: var(--color-brand);
   }
 
-  .capability .blend-mock-plan i.is-camp::after { background: var(--color-brand-dark); }
-  .capability .blend-mock-plan i.is-fit::after {
+  .skills .blend-mock-plan i.is-camp::after { background: var(--color-brand-dark); }
+  .skills .blend-mock-plan i.is-fit::after {
     background: color-mix(in srgb, var(--color-brand) 62%, var(--color-ink));
   }
 
   /* --- 전후 비교(STEP 3) --- */
   /* 막대 차트와 같은 이유로 flex-shrink를 막는다(위 .blend-mock-bars 주석 참고) */
-  .capability .blend-mock-compare {
+  .skills .blend-mock-compare {
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -1184,7 +1184,7 @@
     flex: none;
   }
 
-  .capability .blend-mock-compare-col {
+  .skills .blend-mock-compare-col {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1194,13 +1194,13 @@
     height: 100%;
   }
 
-  .capability .blend-mock-compare-label {
+  .skills .blend-mock-compare-label {
     font-size: var(--blend-text-sm);
     line-height: var(--blend-leading-sm);
     color: var(--color-ink-lighter);
   }
 
-  .capability .blend-mock-compare-col i {
+  .skills .blend-mock-compare-col i {
     display: block;
     width: 100%;
     height: var(--mock-bar-h, 50%);
@@ -1210,19 +1210,19 @@
     background: var(--color-brand-tint-2);
   }
 
-  .capability .blend-mock-compare-col.is-after i { background: var(--color-brand); }
+  .skills .blend-mock-compare-col.is-after i { background: var(--color-brand); }
 
-  .capability .blend-mock-compare-col b {
+  .skills .blend-mock-compare-col b {
     font-size: var(--blend-text-lg);
     line-height: var(--blend-leading-lg);
     font-weight: var(--font-weight-semibold);
     color: var(--color-ink);
   }
 
-  .capability .blend-mock-compare-col.is-after b { color: var(--color-brand); }
+  .skills .blend-mock-compare-col.is-after b { color: var(--color-brand); }
 
   /* 상승폭 — 두 막대 사이에서 결론을 말하는 자리라 스케일을 한 단 올린다 */
-  .capability .blend-mock-delta {
+  .skills .blend-mock-delta {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1231,34 +1231,34 @@
     color: var(--color-ink-lighter);
   }
 
-  .capability .blend-mock-delta-value {
+  .skills .blend-mock-delta-value {
     font-size: 15px;
     line-height: 20px;
     font-weight: var(--font-weight-semibold);
     color: var(--color-brand);
   }
 
-  .capability .blend-mock-delta svg {
+  .skills .blend-mock-delta svg {
     display: block;
     width: 14px;
     height: 14px;
   }
 
   /* 역량별 변화량 — 이름 · 미터 · 상승폭 3열 */
-  .capability .blend-mock-delta-list {
+  .skills .blend-mock-delta-list {
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
   }
 
-  .capability .blend-mock-delta-list > li {
+  .skills .blend-mock-delta-list > li {
     display: grid;
     grid-template-columns: 52px minmax(0, 1fr) auto;
     align-items: center;
     gap: var(--space-8);
   }
 
-  .capability .blend-mock-meter {
+  .skills .blend-mock-meter {
     display: block;
     height: 4px;
     border-radius: var(--radius-full);
@@ -1266,7 +1266,7 @@
     overflow: hidden;
   }
 
-  .capability .blend-mock-meter i {
+  .skills .blend-mock-meter i {
     display: block;
     width: var(--blend-track-w, 50%);
     height: 100%;
@@ -1274,7 +1274,7 @@
     background: var(--color-brand);
   }
 
-  .capability .blend-mock-up {
+  .skills .blend-mock-up {
     font-size: var(--blend-text);
     line-height: var(--blend-leading);
     font-weight: var(--font-weight-semibold);
@@ -1282,8 +1282,8 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .capability .blend-step,
-    .capability .blend-mock {
+    .skills .blend-step,
+    .skills .blend-mock {
       transition: none;
     }
   }
@@ -1292,31 +1292,31 @@
    * 06 Analyze & Prove — 대시보드·성과 보고 2블록.
    * 03·04와 같은 product-grid 골격을 쓰되 아이콘 없이 텍스트 위계로만 나눈다.
    * ============================================================ */
-  .capability .analyze-grid {
+  .skills .analyze-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-24);
   }
 
-  .capability .analyze-grid .content-panel {
+  .skills .analyze-grid .content-panel {
     height: 100%;
     background: var(--color-surface);
   }
 
   /* 첫 블록(조직 역량 대시보드)만 브랜드 톤 — "별도 제품이 아니라 기본"이 이 섹션의 결론 */
-  .capability .analyze-grid .content-panel.is-primary {
-    background: var(--color-brand-tint-1);
+  .skills .analyze-grid .content-panel.is-primary {
+    background: var(--color-surface-sunken);
   }
 
-  .capability .analyze-grid .content-panel__item {
+  .skills .analyze-grid .content-panel__item {
     height: 100%;
   }
 
-  .capability .analyze-grid .content-panel__visual {
+  .skills .analyze-grid .content-panel__visual {
     margin-top: auto;
   }
 
-  .capability .analyze-desc {
+  .skills .analyze-desc {
     color: var(--color-ink-light);
   }
 
@@ -1326,20 +1326,20 @@
    * 장식용 accent 선을 넣지 않는다는 원칙에 따라 점 마커로 바꿨다 —
    * "열거"라는 뜻은 점으로도 같고, 카드 안에 세로선이 사라져 더 조용하다.
    */
-  .capability .analyze-points {
+  .skills .analyze-points {
     display: flex;
     flex-direction: column;
     gap: var(--space-10);
   }
 
-  .capability .analyze-points > li {
+  .skills .analyze-points > li {
     display: flex;
     align-items: baseline;
     gap: var(--space-10);
     color: var(--color-ink);
   }
 
-  .capability .analyze-points > li::before {
+  .skills .analyze-points > li::before {
     content: "";
     flex: none;
     width: var(--space-6);
@@ -1351,7 +1351,7 @@
     transition: background var(--duration-hover) var(--ease-hover);
   }
 
-  .capability .analyze-grid .content-panel:hover .analyze-points > li::before {
+  .skills .analyze-grid .content-panel:hover .analyze-points > li::before {
     background: var(--color-brand);
   }
 
@@ -1361,12 +1361,12 @@
    * 05의 blend-mock-screen과 같은 브라우저 chrome 골격을 쓰고, 안쪽만 히트맵으로
    * 바꾼다. 격차를 글이 아니라 색의 농담으로 보여주는 것이 이 섹션의 주장이다.
    * ------------------------------------------------------------ */
-  .capability .analyze-mock {
+  .skills .analyze-mock {
     margin-bottom: var(--space-24);
     container-type: inline-size;
   }
 
-  .capability .analyze-mock-screen {
+  .skills .analyze-mock-screen {
     /*
      * 목업 안 글자는 14px 제약의 예외다(mock-motion-guide 5번). 3단 위계를
      * 이 목업 루트 안에만 선언한다 — 전역 토큰으로 올리면 9px이 실제 UI로 샌다.
@@ -1382,26 +1382,26 @@
     zoom: max(.6, min(1, calc(100cqw / var(--mock-fit-width))));
   }
 
-  .capability .analyze-mock-url {
+  .skills .analyze-mock-url {
     color: var(--color-ink-lighter);
     font-size: var(--mock-text-sm);
   }
 
-  .capability .analyze-mock-body {
+  .skills .analyze-mock-body {
     display: flex;
     flex-direction: column;
     gap: var(--space-12);
     padding: var(--space-12);
   }
 
-  .capability .analyze-mock-head {
+  .skills .analyze-mock-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-8);
   }
 
-  .capability .analyze-mock-title {
+  .skills .analyze-mock-title {
     color: var(--color-ink-heaviest);
     font-size: var(--mock-text-title);
     font-weight: var(--font-weight-semibold);
@@ -1409,7 +1409,7 @@
 
   /* 공용 배지를 목업 스케일로 줄인다 — 색·radius는 컴포넌트 것을 그대로 쓴다
      (05 blend-mock-screen과 같은 처리). */
-  .capability .analyze-mock-screen .journey-mock-badge {
+  .skills .analyze-mock-screen .journey-mock-badge {
     padding: 2px var(--space-6);
     font-size: var(--mock-text-sm);
   }
@@ -1418,7 +1418,7 @@
    * 히트맵 — 5열(직무명 + 역량 4개) 격자. 행 높이를 고정해 칸이 정사각에
    * 가깝게 남는다. gap을 2px로 좁혀야 칸들이 하나의 판으로 읽힌다.
    */
-  .capability .analyze-mock-heat {
+  .skills .analyze-mock-heat {
     display: grid;
     /* 첫 열은 "경영관리"(4자)가 한 줄에 들어가는 폭 — 좁히면 직무명이 잘린다 */
     grid-template-columns: 56px repeat(4, minmax(0, 1fr));
@@ -1426,17 +1426,17 @@
     align-items: center;
   }
 
-  .capability .analyze-mock-axis,
-  .capability .analyze-mock-role {
+  .skills .analyze-mock-axis,
+  .skills .analyze-mock-role {
     color: var(--color-ink-lighter);
     font-size: var(--mock-text-sm);
   }
 
-  .capability .analyze-mock-axis {
+  .skills .analyze-mock-axis {
     text-align: center;
   }
 
-  .capability .analyze-mock-heat > i {
+  .skills .analyze-mock-heat > i {
     height: 20px;
     border-radius: var(--radius-sm);
     /* 기본은 잘하는 영역 — 진한 브랜드. 부족한 영역만 아래에서 옅게 내린다 */
@@ -1445,22 +1445,22 @@
 
   /* 점수대에 따라 농도를 낮춘다 — 원색 하나만 쓰면 "격차"가 안 읽힌다
      (05 blend-mock-dot과 같은 판단) */
-  .capability .analyze-mock-heat > i.is-mid {
+  .skills .analyze-mock-heat > i.is-mid {
     background: color-mix(in srgb, var(--color-brand) 45%, var(--color-surface));
   }
 
-  .capability .analyze-mock-heat > i.is-low {
+  .skills .analyze-mock-heat > i.is-low {
     background: color-mix(in srgb, var(--color-brand) 18%, var(--color-surface));
   }
 
   /* 칸이 순서대로 켜진다. 크기만 커지는 공용 scale-in을 쓴다(위치 고정 요소) —
      0%·100%가 모두 보이는 상태라 캡처·정지 환경에서도 판이 완성돼 있다. */
-  .capability .analyze-mock-screen .is-cell {
+  .skills .analyze-mock-screen .is-cell {
     animation: scale-in var(--duration-scroll) var(--ease-scroll) both;
   }
 
   /* 우선 보완 — 가장 큰 격차 3개. 히트맵이 현황이고 이쪽이 결론이다 */
-  .capability .analyze-mock-gap {
+  .skills .analyze-mock-gap {
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
@@ -1468,18 +1468,18 @@
     border-top: 1px solid var(--color-line);
   }
 
-  .capability .analyze-mock-gap-label {
+  .skills .analyze-mock-gap-label {
     color: var(--color-ink-lighter);
     font-size: var(--mock-text-sm);
   }
 
-  .capability .analyze-mock-bars {
+  .skills .analyze-mock-bars {
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
   }
 
-  .capability .analyze-mock-bars > li {
+  .skills .analyze-mock-bars > li {
     display: grid;
     grid-template-columns: 44px minmax(0, 1fr) 26px;
     gap: var(--space-8);
@@ -1492,7 +1492,7 @@
    * 가로 막대 — 공용 ticker의 .is-bar는 height를 키우는 세로 막대라 여기서는
    * 쓸 수 없다. 폭이 자라는 것은 이 목업에만 필요하므로 width로 따로 둔다.
    */
-  .capability .analyze-mock-bars i {
+  .skills .analyze-mock-bars i {
     height: var(--space-6);
     width: var(--mock-bar-h, 50%);
     border-radius: var(--radius-full);
@@ -1507,7 +1507,7 @@
     100% { width: var(--mock-bar-h, 50%); }
   }
 
-  .capability .analyze-mock-bars b {
+  .skills .analyze-mock-bars b {
     color: var(--color-brand-dark);
     font-size: var(--mock-text);
     font-weight: var(--font-weight-semibold);
@@ -1516,33 +1516,33 @@
 
   /* 성과 보고 목업 — 전체 상승폭이 결론이라 목업 스케일 위로 올린다
      (mock-motion-guide 5번: 결론 수치는 4단 위계 위로 올려도 된다) */
-  .capability .analyze-mock-lift {
+  .skills .analyze-mock-lift {
     display: flex;
     align-items: center;
     gap: var(--space-12);
   }
 
-  .capability .analyze-mock-lift b {
+  .skills .analyze-mock-lift b {
     color: var(--color-brand);
     font-size: 26px;
     font-weight: var(--font-weight-semibold);
     line-height: 1.1;
   }
 
-  .capability .analyze-mock-lift em {
+  .skills .analyze-mock-lift em {
     font-size: var(--mock-text);
     font-style: normal;
     font-weight: var(--font-weight-medium);
   }
 
-  .capability .analyze-mock-lift-note {
+  .skills .analyze-mock-lift-note {
     color: var(--color-ink-lighter);
     font-size: var(--mock-text-sm);
     line-height: 1.5;
   }
 
   /* 다음 투자 우선순위 — is-feed로 위에서 밀려들며 한 번 반짝인다 */
-  .capability .analyze-mock-row {
+  .skills .analyze-mock-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1552,20 +1552,20 @@
     background: var(--color-surface-sunken);
   }
 
-  .capability .analyze-mock-row-name {
+  .skills .analyze-mock-row-name {
     color: var(--color-ink);
     font-size: var(--mock-text);
     font-weight: var(--font-weight-medium);
   }
 
-  .capability .analyze-mock-row .text-caption {
+  .skills .analyze-mock-row .text-caption {
     font-size: var(--mock-text-sm);
   }
 
   @media (prefers-reduced-motion: reduce) {
     /* 정지 상태에서도 판과 막대가 완성돼 있어야 한다 */
-    .capability .analyze-mock-screen .is-cell,
-    .capability .analyze-mock-bars i {
+    .skills .analyze-mock-screen .is-cell,
+    .skills .analyze-mock-bars i {
       animation: none;
     }
   }
@@ -1583,7 +1583,7 @@
    * 진행률은 stroke-dashoffset으로 만든다. 둘레는 2πr = 2π×32 ≈ 201이고,
    * 80%면 남는 20%가 offset이므로 201 × .2 ≈ 40.
    */
-  .capability .repurchase-gauge {
+  .skills .repurchase-gauge {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -1592,19 +1592,19 @@
     transform: rotate(-90deg);
   }
 
-  .capability .repurchase-gauge .is-gauge {
+  .skills .repurchase-gauge .is-gauge {
     stroke-dashoffset: 40;
     transition: stroke-dashoffset 1.2s var(--ease-scroll);
   }
 
   /* 카드가 보이기 전에는 링이 비어 있다가 카운트업과 함께 채워진다.
      .is-visible은 stat-reveal.js가 metric-card에 붙인다. */
-  .capability .metric-card:not(.is-visible) .repurchase-gauge .is-gauge {
+  .skills .metric-card:not(.is-visible) .repurchase-gauge .is-gauge {
     stroke-dashoffset: 201;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .capability .repurchase-gauge .is-gauge {
+    .skills .repurchase-gauge .is-gauge {
       transition: none;
     }
   }
@@ -1612,7 +1612,7 @@
   /* ============================================================
    * 도구 연결 브릿지 — 이 페이지(진단·교육)에서 자동화 페이지로 넘기는 한 줄
    * ============================================================ */
-  .capability .bridge-inner {
+  .skills .bridge-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1621,7 +1621,7 @@
     text-align: left;
   }
 
-  .capability .bridge-copy {
+  .skills .bridge-copy {
     display: flex;
     flex-direction: column;
     gap: var(--space-8);
@@ -1630,7 +1630,7 @@
 
   /* summary-banner.dark 위의 제목. base.css h2(44px)는 배너 안에서 과하고,
      cta-final-title은 최하단 CTA 소유라 빌려 쓰지 않는다 — 카드 제목 스케일로 낮춘다. */
-  .capability .bridge-title {
+  .skills .bridge-title {
     font-size: var(--text-heading-32);
     line-height: var(--leading-heading-32);
     color: var(--color-surface);
@@ -1642,11 +1642,11 @@
    * 텍스트에 border-bottom을 주지 않고 ::after를 쓰는 이유 — 그려지는 과정
    * (0 → 100%)이 있어야 "이쪽으로 간다"는 방향이 생긴다.
    */
-  .capability .bridge-title strong {
+  .skills .bridge-title strong {
     position: relative;
   }
 
-  .capability .bridge-title strong::after {
+  .skills .bridge-title strong::after {
     content: "";
     position: absolute;
     left: 0;
@@ -1658,31 +1658,31 @@
     transform-origin: left;
   }
 
-  .capability .fade-up .bridge-title strong::after {
+  .skills .fade-up .bridge-title strong::after {
     transform: scaleX(0);
   }
 
-  .capability .fade-up.is-visible .bridge-title strong::after {
+  .skills .fade-up.is-visible .bridge-title strong::after {
     transform: scaleX(1);
     transition: transform var(--duration-scroll) var(--ease-scroll) .2s;
   }
 
   /* 화살표가 한 번 오른쪽으로 튀어 이동을 예고한다 — 공용 nudge를 쓴다 */
-  .capability .fade-up.is-visible .bridge-inner .btn > svg {
+  .skills .fade-up.is-visible .bridge-inner .btn > svg {
     animation: nudge .6s var(--ease-scroll) .7s 2;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .capability .fade-up .bridge-title strong::after {
+    .skills .fade-up .bridge-title strong::after {
       transform: scaleX(1);
     }
 
-    .capability .fade-up.is-visible .bridge-inner .btn > svg {
+    .skills .fade-up.is-visible .bridge-inner .btn > svg {
       animation: none;
     }
   }
 
-  .capability .bridge-desc {
+  .skills .bridge-desc {
     font-size: var(--text-body);
     line-height: var(--leading-body);
     color: color-mix(in srgb, var(--color-surface) 76%, transparent);
@@ -1691,43 +1691,40 @@
   /* ============================================================
    * 섹션 배경 리듬 — 3단으로 벌린다.
    *
-   * 처음엔 흰 면과 --color-surface-sunken을 번갈아 뒀는데 화면이 통째로
-   * 허여멀건하게 보였다(사용자 지적). 원인은 두 가지였다.
-   *   ① sunken(#F5F8FF)과 brand-tint-1이 **같은 값**이라 "옅은 면"과
-   *      "강조 면"이 실제로는 같은 색이었다.
-   *   ② 흰색 대비 sunken의 대비비가 1.06 — 6% 차이라 경계가 안 보인다.
+   * 처음엔 흰 면과 --color-surface-sunken을 번갈아 뒀는데 흰색 대비 1.06
+   * (6% 차이)이라 경계가 안 보이고 화면이 통째로 허여멀건해졌다.
    *
    * 그래서 옅은 면을 한 단계 진한 --color-brand-tint-2(대비비 1.15)로 올리고,
    * 그 위에 놓이는 카드를 흰색 + 경계선으로 띄워 판과 카드가 확실히 갈리게 했다.
    * 배경만으로는 한계가 있어 위계는 배경·카드·경계선 3층으로 만든다.
    * ============================================================ */
-  .capability .features,
-  .capability .catalog-learn,
-  .capability .features-analyze {
+  .skills .features,
+  .skills .catalog-learn,
+  .skills .features-analyze {
     background: var(--color-brand-tint-2);
   }
 
   /* 옅은 판 위의 카드는 흰색으로 띄운다 — 판과 카드가 같은 색이면 카드가 사라진다 */
-  .capability .catalog-learn .content-panel,
-  .capability .features-analyze .content-panel {
+  .skills .catalog-learn .content-panel,
+  .skills .features-analyze .content-panel {
     border: 1px solid color-mix(in srgb, var(--color-brand) 12%, transparent);
   }
 
   /* 흰 면(hero·01·03·05·08) 위의 카드는 반대로 옅은 판으로 가라앉힌다 */
-  .capability .catalog .content-panel {
+  .skills .catalog .content-panel {
     background: var(--color-surface-sunken);
     border-color: var(--color-line);
   }
 
   /* --- 강조 구간: 07 Proof만 어두운 판 --- */
-  .capability .outcomes.is-dark {
+  .skills .outcomes.is-dark {
     position: relative;
     overflow: hidden;
     background-color: var(--color-ink-heaviest);
   }
 
   /* 배경 질감 — cta-final과 같은 이미지지만 다른 구역·배율을 써서 반복을 피한다 */
-  .capability .outcomes.is-dark::before {
+  .skills .outcomes.is-dark::before {
     content: "";
     position: absolute;
     inset: -30px;
@@ -1740,7 +1737,7 @@
     pointer-events: none;
   }
 
-  .capability .outcomes.is-dark::after {
+  .skills .outcomes.is-dark::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -1751,42 +1748,42 @@
     pointer-events: none;
   }
 
-  .capability .outcomes.is-dark .section-wrap {
+  .skills .outcomes.is-dark .section-wrap {
     position: relative;
     z-index: 1;
   }
 
-  .capability .outcomes.is-dark h2 {
+  .skills .outcomes.is-dark h2 {
     color: var(--color-surface);
   }
 
   /* 어두운 판 위에서는 옅은 틴트 배지가 묻히므로 반투명 흰색으로 반전한다 */
-  .capability .outcomes.is-dark .tag {
+  .skills .outcomes.is-dark .tag {
     background: color-mix(in srgb, var(--color-surface) 16%, transparent);
     color: var(--color-surface);
   }
 
   /* 카드는 유리 표면으로 띄운다 — 흰 단색이면 판이 뚫린 것처럼 보인다 */
-  .capability .outcomes.is-dark .metric-card {
+  .skills .outcomes.is-dark .metric-card {
     background: color-mix(in srgb, var(--color-surface) 8%, transparent);
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
   }
 
-  .capability .outcomes.is-dark .metric-card__value {
+  .skills .outcomes.is-dark .metric-card__value {
     color: var(--color-surface);
   }
 
-  .capability .outcomes.is-dark .metric-card__label {
+  .skills .outcomes.is-dark .metric-card__label {
     color: color-mix(in srgb, var(--color-surface) 76%, transparent);
   }
 
-  /* 도구 연결 브릿지 섹션은 배경을 따로 칠하지 않는다 — .capability wrapper가
+  /* 도구 연결 브릿지 섹션은 배경을 따로 칠하지 않는다 — .skills wrapper가
      이미 흰 면이고, 안쪽 summary-banner.dark가 어두운 판을 갖는다. 섹션 자체에
      규칙이 없어 클래스를 달지 않았다(SKILL 5번) — 안쪽 .bridge-* 만 정의한다. */
 
   /* 최하단 CTA — 공용 cta-final 배경을 우측 상단 구역으로 변경 */
-  .capability .cta-final::before {
+  .skills .cta-final::before {
     background-position: top right;
     background-size: 200%;
   }
@@ -1794,31 +1791,31 @@
   @media (prefers-reduced-motion: reduce) {
     /* 진입 애니메이션은 끈다. 질문 카드는 ul이 아니라 li가 애니메이션을
        갖는다(좌→우 시간차) — 여기서도 li를 지목해야 꺼진다. */
-    .capability .sub-hero-copy > *,
-    .capability .hero-questions > li { animation: none; }
+    .skills .sub-hero-copy > *,
+    .skills .hero-questions > li { animation: none; }
 
-    .capability .hero-questions > li,
-    .capability .hero-question-icon,
-    .capability .loop-icon,
-    .capability .product-grid .content-panel,
-    .capability .product-icon { transition-duration: 0.001ms; }
+    .skills .hero-questions > li,
+    .skills .hero-question-icon,
+    .skills .loop-icon,
+    .skills .product-grid .content-panel,
+    .skills .product-icon { transition-duration: 0.001ms; }
 
     /* 시간차 등장은 지연 없이 완성된 상태로 정지한다 */
-    .capability .fade-up .product-shot,
-    .capability .fade-up .loop > li,
-    .capability .fade-up .product-grid > li,
-    .capability .fade-up .product-points > li,
-    .capability .fade-up .analyze-grid > li,
-    .capability .fade-up .analyze-points > li {
+    .skills .fade-up .product-shot,
+    .skills .fade-up .loop > li,
+    .skills .fade-up .product-grid > li,
+    .skills .fade-up .product-points > li,
+    .skills .fade-up .analyze-grid > li,
+    .skills .fade-up .analyze-points > li {
       opacity: 1;
       transform: none;
     }
 
-    .capability .fade-up.is-visible .loop > li,
-    .capability .fade-up.is-visible .product-grid > li,
-    .capability .fade-up.is-visible .product-points > li,
-    .capability .fade-up.is-visible .analyze-grid > li,
-    .capability .fade-up.is-visible .analyze-points > li {
+    .skills .fade-up.is-visible .loop > li,
+    .skills .fade-up.is-visible .product-grid > li,
+    .skills .fade-up.is-visible .product-points > li,
+    .skills .fade-up.is-visible .analyze-grid > li,
+    .skills .fade-up.is-visible .analyze-points > li {
       transition: none;
       transition-delay: 0s;
     }

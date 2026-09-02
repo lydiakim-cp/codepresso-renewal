@@ -2,7 +2,7 @@
  * Difference Cycle
  * PART 3 목업의 3개 화면(정량적 관리 · 문화 정착 · 현장 검증)을 일정 주기로 교체한다.
  *
- * - 주기는 CSS 토큰 --duration-cycle이 단일 진실 소스다(difference.css에서 5s로 둔다).
+ * - 주기는 CSS 토큰 --duration-cycle이 단일 진실 소스다(why-codepresso.css에서 5s로 둔다).
  *   legend 진행바의 transition-duration도 같은 토큰을 읽으므로 둘이 어긋나지 않는다.
  * - 화면 전환은 .is-active 토글만 하고, 실제 교차 페이드는 CSS가 담당한다.
  * - legend 항목은 인디케이터를 겸한다 — 활성 항목만 진하게 두고 진행바가 차오른다.

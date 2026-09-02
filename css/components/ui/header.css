@@ -239,7 +239,7 @@
 }
 
 .nav-entry:hover {
-  background: var(--color-brand-tint-1);
+  background: var(--color-surface-sunken);
 }
 
 .nav-entry-icon {
@@ -311,7 +311,7 @@
 }
 
 .nav-news-item:hover {
-  background: var(--color-brand-tint-1);
+  background: var(--color-surface-sunken);
 }
 
 .nav-news-meta {

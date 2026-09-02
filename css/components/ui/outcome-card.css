@@ -1,6 +1,6 @@
 /*
  * outcome-card — 고객사 로고 판 + "이전 → 이후"(또는 성과 한 줄) 사례 카드.
- * stories.html(12장, ax-build 06 Real Outcomes와 같은 역할)과 skillcertify.html
+ * cases.html(12장, ax-build 06 Real Outcomes와 같은 역할)과 skillcertify.html
  * (3장 축소판)이 같은 마크업·같은 클래스 이름을 그대로 쓰고 있어 공용으로 승격했다.
  *
  * Markup API
@@ -27,10 +27,10 @@
  * 이 파일이 정하는 것 — 카드 껍데기 구조·테두리/hover 색, 그리드(3열 고정),
  * 로고 판(고정 높이 + object-fit: contain), 본문 골격·gap, 고객사/업종 텍스트
  * 색·굵기, 고객사 줄을 카드 바닥에 붙이는 레이아웃, outcome-headline/outcome-detail
- * 크기. stories·skillcertify 두 페이지가 이 값을 완전히 같게 쓰고 있어 전부
+ * 크기. cases·skillcertify 두 페이지가 이 값을 완전히 같게 쓰고 있어 전부
  * 공용으로 승격했다.
- * 이 파일이 정하지 않는 것 — 카드 12장을 auto-fill로 채우는 예외(stories만 덮음),
- * 서비스/업종 두 배지 줄(outcome-tags·tag-industry, stories 전용).
+ * 이 파일이 정하지 않는 것 — 카드 12장을 auto-fill로 채우는 예외(cases만 덮음),
+ * 서비스/업종 두 배지 줄(outcome-tags·tag-industry, cases 전용).
  */
 
 .outcome-list {

@@ -2,8 +2,8 @@
 
 이 문서는 [SKILL.md](SKILL.md)의 규범을 전제로, **"가격 페이지 만들어줘" 같은 새 서브페이지 요청을 실제로 처리하는 순서**를 다룬다. SKILL.md는 "무엇을 지켜야 하는가"를 다루고, 이 문서는 "어떤 순서로 어떤 파일을 만드는가"를 다룬다.
 
-> 지금 시점(2026-08) 기준 선례: `ax-build.html`(업무 자동화) · `capability.html`(역량
-> 진단·교육) · `difference.html`(차별점) · `stories.html`(고객 사례 목록) 네 서브페이지가
+> 지금 시점(2026-08) 기준 선례: `ax-build.html`(업무 자동화) · `skills.html`(역량
+> 진단·교육) · `why-codepresso.html`(차별점) · `cases.html`(고객 사례 목록) 네 서브페이지가
 > 이 절차로 만들어졌다. **새 페이지를 만들 때 이들을 먼저 열어 본다** — 섹션 골격·페이지 스코프·반응형·목업 재사용이 모두 여기 들어 있어,
 > 문서만 읽고 새로 설계하는 것보다 빠르고 어긋나지 않는다.
 
@@ -131,7 +131,7 @@ SKILL.md의 "페이지·섹션 구조 관례"를 그대로 따른다:
 - 페이지의 첫 화면(hero)에 해당하는 섹션에는 `fade-up`을 붙이지 않는다.
 - 좌우 2단 배치가 필요하면 `section-wrap row` (필요시 `is-sticky` 추가) — [SKILL.md](SKILL.md) "4번 항목" 및 `codepresso-designsystem.html`의 `#layout` 참고.
 - 이미 있는 컴포넌트를 먼저 찾는다. 아래 표와 [component-inventory.md](component-inventory.md)를 순서대로 확인한다 — 없는 것만 새로 만든다.
-- 여러 섹션을 구성할 때 가장 가까운 참고는 이미 만들어진 `ax-build.html`·`capability.html`이고, 그다음이 `index.html`의 각 섹션(`features`·`outcomes` 등)이다. 그 섹션들의 마크업 구조(섹션 → `.section-wrap` → `.section-title`/`.section-content`)를 그대로 본뜨고, 안의 콘텐츠 컴포넌트만 이 페이지 내용에 맞는 것으로 바꾼다.
+- 여러 섹션을 구성할 때 가장 가까운 참고는 이미 만들어진 `ax-build.html`·`skills.html`이고, 그다음이 `index.html`의 각 섹션(`features`·`outcomes` 등)이다. 그 섹션들의 마크업 구조(섹션 → `.section-wrap` → `.section-title`/`.section-content`)를 그대로 본뜨고, 안의 콘텐츠 컴포넌트만 이 페이지 내용에 맞는 것으로 바꾼다.
 
 ## 4. 스크립트 — 공용 vs 페이지 전용
 

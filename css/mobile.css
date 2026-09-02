@@ -137,7 +137,7 @@
   .diagnosis-preview-caption { height: auto; }
 }
 
-/* --- difference.css --- */
+/* --- why-codepresso.css --- */
 @media (max-width: 900px) {
   .difference-mock { padding: var(--space-24); }
 
@@ -216,55 +216,75 @@
 }
 
 
-/* --- pages/capability.css ---
+/* --- pages/ax-grow.css ---
+   1440 기준 3열 배치(01 cycle · 05 deliverable · 07 start-grid).
+   900px(2단 접힘) · 720px(카드 내부) · 560px(모바일) 3단으로 내린다. */
+@media (max-width: 900px) {
+  .ax-grow .deliverable-list { grid-template-columns: 1fr; }
+  .ax-grow .sub-hero .hero-wrap { padding-top: 120px; }
+
+  /* 01 How It Works — 3칸이 좁아지면 설명이 눌린다. 2번째 칸이 넘어가는
+     화살표가 줄 끝을 가리켜 방향이 틀리므로 감춘다(why-codepresso 03과 동일 판단). */
+  .ax-grow .cycle { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ax-grow .cycle > li:nth-child(2) .cycle-arrow { display: none; }
+
+  /* 06 Internal Capability — 3열이 좁아지면 근거 카드 설명이 세 줄로 깨진다 */
+  .ax-grow .capability-grid { grid-template-columns: 1fr; }
+
+  /* 07 Build vs Grow — 2열이 좁아지면 1열로 쌓는다 */
+  .ax-grow .start-grid { grid-template-columns: 1fr; }
+}
+
+
+/* --- pages/skills.css ---
    1440 기준 3~4열 배치. 900px(2단 접힘) · 720px(카드 내부) · 560px(모바일) 3단으로 내린다. */
 @media (max-width: 900px) {
-  .capability .sub-hero .hero-wrap { padding-top: 120px; }
+  .skills .sub-hero .hero-wrap { padding-top: 120px; }
 
   /* hero 질문 3개는 공용 --- hero.css --- 섹션(900px)이 처리한다.
      06 분석 2블록만 이 페이지 고유. */
-  .capability .analyze-grid { grid-template-columns: 1fr; }
+  .skills .analyze-grid { grid-template-columns: 1fr; }
 
   /* 01 Growth Loop — 4칸이 좁아지면 각 칸의 설명이 3줄로 늘어져 2x2로 접는다.
      Assess→Design / Learn→Prove 순서가 위→아래로 그대로 이어진다. */
-  .capability .loop { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .skills .loop { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   /* 2x2로 접히면 2번째 칸의 화살표는 줄 끝을 가리켜 방향이 틀린다 — 감춘다 */
-  .capability .loop > li:nth-child(2) .loop-arrow { display: none; }
+  .skills .loop > li:nth-child(2) .loop-arrow { display: none; }
 
   /* 03 Assess 제품 2개도 1열. 특징 3줄이 카드 폭에 눌리지 않게 한다 */
-  .capability .catalog .product-grid { grid-template-columns: 1fr; }
+  .skills .catalog .product-grid { grid-template-columns: 1fr; }
 
   /* 04 Learn — 좌측 sticky는 layout.css 900px 규칙이 이미 풀어 놓는다.
      보조 안내 판이 한 줄로 넓어지면 읽기 폭이 과해지므로 제한한다. */
-  .capability .learn-note { max-width: 480px; }
+  .skills .learn-note { max-width: 480px; }
 
   /* 제품 인덱스는 sticky가 풀리면 역할이 없어진다 — 고정돼 있지 않으니 "지금
      보는 제품"을 알려줄 수 없고, 바로 아래에 제품 3장이 그대로 쌓여 목록이
      두 번 나온다. 숨긴다(js/section-index.js는 요소가 없으면 아무것도 안 한다). */
-  .capability .learn-index { display: none; }
+  .skills .learn-index { display: none; }
 
   /* 06 대시보드·성과 보고 목업 — 카드가 1열로 넓어지므로 폭을 채운다.
      zoom 계산이 컨테이너 기준(cqw)이라 폭만 풀면 알아서 맞는다. */
-  .capability .analyze-mock-screen { width: 100%; }
+  .skills .analyze-mock-screen { width: 100%; }
 
   /* 05 Blended Design — activate 폭 전환(2:1:1)은 900px 이하에서 칸이 좁아
      목업 내부(막대·게이지)가 눌린다. loop와 같은 방식으로 세로로 접고
      항상 전부 펼쳐 둔다. 모바일은 hover가 없어 activate 전환을 보여줄 수 없고
      js/feature-card-cycle.js도 560px에서 전 카드에 is-active를 붙이고
      순환을 멈추므로, 그 결과와 맞춰 progress bar·폭 전환을 여기서 끈다. */
-  .capability .blend-cycle { flex-direction: column; }
+  .skills .blend-cycle { flex-direction: column; }
   /* flex-basis: 0(데스크톱 규칙)이 세로 방향에서는 height: 0으로 해석돼
      카드가 콘텐츠만큼 자라지 못하고 다음 카드와 겹친다 — auto로 되돌린다. */
-  .capability .blend-step { flex: 1 1 auto; }
-  .capability .blend-step .feature-card-progress { display: none; }
-  .capability .blend-step-desc { -webkit-line-clamp: unset; line-clamp: unset; }
+  .skills .blend-step { flex: 1 1 auto; }
+  .skills .blend-step .feature-card-progress { display: none; }
+  .skills .blend-step-desc { -webkit-line-clamp: unset; line-clamp: unset; }
 
   /* 세로로 쌓이면 3장이 전부 펼쳐진다(위 주석). 높이를 고정할 이유도
      사라진다 — 데스크톱의 260px 고정은 "activate 전환 때 아래 텍스트가
      밀리지 않게" 하려던 것인데, 여기선 전환 자체가 없다. zoom으로 줄어든
      목업의 실제 높이에 맞춰야 아래에 빈 공간이 남지 않는다. */
-  .capability .blend-mock {
+  .skills .blend-mock {
     height: auto;
     /* 3장이 전부 펼쳐지므로 데스크톱의 "비활성은 물러난다"(축소·탈채도) 처리도
        함께 되돌린다 — 활성 칸이 없는데 전부 흑백으로 남으면 안 된다. */
@@ -273,11 +293,11 @@
     transform: none;
   }
 
-  .capability .blend-mock .preview-frame { height: auto; }
+  .skills .blend-mock .preview-frame { height: auto; }
 }
 
 
-/* --- pages/difference.css ---
+/* --- pages/why-codepresso.css ---
    1440 기준 3~4열 배치. 900px(2단 접힘) · 720px(카드 내부) · 560px(모바일) 3단으로 내린다. */
 @media (max-width: 900px) {
   .difference-page .sub-hero .hero-wrap { padding-top: 120px; }
@@ -334,7 +354,7 @@
 
   /* 03 The Cycle — 4칸이 좁아지면 칸 설명이 3줄로 늘어져 2x2로 접는다.
      Data→Assess / Learn→Improve 순서가 위→아래로 그대로 이어진다
-     (capability .loop과 같은 판단). */
+     (skills .loop과 같은 판단). */
   .difference-page .cycle { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   /* 2x2로 접히면 2번째 칸의 화살표는 줄 끝을 가리켜 방향이 틀린다 — 감춘다 */
@@ -361,20 +381,20 @@
 
   /* 05 좌표 — 좁은 폭에서는 점 라벨이 서로 겹친다. 높이를 조금 낮춰 가로로
      눕혀 점 사이 수평 거리를 확보한다(높이는 페이지 CSS가 px로 준다 — 그 이유는
-     pages/difference.css의 .position-map 주석 참고). */
+     pages/why-codepresso.css의 .position-map 주석 참고). */
   .difference-page .position-map { height: 440px; }
 }
 
 
-/* --- pages/stories.css ---
+/* --- pages/cases.css ---
    1440 기준 hero 3열 + 사례 카드 3열. 900px(hero 여백) · 560px(1열·여백) 2단으로 내린다.
    카드 그리드는 auto-fill minmax(320px)라 열 수가 스스로 줄어 별도 규칙이 필요 없다. */
 @media (max-width: 900px) {
-  .stories .sub-hero .hero-wrap { padding-top: 120px; }
+  .cases .sub-hero .hero-wrap { padding-top: 120px; }
 
   /* 공통 순서 3단계 — 3칸이 좁아지면 칸 안 설명이 3줄로 늘어져 1열로 쌓는다.
      진단 → 전환 → 증명 순서가 위→아래로 그대로 이어진다(skillcertify .cycle과 같은 처리). */
-  .stories .cycle {
+  .cases .cycle {
     grid-template-columns: 1fr;
     width: 100%;
     max-width: 420px;
@@ -383,7 +403,7 @@
 
   /* 세로로 쌓이면 화살표도 아래를 가리켜야 한다 — 회전은 컨테이너가 아니라
      안쪽 svg에 준다. */
-  .stories .cycle-arrow {
+  .cases .cycle-arrow {
     top: auto;
     right: auto;
     bottom: -25px;
@@ -391,7 +411,7 @@
     margin: 0 0 0 -18px;
   }
 
-  .stories .cycle-arrow svg { transform: rotate(90deg); }
+  .cases .cycle-arrow svg { transform: rotate(90deg); }
 }
 
 
@@ -485,18 +505,18 @@
 }
 
 
-/* --- pages/capability.css --- */
+/* --- pages/skills.css --- */
 @media (max-width: 720px) {
   /* 제품 카드 안 아이콘 + 제품명이 한 줄에 안 들어가면 아이콘을 한 단계 줄인다 */
-  .capability .product-icon {
+  .skills .product-icon {
     width: var(--space-40);
     height: var(--space-40);
   }
 
-  .capability .product-icon svg { width: 22px; height: 22px; }
+  .skills .product-icon svg { width: 22px; height: 22px; }
 }
 
-/* --- pages/difference.css --- */
+/* --- pages/why-codepresso.css --- */
 @media (max-width: 720px) {
   /* 02 감싸는 판 — 판 여백을 한 단계 줄인다 */
   .difference-page .slide-card { padding: var(--space-24); }
@@ -857,10 +877,10 @@
   }
 }
 
-/* --- difference.css --- */
+/* --- why-codepresso.css --- */
 /* 900px(태블릿)까지는 목업을 zoom으로 축소하지만, 560px(순수 모바일)은
    목업·legend를 통째로 숨기고 정적 대체 뷰(.difference-mobile,
-   difference.css 정의)로 바꿔친다 — 접어도 카드 3장이 세로로 길어져
+   why-codepresso.css 정의)로 바꿔친다 — 접어도 카드 3장이 세로로 길어져
    읽기 어렵다(사용자 확인). */
 @media (max-width: 560px) {
   .difference-mock,
@@ -942,26 +962,63 @@
 }
 
 
-/* --- pages/capability.css --- */
+/* --- pages/ax-grow.css --- */
 @media (max-width: 560px) {
-  .capability .sub-hero .hero-wrap { padding-top: 88px; }
-  .capability .sub-hero-copy > * { --motion-rise: 6px; }
+  .ax-grow .sub-hero .hero-wrap { padding-top: 88px; }
+  .ax-grow .sub-hero-copy > * { --motion-rise: 6px; }
+
+  /* 01 How It Works — 2열도 좁아 1열로 내린다(카드가 세로로 이어지므로
+     칸 사이 화살표는 방향이 안 맞아 감춘다) */
+  .ax-grow .cycle {
+    grid-template-columns: 1fr;
+    gap: var(--space-20);
+  }
+
+  .ax-grow .cycle > li .cycle-arrow { display: none; }
+
+  .ax-grow .deliverable-list > li {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    padding: var(--space-20);
+  }
+
+  /* 04 Process — 아이콘 칸을 접고 기간 배지 아래로 본문을 흘린다 */
+  .ax-grow .process-steps > li {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    padding: var(--space-20);
+  }
+
+  /* 순번은 좁은 화면에서 기간 배지와 경쟁하므로 한 단계 줄인다 */
+  .ax-grow .step-no {
+    font-size: var(--text-heading-24);
+    line-height: var(--leading-heading-24);
+  }
+
+  .ax-grow .fluent-note { padding: var(--space-16); }
+}
+
+
+/* --- pages/skills.css --- */
+@media (max-width: 560px) {
+  .skills .sub-hero .hero-wrap { padding-top: 88px; }
+  .skills .sub-hero-copy > * { --motion-rise: 6px; }
 
   /* 유리 띠 여백 축소는 공용 --- hero.css --- 섹션(560px)이 처리한다. */
 
   /* 01 Growth Loop — 2x2도 좁아 1열로 내린다. 4칸이 세로로 이어지므로
      칸 사이 화살표를 아래를 가리키게 돌린다(ax-build .shift-arrow와 같은 처리:
      회전은 컨테이너가 아니라 안쪽 svg에 준다). */
-  .capability .loop {
+  .skills .loop {
     grid-template-columns: 1fr;
     gap: var(--space-24);
   }
 
-  .capability .loop > li { padding: var(--space-20); }
+  .skills .loop > li { padding: var(--space-20); }
 
-  .capability .loop > li:nth-child(2) .loop-arrow { display: inline-flex; }
+  .skills .loop > li:nth-child(2) .loop-arrow { display: inline-flex; }
 
-  .capability .loop-arrow {
+  .skills .loop-arrow {
     top: auto;
     right: auto;
     bottom: calc(var(--space-24) / -2);
@@ -969,17 +1026,17 @@
     margin: 0 0 0 -10px;
   }
 
-  .capability .loop-arrow svg { transform: rotate(90deg); }
+  .skills .loop-arrow svg { transform: rotate(90deg); }
 
-  .capability .learn-note { max-width: none; }
+  .skills .learn-note { max-width: none; }
 
   /* 도구 연결 브릿지 — 제목을 한 단계 낮추고, 좌우 배치를 세로로 쌓는다 */
-  .capability .bridge-title {
+  .skills .bridge-title {
     font-size: var(--text-heading-24);
     line-height: var(--leading-heading-24);
   }
 
-  .capability .bridge-inner {
+  .skills .bridge-inner {
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-20);
@@ -989,7 +1046,7 @@
 }
 
 
-/* --- pages/difference.css --- */
+/* --- pages/why-codepresso.css --- */
 @media (max-width: 560px) {
   .difference-page .sub-hero .hero-wrap { padding-top: 88px; }
   .difference-page .sub-hero-copy > * { --motion-rise: 6px; }
@@ -1007,7 +1064,7 @@
   .difference-page .slide-rail-label { white-space: normal; }
 
   /* 03 The Cycle — 2x2도 좁아 1열로 내린다. 4칸이 세로로 이어지므로 칸 사이
-     화살표를 아래를 가리키게 돌린다(capability .loop-arrow와 같은 처리:
+     화살표를 아래를 가리키게 돌린다(skills .loop-arrow와 같은 처리:
      회전은 컨테이너가 아니라 안쪽 svg에 준다). */
   .difference-page .cycle {
     grid-template-columns: 1fr;
@@ -1043,16 +1100,16 @@
 }
 
 
-/* --- pages/stories.css --- */
+/* --- pages/cases.css --- */
 @media (max-width: 560px) {
-  .stories .sub-hero .hero-wrap { padding-top: 88px; }
-  .stories .sub-hero-copy > * { --motion-rise: 6px; }
+  .cases .sub-hero .hero-wrap { padding-top: 88px; }
+  .cases .sub-hero-copy > * { --motion-rise: 6px; }
 
   /* hero-facts 여백 축소는 공용 --- hero.css --- 섹션(560px)이 처리한다. */
 
   /* 필터 줄 — 캡슐이 가로 스크롤(part-nav.css 560px 규칙)로 바뀌면 우측 건수가
      같은 줄에서 캡슐 폭을 빼앗는다. 건수를 아래 줄로 내린다. */
-  .stories .case-filter {
+  .cases .case-filter {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-12);
@@ -1060,12 +1117,12 @@
 
   /* 320px에서도 카드가 컨테이너를 넘지 않게 minmax 하한을 푼다
      (auto-fill minmax(320px)는 좁은 화면에서 그리드가 넘친다) */
-  .stories .outcome-list { grid-template-columns: 1fr; }
+  .cases .outcome-list { grid-template-columns: 1fr; }
 
   /* 좌우 28px 여백은 모바일에서 고객사 이름을 두 줄로 끊는다 */
-  .stories .outcome-list > li { padding: var(--space-20); }
+  .cases .outcome-list > li { padding: var(--space-20); }
 
-  .stories .cycle > li { padding: var(--space-20); }
+  .cases .cycle > li { padding: var(--space-20); }
 }
 
 

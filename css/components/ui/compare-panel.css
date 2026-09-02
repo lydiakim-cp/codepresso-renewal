@@ -35,7 +35,7 @@
 /* After 판만 브랜드 톤으로 올려 시선이 오른쪽에 머물게 한다. */
 .compare-panel__item.is-after {
   border-color: var(--color-brand-tint-2);
-  background: var(--color-brand-tint-1);
+  background: var(--color-surface-sunken);
   box-shadow: var(--shadow-sm);
 }
 

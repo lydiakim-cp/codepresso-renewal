@@ -9,7 +9,7 @@
  * - 자동 순환하지 않는다. 사용자가 보고 싶은 갈래를 직접 고르는 화면이라,
  *   읽는 중에 목록이 바뀌면 방해가 된다(catalog-board.js와 같은 판단).
  * - 걸러진 뒤 남은 카드는 순차 지연으로 다시 떠오른다. 지연값은 CSS가
- *   --case-index로 받아 쓴다(모션 자체는 stories.css 소유).
+ *   --case-index로 받아 쓴다(모션 자체는 cases.css 소유).
  */
 (() => {
   const roots = document.querySelectorAll('[data-case-filter]');

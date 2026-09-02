@@ -1,6 +1,6 @@
 /*
  * Component: Cycle
- * N단계 순서/순환 + 칸 사이 화살표. difference.html "03 The Cycle"(4단계 순환)에서
+ * N단계 순서/순환 + 칸 사이 화살표. why-codepresso.html "03 The Cycle"(4단계 순환)에서
  * 처음 만들었고, skillcertify.html "05 2주 PoC"(5단계 선형 진행)도 같은 구조를
  * 필요로 해 공용으로 승격했다(component-inventory.md에 "두 페이지가 함께 쓰게
  * 되면 공용 승격 후보"로 이미 적혀 있던 지점).
@@ -23,6 +23,10 @@
  * 열 수(4칸/5칸)는 사용 페이지가 --cycle-columns로 지정한다(기본 4).
  * 순환 여부(마지막 화살표 유무, is-return 색) · fade-up stagger delay는
  * 사용 페이지 스코프가 값만 얹는다.
+ *
+ * 컬러 테마 — <li class="blue">·<li class="dark">를 칸 단위로 얹는다(무클래스 = 기본
+ * 흰 카드). 여러 칸에 같은 배경으로 묶어 보여주고 싶을 때 쓴다. is-return과는 별개 —
+ * 한 칸에 함께 쓰지 않는다.
  */
 .cycle {
   display: grid;
@@ -127,6 +131,40 @@
   color: var(--color-ink-light);
   font-size: var(--text-body-14);
   line-height: var(--leading-body-14);
+}
+
+/*
+ * 컬러 테마 — 칸(li) 단위 modifier. 무클래스 = 기본값(흰 카드 + 하늘색 번호).
+ * "카드 배경"과 "번호 배지"가 한 단계씩 진해지는 순서로 맞춘다.
+ *   (무클래스) 흰 카드   + 하늘색(브랜드 틴트) 번호
+ *   .blue     하늘색 카드 + 브랜드 파랑 번호
+ *   .dark     잉크 카드   + 흰 번호
+ * is-return(순환 결론 칸의 유리 표면)과는 별개 — 같은 칸에 함께 쓰지 않는다.
+ */
+.cycle > li.blue {
+  background: var(--color-brand-tint-2);
+}
+
+.cycle > li.blue .cycle-no {
+  background: var(--color-brand);
+  color: var(--color-surface);
+}
+
+.cycle > li.dark {
+  background: var(--color-surface-deep);
+}
+
+.cycle > li.dark h3 {
+  color: var(--color-ink);
+}
+
+.cycle > li.dark .cycle-desc {
+  color: var(--color-ink-light);
+}
+
+.cycle > li.dark .cycle-no {
+  background: var(--color-surface);
+  color: var(--color-ink);
 }
 
 /*

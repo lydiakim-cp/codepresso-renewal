@@ -104,7 +104,7 @@
 .statement.is-ink::after {
   background: radial-gradient(70% 120% at 50% 50%,
       transparent 0%,
-      color-mix(in srgb, var(--color-bg-dark) 60%, transparent) 100%);
+      color-mix(in srgb, var(--color-ink-heaviest) 60%, transparent) 100%);
 }
 
 /* 560px 반응형은 css/mobile.css에 모아 둔다. */

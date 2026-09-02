@@ -94,7 +94,7 @@ console.log(s.getBoundingClientRect().width, window.innerWidth); // 두 값이 �
 | 페이지 | 목업 연출 수 |
 |---|---|
 | index.html | 5 (stage 3 · detail 1 · ticker 1) |
-| capability.html | 7 (ticker 5 · detail 2) |
+| skills.html | 7 (ticker 5 · detail 2) |
 | ax-build.html | 1 (stage 1) |
 
 - **제품 화면을 보여주는 페이지에 `data-mock-motion`이 0개면 검토 대상이다.**

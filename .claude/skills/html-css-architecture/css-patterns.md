@@ -186,7 +186,7 @@ transition: opacity var(--duration-scroll) var(--ease-scroll),
 >
 > 즉 **`surface-sunken`과 `brand-tint-1`은 같은 색이고**, 흰색과의 차이도 6%뿐이다.
 > 이 둘로 "옅은 면 / 강조 면"을 나누려 하면 화면이 통째로 허여멀건해진다
-> (capability.html에서 실제로 그렇게 만들었다가 지적받았다 — 사용자: "너무 허여멀건한
+> (skills.html에서 실제로 그렇게 만들었다가 지적받았다 — 사용자: "너무 허여멀건한
 > 배경 및 색상으로 위계·격차가 없고 단조로워 보임").
 
 ```css
@@ -205,7 +205,7 @@ transition: opacity var(--duration-scroll) var(--ease-scroll),
 - **카드가 흰색이면 바탕에 색을 깔아야** 카드가 떠 보인다. 반대로 **카드가 `sunken`이면 바탕은 흰색**이어야 대비가 산다 — 카드와 배경이 같은 색이 되지 않게 항상 확인한다.
 - 목업·대시보드처럼 **그림자로 떠 있어야 하는 것은 흰 바탕**에 둔다.
 - **가장 강조할 한 구간은 어두운 판(`--color-ink-heaviest`)으로 올린다.**
-  `brand-tint-1`로는 흰 면과 구분되지 않는다(위 표). ax-build 06·capability 07이
+  `brand-tint-1`로는 흰 면과 구분되지 않는다(위 표). ax-build 06·skills 07이
   이 방식이고, 배경 질감 + 유리 카드를 함께 얹는다.
 - 어두운 판은 **페이지에 두 곳까지**다. 최하단 `cta-final`이 이미 어두우므로
   강조 구간을 어둡게 하면 **그 사이에 흰 면 섹션을 하나 두어** 페이지가 두 번

@@ -48,7 +48,7 @@
     color var(--duration-hover) var(--ease-hover);
 }
 
-.catalog-board__category:hover { background: var(--color-brand-tint-1); }
+.catalog-board__category:hover { background: var(--color-surface-sunken); }
 
 .catalog-board__category.is-active {
   background: var(--color-surface);
@@ -149,7 +149,7 @@
 
 .catalog-board__items > li:hover {
   border-color: var(--color-brand-tint-2);
-  background: var(--color-brand-tint-1);
+  background: var(--color-surface-sunken);
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
 }
