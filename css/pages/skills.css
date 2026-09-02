@@ -111,13 +111,14 @@
     gap: var(--space-10);
   }
 
+  /* 박스는 안쪽 글리프와 짝을 맞춘다 — icon-sm(20px)에는 --icon-box-sm(32px) */
   .skills .loop-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--icon-box);
-    height: var(--icon-box);
-    border-radius: var(--radius-md);
+    width: var(--icon-box-sm);
+    height: var(--icon-box-sm);
+    border-radius: var(--radius-sm);
     background: var(--color-surface-sunken);
     color: var(--color-brand);
     flex: none;

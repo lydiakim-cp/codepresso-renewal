@@ -52,6 +52,13 @@ background: color-mix(in srgb, var(--color-brand-dark) 70%, var(--color-ink-heav
 - **배경·radius를 가진 아이콘 박스는 다른 개념이다** — 박스는
   `--icon-box`(48px) / `--icon-box-sm`(32px)이고, 클래스는 박스가 아니라
   **안쪽 그림**에 붙인다.
+- **박스와 글리프는 짝으로 움직인다.** 글리프만 줄이면 박스 안 여백만 커져
+  톤이 어긋난다.
+
+  | 글리프 | 박스 | radius |
+  |---|---|---|
+  | `.icon-sm` 20px | `--icon-box-sm` 32px | `--radius-sm` |
+  | `.icon-md` 24px | `--icon-box` 48px | `--radius-md` |
 
 ```html
 <span class="step-icon" aria-hidden="true"><svg class="icon-md" …></span>
