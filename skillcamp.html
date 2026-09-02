@@ -237,30 +237,41 @@
       </div>
     </section>
 
-    <!-- 02 운영 포맷 — 기간이 길어지는 순서로 3장. 골격은 공용 start-card. -->
+    <!-- 02 운영 포맷 — 기간이 길어지는 순서로 3장. 골격은 공용 start-card,
+         기간을 metric-card__value로 올려 카드의 시선 첫머리를 숫자가 잡게 했다. -->
     <section class="features-format fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
           <p class="tag">02 · 운영 포맷</p>
           <h2>하루 특강부터 수주 부트캠프까지</h2>
+          <p class="desc">목표가 인식 전환이면 특강을, 실무 역량 확보면 집합 과정 이상을 권합니다.</p>
         </div>
         <div class="section-content">
           <ul class="start-grid">
             <li>
               <div class="content-panel start-card">
-                <span class="start-icon" aria-hidden="true">
-                  <!-- 특강 — ic_calendar.svg 기반 -->
-                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"/>
-                    <path d="M16.5 3H15.5C15.2239 3 15 3.22386 15 3.5V5.5C15 5.77614 15.2239 6 15.5 6H16.5C16.7761 6 17 5.77614 17 5.5V3.5C17 3.22386 16.7761 3 16.5 3Z" fill="var(--color-brand)"/>
-                    <path d="M2.5 9H21.5V10.5H2.5V9Z" fill="var(--color-brand)"/>
-                  </svg>
-                </span>
+                <div class="format-head">
+                  <span class="start-icon" aria-hidden="true">
+                    <!-- 특강 — ic_calendar.svg 기반 -->
+                    <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                      <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"/>
+                      <path d="M16.5 3H15.5C15.2239 3 15 3.22386 15 3.5V5.5C15 5.77614 15.2239 6 15.5 6H16.5C16.7761 6 17 5.77614 17 5.5V3.5C17 3.22386 16.7761 3 16.5 3Z" fill="var(--color-brand)"/>
+                      <path d="M2.5 9H21.5V10.5H2.5V9Z" fill="var(--color-brand)"/>
+                    </svg>
+                  </span>
+                  <p class="metric-card__value"><span>1~2</span><span class="unit">일</span></p>
+                </div>
                 <div class="content-panel__intro">
-                  <p class="text-label">1~2일</p>
                   <h3>특강</h3>
                   <p class="start-desc">인식 전환과 빠른 스킬업.</p>
+                </div>
+                <div class="format-when">
+                  <p class="text-label">이럴 때 고릅니다</p>
+                  <p>구성원의 인식을 먼저 바꿔야 할 때</p>
+                </div>
+                <div class="format-courses">
+                  <p class="text-label">대표 과정</p>
                   <ul class="course-list">
                     <li class="pill">비개발 직군 AI 활용 특강</li>
                   </ul>
@@ -269,21 +280,30 @@
             </li>
             <li>
               <div class="content-panel start-card">
-                <span class="start-icon" aria-hidden="true">
-                  <!-- 집합 과정 — ic_team.svg 기반 -->
-                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)"/>
-                    <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"/>
-                  </svg>
-                </span>
+                <div class="format-head">
+                  <span class="start-icon" aria-hidden="true">
+                    <!-- 집합 과정 — ic_team.svg 기반 -->
+                    <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                      <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                      <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                      <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                      <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)"/>
+                      <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"/>
+                    </svg>
+                  </span>
+                  <p class="metric-card__value"><span>1~2</span><span class="unit">주</span></p>
+                </div>
                 <div class="content-panel__intro">
-                  <p class="text-label">1~2주</p>
                   <h3>집합 과정</h3>
                   <p class="start-desc">직무 단위 심화 과정.</p>
+                </div>
+                <div class="format-when">
+                  <p class="text-label">이럴 때 고릅니다</p>
+                  <p>직무에서 바로 쓸 실무 역량이 필요할 때</p>
+                </div>
+                <div class="format-courses">
+                  <p class="text-label">대표 과정</p>
                   <ul class="course-list">
                     <li class="pill">Python 프로그래밍</li>
                     <li class="pill">Excel 데이터 분석</li>
@@ -293,17 +313,26 @@
             </li>
             <li>
               <div class="content-panel start-card">
-                <span class="start-icon" aria-hidden="true">
-                  <!-- 부트캠프 — ic_shield.svg 기반(선발·검증) -->
-                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21.5 5L12 1L2.5 5V9C2.49 12.02 3.39 14.97 5.09 17.47C6.78 19.96 9.19 21.89 12 23C14.81 21.89 17.22 19.96 18.91 17.47C20.61 14.97 21.51 12.02 21.5 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.41 11.52L15.24 7.7L17 9.47L11.33 15.13L7.7 11.18L9.54 9.49L11.41 11.52Z" fill="var(--color-brand)"/>
-                  </svg>
-                </span>
+                <div class="format-head">
+                  <span class="start-icon" aria-hidden="true">
+                    <!-- 부트캠프 — ic_shield.svg 기반(선발·검증) -->
+                    <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21.5 5L12 1L2.5 5V9C2.49 12.02 3.39 14.97 5.09 17.47C6.78 19.96 9.19 21.89 12 23C14.81 21.89 17.22 19.96 18.91 17.47C20.61 14.97 21.51 12.02 21.5 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.41 11.52L15.24 7.7L17 9.47L11.33 15.13L7.7 11.18L9.54 9.49L11.41 11.52Z" fill="var(--color-brand)"/>
+                    </svg>
+                  </span>
+                  <p class="metric-card__value"><span>수주</span></p>
+                </div>
                 <div class="content-panel__intro">
-                  <p class="text-label">수주</p>
                   <h3>부트캠프</h3>
                   <p class="start-desc">선발형 몰입 과정.</p>
+                </div>
+                <div class="format-when">
+                  <p class="text-label">이럴 때 고릅니다</p>
+                  <p>핵심 인력을 선발해 길러야 할 때</p>
+                </div>
+                <div class="format-courses">
+                  <p class="text-label">대표 과정</p>
                   <ul class="course-list">
                     <li class="pill">AI Agent Engineer</li>
                     <li class="pill">모비우스 SW 부트캠프</li>
@@ -609,13 +638,13 @@
       </div>
     </section>
 
-    <!-- 이 페이지의 단 하나뿐인 전체 폭 강조 띠 — 진단으로 시작해 재진단으로 끝난다. -->
-    <section class="statement fade-up">
+    <!-- 진단 → 교육 → 재진단 다리. 섹션이 아니라 사이에 낀 배너다(전체 폭 강조 띠를 쓰지 않는다). -->
+    <section class="fade-up bridge">
       <div class="section-wrap col">
-        <div class="statement-inner">
-          <p class="statement-eyebrow">Assess → Learn → Assess</p>
-          <h2 class="statement-title">교육이 끝나면,<br><strong>변화를 숫자로 확인하세요</strong></h2>
-          <p class="statement-desc">코드프레소의 교육은 진단으로 시작해 재진단으로 끝납니다. 이수율이 아니라 역량 변화를 리포트로 보고합니다.</p>
+        <div class="summary-banner dark">
+          <p class="text-label brand">Assess → Learn → Assess</p>
+          <p class="bridge-title">교육이 끝나면, <strong class="brand">변화를 숫자로</strong> 확인하세요</p>
+          <p class="bridge-desc">코드프레소의 교육은 진단으로 시작해 재진단으로 끝납니다. 이수율이 아니라 역량 변화를 리포트로 보고합니다.</p>
           <div class="hero-actions">
             <a class="btn btn-outline-inverse" href="skills.html">
               AI Fluent로 효과 검증

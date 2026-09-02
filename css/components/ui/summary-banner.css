@@ -17,6 +17,8 @@
   color: var(--color-surface);
 }
 
+/* 어두운 판 위에서는 브랜드색을 그대로 쓰면 대비가 모자라 밝은 쪽으로 섞는다. */
+.summary-banner.dark .text-label.brand,
 .summary-banner.dark strong.brand {
   color: color-mix(in srgb, var(--color-brand) 70%, white);
 }

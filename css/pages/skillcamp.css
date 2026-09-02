@@ -4,12 +4,11 @@
  */
 
 @layer components {
-  /* 섹션 배경 리듬 — 옅은 면(01) → 흰 면(02) → sunken(과정 목록) → 어두운 판(03). */
+  /* 섹션 배경 리듬 — tint(01) → sunken(02) → 흰 면 위 sunken 판(과정) → 어두운 판(03). */
   .skillcamp .features {
     background: var(--color-brand-tint-2);
   }
 
-  /* 02는 옅은 면, 대표 과정은 흰 면 위 sunken 판 — 같은 면이 연달아 오지 않게 벌린다. */
   .skillcamp .features-format {
     background: var(--color-surface-sunken);
   }
@@ -19,9 +18,52 @@
     --start-columns: 3;
   }
 
-  /* 대표 AI 과정 — 한 칸에 두 줄씩(공용 기본값 4열은 전체 폭 판을 전제한다). */
+  /* start-card는 면이 없는 골격이라 sunken 섹션 위에서 카드가 사라진다 — 흰 면과 선을 준다. */
+  .skillcamp .features-format .start-card {
+    gap: var(--space-20);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+  }
+
+  /* 카드 첫 줄 — 아이콘과 기간을 한 줄에 놓아 숫자가 시선을 먼저 잡는다. */
+  .skillcamp .format-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-12);
+  }
+
+  .skillcamp .format-head .metric-card__value {
+    color: var(--color-brand-dark);
+  }
+
+  /* 선택 기준·대표 과정 — 같은 라벨 + 내용 2단이라 한 규칙으로 묶는다. */
+  .skillcamp .format-when,
+  .skillcamp .format-courses {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .skillcamp .format-when {
+    padding-top: var(--space-20);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .skillcamp .format-courses {
+    margin-top: auto;
+  }
+
+  /* 대표 AI 과정 — 직군 두 묶음을 위아래로 쌓는다(좌우로 놓으면 타일이 눌린다). */
   .skillcamp .service-catalog {
-    --service-catalog-columns: 2;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    gap: var(--space-32);
+  }
+
+  .skillcamp .service-catalog__fixed {
+    grid-row: auto;
+    grid-template-rows: none;
   }
 
   /* 02 카드 안 대표 과정 — pill을 줄바꿈으로 흘린다. pill이 자체 margin으로 간격을 갖는다. */
@@ -104,8 +146,34 @@
     margin-top: var(--space-12);
   }
 
-  /* 강조 띠 위 CTA 두 개 — hero-actions의 flex 배치를 그대로 쓴다. */
-  .skillcamp .statement-inner .hero-actions {
+  /* 진단 연계 배너 — 섹션이 아니라 사이에 낀 판이라 위아래 여백을 줄인다. */
+  .skillcamp .bridge {
+    padding-block: var(--space-32);
+  }
+
+  .skillcamp .bridge .summary-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-12);
+  }
+
+  .skillcamp .bridge-title {
+    font-size: var(--text-heading-32);
+    line-height: var(--leading-heading-32);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-surface);
+  }
+
+  .skillcamp .bridge-desc {
+    max-width: 640px;
+    font-size: var(--text-body-16);
+    line-height: var(--leading-body-16);
+    color: color-mix(in srgb, var(--color-surface) 78%, transparent);
+  }
+
+  /* 배너 위 CTA 두 개 — hero-actions의 flex 배치를 그대로 쓴다. */
+  .skillcamp .bridge .hero-actions {
     justify-content: center;
   }
 
