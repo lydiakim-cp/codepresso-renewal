@@ -73,7 +73,11 @@
   color: var(--color-ink-light);
 }
 
+/* 버튼이 둘 이상일 수 있어 flex로 눕힌다(중앙 정렬은 hero-copy가 이미 정한다). */
 .hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
   margin-top: var(--space-12);
 }
 

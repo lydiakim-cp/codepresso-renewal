@@ -1,0 +1,36 @@
+/* start-card — content-panel을 "여기서 시작하세요" 갈래 카드로 배치하는 골격.
+   면(배경)·열 수는 쓰는 페이지가 정한다 — 열 수는 --start-columns(기본 2). */
+
+.start-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--start-columns, 2), minmax(0, 1fr));
+  gap: var(--space-24);
+}
+
+.start-card {
+  height: 100%;
+  border: 0;
+}
+
+.start-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-box);
+  height: var(--icon-box);
+  border-radius: var(--radius-md);
+}
+
+.start-icon svg {
+  display: block;
+}
+
+.start-desc {
+  color: var(--color-ink-light);
+}
+
+/* 카드 높이가 달라도 버튼 밑선은 맞춘다 */
+.start-card .btn {
+  align-self: flex-start;
+  margin-top: auto;
+}

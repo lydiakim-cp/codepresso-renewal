@@ -706,25 +706,8 @@
   }
 
   /* 06 Start Anywhere — 두 갈래 시작점 */
-  .difference-page .start-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-24);
-  }
-
   .difference-page .start-card {
-    height: 100%;
-    border: 0;
     background: var(--color-brand-tint-2);
-  }
-
-  .difference-page .start-desc {
-    color: var(--color-ink-light);
-  }
-
-  .difference-page .start-card .btn {
-    align-self: flex-start;
-    margin-top: auto;
   }
 
   .difference-page .start-note {
