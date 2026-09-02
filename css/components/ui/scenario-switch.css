@@ -1,0 +1,55 @@
+/* Component: Scenario Switch
+   좌측 단계 목록을 읽어 내려가면 우측 목업이 그 단계 화면으로 바뀐다(js/scenario-switch.js). */
+
+.scenario-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+  align-items: center;
+  gap: var(--space-48);
+}
+
+.scenario {
+  min-width: 0;
+}
+
+.scenario-stage {
+  color: var(--color-brand);
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-body-normal);
+}
+
+.scenario > li.is-active .timeline__title {
+  color: var(--color-brand-dark);
+}
+
+/* 목업 판은 같은 칸에 겹쳐 두고 활성인 것만 보인다 — 전환할 때 높이가 튀지 않는다. */
+.scenario-screens {
+  display: grid;
+  min-width: 0;
+}
+
+.scenario-screens > .scenario-mock {
+  grid-area: 1 / 1;
+  min-width: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity var(--duration-scroll) var(--ease-scroll),
+    transform var(--duration-scroll) var(--ease-scroll),
+    visibility var(--duration-scroll) var(--ease-scroll);
+}
+
+.scenario-screens > .scenario-mock.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scenario-screens > .scenario-mock {
+    transform: none;
+    transition: none;
+  }
+}

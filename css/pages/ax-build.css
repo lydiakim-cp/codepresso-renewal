@@ -281,67 +281,14 @@
     line-height: 15px;
   }
 
+  /* 다크 판 위 카탈로그 — 골격은 공용 service-catalog, 여기선 면·글자색만 뒤집는다. */
   .ax-build .service-catalog {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-28);
-
-    grid-template-rows: auto auto minmax(0, 1fr);
-    align-items: start;
-    padding: var(--space-28);
-    border-radius: var(--radius-lg);
     background: var(--color-axpresso-bg-4);
-  }
-
-  .ax-build .service-catalog__label {
-    display: inline-block;
-    align-self: start;
-    justify-self: start;
-    padding: var(--space-6) var(--space-12);
-    border-radius: var(--radius-full);
-    background: var(--color-brand);
-    color: var(--color-surface);
-    font-size: var(--text-body-14);
-    line-height: var(--leading-body-14);
-    font-weight: var(--font-weight-semibold);
   }
 
   .ax-build .service-catalog__label--alt {
     background: var(--color-axpresso-box);
     color: var(--color-axpresso-ink);
-  }
-
-  .ax-build .service-catalog__fixed,
-  .ax-build .service-catalog__tabbed {
-    display: grid;
-    grid-row: 1 / 4;
-    grid-template-rows: subgrid;
-    gap: var(--space-16);
-    min-width: 0;
-  }
-
-  .ax-build .service-catalog__fixed .catalog-board__items {
-    grid-row: 3;
-  }
-
-  .ax-build .service-catalog .catalog-board {
-    display: grid;
-    grid-row: 2 / 4;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: subgrid;
-    gap: var(--space-16);
-    min-height: 0;
-  }
-
-  .ax-build .service-catalog .catalog-board__rail {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    align-content: end;
-    gap: var(--space-8);
-    padding: 0;
-    border-right: 0;
-    background: none;
   }
 
   .ax-build .service-catalog .catalog-board__category {
@@ -372,49 +319,9 @@
     color: var(--color-axpresso-ink);
   }
 
-  .ax-build .service-catalog .catalog-board__main {
-    flex: 1;
-    min-height: 292px;
-    padding: 0;
-  }
-
-  .ax-build .service-catalog .catalog-board__panel {
-    inset: 0;
-    gap: 0;
-  }
-
-  .ax-build .service-catalog .catalog-board__items {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--space-10);
-  }
-
   .ax-build .service-catalog .catalog-board__items > li {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-10);
-    padding: var(--space-16) var(--space-8);
-    min-height: 112px;
-    border-color: transparent;
     background: var(--color-axpresso-box-tint);
     color: var(--color-axpresso-ink);
-    text-align: center;
-    word-break: keep-all;
-  }
-
-  .ax-build .service-catalog .catalog-board__items > li::before {
-    content: none;
-  }
-
-  .ax-build .workflow-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: none;
-  }
-
-  .ax-build .workflow-icon svg {
-    display: block;
   }
 
   .ax-build .catalog-note {

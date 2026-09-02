@@ -1,0 +1,125 @@
+/* Component: Service Catalog
+   한 판 안에 분류 묶음 둘을 나란히 놓는 카탈로그 골격 — 라벨 + catalog-board__items 타일. */
+
+.service-catalog {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-28);
+
+  grid-template-rows: auto auto minmax(0, 1fr);
+  align-items: start;
+  padding: var(--space-28);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-sunken);
+}
+
+.service-catalog__label {
+  display: inline-block;
+  align-self: start;
+  justify-self: start;
+  padding: var(--space-6) var(--space-12);
+  border-radius: var(--radius-full);
+  background: var(--color-brand);
+  color: var(--color-surface);
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* 두 번째 묶음의 라벨 — 첫 묶음보다 한 단 내린다. */
+.service-catalog__label--alt {
+  background: var(--color-brand-tint-2);
+  color: var(--color-brand-dark);
+}
+
+/* 두 칸이 subgrid로 라벨·목록 줄을 맞춘다 — 항목 수가 달라도 윗선이 어긋나지 않는다. */
+.service-catalog__fixed,
+.service-catalog__tabbed {
+  display: grid;
+  grid-row: 1 / 4;
+  grid-template-rows: subgrid;
+  gap: var(--space-16);
+  min-width: 0;
+}
+
+.service-catalog__fixed .catalog-board__items {
+  grid-row: 3;
+}
+
+.service-catalog__note {
+  grid-column: 1 / -1;
+  color: var(--color-ink-lighter);
+  font-size: var(--text-body-14);
+  line-height: var(--leading-body-14);
+}
+
+/* 탭이 붙는 묶음 — 레일을 위쪽 가로 탭으로 눕힌다. */
+.service-catalog .catalog-board {
+  display: grid;
+  grid-row: 2 / 4;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: subgrid;
+  gap: var(--space-16);
+  min-height: 0;
+}
+
+.service-catalog .catalog-board__rail {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  align-content: end;
+  gap: var(--space-8);
+  padding: 0;
+  border-right: 0;
+  background: none;
+}
+
+.service-catalog .catalog-board__category {
+  padding: var(--space-10) var(--space-16);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.service-catalog .catalog-board__main {
+  flex: 1;
+  min-height: 292px;
+  padding: 0;
+}
+
+.service-catalog .catalog-board__panel {
+  inset: 0;
+  gap: 0;
+}
+
+/* 항목은 아이콘을 위에 둔 정사각 타일로 눕힌다(가로 행이 아니라 격자). */
+.service-catalog .catalog-board__items {
+  grid-template-columns: repeat(var(--service-catalog-columns, 4), minmax(0, 1fr));
+  gap: var(--space-10);
+}
+
+.service-catalog .catalog-board__items > li {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-10);
+  padding: var(--space-16) var(--space-8);
+  min-height: 112px;
+  border-color: transparent;
+  background: var(--color-surface);
+  text-align: center;
+  word-break: keep-all;
+}
+
+.service-catalog .catalog-board__items > li::before {
+  content: none;
+}
+
+.service-catalog .workflow-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.service-catalog .workflow-icon svg {
+  display: block;
+}

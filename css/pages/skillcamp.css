@@ -9,7 +9,8 @@
     background: var(--color-brand-tint-2);
   }
 
-  .skillcamp .catalog {
+  /* 02는 옅은 면, 대표 과정은 흰 면 위 sunken 판 — 같은 면이 연달아 오지 않게 벌린다. */
+  .skillcamp .features-format {
     background: var(--color-surface-sunken);
   }
 
@@ -18,7 +19,12 @@
     --start-columns: 3;
   }
 
-  /* 과정 목록 — pill을 줄바꿈으로 흘린다. pill이 자체 margin으로 간격을 갖는다. */
+  /* 대표 AI 과정 — 한 칸에 두 줄씩(공용 기본값 4열은 전체 폭 판을 전제한다). */
+  .skillcamp .service-catalog {
+    --service-catalog-columns: 2;
+  }
+
+  /* 02 카드 안 대표 과정 — pill을 줄바꿈으로 흘린다. pill이 자체 margin으로 간격을 갖는다. */
   .skillcamp .course-list {
     display: flex;
     flex-wrap: wrap;

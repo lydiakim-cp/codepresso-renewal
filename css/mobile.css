@@ -33,6 +33,17 @@
     border-top: 1px solid var(--color-line-heavy);
   }
 
+  .scenario-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-35);
+  }
+
+  .scenario-screens {
+    max-width: 480px;
+    margin-inline: auto;
+    width: 100%;
+  }
+
   .catalog-board { grid-template-columns: 1fr; min-height: 0; }
   .catalog-board__rail {
     flex-direction: row;
@@ -45,18 +56,19 @@
   .catalog-board__panel { position: static; inset: auto; display: none; }
   .catalog-board__panel.is-active { display: flex; }
 
-  .ax-build .service-catalog {
+  /* 두 묶음을 위아래로 — subgrid로 맞추던 줄맞춤이 필요 없어진다 */
+  .service-catalog {
     grid-template-columns: 1fr;
     grid-template-rows: none;
   }
-  .ax-build .service-catalog__fixed,
-  .ax-build .service-catalog__tabbed {
+  .service-catalog__fixed,
+  .service-catalog__tabbed {
     grid-row: auto;
     grid-template-rows: none;
   }
 
-  .ax-build .service-catalog .catalog-board__main { min-height: 0; }
-  .ax-build .service-catalog .catalog-board__rail {
+  .service-catalog .catalog-board__main { min-height: 0; }
+  .service-catalog .catalog-board__rail {
     flex-wrap: nowrap;
     border-bottom: 0;
   }
@@ -212,17 +224,6 @@
 
   .difference-page .problem-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-  .difference-page .scenario-layout {
-    grid-template-columns: 1fr;
-    gap: var(--space-35);
-  }
-
-  .difference-page .scenario-screens {
-    max-width: 480px;
-    margin-inline: auto;
-    width: 100%;
-  }
-
   .difference-page .position-map { height: 440px; }
 
   .cases .sub-hero .hero-wrap { padding-top: 120px; }
@@ -245,7 +246,6 @@
   .cases .cycle-arrow svg { transform: rotate(90deg); }
 
   .skillcamp .features-format .start-grid { --start-columns: 1; }
-  .skillcamp .catalog .start-grid { --start-columns: 1; }
   .skillcamp .outcomes.is-dark .start-grid { --start-columns: 2; }
 
   .skillcertify .hero-row { grid-template-columns: minmax(0, 1fr); }
@@ -287,7 +287,7 @@
 /* max-width: 720px */
 
 @media (max-width: 720px) {
-  .ax-build .service-catalog .catalog-board__items { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .service-catalog { --service-catalog-columns: 3; }
 
   .content-panel { --content-panel-padding: var(--space-24); }
 
@@ -372,8 +372,11 @@
 /* max-width: 560px */
 
 @media (max-width: 560px) {
-  .ax-build .service-catalog { padding: var(--space-20); gap: var(--space-24); }
-  .ax-build .service-catalog .catalog-board__items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .service-catalog {
+    --service-catalog-columns: 2;
+    padding: var(--space-20);
+    gap: var(--space-24);
+  }
 
   br[data-break="mobile"] { display: inline; }
 
