@@ -46,7 +46,9 @@
    .content-panel의 flex column을 grid로 덮어 스텝을 같은 셀에 포갠다. */
 .journey-viewport {
   position: sticky;
-  top: calc((100vh - var(--stage-panel-height, 613px)) / 2);
+  /* 화면 세로 중앙. 판이 높아 중앙값이 헤더(75px) 아래로 못 내려가면
+     96px을 하한으로 잡아 고정 헤더에 판 머리가 가리지 않게 한다. */
+  top: max(96px, calc((100vh - var(--stage-panel-height, 613px)) / 2));
   /* 겹쳐진 그리드 셀에서 트랙 높이만큼 늘어나면 sticky가 동작하지 않는다. */
   align-self: start;
   display: grid;
