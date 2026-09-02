@@ -103,6 +103,16 @@
     box-shadow: none;
   }
 
+  /* 카드 라벨은 색 지정이 없어 body의 어두운 잉크를 상속받는다 — 흰 글씨로 올린다.
+     활성 시 브랜드 원색은 다크 배경에서 3.05:1이라 흰색을 섞어 밝힌다. */
+  .ax-build .feature-card .section-body-title {
+    color: var(--color-axpresso-ink);
+  }
+
+  .ax-build .feature-card.is-active .section-body-title {
+    color: color-mix(in srgb, var(--color-brand) 45%, white);
+  }
+
   .ax-build .feature-card-icon {
     border-color: var(--color-line);
     background: var(--color-axpresso-box);
@@ -734,8 +744,11 @@
     transform: translateX(3px);
   }
 
+  /* 로고 판은 반투명 흰색 — box-tint(남색)에 두면 짙은 로고(#22376d 등)가
+     대비 1.32로 묻힌다. 흰 88%면 9.0까지 올라가고 hover에도 색이 안 흔들린다. */
   .ax-build .outcome-logo {
-    background: var(--color-axpresso-box-tint);
+    background: color-mix(in srgb, white 88%, transparent);
+    border-bottom-color: var(--color-line);
   }
 
   /* invert 로고판(체인로지스)만 별도 지킴 — ax-build.css가 언레이어드라
