@@ -38,6 +38,7 @@ const HOOKS = [
   { script: 'js/case-filter.js', test: /data-case-filter/ },
   { script: 'js/scenario-switch.js', test: /data-scenario-steps/ },
   { script: 'js/floating-cta.js', test: /data-floating-cta=/ },
+  { script: 'js/stack-scroll.js', test: /data-stack-scroll/ },
 ];
 
 /* GNB·footer 조각 안에 훅이 있어 페이지 마크업만 봐서는 알 수 없는 것들 */

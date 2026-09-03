@@ -593,6 +593,22 @@
 
   .statement { padding-block: 48px; }
 
+  /* 900px 이하에서는 스택형 스크롤(company.html)을 끈다 —
+     좁은 화면에서 겹침 연출이 어색하고 스크롤 성능 부담만 커진다. */
+  .company > section {
+    position: relative;
+    opacity: 1;
+    transform: none;
+  }
+
+  .company > section img,
+  .company > section .company-era-image,
+  .company > section .content-panel,
+  .company > section .proof-card-stage,
+  .company > section .offices-map {
+    transform: none;
+  }
+
   .statement-eyebrow {
     font-size: var(--text-body-14);
     line-height: var(--leading-body-14);

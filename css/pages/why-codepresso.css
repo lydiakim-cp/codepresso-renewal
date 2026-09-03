@@ -570,26 +570,6 @@
     border: 1px solid color-mix(in srgb, var(--color-surface) 14%, transparent);
   }
 
-  .difference-page .position-map::before,
-  .difference-page .position-map::after {
-    content: "";
-    position: absolute;
-    background: color-mix(in srgb, var(--color-surface) 26%, transparent);
-  }
-
-  .difference-page .position-map::before {
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-  }
-
-  .difference-page .position-map::after {
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-  }
 
   .difference-page .position-axis {
     position: absolute;

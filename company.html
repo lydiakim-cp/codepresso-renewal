@@ -19,7 +19,7 @@
 <body>
   <div data-include="partials/header.html"></div>
 
-  <main class="company">
+  <main class="company" data-stack-scroll>
 
     <!-- 01 Mission — 첫 화면. 주인공이 제품이 아니라 미션 한 문장이라 hero-facts는 두지 않는다. -->
     <section class="sub-hero">
@@ -214,33 +214,22 @@
               </li>
             </ul>
           </div>
-          <ul class="start-grid company-offices">
-            <li>
-              <div class="content-panel content-panel--compact start-card">
-                <span class="icon-box" aria-hidden="true"><img src="images/icon/ic_company.svg" alt=""></span>
-                <div class="content-panel__intro">
+          <ul class="company-offices">
+            <li class="content-panel content-panel--compact">
                   <p class="section-body-title">서울 본사</p>
-                  <p class="start-desc">서울 강남구 테헤란로 27길 8</p>
-                </div>
-              </div>
+                  <p class="start-desc">경기 성남시 금토로 80번길 56</p>
             </li>
-            <li>
-              <div class="content-panel content-panel--compact start-card">
-                <span class="icon-box" aria-hidden="true"><img src="images/icon/ic_public.svg" alt=""></span>
+            <li class="content-panel content-panel--compact">
                 <div class="content-panel__intro">
                   <p class="section-body-title">룩셈부르크 법인</p>
                   <p class="start-desc">유럽 시장 거점 · 2024</p>
                 </div>
-              </div>
             </li>
-            <li>
-              <div class="content-panel content-panel--compact start-card">
-                <span class="icon-box" aria-hidden="true"><img src="images/icon/ic_handshaking.svg" alt=""></span>
+            <li class="content-panel content-panel--compact">
                 <div class="content-panel__intro">
                   <p class="section-body-title">영국 법인</p>
                   <p class="start-desc">글로벌 확장 거점 · 2024</p>
                 </div>
-              </div>
             </li>
           </ul>
         </div>
@@ -311,6 +300,7 @@
   <script src="js/nav-menu.js"></script>
   <script src="js/journey-stage.js"></script>
   <script src="js/proof-card-slider.js"></script>
+  <script src="js/stack-scroll.js"></script>
 </body>
 
 </html>
