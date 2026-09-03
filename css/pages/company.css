@@ -1,0 +1,245 @@
+/* Page: company.html (회사 소개 — 미션·철학·연혁·신뢰·고객의 목소리)
+   main.css 위에 얹는 페이지 전용 계층. 배치만 담고 컴포넌트 생김새는 덮지 않는다. */
+
+@layer components {
+  .company {
+    background: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 섹션 하나가 화면 한 장 — 내용이 적은 섹션도 세로 가운데에 놓인다.
+     연혁(.about)만 우측 목록이 길어 화면보다 커지므로 위에서 시작한다. */
+  .company > section {
+    min-height: 100vh;
+    justify-content: center;
+  }
+
+  .company .about {
+    justify-content: flex-start;
+  }
+
+  /* 섹션 배경 리듬 — 흰 면(about·outcomes) 사이에 틴트 면을 한 번 넣는다. */
+  .company .features-trust {
+    background: var(--color-brand-tint-2);
+  }
+
+  .company .about,
+  .company .outcomes {
+    padding-block: 120px;
+  }
+
+  .company .hero-desc strong {
+    color: var(--color-ink);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* 02 Philosophy — 인용 아래 화자 한 줄. 본문보다 한 단 낮춰 붙는 말로 읽히게 한다. */
+  .company .company-byline {
+    font-size: var(--text-body-14);
+    line-height: var(--leading-body-14);
+  }
+
+  /* 03 History — 좌측 시대 판(sticky) + 우측 연도 목록(스크롤).
+     이 섹션만 다크다. 요소별로 색을 덮지 않고 ink·line·면 토큰을 여기서 한 번
+     뒤집는다(main-dark.css가 페이지 단위로 하는 일을 섹션 단위로 한 것). */
+  /* overflow:hidden을 두지 않는다 — 조상에 걸리면 좌측 section-aside의 sticky가
+     그 박스를 스크롤 컨테이너로 잡아 고정이 풀린다(실제로 그렇게 깨졌다).
+     ::before 광원은 inset:0이라 넘칠 일이 없어 자르지 않아도 된다. */
+  .company .about.is-dark {
+    position: relative;
+    background: linear-gradient(180deg,
+      var(--color-axpresso-bg-1) 0%,
+      var(--color-axpresso-bg-3) 100%);
+
+    --color-ink-heaviest: var(--color-axpresso-ink);
+    --color-ink: var(--color-axpresso-ink);
+    --color-ink-light: var(--color-axpresso-ink-light);
+    --color-ink-lighter: var(--color-axpresso-ink-lighter);
+    --color-line: color-mix(in srgb, var(--color-axpresso-ink) 20%, transparent);
+    --color-line-heavy: color-mix(in srgb, var(--color-axpresso-ink) 32%, transparent);
+    --color-surface-sunken: var(--color-axpresso-box-tint);
+    --color-brand-tint-2: color-mix(in srgb, var(--color-brand) 32%, transparent);
+    --color-glass-surface: var(--color-axpresso-box-tint);
+    --color-glass-line: color-mix(in srgb, var(--color-axpresso-ink) 12%, transparent);
+    --color-glass-line-strong: color-mix(in srgb, var(--color-axpresso-ink) 18%, transparent);
+  }
+
+  /* 좌측 판 뒤에 브랜드 광원 하나 — 어두운 면이 평평해지지 않게 한다. */
+  .company .about.is-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(46% 40% at 22% 34%,
+      color-mix(in srgb, var(--color-brand) 30%, transparent) 0%,
+      transparent 100%);
+    pointer-events: none;
+  }
+
+  .company .about.is-dark .section-wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  .company .about .section-wrap.row {
+    align-items: start;
+  }
+
+  /* 좌측은 제목과 시대 판이 한 화면에 다 들어와야 해서 공용 48px보다 좁게 묶는다. */
+  .company .about .section-aside {
+    gap: var(--space-20);
+  }
+
+  .company .company-eras {
+    width: 100%;
+  }
+
+  /* 교차 페이드로 겹쳐 놓이는 판이라 안쪽 간격은 스텝이 직접 정한다. */
+  .company .company-eras .journey-step {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-8);
+  }
+
+  .company .company-era-title {
+    color: var(--color-axpresso-ink);
+    font-size: var(--text-heading-24);
+    line-height: var(--leading-heading-24);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .company .company-era-desc {
+    max-width: 480px;
+    color: var(--color-ink-light);
+  }
+
+  /* 이미지는 560px 고정 폭에 4:3으로 잘라 담는다(원본 비율이 달라도 프레임은 같다). */
+  .company .company-era-image {
+    width: 560px;
+    max-width: 100%;
+    aspect-ratio: 4 / 3;
+    margin-top: var(--space-8);
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-sunken);
+  }
+
+  .company .company-era-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* 우측 — 연도가 위에서 아래로 한 줄기로 이어진다. 첫 연도는 화면 위쪽에 붙지 않게
+     180px 아래에서 시작하고, 목록 아래 여백은 좌측 판이 고정된 채 지나갈 스크롤 길이다. */
+  .company .company-years {
+    display: flex;
+    flex-direction: column;
+    padding-top: 180px;
+    padding-bottom: 40vh;
+  }
+
+  /* 연도 하나 — 점 + 세로선이 왼쪽을 잇고, 그 오른쪽에 연도와 그 해의 일들이 쌓인다.
+     min-height는 연도 하나가 차지할 스크롤 길이다 — 짧으면 좌측 이미지가 너무 빨리 넘어간다. */
+  .company .company-year {
+    position: relative;
+    min-height: 60vh;
+    padding-left: var(--space-28);
+  }
+
+  .company .company-year::before {
+    content: "";
+    position: absolute;
+    top: var(--space-12);
+    left: 0;
+    width: var(--space-8);
+    height: var(--space-8);
+    border-radius: var(--radius-full);
+    background: var(--color-brand);
+  }
+
+  /* 연결선은 점 아래에서 다음 연도까지 끊기지 않고 내려간다. 마지막 연도만 없다. */
+  .company .company-year::after {
+    content: "";
+    position: absolute;
+    top: var(--space-24);
+    bottom: 0;
+    left: 3px;
+    width: 1px;
+    background: var(--color-line);
+  }
+
+  .company .company-year:last-child::after { display: none; }
+
+  .company .company-year-num {
+    font-size: var(--text-heading-28);
+    line-height: var(--leading-heading-28);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink-heaviest);
+  }
+
+  .company .company-year-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-top: var(--space-12);
+  }
+
+  .company .company-year-list li {
+    position: relative;
+    padding-left: var(--space-16);
+    font-size: var(--text-body-18);
+    line-height: var(--leading-body-18);
+    color: var(--color-ink-light);
+  }
+
+  .company .company-year-list li::before {
+    content: "";
+    position: absolute;
+    top: 13px;
+    left: 0;
+    width: var(--space-4);
+    height: var(--space-4);
+    border-radius: var(--radius-full);
+    background: var(--color-ink-lighter);
+  }
+
+  /* 04 Trust — 인증 로고를 가운데 모아 흘린다. */
+  .company .company-cert-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 80px;
+    justify-content: center;
+    margin: 80px auto 0;
+    max-width: 1000px;
+  }
+
+  .company .company-cert-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-12);
+  }
+
+  .company .company-cert-list img {
+    width: 150px;
+    height: auto;
+  }
+
+  /* 05 Offices — 인증(틴트 면) 다음에 오는 흰 면. 거점 카드만 있어 짧다. */
+  .company .about-offices {
+    background: var(--color-surface);
+  }
+
+  .company .company-offices {
+    --start-columns: 3;
+  }
+
+  .company .start-card .icon-box {
+    padding: var(--space-8);
+    border-radius: var(--radius-md);
+    background: var(--color-brand-tint-2);
+  }
+}

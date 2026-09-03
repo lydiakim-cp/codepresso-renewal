@@ -312,6 +312,15 @@
     gap: var(--space-40);
     padding-top: var(--space-48);
   }
+
+  /* 회사 소개 연혁 — 1단에서는 journey-step이 풀려 세 시대가 위에서 아래로 쌓인다.
+     연도 목록에 앞선 목차로 읽히므로 시대 사이 간격만 준다. */
+  .company .company-eras { gap: var(--space-40); }
+
+  /* 1단에서는 sticky가 없어 스크롤 길이를 벌 이유가 없다 — 연도를 실제 높이로 되돌린다. */
+  .company .company-years { padding-top: 0; padding-bottom: 0; }
+
+  .company .company-year { min-height: 0; padding-bottom: var(--space-40); }
 }
 
 
@@ -405,6 +414,13 @@
     width: 28px;
     height: 28px;
   }
+
+  .company .company-offices { --start-columns: 1; }
+  .company .company-cert-list { gap: var(--space-32) var(--space-40); margin-top: var(--space-48); }
+  .company .company-cert-list img { width: 110px; }
+
+  .company .about,
+  .company .outcomes { padding-block: var(--space-60); }
 }
 
 
