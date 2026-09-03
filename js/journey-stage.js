@@ -106,6 +106,9 @@ const setupStage = ({ name, sectionSelector, pop = false }) => {
       if (i === index) replayPop(step);
       else step.classList.remove('is-popping');
     });
+    /* 우측 트랙 구간에도 같은 활성 표시를 남긴다 — 지금 보는 트랙만 또렷하고
+       나머지는 흐리게 처리하는 것은 CSS(사용하는 페이지)가 결정한다. */
+    trackSteps.forEach((trackStep, i) => trackStep.classList.toggle('is-active', i === index));
     programs.forEach((program) =>
       program.classList.toggle('is-active', Number(program.dataset[key('Program')]) === index)
     );
@@ -133,6 +136,7 @@ const setupStage = ({ name, sectionSelector, pop = false }) => {
   programs.forEach((program) =>
     program.classList.toggle('is-active', Number(program.dataset[key('Program')]) === 0)
   );
+  trackSteps[0].classList.add('is-active');
 
   /* 첫 스텝의 pop도 같은 이유로 여기서 한 번 켠다. 단, 섹션이 화면에 들어왔을 때
      재생돼야 의미가 있으므로 처음 교차하는 시점까지 미룬다 — 페이지 상단에서
