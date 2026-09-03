@@ -20,6 +20,11 @@
     gap: var(--space-16);
   }
 
+  /* 아이콘 상자에도 연한 브랜드 면을 깔아 카드 첫머리가 비어 보이지 않게 한다. */
+  .skillcamp .process .start-icon {
+    background: var(--color-brand-tint-2);
+  }
+
   /* start-card는 면이 없는 골격이라 sunken 섹션 위에서 묻힌다 — 흰 면과 선을 준다. */
   .skillcamp .process .start-card {
     --content-panel-padding: var(--space-28) var(--space-32);
@@ -37,12 +42,21 @@
      공용 판 색이 sunken이라 sunken 섹션 위에서는 묻힌다 — 판을 흰 면으로 올린다. */
   .skillcamp .service-catalog {
     grid-template-columns: minmax(0, 4fr) minmax(0, 1fr);
+    gap: var(--space-8);
     background: var(--color-surface);
     border: 1px solid var(--color-line);
   }
 
   .skillcamp .service-catalog .catalog-board__items > li {
     background: var(--color-surface-sunken);
+  }
+
+  .skillcamp .service-catalog__fixed {
+    gap: var(--space-8);
+  }
+
+  .skillcamp .service-catalog .catalog-board__items {
+    gap: var(--space-4);
   }
 
   /* 왼쪽 7개는 4열이라 두 줄에서 끝난다(3열이면 세 줄로 넘어간다). */
