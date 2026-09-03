@@ -28,6 +28,7 @@
 @import url("./components/ui/journey-stage.css") layer(components);
 @import url("./components/ui/icon.css") layer(components);
 @import url("./components/ui/choice-list.css") layer(components);
+@import url("./components/ui/feature-points.css") layer(components);
 @import url("./components/ui/media-card.css") layer(components);
 @import url("./components/ui/outcome-card.css") layer(components);
 @import url("./components/ui/proof-card.css") layer(components);

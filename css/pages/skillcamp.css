@@ -28,28 +28,9 @@
     border: 1px solid var(--color-line);
   }
 
-  /* 선택 기준은 콜아웃으로 — 카드마다 줄 수가 달라도 밑선이 맞도록 맨 아래에 붙인다. */
-  .skillcamp .format-callout {
-    margin-top: auto;
-    padding: var(--space-12) var(--space-16);
-    border-radius: var(--radius-md);
-    background: var(--color-brand-tint-2);
-    color: var(--color-brand-dark);
-    font-size: var(--text-body-14);
-    line-height: var(--leading-body-14);
-  }
-
-  .skillcamp .format-callout .text-label {
-    display: block;
-    color: var(--color-brand);
-  }
-
-  /* 같은 섹션 안의 두 번째 묶음 — 제목을 h3로 한 단 내리고 위쪽에 간격을 준다. */
+  /* 같은 섹션 안의 두 번째 묶음 — 제목 없이 판만 내려온다. */
   .skillcamp .format-catalog {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-24);
-    margin-top: var(--space-48);
+    margin-top: var(--space-40);
   }
 
   /* 대표 AI 과정 — 과정 수가 7 대 2라 칸도 4 대 1로 준다(반반이면 오른쪽이 텅 빈다).

@@ -1,0 +1,27 @@
+/* Component: Feature Points
+   체크 아이콘 + 한 줄 문장 목록. 근거·조건·특징을 항목으로 세울 때 쓴다. */
+
+.feature-points {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  list-style: none;
+  padding: 0;
+}
+
+.feature-points > li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-10);
+  color: var(--color-ink);
+  font-size: var(--text-body-16);
+  line-height: var(--leading-body-18);
+}
+
+.feature-points svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  color: var(--color-brand);
+}
