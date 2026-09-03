@@ -31,6 +31,7 @@
   grid-area: 1 / 1;
   opacity: 0;
   visibility: hidden;
+  height: 0;
   transform: translateY(12px);
   transition:
     opacity var(--duration-scroll) var(--ease-scroll),
@@ -43,6 +44,7 @@
   visibility: visible;
   transform: none;
   transition-delay: 0s;
+  height: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {

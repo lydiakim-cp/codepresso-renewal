@@ -29,12 +29,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(75% 100% at 50% 50%,
-      color-mix(in srgb, var(--color-ink-heaviest) 46%, transparent) 0%,
-      color-mix(in srgb, var(--color-ink-heaviest) 18%, transparent) 100%),
-    linear-gradient(135deg,
-      color-mix(in srgb, var(--color-brand-dark) 55%, transparent) 0%,
-      color-mix(in srgb, var(--color-brand) 30%, transparent) 100%);
+    linear-gradient(180deg,#050c21,#06102e 32%,#07143b 70%,#081640);
+    opacity: .9;
 }
 
 .cta-final-inner {

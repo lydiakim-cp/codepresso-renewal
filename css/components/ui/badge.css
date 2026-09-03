@@ -57,6 +57,17 @@
   border-radius: 4px;
 }
 
+/* 좌우 세로선만 남긴 유리 면 — 로고·이미지 아래 붙는 이름표. */
+.tag.outline {
+  background: var(--color-glass-surface-strong);
+  border-left: 1px solid var(--color-surface-deep);
+  border-right: 1px solid var(--color-surface-deep);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-ink-light);
+  padding: var(--space-2) var(--space-10);
+  text-align: center;
+}
+
 /* 크기만 줄이는 변형 — 면은 어떤 것을 쓰든 그대로 둔다. */
 .tag.sm {
   padding: 3px 8px;

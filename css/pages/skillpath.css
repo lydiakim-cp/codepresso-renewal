@@ -4,14 +4,19 @@
  */
 
 @layer components {
-  /* 섹션 배경 리듬 — tint(01) → 흰 면(02) → tint(이용 방식) → 흰 면(03) → 어두운 배너 1곳. */
+  /* 페이지 전체를 덮는 위→아래 옅은 브랜드 그라디언트. */
+  .skillpath {
+    background: linear-gradient(179deg, #2867e221 0.81%, #dce7fc0f 30.47%, #f5f8ff00 99.66%);
+  }
+
+  /* 섹션 배경 리듬 — tint(01) → 흰 면(02) → tint(03) → 흰 면(04) → 어두운 배너 1곳. */
   .skillpath .catalog,
-  .skillpath .features {
+  .skillpath .features-enterprise {
     background: var(--color-brand-tint-2);
   }
 
   .skillpath .journey,
-  .skillpath .features-enterprise {
+  .skillpath .features {
     background: var(--color-surface);
   }
 
@@ -35,7 +40,7 @@
     background: var(--color-surface-sunken);
   }
 
-  /* 02 대표 트랙 경로 — 3열. start-card는 면이 없는 골격이라 흰 섹션 위에서 선과 면을 준다. */
+  /* 02 대표 트랙 경로 — 3열. start-card는 면이 없는 골격이라 여기서 흰 면과 선을 준다. */
   .skillpath .journey .start-grid {
     --start-columns: 3;
   }
@@ -59,20 +64,6 @@
   /* 운영 주체 각주 — 카드 아래 한 줄. 타이포는 공용 text-caption이 정한다. */
   .skillpath .journey-note {
     text-align: center;
-  }
-
-  /* 진단 연계 배너 — 어두운 판을 두 번 쓰지 않으려고 흰 면 배너로 두고 세로로 쌓는다. */
-  .skillpath .diagnose-banner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-12);
-    margin-top: var(--space-32);
-    background: var(--color-surface);
-  }
-
-  .skillpath .diagnose-banner .btn {
-    margin-top: var(--space-8);
   }
 
   /* 03 기업 도입 — 조건 3장을 가로로 나란히. */

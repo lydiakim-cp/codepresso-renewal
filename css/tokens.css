@@ -49,6 +49,7 @@
   --text-heading-18: 18px; --leading-heading-18: 26px;
   --text-heading-20: 20px; --leading-heading-20: 28px;
   --text-heading-24: 24px; --leading-heading-24: 32px;
+  --text-heading-28: 28px; --leading-heading-28: 38px;
   --text-heading-32: 32px; --leading-heading-32: 42px;
   --text-heading-36: 36px; --leading-heading-36: 46px;
   --text-heading-40: 40px; --leading-heading-40: 50px;
@@ -134,7 +135,7 @@
   --icon-box: 48px;
 
   --container-wide: 1480px;
-  --container-medium: 1248px;
+  --container-medium: 1208px;
 
   --radius-sm: 6px;
   --radius-md: 8px;

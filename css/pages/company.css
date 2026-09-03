@@ -92,6 +92,9 @@
 
   .company .company-eras {
     width: 100%;
+    padding: 28px;
+    background: var(--color-surface-sunken);
+    border-radius: 14px;
   }
 
   /* 교차 페이드로 겹쳐 놓이는 판이라 안쪽 간격은 스텝이 직접 정한다. */
@@ -116,14 +119,13 @@
 
   .company .section-wrap.row.is-sticky > .section-aside{
     gap: 64px;
+    top: 170px;
   }
 
   /* 이미지는 560px 고정 폭에 4:3으로 잘라 담는다(원본 비율이 달라도 프레임은 같다). */
   .company .company-era-image {
-    width: 560px;
-    max-width: 100%;
-    max-height: 373px;
-    aspect-ratio: 4 / 3;
+    width: 100%;
+    aspect-ratio: 5 / 3;
     margin-top: var(--space-8);
     overflow: hidden;
     border-radius: var(--radius-lg);
@@ -245,13 +247,134 @@
     height: auto;
   }
 
-  /* 05 Offices — 인증(틴트 면) 다음에 오는 흰 면. 거점 카드만 있어 짧다. */
+  /* 05 Offices — 인증(틴트 면) 다음에 오는 면. 거점 카드만 있어 짧다.
+     연혁(03)과 같은 다크 톤 — 지도·마커가 밤하늘 위 좌표처럼 떠 보이게 한다. */
   .company .about-offices {
-    background: var(--color-surface);
+    position: relative;
+    background: linear-gradient(180deg,
+      var(--color-axpresso-bg-1) 0%,
+      var(--color-axpresso-bg-3) 100%);
+
+    --color-ink-heaviest: var(--color-axpresso-ink);
+    --color-ink: var(--color-axpresso-ink);
+    --color-ink-light: var(--color-axpresso-ink-light);
+    --color-ink-lighter: var(--color-axpresso-ink-lighter);
+    --color-line: color-mix(in srgb, var(--color-axpresso-ink) 20%, transparent);
+    --color-line-heavy: color-mix(in srgb, var(--color-axpresso-ink) 32%, transparent);
+    --color-surface-sunken: var(--color-axpresso-box-tint);
+    --color-brand-tint-2: color-mix(in srgb, var(--color-brand) 32%, transparent);
+  }
+
+  /* 지도 뒤 브랜드 광원 하나 — 어두운 면이 평평해지지 않게 한다(연혁 03과 같은 장치). */
+  .company .about-offices::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(50% 45% at 50% 30%,
+      color-mix(in srgb, var(--color-brand) 26%, transparent) 0%,
+      transparent 100%);
+    pointer-events: none;
+  }
+
+  .company .about-offices .section-wrap {
+    position: relative;
+  }
+
+  .company .about-offices .offices-map-bg {
+    opacity: .7;
+  }
+
+  /* section-body-title은 p 태그라 색을 스스로 정하지 않고 body의 색을 그대로
+     물려받는다 — 다크 섹션 안에서는 여기서 다시 밝은 ink로 정해준다. */
+  .company .about-offices .section-body-title {
+    color: var(--color-ink-heaviest);
   }
 
   .company .company-offices {
     --start-columns: 3;
+  }
+
+  /* 지도 위 세 거점 — 점선 세계지도 위에 Mark.svg 마커가 떠 있고, 마커마다
+     확장하며 사라지는 링이 반복된다. 카드 목록(company-offices)은 그 아래서 상세를 말한다. */
+  .company .offices-map {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 1212 / 707;
+    margin: 0 auto var(--space-40);
+  }
+
+  .company .offices-map-bg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: .5;
+  }
+
+  .company .offices-pins {
+    position: absolute;
+    inset: 0;
+  }
+
+  .company .offices-pin {
+    position: absolute;
+    left: var(--pin-x);
+    top: var(--pin-y);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+    transform: translate(-50%, -50%);
+  }
+
+  .company .offices-pin-ring {
+    position: absolute;
+    top: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    background: color-mix(in srgb, var(--color-brand) 40%, transparent);
+    animation: ring-expand 2.4s ease-out infinite;
+  }
+
+  .company .offices-pin-mark {
+    position: relative;
+    width: 32px;
+    height: auto;
+  }
+
+  /* 흰 칩은 다크 섹션에서도 항상 흰 배경이라, 색은 ink 토큰(다크에서 뒤집힘)이
+     아니라 고정된 brand-dark로 못박는다 — 안 그러면 흰 배경에 흰 글자가 된다. */
+  .company .offices-pin-label {
+    position: relative;
+    padding: var(--space-4) var(--space-10);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    color: var(--color-brand-dark);
+    font-size: var(--text-label);
+    white-space: nowrap;
+  }
+
+  .company .offices-pin:nth-child(2) .offices-pin-ring { animation-delay: .5s; }
+  .company .offices-pin:nth-child(3) .offices-pin-ring { animation-delay: 1s; }
+
+  .company .fade-up .offices-pin {
+    opacity: 0;
+  }
+
+  .company .fade-up.is-visible .offices-pin {
+    opacity: 1;
+    animation: pop-in .6s var(--ease-scroll) backwards;
+  }
+
+  .company .fade-up.is-visible .offices-pin:nth-child(2) { animation-delay: .12s; }
+  .company .fade-up.is-visible .offices-pin:nth-child(3) { animation-delay: .24s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .company .offices-pin-ring { animation: none; }
+    .company .fade-up.is-visible .offices-pin { animation: none; }
   }
 
   .company .start-card .icon-box {
