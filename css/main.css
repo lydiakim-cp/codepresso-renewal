@@ -30,6 +30,7 @@
 @import url("./components/ui/choice-list.css") layer(components);
 @import url("./components/ui/media-card.css") layer(components);
 @import url("./components/ui/outcome-card.css") layer(components);
+@import url("./components/ui/proof-card.css") layer(components);
 @import url("./components/ui/preview-frame.css") layer(components);
 @import url("./components/ui/skeleton.css") layer(components);
 @import url("./components/ui/mock-motion.css") layer(components);

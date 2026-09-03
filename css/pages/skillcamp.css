@@ -13,21 +13,35 @@
     background: var(--color-surface-sunken);
   }
 
-  /* 02 운영 포맷 — 포맷 3종은 공용 start-card를 한 칸으로 눕혀 가로로 쓴다.
+  /* 02 운영 포맷 — 포맷 3종은 공용 start-card 3열.
      골격·문구 슬롯(tag → h3 → start-desc)은 ax-grow 07과 같고 배치만 이 페이지가 정한다. */
   .skillcamp .process .start-grid {
-    --start-columns: 1;
+    --start-columns: 3;
     gap: var(--space-16);
   }
 
   /* start-card는 면이 없는 골격이라 sunken 섹션 위에서 묻힌다 — 흰 면과 선을 준다. */
   .skillcamp .process .start-card {
     --content-panel-padding: var(--space-28) var(--space-32);
-    flex-direction: row;
-    align-items: center;
-    gap: var(--space-24);
+    gap: var(--space-20);
     background: var(--color-surface);
     border: 1px solid var(--color-line);
+  }
+
+  /* 선택 기준은 콜아웃으로 — 카드마다 줄 수가 달라도 밑선이 맞도록 맨 아래에 붙인다. */
+  .skillcamp .format-callout {
+    margin-top: auto;
+    padding: var(--space-12) var(--space-16);
+    border-radius: var(--radius-md);
+    background: var(--color-brand-tint-2);
+    color: var(--color-brand-dark);
+    font-size: var(--text-body-14);
+    line-height: var(--leading-body-14);
+  }
+
+  .skillcamp .format-callout .text-label {
+    display: block;
+    color: var(--color-brand);
   }
 
   /* 같은 섹션 안의 두 번째 묶음 — 제목을 h3로 한 단 내리고 위쪽에 간격을 준다. */
@@ -66,77 +80,22 @@
     gap: var(--space-20);
   }
 
-  /* 03 증거 — skills 07과 같은 어두운 판 위 start-card 배치. */
-  .skillcamp .outcomes.is-dark {
-    position: relative;
-    overflow: hidden;
-    background-color: var(--color-axpresso-bg-2);
-  }
-
-  .skillcamp .outcomes.is-dark .section-wrap {
-    position: relative;
-    z-index: 1;
-  }
-
-  .skillcamp .outcomes.is-dark h2 {
-    color: var(--color-surface);
-  }
-
-  .skillcamp .outcomes.is-dark .tag {
-    background: transparent;
-    color: var(--color-surface);
-  }
-
-  .skillcamp .outcomes.is-dark .start-grid {
-    --start-columns: 3;
-  }
-
-  /* 어두운 판 위라 면은 흰색 유리로 낸다(skills 07과 같은 토큰). */
-  .skillcamp .outcomes.is-dark .start-card {
-    background: var(--color-axpresso-box-tint);
-    backdrop-filter: blur(16px) saturate(160%);
-    -webkit-backdrop-filter: blur(16px) saturate(160%);
-    opacity: 0;
-    transform: translateY(var(--motion-rise));
-    transition: opacity var(--duration-scroll) var(--ease-scroll),
-      transform var(--duration-scroll) var(--ease-scroll);
-  }
-
-  /* is-visible은 stat-reveal.js가 붙인다(마크업의 data-stat-card=".start-card"). */
-  .skillcamp .outcomes.is-dark .start-card.is-visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  .skillcamp .outcomes.is-dark .start-icon {
-    background: var(--color-axpresso-box-tint);
-  }
-
-  .skillcamp .outcomes.is-dark .metric-card__value {
-    color: var(--color-surface);
-  }
-
-  .skillcamp .outcomes.is-dark .metric-card__label {
-    color: color-mix(in srgb, var(--color-surface) 76%, transparent);
-  }
-
   /* 집계 기준 주석 — 수치 카드 아래 한 줄. */
   .skillcamp .outcomes-note {
     margin-top: var(--space-20);
     text-align: center;
-    color: color-mix(in srgb, var(--color-surface) 64%, transparent);
+    color: var(--color-ink-lighter);
     font-size: var(--text-body-14);
     line-height: var(--leading-body-14);
   }
 
-  /* 고객 사례 — 아래 진단 연계 배너와의 간격만 이 페이지가 정한다. */
-  .skillcamp .outcomes-cases .summary-banner {
-    margin-top: var(--space-32);
+  /* 03 증거 — 수치 띠 → 집계 주석 → 사례 덱 → 배너 순으로 간격을 벌린다. */
+  .skillcamp .outcomes .proof-card-stage {
+    margin-top: var(--space-40);
   }
 
-  .skillcamp .outcomes-cases .link-underline {
-    display: inline-block;
-    margin-top: var(--space-12);
+  .skillcamp .outcomes .summary-banner.dark {
+    margin-top: var(--space-32);
   }
 
   /* 배너 — 섹션이 아니라 사이에 낀 판이라 bridge는 위아래 여백을 줄인다. */
@@ -170,13 +129,6 @@
     justify-content: center;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .skillcamp .outcomes.is-dark .start-card {
-      opacity: 1;
-      transform: none;
-      transition-duration: 0.001ms;
-    }
-  }
 }
 
 /* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다 */

@@ -261,7 +261,7 @@
                   <p class="tag">1~2일</p>
                   <h3>특강</h3>
                   <p class="start-desc">인식을 바꾸고 필요한 스킬을 빠르게 올립니다</p>
-                  <p class="text-caption">이럴 때 · 구성원의 인식을 먼저 바꿔야 할 때</p>
+                  <p class="format-callout"><span class="text-label">이럴 때</span>구성원의 인식을 먼저 바꿔야 할 때</p>
                 </div>
               </div>
             </li>
@@ -282,7 +282,7 @@
                   <p class="tag">1~2주</p>
                   <h3>집합 과정</h3>
                   <p class="start-desc">직무 단위로 깊게 파고듭니다</p>
-                  <p class="text-caption">이럴 때 · 직무에서 바로 쓸 실무 역량이 필요할 때</p>
+                  <p class="format-callout"><span class="text-label">이럴 때</span>직무에서 바로 쓸 실무 역량이 필요할 때</p>
                 </div>
               </div>
             </li>
@@ -299,7 +299,7 @@
                   <p class="tag">수주</p>
                   <h3>부트캠프</h3>
                   <p class="start-desc">선발한 인원이 한 목표에 몰입합니다</p>
-                  <p class="text-caption">이럴 때 · 핵심 인력을 선발해 길러야 할 때</p>
+                  <p class="format-callout"><span class="text-label">이럴 때</span>핵심 인력을 선발해 길러야 할 때</p>
                 </div>
               </div>
             </li>
@@ -438,117 +438,108 @@
       </div>
     </section>
 
-    <!-- 03 증거 — 누적 수치는 skills 07과 같은 content-panel start-card 배치(어두운 판). -->
-    <section class="outcomes is-dark fade-up">
+    <!-- 03 증거 — 수치와 사례를 한 섹션에서 잇는다. index 02(Proof)와 같은 골격:
+         제목 + CTA 헤더 → stats-light 수치 띠 → proof-card 덱(js/proof-card-slider.js). -->
+    <section class="outcomes fade-up">
       <div class="section-wrap col">
-        <div class="section-title text-center">
-          <p class="tag">03 · 증거</p>
-          <h2>숫자와 이름이 증명합니다</h2>
+        <div class="section-header">
+          <div class="section-title text-left">
+            <p class="tag">03 · 증거</p>
+            <h2>숫자와 이름이 <br data-break="mobile">증명합니다</h2>
+            <p class="desc">교육 차수와 강사 수는 누적으로 쌓였고 <br data-break="desktop">재구매는 같은 기업이 다시 부른 결과입니다.</p>
+          </div>
+          <div class="section-cta">
+            <a href="cases.html" class="btn btn-ghost">고객 사례 더 보기<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a href="#" class="btn btn-primary">교육 과정 문의</a>
+          </div>
         </div>
         <div class="section-content">
-          <!-- data-stat-reveal은 카드를 감싼 grid에 둔다. start-card를 쓰므로 대상 선택자를 알린다. -->
-          <ul class="start-grid" data-stat-reveal data-stat-card=".start-card">
-            <li>
-              <div class="content-panel content-panel--compact start-card">
-                <span class="start-icon" aria-hidden="true">
+          <div class="summary-banner stats-light">
+            <div class="summary-banner-stats" data-stat-reveal>
+              <article class="metric-card">
+                <div class="metric-card__value">
+                  <span class="num" data-target="1531">0</span><span class="unit">회</span>
+                </div>
+                <p class="metric-card__label text-label">교육 차수</p>
+                <div class="metric-card__visual" aria-hidden="true">
+                  <span class="metric-card__glow"></span>
+                  <span class="metric-card__glow"></span>
                   <!-- 교육 차수 — ic_calendar.svg 기반 -->
-                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"/>
-                    <path d="M16.5 3H15.5C15.2239 3 15 3.22386 15 3.5V5.5C15 5.77614 15.2239 6 15.5 6H16.5C16.7761 6 17 5.77614 17 5.5V3.5C17 3.22386 16.7761 3 16.5 3Z" fill="var(--color-brand)"/>
-                    <path d="M2.5 9H21.5V10.5H2.5V9Z" fill="var(--color-brand)"/>
+                  <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                    <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)" />
+                    <path d="M16.5 3H15.5C15.2239 3 15 3.22386 15 3.5V5.5C15 5.77614 15.2239 6 15.5 6H16.5C16.7761 6 17 5.77614 17 5.5V3.5C17 3.22386 16.7761 3 16.5 3Z" fill="var(--color-brand)" />
+                    <path d="M2.5 9H21.5V10.5H2.5V9Z" fill="var(--color-brand)" />
                   </svg>
-                </span>
-                <div class="content-panel__intro">
-                  <p class="text-label metric-card__label">교육 차수</p>
-                  <p class="metric-card__value"><span class="num" data-target="1531">0</span><span class="unit">회</span></p>
                 </div>
-              </div>
-            </li>
-            <li>
-              <div class="content-panel content-panel--compact start-card">
-                <span class="start-icon" aria-hidden="true">
+              </article>
+              <article class="metric-card">
+                <div class="metric-card__value">
+                  <span class="num" data-target="121">0</span><span class="unit">명</span>
+                </div>
+                <p class="metric-card__label text-label">전문 강사진</p>
+                <div class="metric-card__visual" aria-hidden="true">
+                  <span class="metric-card__glow"></span>
+                  <span class="metric-card__glow"></span>
                   <!-- 전문 강사진 — ic_team.svg 기반 -->
-                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)"/>
-                    <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"/>
+                  <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                    <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                    <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                    <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                    <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)" />
+                    <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)" />
                   </svg>
-                </span>
-                <div class="content-panel__intro">
-                  <p class="text-label metric-card__label">전문 강사진</p>
-                  <p class="metric-card__value"><span class="num" data-target="121">0</span><span class="unit">명</span></p>
                 </div>
-              </div>
-            </li>
-            <li>
-              <div class="content-panel content-panel--compact start-card">
-                <span class="start-icon" aria-hidden="true">
+              </article>
+              <article class="metric-card">
+                <div class="metric-card__value">
+                  <span class="num" data-target="80">0</span><span class="unit">%</span>
+                </div>
+                <p class="metric-card__label text-label">기업 교육 재구매율</p>
+                <div class="metric-card__visual" aria-hidden="true">
+                  <span class="metric-card__glow"></span>
+                  <span class="metric-card__glow"></span>
                   <!-- 재구매율 — ic_lineChart.svg 기반 -->
-                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"/>
-                    <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"/>
+                  <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
+                    <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)" />
+                    <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)" />
                   </svg>
-                </span>
-                <div class="content-panel__intro">
-                  <p class="text-label metric-card__label">기업 교육 재구매율</p>
-                  <p class="metric-card__value"><span class="num" data-target="80">0</span><span class="unit">%</span></p>
                 </div>
-              </div>
-            </li>
-          </ul>
+              </article>
+            </div>
+          </div>
           <p class="outcomes-note">코드프레소 교육사업 누적 집계 (2026 Q1 기준)</p>
-        </div>
-      </div>
-    </section>
 
-    <!-- 고객 사례 — 공용 outcome-list 3장 + 진단 연계 배너. -->
-    <section class="outcomes-cases fade-up">
-      <div class="section-wrap col">
-        <div class="section-title text-center">
-          <p class="tag">고객 사례</p>
-          <h2>이름으로 남은 운영 실적</h2>
-        </div>
-        <div class="section-content">
-          <ul class="outcome-list">
-            <li>
-              <div class="outcome-logo">
-                <img src="images/logos/logo_1_삼성_(h36).svg" alt="삼성전자 로고" loading="lazy">
+          <!-- 고객 사례 — index 02와 같은 proof-card 덱. 한 장씩 넘어간다. -->
+          <div class="proof-card-stage">
+            <div class="proof-card-deck" data-proof-deck>
+              <button type="button" class="proof-card-nav" aria-label="이전 사례 보기"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <div class="proof-card-deck-list">
+                <article class="proof-card">
+                  <img src="images/logos/logo_1_삼성_(h36).svg" alt="삼성전자 로고">
+                  <h3>50회 넘게 이어진 사내 교육</h3>
+                  <blockquote>Python과 Excel 데이터 분석을 비롯한 과정을 50회 이상 운영하며 <br data-break="desktop">1,000명이 넘는 재직자가 거쳐 갔습니다.</blockquote>
+                  <cite>삼성전자 | 역량 평가·교육 운영</cite>
+                </article>
+                <article class="proof-card">
+                  <img src="images/logos/logo-hyundai-mobis.png" alt="현대모비스 로고">
+                  <h3>재직자와 구직자를 <br data-break="mobile">같은 기준으로</h3>
+                  <blockquote>모비우스 부트캠프에서 두 트랙을 하나의 평가 기준으로 선발하고 <br data-break="desktop">같은 잣대로 육성했습니다.</blockquote>
+                  <cite>현대모비스 | 선발형 부트캠프</cite>
+                </article>
+                <article class="proof-card">
+                  <img src="images/logos/logo_6_서강대_(h36).svg" alt="서강대학교 로고">
+                  <h3>63명이 41개 프로젝트를 <br data-break="mobile">완주</h3>
+                  <blockquote>러너톤에 참여한 63명이 41개 프로젝트를 끝냈고 <br data-break="desktop">만족도 4.5/5로 두 해 연속 운영으로 이어졌습니다.</blockquote>
+                  <cite>서강대학교 | 대학 러너톤</cite>
+                </article>
               </div>
-              <div class="outcome-body">
-                <p class="tag">역량 평가·교육 운영</p>
-                <p class="outcome-headline">50회+ · 1,000명+</p>
-                <p class="outcome-detail">Python·Excel 데이터 분석 등 지속 운영</p>
-                <p class="outcome-client">삼성전자 <span class="outcome-industry">/ 재직자 교육</span></p>
-              </div>
-            </li>
-            <li>
-              <div class="outcome-logo">
-                <img src="images/logos/logo-hyundai-mobis.png" alt="현대모비스 로고" loading="lazy">
-              </div>
-              <div class="outcome-body">
-                <p class="tag">선발형 부트캠프</p>
-                <p class="outcome-headline">재직자·구직자 트랙</p>
-                <p class="outcome-detail">단일 평가 기준의 선발·육성 체계</p>
-                <p class="outcome-client">현대모비스 <span class="outcome-industry">/ 모비우스</span></p>
-              </div>
-            </li>
-            <li>
-              <div class="outcome-logo">
-                <img src="images/logos/logo_6_서강대_(h36).svg" alt="서강대학교 로고" loading="lazy">
-              </div>
-              <div class="outcome-body">
-                <p class="tag">대학 러너톤</p>
-                <p class="outcome-headline">63명 · 41개 프로젝트</p>
-                <p class="outcome-detail">만족도 <strong>4.5/5</strong> · 2회 연속 운영</p>
-                <p class="outcome-client">서강대학교 <span class="outcome-industry">/ 러너톤</span></p>
-              </div>
-            </li>
-          </ul>
+              <button type="button" class="proof-card-nav" aria-label="다음 사례 보기"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </div>
+
           <!-- 진단 연계 유도 — ax-grow와 같은 공용 summary-banner.dark 한 판. -->
           <div class="summary-banner dark">
             <p class="banner-title">교육 효과를 <strong class="brand">숫자</strong>로 증명합니다</p>
@@ -649,6 +640,7 @@
   <script src="js/nav-menu.js"></script>
   <script src="js/scenario-switch.js"></script>
   <script src="js/stat-reveal.js"></script>
+  <script src="js/proof-card-slider.js"></script>
 </body>
 
 </html>
