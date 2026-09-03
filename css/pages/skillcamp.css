@@ -13,42 +13,21 @@
     background: var(--color-surface-sunken);
   }
 
-  /* 02 운영 포맷 — 가로로 긴 카드 3장. 카드 안에서 제목·기간 → 설명 → 선택 기준으로 내려간다. */
-  .skillcamp .format-list {
-    display: flex;
-    flex-direction: column;
+  /* 02 운영 포맷 — 포맷 3종은 공용 start-card를 한 칸으로 눕혀 가로로 쓴다.
+     골격·문구 슬롯(tag → h3 → start-desc)은 ax-grow 07과 같고 배치만 이 페이지가 정한다. */
+  .skillcamp .process .start-grid {
+    --start-columns: 1;
     gap: var(--space-16);
   }
 
-  .skillcamp .format-card {
+  /* start-card는 면이 없는 골격이라 sunken 섹션 위에서 묻힌다 — 흰 면과 선을 준다. */
+  .skillcamp .process .start-card {
     --content-panel-padding: var(--space-28) var(--space-32);
-    --content-panel-gap: var(--space-10);
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-24);
     background: var(--color-surface);
     border: 1px solid var(--color-line);
-  }
-
-  .skillcamp .format-card__head {
-    display: flex;
-    align-items: center;
-    gap: var(--space-12);
-  }
-
-  /* 기간 배지 — 카드 제목 옆에서 이 포맷이 얼마나 긴지 먼저 알린다. */
-  .skillcamp .pill.is-term {
-    margin: 0;
-    background: var(--color-brand-tint-2);
-    border-color: transparent;
-    color: var(--color-brand-dark);
-    font-weight: var(--font-weight-semibold);
-  }
-
-  .skillcamp .format-when {
-    color: var(--color-ink-light);
-  }
-
-  .skillcamp .format-when .text-label {
-    margin-right: var(--space-8);
-    color: var(--color-brand);
   }
 
   /* 같은 섹션 안의 두 번째 묶음 — 제목을 h3로 한 단 내리고 위쪽에 간격을 준다. */
@@ -59,10 +38,10 @@
     margin-top: var(--space-48);
   }
 
-  /* 대표 AI 과정 — 과정 수가 7 대 2라 칸도 3 대 1로 준다(반반이면 오른쪽이 텅 빈다).
+  /* 대표 AI 과정 — 과정 수가 7 대 2라 칸도 4 대 1로 준다(반반이면 오른쪽이 텅 빈다).
      공용 판 색이 sunken이라 sunken 섹션 위에서는 묻힌다 — 판을 흰 면으로 올린다. */
   .skillcamp .service-catalog {
-    grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 4fr) minmax(0, 1fr);
     background: var(--color-surface);
     border: 1px solid var(--color-line);
   }
@@ -71,8 +50,9 @@
     background: var(--color-surface-sunken);
   }
 
+  /* 왼쪽 7개는 4열이라 두 줄에서 끝난다(3열이면 세 줄로 넘어간다). */
   .skillcamp .service-catalog__fixed:first-child {
-    --service-catalog-columns: 3;
+    --service-catalog-columns: 4;
   }
 
   .skillcamp .service-catalog__fixed + .service-catalog__fixed {
