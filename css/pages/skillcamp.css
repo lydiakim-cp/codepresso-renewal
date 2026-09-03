@@ -84,7 +84,13 @@
     line-height: var(--leading-body-14);
   }
 
-  /* 03 증거 — 수치 띠 → 집계 주석 → 사례 덱 → 배너 순으로 간격을 벌린다. */
+  /* 03 증거 — metric-card 면(sunken)이 body 배경과 같은 색이라 카드가 투명해 보였다.
+     섹션을 흰 면으로 올려 카드가 판으로 읽히게 하고 02(sunken)와도 갈라 놓는다. */
+  .skillcamp .outcomes {
+    background: var(--color-surface);
+  }
+
+  /* 수치 띠 → 집계 주석 → 사례 덱 → 배너 순으로 간격을 벌린다. */
   .skillcamp .outcomes .proof-card-stage {
     margin-top: var(--space-40);
   }
