@@ -4,59 +4,71 @@
  */
 
 @layer components {
-  /* 섹션 배경 리듬 — tint(01) → sunken(02) → 흰 면 위 sunken 판(과정) → 어두운 판(03). */
+  /* 섹션 배경 리듬 — tint(01) → sunken(02·과정) → 어두운 판(03) → 흰 면(사례·FAQ). */
   .skillcamp .features {
     background: var(--color-brand-tint-2);
   }
 
-  .skillcamp .features-format {
+  .skillcamp .process {
     background: var(--color-surface-sunken);
   }
 
-  /* 02 운영 포맷 — 기간이 길어지는 순서로 3장(골격은 공용 start-card). */
-  .skillcamp .features-format .start-grid {
-    --start-columns: 3;
+  /* 02 운영 포맷 — 가로로 긴 카드 3장. 카드 안에서 제목·기간 → 설명 → 선택 기준으로 내려간다. */
+  .skillcamp .format-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
   }
 
-  /* start-card는 면이 없는 골격이라 sunken 섹션 위에서 카드가 사라진다 — 흰 면과 선을 준다. */
-  .skillcamp .features-format .start-card {
-    gap: var(--space-20);
+  .skillcamp .format-card {
+    --content-panel-padding: var(--space-28) var(--space-32);
+    --content-panel-gap: var(--space-10);
     background: var(--color-surface);
     border: 1px solid var(--color-line);
   }
 
-  /* 카드 첫 줄 — 아이콘과 기간을 한 줄에 놓아 숫자가 시선을 먼저 잡는다. */
-  .skillcamp .format-head {
+  .skillcamp .format-card__head {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: var(--space-12);
   }
 
-  .skillcamp .format-head .metric-card__value {
+  /* 기간 배지 — 카드 제목 옆에서 이 포맷이 얼마나 긴지 먼저 알린다. */
+  .skillcamp .pill.is-term {
+    margin: 0;
+    background: var(--color-brand-tint-2);
+    border-color: transparent;
     color: var(--color-brand-dark);
-  }
-
-  /* 선택 기준·대표 과정 — 같은 라벨 + 내용 2단이라 한 규칙으로 묶는다. */
-  .skillcamp .format-when,
-  .skillcamp .format-courses {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
+    font-weight: var(--font-weight-semibold);
   }
 
   .skillcamp .format-when {
-    padding-top: var(--space-20);
-    border-top: 1px solid var(--color-line);
+    color: var(--color-ink-light);
   }
 
-  .skillcamp .format-courses {
-    margin-top: auto;
+  .skillcamp .format-when .text-label {
+    margin-right: var(--space-8);
+    color: var(--color-brand);
   }
 
-  /* 대표 AI 과정 — 과정 수가 7 대 2라 칸도 3 대 1로 준다(반반이면 오른쪽이 텅 빈다). */
+  /* 같은 섹션 안의 두 번째 묶음 — 제목을 h3로 한 단 내리고 위쪽에 간격을 준다. */
+  .skillcamp .format-catalog {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+    margin-top: var(--space-48);
+  }
+
+  /* 대표 AI 과정 — 과정 수가 7 대 2라 칸도 3 대 1로 준다(반반이면 오른쪽이 텅 빈다).
+     공용 판 색이 sunken이라 sunken 섹션 위에서는 묻힌다 — 판을 흰 면으로 올린다. */
   .skillcamp .service-catalog {
     grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+  }
+
+  .skillcamp .service-catalog .catalog-board__items > li {
+    background: var(--color-surface-sunken);
   }
 
   .skillcamp .service-catalog__fixed:first-child {
@@ -67,12 +79,6 @@
     --service-catalog-columns: 1;
   }
 
-  /* 02 카드 안 대표 과정 — pill을 줄바꿈으로 흘린다. pill이 자체 margin으로 간격을 갖는다. */
-  .skillcamp .course-list {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: var(--space-4);
-  }
 
   /* 01 장면 목록 — 기간 라벨을 쓰지 않아 공용 timeline의 96px 첫 칸을 걷어낸다. */
   .skillcamp .scenario > li {
@@ -153,34 +159,34 @@
     margin-top: var(--space-12);
   }
 
-  /* 진단 연계 배너 — 섹션이 아니라 사이에 낀 판이라 위아래 여백을 줄인다. */
+  /* 배너 — 섹션이 아니라 사이에 낀 판이라 bridge는 위아래 여백을 줄인다. */
   .skillcamp .bridge {
     padding-block: var(--space-32);
   }
 
-  .skillcamp .bridge .summary-banner {
+  .skillcamp .summary-banner {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-12);
   }
 
-  .skillcamp .bridge-title {
+  .skillcamp .banner-title {
     font-size: var(--text-heading-32);
     line-height: var(--leading-heading-32);
     font-weight: var(--font-weight-semibold);
     color: var(--color-surface);
   }
 
-  .skillcamp .bridge-desc {
+  .skillcamp .banner-desc {
     max-width: 640px;
     font-size: var(--text-body-16);
     line-height: var(--leading-body-16);
     color: color-mix(in srgb, var(--color-surface) 78%, transparent);
   }
 
-  /* 배너 위 CTA 두 개 — hero-actions의 flex 배치를 그대로 쓴다. */
-  .skillcamp .bridge .hero-actions {
+  /* 배너 위 CTA — hero-actions의 flex 배치를 그대로 쓴다. */
+  .skillcamp .summary-banner .hero-actions {
     justify-content: center;
   }
 

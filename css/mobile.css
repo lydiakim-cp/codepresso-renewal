@@ -245,7 +245,6 @@
 
   .cases .cycle-arrow svg { transform: rotate(90deg); }
 
-  .skillcamp .features-format .start-grid { --start-columns: 1; }
   .skillcamp .service-catalog { grid-template-columns: minmax(0, 1fr); }
   .skillcamp .service-catalog__fixed:first-child,
   .skillcamp .service-catalog__fixed + .service-catalog__fixed { --service-catalog-columns: 3; }

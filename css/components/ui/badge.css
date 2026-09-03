@@ -24,6 +24,11 @@
   line-height: var(--leading-body-14);
   font-weight: var(--font-weight-medium);
   margin: 0 var(--space-6) var(--space-6) 0;
+
+  /* 면을 주지 않으면 글자만 떠 있어 칩으로 읽히지 않는다. 쓰는 쪽이 덮어써도 된다. */
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-ink-light);
 }
 
 .tag {
