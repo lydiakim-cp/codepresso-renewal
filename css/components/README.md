@@ -30,7 +30,7 @@
 - Content UI: `metric-card`, `media-card`, `choice-list`, `assessment-card`, `summary-banner`
 - Frame UI: `content-panel`, `preview-frame`, `layout`, `section-body`
 - Navigation UI: `header`
-- 조합·연출: `feature-card`, `compare-panel`, `timeline`, `faq-list`, `catalog-board`, `mock-motion`
+- 조합·연출: `feature-card`, `compare-panel`, `timeline`, `faq-list`, `tab-catalog`, `mock-motion`
 
 ## 책임 분리 원칙
 

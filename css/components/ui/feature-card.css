@@ -52,8 +52,6 @@
 
 .feature-card .section-body {
   flex: 1;
-
-  padding-right: 32px;
 }
 
 .feature-card-icon {
@@ -85,7 +83,7 @@
 .feature-card-arrow {
   position: absolute;
   top: 50%;
-  right: var(--space-35);
+  right: 10px;
   transform: translateY(-50%);
   color: var(--color-ink-lighter);
   transition: transform var(--duration-hover) var(--ease-hover);

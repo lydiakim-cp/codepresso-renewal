@@ -42,7 +42,6 @@
 @import url("./components/ui/cycle.css") layer(components);
 @import url("./components/ui/faq-list.css") layer(components);
 @import url("./components/ui/catalog-board.css") layer(components);
-@import url("./components/ui/service-catalog.css") layer(components);
 @import url("./components/ui/scenario-switch.css") layer(components);
 @import url("./components/ui/part-nav.css") layer(components);
 @import url("./components/ui/cta-final.css") layer(components);

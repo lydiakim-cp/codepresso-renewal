@@ -14,19 +14,10 @@
   width: 100%;
 }
 
-.section-body-title {
-  margin: 0;
-  font-size: var(--text-card-title);
-  line-height: var(--leading-card-title);
-  letter-spacing: var(--tracking-card-title);
-  font-weight: var(--font-weight-medium);
-}
 
 .section-body-subtitle {
-  margin: 0;
-  font-size: var(--text-h3);
-  line-height: var(--leading-h3);
-  letter-spacing: var(--tracking-h3);
+  font-size: var(--text-card-title);
+  font-weight: var(--font-weight-medium);
   font-weight: var(--font-weight-semibold);
 }
 

@@ -215,7 +215,7 @@ SKILL.md의 "페이지·섹션 구조 관례"를 그대로 따른다:
 | `js/part-nav.js` | PART 1/2 같은 세그먼트 내비게이션의 스크롤 연동 활성 표시 | `part-nav[data-part-nav]`를 쓸 때만 |
 | `js/journey-stage.js` | 스크롤에 따라 단계별 콘텐츠가 전환되는 스테이지형 섹션 | `[data-journey-stage]`류 구조를 쓸 때만 |
 | `js/difference-cycle.js` | 여러 화면이 일정 주기로 자동 순환하는 섹션 | 그 패턴을 그대로 쓸 때만 |
-| `js/catalog-board.js` | `catalog-board`의 좌측 분류 레일 전환 | `[data-catalog-board]`를 쓸 때만 |
+| `js/catalog-board.js` | `tab-catalog`의 좌측 분류 레일 전환 | `[data-catalog-board]`를 쓸 때만 |
 | `js/case-filter.js` | `part-nav`를 필터로 써서 목록 카드를 걸러 보여줌 | `[data-case-filter]` + `[data-case-list]`를 쓸 때만 |
 | `js/scenario-switch.js` | 좌측 단계 목록을 읽어 내려가면 우측 목업이 그 단계 화면으로 바뀜(스크롤 연동) | `[data-scenario-steps]` + `[data-scenario-screens]`를 쓸 때만 |
 

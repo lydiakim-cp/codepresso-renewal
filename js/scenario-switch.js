@@ -3,7 +3,7 @@
  * [data-scenario-steps] 안의 단계 중 화면에 들어온 것을 활성으로 보고,
  * [data-scenario-screens] 안의 같은 순서 목업으로 교체한다.
  * - 단계는 data-scenario-step="{key}", 목업 판은 data-scenario-panel="{key}"로 짝을 맞춘다.
- * - 활성 표시는 .is-active 하나로 단계와 판 양쪽에 붙는다(catalog-board와 같은 규약).
+ * - 활성 표시는 .is-active 하나로 단계와 판 양쪽에 붙는다(tab-catalog와 같은 규약).
  * - 자동 순환은 하지 않는다. 읽는 사람이 스크롤로 진행을 정하는 화면이라,
  *   가만히 있는데 판이 바뀌면 방해가 된다.
  */

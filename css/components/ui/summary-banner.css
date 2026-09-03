@@ -35,3 +35,43 @@
   gap: var(--space-24);
 }
 
+/* Bridge — 어두운 배너 안에서 좌 문구 · 우 CTA로 갈라 다음 페이지로 넘긴다.
+   skills 07과 aifluent 06이 같은 값을 쓰고 있어 공용으로 올렸다. */
+.bridge-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.bridge-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  min-width: 0;
+}
+
+.bridge-title {
+  font-size: var(--text-heading-24);
+  line-height: var(--leading-heading-24);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-surface);
+}
+
+.bridge-desc {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: color-mix(in srgb, var(--color-surface) 76%, transparent);
+}
+
+/* CTA 화살표가 진입 직후 두 번 튀어 다음 행동을 가리킨다. */
+.fade-up.is-visible .bridge-inner .btn > svg {
+  animation: nudge .6s var(--ease-scroll) .7s 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up.is-visible .bridge-inner .btn > svg { animation: none; }
+}
+

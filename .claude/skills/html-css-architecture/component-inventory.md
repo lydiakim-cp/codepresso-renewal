@@ -18,7 +18,7 @@
 | 담을 콘텐츠의 형태 | 고르는 것 | 고르지 않는 것 |
 |---|---|---|
 | 기능·특징 3~4개, 아이콘 + 한 줄 설명 | `feature-card` (자동 순환은 `data-feature-cycle`) | `content-panel` — 큰 시각 요소가 없으면 과하다 |
-| 분류(카테고리)가 있는 20개 이상의 목록 | `catalog-board` (좌측 rail이 분류, panel이 항목) | 카드 그리드를 새로 만들기 — `__items`가 그리드 + stagger를 이미 갖고 있다 |
+| 분류(카테고리)가 있는 20개 이상의 목록 | `tab-catalog` (좌측 rail이 분류, panel이 항목) | 카드 그리드를 새로 만들기 — `__items`가 그리드 + stagger를 이미 갖고 있다 |
 | 순서가 있고 **기간·날짜가 붙는** 단계 | `timeline` | `cycle` — 기간 칸이 없다 |
 | 순서가 있고 기간이 없는 N단계(선형·순환) | `cycle` (`--cycle-columns`, 순환 결론 칸은 `.is-return`) | `process-steps` — ax-build·ax-grow(다크) 전용이다 |
 | 두 갈래 중 하나를 고르게 한다 | `content-panel` + 공용 `start-card` (ax-grow 07 · why-codepresso 06 · axpresso 01) | `compare-panel` — 우열이 아니라 선택지일 때는 대비가 아니다 |
@@ -82,7 +82,7 @@
 | Timeline | `timeline.css` | `.timeline > li`, `__marker`, `__term`, `__body`, `__title`, `__desc` | 기간이 있는 단계를 세로로 잇는 진행 흐름 |
 | Cycle | `cycle.css` | `.cycle > li`(+`.is-return`·`.blue`·`.dark`), `.cycle-head`, `.cycle-no`, `.cycle-en`, `.cycle-desc`, `.cycle-arrow`, `.cycle-note` | N단계 순서/순환을 가로 칸 + 경계 화살표로. 열 수는 `--cycle-columns`(기본 4). 순환형 결론 칸은 `.is-return`(유리 표면), 화살표는 반투명 글래스모피즘 노드. 칸별 컬러 테마는 `.blue`(하늘색 카드+브랜드 파랑 번호)·`.dark`(잉크 카드+흰 번호), 무클래스는 기본(흰 카드+하늘색 번호). why-codepresso.html 03(4단계 순환)·skillcertify.html 05(5단계 선형)·cases.html 공통점(3단계 선형)이 함께 쓰며 공용 승격 — 선형 페이지 둘 다 결론 칸도 기본 배경 그대로 둔다 |
 | FAQ List | `faq-list.css` | `.faq-list > details`, `__question`, `__icon`, `__answer` | 질문을 눌러 답을 펼치는 아코디언 (`<details>` native) |
-| Catalog Board | `catalog-board.css` | `.catalog-board`, `__rail`, `__category`, `__count`, `__panel`, `__items > li` | 여러 분류의 항목 묶음을 대시보드처럼 한 판에 (`js/catalog-board.js`와 짝). **`__items`는 auto-fill 그리드 + nth-child 진입 stagger를 이미 갖고 있다** — 카드 나열이 필요하면 새로 만들지 말고 이걸 쓰고 `li` 안쪽만 덮는다(difference 07이 그렇게 했다) |
+| Catalog Board | `catalog-board.css` | `.tab-catalog`, `__rail`, `__category`, `__count`, `__panel`, `__items > li` | 여러 분류의 항목 묶음을 대시보드처럼 한 판에 (`js/catalog-board.js`와 짝). **`__items`는 auto-fill 그리드 + nth-child 진입 stagger를 이미 갖고 있다** — 카드 나열이 필요하면 새로 만들지 말고 이걸 쓰고 `li` 안쪽만 덮는다(difference 07이 그렇게 했다) |
 | Product Mock | `product-mock.css` | `.journey-mock`(+`.mock-detail`·`.camp-ticker`), `-head`, `-title`, `-badge`(+`.is-live`), `-progress`, `-list`, `-item`(+`.is-current`·`.is-done`), `-check`, `-speaker`, `-avatar`, `-bubble`, `.journey-app*`(SkillFit 3단 앱 화면) | 제품 학습·강의 화면 목업 셸. index PART 1과 skills 04가 함께 쓴다(원래 index.css에 있던 712줄을 공용으로 올림). 목업 내부는 `opacity: 0`이 기본이고 **쓰는 페이지가 진입 신호로 띄워야 한다** — index는 `journey-stage.js`의 `.is-popping`, skills는 `.catalog-learn.is-visible`. 움직임은 `mock-motion.css`가 담당 |
 | Statement | `statement.css` | `.statement`(+`.is-ink`), `-inner`, `-eyebrow`, `-title`, `-desc` | 한 문장만 던지는 **전체 폭 강조 띠**. 섹션 자체가 배경을 칠해 화면 끝까지 닿는다(`summary-banner.dark`는 1248px 안에서 잘리는 배너라 역할이 다르다). 어두운 판 위 글씨는 흰색. **페이지마다 본문 중간 강조 1곳**의 표준 후보 — index·cases가 쓴다 |
 | Site Footer | `site-footer.css` | `.site-footer`, `-inner`, `-brand`, `-tagline`, `-nav`, `-group`, `-group-title`, `-legal`, `-company`, `-copyright` | 전 페이지 공용 최하단 푸터. 마크업은 `partials/footer.html` 하나이며 `js/include-partials.js`가 삽입한다 |
@@ -96,7 +96,7 @@
 | Section Body | `section-body.css` | `.section-body`, `-heading`, `-title`, `-subtitle`, `-description` | 카드/패널 내부 텍스트 묶음(제목+부제+설명) |
 | Text 유틸리티 | `text.css` | `.text-label`, `.text-caption`, `.desc`, `.description` 등 | 자잘한 보조 텍스트 스타일. **14px/ink-light 카드 설명은 `.description` 하나로 통일**(cycle·problem·industry 카드가 각자 갖고 있던 같은 3줄을 걷어냈다) |
 | Surface | `surface.css` | `.surface-glass` 등 | 배경 표면(유리 질감 등) 유틸리티 |
-| Summary Banner | `summary-banner.css` | `.summary-banner`, `.dark`, `.stats-light` | 한 줄 강조 배너, 통계 묶음 배경 |
+| Summary Banner | `summary-banner.css` | `.summary-banner`, `.dark`, `.stats-light`, `.bridge-inner`/`.bridge-copy`/`.bridge-title`/`.bridge-desc` | 한 줄 강조 배너, 통계 묶음 배경. **브릿지 변형** — 어두운 배너 안에서 좌 문구 · 우 CTA로 갈라 다음 페이지로 넘긴다(skills 07 · aifluent 06이 같은 값을 쓰고 있어 페이지 스코프에서 공용으로 올렸다). 진입 시 CTA 화살표가 두 번 튀는 연출과 `prefers-reduced-motion` 대응도 컴포넌트가 갖는다 |
 | Feature Card | `feature-card.css` | `.feature-card`, `-icon-row`, `-icon`, `-arrow`, `-progress` | 아이콘+제목+설명형 카드 (자동 순환 가능, `js/feature-card-cycle.js`) |
 | Card / Grid | `layout.css` | `.card`, `.grid`, `.flex-row` | 카탈로그 문서에서 쓰는 범용 카드/그리드 (서비스 페이지에도 쓸 수 있음) |
 | Dot Line | `layout.css` | `.dot-line` | 섹션 사이 점선 구분선 |
@@ -183,8 +183,8 @@
 | `scenario-stage` | 04 각 단계의 국면 라벨(데이터 / 진단→학습 / 성과) | `timeline` 전부. 라벨 한 줄만 추가 |
 | `position-map` · `position-dot` | 05 경쟁 구도 2축 좌표. 점 자리는 마크업의 `--pos-x`·`--pos-y`(%)가 정한다 | — (비개발자가 좌표를 옮길 수 있게 값을 마크업에 노출) |
 | `start-grid` · `start-card` | 06 두 갈래 시작점 | `content-panel` · `summary-banner`(결론 한 줄) |
-| `industry-cards` · `industry-card-label` · `industry-card-body` | 07 업종별 4블록을 1행 4열 카드로(Pain Point → 적용 → 교육 매핑 → 기대 효과 순서가 한 줄로 흐른다). 900px 2열 · 720px 1열 | `catalog-board__items`를 그대로 씀(auto-fill 그리드 + 진입 stagger를 컴포넌트가 이미 가짐). 그 `li`는 "한 줄 칩"이라 라벨+본문 2단만 페이지에서 덮는다 |
-| `scenario-screens` | 04 목업 3장을 grid 한 칸에 겹쳐 두고 활성 판만 보여줌(높이 튐 방지) | `js/scenario-switch.js`와 짝. 규약은 `catalog-board`와 같음(key 짝 + `.is-active`) |
+| `industry-cards` · `industry-card-label` · `industry-card-body` | 07 업종별 4블록을 1행 4열 카드로(Pain Point → 적용 → 교육 매핑 → 기대 효과 순서가 한 줄로 흐른다). 900px 2열 · 720px 1열 | `item-grid`를 그대로 씀(auto-fill 그리드 + 진입 stagger를 컴포넌트가 이미 가짐). 그 `li`는 "한 줄 칩"이라 라벨+본문 2단만 페이지에서 덮는다 |
+| `scenario-screens` | 04 목업 3장을 grid 한 칸에 겹쳐 두고 활성 판만 보여줌(높이 튐 방지) | `js/scenario-switch.js`와 짝. 규약은 `tab-catalog`와 같음(key 짝 + `.is-active`) |
 
 **이 페이지에서 처음 실제로 쓰인 공용 컴포넌트** — `timeline`(04)과 `compare-panel`(hero)은
 그전까지 카탈로그에만 있고 서비스 페이지에서 쓰이지 않았다.
@@ -244,6 +244,24 @@ skillcertify(3장 축소판) 두 페이지가 카드 껍데기·로고 판(`outc
 용어라 방문자에게는 번역투로 읽힌다. 배지·필터·각주 모두 GNB와 같은 말
 (**업무 자동화** / **역량 진단·교육**)을 쓴다. 마크업의 `data-case-axis="tool|people"`은
 화면에 안 나오는 내부 식별자라 그대로 둔다.
+
+## F. skillpath.html(이러닝) — 새 컴포넌트 없음
+
+`css/pages/skillpath.css`가 `.skillpath` 스코프 안에서 **배치와 면만** 정한다. 섹션
+다섯 개가 전부 공용 컴포넌트 조합으로 끝나 새 컴포넌트를 만들지 않았고, 아래 세
+클래스만 페이지 전용으로 남았다(모두 여백·정렬만 갖는다).
+
+| 클래스 | 역할 | 재사용한 공용 컴포넌트 |
+|---|---|---|
+| `journey-note` | 02 아래 운영 주체 각주 한 줄(정렬만) | 타이포는 공용 `text-caption` |
+| `diagnose-banner` | 진단 연계 유도 배너를 세로로 쌓는 배치 | `summary-banner`(흰 면) + `btn-ghost` — 어두운 판은 페이지에 bridge 한 곳뿐이라 `.dark`를 쓰지 않았다 |
+| `bridge-actions` | 어두운 배너 우측 CTA 2개를 한 줄로 | `summary-banner.dark` + 공용 `bridge-*`(우측 칸에 요소 하나를 전제하므로 감싸는 칸만 추가) |
+
+- 01은 `catalog-group--stacked` + `item-grid`(4열 타일) + `catalog-group__note`,
+  02는 `scenario-layout` + `timeline`(term 칸 사용) + `journey-mock` 목업 4장 +
+  `start-card` 3열, 이용 방식은 `feature-card`(자동 순환), 03은 `start-card` 3열이다.
+- 섹션 이름이 두 번째 `features`라 `features-enterprise`로 한 단어를 붙였다
+  (aifluent의 `features-mode`·`catalog-level`과 같은 방식).
 
 ## 판단 순서 (요약)
 

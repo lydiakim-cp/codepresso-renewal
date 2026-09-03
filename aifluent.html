@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI Fluent — 업무에서 얼마나 잘 쓰는지 측정하는 AI 역량 진단 | 코드프레소</title>
+
+  <!-- 검색 결과·링크 미리보기 문구. hero 문구를 그대로 쓴다(마케팅팀 검수 대상).
+       TODO: og:image(1200x630) 에셋과 운영 도메인(og:url·canonical)이 확정되면 채운다. -->
+  <meta name="description" content="AI Fluent. AI를 얼마나 아는지가 아니라 업무에서 얼마나 잘 쓰는지 측정합니다. 실제 업무 시나리오에서 문제 정의부터 AI 협업, 결과 검증까지 전 과정을 평가합니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Fluent — 업무에서 얼마나 잘 쓰는지 측정하는 AI 역량 진단 | 코드프레소">
+  <meta property="og:description" content="AI Fluent. AI를 얼마나 아는지가 아니라 업무에서 얼마나 잘 쓰는지 측정합니다. 실제 업무 시나리오에서 문제 정의부터 AI 협업, 결과 검증까지 전 과정을 평가합니다.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/aifluent.css">
+  <link rel="stylesheet" href="css/mobile.css">
+</head>
+
+<body>
+  <div data-include="partials/header.html"></div>
+
+  <main class="aifluent">
+    <!-- Hero — 첫 화면이라 fade-up 없음. 보조 띠에는 "무엇을 어떻게 보는가" 3가지를 눕힌다. -->
+    <section class="sub-hero">
+      <div class="hero-wrap">
+        <div class="sub-hero-copy">
+          <p class="tag">Assess · AI 역량 진단</p>
+          <h1 class="hero-title">AI Fluent</h1>
+          <p class="hero-desc">AI를 얼마나 아는지가 아니라, <br data-break="desktop">업무에서 <strong>얼마나 잘 쓰는지</strong> 측정합니다</p>
+          <p class="hero-desc">실제 업무 시나리오에서 문제를 정의하고 AI와 협업하고 결과를 검증하는 전 과정을 평가합니다.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#">
+              기업 진단 문의
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 평가 방식 3가지. skills·skillcamp hero와 같은 유리 띠 마크업을 그대로 쓴다. -->
+        <ul class="hero-facts surface-glass">
+          <li class="metric-card is-visible">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 실무 화면 — images/flat_icon_svg/077.브라우저 창.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value">실제 업무를 수행합니다</div>
+              <p class="metric-card__label text-label">직무별 현업 시나리오와 실제 데이터</p>
+            </div>
+          </li>
+          <li class="metric-card is-visible">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 다면 평가 — images/icon/ic_skillFit.svg의 실제 path, 하드코딩 색을 브랜드 토큰으로 교체 -->
+              <svg viewBox="8.1 5 28.99 28.99" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11 23.5C11 22.6716 11.6716 22 12.5 22H16C16.8284 22 17.5 22.6716 17.5 23.5V27.5C17.5 28.3284 16.8284 29 16 29H12.5C11.6716 29 11 28.3284 11 27.5V23.5ZM12.5 23.5V27.5H16V23.5H12.5Z" fill="var(--color-brand)"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5 19.5C17.5 18.6716 18.1716 18 19 18H22.5C23.3284 18 24 18.6716 24 19.5V27.5C24 28.3284 23.3284 29 22.5 29H19C18.1716 29 17.5 28.3284 17.5 27.5V19.5ZM19 19.5V27.5H22.5V19.5H19Z" fill="var(--color-brand)"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M24 16.5C24 15.6716 24.6716 15 25.5 15H27C27.4142 15 27.75 15.3358 27.75 15.75C27.75 16.1642 27.4142 16.5 27 16.5H25.5V27.5H29V20.75C29 20.3358 29.3358 20 29.75 20C30.1642 20 30.5 20.3358 30.5 20.75V27.5C30.5 28.3284 29.8284 29 29 29H25.5C24.6716 29 24 28.3284 24 27.5V16.5Z" fill="var(--color-brand)"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M29.1438 10.4943C29.2506 10.1963 29.533 10 29.8496 10C30.1662 10 30.4486 10.1963 30.5554 10.4943L31.0982 12.0092C31.2796 12.5154 31.6782 12.914 32.1844 13.0954L33.6993 13.6382C33.9973 13.745 34.1936 14.0274 34.1936 14.344C34.1936 14.6606 33.9973 14.943 33.6993 15.0498L32.1844 15.5926C31.6782 15.774 31.2796 16.1726 31.0982 16.6788L30.5554 18.1937C30.4486 18.4917 30.1662 18.688 29.8496 18.688C29.533 18.688 29.2506 18.4917 29.1438 18.1937L28.601 16.6788C28.4196 16.1726 28.021 15.774 27.5148 15.5926L25.9999 15.0498C25.7019 14.943 25.5056 14.6606 25.5056 14.344C25.5056 14.0274 25.7019 13.745 25.9999 13.6382L27.5148 13.0954C28.021 12.914 28.4196 12.5154 28.601 12.0092L29.1438 10.4943ZM29.8496 12.9298C29.5326 13.544 29.0496 14.027 28.4354 14.344C29.0496 14.661 29.5326 15.144 29.8496 15.7582C30.1666 15.144 30.6496 14.661 31.2638 14.344C30.6496 14.027 30.1666 13.544 29.8496 12.9298Z" fill="var(--color-brand)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value">과정과 결과를 함께 봅니다</div>
+              <p class="metric-card__label text-label">AI 채점에 전문가 검증을 더합니다</p>
+            </div>
+          </li>
+          <li class="metric-card is-visible">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 리포트 — images/icon/ic_lineChart.svg의 실제 path, 하드코딩 색을 브랜드 토큰으로 교체 -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"/>
+                <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value">다음 행동까지 이어집니다</div>
+              <p class="metric-card__label text-label">개인·조직 리포트와 학습 우선순위</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!--
+      진단 모드 — 개인 맛보기 vs 기업 정밀. 우열이 아니라 선택지라 compare-panel이 아니라
+      공용 content-panel + start-card 갈래 배치를 쓴다(why-codepresso 06과 같은 마크업).
+    -->
+    <section class="features-mode fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">진단 모드</p>
+          <h2>목적에 맞는 진단을 고르세요</h2>
+          <p class="desc">개인은 3분 만에 현재 습관을 확인하고 기업은 직무별 실무 미션으로 정밀하게 평가합니다.</p>
+        </div>
+        <div class="section-content">
+          <ul class="start-grid">
+            <li>
+              <div class="content-panel start-card">
+                <span class="start-icon" aria-hidden="true">
+                  <!-- 개인 맛보기 — images/icon/ic_calendar.svg 기반, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                  <svg class="icon-lg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"/>
+                    <path d="M16.5 3H15.5C15.2239 3 15 3.22386 15 3.5V5.5C15 5.77614 15.2239 6 15.5 6H16.5C16.7761 6 17 5.77614 17 5.5V3.5C17 3.22386 16.7761 3 16.5 3Z" fill="var(--color-brand)"/>
+                    <path d="M2.5 9H21.5V10.5H2.5V9Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+                <div class="content-panel__intro">
+                  <p class="text-label brand">개인용 맛보기</p>
+                  <h3>3분 AI 활용 진단</h3>
+                  <p class="start-desc">짧은 문항으로 현재 AI 활용 습관과 기본 수준을 빠르게 확인하는 입문 진단입니다.</p>
+                </div>
+                <ul class="mode-meta">
+                  <li class="tag sm">약 3분</li>
+                  <li class="tag sm">개인 결과</li>
+                  <li class="tag sm">회원가입 없음</li>
+                </ul>
+                <a class="btn btn-ghost" href="#">
+                  지금 시작하기
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class="content-panel start-card is-primary">
+                <span class="start-icon" aria-hidden="true">
+                  <!-- 기업 정밀 — images/icon/ic_team.svg의 실제 path, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                  <svg class="icon-lg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)"/>
+                    <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+                <div class="content-panel__intro">
+                  <p class="text-label brand">기업용 정밀 진단</p>
+                  <h3>실무 미션 기반 평가</h3>
+                  <p class="start-desc">직무별 현업 과제를 수행하며 AI 협업 과정과 결과물을 다면 평가하는 기업용 진단입니다.</p>
+                </div>
+                <ul class="mode-meta">
+                  <li class="tag sm">직무별 실무 미션</li>
+                  <li class="tag sm">과정과 산출물 다면 평가</li>
+                  <li class="tag sm">개인·조직 리포트</li>
+                </ul>
+                <a class="btn btn-primary" href="#">
+                  기업 진단 문의
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 What We Measure — 네 역량. 아이콘+제목+한 줄 설명이라 공용 feature-card 자동 순환을 쓴다. -->
+    <section class="features fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">01 · What We Measure</p>
+          <h2>프롬프트 한 줄이 아니라, <br data-break="desktop">일을 완성하는 전 과정을 봅니다</h2>
+          <p class="desc">AI를 업무 도구로 활용할 때 실제 성과를 가르는 네 가지 역량을 함께 평가합니다.</p>
+        </div>
+        <div class="section-content">
+          <div class="feature-card-grid" data-feature-cycle>
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 문제 정의 — images/icon/ic_todo.svg의 실제 path, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                    <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="var(--color-brand)"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0001 8.58579L17.293 6.29289L18.7072 7.70711L15.0001 11.4142L12.293 8.70711L13.7072 7.29289L15.0001 8.58579Z" fill="var(--color-brand-dark)"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0001 14.5858L17.293 12.2929L18.7072 13.7071L15.0001 17.4142L12.293 14.7071L13.7072 13.2929L15.0001 14.5858Z" fill="var(--color-brand-dark)"/>
+                    <path d="M10.4998 14H6.50977C6.23362 14 6.00977 14.2239 6.00977 14.5V15.53C6.00977 15.8061 6.23362 16.03 6.50977 16.03H10.4998C10.7759 16.03 10.9998 15.8061 10.9998 15.53V14.5C10.9998 14.2239 10.7759 14 10.4998 14Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">문제 정의</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle">무엇을 맡길지 <br> 먼저 정합니다</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>업무 목표와 제약을 파악해 AI가 풀 수 있는 문제로 나눕니다.</p>
+                  </div>
+                </div>
+              </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 프롬프트 설계 — images/flat_icon_svg/038.작성,글쓰기.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.86 3.65039L19.4 7.19038L7.90999 18.6704L4 19.0004L4.37999 15.1404L15.86 3.65039Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                    <path d="M18.0498 8.54065L14.5098 5.00064L16.6398 2.88065C16.8271 2.69439 17.0806 2.58984 17.3448 2.58984C17.6089 2.58984 17.8624 2.69439 18.0498 2.88065L20.1698 5.00064C20.2635 5.0936 20.3379 5.20419 20.3887 5.32605C20.4394 5.44791 20.4656 5.57862 20.4656 5.71063C20.4656 5.84264 20.4394 5.97336 20.3887 6.09521C20.3379 6.21707 20.2635 6.32766 20.1698 6.42062L18.0498 8.54065Z" fill="var(--color-brand)"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 21C3 20.4477 3.44772 20 4 20H20C20.5523 20 21 20.4477 21 21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">프롬프트 설계</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle">맥락과 기준을 <br> 함께 전달합니다</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>필요한 맥락과 기준을 주고 원하는 결과에 맞게 요청을 다듬습니다.</p>
+                  </div>
+                </div>
+              </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 워크플로·Agent — images/flat_icon_svg/072.챗봇.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.0098 6H7.00977C4.80063 6 3.00977 7.79086 3.00977 10V17C3.00977 19.2091 4.80063 21 7.00977 21H17.0098C19.2189 21 21.0098 19.2091 21.0098 17V10C21.0098 7.79086 19.2189 6 17.0098 6Z" fill="var(--color-brand)"/>
+                    <path d="M12.0098 2C12.3413 2 12.6593 2.1317 12.8937 2.36612C13.1281 2.60054 13.2598 2.91848 13.2598 3.25V6H10.7598V3.25C10.7598 2.91848 10.8915 2.60054 11.1259 2.36612C11.3603 2.1317 11.6782 2 12.0098 2Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"/>
+                    <path d="M10.0098 12C10.0098 11.1716 9.33819 10.5 8.50977 10.5C7.68134 10.5 7.00977 11.1716 7.00977 12V14C7.00977 14.8284 7.68134 15.5 8.50977 15.5C9.33819 15.5 10.0098 14.8284 10.0098 14V12Z" fill="var(--color-surface)"/>
+                    <path d="M17.0098 12C17.0098 11.1716 16.3382 10.5 15.5098 10.5C14.6813 10.5 14.0098 11.1716 14.0098 12V14C14.0098 14.8284 14.6813 15.5 15.5098 15.5C16.3382 15.5 17.0098 14.8284 17.0098 14V12Z" fill="var(--color-surface)"/>
+                    <path d="M3.00977 10V16C2.47933 16 1.97065 15.7893 1.59558 15.4142C1.22051 15.0391 1.00977 14.5304 1.00977 14V12C1.00977 11.4696 1.22051 10.9609 1.59558 10.5858C1.97065 10.2107 2.47933 10 3.00977 10Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"/>
+                    <path d="M21.0098 10C21.5402 10 22.0489 10.2107 22.424 10.5858C22.7991 10.9609 23.0098 11.4696 23.0098 12V14C23.0098 14.5304 22.7991 15.0391 22.424 15.4142C22.0489 15.7893 21.5402 16 21.0098 16V10Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">워크플로·Agent</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle">한 번이 아니라 <br> 반복 가능하게 만듭니다</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>도구와 단계를 엮어 다시 쓸 수 있는 협업 흐름을 만듭니다.</p>
+                  </div>
+                </div>
+              </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 결과 검증 — images/icon/ic_axBuild.svg의 실제 path, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.5001 5L12.0001 1L2.50007 5V9C2.49107 12.0185 3.39297 14.9695 5.08786 17.4672C6.78276 19.9649 9.19179 21.8932 12.0001 23C14.8083 21.8932 17.2174 19.9649 18.9123 17.4672C20.6072 14.9695 21.5091 12.0185 21.5001 9V5Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4089 11.5203L15.2373 7.70001L17.0032 9.46964L11.3316 15.1293L7.7002 11.181L9.54027 9.48864L11.4089 11.5203Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">결과 검증</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle">그대로 쓰지 않고 <br> 확인해서 완성합니다</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>사실성과 품질, 우리 업무에 맞는지를 확인해 결과물을 완성합니다.</p>
+                  </div>
+                </div>
+              </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      02 Real-Work Assessment — 좌 설명 · 우 실무 화면.
+      "시험이 아니라 업무를 한다"는 글로만 두면 안 읽혀서, 미션 수행 화면을 focus 연출로 함께 둔다.
+    -->
+    <section class="intro fade-up">
+      <div class="section-wrap row">
+        <div class="section-title text-left">
+          <p class="tag">02 · Real-Work Assessment</p>
+          <h2>시험 문제를 푸는 대신, <br data-break="desktop">실제 업무를 수행합니다</h2>
+          <p class="desc">참가자는 현업과 비슷한 자료와 목표를 받아 AI와 함께 결과물을 만듭니다. 입력한 문장이 아니라 일한 과정과 산출물을 봅니다.</p>
+          <ul class="feature-points">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              직무별 현업 시나리오와 실제 데이터
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              AI 협업 과정과 산출물 동시 평가
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              AI 자동 채점과 전문가 검증을 결합한 다면 평가
+            </li>
+          </ul>
+        </div>
+
+        <!-- 진행 중인 미션 하나만 떠오르고 나머지는 가라앉는다(공용 focus 연출). -->
+        <div class="mission-visual">
+          <div class="preview-frame mock-screen" data-mock-motion="focus" aria-hidden="true">
+            <div class="journey-mock-head">
+              <span class="journey-mock-title">실무 미션 · 마케팅</span>
+              <span class="journey-mock-badge is-live"><i class="is-pulse"></i>수행 중</span>
+            </div>
+            <div class="journey-mock-progress">
+              <div class="journey-mock-progress-bar"><span style="width: 62%"></span></div>
+              <span class="text-caption strong">3 / 5</span>
+            </div>
+            <ul class="journey-mock-list">
+              <li class="journey-mock-item is-done is-quiet">
+                <span class="journey-mock-check"></span>
+                <span class="skeleton-line is-shimmer" style="width: 126px"></span>
+                <span style="flex: 1"></span>
+              </li>
+              <li class="journey-mock-item is-done is-quiet">
+                <span class="journey-mock-check"></span>
+                <span class="skeleton-line is-shimmer" style="width: 92px"></span>
+                <span style="flex: 1"></span>
+              </li>
+              <li class="journey-mock-item is-current is-focus">
+                <span class="journey-mock-check"></span>
+                <span class="journey-mock-item-name">고객 문의 데이터로 캠페인 제안서 작성</span>
+                <span style="flex: 1"></span>
+                <span class="text-caption strong">진행</span>
+              </li>
+              <li class="journey-mock-item is-quiet">
+                <span class="journey-mock-check"></span>
+                <span class="skeleton-line is-shimmer" style="width: 138px"></span>
+                <span style="flex: 1"></span>
+              </li>
+            </ul>
+            <div class="journey-mock-progress">
+              <div class="journey-mock-progress-bar"><span style="width: 100%"></span></div>
+              <span class="text-caption strong">채점 4개 항목</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      03 Assessment Tracks — 전 직군 · 개발 직군 두 묶음.
+      "라벨 + 타일 목록 두 묶음"이 그대로 공용 catalog-group의 역할이라 skillcamp와 같은 마크업을 쓴다.
+    -->
+    <section class="catalog fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">03 · Assessment Tracks</p>
+          <h2>직군과 목표에 맞는 평가 트랙</h2>
+          <p class="desc">전 구성원의 업무 활용 역량부터 개발 조직의 전문 기술 역량까지 필요한 범위로 구성합니다.</p>
+        </div>
+        <div class="section-content">
+          <div class="catalog-group catalog-group--stacked">
+            <div class="catalog-group__plain">
+              <p><span class="tag">전 직군</span> <span class="tag">업무 활용</span> <span class="tag">AI와 함께 일하는 기본 역량</span></p>
+              <ul class="item-grid">
+                <li>
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- AI 바이브코딩 - images/flat_icon_svg/078.개발,코딩.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" fill="var(--color-brand)"/>
+                      <path d="M12.8102 6L9.2002 18H11.2002L14.8102 6H12.8102Z" fill="var(--color-surface)"/>
+                      <path d="M6.55996 8H8.45996L6.36996 12L8.45996 16H6.55996L4.45996 12L6.55996 8Z" fill="var(--color-surface)"/>
+                      <path d="M17.37 8H15.46L17.56 12L15.46 16H17.37L19.47 12L17.37 8Z" fill="var(--color-surface)"/>
+                    </svg>
+                  </span>
+                  AI 바이브코딩 업무효율화
+                </li>
+                <li>
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- AI Agent - images/flat_icon_svg/071.인공지능.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5V22H11V5H13Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                      <path d="M15.0098 5C15.0098 3.34315 13.6666 2 12.0098 2C10.3529 2 9.00977 3.34315 9.00977 5C9.00977 6.65685 10.3529 8 12.0098 8C13.6666 8 15.0098 6.65685 15.0098 5Z" fill="var(--color-brand)"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M20 10V15.5352L17 17.5352V22H15V16.4648L18 14.4648V10H20Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                      <path d="M22.0098 9C22.0098 7.34315 20.6666 6 19.0098 6C17.3529 6 16.0098 7.34315 16.0098 9C16.0098 10.6569 17.3529 12 19.0098 12C20.6666 12 22.0098 10.6569 22.0098 9Z" fill="var(--color-brand)"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M6.00977 14.4648V10H4.00977V15.5352L7.0097 17.5352V22H9.0097V16.4648L6.00977 14.4648Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                      <path d="M2.00977 9C2.00977 10.6569 3.35291 12 5.00977 12C6.66662 12 8.00977 10.6569 8.00977 9C8.00977 7.34315 6.66662 6 5.00977 6C3.35291 6 2.00977 7.34315 2.00977 9Z" fill="var(--color-brand)"/>
+                    </svg>
+                  </span>
+                  AI Agent 업무효율화
+                </li>
+                <li>
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- Prompt Engineering - images/flat_icon_svg/082.연필.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.44 5.07031L5.54004 14.9703L9.08004 18.5003L18.98 8.60031L15.44 5.07031Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"/>
+                      <path d="M4.74984 15.7607L4.08984 17.7507L6.27984 19.9407L8.28984 19.2907L9.07984 18.5007L5.53984 14.9707L4.74984 15.7607Z" fill="color-mix(in srgb, var(--color-brand) 20%, var(--color-surface))"/>
+                      <path d="M3 21L6.28 19.94L4.09 17.75L3 21Z" fill="var(--color-brand-dark)"/>
+                      <path d="M20.3904 4.36069L19.6804 3.66071C19.3057 3.2882 18.7988 3.0791 18.2704 3.0791C17.7421 3.0791 17.2351 3.2882 16.8604 3.66071L15.4404 5.07068L18.9805 8.61069L20.3904 7.1907C20.5764 7.00496 20.7239 6.78436 20.8246 6.54156C20.9252 6.29877 20.977 6.03853 20.977 5.7757C20.977 5.51286 20.9252 5.25259 20.8246 5.0098C20.7239 4.767 20.5764 4.54643 20.3904 4.36069Z" fill="var(--color-brand)"/>
+                    </svg>
+                  </span>
+                  Prompt Engineering
+                </li>
+              </ul>
+            </div>
+
+            <div class="catalog-group__plain">
+              <p><span class="tag dark">개발 직군</span> <span class="tag dark">전문 역량</span> <span class="tag dark">AI 개발과 Agent 구현 역량</span></p>
+              <ul class="item-grid">
+                <li>
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- Prompt Engineering for Developers - images/flat_icon_svg/001.문서,글.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="color-mix(in srgb, var(--color-brand) 30%, var(--color-surface))"/>
+                      <path d="M16.5 7H7.5C7.22386 7 7 7.22386 7 7.5V8.5C7 8.77614 7.22386 9 7.5 9H16.5C16.7761 9 17 8.77614 17 8.5V7.5C17 7.22386 16.7761 7 16.5 7Z" fill="var(--color-brand)"/>
+                      <path d="M16.5 11H7.5C7.22386 11 7 11.2239 7 11.5V12.5C7 12.7761 7.22386 13 7.5 13H16.5C16.7761 13 17 12.7761 17 12.5V11.5C17 11.2239 16.7761 11 16.5 11Z" fill="var(--color-brand)"/>
+                      <path d="M16.5 15H7.5C7.22386 15 7 15.2239 7 15.5V16.5C7 16.7761 7.22386 17 7.5 17H16.5C16.7761 17 17 16.7761 17 16.5V15.5C17 15.2239 16.7761 15 16.5 15Z" fill="color-mix(in srgb, var(--color-brand) 60%, var(--color-surface))"/>
+                    </svg>
+                  </span>
+                  Prompt Engineering for Developers
+                </li>
+                <li>
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- LangChain - images/flat_icon_svg/124.링크,연결.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.5936 5.1038L10.7637 7.93366L8.99597 6.16589L11.826 3.3359C12.998 2.16421 14.5876 1.50586 16.2449 1.50586C17.9021 1.50586 19.4915 2.16408 20.6636 3.33577C21.2452 3.91613 21.7066 4.60547 22.0215 5.36436C22.3366 6.12367 22.4988 6.9377 22.4988 7.7598C22.4988 8.5819 22.3366 9.3959 22.0215 10.1552C21.7064 10.9145 21.2446 11.6042 20.6626 12.1848L17.8322 15.0052L16.0675 13.2343L18.8971 10.4148C19.2461 10.0665 19.5235 9.65242 19.7124 9.19703C19.9015 8.74143 19.9988 8.25304 19.9988 7.7598C19.9988 7.26655 19.9015 6.77812 19.7124 6.32253C19.5234 5.86695 19.2463 5.45314 18.8971 5.10479L18.8961 5.1038C18.1929 4.40079 17.2392 4.00586 16.2449 4.00586C15.2506 4.00586 14.2968 4.40087 13.5936 5.1038Z" fill="var(--color-brand)"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M7.93367 10.7638L5.1038 13.5936C5.10376 13.5937 5.10385 13.5936 5.1038 13.5936C4.40088 14.2968 4.00586 15.2506 4.00586 16.2449C4.00586 17.2391 4.40069 18.1927 5.10354 18.8959C5.80674 19.5987 6.76055 19.9938 7.75479 19.9938C8.7491 19.9938 9.70269 19.5989 10.4059 18.896C10.4059 18.896 10.406 18.896 10.4059 18.896L13.2359 16.066L15.0037 17.8337L12.1737 20.6638C11.0016 21.8355 9.41206 22.4938 7.75479 22.4938C6.09752 22.4938 4.50809 21.8356 3.33604 20.6639C2.16434 19.4918 1.50586 17.9022 1.50586 16.2449C1.50586 14.5876 2.16407 12.9982 3.33577 11.8261L6.16591 8.996L7.93367 10.7638Z" fill="var(--color-brand)"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.3641 8.63565C15.8523 9.1238 15.8523 9.91526 15.3641 10.4034L10.4142 15.3534C9.926 15.8416 9.13455 15.8416 8.64639 15.3534C8.15824 14.8653 8.15823 14.0738 8.64639 13.5856L13.5964 8.63565C14.0845 8.14749 14.876 8.14749 15.3641 8.63565Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"/>
+                    </svg>
+                  </span>
+                  LangChain
+                </li>
+                <li>
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- LangGraph - images/flat_icon_svg/076.네트워크.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.2607 4.37012V14.2501H10.7607V4.37012H13.2607Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7442 13.3467L5.66409 18.7334L4.27734 16.6533L12.3575 11.2666L13.7442 13.3467Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6641 11.2666L19.7442 16.6533L18.3575 18.7334L10.2773 13.3467L11.6641 11.2666Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                      <path d="M15.0107 8V4C15.0107 3.44772 14.563 3 14.0107 3L10.0107 3C9.45846 3 9.01074 3.44772 9.01074 4V8C9.01074 8.55228 9.45846 9 10.0107 9H14.0107C14.563 9 15.0107 8.55228 15.0107 8Z" fill="var(--color-brand)"/>
+                      <path d="M9.01074 20V16C9.01074 15.4477 8.56303 15 8.01074 15H4.01074C3.45846 15 3.01074 15.4477 3.01074 16V20C3.01074 20.5523 3.45846 21 4.01074 21H8.01074C8.56303 21 9.01074 20.5523 9.01074 20Z" fill="var(--color-brand)"/>
+                      <path d="M21.0107 20V16C21.0107 15.4477 20.563 15 20.0107 15H16.0107C15.4585 15 15.0107 15.4477 15.0107 16V20C15.0107 20.5523 15.4585 21 16.0107 21H20.0107C20.563 21 21.0107 20.5523 21.0107 20Z" fill="var(--color-brand)"/>
+                    </svg>
+                  </span>
+                  LangGraph
+                </li>
+                <li>
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- Hugging Face - images/flat_icon_svg/033.클라우드.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19 10.05C19 10.05 19 10.02 19 10C19 6.69 16.31 4 13 4C10.36 4 8.13 5.7 7.32 8.07C7.05 8.03 6.78 8 6.5 8C3.46 8 1 10.46 1 13.5C1 16.54 3.46 19 6.5 19H18.5C20.99 19 23 16.98 23 14.5C23 12.19 21.25 10.3 19 10.05Z" fill="var(--color-brand)"/>
+                    </svg>
+                  </span>
+                  Hugging Face
+                </li>
+                <li class="is-upcoming">
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- AI 코드리뷰 - images/flat_icon_svg/113.승인,완료.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M17.509 9.7163L11.3951 16.5082L6.9436 12.0314L8.71637 10.2686L11.3048 12.8718L15.6509 8.04371L17.509 9.7163Z" fill="var(--color-surface)"/>
+                    </svg>
+                  </span>
+                  AI 코드리뷰
+                  <span class="tag">출시 예정</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 Common Standard — 직군이 달라도 같은 4단계.
+         순서가 아니라 "수준의 정의"라 화살표로 잇지 않고 갈래 카드(start-card) 4칸으로 눕힌다. -->
+    <section class="catalog-level fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">04 · Common Standard</p>
+          <h2>직군이 달라도 하나의 <br data-break="desktop">4단계 기준으로 비교합니다</h2>
+          <p class="desc">개인의 현재 수준과 조직 전체의 역량 분포를 공통 레벨로 확인할 수 있습니다.</p>
+        </div>
+        <div class="section-content">
+          <ul class="start-grid">
+            <li>
+              <div class="content-panel start-card">
+                <span class="start-icon" aria-hidden="true">1</span>
+                <div class="content-panel__intro">
+                  <p class="text-label brand">Entry</p>
+                  <h3>기초 인식</h3>
+                  <p class="start-desc">AI의 역할과 한계를 알고 기본적인 도움을 받습니다.</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="content-panel start-card">
+                <span class="start-icon" aria-hidden="true">2</span>
+                <div class="content-panel__intro">
+                  <p class="text-label brand">Beginner</p>
+                  <h3>개별 과제 수행</h3>
+                  <p class="start-desc">정해진 업무에서 프롬프트를 쓰고 결과를 활용합니다.</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="content-panel start-card">
+                <span class="start-icon" aria-hidden="true">3</span>
+                <div class="content-panel__intro">
+                  <p class="text-label brand">Intermediate</p>
+                  <h3>업무 흐름 설계</h3>
+                  <p class="start-desc">여러 단계와 도구를 연결해 반복 가능한 업무 흐름을 만듭니다.</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="content-panel start-card">
+                <span class="start-icon" aria-hidden="true">4</span>
+                <div class="content-panel__intro">
+                  <p class="text-label brand">Professional</p>
+                  <h3>성과와 확산 주도</h3>
+                  <p class="start-desc">복잡한 업무를 AI 중심으로 다시 짜고 조직 확산을 이끕니다.</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 Enterprise Process — 목적 확인부터 학습 연결까지.
+         기간이 붙지 않는 5단계라 공용 cycle을 가로 5칸으로 쓴다(열 수는 페이지가 정한다). -->
+    <section class="process fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">05 · Enterprise Process</p>
+          <h2>조직의 목적에 맞춰 진단하고, <br data-break="desktop">다음 행동까지 연결합니다</h2>
+        </div>
+        <div class="section-content">
+          <ol class="cycle">
+            <li>
+              <div class="cycle-head">
+                <span class="cycle-no">1</span>
+                <p class="cycle-en">Purpose</p>
+              </div>
+              <h3>목적 확인</h3>
+              <p class="description">채용, 교육 전후 측정, AX 전략 등 진단 목적을 정합니다.</p>
+              <span class="cycle-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </li>
+            <li>
+              <div class="cycle-head">
+                <span class="cycle-no">2</span>
+                <p class="cycle-en">Design</p>
+              </div>
+              <h3>대상·트랙 설계</h3>
+              <p class="description">직군과 수준에 맞는 평가 트랙과 문항을 구성합니다.</p>
+              <span class="cycle-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </li>
+            <li>
+              <div class="cycle-head">
+                <span class="cycle-no">3</span>
+                <p class="cycle-en">Assess</p>
+              </div>
+              <h3>실무 평가</h3>
+              <p class="description">참가자가 실제 업무 시나리오를 AI와 함께 수행합니다.</p>
+              <span class="cycle-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </li>
+            <li>
+              <div class="cycle-head">
+                <span class="cycle-no">4</span>
+                <p class="cycle-en">Score</p>
+              </div>
+              <h3>다면 채점</h3>
+              <p class="description">AI 자동 채점과 전문가 검증으로 과정과 결과를 평가합니다.</p>
+              <span class="cycle-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </li>
+            <li>
+              <div class="cycle-head">
+                <span class="cycle-no">5</span>
+                <p class="cycle-en">Report</p>
+              </div>
+              <h3>리포트·학습 연결</h3>
+              <p class="description">개인·조직 결과와 역량 격차에 맞는 학습 방향을 제공합니다.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 Actionable Report — 좌 리포트 화면 · 우 읽는 법. 수치가 움직이는 화면이라 ticker 연출. -->
+    <section class="deliverables fade-up">
+      <div class="section-wrap row">
+        <div class="report-visual">
+          <div class="preview-frame mock-screen mock-ticker" data-mock-motion="ticker" aria-hidden="true">
+            <div class="journey-mock-head">
+              <span class="journey-mock-title">개인 결과 리포트</span>
+              <span class="journey-mock-badge">Intermediate</span>
+            </div>
+            <div class="mock-ticker-stats">
+              <article>
+                <span class="skeleton-line" style="width: 46px"></span>
+                <b class="is-pop">72<em>점</em></b>
+              </article>
+              <article>
+                <span class="skeleton-line" style="width: 52px"></span>
+                <b class="is-pop is-current" style="animation-delay: .1s">3<em>단계</em></b>
+              </article>
+              <article>
+                <span class="skeleton-line" style="width: 40px"></span>
+                <b class="is-pop" style="animation-delay: .2s">+18<em>%p</em></b>
+              </article>
+            </div>
+            <div class="mock-ticker-chart">
+              <span class="is-bar" style="--mock-bar-h: 64%"></span>
+              <span class="is-bar" style="--mock-bar-h: 78%"></span>
+              <span class="is-bar is-current" style="--mock-bar-h: 42%"></span>
+              <span class="is-bar" style="--mock-bar-h: 86%"></span>
+            </div>
+            <ul class="journey-mock-list">
+              <li class="journey-mock-item is-feed">
+                <span class="journey-mock-avatar">약</span>
+                <span class="journey-mock-item-name">보완 역량 · 워크플로·Agent 활용</span>
+                <span class="text-caption strong">우선</span>
+              </li>
+              <li class="journey-mock-item is-feed is-quiet">
+                <span class="journey-mock-avatar">강</span>
+                <span class="skeleton-line is-shimmer" style="width: 118px"></span>
+                <span style="flex: 1"></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-title text-left">
+          <p class="tag">06 · Actionable Report</p>
+          <h2>점수에서 끝나지 않고, <br data-break="desktop">다음 행동을 알려줍니다</h2>
+          <p class="desc">개인은 강점과 보완할 역량을, 조직은 직군별 분포와 Skill Gap을 확인합니다.</p>
+          <ul class="feature-points">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              개인별 역량 수준과 세부 평가 결과
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              팀·조직별 역량 분포와 벤치마크
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              직군별 Skill Gap과 교육 우선순위
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              교육 전후 변화와 재진단 비교
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 진단 → 학습 다리. 별도 섹션이 아니라 06의 결론 배너다(공용 summary-banner.dark).
+           좌 문구 · 우 CTA 배치는 skills.html의 브릿지와 같은 마크업을 쓴다. -->
+      <div class="section-wrap col report-bridge">
+        <div class="summary-banner dark">
+          <div class="bridge-inner">
+            <div class="bridge-copy">
+              <p class="bridge-title">진단 결과가 <strong class="brand">개인별 학습 경로</strong>가 됩니다</p>
+              <p class="bridge-desc">부족한 역량을 기준으로 SkillFit과 맞춤 교육 과정을 연결합니다.</p>
+            </div>
+            <a class="btn btn-outline-inverse" href="skills.html">
+              SkillFit 보기
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 Use Cases — 목적 4가지. 한 줄 칩 그리드인 공용 item-grid를 그대로 쓴다. -->
+    <section class="catalog-usecase fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">07 · Use Cases</p>
+          <h2>평가 목적에 따라 이렇게 활용합니다</h2>
+        </div>
+        <div class="section-content">
+          <ul class="item-grid usecase-cards">
+            <li>
+              <span class="usecase-icon icon-md" aria-hidden="true">
+                <!-- 교육 전 진단 — images/icon/ic_barChart.svg의 실제 path -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                  <path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="var(--color-brand)"/>
+                  <path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="var(--color-brand)"/>
+                </svg>
+              </span>
+              <p class="usecase-label">교육 전 진단</p>
+              <p class="description">수준별 반 편성과 맞춤 교육 설계의 기준으로 사용합니다.</p>
+            </li>
+            <li>
+              <span class="usecase-icon icon-md" aria-hidden="true">
+                <!-- 교육 후 재진단 — images/flat_icon_svg/122.최신화,새로고침.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 9L21 3V9H15Z" fill="var(--color-brand)"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0086 4.5C11.0235 4.49888 10.048 4.69207 9.13767 5.0685C8.22739 5.44494 7.4003 5.99724 6.70377 6.69377C6.00724 7.39031 5.45494 8.21739 5.0785 9.12766C4.70206 10.0379 4.50889 11.0135 4.51001 11.9986L4.51002 12C4.51002 12.9843 4.70404 13.959 5.08099 14.8683C5.45794 15.7776 6.0104 16.6037 6.70681 17.2993C7.40322 17.9949 8.22994 18.5464 9.13966 18.9223C10.0494 19.2982 11.0243 19.4911 12.0086 19.49H12.01C13.9965 19.49 15.9016 18.7009 17.3062 17.2962C18.7109 15.8916 19.5 13.9865 19.5 12H22C22 14.6495 20.9475 17.1905 19.074 19.064C17.2009 20.9371 14.6604 21.9896 12.0114 21.99M12.0102 2.00001C10.6968 1.99867 9.396 2.25633 8.18229 2.75826C6.96818 3.26034 5.86503 3.99699 4.93601 4.92601C4.00699 5.85502 3.27034 6.95816 2.76825 8.17228C2.26625 9.38617 2.00861 10.6871 2.01002 12.0007C2.01002 12.0005 2.01002 12.0002 2.01002 12L3.26002 12L2.01002 12.0014C2.01002 12.0012 2.01002 12.001 2.01002 12.0007C2.01011 13.3134 2.2689 14.6131 2.77156 15.8257C3.27432 17.0384 4.01118 18.1402 4.94005 19.068C5.86893 19.9959 6.97158 20.7315 8.18494 21.2328C9.39786 21.734 10.6976 21.9913 12.01 21.99M12.0102 2.00001C13.3222 1.99897 14.6215 2.25689 15.8336 2.75901C17.0462 3.26129 18.1476 3.99804 19.0747 4.92698L17.3053 6.69303C16.6106 5.99702 15.7854 5.44502 14.8769 5.06869C13.9684 4.69235 12.9945 4.4991 12.0112 4.50001L12.0086 4.5" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"/>
+                </svg>
+              </span>
+              <p class="usecase-label">교육 후 성과 측정</p>
+              <p class="description">동일한 기준으로 재진단해 실제 역량 변화를 확인합니다.</p>
+            </li>
+            <li>
+              <span class="usecase-icon icon-md" aria-hidden="true">
+                <!-- 채용·선발 — images/icon/ic_team.svg의 실제 path -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                  <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                  <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)"/>
+                  <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"/>
+                </svg>
+              </span>
+              <p class="usecase-label">채용·선발</p>
+              <p class="description">지원자가 AI와 협업해 문제를 해결하는 과정을 평가합니다.</p>
+            </li>
+            <li>
+              <span class="usecase-icon icon-md" aria-hidden="true">
+                <!-- AX 전략 수립 — images/flat_icon_svg/034.깃발,목표.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 16H5V4H22L18 10L22 16Z" fill="var(--color-brand)"/>
+                  <path d="M3.75 3H4.25C4.51522 3 4.76962 3.10534 4.95715 3.29288C5.14469 3.48041 5.25 3.73478 5.25 4V22H2.75V4C2.75 3.73478 2.85537 3.48041 3.04291 3.29288C3.23044 3.10534 3.48478 3 3.75 3Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"/>
+                </svg>
+              </span>
+              <p class="usecase-label">AX 전략 수립</p>
+              <p class="description">조직의 역량 분포를 바탕으로 우선 직군과 투자 영역을 정합니다.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 FAQ -->
+    <section class="faq fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">08 · FAQ</p>
+          <h2>도입 전에 많이 묻는 질문</h2>
+        </div>
+        <div class="section-content">
+          <div class="faq-list">
+            <details>
+              <summary class="faq-list__question">
+                3분 진단과 기업용 실무 평가는 무엇이 다른가요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">3분 진단은 개인이 자신의 기본적인 AI 활용 습관을 빠르게 확인하는 맛보기입니다. 기업용 평가는 직무별 실무 미션을 수행하며 과정과 결과물을 여러 역량 차원에서 정밀하게 평가합니다.</p>
+            </details>
+            <details>
+              <summary class="faq-list__question">
+                개발 직군만 대상인가요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">아닙니다. 마케팅, HR, 경영관리, CS, R&amp;D 등 비개발 직군의 AI 업무 활용 트랙과 개발 직군의 전문 기술 트랙을 함께 제공합니다.</p>
+            </details>
+            <details>
+              <summary class="faq-list__question">
+                결과는 어떤 형태로 받나요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">개인은 4단계 수준과 세부 역량별 점수, 강점과 보완 영역을 확인합니다. 기업 담당자는 팀·직군·조직별 역량 분포와 Skill Gap을 대시보드와 리포트로 봅니다.</p>
+            </details>
+            <details>
+              <summary class="faq-list__question">
+                교육 전후의 변화를 비교할 수 있나요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">가능합니다. 같은 기준으로 사전·사후 진단을 진행해 변화를 비교하고 다음 교육 계획에 반영합니다.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 최하단 전환 — 공용 컴포넌트 -->
+    <section class="cta-final fade-up">
+      <div class="section-wrap col cta-final-inner">
+        <h2 class="cta-final-title">우리 조직의 AX 수준, <br data-break="desktop">숫자로 확인하세요</h2>
+        <p class="cta-final-desc">직군별 실무 평가 설계부터 함께 잡아 드립니다. 개인 맛보기 진단은 위 진단 모드에서 바로 해볼 수 있습니다.</p>
+        <div class="cta-final-actions">
+          <a class="btn btn-primary btn-lg" href="#">
+            기업 진단 문의
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="partials/footer.html"></div>
+
+  <script src="js/include-partials.js"></script>
+  <script src="js/fade-up.js"></script>
+  <script src="js/header-scroll.js"></script>
+  <script src="js/nav-menu.js"></script>
+  <script src="js/feature-card-cycle.js"></script>
+</body>
+
+</html>

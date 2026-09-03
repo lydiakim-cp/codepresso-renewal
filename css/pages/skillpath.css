@@ -1,0 +1,110 @@
+/*
+ * Page: skillpath.html
+ * main.css 위에 얹는 이 페이지 전용 계층 — 섹션 배치와 면(배경)만 정한다.
+ */
+
+@layer components {
+  /* 섹션 배경 리듬 — tint(01) → 흰 면(02) → tint(이용 방식) → 흰 면(03) → 어두운 배너 1곳. */
+  .skillpath .catalog,
+  .skillpath .features {
+    background: var(--color-brand-tint-2);
+  }
+
+  .skillpath .journey,
+  .skillpath .features-enterprise {
+    background: var(--color-surface);
+  }
+
+  /* hero 텍스처를 좌하단으로 옮겨 skills·skillcamp·aifluent와 같은 그림이 반복되지 않게 한다. */
+  .skillpath .sub-hero {
+    --hero-texture-position: bottom left;
+  }
+
+  /* 01 분야별 트랙 — 묶음이 하나뿐이라 --stacked로 세우고 8개를 한 줄 4칸씩 두 줄로 편다.
+     옅은 브랜드 면 위라 판은 흰 면으로 올린다(공용 판 색 sunken은 여기서 묻힌다). */
+  .skillpath .catalog-group {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+  }
+
+  .skillpath .catalog-group .item-grid {
+    --item-grid-columns: 4;
+  }
+
+  .skillpath .catalog-group .item-grid > li {
+    background: var(--color-surface-sunken);
+  }
+
+  /* 02 대표 트랙 경로 — 3열. start-card는 면이 없는 골격이라 흰 섹션 위에서 선과 면을 준다. */
+  .skillpath .journey .start-grid {
+    --start-columns: 3;
+  }
+
+  .skillpath .start-card {
+    gap: var(--space-20);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+  }
+
+  .skillpath .start-icon {
+    background: var(--color-brand-tint-2);
+  }
+
+  /* 두 번째 묶음은 목업 옆 STEP 목록과 한 섹션이라 위쪽 간격만 벌린다. */
+  .skillpath .journey .section-content + .section-content {
+    margin-top: var(--space-48);
+    gap: var(--space-20);
+  }
+
+  /* 운영 주체 각주 — 카드 아래 한 줄. 타이포는 공용 text-caption이 정한다. */
+  .skillpath .journey-note {
+    text-align: center;
+  }
+
+  /* 진단 연계 배너 — 어두운 판을 두 번 쓰지 않으려고 흰 면 배너로 두고 세로로 쌓는다. */
+  .skillpath .diagnose-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-12);
+    margin-top: var(--space-32);
+    background: var(--color-surface);
+  }
+
+  .skillpath .diagnose-banner .btn {
+    margin-top: var(--space-8);
+  }
+
+  /* 03 기업 도입 — 조건 3장을 가로로 나란히. */
+  .skillpath .features-enterprise .start-grid {
+    --start-columns: 3;
+  }
+
+  /* 어두운 배너의 CTA 2개 — 공용 bridge-inner는 우측 칸에 요소 하나를 전제한다. */
+  .skillpath .bridge-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-12);
+  }
+
+  /* 배너는 섹션이 아니라 사이에 낀 판이라 위아래 여백을 줄인다. */
+  .skillpath .bridge {
+    padding-block: var(--space-32);
+  }
+
+  /* 진입 stagger — 카드가 한꺼번에 뜨면 읽는 순서가 사라진다(timeline은 컴포넌트가 갖고 있다). */
+  .skillpath .fade-up.is-visible .start-grid > li {
+    animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
+  }
+
+  .skillpath .fade-up.is-visible .start-grid > li:nth-child(2) { animation-delay: .08s; }
+  .skillpath .fade-up.is-visible .start-grid > li:nth-child(3) { animation-delay: .16s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skillpath .fade-up.is-visible .start-grid > li {
+      animation: none;
+    }
+  }
+}
+
+/* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다 */

@@ -1,0 +1,207 @@
+/*
+ * Page: aifluent.html
+ * main.css 위에 얹는 이 페이지 전용 계층 — 섹션 배치와 면(배경)만 정한다.
+ */
+
+@layer components {
+  /* 섹션 배경 리듬 — 흰 면과 tint/sunken을 번갈아, 강조는 06 결론 배너와 최하단 CTA 두 곳. */
+  .aifluent .features {
+    background: var(--color-brand-tint-2);
+  }
+
+  .aifluent .intro,
+  .aifluent .catalog-level,
+  .aifluent .deliverables,
+  .aifluent .faq {
+    background: var(--color-surface-sunken);
+  }
+
+  /* hero 텍스처를 좌상단으로 옮겨 skills·skillcamp와 같은 그림이 반복되지 않게 한다. */
+  .aifluent .sub-hero {
+    --hero-texture-position: top left;
+  }
+
+  /* 진단 모드 — 두 갈래 카드. start-card는 면이 없는 골격이라 흰 면과 선을 준다. */
+  .aifluent .features-mode .start-card {
+    gap: var(--space-20);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+  }
+
+  /* 기업용 정밀 진단이 주 경로다 — 면을 한 단 올려 두 갈래의 무게를 가른다. */
+  .aifluent .features-mode .start-card.is-primary {
+    background: var(--color-brand-tint-2);
+    border-color: color-mix(in srgb, var(--color-brand) 30%, var(--color-surface));
+  }
+
+  .aifluent .start-icon {
+    background: var(--color-brand-tint-2);
+  }
+
+  .aifluent .features-mode .start-card.is-primary .start-icon {
+    background: var(--color-surface);
+  }
+
+  /* 진단 조건 3가지 — 문장이 아니라 조건이라 공용 tag(is-sm) 칩을 한 줄로 눕힌다. */
+  .aifluent .mode-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-6);
+    padding-top: var(--space-20);
+    border-top: 1px solid var(--color-line);
+  }
+
+  /* 주 경로 카드는 면이 tint-2라 같은 틴트의 칩이 묻힌다 — 흰 면으로 띄운다. */
+  .aifluent .features-mode .start-card.is-primary .mode-meta .tag {
+    background: var(--color-surface);
+  }
+
+  /* 02·06 좌우 2단 — 목업 쪽이 시선을 끌도록 글 칸을 조금 좁힌다. */
+  .aifluent .intro .section-wrap.row,
+  .aifluent .deliverables .section-wrap.row {
+    align-items: center;
+  }
+
+  .aifluent .intro .section-title,
+  .aifluent .deliverables .section-title {
+    max-width: 520px;
+  }
+
+  /* 02·06 근거 목록은 공용 feature-points를 그대로 사용한다 — 페이지 상 재정의를 두지 않는다. */
+
+  .aifluent .mission-visual,
+  .aifluent .report-visual {
+    min-width: 0;
+  }
+
+  /* 03 트랙 — 옅은 브랜드 면 위에 sunken 판을 얹어 판이 한 단 떠 보이게 한다. */
+  .aifluent .catalog {
+    background: var(--color-brand-tint-2);
+  }
+
+  /* 묶음이 위아래로 서는 판이라 한 줄에 다섯 칸까지 편다. */
+  .aifluent .catalog-group .item-grid {
+    --item-grid-columns: 5;
+  }
+
+  /* 출시 예정 트랙 — 아직 고를 수 없는 항목이라 한 단 가라앉히고 배지로 상태를 밝힌다. */
+  .aifluent .item-grid > li.is-upcoming {
+    color: var(--color-ink-lighter);
+  }
+
+  .aifluent .item-grid > li.is-upcoming .tag {
+    background: var(--color-surface-sunken);
+  }
+
+  /* 04 레벨 — 갈래 카드 4칸. sunken 면 위라 카드는 흰 면과 선으로 띄운다. */
+  .aifluent .catalog-level .start-grid {
+    --start-columns: 4;
+  }
+
+  .aifluent .catalog-level .start-card {
+    gap: var(--space-20);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+  }
+
+  /* 레벨 번호 — 아이콘 대신 숫자가 들어가는 자리라 크기·정렬만 정한다. */
+  .aifluent .catalog-level .start-icon {
+    color: var(--color-brand);
+    font-size: var(--text-card-title);
+    line-height: var(--leading-card-title);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* 05 진행 순서 — 5단계를 가로 한 줄로. 옅은 브랜드 면 위라 칸은 흰 면으로 띄운다. */
+  .aifluent .process {
+    background: var(--color-brand-tint-2);
+  }
+
+  .aifluent .cycle {
+    --cycle-columns: 5;
+  }
+
+  /* 06 결론 배너 — 섹션 안에 낀 판이라 위쪽 여백만 벌린다(별도 섹션이 아니다). */
+  .aifluent .report-bridge {
+    margin-top: var(--space-32);
+  }
+
+  /* 배너 안 좌우 배치·타이포는 공용 bridge-*(summary-banner.css)를 그대로 쓴다. */
+
+  /* 07 활용처 — 06의 어두운 배너 다음이라 흰 면으로 시선을 눕힌다. */
+  .aifluent .catalog-usecase {
+    background: var(--color-surface);
+  }
+
+  /* 한 줄 칩을 아이콘·라벨·설명 3단 카드로 덮는다(4열 고정). */
+  .aifluent .usecase-cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-24);
+  }
+
+  .aifluent .usecase-cards > li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-12);
+    padding: var(--space-28) var(--space-24);
+    border-radius: var(--radius-lg);
+  }
+
+  .aifluent .usecase-cards > li::before {
+    display: none;
+  }
+
+  .aifluent .usecase-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-box-sm);
+    height: var(--icon-box-sm);
+    border-radius: var(--radius-sm);
+    background: var(--color-brand-tint-2);
+  }
+
+  .aifluent .usecase-icon svg {
+    width: var(--icon-md);
+    height: var(--icon-md);
+  }
+
+  .aifluent .usecase-label {
+    color: var(--color-ink-heaviest);
+    font-size: var(--text-card-title);
+    line-height: var(--leading-card-title);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* 진입 stagger — 목록이 한꺼번에 뜨면 읽는 순서가 사라진다. */
+  .aifluent .fade-up.is-visible .cycle > li,
+  .aifluent .fade-up.is-visible .usecase-cards > li,
+  .aifluent .fade-up.is-visible .start-grid > li {
+    animation: rise-in var(--duration-scroll) var(--ease-scroll) both;
+  }
+
+  .aifluent .fade-up.is-visible .cycle > li:nth-child(2),
+  .aifluent .fade-up.is-visible .usecase-cards > li:nth-child(2),
+  .aifluent .fade-up.is-visible .start-grid > li:nth-child(2) { animation-delay: .08s; }
+
+  .aifluent .fade-up.is-visible .cycle > li:nth-child(3),
+  .aifluent .fade-up.is-visible .usecase-cards > li:nth-child(3),
+  .aifluent .fade-up.is-visible .start-grid > li:nth-child(3) { animation-delay: .16s; }
+
+  .aifluent .fade-up.is-visible .cycle > li:nth-child(4),
+  .aifluent .fade-up.is-visible .usecase-cards > li:nth-child(4),
+  .aifluent .fade-up.is-visible .start-grid > li:nth-child(4) { animation-delay: .24s; }
+
+  .aifluent .fade-up.is-visible .cycle > li:nth-child(5) { animation-delay: .32s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aifluent .fade-up.is-visible .cycle > li,
+    .aifluent .fade-up.is-visible .usecase-cards > li,
+    .aifluent .fade-up.is-visible .start-grid > li {
+      animation: none;
+    }
+  }
+}
+
+/* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다 */

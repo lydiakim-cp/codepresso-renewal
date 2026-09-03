@@ -303,11 +303,11 @@
           <p class="desc">다섯 분야 37개의 검증된 워크플로 중에서,<br>자동화 가치가 크고 결과 기준이 분명한 업무부터 고릅니다.</p>
         </div>
         <div class="section-content">
-          <div class="service-catalog">
+          <div class="catalog-group">
             <!-- 공통 — 분야를 가리지 않고 늘 쓰는 묶음이라 탭에 넣지 않고 항상 펼쳐 둔다 -->
-            <div class="service-catalog__fixed">
-              <p class="service-catalog__label">공통 업무</p>
-              <ul class="catalog-board__items">
+            <div class="catalog-group__plain">
+              <p class="tag">공통 업무</p>
+              <ul class="item-grid">
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
                     <!-- 녹음 — 013.녹음.svg -->
@@ -399,31 +399,31 @@
             </div>
 
             <!-- 직군별 — 탭으로 갈아 끼운다 -->
-            <div class="service-catalog__tabbed">
-              <p class="service-catalog__label service-catalog__label--alt">직군별 업무</p>
-              <div class="catalog-board" data-catalog-board data-catalog-autoplay="3000">
-                <div class="catalog-board__rail" role="tablist" aria-label="직군별 자동화 분야">
-                <button class="catalog-board__category is-active" type="button" data-catalog-category="marketing">
-                  <span class="catalog-board__category-name">마케팅</span>
-                  <span class="catalog-board__count">7</span>
+            <div class="catalog-group__tabbed">
+              <p class="tag">직군별 업무</p>
+              <div class="tab-catalog" data-catalog-board data-catalog-autoplay="3000">
+                <div class="tab-catalog__tabs" role="tablist" aria-label="직군별 자동화 분야">
+                <button class="tab-catalog__tab is-active" type="button" data-catalog-category="marketing">
+                  <span class="tab-catalog__tab-label">마케팅</span>
+                  <span class="tab-catalog__tab-count">7</span>
                 </button>
-                <button class="catalog-board__category" type="button" data-catalog-category="sales">
-                  <span class="catalog-board__category-name">영업</span>
-                  <span class="catalog-board__count">7</span>
+                <button class="tab-catalog__tab" type="button" data-catalog-category="sales">
+                  <span class="tab-catalog__tab-label">영업</span>
+                  <span class="tab-catalog__tab-count">7</span>
                 </button>
-                <button class="catalog-board__category" type="button" data-catalog-category="management">
-                  <span class="catalog-board__category-name">경영관리</span>
-                  <span class="catalog-board__count">8</span>
+                <button class="tab-catalog__tab" type="button" data-catalog-category="management">
+                  <span class="tab-catalog__tab-label">경영관리</span>
+                  <span class="tab-catalog__tab-count">8</span>
                 </button>
-                <button class="catalog-board__category" type="button" data-catalog-category="rnd">
-                  <span class="catalog-board__category-name">R&amp;D</span>
-                  <span class="catalog-board__count">8</span>
+                <button class="tab-catalog__tab" type="button" data-catalog-category="rnd">
+                  <span class="tab-catalog__tab-label">R&amp;D</span>
+                  <span class="tab-catalog__tab-count">8</span>
                 </button>
                 </div>
 
-                <div class="catalog-board__main">
-                <div class="catalog-board__panel is-active" data-catalog-panel="marketing">
-                  <ul class="catalog-board__items">
+                <div class="tab-catalog__panels">
+                <div class="tab-catalog__panel is-active" data-catalog-panel="marketing">
+                  <ul class="item-grid">
                     <li>
                       <span class="workflow-icon icon-md" aria-hidden="true">
                         <!-- 작성·글쓰기 — 038.작성,글쓰기.svg -->
@@ -518,8 +518,8 @@
                   </ul>
                 </div>
 
-                <div class="catalog-board__panel" data-catalog-panel="sales">
-                  <ul class="catalog-board__items">
+                <div class="tab-catalog__panel" data-catalog-panel="sales">
+                  <ul class="item-grid">
                     <li>
                       <span class="workflow-icon icon-md" aria-hidden="true">
                         <!-- 연락처 — 041.연락처.svg -->
@@ -608,8 +608,8 @@
                   </ul>
                 </div>
 
-                <div class="catalog-board__panel" data-catalog-panel="management">
-                  <ul class="catalog-board__items">
+                <div class="tab-catalog__panel" data-catalog-panel="management">
+                  <ul class="item-grid">
                     <li>
                       <span class="workflow-icon icon-md" aria-hidden="true">
                         <!-- 시간·기록 — 120.시간,기록.svg -->
@@ -708,8 +708,8 @@
                   </ul>
                 </div>
 
-                <div class="catalog-board__panel" data-catalog-panel="rnd">
-                  <ul class="catalog-board__items">
+                <div class="tab-catalog__panel" data-catalog-panel="rnd">
+                  <ul class="item-grid">
                     <li>
                       <span class="workflow-icon icon-md" aria-hidden="true">
                         <!-- 문서·글 — 001.문서,글.svg -->

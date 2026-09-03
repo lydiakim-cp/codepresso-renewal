@@ -23,21 +23,21 @@
 
   ```html
   <!-- 나쁨 — li마다 같은 클래스를 반복 -->
-  <ul class="catalog-board__items">
-    <li class="catalog-board__item">회의록 자동 작성</li>
-    <li class="catalog-board__item">태스크 관리</li>
+  <ul class="item-grid">
+    <li class="item-grid__item">회의록 자동 작성</li>
+    <li class="item-grid__item">태스크 관리</li>
   </ul>
 
   <!-- 좋음 -->
-  <ul class="catalog-board__items">
+  <ul class="item-grid">
     <li>회의록 자동 작성</li>
     <li>태스크 관리</li>
   </ul>
   ```
 
   ```css
-  .catalog-board__items > li { … }
-  .catalog-board__items > li:nth-child(2) { animation-delay: .03s; }
+  .item-grid > li { … }
+  .item-grid > li:nth-child(2) { animation-delay: .03s; }
   ```
 
   **단 아래 셋은 클래스를 유지한다:**
@@ -48,7 +48,7 @@
   - **같은 부모 밑에 그 역할이 아닌 같은 태그가 섞일 수 있는 것.**
 
   **카탈로그에 문서화된 공용 컴포넌트도 예외가 아니다** — `timeline > li`,
-  `faq-list > details`, `catalog-board__items > li`가 그렇게 바뀌었다.
+  `faq-list > details`, `item-grid > li`가 그렇게 바뀌었다.
   다만 그 컴포넌트의 **Markup API 주석과 `codepresso-designsystem.html`의
   클래스 표기를 같은 변경에서 함께 고친다.** 안 고치면 다음 사람이 카탈로그를
   보고 없어진 클래스를 다시 쓴다.

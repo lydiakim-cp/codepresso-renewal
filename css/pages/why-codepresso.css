@@ -46,7 +46,7 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  .difference-page .catalog-board__category,
+  .difference-page .tab-catalog__tab,
   .difference-page .card {
     box-shadow: none;
   }
@@ -683,17 +683,17 @@
 
   .difference-page .fade-up.is-visible .start-grid > li:nth-child(2) { transition-delay: .1s; }
 
-  /* 07 Industry — 공용 catalog-board 안의 4블록 정의형 목록 */
+  /* 07 Industry — 공용 tab-catalog 안의 4블록 정의형 목록 */
 
-  .difference-page .catalog-board {
+  .difference-page .tab-catalog {
     min-height: 0;
   }
 
-  .difference-page .catalog .catalog-board {
+  .difference-page .catalog .tab-catalog {
     min-height: 0;
   }
 
-  .difference-page .catalog .catalog-board__panel {
+  .difference-page .catalog .tab-catalog__panel {
     display: flex;
     flex-direction: column;
   }

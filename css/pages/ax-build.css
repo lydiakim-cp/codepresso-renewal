@@ -281,45 +281,45 @@
     line-height: 15px;
   }
 
-  /* 다크 판 위 카탈로그 — 골격은 공용 service-catalog, 여기선 면·글자색만 뒤집는다. */
-  .ax-build .service-catalog {
+  /* 다크 판 위 카탈로그 — 골격은 공용 catalog-group, 여기선 면·글자색만 뒤집는다. */
+  .ax-build .catalog-group {
     background: var(--color-axpresso-bg-4);
   }
 
-  .ax-build .service-catalog__label--alt {
+  .ax-build .catalog-group .tag {
     background: var(--color-axpresso-box);
     color: var(--color-axpresso-ink);
   }
 
-  .ax-build .service-catalog .catalog-board__category {
+  .ax-build .catalog-group .tab-catalog__tab {
     padding: var(--space-10) var(--space-16);
     border-radius: var(--radius-md) var(--radius-md) 0 0;
     background: var(--color-axpresso-box-tint);
     color: var(--color-axpresso-ink-light);
   }
 
-  .ax-build .service-catalog .catalog-board__category:hover {
+  .ax-build .catalog-group .tab-catalog__tab:hover {
     background: color-mix(in srgb, var(--color-brand) 28%, transparent);
     color: var(--color-axpresso-ink);
   }
 
-  .ax-build .service-catalog .catalog-board__category.is-active {
+  .ax-build .catalog-group .tab-catalog__tab.is-active {
     background: var(--color-brand);
     color: var(--color-axpresso-ink);
     box-shadow: none;
   }
 
-  .ax-build .service-catalog .catalog-board__count {
+  .ax-build .catalog-group .tab-catalog__tab-count {
     background: var(--color-axpresso-box-tint);
     color: inherit;
   }
 
-  .ax-build .service-catalog .catalog-board__category.is-active .catalog-board__count {
+  .ax-build .catalog-group .tab-catalog__tab.is-active .tab-catalog__tab-count {
     background: color-mix(in srgb, var(--color-axpresso-bg-1) 25%, var(--color-brand));
     color: var(--color-axpresso-ink);
   }
 
-  .ax-build .service-catalog .catalog-board__items > li {
+  .ax-build .catalog-group .item-grid > li {
     background: var(--color-axpresso-box-tint);
     color: var(--color-axpresso-ink);
   }

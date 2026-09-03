@@ -487,7 +487,7 @@
 
           <!--
             우측 목업 — 좌측 타임라인 3단계와 1:1로 짝을 이룬다.
-            공용 catalog-board와 같은 방식으로 key를 맞추고(data-scenario-panel),
+            공용 tab-catalog와 같은 방식으로 key를 맞추고(data-scenario-panel),
             scenario-switch.js가 스크롤 위치에 따라 .is-active를 옮긴다.
             연출은 단계마다 다르게 골랐다 — 1개월차는 "낮은 활용률"이라 focus,
             2개월차는 "진단 결과 → 학습 경로"라 detail, 3개월차는 수치라 ticker.
@@ -695,7 +695,7 @@
 
     <!--
       07 Industry — 업종별 적용.
-      "분류를 골라 그 분야 내용을 본다"가 그대로 공용 catalog-board의 역할이고
+      "분류를 골라 그 분야 내용을 본다"가 그대로 공용 tab-catalog의 역할이고
       전환은 js/catalog-board.js가 맡는다(data-catalog-autoplay를 안 붙였으므로
       자동 순환 없이 클릭으로만 전환 — 읽는 중 판이 바뀌면 방해라 이 페이지는 opt-in 안 함).
       다만 ax-build 03은 판 안이 항목 나열(ul)이고, 여기는 항목마다 소제목이 붙는
@@ -710,25 +710,25 @@
         </div>
         <div class="section-content">
           <div class="preview-frame preview-frame--flush">
-            <div class="catalog-board" data-catalog-board>
-              <div class="catalog-board__rail" role="tablist" aria-label="업종">
-                <button class="catalog-board__category is-active" type="button" data-catalog-category="manufacturing">
-                  <span class="catalog-board__category-name">제조</span>
+            <div class="tab-catalog" data-catalog-board>
+              <div class="tab-catalog__tabs" role="tablist" aria-label="업종">
+                <button class="tab-catalog__tab is-active" type="button" data-catalog-category="manufacturing">
+                  <span class="tab-catalog__tab-label">제조</span>
                 </button>
-                <button class="catalog-board__category" type="button" data-catalog-category="finance">
-                  <span class="catalog-board__category-name">금융</span>
+                <button class="tab-catalog__tab" type="button" data-catalog-category="finance">
+                  <span class="tab-catalog__tab-label">금융</span>
                 </button>
-                <button class="catalog-board__category" type="button" data-catalog-category="retail">
-                  <span class="catalog-board__category-name">유통</span>
+                <button class="tab-catalog__tab" type="button" data-catalog-category="retail">
+                  <span class="tab-catalog__tab-label">유통</span>
                 </button>
-                <button class="catalog-board__category" type="button" data-catalog-category="it">
-                  <span class="catalog-board__category-name">IT서비스</span>
+                <button class="tab-catalog__tab" type="button" data-catalog-category="it">
+                  <span class="tab-catalog__tab-label">IT서비스</span>
                 </button>
               </div>
 
-              <div class="catalog-board__main">
-                <div class="catalog-board__panel is-active" data-catalog-panel="manufacturing">
-                  <ul class="catalog-board__items industry-cards">
+              <div class="tab-catalog__panels">
+                <div class="tab-catalog__panel is-active" data-catalog-panel="manufacturing">
+                  <ul class="item-grid industry-cards">
                     <li class="industry-card">
                       <span class="industry-card-icon industry-card-icon" aria-hidden="true">
                         <!-- 주의,강조 — flat_icon_svg/117.주의,강조.svg -->
@@ -780,8 +780,8 @@
                   </ul>
                 </div>
 
-                <div class="catalog-board__panel" data-catalog-panel="finance">
-                  <ul class="catalog-board__items industry-cards">
+                <div class="tab-catalog__panel" data-catalog-panel="finance">
+                  <ul class="item-grid industry-cards">
                     <li class="industry-card">
                       <span class="industry-card-icon industry-card-icon" aria-hidden="true">
                         <!-- 주의,강조 — flat_icon_svg/117.주의,강조.svg -->
@@ -833,8 +833,8 @@
                   </ul>
                 </div>
 
-                <div class="catalog-board__panel" data-catalog-panel="retail">
-                  <ul class="catalog-board__items industry-cards">
+                <div class="tab-catalog__panel" data-catalog-panel="retail">
+                  <ul class="item-grid industry-cards">
                     <li class="industry-card">
                       <span class="industry-card-icon industry-card-icon" aria-hidden="true">
                         <!-- 주의,강조 — flat_icon_svg/117.주의,강조.svg -->
@@ -886,8 +886,8 @@
                   </ul>
                 </div>
 
-                <div class="catalog-board__panel" data-catalog-panel="it">
-                  <ul class="catalog-board__items industry-cards">
+                <div class="tab-catalog__panel" data-catalog-panel="it">
+                  <ul class="item-grid industry-cards">
                     <li class="industry-card">
                       <span class="industry-card-icon industry-card-icon" aria-hidden="true">
                         <!-- 주의,강조 — flat_icon_svg/117.주의,강조.svg -->
@@ -963,7 +963,7 @@
   <div data-include="partials/footer.html"></div>
 
   <!-- include-partials.js를 가장 먼저 둔다(GNB·footer를 삽입한 뒤 나머지가 붙는다).
-       stat-reveal은 01의 metric-card 카운트업, catalog-board는 07의 업종 탭 전환용.
+       stat-reveal은 01의 metric-card 카운트업, tab-catalog는 07의 업종 탭 전환용.
        이 페이지는 feature-card 순환·part-nav·journey-stage·floating-cta를 쓰지 않으므로
        그 스크립트는 넣지 않는다(subpage-guide 4번 판단 기준). -->
   <script src="js/include-partials.js"></script>

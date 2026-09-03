@@ -42,16 +42,27 @@
   line-height: var(--leading-body-14);
 }
 
-.tag.is-solid {
-  padding: 3px 8px;
-  height: 20px;
-  border-radius: 4px;
+/* 태그 변형은 면(dark·solid)과 크기(sm)를 따로 붙인다 — .tag.dark.sm처럼 겹쳐 쓴다. */
+
+/* 짙은 파랑 면에 흰 글씨 — 연한 틴트가 묻히는 자리나 라벨을 한 단 세울 때. */
+.tag.dark {
+  background: var(--color-brand-dark);
+  color: var(--color-surface);
+}
+
+/* 그라데이션 면 — 썸네일이 있는 미디어 카드의 분류 라벨. */
+.tag.solid {
   background: linear-gradient(180deg, var(--color-brand-dark), var(--color-brand));
   color: var(--color-surface);
+  border-radius: 4px;
+}
+
+/* 크기만 줄이는 변형 — 면은 어떤 것을 쓰든 그대로 둔다. */
+.tag.sm {
+  padding: 3px 8px;
   font-size: 11px;
   line-height: 14px;
   font-weight: var(--font-weight-medium);
-  box-sizing: border-box;
 }
 
 .swatch {

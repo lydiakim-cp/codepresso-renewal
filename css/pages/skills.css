@@ -968,44 +968,7 @@
 
   /* 07 Proof — 누적 수치 4개. metric-card + stat-reveal 카운트업. */
 
-  /* 도구 연결 브릿지 — 이 페이지(진단·교육)에서 자동화 페이지로 넘기는 한 줄 */
-  .skills .bridge-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-24);
-    flex-wrap: wrap;
-    text-align: left;
-  }
-
-  .skills .bridge-copy {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
-    min-width: 0;
-  }
-
-  .skills .bridge-title {
-    font-size: var(--text-heading-32);
-    line-height: var(--leading-heading-32);
-    color: var(--color-surface);
-  }
-
-  .skills .fade-up.is-visible .bridge-inner .btn > svg {
-    animation: nudge .6s var(--ease-scroll) .7s 2;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .skills .fade-up.is-visible .bridge-inner .btn > svg {
-      animation: none;
-    }
-  }
-
-  .skills .bridge-desc {
-    font-size: var(--text-body);
-    line-height: var(--leading-body);
-    color: color-mix(in srgb, var(--color-surface) 76%, transparent);
-  }
+  /* 브릿지(좌 문구 · 우 CTA)는 공용 summary-banner.css로 올렸다 — 페이지에는 남기지 않는다. */
 
   /* 섹션 배경 리듬 — 3단으로 벌린다. */
   .skills .features,

@@ -4,7 +4,7 @@
  * - 버튼은 data-catalog-category="{key}", 판은 data-catalog-panel="{key}"로 짝을 맞춘다.
  * - 활성 표시는 .is-active 하나로 버튼과 판 양쪽에 붙는다.
  * - data-catalog-autoplay="{ms}"가 있으면 그 간격으로 자동 순환한다(없으면 클릭으로만 전환).
- * - 자동 순환 중 클릭하면 그 탭부터 다시 시작하고, rail·판 위에 마우스가 있으면 멈춘다.
+ * - 자동 순환 중 클릭하면 그 탭부터 다시 시작하고, 탭 줄·판 위에 마우스가 있으면 멈춘다.
  */
 (() => {
   const boards = document.querySelectorAll('[data-catalog-board]');
@@ -58,9 +58,9 @@
 
     if (!autoplayEnabled) return;
 
-    const rail = board.querySelector('.catalog-board__rail');
-    const main = board.querySelector('.catalog-board__main');
-    [rail, main].forEach((area) => {
+    const tabs = board.querySelector('.tab-catalog__tabs');
+    const panelArea = board.querySelector('.tab-catalog__panels');
+    [tabs, panelArea].forEach((area) => {
       if (!area) return;
       area.addEventListener('mouseenter', stopAutoplay);
       area.addEventListener('mouseleave', startAutoplay);
