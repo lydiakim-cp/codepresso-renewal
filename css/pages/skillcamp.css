@@ -33,41 +33,28 @@
     border: 1px solid var(--color-line);
   }
 
-  /* 같은 섹션 안의 두 번째 묶음 — 제목 없이 판만 내려온다. */
-  .skillcamp .format-catalog {
-    margin-top: var(--space-40);
-  }
-
-  /* 대표 AI 과정 — 과정 수가 7 대 2라 칸도 4 대 1로 준다(반반이면 오른쪽이 텅 빈다).
+  /* 대표 AI 과정 — 과정 수가 2 대 7이라 칸도 1 대 4로 준다(반반이면 왼쪽이 텅 빈다).
      공용 판 색이 sunken이라 sunken 섹션 위에서는 묻힌다 — 판을 흰 면으로 올린다. */
-  .skillcamp .service-catalog {
-    grid-template-columns: minmax(0, 4fr) minmax(0, 1fr);
-    gap: var(--space-8);
+  .skillcamp .catalog-group {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 4fr);
+    /* 좌우 묶음 사이만 벌린다(공용 28 → 20) — 세로로 접히는 모바일은 타일 간격 8을 그대로. */
+    gap: var(--space-8) var(--space-20);
     background: var(--color-surface);
     border: 1px solid var(--color-line);
   }
 
-  .skillcamp .service-catalog .catalog-board__items > li {
+  .skillcamp .catalog-group .item-grid > li {
     background: var(--color-surface-sunken);
   }
 
-  .skillcamp .service-catalog__fixed {
-    gap: var(--space-8);
+  /* 왼쪽 개발 2개는 한 열로 세우고, 오른쪽 비개발 7개는 4열이라 두 줄에서 끝난다. */
+  .skillcamp .catalog-group__plain:first-child {
+    --item-grid-columns: 1;
   }
 
-  .skillcamp .service-catalog .catalog-board__items {
-    gap: var(--space-4);
+  .skillcamp .catalog-group__plain + .catalog-group__plain {
+    --item-grid-columns: 4;
   }
-
-  /* 왼쪽 7개는 4열이라 두 줄에서 끝난다(3열이면 세 줄로 넘어간다). */
-  .skillcamp .service-catalog__fixed:first-child {
-    --service-catalog-columns: 4;
-  }
-
-  .skillcamp .service-catalog__fixed + .service-catalog__fixed {
-    --service-catalog-columns: 1;
-  }
-
 
   /* 01 장면 목록 — 기간 라벨을 쓰지 않아 공용 timeline의 96px 첫 칸을 걷어낸다. */
   .skillcamp .scenario > li {
