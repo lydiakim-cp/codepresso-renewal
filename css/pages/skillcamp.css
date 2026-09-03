@@ -89,41 +89,16 @@
     margin-top: var(--space-40);
   }
 
-  .skillcamp .outcomes .summary-banner.dark {
-    margin-top: var(--space-32);
-  }
-
-  /* 배너 — 섹션이 아니라 사이에 낀 판이라 bridge는 위아래 여백을 줄인다. */
+  /* 배너 — 섹션이 아니라 사이에 낀 판이라 위아래 여백을 줄인다.
+     안쪽 좌우 배치·타이포는 공용 bridge-*(summary-banner.css)를 그대로 쓴다. */
   .skillcamp .bridge {
     padding-block: var(--space-32);
   }
 
-  .skillcamp .summary-banner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-12);
+  /* 03 안의 배너는 섹션 안에 낀 판이라 위쪽 간격만 준다(aifluent 06과 같은 이름). */
+  .skillcamp .report-bridge {
+    margin-top: var(--space-32);
   }
-
-  .skillcamp .banner-title {
-    font-size: var(--text-heading-32);
-    line-height: var(--leading-heading-32);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-surface);
-  }
-
-  .skillcamp .banner-desc {
-    max-width: 640px;
-    font-size: var(--text-body-16);
-    line-height: var(--leading-body-16);
-    color: color-mix(in srgb, var(--color-surface) 78%, transparent);
-  }
-
-  /* 배너 위 CTA — hero-actions의 flex 배치를 그대로 쓴다. */
-  .skillcamp .summary-banner .hero-actions {
-    justify-content: center;
-  }
-
 }
 
 /* 900px·720px·560px 반응형은 css/mobile.css에 모아 둔다 */
