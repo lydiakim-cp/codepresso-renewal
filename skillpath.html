@@ -258,12 +258,8 @@
             </li>
           </ol>
 
-          <!-- 우측 화면 — Career Track 목업 UI(images/mockup/career-track-mock-skillpath.html)를
-               그대로 옮긴 정적 화면 하나만 보여준다. 배지 아이콘이 base64 SVG라 마크업이 커서
-               js/journey-track-mock.js로 분리해 두고 런타임에 마운트 지점에 주입한다.
-               레벨 1~4가 이미 한 화면에 다 보이는 디자인이라 STEP 스크롤에 따른 화면 전환은 쓰지 않는다
-               (scenario-switch.js는 data-scenario-panel이 없으면 스스로 아무 것도 하지 않는다). -->
-          <div class="scenario-screens" data-scenario-screens>
+          
+          <div class="content-panel bg" data-scenario-screens>
             <div class="scenario-mock is-active" data-journey-track-mock-mount></div>
           </div>
         </div>

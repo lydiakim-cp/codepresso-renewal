@@ -26,7 +26,7 @@
      특이성이 높아 그 collapse를 덮어써 버리므로 데스크톱 폭(900px 초과)에서만 걸리게 한다. */
   @media (min-width: 901px) {
     .skillpath .journey .scenario-layout {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 640px);
     }
   }
 

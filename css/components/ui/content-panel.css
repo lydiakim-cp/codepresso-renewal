@@ -34,3 +34,7 @@
   --content-panel-gap: var(--space-16);
 }
 
+.content-panel.bg{
+    background: var(--color-surface-sunken);
+    border-color: var(--color-line);
+}

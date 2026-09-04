@@ -299,7 +299,7 @@
 
     <!--
       02 Real-Work Assessment — 좌 설명 · 우 실무 화면.
-      "시험이 아니라 업무를 한다"는 글로만 두면 안 읽혀서, 미션 수행 화면을 focus 연출로 함께 둔다.
+      "시험이 아니라 업무를 한다"는 글로만 두면 안 읽혀서, 미션 수행 화면을 이미지로 함께 둔다.
     -->
     <section class="intro fade-up">
       <div class="section-wrap row">
@@ -323,44 +323,9 @@
           </ul>
         </div>
 
-        <!-- 진행 중인 미션 하나만 떠오르고 나머지는 가라앉는다(공용 focus 연출). -->
         <div class="mission-visual">
-          <div class="preview-frame mock-screen" data-mock-motion="focus" aria-hidden="true">
-            <div class="journey-mock-head">
-              <span class="journey-mock-title">실무 미션 · 마케팅</span>
-              <span class="journey-mock-badge is-live"><i class="is-pulse"></i>수행 중</span>
-            </div>
-            <div class="journey-mock-progress">
-              <div class="journey-mock-progress-bar"><span style="width: 62%"></span></div>
-              <span class="text-caption strong">3 / 5</span>
-            </div>
-            <ul class="journey-mock-list">
-              <li class="journey-mock-item is-done is-quiet">
-                <span class="journey-mock-check"></span>
-                <span class="skeleton-line is-shimmer" style="width: 126px"></span>
-                <span style="flex: 1"></span>
-              </li>
-              <li class="journey-mock-item is-done is-quiet">
-                <span class="journey-mock-check"></span>
-                <span class="skeleton-line is-shimmer" style="width: 92px"></span>
-                <span style="flex: 1"></span>
-              </li>
-              <li class="journey-mock-item is-current is-focus">
-                <span class="journey-mock-check"></span>
-                <span class="journey-mock-item-name">고객 문의 데이터로 캠페인 제안서 작성</span>
-                <span style="flex: 1"></span>
-                <span class="text-caption strong">진행</span>
-              </li>
-              <li class="journey-mock-item is-quiet">
-                <span class="journey-mock-check"></span>
-                <span class="skeleton-line is-shimmer" style="width: 138px"></span>
-                <span style="flex: 1"></span>
-              </li>
-            </ul>
-            <div class="journey-mock-progress">
-              <div class="journey-mock-progress-bar"><span style="width: 100%"></span></div>
-              <span class="text-caption strong">채점 4개 항목</span>
-            </div>
+          <div class="preview-frame preview-frame--flush">
+            <img src="images/aifluent-sample2.png" alt="실무 미션 수행 화면 예시">
           </div>
         </div>
       </div>
@@ -503,7 +468,7 @@
           <ul class="start-grid">
             <li>
               <div class="content-panel start-card">
-                <span class="start-icon" aria-hidden="true">1</span>
+                <span class="start-icon" aria-hidden="true"><img src="images/badge-general.svg" alt=""></span>
                 <div class="content-panel__intro">
                   <p class="text-label brand">Entry</p>
                   <h3>기초 인식</h3>
@@ -513,7 +478,7 @@
             </li>
             <li>
               <div class="content-panel start-card">
-                <span class="start-icon" aria-hidden="true">2</span>
+                <span class="start-icon" aria-hidden="true"><img src="images/badge-beginner.svg" alt=""></span>
                 <div class="content-panel__intro">
                   <p class="text-label brand">Beginner</p>
                   <h3>개별 과제 수행</h3>
@@ -523,7 +488,7 @@
             </li>
             <li>
               <div class="content-panel start-card">
-                <span class="start-icon" aria-hidden="true">3</span>
+                <span class="start-icon" aria-hidden="true"><img src="images/badge-inter.svg" alt=""></span>
                 <div class="content-panel__intro">
                   <p class="text-label brand">Intermediate</p>
                   <h3>업무 흐름 설계</h3>
@@ -533,7 +498,7 @@
             </li>
             <li>
               <div class="content-panel start-card">
-                <span class="start-icon" aria-hidden="true">4</span>
+                <span class="start-icon" aria-hidden="true"><img src="images/badge-prof.svg" alt=""></span>
                 <div class="content-panel__intro">
                   <p class="text-label brand">Professional</p>
                   <h3>성과와 확산 주도</h3>
@@ -613,50 +578,9 @@
       </div>
     </section>
 
-    <!-- 06 Actionable Report — 좌 리포트 화면 · 우 읽는 법. 수치가 움직이는 화면이라 ticker 연출. -->
+    <!-- 06 Actionable Report — 좌 읽는 법 · 우 리포트 화면. 실제 리포트 샘플 이미지를 그대로 보여준다. -->
     <section class="deliverables fade-up">
       <div class="section-wrap row">
-        <div class="report-visual">
-          <div class="preview-frame mock-screen mock-ticker" data-mock-motion="ticker" aria-hidden="true">
-            <div class="journey-mock-head">
-              <span class="journey-mock-title">개인 결과 리포트</span>
-              <span class="journey-mock-badge">Intermediate</span>
-            </div>
-            <div class="mock-ticker-stats">
-              <article>
-                <span class="skeleton-line" style="width: 46px"></span>
-                <b class="is-pop">72<em>점</em></b>
-              </article>
-              <article>
-                <span class="skeleton-line" style="width: 52px"></span>
-                <b class="is-pop is-current" style="animation-delay: .1s">3<em>단계</em></b>
-              </article>
-              <article>
-                <span class="skeleton-line" style="width: 40px"></span>
-                <b class="is-pop" style="animation-delay: .2s">+18<em>%p</em></b>
-              </article>
-            </div>
-            <div class="mock-ticker-chart">
-              <span class="is-bar" style="--mock-bar-h: 64%"></span>
-              <span class="is-bar" style="--mock-bar-h: 78%"></span>
-              <span class="is-bar is-current" style="--mock-bar-h: 42%"></span>
-              <span class="is-bar" style="--mock-bar-h: 86%"></span>
-            </div>
-            <ul class="journey-mock-list">
-              <li class="journey-mock-item is-feed">
-                <span class="journey-mock-avatar">약</span>
-                <span class="journey-mock-item-name">보완 역량 · 워크플로·Agent 활용</span>
-                <span class="text-caption strong">우선</span>
-              </li>
-              <li class="journey-mock-item is-feed is-quiet">
-                <span class="journey-mock-avatar">강</span>
-                <span class="skeleton-line is-shimmer" style="width: 118px"></span>
-                <span style="flex: 1"></span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
         <div class="section-title text-left">
           <p class="tag">06 · Actionable Report</p>
           <h2>점수에서 끝나지 않고, <br data-break="desktop">다음 행동을 알려줍니다</h2>
@@ -679,6 +603,12 @@
               교육 전후 변화와 재진단 비교
             </li>
           </ul>
+        </div>
+
+        <div class="report-visual">
+          <div class="preview-frame preview-frame--flush">
+            <img src="images/aifluent-sample.svg" alt="개인 결과 리포트 화면 예시">
+          </div>
         </div>
       </div>
 

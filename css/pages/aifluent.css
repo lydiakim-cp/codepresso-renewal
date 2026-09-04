@@ -105,12 +105,9 @@
     border: 1px solid var(--color-line);
   }
 
-  /* 레벨 번호 — 아이콘 대신 숫자가 들어가는 자리라 크기·정렬만 정한다. */
+  /* 레벨 아이콘 — 원형 배지 자체가 색을 이미 담고 있어 아이콘 박스 배경은 뺀다. */
   .aifluent .catalog-level .start-icon {
-    color: var(--color-brand);
-    font-size: var(--text-card-title);
-    line-height: var(--leading-card-title);
-    font-weight: var(--font-weight-semibold);
+    background: none;
   }
 
   /* 05 진행 순서 — 5단계를 가로 한 줄로. 옅은 브랜드 면 위라 칸은 흰 면으로 띄운다. */

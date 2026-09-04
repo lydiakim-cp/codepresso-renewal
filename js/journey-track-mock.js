@@ -92,6 +92,9 @@
     align-items: center;
     justify-content: space-between;
     padding: 14px 16px;
+  }.journey-track-mock .level-body {
+    overflow: hidden;
+    transition: height .32s cubic-bezier(.4, 0, .2, 1);
   }.journey-track-mock .level-card.is-open .level-head { border-bottom: 1px solid var(--color-line); }.journey-track-mock .level-title { font-size: 14px; font-weight: 600; }.journey-track-mock .level-title-course { display: block; margin-top: 4px; font-size: 13px; font-weight: 500; color: var(--color-ink-light); }.journey-track-mock .level-meta {
     display: flex;
     align-items: center;
@@ -137,6 +140,12 @@
     display: flex;
     flex-direction: column;
     border: 1px solid var(--color-line);
+    transition: opacity .22s ease, transform .34s cubic-bezier(.34, 1.56, .64, 1);
+    transform-origin: top right;
+  }.journey-track-mock .track-panel.is-panel-hidden {
+    opacity: 0;
+    transform: scale(.9) translateY(-8px);
+    pointer-events: none;
   }.track-panel__body{padding: 0 20px;}
     .journey-track-mock .track-panel__head { padding: 20px 20px 0; display: flex; justify-content: space-between; align-items: flex-start; position: relative; }.journey-track-mock .track-panel__eyebrow { font-size: 12px; color: var(--color-ink-lighter); }.journey-track-mock .track-panel__logo-slot {
     position: absolute; top: 0; right: 0;
@@ -209,6 +218,10 @@
     cursor: pointer;
     font-family: inherit;
   }.journey-track-mock .track-actions .go-assessment { background: var(--color-brand); }.journey-track-mock .track-actions .go-learning { background: var(--color-brand-dark); }
+@media (prefers-reduced-motion: reduce) {
+  .journey-track-mock .level-body,
+  .journey-track-mock .track-panel { transition: none !important; }
+}
 `;
   document.head.appendChild(style);
 
@@ -413,6 +426,66 @@
   }
   syncConnectors();
   window.addEventListener('resize', syncConnectors);
+
+  /* Level 1 자동 연출 — 화면에 들어오면(스크롤 교차) course-row가 아코디언으로
+     저절로 열리고, 다 열린 뒤에 우측 Career Track 패널이 pop으로 나타난다.
+     클릭 없이 한 번만 재생된다(journey-stage.js의 stageObserver와 같은 패턴).
+     나머지 레벨(2~4)은 원래부터 정지 화면(내용만 보여주는 목업)이라 건드리지 않는다. */
+  var firstRow = root.querySelector('.track-row');
+  var firstCard = firstRow && firstRow.querySelector('.level-card');
+  var firstBody = firstRow && firstRow.querySelector('.level-body');
+  var trackPanel = root.querySelector('.track-panel');
+
+  if (firstCard && firstBody && trackPanel) {
+    // 접힌 상태로 시작 — 화면에 들어와야 아코디언이 열리고 패널이 뒤이어 등장한다
+    firstCard.classList.remove('is-open');
+    firstBody.style.height = '0px';
+    trackPanel.classList.add('is-panel-hidden');
+
+    function syncConnectorsWhileAnimating() {
+      var start = performance.now();
+      (function step(now) {
+        syncConnectors();
+        if (now - start < 360) window.requestAnimationFrame(step);
+      })(start);
+    }
+
+    function openLevelOne() {
+      firstCard.classList.add('is-open');
+      firstBody.style.height = firstBody.scrollHeight + 'px';
+      syncConnectorsWhileAnimating();
+      firstBody.addEventListener('transitionend', function onOpen(e) {
+        if (e.propertyName !== 'height') return;
+        firstBody.removeEventListener('transitionend', onOpen);
+        firstBody.style.height = 'auto';
+        // 아코디언이 다 열린 다음에야 Career Track 패널이 pop
+        trackPanel.classList.remove('is-panel-hidden');
+      });
+    }
+
+    // 모션 축소 설정에서는 트랜지션이 꺼져 있으니(위 CSS) transitionend가 오지 않는다 —
+    // 곧바로 완성 상태로 맞춰준다.
+    var playIntro = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ? function () {
+          firstCard.classList.add('is-open');
+          firstBody.style.height = 'auto';
+          syncConnectors();
+          trackPanel.classList.remove('is-panel-hidden');
+        }
+      : openLevelOne;
+
+    var introObserver = new IntersectionObserver(
+      function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          playIntro();
+          observer.disconnect();
+        });
+      },
+      { threshold: 0.3 }
+    );
+    introObserver.observe(root);
+  }
 
   /* 목업은 고정 560px 폭 디자인이라, 그보다 좁은 화면(모바일)에서는 통째로 줄여 넣는다
      — 내용을 다시 짜지 않고 원본 비율 그대로 보여주는 쪽을 택했다.

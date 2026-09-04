@@ -541,117 +541,131 @@
               </article>
 
               <article class="content-panel__item journey-step" data-journey-step="2">
-                <!-- 목업: 실제 SkillFit 학습 화면(아이콘 레일 · 스킬 목록 · 레슨 · AI 튜터)을
-                     핵심만 남겨 확대한 형태. 본문 텍스트는 스켈레톤 바로 단순화하고,
-                     강조할 것(트랙·진행률·실무 시나리오·튜터 대화)만 실제 내용으로 둔다. -->
-                <div class="content-panel__visual preview-frame journey-mock journey-app" aria-hidden="true">
-                  <!-- 최좌측 — 아이콘 메뉴 레일. 실제 앱의 좌측 네비를 그대로 옮긴다. -->
-                  <div class="journey-app-rail">
-                    <span class="journey-app-rail-logo"></span>
-
-                    <!-- 홈 -->
-                    <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M4 10.5 12 4l8 6.5V20H4v-9.5Z" stroke="currentColor" stroke-width="2"
-                        stroke-linejoin="round" />
-                    </svg>
-
-                    <!-- 탐색 -->
-                    <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" />
-                      <path d="m15 9-2 4-4 2 2-4 4-2Z" stroke="currentColor" stroke-width="2"
-                        stroke-linejoin="round" />
-                    </svg>
-
-                    <!-- 학습(현재 위치) -->
-                    <svg class="journey-app-rail-icon is-current" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <rect x="4" y="4" width="16" height="16" rx="5" fill="currentColor" />
-                      <path d="m10.5 9 5 3-5 3V9Z" fill="#fff" />
-                    </svg>
-
-                    <!-- 검색 -->
-                    <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" />
-                      <path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                    </svg>
-
-                    <!-- 설정 -->
-                    <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
-                      <path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                    </svg>
+                <!-- 목업: 실제 SkillFit 학습 화면(레일 · 스킬 목록 · 레슨)을 UI로 옮기고,
+                     AI 튜터 채팅만 실제 제품처럼 우하단에 팝업으로 겹친다.
+                     읽혀야 하는 것(트랙명 · 진도 · 현재 스킬 · 레슨 제목)만 텍스트로 남기고
+                     본문은 스켈레톤으로 접는다.
+                     채팅은 무한 반복 relay(skillfit-chat-relay)로 질문→답변이 순서대로
+                     쌓였다가 함께 리셋된다 — 스크롤 진입 팝인(journey-stage.js)과는 별개. -->
+                <div class="content-panel__visual preview-frame preview-frame--flush journey-mock skillfit-mock" aria-hidden="true">
+                  <div class="preview-frame__bar">
+                    <span class="preview-frame__dots"><i></i><i></i><i></i></span>
+                    <span class="text-caption">skillpath.codepresso.io</span>
                   </div>
 
-                  <!-- 좌 — 학습 중인 트랙 + 스킬 목록. -->
-                  <div class="journey-app-side">
-                    <div class="journey-app-track">
-                      <span class="journey-app-track-badge">진행중</span>
-                      <span class="journey-app-level">Beginner</span>
+                  <div class="skillfit-mock-screen">
+                    <!-- 최좌측 — 아이콘 메뉴 레일. -->
+                    <div class="journey-app-rail">
+                      <span class="journey-app-rail-logo"></span>
 
-                      <span class="journey-app-track-name">AI 에이전트의 활용</span>
-                      <span class="journey-app-progress-bar"><span style="width: 33%"></span></span>
-                      <span class="text-caption">33% · 6 / 18 스킬</span>
+                      <!-- 홈 -->
+                      <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M4 10.5 12 4l8 6.5V20H4v-9.5Z" stroke="currentColor" stroke-width="2"
+                          stroke-linejoin="round" />
+                      </svg>
+
+                      <!-- 탐색 -->
+                      <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" />
+                        <path d="m15 9-2 4-4 2 2-4 4-2Z" stroke="currentColor" stroke-width="2"
+                          stroke-linejoin="round" />
+                      </svg>
+
+                      <!-- 학습(현재 위치) -->
+                      <svg class="journey-app-rail-icon is-current" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <rect x="4" y="4" width="16" height="16" rx="5" fill="currentColor" />
+                        <path d="m10.5 9 5 3-5 3V9Z" fill="#fff" />
+                      </svg>
+
+                      <!-- 검색 -->
+                      <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" />
+                        <path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                      </svg>
+
+                      <!-- 설정 -->
+                      <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+                        <path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                      </svg>
                     </div>
 
-                    <ul class="journey-app-skills">
-                      <li class="journey-app-skill is-done">
-                        <span class="journey-app-num">1</span>
+                    <!-- 좌 — 학습 중인 트랙 + 스킬 목록. 지금 보는 스킬만 이름을 남긴다. -->
+                    <div class="journey-app-side">
+                      <div class="journey-app-track">
+                        <span class="journey-app-track-badge">진행중</span>
+                        <span class="journey-app-level">Beginner</span>
+
+                        <span class="journey-app-track-name">AI 에이전트 활용</span>
+                        <span class="journey-app-progress-bar"><span style="width: 39%"></span></span>
+                        <span class="text-caption">39% · 7 / 18 스킬</span>
+                      </div>
+
+                      <ul class="journey-app-skills">
+                        <li class="journey-app-skill is-done">
+                          <span class="journey-app-num">1</span>
+                          <span class="skeleton-line"></span>
+                          <span class="journey-app-rate">100%</span>
+                        </li>
+                        <li class="journey-app-skill is-done">
+                          <span class="journey-app-num">2</span>
+                          <span class="skeleton-line"></span>
+                          <span class="journey-app-rate">83%</span>
+                        </li>
+                        <li class="journey-app-skill is-current">
+                          <span class="journey-app-num">3</span>
+                          <span class="journey-mock-item-name">RICJ 프레임워크</span>
+                        </li>
+                        <li class="journey-app-skill">
+                          <span class="journey-app-num">4</span>
+                          <span class="skeleton-line"></span>
+                          <span class="journey-app-rate">0%</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!-- 중앙 — 실무 시나리오가 레슨 본문 위에 먼저 온다. -->
+                    <div class="journey-app-main">
+                      <div class="journey-app-scenario">
+                        <span class="journey-app-scenario-label">실무 시나리오</span>
                         <span class="skeleton-line"></span>
-                        <span class="journey-app-rate">100%</span>
-                      </li>
-                      <li class="journey-app-skill is-current">
-                        <span class="journey-app-num">2</span>
+                        <span class="skeleton-line is-short"></span>
+                      </div>
+
+                      <!-- 난이도가 실력에 맞춰 올라갔다는 것이 이 목업의 핵심 메시지라,
+                           레슨 라벨 옆에 칩으로 붙여 팝업에 가리지 않게 둔다. -->
+                      <div class="skillfit-mock-lesson-meta">
+                        <p class="journey-app-eyebrow">LESSON 1</p>
+                        <p class="journey-app-adapt">난이도 <strong>심화</strong></p>
+                      </div>
+
+                      <p class="journey-app-lesson">AI와 대화하는<br>가장 확실한 지도</p>
+
+                      <!-- 본문은 튜터 팝업이 덮는 자리라 스켈레톤으로만 둔다. -->
+                      <div class="skeleton-stack">
                         <span class="skeleton-line"></span>
-                        <span class="journey-app-rate">83%</span>
-                      </li>
-                      <li class="journey-app-skill">
-                        <span class="journey-app-num">3</span>
-                        <span class="skeleton-line"></span>
-                        <span class="journey-app-rate">16%</span>
-                      </li>
-                    </ul>
+                        <span class="skeleton-line is-short"></span>
+                      </div>
+
+                      <!-- 실력에 맞춰 난이도가 조정됐다는 것이 이 목업의 핵심 메시지다. -->
+                      <p class="journey-app-adapt">정답률 92% → 난이도 <strong>심화</strong></p>
+                    </div>
                   </div>
 
-                  <!-- 중앙 — 실무 시나리오가 레슨 본문 위에 먼저 온다. -->
-                  <div class="journey-app-main">
-                    <div class="journey-app-scenario">
-                      <span class="journey-app-scenario-label">실무 시나리오</span>
-                      <span class="skeleton-line"></span>
-                      <span class="skeleton-line is-short"></span>
-                    </div>
-
-                    <p class="journey-app-eyebrow">LESSON 4</p>
-                    <p class="journey-app-lesson">AI의 기억력에도<br>끝이 있을까?</p>
-
-                    <div class="skeleton-stack">
-                      <span class="skeleton-line"></span>
-                      <span class="skeleton-line"></span>
-                      <span class="skeleton-line is-short"></span>
-                    </div>
-
-                    <!-- 실력에 맞춰 난이도가 조정됐다는 것이 이 목업의 핵심 메시지다. -->
-                    <p class="journey-app-adapt">정답률 92% → 난이도 <strong>심화</strong></p>
-                  </div>
-
-                  <!-- 우 — AI 튜터. 막히는 지점에서 바로 묻고 답이 오는 흐름을 보여준다. -->
-                  <div class="journey-app-tutor">
+                  <!-- 우하단 — AI 튜터. 실제 제품처럼 화면 위에 떠서 겹친다. -->
+                  <div class="journey-app-tutor skillfit-mock-tutor">
                     <div class="journey-app-tutor-head">
                       <span class="journey-app-tutor-name">AI 튜터</span>
                       <span class="journey-app-tutor-status">답변 중</span>
                     </div>
 
-                    <p class="journey-mock-bubble is-mine">컨텍스트 윈도우가 뭐예요?</p>
-                    <p class="journey-mock-bubble">한 번에 담기는 정보의 크기예요</p>
-                    <p class="journey-mock-bubble is-mine">넘치면 어떻게 돼요?</p>
+                    <p class="journey-mock-bubble is-mine is-chat" style="--mock-chat-step: 0">RICJ가 뭐예요?</p>
+                    <p class="journey-mock-bubble is-chat" style="--mock-chat-step: 1">역할 · 지시 · 배경 · 판단 기준 4단 공식이에요</p>
                     <!-- 타이핑 인디케이터 — 지금 답하는 중이라는 신호. -->
-                    <p class="journey-mock-bubble journey-app-typing">
+                    <p class="journey-mock-bubble journey-app-typing is-chat" style="--mock-chat-step: 2">
                       <span></span><span></span><span></span>
                     </p>
-
-                    <div class="journey-app-ask">
-                      <span class="journey-app-ask-text">궁금한 걸 물어보세요</span>
-                      <span class="journey-app-ask-send"></span>
-                    </div>
                   </div>
                 </div>
 
