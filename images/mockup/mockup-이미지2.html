@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>Track Filter / Selection Mock Preview</title>
+<style>
+  :root {
+    /* 원본 이미지에서 그대로 추출한 색상 — 디자인 시스템 토큰 재사용하지 않음 */
+    --bg-outer: #080E24;
+    --bg-panel: #0B1738;
+    --bg-header-card: #112552;
+    --bg-table-head: #0D1B42;
+    --bg-checkbox: #0F2049;
+
+    --ink: #FFFFFF;
+    --ink-light: #9DAAC9;
+    --ink-lighter: #6E7A9B;
+
+    --blue: #3D7BFF;
+    --blue-dim: #2F5FD6;
+    --blue-tint: rgba(61, 123, 255, .18);
+    --blue-glow: rgba(61, 123, 255, .5);
+    --red: #E1435A;
+
+    --font-family-sans: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Malgun Gothic", sans-serif;
+
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+    --radius-full: 999px;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px;
+    background: #E7ECFB;
+    font-family: var(--font-family-sans);
+    display: flex;
+    justify-content: center;
+  }
+
+  /* 550px 프레임 안에 원본 비율(1220x940) 그대로 축소 배치 */
+  .frame {
+    position: relative;
+    width: 550px;
+    height: 424px;
+    overflow: hidden;
+  }
+
+  .stage {
+    position: relative;
+    width: 1220px;
+    height: 940px;
+    transform: scale(0.45082);
+    transform-origin: top left;
+  }
+
+  /* ---------------- 뒤쪽 창(필터 창) ---------------- */
+  .win-back {
+    position: absolute;
+    left: 80px;
+    top: 80px;
+    width: 1055px;
+    height: 690px;
+    background: linear-gradient(180deg, var(--bg-panel), var(--bg-outer));
+    border-radius: var(--radius-xl);
+    box-shadow: 0 30px 60px rgba(4, 9, 26, .35);
+    padding: 24px 40px 40px;
+    overflow: hidden;
+  }
+
+  .win-dots { display: flex; gap: 8px; padding: 4px 0 20px; }
+  .win-dots span {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--blue);
+    opacity: .9;
+  }
+
+  .header-card {
+    background: var(--bg-header-card);
+    border-radius: var(--radius-lg);
+    padding: 24px 32px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .header-tag-row { display: flex; align-items: center; gap: 10px; }
+  .set-tag {
+    background: var(--bg-outer);
+    color: var(--ink-light);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: var(--radius-sm);
+  }
+  .view-sample-link {
+    color: var(--blue);
+    font-size: 13px;
+    text-decoration: underline;
+  }
+
+  .header-title {
+    color: var(--ink);
+    font-size: 26px;
+    font-weight: 700;
+    margin: 12px 0 10px;
+    border-width: medium;
+  }
+
+  .header-meta {
+    color: var(--ink-light);
+    font-size: 13px;
+  }
+  .header-meta b { color: var(--ink); font-weight: 600; }
+  .header-meta .sep { margin: 0 10px; opacity: .4; }
+
+  .header-actions { display: flex; gap: 10px; }
+  .icon-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--bg-outer);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .icon-btn.danger { background: var(--red); }
+  .icon-btn svg { width: 16px; height: 16px; }
+
+  .body-row { display: flex; gap: 32px; margin-top: 32px; }
+
+  .filters {
+    width: 280px;
+    color: var(--ink);
+  }
+  .filters-title {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 15px; font-weight: 600;
+    color: var(--ink-light);
+    padding-bottom: 16px;
+  }
+  .filter-group + .filter-group { margin-top: 28px; }
+  .filter-group-title {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; color: var(--ink-lighter);
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    margin-bottom: 14px;
+  }
+  .filter-row {
+    position: relative;
+    display: flex; align-items: center; gap: 10px;
+    padding: 6px 0;
+    font-size: 14px;
+  }
+  .filter-row .glow {
+    position: absolute;
+    left: -18px; top: 50%; transform: translateY(-50%);
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(60,120,255,.55), rgba(60,120,255,0) 70%);
+    pointer-events: none;
+  }
+  .checkbox {
+    position: relative;
+    width: 18px; height: 18px;
+    border-radius: 4px;
+    background: var(--bg-checkbox);
+    border: 1px solid rgba(255,255,255,.12);
+    flex-shrink: 0;
+  }
+  .checkbox.checked {
+    background: var(--blue-dim);
+    border-color: var(--blue-dim);
+  }
+  .checkbox.checked::after {
+    content: "";
+    position: absolute;
+    left: 5px; top: 2px;
+    width: 4px; height: 8px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .filter-row span { position: relative; z-index: 1; }
+  .filter-row.checked span { color: var(--ink); }
+  .filter-row:not(.checked) span { color: var(--ink-light); }
+
+  /* ---------------- 앞쪽 창(트랙 테이블) ---------------- */
+  .win-front {
+    position: absolute;
+    left: 460px;
+    top: 440px;
+    width: 760px;
+    height: 400px;
+    background: var(--bg-outer);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 40px 70px rgba(4, 9, 26, .5);
+    padding: 28px 32px 32px;
+  }
+
+  .tracks-count {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px;
+  }
+  .tracks-count .badge {
+    background: var(--blue-dim);
+    color: #fff;
+    font-size: 13px; font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+  }
+  .tracks-count span:last-child {
+    color: var(--ink);
+    font-size: 15px; font-weight: 600;
+  }
+
+  .track-table {
+    background: var(--bg-panel);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .track-thead {
+    display: flex;
+    background: var(--bg-header-card);
+    color: var(--ink-light);
+    font-size: 13px; font-weight: 600;
+  }
+  .track-thead > div { padding: 12px 16px; }
+  .col-num { width: 56px; text-align: center; }
+  .col-track { flex: 1; }
+  .col-level { width: 180px; text-align: center; }
+  .col-select { width: 110px; text-align: center; }
+
+  .track-tbody { display: flex; }
+  .track-tbody .col-num {
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-lighter);
+    font-size: 14px;
+  }
+
+  .col-track-cell { padding: 20px 16px; }
+  .tag-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .tag {
+    font-size: 12px; font-weight: 600;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+  }
+  .tag.career { background: var(--blue-tint); color: var(--blue); }
+  .tag.web { color: var(--blue); font-weight: 700; }
+  .track-title {
+    color: var(--ink);
+    font-size: 18px; font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .track-desc {
+    color: var(--ink-light);
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    max-width: 340px;
+  }
+  .track-links { display: flex; gap: 18px; }
+  .track-links a {
+    color: var(--ink-light);
+    font-size: 13px;
+    text-decoration: underline;
+  }
+
+  .level-cell, .select-cell {
+    display: flex; flex-direction: column;
+  }
+  .level-row, .select-row {
+    flex: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .level-row:last-child, .select-row:last-child { border-bottom: none; }
+  .level-row .level-num { color: var(--ink); font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .level-row a { color: var(--ink-light); font-size: 12px; text-decoration: underline; }
+
+  .radio {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--blue);
+  }
+  .radio.selected {
+    position: relative;
+    width: 34px; height: 34px;
+    background: transparent;
+    border: 2px solid var(--blue);
+    box-shadow: 0 0 0 8px var(--blue-tint);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .radio.selected::after {
+    content: "";
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #fff;
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+  <div class="stage">
+
+    <!-- 뒤쪽 창: 필터 -->
+    <div class="win-back">
+      <div class="win-dots"><span></span><span></span><span></span></div>
+
+      <div class="header-card">
+        <div>
+          <div class="header-tag-row">
+            <span class="set-tag">Set 1</span>
+            <a class="view-sample-link">› View Sample</a>
+          </div>
+          <div class="header-title">Angular Frontend Engineer with TypeScript - Level 1</div>
+          <div class="header-meta"><b>Questions</b> 2<span class="sep">|</span><b>Recommened Time</b> 1 h 0 min</div>
+        </div>
+        <div class="header-actions">
+          <div class="icon-btn danger">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="icon-btn">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M20 11a8 8 0 1 0-2.3 6.4M20 5v6h-6" stroke="#4C86FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="icon-btn">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 15l6-6 6 6" stroke="#4C86FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="body-row">
+        <div class="filters">
+          <div class="filters-title">
+            Filters
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 11a8 8 0 1 0-2.3 6.4M20 5v6h-6" stroke="#4C86FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-group-title">Type <span>⌃</span></div>
+            <div class="filter-row"><span class="checkbox"></span><span>Skill Track</span></div>
+            <div class="filter-row checked">
+              <span class="glow"></span>
+              <span class="checkbox checked"></span><span>Career Track</span>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-group-title">Category <span>⌃</span></div>
+            <div class="filter-row"><span class="checkbox"></span><span>AI</span></div>
+            <div class="filter-row"><span class="checkbox"></span><span>Data Science</span></div>
+            <div class="filter-row checked">
+              <span class="glow"></span>
+              <span class="checkbox checked"></span><span>Web</span>
+            </div>
+            <div class="filter-row"><span class="checkbox"></span><span>Cloud</span></div>
+          </div>
+        </div>
+
+        <div style="flex:1"></div>
+      </div>
+    </div>
+
+    <!-- 앞쪽 창: 트랙 테이블 -->
+    <div class="win-front">
+      <div class="tracks-count">
+        <span class="badge">10</span>
+        <span>Tracks</span>
+      </div>
+
+      <div class="track-table">
+        <div class="track-thead">
+          <div class="col-num">#</div>
+          <div class="col-track">Track</div>
+          <div class="col-level">Level</div>
+          <div class="col-select">Select</div>
+        </div>
+        <div class="track-tbody">
+          <div class="col-num">1</div>
+          <div class="col-track col-track-cell">
+            <div class="tag-row">
+              <span class="tag career">Career Track</span>
+              <span class="tag web">Web</span>
+            </div>
+            <div class="track-title">Angular Frontend Engineer with TypeScript</div>
+            <div class="track-desc">Build web applications with Angular and certify your professional front-end development skills</div>
+            <div class="track-links">
+              <a>› View Description</a>
+              <a>› View Guide</a>
+            </div>
+          </div>
+          <div class="col-level level-cell">
+            <div class="level-row"><span class="level-num">Level 1</span><a>› View Sample</a></div>
+            <div class="level-row"><span class="level-num">Level 2</span><a>› View Sample</a></div>
+          </div>
+          <div class="col-select select-cell">
+            <div class="select-row"><span class="radio selected"></span></div>
+            <div class="select-row"><span class="radio"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</body>
+</html>

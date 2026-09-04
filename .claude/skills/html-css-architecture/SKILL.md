@@ -226,6 +226,7 @@ css/
 | **화면이 심심하다 — 배경·아이콘·모션으로 채운다** | [css-patterns.md](css-patterns.md) 4번 |
 | 섹션 배경·카드·그림자로 위계(3층)를 정한다(실측 기반) | [references/surface-depth.md](references/surface-depth.md) |
 | 제품 화면 목업에 연출을 넣는다 | [mock-motion-guide.md](mock-motion-guide.md) |
+| **새 UI 목업(IDE 화면 등)을 만든다 — 컨텐츠만 바뀔 뿐 디자인은 유지되는 목업** | `images/mockup/` 폴더의 기존 html을 먼저 열어 그대로 복사 후 내용만 교체한다. 없는 디자인일 때만 새로 만들고, 계속 쓸 것이면 이 폴더에 추가한다 |
 | 새 서브페이지를 처음부터 만든다 | **`templates/README.md`(조립 재료)** → [subpage-guide.md](subpage-guide.md) |
 | 예전에 걷어낸 것을 다시 넣지 않으려 확인한다 | [references/anti-patterns.md](references/anti-patterns.md) |
 | CSS 중복을 정리한다 / 리팩터링 후 확인한다 | [references/cleanup.md](references/cleanup.md) |

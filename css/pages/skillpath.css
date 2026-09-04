@@ -20,6 +20,16 @@
     background: var(--color-surface);
   }
 
+  /* 02 STEP 러닝패스 우측 목업 — Career Track 목업 UI(고정 560px)가 공용 scenario-layout의
+     420px 상한보다 넓어, 이 섹션에서만 오른쪽 칸을 넓힌다(다른 scenario-layout 사용 페이지는 그대로).
+     900px 이하에서는 mobile.css가 scenario-layout을 1단으로 접는데, 이 규칙이 그보다 선택자
+     특이성이 높아 그 collapse를 덮어써 버리므로 데스크톱 폭(900px 초과)에서만 걸리게 한다. */
+  @media (min-width: 901px) {
+    .skillpath .journey .scenario-layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
+    }
+  }
+
   /* hero 텍스처를 좌하단으로 옮겨 skills·skillcamp·aifluent와 같은 그림이 반복되지 않게 한다. */
   .skillpath .sub-hero {
     --hero-texture-position: bottom left;
@@ -95,6 +105,217 @@
     .skillpath .fade-up.is-visible .start-grid > li {
       animation: none;
     }
+  }
+
+  /* 02 STEP 러닝패스 목업 — images/mockup/career-track-mock.html의 레벨 스테퍼 +
+     진행률 패널을 옮긴다. 폭이 420px로 좁아 원본의 좌우 배치 대신 위(패널) 아래(레벨 목록)로 쌓는다. */
+  .skillpath .track-mock {
+    --mock-text-title: 15px; --mock-leading-title: 20px;
+    --mock-text-lg: 13px; --mock-leading-lg: 18px;
+    --mock-text: 11px; --mock-leading: 15px;
+    --mock-text-sm: 9px; --mock-leading-sm: 13px;
+  }
+
+  .skillpath .track-mock-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    padding-bottom: var(--space-16);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .skillpath .track-mock-panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .skillpath .track-mock-panel-eyebrow {
+    font-size: var(--mock-text);
+    line-height: var(--mock-leading);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-ink-lighter);
+  }
+
+  .skillpath .track-mock-progress { width: 40px; height: 40px; }
+
+  .skillpath .track-mock-progress b {
+    font-size: var(--mock-text);
+    line-height: var(--mock-leading);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-brand);
+  }
+
+  .skillpath .track-mock-panel-title {
+    font-size: var(--mock-text-title);
+    line-height: var(--mock-leading-title);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink);
+  }
+
+  .skillpath .track-mock-tabs {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .skillpath .track-mock-tabs span {
+    padding: var(--space-4) var(--space-10);
+    border-radius: var(--radius-sm);
+    font-size: var(--mock-text);
+    line-height: var(--mock-leading);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-ink-lighter);
+    background: var(--color-surface-sunken);
+  }
+
+  .skillpath .track-mock-tabs span.is-active {
+    color: var(--color-ink);
+    background: var(--color-brand-tint-2);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .skillpath .track-mock-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--space-16);
+  }
+
+  .skillpath .track-mock-row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-12);
+  }
+
+  .skillpath .track-mock-row + .track-mock-row {
+    margin-top: var(--space-8);
+  }
+
+  .skillpath .track-mock-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 48px;
+    flex: none;
+  }
+
+  .skillpath .track-mock-badge {
+    width: 48px;
+    height: 48px;
+  }
+
+  .skillpath .track-mock-badge b {
+    font-size: var(--mock-text-lg);
+    line-height: var(--mock-leading-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-brand);
+  }
+
+  .skillpath .track-mock-badge.is-done b { color: var(--color-success); }
+  .skillpath .track-mock-badge.is-pending b { color: var(--color-ink-lighter); }
+
+  .skillpath .track-mock-connector {
+    width: 2px;
+    height: var(--space-16);
+    background: var(--color-line-heavy);
+    margin-block: var(--space-4);
+  }
+
+  .skillpath .track-mock-card {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    padding: var(--space-12) var(--space-16);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+  }
+
+  .skillpath .track-mock-row.is-open .track-mock-card {
+    background: var(--color-surface-sunken);
+  }
+
+  .skillpath .track-mock-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    padding-right: var(--space-24);
+  }
+
+  .skillpath .track-mock-card-title {
+    font-size: var(--mock-text-lg);
+    line-height: var(--mock-leading-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink);
+  }
+
+  .skillpath .track-mock-card-state {
+    flex: none;
+    font-size: var(--mock-text-sm);
+    line-height: var(--mock-leading-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink-lighter);
+  }
+
+  .skillpath .track-mock-row.is-open .track-mock-card-state { color: var(--color-brand); }
+  .skillpath .track-mock-row.is-done .track-mock-card-state { color: var(--color-success); }
+
+  .skillpath .track-mock-card-desc {
+    margin-top: var(--space-4);
+    font-size: var(--mock-text);
+    line-height: var(--mock-leading);
+    color: var(--color-ink-lighter);
+  }
+
+  .skillpath .track-mock-chevron {
+    position: absolute;
+    top: var(--space-12);
+    right: var(--space-16);
+    display: flex;
+    color: var(--color-ink-lighter);
+  }
+
+  .skillpath .track-mock-chevron svg { width: 14px; height: 14px; }
+
+  .skillpath .track-mock-courses {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    margin-top: var(--space-12);
+    padding-top: var(--space-12);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .skillpath .track-mock-course {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .skillpath .track-mock-course .journey-mock-check {
+    width: 14px;
+    height: 14px;
+  }
+
+  .skillpath .track-mock-course .journey-mock-check.is-done {
+    background-size: 9px;
+  }
+
+  .skillpath .track-mock-course .journey-mock-check.is-current {
+    border-color: var(--color-brand);
+  }
+
+  .skillpath .track-mock-course-eyebrow {
+    font-size: var(--mock-text-sm);
+    line-height: var(--mock-leading-sm);
+    color: var(--color-ink-lighter);
+  }
+
+  .skillpath .track-mock-course-title {
+    font-size: var(--mock-text);
+    line-height: var(--mock-leading);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-ink);
   }
 }
 

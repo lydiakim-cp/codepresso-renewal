@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IDE 목업 — 이미지1 재현</title>
+<link rel="stylesheet" href="../../css/tokens.css" />
+<style>
+  :root{
+    /* 목업 전용 IDE 다크 네이비 팔레트 (원본 SVG 실측 hex) */
+    --ide-bg: #040B1D;
+    --ide-titlebar: #021658;
+    --ide-titlebar-line: #000D33;
+    --ide-dot: #1A61EA;
+    --ide-sidebar-row-hover: #192032;
+    --ide-sidebar-row-selected: #171D34;
+    --ide-sidebar-text: #E7E9EF;
+    --ide-sidebar-text-muted: #474E60;
+    --ide-folder-fill: #132957;
+    --ide-folder-line: #264EA1;
+    --ide-git-added: #2EA370;
+    --ide-tab-active: #22283B;
+    --ide-tab-active-2: #282D40;
+    --ide-tab-inactive: #161A28;
+    --ide-tab-text: #9BA0B0;
+    --ide-tab-text-active: #E7E9EF;
+    --ide-code-bg: #0B101F;
+    --ide-close-btn: #B83737;
+    --ide-code-comment: #7D8799;
+    --ide-code-keyword: #C678DD;
+    --ide-code-plain: #ABB2BF;
+    --ide-code-string: #98C379;
+    --ide-code-tagname: #E5C07B;
+    --ide-code-attr: #E06C75;
+    --ide-code-component: #56B6C2;
+    --ide-linenum: #474E60;
+
+    --card-bg: #021658;
+    --card-bg-2: #08194D;
+    --card-line: #000D33;
+    --card-icon: #616F9E;
+
+    --mock-text-title: 15px;
+    --mock-text-md: 13px;
+    --mock-text-sm: 11px;
+    --mock-text-xs: 9px;
+  }
+
+  * { box-sizing: border-box; }
+  body{
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-surface-mist, #EEF0F3);
+    font-family: -apple-system, "Pretendard", "Segoe UI", sans-serif;
+  }
+
+  .mockup-canvas{
+    position: relative;
+    width: 616px;
+    height: 480px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #ECF2FE 0%, #F4F7FF 100%);
+    box-shadow: 0 20px 60px rgba(10, 20, 60, .18);
+  }
+
+  /* 뒤에 겹쳐진 종이 쌓임 레이어 */
+  .paper-layer{
+    position: absolute;
+    border-radius: 16px;
+    background: #B7C5E8;
+  }
+  .paper-layer--1{ left: 72px; top: 40px; width: 464px; height: 312px; opacity: .4; }
+  .paper-layer--2{ left: 56px; top: 52px; width: 496px; height: 316px; opacity: .8; }
+
+  /* IDE 창 */
+  .ide-window{
+    position: absolute;
+    left: 40px; top: 64px;
+    width: 528px; height: 352px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--ide-bg);
+    box-shadow: 0 12px 30px rgba(28, 43, 51, .35);
+  }
+
+  .ide-titlebar{
+    height: 28px;
+    background: var(--ide-titlebar);
+    border-bottom: 1px solid var(--ide-titlebar-line);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
+  }
+  .ide-titlebar i{
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--ide-dot);
+    opacity: .5;
+  }
+
+  /* 진행 표시줄 */
+  .ide-progress{
+    height: 56px;
+    background: var(--ide-titlebar);
+    border-bottom: 1px solid var(--ide-titlebar-line);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+  }
+  .ide-progress__badge{
+    position: relative;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: #A7C2F6;
+    display: flex; align-items: center; justify-content: center;
+    flex: none;
+  }
+  .ide-progress__badge::before{
+    content: "";
+    position: absolute; inset: 3px;
+    border-radius: 50%;
+    background: #356DDE;
+    border: 1px solid #2860D1;
+  }
+  .ide-progress__badge svg{ position: relative; z-index: 1; width: 14px; height: 14px; }
+
+  .ide-progress__meta{ display: flex; flex-direction: column; gap: 2px; flex: none; }
+  .ide-progress__label{ font-size: var(--mock-text-sm); color: var(--ide-code-plain); font-weight: 600; letter-spacing: .01em; }
+  .ide-progress__label b{ color: #fff; font-weight: 700; }
+  .ide-progress__divider{ width: 1px; height: 12px; background: rgba(177,184,204,.2); }
+
+  .ide-progress__track{
+    position: relative;
+    flex: 1;
+    height: 3px;
+    border-radius: 1.5px;
+    background: rgba(172, 195, 250, .15);
+    margin: 0 12px;
+  }
+  .ide-progress__fill{
+    position: absolute; left: 0; top: 0;
+    width: 27%; height: 100%;
+    border-radius: 1.5px;
+    background: var(--ide-dot);
+  }
+
+  .ide-progress__check{
+    flex: none;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: #1A61EA;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ide-progress__check svg{ width: 9px; height: 9px; }
+
+  /* 본문: 사이드바 + 코드 패널 */
+  .ide-body{
+    display: flex;
+    height: calc(100% - 28px - 56px);
+  }
+
+  .ide-sidebar{
+    width: 128px;
+    flex: none;
+    background: var(--ide-bg);
+    padding: 6px 0;
+    overflow: hidden;
+  }
+  .tree-row{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 20px;
+    padding: 0 10px;
+    font-size: var(--mock-text-xs);
+    color: var(--ide-sidebar-text-muted);
+    white-space: nowrap;
+  }
+  .tree-row svg{ flex: none; width: 11px; height: 14px; }
+  .tree-row--depth1{ padding-left: 20px; }
+  .tree-row--depth2{ padding-left: 30px; }
+  .tree-row.is-folder{ color: var(--ide-sidebar-text); }
+  .tree-row.is-selected{
+    background: var(--ide-sidebar-row-selected);
+    color: var(--ide-sidebar-text);
+    position: relative;
+  }
+  .tree-row.is-selected::before{
+    content: "";
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--ide-dot);
+  }
+  .tree-row.is-git{ color: var(--ide-git-added); }
+
+  .ide-code-panel{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: var(--ide-code-bg);
+  }
+
+  .ide-tabbar{
+    display: flex;
+    align-items: center;
+    height: 28px;
+    background: var(--ide-tab-inactive);
+    border-bottom: 1px solid var(--ide-titlebar-line);
+  }
+  .ide-tab{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+    padding: 0 12px;
+    font-size: var(--mock-text-xs);
+    color: var(--ide-tab-text);
+    background: var(--ide-tab-inactive);
+    border-right: 1px solid var(--ide-titlebar-line);
+  }
+  .ide-tab.is-active{
+    background: var(--ide-tab-active);
+    color: var(--ide-tab-text-active);
+  }
+  .ide-tab .tab-close{
+    width: 10px; height: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ide-tab-text);
+  }
+
+  .ide-code{
+    flex: 1;
+    display: flex;
+    padding: 10px 0;
+    overflow: hidden;
+    font-family: "SFMono-Regular", Consolas, "Courier New", monospace;
+  }
+  .code-linenums{
+    flex: none;
+    width: 26px;
+    text-align: right;
+    padding-right: 10px;
+    color: var(--ide-linenum);
+    font-size: var(--mock-text-xs);
+    line-height: 20px;
+  }
+  .code-linenums div{ height: 20px; }
+  .code-lines{
+    flex: 1;
+    font-size: var(--mock-text-xs);
+    line-height: 20px;
+    color: var(--ide-code-plain);
+    white-space: pre;
+    padding-right: 12px;
+  }
+  .code-lines div{ height: 20px; }
+  .tok-kw{ color: var(--ide-code-keyword); }
+  .tok-str{ color: var(--ide-code-string); }
+  .tok-tag{ color: var(--ide-code-attr); }
+  .tok-comp{ color: var(--ide-code-component); }
+  .tok-attr{ color: var(--ide-code-tagname); }
+  .tok-plain{ color: var(--ide-code-plain); }
+  .tok-dim{ color: var(--ide-code-comment); }
+
+  /* 질문 카드 */
+  .question-card{
+    position: absolute;
+    right: 8px; top: 8px;
+    width: 240px;
+    border-radius: 14px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-line);
+    box-shadow: 0 8px 24px rgba(9, 47, 161, .18);
+    padding: 16px 14px;
+    display: flex;
+    gap: 12px;
+  }
+  .question-card__body{ flex: 1; min-width: 0; }
+  .question-card__title{
+    margin: 0 0 6px;
+    font-size: var(--mock-text-title);
+    font-weight: 700;
+    color: #fff;
+  }
+  .question-card__desc{
+    margin: 0;
+    font-size: var(--mock-text-sm);
+    line-height: 1.5;
+    color: #AEB7D6;
+  }
+  .question-card__desc + .question-card__desc{ margin-top: 6px; }
+  .question-card__icons{
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 10px;
+    border-left: 1px solid var(--card-line);
+  }
+  .question-card__icons svg{ width: 15px; height: 15px; }
+
+  /* 웹캠 원형 배지 */
+  .webcam-badge{
+    position: absolute;
+    right: 24px; bottom: 18px;
+    width: 64px; height: 64px;
+  }
+  .webcam-badge img, .webcam-badge svg{ width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+
+<div class="mockup-canvas">
+  <div class="paper-layer paper-layer--2"></div>
+  <div class="paper-layer paper-layer--1"></div>
+
+  <div class="ide-window">
+    <div class="ide-titlebar">
+      <i></i><i></i><i></i>
+    </div>
+
+    <div class="ide-progress">
+      <div class="ide-progress__badge">
+        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#ide-badge-star-i)">
+<path d="M9.39324 0.915419C9.99125 0.405797 10.8708 0.405798 11.4688 0.91542L13.2207 2.4084C13.477 2.62679 13.7956 2.75876 14.1312 2.78555L16.4257 2.96865C17.209 3.03115 17.8309 3.65309 17.8934 4.4363L18.0765 6.7308C18.1033 7.06642 18.2353 7.38505 18.4536 7.64131L19.9466 9.39324C20.4562 9.99125 20.4562 10.8708 19.9466 11.4688L18.4536 13.2207C18.2353 13.477 18.1033 13.7956 18.0765 14.1312L17.8934 16.4257C17.8309 17.209 17.209 17.8309 16.4257 17.8934L14.1312 18.0765C13.7956 18.1033 13.477 18.2353 13.2207 18.4536L11.4688 19.9466C10.8708 20.4562 9.99125 20.4562 9.39324 19.9466L7.64131 18.4536C7.38505 18.2353 7.06642 18.1033 6.7308 18.0765L4.4363 17.8934C3.65309 17.8309 3.03115 17.209 2.96865 16.4257L2.78555 14.1312C2.75876 13.7956 2.62679 13.477 2.4084 13.2207L0.915419 11.4688C0.405797 10.8708 0.405798 9.99125 0.91542 9.39324L2.4084 7.64131C2.62679 7.38505 2.75876 7.06642 2.78555 6.7308L2.96865 4.4363C3.03115 3.65309 3.65309 3.03115 4.4363 2.96865L6.7308 2.78555C7.06642 2.75876 7.38505 2.62679 7.64131 2.4084L9.39324 0.915419Z" fill="#F5F6FF"/>
+</g>
+<g opacity="0.55" style="mix-blend-mode:multiply">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11.8149 0.509622L13.5668 2.0026C13.7376 2.14819 13.9501 2.23618 14.1738 2.25403L16.4683 2.43714C17.5126 2.52047 18.3418 3.34972 18.4252 4.39401L18.6083 6.6885C18.6261 6.91225 18.7141 7.12467 18.8597 7.29551L20.3527 9.04744C21.0322 9.84479 21.0322 11.0175 20.3527 11.8149L18.8597 13.5668C18.7141 13.7376 18.6261 13.9501 18.6083 14.1738L18.4252 16.4683C18.3418 17.5126 17.5126 18.3418 16.4683 18.4252L14.1738 18.6083C13.9501 18.6261 13.7376 18.7141 13.5668 18.8597L11.8149 20.3527C11.0175 21.0322 9.84479 21.0322 9.04744 20.3527L7.29551 18.8597C7.12467 18.7141 6.91225 18.6261 6.6885 18.6083L4.39401 18.4252C3.34972 18.3418 2.52047 17.5126 2.43714 16.4683L2.25403 14.1738C2.23618 13.9501 2.14819 13.7376 2.0026 13.5668L0.509621 11.8149C-0.169875 11.0175 -0.169873 9.84479 0.509622 9.04744L2.0026 7.29551C2.14819 7.12467 2.23618 6.91225 2.25403 6.6885L2.43714 4.39401C2.52047 3.34972 3.34972 2.52047 4.39401 2.43714L6.6885 2.25403C6.91225 2.23618 7.12467 2.14819 7.29551 2.0026L9.04744 0.509621C9.84479 -0.169875 11.0175 -0.169873 11.8149 0.509622ZM11.4689 0.91555C10.8709 0.405928 9.99138 0.405928 9.39337 0.915549L7.64144 2.40853C7.38518 2.62692 7.06656 2.75889 6.73093 2.78568L4.43643 2.96878C3.65322 3.03128 3.03128 3.65322 2.96878 4.43643L2.78568 6.73093C2.75889 7.06655 2.62692 7.38518 2.40853 7.64144L0.91555 9.39337C0.405928 9.99138 0.405928 10.8709 0.915549 11.4689L2.40853 13.2209C2.62692 13.4771 2.75889 13.7958 2.78568 14.1314L2.96878 16.4259C3.03128 17.2091 3.65322 17.831 4.43643 17.8935L6.73093 18.0766C7.06655 18.1034 7.38518 18.2354 7.64144 18.4538L9.39337 19.9468C9.99138 20.4564 10.8709 20.4564 11.4689 19.9468L13.2209 18.4538C13.4771 18.2354 13.7958 18.1034 14.1314 18.0766L16.4259 17.8935C17.2091 17.831 17.831 17.2091 17.8935 16.4259L18.0766 14.1314C18.1034 13.7958 18.2354 13.4771 18.4538 13.2209L19.9468 11.4689C20.4564 10.8709 20.4564 9.99138 19.9468 9.39337L18.4538 7.64144C18.2354 7.38518 18.1034 7.06656 18.0766 6.73093L17.8935 4.43643C17.831 3.65322 17.2091 3.03128 16.4259 2.96878L14.1314 2.78568C13.7958 2.75889 13.4771 2.62692 13.2209 2.40853L11.4689 0.91555Z" fill="#356DDE"/>
+</g>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11.8149 0.509622L13.5668 2.0026C13.7376 2.14819 13.9501 2.23618 14.1738 2.25403L16.4683 2.43714C17.5126 2.52047 18.3418 3.34972 18.4252 4.39401L18.6083 6.6885C18.6261 6.91225 18.7141 7.12467 18.8597 7.29551L20.3527 9.04744C21.0322 9.84479 21.0322 11.0175 20.3527 11.8149L18.8597 13.5668C18.7141 13.7376 18.6261 13.9501 18.6083 14.1738L18.4252 16.4683C18.3418 17.5126 17.5126 18.3418 16.4683 18.4252L14.1738 18.6083C13.9501 18.6261 13.7376 18.7141 13.5668 18.8597L11.8149 20.3527C11.0175 21.0322 9.84479 21.0322 9.04744 20.3527L7.29551 18.8597C7.12467 18.7141 6.91225 18.6261 6.6885 18.6083L4.39401 18.4252C3.34972 18.3418 2.52047 17.5126 2.43714 16.4683L2.25403 14.1738C2.23618 13.9501 2.14819 13.7376 2.0026 13.5668L0.509621 11.8149C-0.169875 11.0175 -0.169873 9.84479 0.509622 9.04744L2.0026 7.29551C2.14819 7.12467 2.23618 6.91225 2.25403 6.6885L2.43714 4.39401C2.52047 3.34972 3.34972 2.52047 4.39401 2.43714L6.6885 2.25403C6.91225 2.23618 7.12467 2.14819 7.29551 2.0026L9.04744 0.509621C9.84479 -0.169875 11.0175 -0.169873 11.8149 0.509622ZM11.4689 0.91555C10.8709 0.405928 9.99138 0.405928 9.39337 0.915549L7.64144 2.40853C7.38518 2.62692 7.06656 2.75889 6.73093 2.78568L4.43643 2.96878C3.65322 3.03128 3.03128 3.65322 2.96878 4.43643L2.78568 6.73093C2.75889 7.06655 2.62692 7.38518 2.40853 7.64144L0.91555 9.39337C0.405928 9.99138 0.405928 10.8709 0.915549 11.4689L2.40853 13.2209C2.62692 13.4771 2.75889 13.7958 2.78568 14.1314L2.96878 16.4259C3.03128 17.2091 3.65322 17.831 4.43643 17.8935L6.73093 18.0766C7.06655 18.1034 7.38518 18.2354 7.64144 18.4538L9.39337 19.9468C9.99138 20.4564 10.8709 20.4564 11.4689 19.9468L13.2209 18.4538C13.4771 18.2354 13.7958 18.1034 14.1314 18.0766L16.4259 17.8935C17.2091 17.831 17.831 17.2091 17.8935 16.4259L18.0766 14.1314C18.1034 13.7958 18.2354 13.4771 18.4538 13.2209L19.9468 11.4689C20.4564 10.8709 20.4564 9.99138 19.9468 9.39337L18.4538 7.64144C18.2354 7.38518 18.1034 7.06656 18.0766 6.73093L17.8935 4.43643C17.831 3.65322 17.2091 3.03128 16.4259 2.96878L14.1314 2.78568C13.7958 2.75889 13.4771 2.62692 13.2209 2.40853L11.4689 0.91555Z" fill="black" fill-opacity="0.2"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.86914 6.87539C5.86914 6.54402 6.13777 6.27539 6.46914 6.27539H14.4691C14.8005 6.27539 15.0691 6.54402 15.0691 6.87539C15.0691 7.20676 14.8005 7.47539 14.4691 7.47539H6.46914C6.13777 7.47539 5.86914 7.20676 5.86914 6.87539ZM5.86914 10.4309C5.86914 10.0996 6.13777 9.83095 6.46914 9.83095H13.8025C14.1338 9.83095 14.4025 10.0996 14.4025 10.4309C14.4025 10.7623 14.1338 11.0309 13.8025 11.0309H6.46914C6.13777 11.0309 5.86914 10.7623 5.86914 10.4309Z" fill="#2353C2"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.86914 13.9867C5.86914 13.6553 6.13777 13.3867 6.46914 13.3867H10.5136C10.845 13.3867 11.1136 13.6553 11.1136 13.9867C11.1136 14.3181 10.845 14.5867 10.5136 14.5867H6.46914C6.13777 14.5867 5.86914 14.3181 5.86914 13.9867Z" fill="#2353C2"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.0193 9.66193C14.6089 9.07232 15.5648 9.07232 16.1545 9.66194C16.7441 10.2515 16.7441 11.2075 16.1545 11.7971L13.0859 14.8657C13.0738 14.8778 13.0618 14.8898 13.05 14.9016C12.7648 15.1869 12.5695 15.3823 12.343 15.54C12.1425 15.6796 11.9263 15.795 11.6987 15.8839C11.4416 15.9842 11.1705 16.0377 10.7748 16.1159C10.7584 16.1191 10.7418 16.1224 10.725 16.1257L10.2515 16.2193C10.0514 16.2588 9.84498 16.194 9.70338 16.0473C9.56178 15.9005 9.50442 15.6919 9.55109 15.4934L9.67049 14.9855C9.67416 14.9699 9.67778 14.9544 9.68136 14.9392C9.7678 14.5712 9.82703 14.3191 9.92731 14.08C10.0161 13.8685 10.128 13.6674 10.2612 13.4806C10.4116 13.2695 10.5947 13.0864 10.8621 12.8191C10.8732 12.808 10.8844 12.7968 10.8957 12.7855L14.0193 9.66193ZM15.3059 10.5105C15.1849 10.3895 14.9888 10.3895 14.8678 10.5105L11.7442 13.634C11.4311 13.9472 11.3237 14.0572 11.2385 14.1769C11.1569 14.2914 11.0883 14.4146 11.0339 14.5443C11 14.6251 10.9731 14.7107 10.9355 14.858C11.0875 14.8245 11.1774 14.7992 11.2623 14.766C11.4018 14.7116 11.5343 14.6408 11.6572 14.5553C11.7856 14.4659 11.9031 14.3514 12.2374 14.0171L15.3059 10.9486C15.4269 10.8276 15.4269 10.6314 15.3059 10.5105Z" fill="#2353C2"/>
+<defs>
+<filter id="ide-badge-star-i" x="0.533203" y="0.533203" width="19.7949" height="19.7959" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.2 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_18_5887"/>
+</filter>
+</defs>
+</svg>
+      </div>
+      <div class="ide-progress__meta">
+        <span class="ide-progress__label"><b>Set 1</b> | 8 / 30</span>
+      </div>
+      <div class="ide-progress__track">
+        <div class="ide-progress__fill"></div>
+      </div>
+      <div class="ide-progress__check">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#F5F6FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <div class="ide-body">
+      <aside class="ide-sidebar">
+        <div class="tree-row is-folder">
+          <svg viewBox="0 0 11 14" fill="none"><path d="M3.55566 2.61719C3.78526 2.61731 3.99799 2.73776 4.11621 2.93457L4.71094 3.92578H8.50586C9.22858 3.92578 9.81445 4.51166 9.81445 5.23438V9.16016C9.81445 9.88287 9.22858 10.4688 8.50586 10.4688H1.96289C1.24017 10.4688 0.654297 9.88287 0.654297 9.16016V3.27148C0.654297 2.91013 0.947236 2.61719 1.30859 2.61719H3.55566Z" fill="#132957" stroke="#264EA1" stroke-width="0.6"/></svg>
+          src
+        </div>
+        <div class="tree-row is-folder tree-row--depth1">
+          <svg viewBox="0 0 11 14" fill="none"><path d="M3.55566 2.61719C3.78526 2.61731 3.99799 2.73776 4.11621 2.93457L4.71094 3.92578H8.50586C9.22858 3.92578 9.81445 4.51166 9.81445 5.23438V9.16016C9.81445 9.88287 9.22858 10.4688 8.50586 10.4688H1.96289C1.24017 10.4688 0.654297 9.88287 0.654297 9.16016V3.27148C0.654297 2.91013 0.947236 2.61719 1.30859 2.61719H3.55566Z" fill="#132957" stroke="#264EA1" stroke-width="0.6"/></svg>
+          components
+        </div>
+        <div class="tree-row is-folder tree-row--depth1">
+          <svg viewBox="0 0 11 14" fill="none"><path d="M3.55566 2.61719C3.78526 2.61731 3.99799 2.73776 4.11621 2.93457L4.71094 3.92578H8.50586C9.22858 3.92578 9.81445 4.51166 9.81445 5.23438V9.16016C9.81445 9.88287 9.22858 10.4688 8.50586 10.4688H1.96289C1.24017 10.4688 0.654297 9.88287 0.654297 9.16016V3.27148C0.654297 2.91013 0.947236 2.61719 1.30859 2.61719H3.55566Z" fill="#132957" stroke="#264EA1" stroke-width="0.6"/></svg>
+          layouts
+        </div>
+        <div class="tree-row is-selected tree-row--depth2">
+          <svg viewBox="0 0 11 14" fill="none"><path d="M9.16016 4.25293V9.81445C9.16016 10.5372 8.57428 11.123 7.85156 11.123H2.61719C1.89447 11.123 1.30859 10.5372 1.30859 9.81445V3.27148C1.30859 2.54877 1.89447 1.96289 2.61719 1.96289H6.87012L9.16016 4.25293Z" fill="#192032" stroke="#474E60" stroke-width="0.6"/><path d="M5.88867 3.92578H3.27148V4.58008H5.88867V3.92578Z" fill="#474E60"/><path d="M3.27148 5.88867H7.19727V6.54297H3.27148V5.88867Z" fill="#474E60"/><path d="M3.27148 7.85156H7.19727V8.50586H3.27148V7.85156Z" fill="#474E60"/></svg>
+          BaseLaout.jsx
+        </div>
+        <div class="tree-row is-folder">
+          <svg viewBox="0 0 11 14" fill="none"><path d="M3.55566 2.61719C3.78526 2.61731 3.99799 2.73776 4.11621 2.93457L4.71094 3.92578H8.50586C9.22858 3.92578 9.81445 4.51166 9.81445 5.23438V9.16016C9.81445 9.88287 9.22858 10.4688 8.50586 10.4688H1.96289C1.24017 10.4688 0.654297 9.88287 0.654297 9.16016V3.27148C0.654297 2.91013 0.947236 2.61719 1.30859 2.61719H3.55566Z" fill="#132957" stroke="#264EA1" stroke-width="0.6"/></svg>
+          pages
+        </div>
+        <div class="tree-row is-folder">
+          <svg viewBox="0 0 11 14" fill="none"><path d="M3.55566 2.61719C3.78526 2.61731 3.99799 2.73776 4.11621 2.93457L4.71094 3.92578H8.50586C9.22858 3.92578 9.81445 4.51166 9.81445 5.23438V9.16016C9.81445 9.88287 9.22858 10.4688 8.50586 10.4688H1.96289C1.24017 10.4688 0.654297 9.88287 0.654297 9.16016V3.27148C0.654297 2.91013 0.947236 2.61719 1.30859 2.61719H3.55566Z" fill="#132957" stroke="#264EA1" stroke-width="0.6"/></svg>
+          router
+        </div>
+        <div class="tree-row tree-row--depth1">
+          <svg viewBox="0 0 11 14" fill="none"><path d="M9.16016 4.25293V9.81445C9.16016 10.5372 8.57428 11.123 7.85156 11.123H2.61719C1.89447 11.123 1.30859 10.5372 1.30859 9.81445V3.27148C1.30859 2.54877 1.89447 1.96289 2.61719 1.96289H6.87012L9.16016 4.25293Z" fill="#192032" stroke="#474E60" stroke-width="0.6"/></svg>
+          App.jsx
+        </div>
+        <div class="tree-row tree-row--depth1">
+          <svg viewBox="0 0 11 14" fill="none"><path d="M9.16016 4.25293V9.81445C9.16016 10.5372 8.57428 11.123 7.85156 11.123H2.61719C1.89447 11.123 1.30859 10.5372 1.30859 9.81445V3.27148C1.30859 2.54877 1.89447 1.96289 2.61719 1.96289H6.87012L9.16016 4.25293Z" fill="#192032" stroke="#474E60" stroke-width="0.6"/></svg>
+          main.jsx
+        </div>
+        <div class="tree-row">
+          <svg viewBox="0 0 11 14" fill="none"><path d="M9.16016 4.25293V9.81445C9.16016 10.5372 8.57428 11.123 7.85156 11.123H2.61719C1.89447 11.123 1.30859 10.5372 1.30859 9.81445V3.27148C1.30859 2.54877 1.89447 1.96289 2.61719 1.96289H6.87012L9.16016 4.25293Z" fill="#192032" stroke="#474E60" stroke-width="0.6"/></svg>
+          index.html
+        </div>
+        <div class="tree-row">
+          <svg viewBox="0 0 11 14" fill="none"><path d="M9.16016 4.25293V9.81445C9.16016 10.5372 8.57428 11.123 7.85156 11.123H2.61719C1.89447 11.123 1.30859 10.5372 1.30859 9.81445V3.27148C1.30859 2.54877 1.89447 1.96289 2.61719 1.96289H6.87012L9.16016 4.25293Z" fill="#192032" stroke="#474E60" stroke-width="0.6"/></svg>
+          package-lock.json
+        </div>
+        <div class="tree-row is-git">
+          <svg viewBox="0 0 11 14" fill="none"><path d="M9.16016 4.25293V9.81445C9.16016 10.5372 8.57428 11.123 7.85156 11.123H2.61719C1.89447 11.123 1.30859 10.5372 1.30859 9.81445V3.27148C1.30859 2.54877 1.89447 1.96289 2.61719 1.96289H6.87012L9.16016 4.25293Z" fill="#192032" stroke="#2EA370" stroke-width="0.6"/></svg>
+          package.json
+        </div>
+        <div class="tree-row">
+          <svg viewBox="0 0 11 14" fill="none"><path d="M9.16016 4.25293V9.81445C9.16016 10.5372 8.57428 11.123 7.85156 11.123H2.61719C1.89447 11.123 1.30859 10.5372 1.30859 9.81445V3.27148C1.30859 2.54877 1.89447 1.96289 2.61719 1.96289H6.87012L9.16016 4.25293Z" fill="#192032" stroke="#474E60" stroke-width="0.6"/></svg>
+          vite.config.js
+        </div>
+        <div class="tree-row">
+          <svg viewBox="0 0 11 14" fill="none"><path d="M9.16016 4.25293V9.81445C9.16016 10.5372 8.57428 11.123 7.85156 11.123H2.61719C1.89447 11.123 1.30859 10.5372 1.30859 9.81445V3.27148C1.30859 2.54877 1.89447 1.96289 2.61719 1.96289H6.87012L9.16016 4.25293Z" fill="#192032" stroke="#474E60" stroke-width="0.6"/></svg>
+          vitest.config.ts
+        </div>
+      </aside>
+
+      <section class="ide-code-panel">
+        <div class="ide-tabbar">
+          <div class="ide-tab is-active">
+            BaseLaout.jsx
+            <span class="tab-close">
+              <svg viewBox="0 0 10 10" fill="none"><path d="M1 1l8 8M9 1l-8 8" stroke="#9BA0B0" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+        </div>
+        <div class="ide-code">
+          <div class="code-linenums">
+            <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+            <div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
+            <div>13</div><div>14</div><div>15</div><div>16</div>
+          </div>
+          <div class="code-lines">
+<div><span class="tok-kw">import</span> <span class="tok-plain">React</span> <span class="tok-kw">from</span> <span class="tok-str">'react'</span></div>
+<div><span class="tok-kw">import</span> <span class="tok-plain">Footer</span> <span class="tok-kw">from</span> <span class="tok-str">'@/components/Common/Footer'</span></div>
+<div><span class="tok-kw">import</span> <span class="tok-plain">Header</span> <span class="tok-kw">from</span> <span class="tok-str">'@/components/Common/Header'</span></div>
+<div>&nbsp;</div>
+<div><span class="tok-kw">const</span> <span class="tok-comp">Layout</span> <span class="tok-plain">=</span> <span class="tok-plain">({</span> <span class="tok-plain">children</span> <span class="tok-plain">}) =></span> <span class="tok-plain">{</span></div>
+<div>&nbsp;&nbsp;<span class="tok-kw">return</span> <span class="tok-plain">(</span></div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-plain">&lt;</span><span class="tok-tag">div</span> <span class="tok-attr">className</span><span class="tok-plain">=</span><span class="tok-str">"container"</span><span class="tok-plain">></span></div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-plain">&lt;</span><span class="tok-comp">SiteHeader</span> <span class="tok-attr">menuName</span><span class="tok-plain">=</span><span class="tok-str">"To-Do List"</span> <span class="tok-plain">/></span></div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-plain">{</span><span class="tok-plain">children</span><span class="tok-plain">}</span></div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-plain">&lt;</span><span class="tok-comp">SiteFooter</span> <span class="tok-plain">/></span></div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tok-plain">&lt;/</span><span class="tok-tag">div</span><span class="tok-plain">></span></div>
+<div>&nbsp;&nbsp;<span class="tok-plain">)</span></div>
+<div><span class="tok-plain">}</span></div>
+<div>&nbsp;</div>
+<div><span class="tok-kw">export</span> <span class="tok-kw">default</span> <span class="tok-comp">Layout</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-card__body">
+      <p class="question-card__title">Question</p>
+      <p class="question-card__desc">You are developing a single-page application to manage tasks. The tasks are categorized into "todo" and "done".</p>
+      <p class="question-card__desc">Create : Enter content in the input area and click the button.</p>
+    </div>
+    <div class="question-card__icons">
+      <svg viewBox="0 0 11 14" fill="none"><path d="M9.16016 4.25293V9.81445C9.16016 10.5372 8.57428 11.123 7.85156 11.123H2.61719C1.89447 11.123 1.30859 10.5372 1.30859 9.81445V3.27148C1.30859 2.54877 1.89447 1.96289 2.61719 1.96289H6.87012L9.16016 4.25293Z" fill="#192032" stroke="#616F9E" stroke-width="0.6"/><path d="M5.88867 3.92578H3.27148V4.58008H5.88867V3.92578Z" fill="#616F9E"/><path d="M3.27148 5.88867H7.19727V6.54297H3.27148V5.88867Z" fill="#616F9E"/><path d="M3.27148 7.85156H7.19727V8.50586H3.27148V7.85156Z" fill="#616F9E"/></svg>
+      <svg viewBox="0 0 15 15" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.14258 10.4639C7.14258 10.2174 7.34242 10.0176 7.58895 10.0176H11.4575C11.704 10.0176 11.9039 10.2174 11.9039 10.4639C11.9039 10.7105 11.704 10.9103 11.4575 10.9103H7.58895C7.34242 10.9103 7.14258 10.7105 7.14258 10.4639Z" fill="#616F9E"/><path fill-rule="evenodd" clip-rule="evenodd" d="M7.14258 3.81844C7.14258 3.57192 7.34242 3.37207 7.58895 3.37207H11.4575C11.704 3.37207 11.9039 3.57192 11.9039 3.81844C11.9039 4.06496 11.704 4.26481 11.4575 4.26481H7.58895C7.34242 4.26481 7.14258 4.06496 7.14258 3.81844Z" fill="#616F9E"/><path fill-rule="evenodd" clip-rule="evenodd" d="M4.84939 4.41199C5.0237 4.58631 5.0237 4.86893 4.84939 5.04325L3.29678 6.59585H11.4937C11.7402 6.59585 11.9401 6.7957 11.9401 7.04222C11.9401 7.28874 11.7402 7.48859 11.4937 7.48859H3.29678L4.84939 9.04119C5.0237 9.21551 5.0237 9.49813 4.84939 9.67245C4.67507 9.84677 4.39244 9.84677 4.21812 9.67245L1.58789 7.04222L4.21812 4.41199C4.39244 4.23767 4.67507 4.23767 4.84939 4.41199Z" fill="#616F9E"/></svg>
+      <svg viewBox="0 0 21 21" fill="none"><path d="M9.39324 0.915419C9.99125 0.405797 10.8708 0.405798 11.4688 0.91542L13.2207 2.4084C13.477 2.62679 13.7956 2.75876 14.1312 2.78555L16.4257 2.96865C17.209 3.03115 17.8309 3.65309 17.8934 4.4363L18.0765 6.7308C18.1033 7.06642 18.2353 7.38505 18.4536 7.64131L19.9466 9.39324C20.4562 9.99125 20.4562 10.8708 19.9466 11.4688L18.4536 13.2207C18.2353 13.477 18.1033 13.7956 18.0765 14.1312L17.8934 16.4257C17.8309 17.209 17.209 17.8309 16.4257 17.8934L14.1312 18.0765C13.7956 18.1033 13.477 18.2353 13.2207 18.4536L11.4688 19.9466C10.8708 20.4562 9.99125 20.4562 9.39324 19.9466L7.64131 18.4536C7.38505 18.2353 7.06642 18.1033 6.7308 18.0765L4.4363 17.8934C3.65309 17.8309 3.03115 17.209 2.96865 16.4257L2.78555 14.1312C2.75876 13.7956 2.62679 13.477 2.4084 13.2207L0.915419 11.4688C0.405797 10.8708 0.405798 9.99125 0.91542 9.39324L2.4084 7.64131C2.62679 7.38505 2.75876 7.06642 2.78555 6.7308L2.96865 4.4363C3.03115 3.65309 3.65309 3.03115 4.4363 2.96865L6.7308 2.78555C7.06642 2.75876 7.38505 2.62679 7.64131 2.4084L9.39324 0.915419Z" fill="#F5F6FF"/><path fill-rule="evenodd" clip-rule="evenodd" d="M5.86914 6.87539C5.86914 6.54402 6.13777 6.27539 6.46914 6.27539H14.4691C14.8005 6.27539 15.0691 6.54402 15.0691 6.87539C15.0691 7.20676 14.8005 7.47539 14.4691 7.47539H6.46914C6.13777 7.47539 5.86914 7.20676 5.86914 6.87539ZM5.86914 10.4309C5.86914 10.0996 6.13777 9.83095 6.46914 9.83095H13.8025C14.1338 9.83095 14.4025 10.0996 14.4025 10.4309C14.4025 10.7623 14.1338 11.0309 13.8025 11.0309H6.46914C6.13777 11.0309 5.86914 10.7623 5.86914 10.4309Z" fill="#2353C2"/><path fill-rule="evenodd" clip-rule="evenodd" d="M5.86914 13.9867C5.86914 13.6553 6.13777 13.3867 6.46914 13.3867H10.5136C10.845 13.3867 11.1136 13.6553 11.1136 13.9867C11.1136 14.3181 10.845 14.5867 10.5136 14.5867H6.46914C6.13777 14.5867 5.86914 14.3181 5.86914 13.9867Z" fill="#2353C2"/><path fill-rule="evenodd" clip-rule="evenodd" d="M14.0193 9.66193C14.6089 9.07232 15.5648 9.07232 16.1545 9.66194C16.7441 10.2515 16.7441 11.2075 16.1545 11.7971L13.0859 14.8657C13.0738 14.8778 13.0618 14.8898 13.05 14.9016C12.7648 15.1869 12.5695 15.3823 12.343 15.54C12.1425 15.6796 11.9263 15.795 11.6987 15.8839C11.4416 15.9842 11.1705 16.0377 10.7748 16.1159C10.7584 16.1191 10.7418 16.1224 10.725 16.1257L10.2515 16.2193C10.0514 16.2588 9.84498 16.194 9.70338 16.0473C9.56178 15.9005 9.50442 15.6919 9.55109 15.4934L9.67049 14.9855C9.67416 14.9699 9.67778 14.9544 9.68136 14.9392C9.7678 14.5712 9.82703 14.3191 9.92731 14.08C10.0161 13.8685 10.128 13.6674 10.2612 13.4806C10.4116 13.2695 10.5947 13.0864 10.8621 12.8191C10.8732 12.808 10.8844 12.7968 10.8957 12.7855L14.0193 9.66193ZM15.3059 10.5105C15.1849 10.3895 14.9888 10.3895 14.8678 10.5105L11.7442 13.634C11.4311 13.9472 11.3237 14.0572 11.2385 14.1769C11.1569 14.2914 11.0883 14.4146 11.0339 14.5443C11 14.6251 10.9731 14.7107 10.9355 14.858C11.0875 14.8245 11.1774 14.7992 11.2623 14.766C11.4018 14.7116 11.5343 14.6408 11.6572 14.5553C11.7856 14.4659 11.9031 14.3514 12.2374 14.0171L15.3059 10.9486C15.4269 10.8276 15.4269 10.6314 15.3059 10.5105Z" fill="#2353C2"/></svg>
+    </div>
+  </div>
+
+  <div class="webcam-badge">
+    <svg viewBox="0 0 102 103" fill="none">
+      <circle cx="49.98" cy="50.31" r="32" fill="#1F93FF" fill-opacity="0.92"/>
+      <path d="M40.4805 65.1104H59.4805C62.3524 65.1104 64.6807 67.4387 64.6807 70.3105V70.5107H35.2803V70.3105C35.2803 67.4387 37.6086 65.1104 40.4805 65.1104Z" stroke="white" stroke-width="1.6"/>
+      <rect x="49.8805" y="59.7105" width="0.8" height="5.2" stroke="white" stroke-width="0.8"/>
+      <path d="M49.9805 30.1104C58.0991 30.1104 64.6807 36.692 64.6807 44.8105C64.6807 52.9291 58.0991 59.5107 49.9805 59.5107C41.8619 59.5107 35.2803 52.9291 35.2803 44.8105C35.2803 36.692 41.8619 30.1104 49.9805 30.1104Z" stroke="white" stroke-width="1.6"/>
+      <path d="M49.9805 38.1104C53.6808 38.1104 56.6807 41.1102 56.6807 44.8105C56.6807 48.5109 53.6808 51.5107 49.9805 51.5107C46.2802 51.5107 43.2803 48.5109 43.2803 44.8105C43.2803 41.1102 46.2802 38.1104 49.9805 38.1104Z" stroke="white" stroke-width="1.6"/>
+      <ellipse cx="49.9805" cy="44.8105" rx="1.5" ry="1.5" fill="white"/>
+      <circle cx="58.75" cy="1.5" r="1.5" fill="#006AFF"/>
+      <circle cx="80.6" cy="10.93" r="1.5" fill="#2680FF"/>
+      <circle cx="98.37" cy="36.55" r="1.5" fill="#A7CCFF"/>
+      <circle cx="46.23" cy="100.64" r="1.5" fill="#0066F5"/>
+      <circle cx="11.78" cy="82.52" r="1.5" fill="#1575FF"/>
+      <circle cx="1.5" cy="61.14" r="1.5" fill="#A7CCFF" opacity="0.7"/>
+    </svg>
+  </div>
+</div>
+
+</body>
+</html>

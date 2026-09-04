@@ -9,54 +9,10 @@
   }
 
   /* 섹션 하나가 화면 한 장 — 내용이 적은 섹션도 세로 가운데에 놓인다.
-     연혁(.about)만 우측 목록이 길어 화면보다 커지므로 위에서 시작한다.
-     position:sticky + 증가하는 z-index로 스택형 스크롤을 만든다 —
-     뒤 섹션이 화면 상단에 붙은 채 앞 섹션 위로 덮으며 올라온다. */
+     연혁(.about)만 우측 목록이 길어 화면보다 커지므로 위에서 시작한다. */
   .company > section {
     min-height: 100vh;
     justify-content: center;
-    position: sticky;
-    top: 0;
-  }
-
-  .company > section:nth-of-type(1) { z-index: 1; }
-  .company > section:nth-of-type(2) { z-index: 2; }
-  .company > section:nth-of-type(3) { z-index: 3; }
-  .company > section:nth-of-type(4) { z-index: 4; }
-  .company > section:nth-of-type(5) { z-index: 5; }
-  .company > section:nth-of-type(6) { z-index: 6; }
-  .company > section:nth-of-type(7) { z-index: 7; }
-
-  /* 다음 섹션이 덮어오는 동안(js/stack-scroll.js가 --stack-progress를 0→1로
-     채운다) 앞 섹션은 옅어지며 위쪽을 기준으로 세로 폭이 살짝 줄어든다 —
-     실제로 접혀 들어가는 것처럼 보이게 한다. */
-  .company > section {
-    opacity: calc(1 - var(--stack-progress, 0) * 0.55);
-    transform: scaleY(calc(1 - var(--stack-progress, 0) * 0.06));
-    transform-origin: top center;
-  }
-
-  /* 안쪽 이미지·박스 요소는 한 번 더 접히는 느낌을 준다 — 위로 살짝 눕고 줄어든다. */
-  .company > section img,
-  .company > section .company-era-image,
-  .company > section .content-panel,
-  .company > section .proof-card-stage,
-  .company > section .offices-map {
-    transform: perspective(1000px) rotateX(calc(var(--stack-progress, 0) * 10deg))
-      scale(calc(1 - var(--stack-progress, 0) * 0.06));
-    transform-origin: top center;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .company > section,
-    .company > section img,
-    .company > section .company-era-image,
-    .company > section .content-panel,
-    .company > section .proof-card-stage,
-    .company > section .offices-map {
-      transform: none;
-      opacity: 1;
-    }
   }
 
   .company .about {
@@ -91,8 +47,6 @@
      그 박스를 스크롤 컨테이너로 잡아 고정이 풀린다(실제로 그렇게 깨졌다).
      ::before 광원은 inset:0이라 넘칠 일이 없어 자르지 않아도 된다. */
   .company .about.is-dark {
-    position: sticky;
-    top: 0;
     padding-bottom: 200px;
     background: linear-gradient(180deg,
       var(--color-axpresso-bg-1) 0%,
@@ -296,8 +250,6 @@
   /* 05 Offices — 인증(틴트 면) 다음에 오는 면. 거점 카드만 있어 짧다.
      연혁(03)과 같은 다크 톤 — 지도·마커가 밤하늘 위 좌표처럼 떠 보이게 한다. */
   .company .about-offices {
-    position: sticky;
-    top: 0;
     background: linear-gradient(180deg,
       var(--color-axpresso-bg-1) 0%,
       var(--color-axpresso-bg-3) 100%);
@@ -404,11 +356,12 @@
     position: relative;
     padding: var(--space-4) var(--space-10);
     border-radius: var(--radius-full);
-    background: var(--color-surface);
+    background: var(--color-surface-sunken);
     box-shadow: var(--shadow-sm);
-    color: var(--color-brand-dark);
-    font-size: var(--text-label);
+    color: var(--color-surface);
+    font-size: 10px;
     white-space: nowrap;
+    opacity: 0;
   }
 
   .company .offices-pin:nth-child(2) .offices-pin-ring { animation-delay: .5s; }

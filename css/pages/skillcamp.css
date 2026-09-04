@@ -62,6 +62,18 @@
     gap: var(--space-20);
   }
 
+  /* 01 우측 — 목업 대신 실제 화면 캡처 한 장(skillcertify 히어로와 같은 역할). 420px 칸보다 넓게 560px로 키운다. */
+  .skillcamp .scenario-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
+  }
+
+  .skillcamp .scenario-layout .hero-visual img {
+    display: block;
+    width: 560px;
+    max-width: 100%;
+    height: auto;
+  }
+
   /* 집계 기준 주석 — 수치 카드 아래 한 줄. */
   .skillcamp .outcomes-note {
     margin-top: var(--space-20);

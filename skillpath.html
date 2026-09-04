@@ -258,189 +258,17 @@
             </li>
           </ol>
 
-          <!-- 우측 화면 4장 — 좌측 STEP 묶음과 data-scenario-step/panel 키로 1:1로 짝짓는다.
-               같은 트랙 화면에서 진도만 달라지므로 연출은 넷 다 focus로 통일했다. -->
+          <!-- 우측 화면 — Career Track 목업 UI(images/mockup/career-track-mock-skillpath.html)를
+               그대로 옮긴 정적 화면 하나만 보여준다. 배지 아이콘이 base64 SVG라 마크업이 커서
+               js/journey-track-mock.js로 분리해 두고 런타임에 마운트 지점에 주입한다.
+               레벨 1~4가 이미 한 화면에 다 보이는 디자인이라 STEP 스크롤에 따른 화면 전환은 쓰지 않는다
+               (scenario-switch.js는 data-scenario-panel이 없으면 스스로 아무 것도 하지 않는다). -->
           <div class="scenario-screens" data-scenario-screens>
-
-            <div class="preview-frame mock-screen scenario-mock is-active"
-                 data-scenario-panel="basic" data-mock-motion="focus" aria-hidden="true">
-              <div class="journey-mock-head">
-                <span class="journey-mock-title">데이터 사이언스 트랙</span>
-                <span class="journey-mock-badge">STEP 2 / 21</span>
-              </div>
-              <div class="journey-mock-progress">
-                <div class="journey-mock-progress-bar"><span style="width: 10%"></span></div>
-                <span class="text-caption strong">입문</span>
-              </div>
-              <ul class="journey-mock-list">
-                <li class="journey-mock-item is-done is-quiet">
-                  <span class="journey-mock-check"></span>
-                  <span class="journey-mock-item-name">데이터 리터러시</span>
-                  <span style="flex: 1"></span>
-                </li>
-                <li class="journey-mock-item is-current is-focus">
-                  <span class="journey-mock-check"></span>
-                  <span class="journey-mock-item-name">파이썬 프로그래밍 입문</span>
-                  <span style="flex: 1"></span>
-                  <span class="text-caption strong">STEP 2</span>
-                </li>
-                <li class="journey-mock-item is-quiet">
-                  <span class="journey-mock-check"></span>
-                  <span class="skeleton-line is-shimmer" style="width: 108px"></span>
-                  <span style="flex: 1"></span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="preview-frame mock-screen scenario-mock"
-                 data-scenario-panel="analysis" data-mock-motion="focus" aria-hidden="true">
-              <div class="journey-mock-head">
-                <span class="journey-mock-title">데이터 사이언스 트랙</span>
-                <span class="journey-mock-badge">STEP 6 / 21</span>
-              </div>
-              <div class="journey-mock-progress">
-                <div class="journey-mock-progress-bar"><span style="width: 30%"></span></div>
-                <span class="text-caption strong">초급</span>
-              </div>
-              <ul class="journey-mock-list">
-                <li class="journey-mock-item is-done is-quiet">
-                  <span class="journey-mock-check"></span>
-                  <span class="journey-mock-item-name">NumPy 데이터 처리</span>
-                  <span style="flex: 1"></span>
-                </li>
-                <li class="journey-mock-item is-current is-focus">
-                  <span class="journey-mock-check"></span>
-                  <span class="journey-mock-item-name">Pandas 데이터 분석</span>
-                  <span style="flex: 1"></span>
-                  <span class="text-caption strong">STEP 6</span>
-                </li>
-                <li class="journey-mock-item is-quiet">
-                  <span class="journey-mock-check"></span>
-                  <span class="skeleton-line is-shimmer" style="width: 96px"></span>
-                  <span style="flex: 1"></span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="preview-frame mock-screen scenario-mock"
-                 data-scenario-panel="ml" data-mock-motion="focus" aria-hidden="true">
-              <div class="journey-mock-head">
-                <span class="journey-mock-title">데이터 사이언스 트랙</span>
-                <span class="journey-mock-badge">STEP 11 / 21</span>
-              </div>
-              <div class="journey-mock-progress">
-                <div class="journey-mock-progress-bar"><span style="width: 55%"></span></div>
-                <span class="text-caption strong">중급</span>
-              </div>
-              <ul class="journey-mock-list">
-                <li class="journey-mock-item is-done is-quiet">
-                  <span class="journey-mock-check"></span>
-                  <span class="journey-mock-item-name">회귀 · 분류 모델 구현</span>
-                  <span style="flex: 1"></span>
-                </li>
-                <li class="journey-mock-item is-current is-focus">
-                  <span class="journey-mock-check"></span>
-                  <span class="journey-mock-item-name">의사결정 트리와 앙상블</span>
-                  <span style="flex: 1"></span>
-                  <span class="text-caption strong">STEP 11</span>
-                </li>
-                <li class="journey-mock-item is-quiet">
-                  <span class="journey-mock-check"></span>
-                  <span class="skeleton-line is-shimmer" style="width: 124px"></span>
-                  <span style="flex: 1"></span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="preview-frame mock-screen scenario-mock"
-                 data-scenario-panel="apply" data-mock-motion="focus" aria-hidden="true">
-              <div class="journey-mock-head">
-                <span class="journey-mock-title">데이터 사이언스 트랙</span>
-                <span class="journey-mock-badge is-live"><i class="is-pulse"></i>STEP 21 / 21</span>
-              </div>
-              <div class="journey-mock-progress">
-                <div class="journey-mock-progress-bar"><span style="width: 100%"></span></div>
-                <span class="text-caption strong">수료</span>
-              </div>
-              <ul class="journey-mock-list">
-                <li class="journey-mock-item is-done is-quiet">
-                  <span class="journey-mock-check"></span>
-                  <span class="journey-mock-item-name">실무 데이터 분석 프로젝트</span>
-                  <span style="flex: 1"></span>
-                </li>
-                <li class="journey-mock-item is-current is-focus">
-                  <span class="journey-mock-check"></span>
-                  <span class="journey-mock-item-name">ADsP 자격 대비</span>
-                  <span style="flex: 1"></span>
-                  <span class="text-caption strong">STEP 21</span>
-                </li>
-              </ul>
-            </div>
+            <div class="scenario-mock is-active" data-journey-track-mock-mount></div>
           </div>
         </div>
 
-        <!-- 같은 섹션에서 한 단 내려간 묶음 — 위 STEP 구조로 실제로 여는 트랙 경로들이다. -->
-        <div class="section-content">
-          <p class="text-label">대표 트랙 경로</p>
-          <ul class="start-grid">
-            <li>
-              <div class="content-panel start-card">
-                <span class="start-icon" aria-hidden="true">
-                  <!-- 데이터 사이언스 — ic_barChart.svg 기반 -->
-                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                    <path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="color-mix(in srgb, var(--color-brand) 65%, var(--color-surface))"/>
-                    <path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="var(--color-brand)"/>
-                  </svg>
-                </span>
-                <div class="content-panel__intro">
-                  <p class="tag">데이터 사이언스 · 입문→중급</p>
-                  <h3>데이터 리터러시부터 ADsP까지</h3>
-                  <p class="tag dark sm">STEP 21</p>
-                  <p class="start-desc">파이썬·SQL 입문에서 통계 분석과 머신러닝 구현을 지나 자격 대비까지 한 줄로 이어집니다.</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="content-panel start-card">
-                <span class="start-icon" aria-hidden="true">
-                  <!-- 인공지능 — 071.인공지능.svg 기반 -->
-                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5V22H11V5H13Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                    <path d="M15.0098 5C15.0098 3.34315 13.6666 2 12.0098 2C10.3529 2 9.00977 3.34315 9.00977 5C9.00977 6.65685 10.3529 8 12.0098 8C13.6666 8 15.0098 6.65685 15.0098 5Z" fill="var(--color-brand)"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M20 10V15.5352L17 17.5352V22H15V16.4648L18 14.4648V10H20Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                    <path d="M22.0098 9C22.0098 7.34315 20.6666 6 19.0098 6C17.3529 6 16.0098 7.34315 16.0098 9C16.0098 10.6569 17.3529 12 19.0098 12C20.6666 12 22.0098 10.6569 22.0098 9Z" fill="var(--color-brand)"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.00977 14.4648V10H4.00977V15.5352L7.0097 17.5352V22H9.0097V16.4648L6.00977 14.4648Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                    <path d="M2.00977 9C2.00977 10.6569 3.35291 12 5.00977 12C6.66662 12 8.00977 10.6569 8.00977 9C8.00977 7.34315 6.66662 6 5.00977 6C3.35291 6 2.00977 7.34315 2.00977 9Z" fill="var(--color-brand)"/>
-                  </svg>
-                </span>
-                <div class="content-panel__intro">
-                  <p class="tag">인공지능 · 입문→초급</p>
-                  <h3>파이썬에서 텐서플로 딥러닝까지</h3>
-                  <p class="tag dark sm">딥러닝 구현</p>
-                  <p class="start-desc">파이썬과 NumPy에서 시작해 딥러닝 첫걸음을 지나 텐서플로 모델 구현까지 갑니다.</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="content-panel start-card">
-                <span class="start-icon" aria-hidden="true">
-                  <!-- 클라우드 컴퓨팅 — 033.클라우드.svg 기반 -->
-                  <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 10.05C19 10.05 19 10.02 19 10C19 6.69 16.31 4 13 4C10.36 4 8.13 5.7 7.32 8.07C7.05 8.03 6.78 8 6.5 8C3.46 8 1 10.46 1 13.5C1 16.54 3.46 19 6.5 19H18.5C20.99 19 23 16.98 23 14.5C23 12.19 21.25 10.3 19 10.05Z" fill="var(--color-brand)"/>
-                  </svg>
-                </span>
-                <div class="content-panel__intro">
-                  <p class="tag">클라우드 컴퓨팅 · 입문→중급</p>
-                  <h3>클라우드 기초에서 Kubernetes까지</h3>
-                  <p class="tag dark sm">컨테이너 실무</p>
-                  <p class="start-desc">클라우드 개념과 Docker 컨테이너를 지나 Kubernetes 기초·중급 활용까지 이어집니다.</p>
-                </div>
-              </div>
-            </li>
-          </ul>
-          <p class="journey-note text-caption">전체 코스 카탈로그와 수강 신청, 교육·행사는 codepresso.kr에서 확인하세요.</p>
-        </div>
+
       </div>
     </section>
 
@@ -663,6 +491,7 @@
   <script src="js/header-scroll.js"></script>
   <script src="js/nav-menu.js"></script>
   <script src="js/scenario-switch.js"></script>
+  <script src="js/journey-track-mock.js"></script>
   <script src="js/feature-card-cycle.js"></script>
 </body>
 
