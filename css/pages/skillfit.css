@@ -12,6 +12,12 @@
      이 페이지에만 있는 배치(홈 화면 · 튜터 패널)만 정의한다.
      ───────────────────────────────────────────────────────────── */
 
+  /* 목업 프레임은 5:3(폭:높이)보다 세로로 길어지지 않는다. 높이만 깎으면 화면이
+     답답해지므로 감싼 패널의 여백을 한 단 줄여 폭도 함께 벌어 준다(464 → 480px). */
+  .skillfit .content-panel {
+    --content-panel-padding: var(--space-40);
+  }
+
   /* 목업 안 글자 4단. 루트 안에만 선언한다 — 전역으로 올리면 9px가 실제 UI로 샌다. */
   .skillfit .skillfit-home,
   .skillfit .skillfit-tutor {
@@ -25,17 +31,11 @@
     --mock-leading-sm: 13px;
   }
 
-  .skillfit .skillfit-home .text-caption,
-  .skillfit .skillfit-tutor .text-caption {
-    font-size: var(--mock-text);
-    line-height: var(--mock-leading);
-  }
-
   /* 03 학습 화면은 공용 skillfit-mock(index PART 1과 같은 부품)을 그대로 쓴다.
      튜터 팝업이 없어 본문이 더 넓게 서므로 세 열 비율만 이 페이지가 정한다. */
   .skillfit .skillfit-mock-screen {
     grid-template-columns: 26px minmax(0, 1fr) minmax(0, 1.25fr);
-    min-height: 296px;
+    min-height: 244px;
   }
 
   /* 화면 안의 다음 단계 버튼 — 실제 학습 화면의 하단 바. */
@@ -63,7 +63,7 @@
     grid-template-columns: 132px minmax(0, 1fr);
     gap: var(--space-12);
     padding: var(--space-12);
-    min-height: 296px;
+    min-height: 244px;
   }
 
   .skillfit .skillfit-home-nav {
@@ -140,12 +140,6 @@
     min-width: 0;
   }
 
-  .skillfit .skillfit-home-greeting {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
   /* 홈 화면에서 가장 먼저 읽혀야 하는 것은 인사 한 줄이다. */
   .skillfit .skillfit-home .journey-app-lesson {
     font-size: var(--mock-text-title);
@@ -207,11 +201,6 @@
     color: var(--color-surface);
   }
 
-  .skillfit .skillfit-home-resume .text-caption,
-  .skillfit .skillfit-home-track .text-caption {
-    color: var(--color-ink-on-dark);
-  }
-
   .skillfit .skillfit-home-track .journey-app-progress-bar {
     background: color-mix(in srgb, var(--color-surface) 32%, transparent);
   }
@@ -237,14 +226,13 @@
   .skillfit .skillfit-tutor {
     display: flex;
     flex-direction: column;
-    gap: var(--space-16);
-    padding: var(--space-16);
-    min-height: 332px;
+    gap: var(--space-10);
+    padding: var(--space-10);
   }
 
   .skillfit .skillfit-tutor-head {
     gap: var(--space-10);
-    padding-bottom: var(--space-12);
+    padding-bottom: var(--space-10);
     border-bottom: 1px solid var(--color-line);
   }
 
@@ -253,8 +241,8 @@
     align-items: center;
     justify-content: center;
     flex: none;
-    width: var(--icon-box);
-    height: var(--icon-box);
+    width: var(--icon-box-sm);
+    height: var(--icon-box-sm);
     border-radius: var(--radius-md);
     background: var(--color-brand);
     color: var(--color-surface);
@@ -279,12 +267,12 @@
   .skillfit .skillfit-tutor-chat {
     display: flex;
     flex-direction: column;
-    gap: var(--space-12);
+    gap: var(--space-10);
   }
 
   .skillfit .skillfit-tutor .journey-mock-bubble {
     max-width: 88%;
-    padding: var(--space-10) var(--space-12);
+    padding: var(--space-8) var(--space-12);
     font-size: var(--mock-text);
     line-height: var(--mock-leading);
   }
@@ -301,7 +289,7 @@
   .skillfit .skillfit-tutor-answer {
     display: flex;
     flex-direction: column;
-    gap: var(--space-8);
+    gap: var(--space-4);
     align-self: flex-start;
   }
 
@@ -326,7 +314,8 @@
   /* 인용 구간 — 답변 본문과 예시를 나누는 선이다(장식용 accent가 아니다). */
   .skillfit .skillfit-tutor-terms {
     display: grid;
-    gap: var(--space-4);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4) var(--space-12);
     padding-left: var(--space-12);
     border-left: 2px solid var(--color-brand-tint-2);
     color: var(--color-ink-light);
@@ -341,9 +330,13 @@
 
   .skillfit .skillfit-tutor-foot {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
+    align-items: center;
+    gap: var(--space-12);
     margin-top: auto;
+  }
+
+  .skillfit .skillfit-tutor-foot .journey-app-ask {
+    flex: 1;
   }
 
   /* ─────────────────────────────────────────────────────────────
@@ -439,6 +432,12 @@
   .skillfit .track-card__mark svg {
     width: var(--icon-sm);
     height: var(--icon-sm);
+  }
+
+  /* 트랙 아이콘은 자기 원형 배경까지 갖고 온다 — 마크 박스를 꽉 채워 테가 안 보인다. */
+  .skillfit .track-card__mark img {
+    width: var(--icon-box-sm);
+    height: var(--icon-box-sm);
   }
 
   /* 제목은 카드 아래쪽에 붙는다 — 태그와 제목 사이 여백이 카드의 숨통이다.

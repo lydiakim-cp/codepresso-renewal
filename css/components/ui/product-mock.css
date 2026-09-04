@@ -462,12 +462,14 @@
   line-height: var(--mock-leading);
 }
 
-.journey-mock > *,
-.journey-app-rail > *,
-.journey-app-side > *,
-.journey-app-main > *,
-.journey-app-tutor > *,
-.journey-app-skill {
+/* 등장 연출을 기다리며 숨는다 — 스테이지(journey-step)가 켜 주는 자리에서만이다.
+   스테이지 밖(단독 목업)에서 숨으면 켜 줄 주체가 없어 빈 화면으로 남는다. */
+.journey-step .journey-mock > *,
+.journey-step .journey-app-rail > *,
+.journey-step .journey-app-side > *,
+.journey-step .journey-app-main > *,
+.journey-step .journey-app-tutor > *,
+.journey-step .journey-app-skill {
   opacity: 0;
 }
 
@@ -489,12 +491,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .journey-mock > *,
-  .journey-app-rail > *,
-  .journey-app-side > *,
-  .journey-app-main > *,
-  .journey-app-tutor > *,
-  .journey-app-skill {
+  .journey-step .journey-mock > *,
+  .journey-step .journey-app-rail > *,
+  .journey-step .journey-app-side > *,
+  .journey-step .journey-app-main > *,
+  .journey-step .journey-app-tutor > *,
+  .journey-step .journey-app-skill {
     opacity: 1;
     animation: none;
   }

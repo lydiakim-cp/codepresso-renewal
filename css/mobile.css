@@ -353,11 +353,10 @@
 /* max-width: 720px */
 
 @media (max-width: 720px) {
-  .skillfit .skillfit-home-continue { grid-template-columns: minmax(0, 1fr); }
-
   .catalog-group { --item-grid-columns: 3; }
 
-  .content-panel { --content-panel-padding: var(--space-24); }
+  .content-panel,
+  .skillfit .content-panel { --content-panel-padding: var(--space-24); }
 
   .metric-card__visual { width: 64px; height: 64px; }
   .metric-card__glow:first-child { width: 140px; height: 140px; }
@@ -459,7 +458,6 @@
 
   .skillfit .skillfit-home-screen { grid-template-columns: minmax(0, 1fr); }
   .skillfit .skillfit-home-nav { display: none; }
-  .skillfit .skillfit-home-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .skillfit .skillfit-mock-screen { grid-template-columns: 26px minmax(0, 1fr); }
   .skillfit .skillfit-mock-screen .journey-app-side { display: none; }
