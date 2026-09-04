@@ -725,8 +725,10 @@
 }
 
 /* 말풍선이 순서대로 도착하는 릴레이. 0%·100%를 완성 상태로 두고 비는 구간을
-   사이클 중간에 넣어, 애니메이션이 안 도는 환경에서도 대화가 다 보이게 한다. */
-.skillfit-mock-tutor .is-chat {
+   사이클 중간에 넣어, 애니메이션이 안 도는 환경에서도 대화가 다 보이게 한다.
+   팝업(skillfit-mock-tutor)과 전체 폭 패널(skillfit-tutor)이 같은 릴레이를 쓴다. */
+.skillfit-mock-tutor .is-chat,
+.skillfit-tutor .is-chat {
   animation: skillfit-chat-relay var(--mock-cycle, 6.5s) var(--ease-scroll) infinite;
   animation-delay: calc(var(--mock-chat-step, 0) * 1.2s);
 }
@@ -742,7 +744,8 @@
     animation: none;
   }
 
-  .skillfit-mock-tutor .is-chat {
+  .skillfit-mock-tutor .is-chat,
+  .skillfit-tutor .is-chat {
     opacity: 1;
     animation: none;
   }

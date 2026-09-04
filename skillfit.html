@@ -29,7 +29,8 @@
       <div class="hero-wrap">
         <div class="sub-hero-copy">
           <p class="tag">Learn · AI 개인화 학습</p>
-          <h1 class="hero-title">SKillfit</h1>
+          <h1 class="hero-title">SkillFit</h1>
+          <p class="hero-desc">진단 결과가 곧, <br data-break="desktop">나만의 학습 계획이 됩니다.</p>
           <p class="hero-desc">AI 진단 인터뷰가 현재 수준과 취약점을 찾고, 필요한 학습 경로를 자동으로 설계합니다. <br data-break="desktop">강의를 보는 대신 <strong>브라우저에서 직접 코드를 씁니다</strong>.</p>
           <div class="hero-actions">
             <a class="btn btn-primary btn-lg" href="#">
@@ -97,17 +98,46 @@
       </div>
     </section>
 
-    <!-- 문제 제기 — 뒤의 네 단계가 해결책으로 읽히게 하는 자리. 세 줄이면 충분하다. -->
+    <!-- 문제 제기 — 뒤의 네 단계가 해결책으로 읽히게 하는 자리.
+         한 줄짜리 카드로는 "문제"로 읽히지 않아 아이콘 + 소제목 변형(pain-card--detail)을 쓴다. -->
     <section class="intro fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
           <h2>교육은 했는데, <br data-break="mobile">실력이 늘었는지는 모릅니다</h2>
+          <p class="desc">지금 기업 교육에서 반복되는 세 가지입니다.</p>
         </div>
         <div class="section-content">
           <ul class="pain-grid">
-            <li class="pain-card">전원이 같은 강의를 듣습니다. 아는 사람은 지루하고, 모르는 사람은 따라가지 못합니다</li>
-            <li class="pain-card">수료율은 나오는데, 그것이 실력인지는 아무도 모릅니다</li>
-            <li class="pain-card">영상을 끝까지 본 것과, 실제로 코드를 쓸 수 있는 것은 다릅니다</li>
+            <li class="pain-card pain-card--detail">
+              <span class="pain-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <p class="pain-card__title">수준이 섞여 있습니다</p>
+              <p>전원이 같은 강의를 듣습니다. 아는 사람은 지루하고, 모르는 사람은 따라가지 못합니다.</p>
+            </li>
+            <li class="pain-card pain-card--detail">
+              <span class="pain-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6ZM14 2v6h6M8 15h5"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <p class="pain-card__title">수료율만 남습니다</p>
+              <p>누가 끝까지 들었는지는 집계되는데, 그것이 실력인지는 아무도 모릅니다.</p>
+            </li>
+            <li class="pain-card pain-card--detail">
+              <span class="pain-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" />
+                  <path d="M10.5 8.5 16 12l-5.5 3.5V8.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <p class="pain-card__title">본 것과 할 수 있는 것은 다릅니다</p>
+              <p>영상을 끝까지 본 사람과 실제로 코드를 쓸 수 있는 사람은 같지 않습니다.</p>
+            </li>
           </ul>
         </div>
       </div>
@@ -117,7 +147,7 @@
     <section class="journey is-sunken fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag">How it works</p>
+          <p class="tag">학습 흐름</p>
           <h2>진단에서 학습 계획까지, 네 단계</h2>
           <p class="desc">무엇을 모르는지 찾는 데서 시작해, 실제로 코드를 쓰고 피드백을 받는 데까지 이어집니다.</p>
         </div>
@@ -174,7 +204,7 @@
     <section class="deliverables product-feature fade-up">
       <div class="section-wrap row">
         <div class="feature-copy">
-          <p class="tag">02 · 맞춤 학습 경로</p>
+          <p class="tag">맞춤 학습 경로</p>
           <h2>이미 아는 내용은 건너뜁니다</h2>
           <p class="desc">진단에서 확인된 취약점이 2~3주 학습 계획으로 바뀝니다. 필요한 구간만 뽑아 순서대로 이어 붙입니다.</p>
           <ul class="feature-points">
@@ -192,19 +222,71 @@
             </li>
           </ul>
         </div>
-        <div class="content-panel bg product-mock product-mock--path" aria-label="개인화 학습 경로 예시">
-          <div class="mock-appbar"><span class="mock-brand">SkillFit</span><span class="mock-appbar__user">진경님 <b>Lv.13</b></span></div>
-          <div class="path-layout">
-            <aside class="mock-nav" aria-hidden="true"><img src="images/icon/ic_skillPath.svg" alt=""><span></span><span></span><span></span><span></span></aside>
-            <div class="path-main">
-              <div class="mock-heading"><span class="mock-kicker">나의 학습 경로</span><strong>AI 에이전트 활용</strong><em>진단 결과 · 2주 과정</em></div>
-              <div class="path-summary"><div><span>전체 진행률</span><strong>39%</strong></div><div class="mock-progress"><i></i></div><small>7 / 18 스킬 완료</small></div>
-              <ul class="path-list">
-                <li class="is-complete"><span>01</span><div><b>생성형 AI와 LLM 기초</b><small>완료</small></div><img src="images/icon/ic_todo.svg" alt=""></li>
-                <li class="is-complete"><span>02</span><div><b>토큰 예측과 컨텍스트</b><small>완료</small></div><img src="images/icon/ic_todo.svg" alt=""></li>
-                <li class="is-active"><span>03</span><div><b>RICE 프롬프트 프레임워크</b><small>학습 중 · 2 / 5 레슨</small></div><i>이어하기</i></li>
-                <li class="is-locked"><span>04</span><div><b>AI 활용 성숙도 높이기</b><small class="mock-skeleton"></small></div></li>
+        <!-- 학습 홈 화면. 진단이 짠 경로가 "이어서 학습"으로 이어진다는 것만 읽히면 되므로
+             그 카드와 수치 4칸만 텍스트로 남기고 나머지는 스켈레톤으로 가라앉힌다. -->
+        <div class="preview-frame preview-frame--flush skillfit-home" data-mock-motion="ticker" aria-hidden="true">
+          <div class="preview-frame__bar">
+            <span class="preview-frame__dots"><i></i><i></i><i></i></span>
+            <span class="text-caption">skillfit.codepresso.io</span>
+          </div>
+
+          <div class="skillfit-home-screen">
+            <!-- 좌 — 학습 메뉴와 이어서 학습 진입점. -->
+            <div class="skillfit-home-nav">
+              <div class="skillfit-home-brand">
+                <span class="journey-app-rail-logo"></span>
+                <span class="journey-mock-item-name">Codepresso</span>
+              </div>
+
+              <ul class="skillfit-home-menu">
+                <li class="is-current">홈</li>
+                <li>트랙 탐색</li>
+                <li>학습 기록</li>
               </ul>
+
+              <div class="skillfit-home-resume">
+                <span class="text-caption">이어서 학습</span>
+                <span class="journey-app-track-name">AI 에이전트 활용</span>
+              </div>
+
+              <div class="skillfit-home-user">
+                <span class="journey-mock-avatar">진</span>
+                <span class="journey-app-level">Lv.13</span>
+              </div>
+            </div>
+
+            <!-- 우 — 오늘의 학습 상태. -->
+            <div class="skillfit-home-main">
+              <div class="skillfit-home-greeting">
+                <span class="text-caption">2026년 9월 4일 금요일</span>
+                <p class="journey-app-lesson">오늘도 한 챕터 완주해볼까요?</p>
+              </div>
+
+              <ul class="skillfit-home-stats">
+                <li><span class="text-caption">연속 학습</span><b class="is-pop">4<em>일</em></b></li>
+                <li><span class="text-caption">오늘 XP</span><b class="is-pop">10</b></li>
+                <li><span class="text-caption">학습 시간</span><b class="is-pop">24<em>분</em></b></li>
+                <li><span class="text-caption">완료 챕터</span><b class="is-pop">64</b></li>
+              </ul>
+
+              <div class="skillfit-home-continue">
+                <div class="skillfit-home-track">
+                  <span class="journey-app-track-badge">학습중인 트랙</span>
+                  <span class="journey-app-track-name">AI 에이전트 활용</span>
+                  <span class="journey-app-progress-bar"><span style="width: 39%"></span></span>
+                  <span class="text-caption">7 / 18 · 39% 완료</span>
+                </div>
+
+                <div class="skillfit-home-chapter">
+                  <p class="journey-app-eyebrow">CHAPTER 8</p>
+                  <p class="journey-mock-item-name">RICJ 프롬프트 프레임워크</p>
+                  <div class="skeleton-stack">
+                    <span class="skeleton-line"></span>
+                    <span class="skeleton-line is-short"></span>
+                  </div>
+                  <span class="skillfit-mock-button">계속하기</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -288,7 +370,7 @@
     <section class="deliverables product-feature fade-up">
       <div class="section-wrap row">
         <div class="feature-copy">
-          <p class="tag">03 · 실습 환경</p>
+          <p class="tag">실습 환경</p>
           <h2>읽고 넘어가는 학습이 아닙니다</h2>
           <p class="desc">브라우저에서 코드를 쓰고, 실제로 실행하고, 결과로 채점받습니다. 설치할 것도, 환경 설정도 없습니다.</p>
           <ul class="feature-points">
@@ -306,17 +388,107 @@
             </li>
           </ul>
         </div>
-        <div class="content-panel bg product-mock product-mock--practice" aria-label="브라우저 기반 코드 실습 예시">
-          <div class="mock-appbar"><span class="mock-brand">SkillFit</span><span class="mock-appbar__crumb">AI 에이전트 활용 / 실습 3</span></div>
-          <div class="practice-layout">
-            <aside class="practice-steps" aria-hidden="true"><p>스킬 목록</p><span class="is-done">1</span><span class="is-done">2</span><span class="is-current">3</span><span>4</span><span>5</span></aside>
-            <div class="practice-main">
-              <div class="scenario-card"><img src="images/flat_icon_svg/078.개발,코딩.svg" alt=""><div><small>실무 시나리오</small><b>사용자 목록에서 활성 사용자만 찾아보세요</b></div></div>
-              <div class="question-head"><span>코드 작성</span><strong>filter()를 사용해 조건에 맞는 데이터를 반환하세요.</strong></div>
-              <div class="editor-grid">
-                <div class="code-editor"><div class="editor-tabs"><b>index.js</b><span>Console</span></div><pre><code><i>1</i>const users = [<br><i>2</i>  { name: '민지', active: true },<br><i>3</i>  { name: '도윤', active: false },<br><i>4</i>];<br><i>5</i><br><i>6</i>const activeUsers = users.<mark>filter</mark>(<br><i>7</i>  user =&gt; user.active<br><i>8</i>);</code></pre><button type="button">실행 <span>▶</span></button></div>
-                <div class="result-panel"><div><img src="images/icon/ic_todo.svg" alt=""><b>테스트 통과</b></div><p>활성 사용자를 올바르게 반환했습니다.</p><small class="mock-skeleton"></small><small class="mock-skeleton mock-skeleton--short"></small></div>
+        <!-- 학습 화면. index PART 1이 쓰는 skillfit-mock을 그대로 쓰되, 여기서는
+             튜터 팝업 없이 실습 본문만 보여준다(튜터는 아래 04가 맡는다). -->
+        <div class="preview-frame preview-frame--flush skillfit-mock" data-mock-motion="focus" aria-hidden="true">
+          <div class="preview-frame__bar">
+            <span class="preview-frame__dots"><i></i><i></i><i></i></span>
+            <span class="text-caption">skillfit.codepresso.io</span>
+          </div>
+
+          <div class="skillfit-mock-screen">
+            <!-- 최좌측 — 아이콘 메뉴 레일. index PART 1의 SkillFit 목업과 같은 부품이다. -->
+            <div class="journey-app-rail">
+              <span class="journey-app-rail-logo"></span>
+
+              <!-- 홈 -->
+              <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 10.5 12 4l8 6.5V20H4v-9.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              </svg>
+
+              <!-- 탐색 -->
+              <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" />
+                <path d="m15 9-2 4-4 2 2-4 4-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              </svg>
+
+              <!-- 학습(현재 위치) -->
+              <svg class="journey-app-rail-icon is-current" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="4" y="4" width="16" height="16" rx="5" fill="currentColor" />
+                <path d="m10.5 9 5 3-5 3V9Z" fill="var(--color-surface)" />
+              </svg>
+
+              <!-- 검색 -->
+              <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" />
+                <path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+
+              <!-- 설정 -->
+              <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+                <path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+
+            <!-- 좌 — 학습 중인 트랙과 스킬별 정답률. -->
+            <div class="journey-app-side">
+              <div class="journey-app-track">
+                <span class="journey-app-track-badge">진행중</span>
+                <span class="journey-app-level">입문</span>
+
+                <span class="journey-app-track-name">AI 에이전트 활용</span>
+                <span class="journey-app-progress-bar"><span style="width: 39%"></span></span>
+                <span class="text-caption">39% &middot; 7 / 18 스킬</span>
               </div>
+
+              <ul class="journey-app-skills">
+                <li class="journey-app-skill is-done is-quiet">
+                  <span class="journey-app-num">1</span>
+                  <span class="skeleton-line"></span>
+                  <span class="journey-app-rate">100%</span>
+                </li>
+                <li class="journey-app-skill is-done is-quiet">
+                  <span class="journey-app-num">2</span>
+                  <span class="skeleton-line"></span>
+                  <span class="journey-app-rate">83%</span>
+                </li>
+                <li class="journey-app-skill is-current is-focus">
+                  <span class="journey-app-num">8</span>
+                  <span class="journey-mock-item-name">RICJ 프레임워크</span>
+                </li>
+                <li class="journey-app-skill is-quiet">
+                  <span class="journey-app-num">9</span>
+                  <span class="skeleton-line"></span>
+                  <span class="journey-app-rate">0%</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- 우 — 실무 시나리오가 레슨 본문 위에 먼저 온다. -->
+            <div class="journey-app-main">
+              <div class="journey-app-scenario">
+                <span class="journey-app-scenario-label">실무 시나리오</span>
+                <span class="skeleton-line"></span>
+                <span class="skeleton-line is-short"></span>
+              </div>
+
+              <div class="skillfit-mock-lesson-meta">
+                <p class="journey-app-eyebrow">LESSON 1</p>
+                <p class="journey-app-adapt">코드 작성 <strong>2문항</strong></p>
+              </div>
+
+              <p class="journey-app-lesson">AI와 대화하는<br>가장 확실한 지도</p>
+
+              <div class="skeleton-stack">
+                <span class="skeleton-line"></span>
+                <span class="skeleton-line"></span>
+                <span class="skeleton-line is-short"></span>
+              </div>
+
+              <!-- 화면 안에서 다음 과제로 넘어간다는 신호. 실제 학습 화면의 하단 바다. -->
+              <span class="skillfit-mock-button is-wide">다음</span>
             </div>
           </div>
         </div>
@@ -327,7 +499,7 @@
     <section class="deliverables product-feature is-sunken fade-up">
       <div class="section-wrap row">
         <div class="feature-copy">
-          <p class="tag">04 · 1:1 AI 튜터</p>
+          <p class="tag">1:1 AI 튜터</p>
           <h2>막히면 언제든 물어봅니다</h2>
           <p class="desc">학습 화면을 벗어나지 않아도 됩니다. 복습·읽기·연습 어느 모드에서든 튜터를 부를 수 있습니다.</p>
           <ul class="feature-points">
@@ -345,27 +517,49 @@
             </li>
           </ul>
         </div>
-        <div class="content-panel bg product-mock product-mock--tutor" aria-label="학습 화면 위에 열린 AI 튜터 대화 예시">
-          <div class="tutor-learning-page" aria-hidden="true">
-            <div class="tutor-pagebar"><span class="mock-brand">SkillFit</span><span>AI 에이전트 활용 · Lesson 3</span><i></i></div>
-            <div class="tutor-pagebody">
-              <aside><span class="is-selected"></span><span></span><span></span><span></span><span></span></aside>
-              <article>
-                <small>LESSON 3 · 프롬프트 엔지니어링</small>
-                <h3>좋은 질문은<br>맥락에서 시작됩니다</h3>
-                <p class="mock-skeleton"></p><p class="mock-skeleton"></p><p class="mock-skeleton mock-skeleton--short"></p>
-                <div class="tutor-page-card"><img src="images/flat_icon_svg/072.챗봇.svg" alt=""><div><b>생각해 보기</b><span></span><span></span></div></div>
-              </article>
+        <!-- AI 튜터 대화창. 03과 같은 학습 화면 위에서 열리는 패널이라
+             부품(journey-app-tutor-* · journey-mock-bubble · journey-app-ask)을 그대로 쓴다. -->
+        <div class="preview-frame preview-frame--flush skillfit-tutor" aria-hidden="true">
+          <div class="journey-app-tutor-head skillfit-tutor-head">
+            <span class="skillfit-tutor-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M17 4H7a4 4 0 0 0-4 4v5a4 4 0 0 0 4 4h1v3l4-3h5a4 4 0 0 0 4-4V8a4 4 0 0 0-4-4Z"
+                  fill="currentColor" />
+              </svg>
+            </span>
+            <span class="skillfit-tutor-title">
+              <b class="journey-app-tutor-name">AI 튜터</b>
+              <span class="text-caption">RICJ 프롬프트 프레임워크</span>
+            </span>
+            <span class="journey-app-tutor-status">답변 완료</span>
+          </div>
+
+          <div class="skillfit-tutor-chat">
+            <p class="journey-mock-bubble is-mine is-chat" style="--mock-chat-step: 0">
+              <span class="skillfit-tutor-quote">Lesson 1 &middot; AI와 대화하는 가장 확실한 지도</span>
+              RICJ 프레임워크에 대해 더 자세히 설명해줘
+            </p>
+
+            <div class="journey-mock-bubble skillfit-tutor-answer is-chat" style="--mock-chat-step: 1">
+              <b>RICJ 프레임워크란?</b>
+              <p>AI가 엉뚱한 답을 하는 이유는 질문에 <strong>목적과 조건이 부족하기 때문</strong>입니다.
+                RICJ는 그 정보를 네 가지로 나누어 전달하는 방법입니다.</p>
+              <ul class="skillfit-tutor-terms">
+                <li><b>Role</b> AI가 맡을 역할</li>
+                <li><b>Instruction</b> 해야 할 일</li>
+                <li><b>Context</b> 배경 정보</li>
+                <li><b>Judgement</b> 결과물의 판단 기준</li>
+              </ul>
             </div>
           </div>
-          <section class="tutor-popover" aria-label="AI 튜터 대화창">
-            <header><div><img src="images/icon/ic_aiFluent.svg" alt=""><span><b>AI Tutor</b><small>언제든 질문하세요</small></span></div><button type="button" aria-label="대화창 최소화">−</button></header>
-            <div class="tutor-chat">
-              <div class="tutor-bubble tutor-bubble--user">RICE 프레임워크에서 Context는<br>어떻게 작성하면 좋을까요?</div>
-              <div class="tutor-bubble tutor-bubble--bot"><img src="images/icon/ic_aiFluent.svg" alt=""><div><b>좋은 질문이에요!</b><p>AI가 판단할 수 있도록 현재 상황과 대상, 이미 알고 있는 정보를 함께 알려주세요.</p><span>예: “신입 마케터를 위한 이메일 제목을 작성해줘”</span></div></div>
+
+          <div class="skillfit-tutor-foot">
+            <span class="journey-app-eyebrow">추천 질문 보기</span>
+            <div class="journey-app-ask">
+              <span class="journey-app-ask-text">궁금한 걸 물어보세요</span>
+              <span class="journey-app-ask-send"></span>
             </div>
-            <footer><span>질문을 입력하세요</span><button type="button" aria-label="메시지 보내기">↑</button></footer>
-          </section>
+          </div>
         </div>
       </div>
     </section>
@@ -374,7 +568,7 @@
     <section class="statement fade-up">
       <div class="section-wrap col">
         <div class="statement-inner">
-          <p class="statement-eyebrow">05 · Change Report</p>
+          <p class="statement-eyebrow">변화 리포트</p>
           <h2 class="statement-title">끝나고 나면, <strong>무엇이 달라졌는지가 남습니다</strong></h2>
           <p class="statement-desc">시작할 때의 진단과 끝난 뒤의 재진단을 나란히 놓고, 어느 영역이 얼마나 올라갔는지 개인과 조직 단위로 확인합니다.</p>
         </div>
@@ -390,7 +584,7 @@
           <p class="desc">기수를 만들고 기간을 정하면 그 기간에만 학습이 열립니다.</p>
         </div>
         <div class="section-content">
-          <div class="feature-card-grid">
+          <div class="feature-card-grid" data-feature-cycle>
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
@@ -416,6 +610,9 @@
                   </div>
                 </div>
               </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
             </article>
 
             <article class="feature-card">
@@ -440,6 +637,9 @@
                   </div>
                 </div>
               </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
             </article>
 
             <article class="feature-card">
@@ -464,6 +664,9 @@
                   </div>
                 </div>
               </div>
+              <span class="feature-card-progress" aria-hidden="true">
+                <span class="feature-card-progress-bar"></span>
+              </span>
             </article>
           </div>
         </div>
@@ -471,7 +674,7 @@
     </section>
 
     <!-- 도입 절차 — 담당자가 가장 궁금해하는 "우리가 뭘 해야 하나". 기간이 붙어 timeline. -->
-    <section class="process is-sunken fade-up">
+    <section class="process fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
           <p class="tag">도입 절차</p>
@@ -518,7 +721,7 @@
     </section>
 
     <!-- FAQ — 마지막 질문(진단 정확도)은 피하지 않고 한계를 인정하는 편이 신뢰를 만든다. -->
-    <section class="faq fade-up">
+    <section class="faq is-sunken fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
           <p class="tag">FAQ</p>
@@ -598,6 +801,7 @@
   <script src="js/header-scroll.js"></script>
   <script src="js/nav-menu.js"></script>
   <script src="js/stat-reveal.js"></script>
+  <script src="js/feature-card-cycle.js"></script>
 </body>
 
 </html>

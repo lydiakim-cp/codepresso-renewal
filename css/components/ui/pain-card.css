@@ -17,3 +17,37 @@
   font-size: var(--text-body-16);
   line-height: var(--leading-body-18);
 }
+
+/* 아이콘 + 소제목이 붙는 변형 — 한 줄로는 "무엇이 문제인지"가 안 읽힐 때.
+   문제 카드이므로 아이콘만 critical 톤으로 두고, 카드에 색 띠는 두르지 않는다. */
+.pain-card--detail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-16);
+  text-align: left;
+}
+
+.pain-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--icon-box);
+  height: var(--icon-box);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-critical) 10%, var(--color-surface));
+  color: var(--color-critical);
+}
+
+.pain-card__icon svg {
+  width: var(--icon-md);
+  height: var(--icon-md);
+}
+
+.pain-card__title {
+  font-size: var(--text-card-title);
+  line-height: var(--leading-card-title);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink-heaviest);
+}

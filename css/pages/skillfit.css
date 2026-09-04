@@ -5,46 +5,350 @@
     --hero-texture-position: top left;
   }
 
-  /* 제품 화면은 실제 UI를 축약한 목업으로, 메시지를 방해하는 세부 정보는 스켈레톤으로 처리한다. */
-  .skillfit .product-feature .content-panel.bg {
-    padding: 0;
-    overflow: hidden;
+  /* ─────────────────────────────────────────────────────────────
+     제품 화면 목업 — 02 홈 · 03 학습 · 04 튜터
+     세 섹션이 같은 SkillFit 화면을 다른 각도로 보여준다. 부품은 공용
+     preview-frame · journey-app-* · skeleton-line을 그대로 쓰고, 여기서는
+     이 페이지에만 있는 배치(홈 화면 · 튜터 패널)만 정의한다.
+     ───────────────────────────────────────────────────────────── */
+
+  /* 목업 안 글자 4단. 루트 안에만 선언한다 — 전역으로 올리면 9px가 실제 UI로 샌다. */
+  .skillfit .skillfit-home,
+  .skillfit .skillfit-tutor {
+    --mock-text-title: 15px;
+    --mock-leading-title: 20px;
+    --mock-text-lg: 13px;
+    --mock-leading-lg: 18px;
+    --mock-text: 11px;
+    --mock-leading: 15px;
+    --mock-text-sm: 9px;
+    --mock-leading-sm: 13px;
   }
 
-  .skillfit .product-mock { min-height: 390px; background: #f6f8fc; border: 1px solid #dce5f5; color: #24304a; font-size: 12px; line-height: 1.35; box-shadow: 0 18px 38px rgb(40 73 130 / 10%); }
-  .skillfit .mock-appbar { display: flex; align-items: center; justify-content: space-between; height: 48px; padding: 0 18px; border-bottom: 1px solid #e2e8f3; background: #fff; }.skillfit .mock-brand { color: #2878f0; font-size: 16px; font-weight: 800; letter-spacing: -.5px; }.skillfit .mock-appbar__user, .skillfit .mock-appbar__crumb { color: #75809a; font-weight: 600; }.skillfit .mock-appbar__user b { margin-left: 7px; padding: 3px 7px; border-radius: 20px; background: #eef3ff; color: #397df0; font-size: 10px; }
-  .skillfit .path-layout, .skillfit .practice-layout { display: flex; min-height: 342px; }.skillfit .mock-nav { display: flex; flex: 0 0 58px; flex-direction: column; align-items: center; gap: 18px; padding-top: 20px; border-right: 1px solid #e2e8f3; background: #fff; }.skillfit .mock-nav img { width: 21px; height: 21px; }.skillfit .mock-nav span { width: 18px; height: 18px; border: 2px solid #b5c0d0; border-radius: 5px; opacity: .75; }.skillfit .path-main { flex: 1; min-width: 0; padding: 20px; }.skillfit .mock-heading { display: grid; gap: 3px; }.skillfit .mock-heading strong { font-size: 20px; letter-spacing: -.7px; }.skillfit .mock-heading em { color: #8490a6; font-style: normal; }.skillfit .mock-kicker { color: #347df1; font-weight: 800; }
-  .skillfit .path-summary { display: grid; grid-template-columns: auto minmax(70px, 1fr); align-items: center; gap: 7px 14px; margin-top: 15px; padding: 12px 14px; border-radius: 10px; background: #eaf1ff; }.skillfit .path-summary div:first-child { display: grid; gap: 2px; }.skillfit .path-summary span, .skillfit .path-summary small { color: #71809c; }.skillfit .path-summary strong { color: #2878f0; font-size: 18px; }.skillfit .path-summary small { grid-column: 2; }.skillfit .mock-progress { height: 7px; overflow: hidden; border-radius: 10px; background: #c8d7f8; }.skillfit .mock-progress i { display: block; width: 39%; height: 100%; border-radius: inherit; background: #2878f0; }
-  .skillfit .path-list { display: grid; gap: 8px; margin: 15px 0 0; padding: 0; list-style: none; }.skillfit .path-list li { display: flex; align-items: center; gap: 10px; min-height: 45px; padding: 8px 10px; border: 1px solid #e7ebf2; border-radius: 9px; background: #fff; }.skillfit .path-list li > span { display: grid; place-items: center; width: 24px; height: 24px; flex: none; border-radius: 50%; background: #e5ebf4; color: #8792a6; font-size: 10px; font-weight: 800; }.skillfit .path-list div { display: grid; min-width: 0; gap: 2px; }.skillfit .path-list b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }.skillfit .path-list small { color: #8290a5; }.skillfit .path-list img { width: 18px; margin-left: auto; }.skillfit .path-list .is-complete > span { background: #d9f8f1; color: #06ac92; }.skillfit .path-list .is-active { border-color: #8db6ff; box-shadow: 0 2px 8px rgb(40 120 240 / 10%); }.skillfit .path-list .is-active > span, .skillfit .path-list .is-active i { background: #2878f0; color: #fff; }.skillfit .path-list .is-active i { margin-left: auto; padding: 5px 8px; border-radius: 5px; font-size: 10px; font-style: normal; font-weight: 700; }.skillfit .path-list .is-locked { opacity: .55; }
-  .skillfit .mock-skeleton { display: block; width: 100%; height: 7px; border-radius: 99px; background: linear-gradient(90deg, #e5eaf2, #f1f3f7, #e5eaf2); }.skillfit .mock-skeleton--short { width: 62%; }
-  .skillfit .practice-steps { display: grid; grid-template-columns: repeat(5, 22px); align-content: start; gap: 10px; flex: 0 0 136px; padding: 19px 14px; border-right: 1px solid #e2e8f3; background: #fff; }.skillfit .practice-steps p { grid-column: 1 / -1; margin: 0 0 6px; color: #7d899e; font-size: 10px; font-weight: 700; }.skillfit .practice-steps span { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #e8edf5; color: #8e99ab; font-size: 10px; font-weight: 800; }.skillfit .practice-steps .is-done { background: #d9f8f1; color: #07a98e; }.skillfit .practice-steps .is-current { background: #2878f0; color: #fff; }.skillfit .practice-main { flex: 1; min-width: 0; padding: 18px; }.skillfit .scenario-card { display: flex; align-items: center; gap: 9px; padding: 10px 12px; border: 1px solid #c9dcff; border-radius: 9px; background: #edf4ff; }.skillfit .scenario-card img { width: 22px; height: 22px; }.skillfit .scenario-card div { display: grid; gap: 2px; }.skillfit .scenario-card small, .skillfit .question-head span { color: #397df0; font-weight: 800; }.skillfit .scenario-card b { font-size: 13px; }.skillfit .question-head { display: grid; gap: 4px; margin: 15px 0 10px; }.skillfit .question-head strong { font-size: 14px; letter-spacing: -.3px; }
-  .skillfit .editor-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(115px, .75fr); gap: 10px; }.skillfit .code-editor, .skillfit .result-panel { overflow: hidden; border: 1px solid #dde4ee; border-radius: 9px; background: #fff; }.skillfit .editor-tabs { display: flex; gap: 13px; padding: 9px 11px; border-bottom: 1px solid #e7ebf1; color: #94a0b2; font-size: 10px; }.skillfit .editor-tabs b { color: #2f3d55; }.skillfit .code-editor pre { margin: 0; padding: 12px 9px; overflow: hidden; background: #202b3d; color: #dbe5f5; font: 10px/1.55 ui-monospace, SFMono-Regular, Consolas, monospace; white-space: pre; }.skillfit .code-editor code i { display: inline-block; width: 18px; color: #6d7c94; font-style: normal; user-select: none; }.skillfit .code-editor mark { padding: 0; background: transparent; color: #80b8ff; }.skillfit .code-editor button { float: right; margin: 8px; padding: 6px 10px; border: 0; border-radius: 5px; background: #2878f0; color: #fff; font: inherit; font-weight: 800; }.skillfit .code-editor button span { margin-left: 4px; }.skillfit .result-panel { display: grid; align-content: start; gap: 9px; padding: 15px 11px; }.skillfit .result-panel > div { display: flex; align-items: center; gap: 6px; color: #079f87; }.skillfit .result-panel img { width: 19px; }.skillfit .result-panel p { margin: 0; color: #68778e; font-size: 11px; }
-
-  .skillfit .product-mock--tutor { position: relative; aspect-ratio: 4 / 3; min-height: 0; }.skillfit .tutor-learning-page { position: absolute; inset: 0; overflow: hidden; background: #f5f7fb; }.skillfit .tutor-pagebar { display: flex; align-items: center; gap: 13px; height: 42px; padding: 0 14px; border-bottom: 1px solid #e0e6f0; background: #fff; color: #7b879a; font-size: 10px; font-weight: 700; }.skillfit .tutor-pagebar .mock-brand { font-size: 14px; }.skillfit .tutor-pagebar i { width: 19px; height: 19px; margin-left: auto; border-radius: 50%; background: #e3ebf8; }.skillfit .tutor-pagebody { display: flex; height: calc(100% - 42px); }.skillfit .tutor-pagebody aside { display: grid; align-content: start; gap: 15px; flex: 0 0 48px; padding: 19px 14px; border-right: 1px solid #e0e6f0; background: #fff; }.skillfit .tutor-pagebody aside span { width: 18px; height: 18px; border: 2px solid #c4cedd; border-radius: 5px; }.skillfit .tutor-pagebody aside .is-selected { border-color: #377ff0; background: #dceaff; }.skillfit .tutor-pagebody article { flex: 1; padding: 28px 13%; }.skillfit .tutor-pagebody article > small { color: #397df0; font-weight: 800; }.skillfit .tutor-pagebody h3 { margin: 9px 0 18px; color: #303b51; font-size: clamp(18px, 2vw, 25px); line-height: 1.25; letter-spacing: -.8px; }.skillfit .tutor-pagebody article > .mock-skeleton { width: 100%; height: 8px; margin: 9px 0; }.skillfit .tutor-page-card { display: flex; gap: 10px; margin-top: 24px; padding: 12px; border: 1px solid #dbe3ef; border-radius: 9px; background: #fff; }.skillfit .tutor-page-card img { width: 28px; height: 28px; }.skillfit .tutor-page-card div { display: grid; flex: 1; gap: 6px; }.skillfit .tutor-page-card b { font-size: 11px; }.skillfit .tutor-page-card span { display: block; width: 100%; height: 6px; border-radius: 9px; background: #e9edf4; }.skillfit .tutor-page-card span:last-child { width: 70%; }
-  .skillfit .tutor-popover { position: absolute; z-index: 1; right: 6%; bottom: 6%; display: flex; flex-direction: column; width: min(67%, 365px); height: min(68%, 275px); overflow: hidden; border: 1px solid #d1dcf0; border-radius: 12px; background: #fff; box-shadow: 0 18px 38px rgb(31 67 125 / 24%); }.skillfit .tutor-popover header { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-bottom: 1px solid #e5eaf2; }.skillfit .tutor-popover header > div { display: flex; align-items: center; gap: 7px; }.skillfit .tutor-popover header img { width: 23px; height: 23px; padding: 4px; border-radius: 7px; background: #e8f0ff; }.skillfit .tutor-popover header span { display: grid; gap: 1px; }.skillfit .tutor-popover header b { color: #283550; font-size: 12px; }.skillfit .tutor-popover header small { color: #8995a8; font-size: 9px; }.skillfit .tutor-popover header button { width: 21px; height: 21px; padding: 0; border: 0; border-radius: 5px; background: #f1f4f8; color: #8793a5; font-size: 16px; }.skillfit .tutor-chat { display: grid; align-content: start; gap: 10px; flex: 1; padding: 12px; background: #fbfcff; }.skillfit .tutor-bubble { max-width: 88%; padding: 9px 10px; border-radius: 9px; font-size: 10px; }.skillfit .tutor-bubble--user { justify-self: end; background: #e8f0ff; color: #3774d9; }.skillfit .tutor-bubble--bot { display: flex; gap: 6px; background: #f0f3f7; color: #536076; }.skillfit .tutor-bubble--bot > img { width: 17px; height: 17px; padding: 3px; border-radius: 5px; background: #dbe9ff; }.skillfit .tutor-bubble--bot div { display: grid; gap: 4px; }.skillfit .tutor-bubble--bot b { color: #2d3b55; }.skillfit .tutor-bubble--bot p { margin: 0; }.skillfit .tutor-bubble--bot span { padding: 5px; border-radius: 5px; background: #fff; color: #617188; font-size: 9px; }.skillfit .tutor-popover footer { display: flex; align-items: center; justify-content: space-between; margin: 0 10px 9px; padding: 7px 8px 7px 10px; border: 1px solid #dfe5ee; border-radius: 7px; color: #9aa5b4; font-size: 9px; }.skillfit .tutor-popover footer button { display: grid; place-items: center; width: 19px; height: 19px; padding: 0; border: 0; border-radius: 5px; background: #2878f0; color: #fff; font-size: 14px; }
-
-  @media (max-width: 500px) {
-    .skillfit .product-mock { min-height: 360px; }
-    .skillfit .product-mock--tutor { min-height: 0; }
-    .skillfit .mock-appbar { padding-inline: 13px; }
-    .skillfit .mock-appbar__crumb { overflow: hidden; max-width: 150px; text-overflow: ellipsis; white-space: nowrap; }
-    .skillfit .mock-nav { flex-basis: 42px; gap: 15px; }
-    .skillfit .path-main { padding: 16px 12px; }
-    .skillfit .mock-heading strong { font-size: 17px; }
-    .skillfit .path-summary { grid-template-columns: 1fr; gap: 7px; padding: 10px; }
-    .skillfit .path-summary small { grid-column: auto; }
-    .skillfit .path-list li { gap: 7px; padding: 7px; }
-    .skillfit .path-list .is-active i { display: none; }
-    .skillfit .practice-steps { flex-basis: 78px; grid-template-columns: repeat(3, 18px); gap: 7px; padding: 17px 8px; }
-    .skillfit .practice-steps span { width: 18px; height: 18px; font-size: 9px; }
-    .skillfit .practice-main { padding: 14px 10px; }
-    .skillfit .scenario-card b { font-size: 11px; }
-    .skillfit .editor-grid { grid-template-columns: 1fr; }
-    .skillfit .result-panel { display: none; }
-    .skillfit .tutor-pagebody article { padding: 22px 11%; }
-    .skillfit .tutor-popover { right: 4%; bottom: 4%; width: 82%; height: 72%; }
-    .skillfit .tutor-page-card { margin-top: 16px; }
+  .skillfit .skillfit-home .text-caption,
+  .skillfit .skillfit-tutor .text-caption {
+    font-size: var(--mock-text);
+    line-height: var(--mock-leading);
   }
+
+  /* 03 학습 화면은 공용 skillfit-mock(index PART 1과 같은 부품)을 그대로 쓴다.
+     튜터 팝업이 없어 본문이 더 넓게 서므로 세 열 비율만 이 페이지가 정한다. */
+  .skillfit .skillfit-mock-screen {
+    grid-template-columns: 26px minmax(0, 1fr) minmax(0, 1.25fr);
+    min-height: 296px;
+  }
+
+  /* 화면 안의 다음 단계 버튼 — 실제 학습 화면의 하단 바. */
+  .skillfit .skillfit-mock-button {
+    align-self: flex-start;
+    padding: var(--space-6) var(--space-12);
+    border-radius: var(--radius-sm);
+    background: var(--color-brand);
+    color: var(--color-surface);
+    font-size: var(--mock-text);
+    line-height: var(--mock-leading);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .skillfit .skillfit-mock-button.is-wide {
+    align-self: stretch;
+    margin-top: auto;
+    text-align: center;
+  }
+
+  /* ── 02 학습 홈 ── */
+
+  .skillfit .skillfit-home-screen {
+    display: grid;
+    grid-template-columns: 132px minmax(0, 1fr);
+    gap: var(--space-12);
+    padding: var(--space-12);
+    min-height: 296px;
+  }
+
+  .skillfit .skillfit-home-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    padding: var(--space-12);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-sunken);
+  }
+
+  .skillfit .skillfit-home-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .skillfit .skillfit-home .journey-mock-item-name {
+    flex: none;
+    font-size: var(--mock-text-lg);
+    line-height: var(--mock-leading-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink-heaviest);
+  }
+
+  .skillfit .skillfit-home-menu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--mock-text);
+    line-height: var(--mock-leading);
+    color: var(--color-ink-lighter);
+  }
+
+  .skillfit .skillfit-home-menu li {
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--radius-sm);
+  }
+
+  .skillfit .skillfit-home-menu .is-current {
+    background: var(--color-brand-tint-2);
+    color: var(--color-brand);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .skillfit .skillfit-home-resume {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-8);
+    border-radius: var(--radius-sm);
+    background: var(--color-brand);
+  }
+
+  .skillfit .skillfit-home-user {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    margin-top: auto;
+  }
+
+  /* 목업 안 아바타는 실제 화면 비율로 줄인다(공용 기본은 40px). */
+  .skillfit .skillfit-home .journey-mock-avatar {
+    width: var(--icon-sm);
+    height: var(--icon-sm);
+    font-size: var(--mock-text-sm);
+    line-height: var(--mock-leading-sm);
+  }
+
+  .skillfit .skillfit-home-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    min-width: 0;
+  }
+
+  .skillfit .skillfit-home-greeting {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  /* 홈 화면에서 가장 먼저 읽혀야 하는 것은 인사 한 줄이다. */
+  .skillfit .skillfit-home .journey-app-lesson {
+    font-size: var(--mock-text-title);
+    line-height: var(--mock-leading-title);
+  }
+
+  .skillfit .skillfit-home-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-8);
+  }
+
+  .skillfit .skillfit-home-stats li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-8);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-sunken);
+  }
+
+  .skillfit .skillfit-home-stats b {
+    font-size: var(--mock-text-title);
+    line-height: var(--mock-leading-title);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink-heaviest);
+  }
+
+  .skillfit .skillfit-home-stats em {
+    font-style: normal;
+    font-size: var(--mock-text);
+    line-height: var(--mock-leading);
+    color: var(--color-ink-lighter);
+  }
+
+  .skillfit .skillfit-home-continue {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: var(--space-12);
+    margin-top: auto;
+    padding: var(--space-12);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-sunken);
+  }
+
+  .skillfit .skillfit-home-track {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-6);
+    padding: var(--space-12);
+    border-radius: var(--radius-sm);
+    background: var(--color-brand);
+  }
+
+  /* 파랑 면 위에서는 잉크 계열이 읽히지 않는다 — 흰 글씨 위계로 뒤집는다. */
+  .skillfit .skillfit-home-resume .journey-app-track-name,
+  .skillfit .skillfit-home-track .journey-app-track-name {
+    color: var(--color-surface);
+  }
+
+  .skillfit .skillfit-home-resume .text-caption,
+  .skillfit .skillfit-home-track .text-caption {
+    color: var(--color-ink-on-dark);
+  }
+
+  .skillfit .skillfit-home-track .journey-app-progress-bar {
+    background: color-mix(in srgb, var(--color-surface) 32%, transparent);
+  }
+
+  .skillfit .skillfit-home-track .journey-app-progress-bar span {
+    background: var(--color-surface);
+  }
+
+  .skillfit .skillfit-home-chapter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-6);
+  }
+
+  .skillfit .skillfit-home-chapter .skeleton-stack {
+    width: 100%;
+    margin-bottom: var(--space-2);
+  }
+
+  /* ── 04 AI 튜터 ── */
+
+  .skillfit .skillfit-tutor {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    padding: var(--space-16);
+    min-height: 332px;
+  }
+
+  .skillfit .skillfit-tutor-head {
+    gap: var(--space-10);
+    padding-bottom: var(--space-12);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .skillfit .skillfit-tutor-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: var(--icon-box);
+    height: var(--icon-box);
+    border-radius: var(--radius-md);
+    background: var(--color-brand);
+    color: var(--color-surface);
+  }
+
+  .skillfit .skillfit-tutor-icon svg {
+    width: var(--icon-md);
+    height: var(--icon-md);
+  }
+
+  .skillfit .skillfit-tutor-title {
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+  }
+
+  .skillfit .skillfit-tutor .journey-app-tutor-name {
+    font-size: var(--mock-text-lg);
+    line-height: var(--mock-leading-lg);
+  }
+
+  .skillfit .skillfit-tutor-chat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .skillfit .skillfit-tutor .journey-mock-bubble {
+    max-width: 88%;
+    padding: var(--space-10) var(--space-12);
+    font-size: var(--mock-text);
+    line-height: var(--mock-leading);
+  }
+
+  /* 어느 레슨에서 물었는지 — 질문 위에 붙는 출처 한 줄. */
+  .skillfit .skillfit-tutor-quote {
+    display: block;
+    margin-bottom: var(--space-4);
+    color: color-mix(in srgb, var(--color-brand-dark) 62%, transparent);
+    font-size: var(--mock-text-sm);
+    line-height: var(--mock-leading-sm);
+  }
+
+  .skillfit .skillfit-tutor-answer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    align-self: flex-start;
+  }
+
+  .skillfit .skillfit-tutor-answer b {
+    font-size: var(--mock-text-lg);
+    line-height: var(--mock-leading-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink-heaviest);
+  }
+
+  .skillfit .skillfit-tutor-answer p {
+    font-size: inherit;
+    line-height: inherit;
+    color: var(--color-ink-light);
+  }
+
+  .skillfit .skillfit-tutor-answer strong {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink-heaviest);
+  }
+
+  /* 인용 구간 — 답변 본문과 예시를 나누는 선이다(장식용 accent가 아니다). */
+  .skillfit .skillfit-tutor-terms {
+    display: grid;
+    gap: var(--space-4);
+    padding-left: var(--space-12);
+    border-left: 2px solid var(--color-brand-tint-2);
+    color: var(--color-ink-light);
+  }
+
+  .skillfit .skillfit-tutor-terms b {
+    margin-right: var(--space-4);
+    font-size: inherit;
+    line-height: inherit;
+    color: var(--color-brand-dark);
+  }
+
+  .skillfit .skillfit-tutor-foot {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    margin-top: auto;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     섹션 배치
+     ───────────────────────────────────────────────────────────── */
 
   .skillfit .cycle {
     --cycle-columns: 4;
@@ -57,6 +361,35 @@
   .skillfit .fade-up.is-visible .cycle > li:nth-child(1) .cycle-arrow { animation-delay: .24s; }
   .skillfit .fade-up.is-visible .cycle > li:nth-child(2) .cycle-arrow { animation-delay: .36s; }
   .skillfit .fade-up.is-visible .cycle > li:nth-child(3) .cycle-arrow { animation-delay: .48s; }
+
+  /* 조직 운영 — 여기서 독자가 학습자에서 담당자로 바뀌므로 면으로 구역을 가른다.
+     sunken은 흰색과 6%뿐이라 구역이 안 보인다. skills 02와 같은 brand-tint-2를 쓴다. */
+  .skillfit .features {
+    background: var(--color-brand-tint-2);
+  }
+
+  /* 순환 카드는 활성 칸만 면이 생긴다 — 틴트 면 위에서는 흰색으로 뒤집어야 보인다. */
+  .skillfit .features .feature-card.is-active {
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* 랜딩에서는 순서를 기다리게 하지 않는다 — 설명 세 줄을 모두 두고 활성 칸만 진하게. */
+  .skillfit .features .feature-card .section-body-description {
+    opacity: .5;
+    transform: none;
+  }
+
+  .skillfit .features .feature-card.is-active .section-body-description {
+    opacity: 1;
+  }
+
+  /* 타임라인은 본문 폭 전체를 쓰면 왼쪽으로 쏠려 보인다 — 읽는 폭으로 좁혀 가운데 세운다. */
+  .skillfit .timeline {
+    width: 100%;
+    max-width: 720px;
+    margin-inline: auto;
+  }
 
   /* 트랙 카드 — 분야 태그 + 트랙명 2줄. 우상단 원형 표식은 장식이라 hover를 주지 않는다. */
   .skillfit .track-grid {
@@ -119,7 +452,7 @@
 
   .skillfit .track-note {
     margin-top: var(--space-20);
-    color: var(--color-ink-lighter);
+    color: var(--color-ink-light);
     font-size: var(--text-body-14);
     line-height: var(--leading-body-14);
     text-align: center;
