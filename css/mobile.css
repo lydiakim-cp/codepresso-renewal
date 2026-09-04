@@ -477,7 +477,7 @@
     display: block;
     margin-inline: calc(-1 * var(--space-20));
     aspect-ratio: 1448 / 800;
-    background: url("../images/main_banner_img_pc.avif") center / cover no-repeat;
+    background: url("../images/main-bg.png") center / cover no-repeat;
     margin-top: -48px;
   }
 
