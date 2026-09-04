@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillFit — 진단 결과가 곧 나만의 학습 계획이 되는 개인화 학습 | 코드프레소</title>
+
+  <!-- 검색 결과·링크 미리보기 문구. hero 문구를 그대로 쓴다(마케팅팀 검수 대상).
+       TODO: og:image(1200x630) 에셋과 운영 도메인(og:url·canonical)이 확정되면 채운다. -->
+  <meta name="description" content="SkillFit. AI 진단 인터뷰가 현재 수준과 취약점을 찾고 학습 경로를 설계합니다. 강의를 보는 대신, 브라우저에서 직접 코드를 씁니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SkillFit — 진단 결과가 곧 나만의 학습 계획이 되는 개인화 학습 | 코드프레소">
+  <meta property="og:description" content="SkillFit. AI 진단 인터뷰가 현재 수준과 취약점을 찾고 학습 경로를 설계합니다. 강의를 보는 대신, 브라우저에서 직접 코드를 씁니다.">
+  <meta property="og:image" content="images/skillfit/learn.png">
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/skillfit.css">
+  <link rel="stylesheet" href="css/mobile.css">
+</head>
+
+<body>
+  <div data-include="partials/header.html"></div>
+
+  <main class="skillfit">
+    <!-- Hero — 첫 화면이라 fade-up 없음. CTA가 둘인 것은 독자가 둘이기 때문이다
+         (담당자용 체험 프로그램 신청 · 학습자용 트랙 둘러보기). -->
+    <section class="sub-hero">
+      <div class="hero-wrap">
+        <div class="sub-hero-copy">
+          <p class="tag">Learn · AI 개인화 학습</p>
+          <h1 class="hero-title">SKillfit</h1>
+          <p class="hero-desc">AI 진단 인터뷰가 현재 수준과 취약점을 찾고, 필요한 학습 경로를 자동으로 설계합니다. <br data-break="desktop">강의를 보는 대신 <strong>브라우저에서 직접 코드를 씁니다</strong>.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#">
+              2~3주 체험 프로그램 신청
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#skillfit-tracks">
+              트랙 둘러보기
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 다른 서비스가 따라 쓰기 어려운 것 셋을 수치로. 칸은 metric-card라
+             stat-reveal.js의 기본 대상에 그대로 걸린다(cases hero와 같은 판단). -->
+        <ul class="hero-facts surface-glass" data-stat-reveal>
+          <li class="metric-card">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 트랙 수 — skillpath 카탈로그 "프로그래밍" 타일과 같은 키보드 path. -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 5H3C1.89543 5 1 5.89543 1 7V17C1 18.1046 1.89543 19 3 19H21C22.1046 19 23 18.1046 23 17V7C23 5.89543 22.1046 5 21 5Z" fill="var(--color-brand)"/>
+                <path d="M16 14.5H8C7.72386 14.5 7.5 14.7239 7.5 15V16C7.5 16.2761 7.72386 16.5 8 16.5H16C16.2761 16.5 16.5 16.2761 16.5 16V15C16.5 14.7239 16.2761 14.5 16 14.5Z" fill="var(--color-surface)"/>
+                <path d="M9 8.5H6C5.72386 8.5 5.5 8.72386 5.5 9V10.5C5.5 10.7761 5.72386 11 6 11H9C9.27614 11 9.5 10.7761 9.5 10.5V9C9.5 8.72386 9.27614 8.5 9 8.5Z" fill="var(--color-surface)"/>
+                <path d="M18 8.5H15C14.7239 8.5 14.5 8.72386 14.5 9V10.5C14.5 10.7761 14.7239 11 15 11H18C18.2761 11 18.5 10.7761 18.5 10.5V9C18.5 8.72386 18.2761 8.5 18 8.5Z" fill="var(--color-surface)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value"><span class="num" data-target="51">0</span><span class="unit">개</span></div>
+              <p class="metric-card__label text-label">트랙 · 3단계 레벨</p>
+            </div>
+          </li>
+          <li class="metric-card">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 과제 유형 — images/icon/ic_todo.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로 바꿨다. -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="var(--color-brand)"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0001 8.58579L17.293 6.29289L18.7072 7.70711L15.0001 11.4142L12.293 8.70711L13.7072 7.29289L15.0001 8.58579Z" fill="var(--color-brand-dark)"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0001 14.5858L17.293 12.2929L18.7072 13.7071L15.0001 17.4142L12.293 14.7071L13.7072 13.2929L15.0001 14.5858Z" fill="var(--color-brand-dark)"/>
+                <path d="M10.4998 14H6.50977C6.23362 14 6.00977 14.2239 6.00977 14.5V15.53C6.00977 15.8061 6.23362 16.03 6.50977 16.03H10.4998C10.7759 16.03 10.9998 15.8061 10.9998 15.53V14.5C10.9998 14.2239 10.7759 14 10.4998 14Z" fill="var(--color-brand)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value"><span class="num" data-target="4">0</span><span class="unit">가지</span></div>
+              <p class="metric-card__label text-label">과제 유형이 섞여 나옵니다</p>
+            </div>
+          </li>
+          <li class="metric-card">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 설치 없음 — skillpath 카탈로그 "웹 개발 첫걸음" 타일과 같은 브라우저 창 path. -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"/>
+                <path d="M16 4.5H15C14.7239 4.5 14.5 4.72386 14.5 5V6C14.5 6.27614 14.7239 6.5 15 6.5H16C16.2761 6.5 16.5 6.27614 16.5 6V5C16.5 4.72386 16.2761 4.5 16 4.5Z" fill="var(--color-surface)"/>
+                <path d="M12.5 4.5H11.5C11.2239 4.5 11 4.72386 11 5V6C11 6.27614 11.2239 6.5 11.5 6.5H12.5C12.7761 6.5 13 6.27614 13 6V5C13 4.72386 12.7761 4.5 12.5 4.5Z" fill="var(--color-surface)"/>
+                <path d="M19.5 4.5H18.5C18.2239 4.5 18 4.72386 18 5V6C18 6.27614 18.2239 6.5 18.5 6.5H19.5C19.7761 6.5 20 6.27614 20 6V5C20 4.72386 19.7761 4.5 19.5 4.5Z" fill="var(--color-surface)"/>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value"><span class="num" data-target="0">0</span><span class="unit">개</span></div>
+              <p class="metric-card__label text-label">설치할 프로그램</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 문제 제기 — 뒤의 네 단계가 해결책으로 읽히게 하는 자리. 세 줄이면 충분하다. -->
+    <section class="intro fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <h2>교육은 했는데, <br data-break="mobile">실력이 늘었는지는 모릅니다</h2>
+        </div>
+        <div class="section-content">
+          <ul class="pain-grid">
+            <li class="pain-card">전원이 같은 강의를 듣습니다. 아는 사람은 지루하고, 모르는 사람은 따라가지 못합니다</li>
+            <li class="pain-card">수료율은 나오는데, 그것이 실력인지는 아무도 모릅니다</li>
+            <li class="pain-card">영상을 끝까지 본 것과, 실제로 코드를 쓸 수 있는 것은 다릅니다</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 학습자가 지나는 네 단계. 아래 세 섹션이 02~04를 하나씩 펼치므로 여기서는 흐름만 보여준다. -->
+    <section class="journey is-sunken fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">How it works</p>
+          <h2>진단에서 학습 계획까지, 네 단계</h2>
+          <p class="desc">무엇을 모르는지 찾는 데서 시작해, 실제로 코드를 쓰고 피드백을 받는 데까지 이어집니다.</p>
+        </div>
+        <div class="section-content">
+          <ol class="cycle">
+            <li>
+              <div class="cycle-head">
+                <span class="cycle-no">1</span>
+                <p class="cycle-en">Interview</p>
+              </div>
+              <h3>진단 인터뷰</h3>
+              <p class="description">대화로 현재 수준과 취약점을 찾습니다</p>
+              <span class="cycle-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </li>
+            <li>
+              <div class="cycle-head">
+                <span class="cycle-no">2</span>
+                <p class="cycle-en">Path</p>
+              </div>
+              <h3>맞춤 학습 경로</h3>
+              <p class="description">아는 구간은 건너뛰고 부족한 곳부터</p>
+              <span class="cycle-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </li>
+            <li>
+              <div class="cycle-head">
+                <span class="cycle-no">3</span>
+                <p class="cycle-en">Practice</p>
+              </div>
+              <h3>실습과 채점</h3>
+              <p class="description">브라우저에서 코드를 쓰고 실행합니다</p>
+              <span class="cycle-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </li>
+            <li>
+              <div class="cycle-head">
+                <span class="cycle-no">4</span>
+                <p class="cycle-en">Tutor</p>
+              </div>
+              <h3>1:1 AI 튜터</h3>
+              <p class="description">어디가 왜 부족했는지 문장으로 돌아옵니다</p>
+            </li>
+          </ol>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 맞춤 학습 경로 -->
+    <section class="deliverables product-feature fade-up">
+      <div class="section-wrap row">
+        <div class="feature-copy">
+          <p class="tag">02 · 맞춤 학습 경로</p>
+          <h2>이미 아는 내용은 건너뜁니다</h2>
+          <p class="desc">진단에서 확인된 취약점이 2~3주 학습 계획으로 바뀝니다. 필요한 구간만 뽑아 순서대로 이어 붙입니다.</p>
+          <ul class="feature-points">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              51개 트랙, 입문·중급·심화 3단계 중 필요한 구간만 선택
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              스킬 단위 진행률로 어디까지 왔는지 항상 보입니다
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              통과하지 못한 스킬은 다시 풀 수 있습니다
+            </li>
+          </ul>
+        </div>
+        <div class="content-panel bg product-mock product-mock--path" aria-label="개인화 학습 경로 예시">
+          <div class="mock-appbar"><span class="mock-brand">SkillFit</span><span class="mock-appbar__user">진경님 <b>Lv.13</b></span></div>
+          <div class="path-layout">
+            <aside class="mock-nav" aria-hidden="true"><img src="images/icon/ic_skillPath.svg" alt=""><span></span><span></span><span></span><span></span></aside>
+            <div class="path-main">
+              <div class="mock-heading"><span class="mock-kicker">나의 학습 경로</span><strong>AI 에이전트 활용</strong><em>진단 결과 · 2주 과정</em></div>
+              <div class="path-summary"><div><span>전체 진행률</span><strong>39%</strong></div><div class="mock-progress"><i></i></div><small>7 / 18 스킬 완료</small></div>
+              <ul class="path-list">
+                <li class="is-complete"><span>01</span><div><b>생성형 AI와 LLM 기초</b><small>완료</small></div><img src="images/icon/ic_todo.svg" alt=""></li>
+                <li class="is-complete"><span>02</span><div><b>토큰 예측과 컨텍스트</b><small>완료</small></div><img src="images/icon/ic_todo.svg" alt=""></li>
+                <li class="is-active"><span>03</span><div><b>RICE 프롬프트 프레임워크</b><small>학습 중 · 2 / 5 레슨</small></div><i>이어하기</i></li>
+                <li class="is-locked"><span>04</span><div><b>AI 활용 성숙도 높이기</b><small class="mock-skeleton"></small></div></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 51개 트랙 — hero 보조 CTA(트랙 둘러보기)가 도착하는 자리라 id를 준다. -->
+    <section class="catalog is-sunken fade-up" id="skillfit-tracks">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">트랙</p>
+          <h2>기본기부터 AI 시대 스택까지</h2>
+          <p class="desc">51개 트랙이 입문·중급·심화 3단계로 나뉘어 있고, 학습 계획은 그 안에서 조합됩니다.</p>
+        </div>
+        <div class="section-content">
+          <ul class="track-grid">
+            <li class="track-card">
+              <div class="track-card__head">
+                <p class="tag">인공지능</p>
+                <span class="track-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+              <p class="section-body-subtitle">Tensorflow<br>이미지 데이터 분석</p>
+            </li>
+            <li class="track-card">
+              <div class="track-card__head">
+                <p class="tag">인공지능</p>
+                <span class="track-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+              <p class="section-body-subtitle">LangChain<br>AI 에이전트</p>
+            </li>
+            <li class="track-card">
+              <div class="track-card__head">
+                <p class="tag">인공지능</p>
+                <span class="track-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+              <p class="section-body-subtitle">PyTorch<br>딥러닝 모델 학습</p>
+            </li>
+            <li class="track-card">
+              <div class="track-card__head">
+                <p class="tag">인공지능</p>
+                <span class="track-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+              <p class="section-body-subtitle">프롬프트<br>엔지니어링</p>
+            </li>
+            <li class="track-card">
+              <div class="track-card__head">
+                <p class="tag">데이터</p>
+                <span class="track-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+              <p class="section-body-subtitle">Python<br>데이터 분석</p>
+            </li>
+            <li class="track-card">
+              <div class="track-card__head">
+                <p class="tag">프로그래밍</p>
+                <span class="track-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+              <p class="section-body-subtitle">Java<br>객체지향 프로그래밍</p>
+            </li>
+            <li class="track-card">
+              <div class="track-card__head">
+                <p class="tag">웹 개발</p>
+                <span class="track-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+              <p class="section-body-subtitle">Spring<br>웹 백엔드</p>
+            </li>
+            <li class="track-card">
+              <div class="track-card__head">
+                <p class="tag">개발 환경</p>
+                <span class="track-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+              <p class="section-body-subtitle">Git<br>협업 워크플로</p>
+            </li>
+          </ul>
+          <p class="track-note">51개 트랙 가운데 일부입니다. 트랙마다 입문 · 중급 · 심화 레벨이 있고, 진단 결과에 따라 필요한 레벨부터 시작합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 실습 환경 — 이 페이지에서 가장 강한 차별점이라 독립 섹션으로 올렸다. -->
+    <section class="deliverables product-feature fade-up">
+      <div class="section-wrap row">
+        <div class="feature-copy">
+          <p class="tag">03 · 실습 환경</p>
+          <h2>읽고 넘어가는 학습이 아닙니다</h2>
+          <p class="desc">브라우저에서 코드를 쓰고, 실제로 실행하고, 결과로 채점받습니다. 설치할 것도, 환경 설정도 없습니다.</p>
+          <ul class="feature-points">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              객관식 · 빈칸 채우기 · 코드 해석 · 코드 작성 네 가지 과제
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              제출한 코드는 실제 실행 환경에서 돌려 채점합니다
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              레슨마다 실무 시나리오가 먼저 오고, 그 안에서 과제를 풉니다
+            </li>
+          </ul>
+        </div>
+        <div class="content-panel bg product-mock product-mock--practice" aria-label="브라우저 기반 코드 실습 예시">
+          <div class="mock-appbar"><span class="mock-brand">SkillFit</span><span class="mock-appbar__crumb">AI 에이전트 활용 / 실습 3</span></div>
+          <div class="practice-layout">
+            <aside class="practice-steps" aria-hidden="true"><p>스킬 목록</p><span class="is-done">1</span><span class="is-done">2</span><span class="is-current">3</span><span>4</span><span>5</span></aside>
+            <div class="practice-main">
+              <div class="scenario-card"><img src="images/flat_icon_svg/078.개발,코딩.svg" alt=""><div><small>실무 시나리오</small><b>사용자 목록에서 활성 사용자만 찾아보세요</b></div></div>
+              <div class="question-head"><span>코드 작성</span><strong>filter()를 사용해 조건에 맞는 데이터를 반환하세요.</strong></div>
+              <div class="editor-grid">
+                <div class="code-editor"><div class="editor-tabs"><b>index.js</b><span>Console</span></div><pre><code><i>1</i>const users = [<br><i>2</i>  { name: '민지', active: true },<br><i>3</i>  { name: '도윤', active: false },<br><i>4</i>];<br><i>5</i><br><i>6</i>const activeUsers = users.<mark>filter</mark>(<br><i>7</i>  user =&gt; user.active<br><i>8</i>);</code></pre><button type="button">실행 <span>▶</span></button></div>
+                <div class="result-panel"><div><img src="images/icon/ic_todo.svg" alt=""><b>테스트 통과</b></div><p>활성 사용자를 올바르게 반환했습니다.</p><small class="mock-skeleton"></small><small class="mock-skeleton mock-skeleton--short"></small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 1:1 AI 튜터 -->
+    <section class="deliverables product-feature is-sunken fade-up">
+      <div class="section-wrap row">
+        <div class="feature-copy">
+          <p class="tag">04 · 1:1 AI 튜터</p>
+          <h2>막히면 언제든 물어봅니다</h2>
+          <p class="desc">학습 화면을 벗어나지 않아도 됩니다. 복습·읽기·연습 어느 모드에서든 튜터를 부를 수 있습니다.</p>
+          <ul class="feature-points">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              제출한 코드를 기준별로 채점하고 근거를 문장으로 돌려줍니다
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              어디가 왜 부족했는지 알고 다시 풉니다
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              직접 만들고, AI가 옆에서 돕습니다
+            </li>
+          </ul>
+        </div>
+        <div class="content-panel bg product-mock product-mock--tutor" aria-label="학습 화면 위에 열린 AI 튜터 대화 예시">
+          <div class="tutor-learning-page" aria-hidden="true">
+            <div class="tutor-pagebar"><span class="mock-brand">SkillFit</span><span>AI 에이전트 활용 · Lesson 3</span><i></i></div>
+            <div class="tutor-pagebody">
+              <aside><span class="is-selected"></span><span></span><span></span><span></span><span></span></aside>
+              <article>
+                <small>LESSON 3 · 프롬프트 엔지니어링</small>
+                <h3>좋은 질문은<br>맥락에서 시작됩니다</h3>
+                <p class="mock-skeleton"></p><p class="mock-skeleton"></p><p class="mock-skeleton mock-skeleton--short"></p>
+                <div class="tutor-page-card"><img src="images/flat_icon_svg/072.챗봇.svg" alt=""><div><b>생각해 보기</b><span></span><span></span></div></div>
+              </article>
+            </div>
+          </div>
+          <section class="tutor-popover" aria-label="AI 튜터 대화창">
+            <header><div><img src="images/icon/ic_aiFluent.svg" alt=""><span><b>AI Tutor</b><small>언제든 질문하세요</small></span></div><button type="button" aria-label="대화창 최소화">−</button></header>
+            <div class="tutor-chat">
+              <div class="tutor-bubble tutor-bubble--user">RICE 프레임워크에서 Context는<br>어떻게 작성하면 좋을까요?</div>
+              <div class="tutor-bubble tutor-bubble--bot"><img src="images/icon/ic_aiFluent.svg" alt=""><div><b>좋은 질문이에요!</b><p>AI가 판단할 수 있도록 현재 상황과 대상, 이미 알고 있는 정보를 함께 알려주세요.</p><span>예: “신입 마케터를 위한 이메일 제목을 작성해줘”</span></div></div>
+            </div>
+            <footer><span>질문을 입력하세요</span><button type="button" aria-label="메시지 보내기">↑</button></footer>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- 본문 중간 강조 1곳 — 변화 리포트. 기획서 3절 A안(먼저 만들고 쓴다)을 전제로 한 문구다. -->
+    <section class="statement fade-up">
+      <div class="section-wrap col">
+        <div class="statement-inner">
+          <p class="statement-eyebrow">05 · Change Report</p>
+          <h2 class="statement-title">끝나고 나면, <strong>무엇이 달라졌는지가 남습니다</strong></h2>
+          <p class="statement-desc">시작할 때의 진단과 끝난 뒤의 재진단을 나란히 놓고, 어느 영역이 얼마나 올라갔는지 개인과 조직 단위로 확인합니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 여기부터 독자가 학습자에서 교육 담당자로 바뀐다. -->
+    <section class="features fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">조직 운영</p>
+          <h2>담당자는 관리 화면 하나로 봅니다</h2>
+          <p class="desc">기수를 만들고 기간을 정하면 그 기간에만 학습이 열립니다.</p>
+        </div>
+        <div class="section-content">
+          <div class="feature-card-grid">
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 기수 관리 — images/icon/ic_team.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로 바꿨다. -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                    <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                    <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                    <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                    <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)"/>
+                    <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">기수 관리</p>
+                </div>
+                <p class="section-body-subtitle">대상자와 기간을 <br> 기수 단위로 엽니다</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>명단과 기간을 정하면 그 기간에만 학습이 열리고, 종료와 함께 닫힙니다.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 진행 대시보드 — images/icon/ic_barChart.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로 바꿨다. -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                    <path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="color-mix(in srgb, var(--color-brand) 65%, var(--color-surface))"/>
+                    <path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">진행 대시보드</p>
+                </div>
+                <p class="section-body-subtitle">조직 · 트랙 · 개인별 <br> 진행률과 점수</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>누가 어디서 멈췄는지 개인 단위까지 확인할 수 있습니다.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 리포트 — images/icon/ic_lineChart.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로 바꿨다. -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
+                    <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"/>
+                    <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title">리포트</p>
+                </div>
+                <p class="section-body-subtitle">화면에서 보고 <br> 엑셀로 내려받습니다</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p>기수가 끝나면 개인 리포트와 조직 요약을 함께 전달합니다.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 도입 절차 — 담당자가 가장 궁금해하는 "우리가 뭘 해야 하나". 기간이 붙어 timeline. -->
+    <section class="process is-sunken fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">도입 절차</p>
+          <h2>명단과 기간만 주시면 됩니다</h2>
+          <p class="desc">체험 프로그램은 2~3주 한 기수로 진행하고, 종료와 함께 결과를 전달합니다.</p>
+        </div>
+        <div class="section-content">
+          <ol class="timeline">
+            <li>
+              <span class="timeline__term">신청 후 2일</span>
+              <span class="timeline__marker" aria-hidden="true"></span>
+              <div class="timeline__body">
+                <h3 class="timeline__title">기수 개설</h3>
+                <p class="timeline__desc">대상자 명단과 학습 기간을 받아 기수를 만들고 계정을 준비합니다.</p>
+              </div>
+            </li>
+            <li>
+              <span class="timeline__term">1일차</span>
+              <span class="timeline__marker" aria-hidden="true"></span>
+              <div class="timeline__body">
+                <h3 class="timeline__title">진단 인터뷰</h3>
+                <p class="timeline__desc">학습자는 링크로 접속해 진단 인터뷰부터 시작합니다. 결과가 곧 학습 계획이 됩니다.</p>
+              </div>
+            </li>
+            <li>
+              <span class="timeline__term">2~3주</span>
+              <span class="timeline__marker" aria-hidden="true"></span>
+              <div class="timeline__body">
+                <h3 class="timeline__title">학습과 실습</h3>
+                <p class="timeline__desc">학습자는 계획대로 실습을 진행하고, 담당자는 대시보드로 진행 상황을 봅니다.</p>
+              </div>
+            </li>
+            <li>
+              <span class="timeline__term">종료 시</span>
+              <span class="timeline__marker" aria-hidden="true"></span>
+              <div class="timeline__body">
+                <h3 class="timeline__title">리포트 전달</h3>
+                <p class="timeline__desc">개인 리포트와 조직 요약을 전달하고, 다음 기수 범위를 함께 정합니다.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ — 마지막 질문(진단 정확도)은 피하지 않고 한계를 인정하는 편이 신뢰를 만든다. -->
+    <section class="faq fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag">FAQ</p>
+          <h2>시작 전에 많이 묻는 질문</h2>
+        </div>
+        <div class="section-content">
+          <div class="faq-list">
+            <details>
+              <summary class="faq-list__question">
+                사전 지식이 없어도 되나요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">괜찮습니다. 진단 인터뷰가 현재 수준을 먼저 확인하고 입문 레벨부터 경로를 만듭니다. 이미 아는 영역이 있으면 그 구간은 건너뜁니다.</p>
+            </details>
+            <details>
+              <summary class="faq-list__question">
+                하루에 얼마나 써야 하나요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">하루 30분에서 1시간을 기준으로 2~3주 계획을 만듭니다. 스킬 단위로 끊어져 있어 시간이 날 때 한 스킬씩 진행할 수 있습니다.</p>
+            </details>
+            <details>
+              <summary class="faq-list__question">
+                설치할 프로그램이 있나요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">없습니다. 코드 작성과 실행, 채점이 모두 브라우저 안에서 이뤄집니다. 개발 환경을 맞추다 첫 주를 보내는 일이 없습니다.</p>
+            </details>
+            <details>
+              <summary class="faq-list__question">
+                어떤 언어와 기술을 다루나요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">Python · Java · JavaScript · C++ · SQL · Git · Linux 같은 기본기부터 프롬프트 엔지니어링 · LangChain · LangGraph · PyTorch · TensorFlow까지 51개 트랙을 제공합니다.</p>
+            </details>
+            <details>
+              <summary class="faq-list__question">
+                진단 결과가 정확한가요?
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer">대화형 진단이라 첫 결과에는 오차가 있습니다. 대신 학습을 시작한 뒤의 정답률과 제출 코드가 계속 반영되어 경로가 조정됩니다. 진단은 한 번의 판정이 아니라 계속 고쳐지는 추정입니다.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 최하단 전환 — hero와 같은 CTA를 반복한다 -->
+    <section class="cta-final fade-up">
+      <div class="section-wrap col cta-final-inner">
+        <h2 class="cta-final-title">2~3주 뒤, 무엇이 달라졌는지 확인하세요</h2>
+        <p class="cta-final-desc">대상자 명단과 기간만 알려주시면 기수를 만들어 드립니다.</p>
+        <div class="cta-final-actions">
+          <a class="btn btn-primary btn-lg" href="#">
+            체험 프로그램 신청
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="partials/footer.html"></div>
+
+  <script src="js/include-partials.js"></script>
+  <script src="js/fade-up.js"></script>
+  <script src="js/header-scroll.js"></script>
+  <script src="js/nav-menu.js"></script>
+  <script src="js/stat-reveal.js"></script>
+</body>
+
+</html>

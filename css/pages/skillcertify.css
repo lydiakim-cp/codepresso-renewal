@@ -32,63 +32,6 @@
     height: auto;
   }
 
-  .skillcertify .pain-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-20);
-  }
-
-  .skillcertify .pain-card {
-    padding: var(--space-28) var(--space-24);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
-    border: 1px solid var(--color-line);
-    text-align: center;
-    color: var(--color-ink-light);
-    font-size: var(--text-body-16);
-    line-height: var(--leading-body-18);
-  }
-
-  .skillcertify .product-feature.is-sunken {
-    background: var(--color-surface-sunken);
-  }
-
-  .skillcertify .product-feature .section-wrap.row {
-    align-items: center;
-  }
-
-  .skillcertify .feature-copy {
-    max-width: 480px;
-  }
-
-  .skillcertify .feature-copy h2 {
-    margin-top: var(--space-16);
-  }
-
-  .skillcertify .feature-copy .desc {
-    margin-top: var(--space-16);
-  }
-
-  /* 골격은 공용 feature-points — 이 페이지에서는 본문과의 간격만 정한다. */
-  .skillcertify .feature-points {
-    margin-top: var(--space-24);
-  }
-
-
-  .skillcertify .feature-visual {
-    display: flex;
-    justify-content: center;
-  }
-
-  .skillcertify .feature-visual img {
-    display: block;
-    width: 100%;
-    max-width: 616px;
-    aspect-ratio: 616 / 480;
-    object-fit: contain;
-    filter: drop-shadow(var(--shadow-md));
-  }
-
   .skillcertify .cases-more {
     display: flex;
     justify-content: center;

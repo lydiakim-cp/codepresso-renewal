@@ -26,6 +26,8 @@
   .assessment-card-frame { margin-inline: auto; }
   .index .hero-links { gap: 0; }
 
+  .pain-grid { --pain-columns: 1; }
+
   .hero-facts { grid-template-columns: 1fr; }
 
   .hero-facts li + li {
@@ -274,11 +276,35 @@
   .skillcamp .catalog-group__plain:first-child,
   .skillcamp .catalog-group__plain + .catalog-group__plain { --item-grid-columns: 3; }
 
+  /* 4단계는 1열로 세우고 화살표를 아래로 돌린다(skillcertify 5단계와 같은 처리) */
+  .skillfit .track-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .skillfit .process .section-content,
+  .skillfit .journey .section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skillfit .cycle {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .skillfit .cycle-arrow {
+    top: auto;
+    right: auto;
+    bottom: -25px;
+    left: 50%;
+    margin: 0 0 0 -20px;
+  }
+
+  .skillfit .cycle-arrow svg { transform: rotate(90deg); }
+
   .skillcertify .hero-row { grid-template-columns: minmax(0, 1fr); }
   .skillcertify .hero-row .sub-hero-copy { align-items: center; text-align: center; }
   .skillcertify .hero-row .hero-visual { order: -1; }
-
-  .skillcertify .pain-grid { grid-template-columns: 1fr; }
 
   .skillcertify .process .section-content {
     display: flex;
@@ -427,6 +453,8 @@
 /* max-width: 560px */
 
 @media (max-width: 560px) {
+  .skillfit .track-grid { grid-template-columns: minmax(0, 1fr); }
+
   .catalog-group {
     --item-grid-columns: 2;
     padding: var(--space-20);

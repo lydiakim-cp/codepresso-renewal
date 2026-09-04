@@ -1,0 +1,19 @@
+/* Component: Pain Card
+   "이런 고민이 있다면"을 한 줄씩 담는 문제 제기 카드. 열 수는 --pain-columns(기본 3). */
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--pain-columns, 3), minmax(0, 1fr));
+  gap: var(--space-20);
+}
+
+.pain-card {
+  padding: var(--space-28) var(--space-24);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  text-align: center;
+  color: var(--color-ink-light);
+  font-size: var(--text-body-16);
+  line-height: var(--leading-body-18);
+}

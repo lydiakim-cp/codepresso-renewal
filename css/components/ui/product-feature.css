@@ -1,0 +1,19 @@
+/* Component: Product Feature
+   제품 기능 하나를 좌 설명 · 우 화면으로 눕히는 2단 섹션. 화면 칸은 쓰는 페이지가 고른다. */
+
+.product-feature .section-wrap.row {
+  align-items: center;
+}
+
+.feature-copy {
+  max-width: 480px;
+}
+
+.feature-copy h2,
+.feature-copy .desc {
+  margin-top: var(--space-16);
+}
+
+.feature-copy .feature-points {
+  margin-top: var(--space-24);
+}

@@ -24,6 +24,8 @@
 @import url("./components/ui/statement.css") layer(components);
 @import url("./components/ui/metric-card.css") layer(components);
 @import url("./components/ui/content-panel.css") layer(components);
+@import url("./components/ui/product-feature.css") layer(components);
+@import url("./components/ui/pain-card.css") layer(components);
 @import url("./components/ui/start-card.css") layer(components);
 @import url("./components/ui/journey-stage.css") layer(components);
 @import url("./components/ui/icon.css") layer(components);

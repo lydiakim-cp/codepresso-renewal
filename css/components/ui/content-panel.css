@@ -35,6 +35,6 @@
 }
 
 .content-panel.bg{
-    background: var(--color-surface-sunken);
+    background: var(--color-brand-tint-2);
     border-color: var(--color-line);
 }

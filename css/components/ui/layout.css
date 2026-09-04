@@ -136,3 +136,8 @@ main > section,
     transition: none;
   }
 }
+
+/* 섹션 배경 리듬 — 흰 면 사이에 옅은 면을 끼우는 modifier. */
+.is-sunken {
+  background: var(--color-surface-sunken);
+}
