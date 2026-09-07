@@ -209,46 +209,20 @@
 
   .difference-page .hero-wrap { min-height: 0; }
 
+  .difference-page .outcomes .section-wrap.row { grid-template-columns: minmax(0, 1fr); }
+
   .difference-page .industry-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .difference-page .start-grid { --start-columns: 1; }
 
-  .difference-page .slide-pair {
-    grid-template-columns: 1fr;
-    gap: var(--space-20);
-  }
-
-  .difference-page .slide-join {
-    flex-direction: column;
-    gap: var(--space-8);
-  }
-
-  .difference-page .slide-join-arrow svg {
-    transform: rotate(90deg);
-  }
-
-  .difference-page .slide-join-pill {
-    width: 84px;
-    height: 84px;
-  }
-
-  .difference-page .slide-break::before,
-  .difference-page .slide-break::after { display: none; }
-
-  .difference-page .slide-break {
-    width: 56px;
-    height: 56px;
-  }
-
-  .difference-page .slide-break svg { width: 24px; height: 24px; }
+  /* slide-pair·join·break는 이제 기본이 세로 스택이라 900px 전용 규칙이 필요 없다.
+     비교 두 열(diagnosis-slide)도 900px까지는 나란히 유지한다 — 열 폭이 아직 여유 있다. */
 
   .difference-page .cycle { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .difference-page .cycle > li:nth-child(2) .cycle-arrow { display: none; }
-
-  .difference-page .problem-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .difference-page .position-map { height: 440px; }
 
@@ -389,6 +363,12 @@
   .aifluent .catalog-group .item-grid { --item-grid-columns: 2; }
 
   .difference-page .slide-card { padding: var(--space-24); }
+
+  /* 비교 두 열이 720px 이하에서는 나란히 두기엔 좁다 — 위아래로 되돌린다 */
+  .difference-page .diagnosis-slide {
+    grid-template-columns: 1fr;
+    gap: var(--space-60);
+  }
 
   .difference-page .problem-card {
     gap: var(--space-16);

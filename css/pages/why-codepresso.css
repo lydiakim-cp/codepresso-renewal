@@ -8,8 +8,9 @@
     flex-direction: column;
   }
 
-  /* 섹션 배경 리듬 — 흰 면과 틴트 면을 번갈아 둔다. */
-  .difference-page .outcomes,
+  /* 섹션 배경 리듬 — 흰(01·05·07) ↔ 틴트(02·04·06) 교대, 강조는 03과 최하단 CTA 둘뿐.
+     틴트 쪽은 흰 카드(cycle)·흰 보드(tab-catalog)를 쓰는 섹션으로 골랐다. */
+  .difference-page .intro,
   .difference-page .process,
   .difference-page .catalog {
     background: var(--color-brand-tint-2);
@@ -51,12 +52,17 @@
     box-shadow: none;
   }
 
-  /* 01 The Problem — 나쁜 수치 4개를 2x2로 */
+  /* 01 The Problem — 좌 제목·출처 sticky + 우 2x2 수치 */
+  .difference-page .outcomes .section-wrap.row {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    align-items: center;
+  }
+
   .difference-page .problem-grid {
     display: grid;
 
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--space-20);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-16);
   }
 
   .difference-page .problem-card {
@@ -69,7 +75,7 @@
 
     border: 0;
     border-radius: var(--radius-lg);
-    background: var(--color-surface);
+    background: var(--color-surface-sunken);
 
     opacity: 0;
     transform: translateY(var(--motion-rise));
@@ -92,14 +98,6 @@
     font-size: var(--text-body-14);
     line-height: var(--leading-body-14);
     font-weight: var(--font-weight-medium);
-  }
-
-  .difference-page .problem-label sup {
-    margin-left: 2px;
-    color: var(--color-ink-light);
-    font-size: var(--text-body-13);
-    vertical-align: super;
-    line-height: 0;
   }
 
   .difference-page .problem-value {
@@ -130,40 +128,14 @@
     height: 100%;
   }
 
-  .difference-page .problem-card.is-fact {
-    background: var(--color-surface-raised);
-  }
-
+  /* 사실(88%)은 브랜드 파랑, 문제 셋은 잉크 — 빨강은 숫자가 아니라 도형만 쓴다.
+     수치 넷을 전부 critical로 칠했더니 페이지가 경고문처럼 읽혔다. */
   .difference-page .problem-card.is-fact .problem-value {
-    color: var(--color-ink-heaviest);
+    color: var(--color-brand);
   }
 
   .difference-page .problem-card.is-gap .problem-value {
-    color: var(--color-critical);
-  }
-
-  .difference-page .source-note {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-8) var(--space-24);
-    justify-content: center;
-    margin-top: var(--space-8);
-    list-style: none;
-    counter-reset: source;
-  }
-
-  .difference-page .source-note > li {
-    display: flex;
-    gap: var(--space-4);
-    color: var(--color-ink-light);
-    font-size: var(--text-body-14);
-    line-height: var(--leading-body-14);
-    counter-increment: source;
-  }
-
-  .difference-page .source-note > li::before {
-    content: counter(source) ".";
-    color: var(--color-ink-lighter);
+    color: var(--color-ink-heaviest);
   }
 
   .difference-page .problem-donut {
@@ -176,16 +148,17 @@
 
   /* 02 Diagnosis — 프레젠테이션 슬라이드형 */
   .difference-page .diagnosis-slide {
-    display: flex;
-    flex-direction: column;
-
-    gap: 88px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: var(--space-32);
   }
 
   .difference-page .slide-row {
     display: flex;
     flex-direction: column;
     gap: var(--space-24);
+    height: 100%;
   }
 
   .difference-page .slide-rail {
@@ -222,11 +195,10 @@
   }
 
   .difference-page .slide-pair {
-    display: grid;
-
-    grid-template-columns: minmax(0, 1fr) 196px minmax(0, 1fr);
-    align-items: center;
+    display: flex;
+    flex-direction: column;
     gap: var(--space-20);
+    flex: 1;
   }
 
   .difference-page .slide-card {
@@ -234,16 +206,11 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-16);
-    height: 100%;
     padding: var(--space-35);
 
     border: 0;
     border-radius: var(--radius-xl);
-    background: var(--color-surface-raised);
-  }
-
-  .difference-page .slide-card.is-ours {
-    background: var(--color-surface-sunken);
+    background: var(--color-surface);
   }
 
   .difference-page .slide-card-head {
@@ -260,12 +227,12 @@
     height: var(--icon-box);
     flex: none;
     border-radius: var(--radius-lg);
-    background: var(--color-surface);
+    background: var(--color-surface-mist);
     color: var(--color-ink-lighter);
   }
 
   .difference-page .slide-card.is-ours .slide-icon {
-    background: var(--color-surface-sunken);
+    background: var(--color-brand-tint-2);
     color: var(--color-brand);
   }
 
@@ -293,68 +260,35 @@
     margin-top: calc(-1 * var(--space-4));
   }
 
-  .difference-page .slide-verdict {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-6);
-    width: fit-content;
+  /* 목업 4장을 대신하는 수치 한 줄. 숫자만 잉크로 올려 문장 안에서 먼저 잡히게 한다 */
+  .difference-page .slide-fact {
     margin-top: auto;
-    padding: var(--space-6) var(--space-12);
-    border-radius: var(--radius-full);
-    background: color-mix(in srgb, var(--color-critical) 10%, var(--color-surface));
-    color: var(--color-critical);
-    font-size: var(--text-body-14);
-    line-height: var(--leading-body-14);
+    padding-top: var(--space-16);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .difference-page .slide-fact strong {
+    color: var(--color-ink-heaviest);
     font-weight: var(--font-weight-semibold);
+    font-variant-numeric: tabular-nums;
   }
 
-  .difference-page .slide-verdict::before {
-    content: "✕";
-    font-size: var(--text-body-13);
-    line-height: 1;
+  .difference-page .slide-card.is-ours .slide-fact strong {
+    color: var(--color-brand);
   }
 
-  .difference-page .slide-break {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    justify-self: center;
-
-    width: 64px;
-    height: 64px;
-    border: 2px dashed color-mix(in srgb, var(--color-critical) 55%, var(--color-line-heavy));
-    border-radius: var(--radius-full);
-
-    background: color-mix(in srgb, var(--color-critical) 7%, var(--color-surface));
-    color: var(--color-critical);
-
-    box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-critical) 7%, transparent);
+  /* 좌열은 연결 노드가 없어진 만큼 두 카드 사이를 넉넉히 벌린다 —
+     우열의 화살표+알약이 차지하는 세로 공간과 리듬을 맞춘다. */
+  .difference-page .slide-row.is-fail .slide-pair {
+    gap: var(--space-32);
   }
-
-  .difference-page .slide-break svg {
-    display: block;
-    width: 28px;
-    height: 28px;
-  }
-
-  .difference-page .slide-break::before,
-  .difference-page .slide-break::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 44px;
-    border-top: 2px dashed var(--color-line-heavy);
-  }
-
-  .difference-page .slide-break::before { right: 100%; }
-  .difference-page .slide-break::after { left: 100%; }
 
   .difference-page .slide-join {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    justify-self: center;
+    align-self: center;
     gap: var(--space-4);
   }
 
@@ -391,16 +325,12 @@
 
   .difference-page .slide-join-arrow svg {
     display: block;
-    width: 26px;
-    height: 26px;
-
-    transform: rotate(90deg);
-  }
-
-  .difference-page .slide-join-arrow svg {
     width: var(--space-24);
     height: var(--space-24);
   }
+
+  .difference-page .slide-join-arrow:first-child svg { transform: rotate(-90deg); }
+  .difference-page .slide-join-arrow:last-child svg { transform: rotate(90deg); }
 
   .difference-page .slide-note {
     max-width: 880px;
@@ -409,73 +339,18 @@
     color: var(--color-ink-light);
   }
 
-  .difference-page .diagnosis-mock {
-    --mock-text-lg: 12px;
-    --mock-text: 11px;
-    margin-top: var(--space-4);
-
-    padding: var(--space-16);
-    gap: var(--space-10);
-
-    background: var(--color-surface-deep);
-    border-color: transparent;
-  }
-
-  .difference-page .slide-card.is-ours .diagnosis-mock {
-    background: color-mix(in srgb, var(--color-brand) 14%, var(--color-surface));
-  }
-
-  .difference-page .diagnosis-mock .mock-ticker-chart span,
+  /* scenario-mock — 목업 안 상단 바만 흰 판으로 띄운다(원래 diagnosis-mock와 공유하던 규칙) */
   .difference-page .scenario-mock .mock-ticker-chart span {
     background: var(--color-surface);
   }
 
-  .difference-page .diagnosis-mock .mock-ticker-stats > article {
-    background: var(--color-surface);
-    border-color: transparent;
-  }
-
-  .difference-page .diagnosis-mock {
-    box-shadow: none;
-  }
-
-  .difference-page .diagnosis-mock .journey-mock-head,
   .difference-page .scenario-mock .journey-mock-head {
     padding: var(--space-8) var(--space-12);
     border-radius: var(--radius-md);
-    background: var(--color-surface);
+    background: var(--color-surface-sunken);
   }
 
-  .difference-page .diagnosis-mock .journey-mock-item-name,
-  .difference-page .diagnosis-mock .journey-mock-title {
-    font-size: var(--mock-text-lg);
-    line-height: 18px;
-  }
-
-  .difference-page .diagnosis-mock .journey-mock-badge,
-  .difference-page .diagnosis-mock .text-caption {
-    font-size: var(--mock-text);
-    line-height: 15px;
-  }
-
-  .difference-page .slide-row.is-fail .slide-card:first-child .journey-mock-progress-bar span {
-    background: var(--color-critical);
-  }
-
-  .difference-page .slide-row.is-fail .slide-card:last-child .journey-mock-progress-bar span {
-    background: var(--color-ink-lighter);
-  }
-
-  .difference-page .slide-row.is-fail .diagnosis-mock .is-focus .journey-mock-item-name {
-    color: var(--color-critical);
-  }
-
-  .difference-page .slide-card.is-ours .journey-mock-badge.is-live {
-    background: var(--color-brand-tint-2);
-    color: var(--color-brand);
-  }
-
-  /* 03 The Cycle — 4단계 순환. 공용 css/components/ui/cycle.css로 승격됐다 */
+  /* 04 The Cycle — 4단계 순환. 공용 css/components/ui/cycle.css로 승격됐다 */
   .difference-page .fade-up.is-visible .cycle > li:nth-child(1) .cycle-arrow { animation-delay: .3s; }
   .difference-page .fade-up.is-visible .cycle > li:nth-child(2) .cycle-arrow { animation-delay: .5s; }
   .difference-page .fade-up.is-visible .cycle > li:nth-child(3) .cycle-arrow { animation-delay: .7s; }
@@ -484,7 +359,7 @@
   .difference-page .fade-up.is-visible .cycle > li:nth-child(3) { transition-delay: .16s; }
   .difference-page .fade-up.is-visible .cycle > li:nth-child(4) { transition-delay: .24s; }
 
-  /* 04 Scenario — 공용 timeline 위에 단계 라벨만 얹는다 */
+  /* 05 Scenario — 공용 timeline 위에 단계 라벨만 얹는다 */
 
   .difference-page .scenario-mock[data-mock-motion="detail"] {
     padding: 0;
@@ -495,17 +370,12 @@
     margin: var(--space-16) var(--space-16) 0;
   }
 
-  .difference-page .scenario-mock {
-    background: var(--color-surface-deep);
-    border-color: transparent;
-  }
-
   .difference-page .scenario-mock .mock-ticker-stats > article {
-    background: var(--color-surface);
+    background: var(--color-surface-sunken);
     border-color: transparent;
   }
 
-  /* 05 Position — 경쟁 구도 2축 좌표 (어두운 강조 판) */
+  /* 03 Position — 경쟁 구도 2축 좌표 (어두운 강조 판) */
   .difference-page .positioning.is-dark {
     position: relative;
     overflow: hidden;
@@ -535,7 +405,8 @@
   .difference-page .positioning.is-dark h2 {
     color: var(--color-surface);
   }
-    .difference-page .positioning.is-dark .desc {
+
+  .difference-page .positioning.is-dark .desc {
     color: var(--color-surface-sunken);
   }
 
@@ -549,13 +420,10 @@
     width: 100%;
     max-width: 720px;
 
-    margin: 0 auto;
-    margin-left: var(--space-35);
-    margin-bottom: var(--space-35);
-
     height: 520px;
     flex: none;
     margin-inline: auto;
+    margin-bottom: var(--space-35);
     border-radius: var(--radius-xl);
     background:
 
@@ -640,7 +508,8 @@
     animation: pulse 2.4s var(--ease-scroll) infinite;
   }
 
-  /* 06 Start Anywhere — 두 갈래 시작점 */
+  /* 07 Start Anywhere — 두 갈래 시작점.
+     start-card는 면이 없는 골격이라 면은 여기서 준다(전 페이지 규약). 흰 섹션 위이므로 틴트로 가라앉힌다. */
   .difference-page .start-card {
     background: var(--color-brand-tint-2);
   }
@@ -663,15 +532,7 @@
 
   .difference-page .fade-up.is-visible .start-grid > li:nth-child(2) { transition-delay: .1s; }
 
-  /* 07 Industry — 공용 tab-catalog 안의 4블록 정의형 목록 */
-
-  .difference-page .tab-catalog {
-    min-height: 0;
-  }
-
-  .difference-page .catalog .tab-catalog {
-    min-height: 0;
-  }
+  /* 06 Industry — 공용 tab-catalog 안의 4블록 정의형 목록 */
 
   .difference-page .catalog .tab-catalog__panel {
     display: flex;
@@ -721,9 +582,12 @@
     font-weight: var(--font-weight-semibold);
   }
 
+  /* Pain Point만 브랜드 파랑에서 빼낸다 — 문제 칸이 우리 제품 칸과 같은 색이면 거짓이다.
+     빨강은 아이콘에만 남긴다(critical 14px semibold는 sunken 면에서 3.83으로 AA 미달). */
   .difference-page .industry-card:has(.industry-card-icon--pain) .industry-card-label {
-    color: var(--color-critical);
+    color: var(--color-ink-heaviest);
   }
+
 
   /* 최하단 CTA — 공용 cta-final 배경을 좌측 상단 구역으로 변경 */
   .difference-page .cta-final::before {
