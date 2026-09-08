@@ -213,33 +213,6 @@
     background: var(--color-surface);
   }
 
-  .difference-page .slide-card-head {
-    display: flex;
-    align-items: center;
-    gap: var(--space-12);
-  }
-
-  .difference-page .slide-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--icon-box);
-    height: var(--icon-box);
-    flex: none;
-    border-radius: var(--radius-lg);
-    background: var(--color-surface-mist);
-    color: var(--color-ink-lighter);
-  }
-
-  .difference-page .slide-card.is-ours .slide-icon {
-    background: var(--color-brand-tint-2);
-    color: var(--color-brand);
-  }
-
-  .difference-page .slide-icon svg {
-    display: block;
-  }
-
   .difference-page .slide-card-head h3 {
     font-size: var(--text-card-title);
     line-height: var(--leading-card-title);
