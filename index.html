@@ -124,96 +124,45 @@
             그리고 교육이 잘 됐는지는 숫자로 확인합니다.</p>
         </div>
         <div class="section-content">
-          <div class="feature-card-grid" data-feature-cycle data-interval="5000">
-            <article class="feature-card">
-              <div class="feature-card-icon-row">
-                <span class="feature-card-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21.5001 5L12.0001 1L2.50007 5V9C2.49107 12.0185 3.39297 14.9695 5.08786 17.4672C6.78276 19.9649 9.19179 21.8932 12.0001 23C14.8083 21.8932 17.2174 19.9649 18.9123 17.4672C20.6072 14.9695 21.5091 12.0185 21.5001 9V5Z" fill="var(--color-brand)" />
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4089 11.5203L15.2373 7.70001L17.0032 9.46964L11.3316 15.1293L7.7002 11.181L9.54027 9.48864L11.4089 11.5203Z" fill="var(--color-surface)" />
-                  </svg>
-                </span>
+          <!-- 진단 → 교육 → 재진단. 흰 섹션이라 칸은 틴트(.blue)로 가라앉히고,
+               순환이 닫히는 마지막 칸만 .is-return으로 채운다. -->
+          <ol class="cycle">
+            <li class="blue">
+              <div class="cycle-head">
+                <span class="cycle-no">1</span>
+                <p class="cycle-en">진단</p>
               </div>
-              <div class="section-body">
-                <div class="section-body-heading">
-                  <p class="section-body-title">01 · 진단</p>
-                  <span class="feature-card-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                </div>
-                <p class="section-body-subtitle">교육 전, 출발점을 <br> 숫자로 확인합니다</p>
-                <div class="feature-card-desc-row">
-                  <div class="section-body-description">
-                    <p>AI Fluent와 SkillCertify로 전 직군의 현재 역량을 실무 기준으로 진단합니다. 누구에게 무엇을 가르쳐야 할지가 명확해집니다.</p>
-                    <a href="skills.html" class="btn btn-primary">역량 진단 알아보기<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                  </div>
-                </div>
-              </div>
-              <span class="feature-card-progress" aria-hidden="true">
-                <span class="feature-card-progress-bar"></span>
+              <h3>교육 전, 출발점을 숫자로 확인합니다</h3>
+              <p class="description">AI Fluent와 SkillCertify로 전 직군의 현재 역량을 실무 기준으로 진단합니다. 누구에게 무엇을 가르쳐야 할지가 명확해집니다.</p>
+              <span class="cycle-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
-            </article>
-            <article class="feature-card">
-              <div class="feature-card-icon-row">
-                <span class="feature-card-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="color-mix(in srgb, var(--color-brand) 10%, var(--color-surface))" />
-                    <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))" />
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0001 8.58579L17.293 6.29289L18.7072 7.70711L15.0001 11.4142L12.293 8.70711L13.7072 7.29289L15.0001 8.58579Z" fill="var(--color-brand)" />
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0001 14.5858L17.293 12.2929L18.7072 13.7071L15.0001 17.4142L12.293 14.7071L13.7072 13.2929L15.0001 14.5858Z" fill="var(--color-brand)" />
-                    <path d="M10.4998 14H6.50977C6.23362 14 6.00977 14.2239 6.00977 14.5V15.53C6.00977 15.8061 6.23362 16.03 6.50977 16.03H10.4998C10.7759 16.03 10.9998 15.8061 10.9998 15.53V14.5C10.9998 14.2239 10.7759 14 10.4998 14Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))" />
-                  </svg>
-                </span>
+            </li>
+            <li class="blue">
+              <div class="cycle-head">
+                <span class="cycle-no">2</span>
+                <p class="cycle-en">교육</p>
               </div>
-              <div class="section-body">
-                <div class="section-body-heading">
-                  <p class="section-body-title">02 · 교육</p>
-                  <span class="feature-card-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                </div>
-                <p class="section-body-subtitle">부족한 역량만 골라 <br> 정확하게 키웁니다</p>
-                <div class="feature-card-desc-row">
-                  <div class="section-body-description">
-                    <p>진단 결과에 맞춰 SkillPath·SkillCamp·SkillFit으로 학습을 설계합니다. 모두에게 같은 교육이 아니라, 조직과 개인에게 필요한 교육만 제공합니다.</p>
-                    <a href="skills.html" class="btn btn-primary">교육 방식 알아보기<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                  </div>
-                </div>
-              </div>
-              <span class="feature-card-progress" aria-hidden="true">
-                <span class="feature-card-progress-bar"></span>
+              <h3>부족한 역량만 골라 정확하게 키웁니다</h3>
+              <p class="description">진단 결과에 맞춰 SkillPath·SkillCamp·SkillFit으로 학습을 설계합니다. 모두에게 같은 교육이 아니라, 조직과 개인에게 필요한 교육만 제공합니다.</p>
+              <span class="cycle-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
-            </article>
-            <article class="feature-card">
-              <div class="feature-card-icon-row">
-                <span class="feature-card-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))" />
-                    <path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="var(--color-brand)" />
-                    <path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="var(--color-brand-dark)" />
-                  </svg>
-                </span>
+            </li>
+            <li class="is-return">
+              <div class="cycle-head">
+                <span class="cycle-no">3</span>
+                <p class="cycle-en">재진단</p>
               </div>
-              <div class="section-body">
-                <div class="section-body-heading">
-                  <p class="section-body-title">03 · 재진단</p>
-                  <span class="feature-card-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                </div>
-                <p class="section-body-subtitle">교육 후 결과를<br>다시 숫자로 증명합니다</p>
-                <div class="feature-card-desc-row">
-                  <div class="section-body-description">
-                    <p>교육 전후 점수를 비교해 역량이 얼마나 늘었는지 확인합니다. 공유 허브와 라이브러리로 배운 조직의 문화로 남습니다.</p>
-                    <a href="skills.html" class="btn btn-primary">증명 방식 보기<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                  </div>
-                </div>
-              </div>
-              <span class="feature-card-progress" aria-hidden="true">
-                <span class="feature-card-progress-bar"></span>
-              </span>
-            </article>
+              <h3>교육 후 결과를 다시 숫자로 증명합니다</h3>
+              <p class="description">교육 전후 점수를 비교해 역량이 얼마나 늘었는지 확인합니다. 공유 허브와 라이브러리로 배운 조직의 문화로 남습니다.</p>
+            </li>
+          </ol>
+
+          <div class="section-cta">
+            <a href="skills.html" class="btn btn-ghost">역량 진단·교육 알아보기<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
+
           <p class="summary-banner dark">조직을 바꾸는 건 <strong class="brand">교육</strong>입니다. <br data-break="mobile"> <strong class="brand">진단</strong>은 그 변화를 증명합니다.</p>
         </div>
       </div>
@@ -782,36 +731,35 @@
           </div>
         </div>
 
-        <!-- 세 가지 차이를 각각 한 화면씩 보여주는 목업.
-             5초마다 화면이 교차 페이드로 바뀌고(js/difference-cycle.js), 아래 legend가
-             지금 몇 번째 화면인지 알려주는 인디케이터를 겸한다.
-             장식이라 스크린리더에는 숨기고, legend가 같은 내용을 글로 전달한다. -->
-        <div class="difference-mock" aria-hidden="true">
-          <!-- 하늘색 배경 위에 흰 브라우저 창이 떠 있는 형태.
-               배경은 바깥 .difference-mock이, 창은 안쪽 .difference-window가 그린다. -->
-          <div class="preview-frame preview-frame--flush">
-
-            <!-- 창 상단 바 — 실제 제품 화면이라는 신호만 준다. -->
-            <div class="preview-frame__bar">
-              <span class="preview-frame__dots"><i></i><i></i><i></i></span>
-            </div>
-
-            <!-- 3화면 스테이지. 같은 그리드 셀에 겹쳐두고 교차 페이드한다. -->
-            <div class="difference-screens" data-difference-screens>
+        <!-- 세 가지 차이를 한 판 위에 위에서 아래로 다 펼친다.
+             화면을 갈아 끼우지 않으므로 순환·인디케이터가 없고, 각 블록의 머리글이
+             그 화면이 무엇을 보여주는지 글로 먼저 말한다.
+             제품 화면은 장식이라 스크린리더에는 숨기고, 머리글만 읽힌다. -->
+        <div class="difference-mock">
+          <ol class="difference-blocks">
 
               <!-- ① 정량적 관리 — 진단 → 교육 → 재진단 3단계를 한 화면에 나란히 두고
                    좌에서 우로 하나씩 켠다(mock-motion의 stage 연출, ②와 같은 문법).
                    1단계에서 낮게 찬 영역별 막대가 3단계에서 같은 자리에 한 번 더
                    차오르는 것이 이 화면의 전부다 — "같은 잣대로 두 번 쟀다". -->
-              <div class="difference-screen is-active" data-difference-screen="0">
-                <div class="difference-screen-head">
+            <li>
+              <div class="difference-block-head">
+                <span class="difference-block-no">01</span>
+                <h3 class="difference-block-title">정량적 관리</h3>
+                <p class="difference-block-desc">교육 전후 역량을 같은 문항·같은 기준으로 두 번 잽니다. 무엇이 얼마나 늘었는지 점수로 보고할 수 있습니다.</p>
+              </div>
+
+              <div class="preview-frame preview-frame--flush" aria-hidden="true">
+                <div class="preview-frame__bar">
+                  <span class="preview-frame__dots"><i></i><i></i><i></i></span>
                   <span class="difference-screen-title">역량 변화 리포트</span>
                 </div>
 
-                <div class="difference-screen-body is-cycle" data-mock-motion="stage">
+                <div class="difference-screen">
+                <div class="difference-screen-body is-cycle">
 
                   <!-- 1단계 · 진단 — 문항에 답하면 영역별 점수가 낮게 찬다. -->
-                  <div class="difference-card is-step is-first" style="--mock-step: 0">
+                  <div class="difference-card is-step is-first">
                     <div class="difference-step-head">
                       <span class="difference-step-no">1</span>
                       <span class="difference-card-label">진단</span>
@@ -819,7 +767,7 @@
                     </div>
 
                     <!-- 채점 결과 — 3단계에서 이 막대가 그대로 다시 등장한다. -->
-                    <ul class="difference-bars is-cue">
+                    <ul class="difference-bars">
                       <li>
                         <span class="difference-gauge-bar">
                           <span style="--bar-h: 44%"></span>
@@ -845,7 +793,7 @@
 
                     <span class="difference-card-foot">평균 <strong>41점</strong> · 취약 영역 2개</span>
 
-                    <span class="difference-flow-arrow is-flow">
+                    <span class="difference-flow-arrow">
                       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
                           stroke-linecap="round" stroke-linejoin="round" />
@@ -854,7 +802,7 @@
                   </div>
 
                   <!-- 2단계 · 교육 — 1단계에서 낮았던 영역이 그대로 커리큘럼이 된다. -->
-                  <div class="difference-card is-step is-mid" style="--mock-step: 1">
+                  <div class="difference-card is-step is-mid">
                     <div class="difference-step-head">
                       <span class="difference-step-no">2</span>
                       <span class="difference-card-label">교육</span>
@@ -863,37 +811,37 @@
 
                     <!-- 배정된 과정 — 취약 영역 2개가 먼저, 나머지는 가라앉힌다. -->
                     <ul class="difference-stack">
-                      <li class="difference-course is-cue">
+                      <li class="difference-course">
                         <span class="difference-course-mark">1</span>
                         <span class="difference-asset-body">
                           <span class="difference-asset-name">에이전트 구축 실습</span>
                         </span>
                         <span class="difference-chip is-brand">배정</span>
                       </li>
-                      <li class="difference-course is-cue" style="--mock-cue-delay: .12s">
+                      <li class="difference-course">
                         <span class="difference-course-mark">2</span>
                         <span class="difference-asset-body">
                           <span class="difference-asset-name">프롬프트 설계 기초</span>
                         </span>
                         <span class="difference-chip is-brand">배정</span>
                       </li>
-                      <li class="difference-course is-quiet is-cue" style="--mock-cue-delay: .22s">
+                      <li class="difference-course is-quiet">
                         <span class="difference-course-mark">3</span>
                         <span class="difference-asset-body">
-                          <span class="skeleton-line is-shimmer" style="width: 96px"></span>
+                          <span class="skeleton-line" style="width: 96px"></span>
                         </span>
                       </li>
                     </ul>
 
                     <!-- 수강 진행률 — 교육이 실제로 돌아가고 있다는 신호. -->
-                    <div class="difference-progress is-cue" style="--mock-cue-delay: .3s">
+                    <div class="difference-progress">
                       <span class="difference-track"><span style="width: 82%"></span></span>
                       <span class="difference-bar-value">82%</span>
                     </div>
 
                     <span class="difference-card-foot">직무별 <strong>4개 과정</strong> 배정</span>
 
-                    <span class="difference-flow-arrow is-flow">
+                    <span class="difference-flow-arrow">
                       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
                           stroke-linecap="round" stroke-linejoin="round" />
@@ -902,7 +850,7 @@
                   </div>
 
                   <!-- 3단계 · 재진단 — 1단계와 같은 영역·같은 자리 막대가 한 번 더 찬다. -->
-                  <div class="difference-card is-step is-last" style="--mock-step: 2">
+                  <div class="difference-card is-step is-last">
                     <div class="difference-step-head">
                       <span class="difference-step-no">3</span>
                       <span class="difference-card-label">재진단</span>
@@ -911,7 +859,7 @@
 
                     <!-- 진단 막대(회색)를 깔고 그 위에 재진단 막대(브랜드)가 덮어쓰며 뻗는다.
                          1단계와 같은 영역·같은 순서라야 "같은 잣대"가 읽힌다. -->
-                    <ul class="difference-bars is-cue">
+                    <ul class="difference-bars">
                       <li>
                         <span class="difference-gauge-bar">
                           <span style="--bar-h: 44%"></span>
@@ -938,7 +886,7 @@
                       </li>
                     </ul>
 
-                    <span class="difference-legend-key is-cue" style="--mock-cue-delay: .2s">
+                    <span class="difference-legend-key">
                       <span class="difference-key"><i></i>교육 전 진단</span>
                       <span class="difference-key is-brand"><i></i>교육 후 재진단</span>
                     </span>
@@ -946,7 +894,7 @@
                     <!-- 이 화면의 결론. 흐름에서 빼내 우측 상단에 띄운다 —
                          칸 아래에 두면 기둥이 그만큼 짧아져 1단계와 눈높이가
                          어긋난다. 배지 하나로 줄여 "얼마나 올랐나"만 남긴다. -->
-                    <span class="difference-verdict is-cue" style="--mock-cue-delay: .3s">
+                    <span class="difference-verdict">
                       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="2"
                           stroke-linecap="round" stroke-linejoin="round" />
@@ -956,21 +904,29 @@
                   </div>
 
                 </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- ② 문화 정착 — 공유 허브 → 라이브러리 → 전사 확산 3단계. -->
+            <li>
+              <div class="difference-block-head">
+                <span class="difference-block-no">02</span>
+                <h3 class="difference-block-title">문화 정착</h3>
+                <p class="difference-block-desc">검증된 에이전트와 프롬프트가 사내에 공유·축적됩니다. 한 팀의 역량이 조직 전체의 기본기가 됩니다.</p>
               </div>
 
-              <!-- ② 문화 정착 — 공유 허브 → 라이브러리 → 전사 확산 3단계를 한 화면에
-                   나란히 두고, 좌에서 우로 하나씩 켠다(mock-motion의 stage 연출).
-                   한 사이클이 이 섹션의 화면 순환 주기(5s)와 같아, 화면이 넘어가기
-                   직전에 3단계가 정확히 한 바퀴 돈다. -->
-              <div class="difference-screen" data-difference-screen="1">
-                <div class="difference-screen-head">
+              <div class="preview-frame preview-frame--flush" aria-hidden="true">
+                <div class="preview-frame__bar">
+                  <span class="preview-frame__dots"><i></i><i></i><i></i></span>
                   <span class="difference-screen-title">사내 자산 라이브러리</span>
                 </div>
 
-                <div class="difference-screen-body is-library" data-mock-motion="stage">
+                <div class="difference-screen">
+                <div class="difference-screen-body is-library">
 
                   <!-- 1단계 · 공유 허브 — 동료에게 프롬프트를 보내는 메시지 창. -->
-                  <div class="difference-card is-step is-first" style="--mock-step: 0">
+                  <div class="difference-card is-step is-first">
                     <div class="difference-step-head">
                       <span class="difference-step-no">1</span>
                       <span class="difference-card-label">공유 허브</span>
@@ -979,18 +935,18 @@
 
                     <!-- 메신저 창 — 받는 사람 줄 + 말풍선 + 첨부 파일. -->
                     <div class="difference-chat">
-                      <div class="difference-chat-head is-cue">
+                      <div class="difference-chat-head">
                         <span class="journey-mock-avatar">마</span>
                         <span class="difference-asset-name">마케팅팀</span>
                       </div>
 
                       <!-- 상대 말풍선 — 읽을 필요 없는 배경이라 스켈레톤으로 둔다. -->
-                      <div class="difference-bubble is-them is-cue" style="--mock-cue-delay: .1s">
-                        <span class="skeleton-line is-shimmer" style="width: 84px"></span>
+                      <div class="difference-bubble is-them">
+                        <span class="skeleton-line" style="width: 84px"></span>
                       </div>
 
                       <!-- 내 말풍선 — 이 단계에서 유일하게 읽혀야 하는 문장. -->
-                      <div class="difference-bubble is-me is-cue" style="--mock-cue-delay: .22s">
+                      <div class="difference-bubble is-me">
                         <span class="difference-bubble-text">마케팅 문구 프롬프트 공유드립니다</span>
 
                         <!-- 첨부 파일 카드 — 대화 첨부 UI 그대로. -->
@@ -1012,11 +968,11 @@
                       </div>
 
                       <!-- 방금 전송됐다는 신호. 말풍선보다 늦게 떠야 순서가 읽힌다. -->
-                      <span class="difference-chat-foot is-cue" style="--mock-cue-delay: .34s">전송됨 · 방금</span>
+                      <span class="difference-chat-foot">전송됨 · 방금</span>
                     </div>
 
                     <!-- 다음 칸으로 넘긴다는 신호. 칸 오른쪽 경계에 걸친다. -->
-                    <span class="difference-flow-arrow is-flow">
+                    <span class="difference-flow-arrow">
                       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
                           stroke-linecap="round" stroke-linejoin="round" />
@@ -1025,7 +981,7 @@
                   </div>
 
                   <!-- 2단계 · 라이브러리 — 공유된 자산이 목록으로 차곡차곡 쌓인다. -->
-                  <div class="difference-card is-step is-mid" style="--mock-step: 1">
+                  <div class="difference-card is-step is-mid">
                     <div class="difference-step-head">
                       <span class="difference-step-no">2</span>
                       <span class="difference-card-label">라이브러리</span>
@@ -1034,7 +990,7 @@
 
                     <ul class="difference-stack">
                       <!-- 맨 위 = 방금 들어온 자산. 1단계에서 보낸 그 파일이다. -->
-                      <li class="difference-asset is-cue" style="--mock-cue-delay: .1s">
+                      <li class="difference-asset">
                         <span class="difference-asset-icon">
                           <!-- 대화 — 프롬프트 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1048,7 +1004,7 @@
                         <span class="difference-chip is-brand">추가</span>
                       </li>
 
-                      <li class="difference-asset is-cue" style="--mock-cue-delay: .22s">
+                      <li class="difference-asset">
                         <span class="difference-asset-icon">
                           <!-- 톱니 — 에이전트 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1064,7 +1020,7 @@
                         <span class="difference-chip">에이전트</span>
                       </li>
 
-                      <li class="difference-asset is-cue" style="--mock-cue-delay: .32s">
+                      <li class="difference-asset">
                         <span class="difference-asset-icon">
                           <!-- 표 — 데이터 워크플로우 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1080,17 +1036,17 @@
                       </li>
 
                       <!-- 아래로 갈수록 가라앉는 스켈레톤 행 — "더 쌓여 있다"를 형태로 보여준다. -->
-                      <li class="difference-asset is-quiet is-cue" style="--mock-cue-delay: .42s">
+                      <li class="difference-asset is-quiet">
                         <span class="difference-asset-icon"></span>
                         <span class="difference-asset-body">
-                          <span class="skeleton-line is-shimmer" style="width: 108px"></span>
+                          <span class="skeleton-line" style="width: 108px"></span>
                         </span>
                       </li>
                     </ul>
 
                     <span class="difference-card-foot">검증된 자산 <strong>438건</strong> 누적</span>
 
-                    <span class="difference-flow-arrow is-flow">
+                    <span class="difference-flow-arrow">
                       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
                           stroke-linecap="round" stroke-linejoin="round" />
@@ -1099,7 +1055,7 @@
                   </div>
 
                   <!-- 3단계 · 전사 확산 — 한 팀에 있던 자산이 다른 본부로 퍼진다. -->
-                  <div class="difference-card is-step is-last" style="--mock-step: 2">
+                  <div class="difference-card is-step is-last">
                     <div class="difference-step-head">
                       <span class="difference-step-no">3</span>
                       <span class="difference-card-label">전사 확산</span>
@@ -1112,32 +1068,42 @@
                       <span class="difference-spread-wave"></span>
                       <span class="difference-spread-wave" style="animation-delay: 1.3s"></span>
 
-                      <span class="difference-spread-core is-cue">마케팅팀</span>
+                      <span class="difference-spread-core">마케팅팀</span>
 
-                      <span class="difference-spread-node is-cue" style="--mock-cue-delay: .14s; --node-x: 76%; --node-y: 14%">영업본부</span>
-                      <span class="difference-spread-node is-cue" style="--mock-cue-delay: .22s; --node-x: 78%; --node-y: 86%">개발본부</span>
-                      <span class="difference-spread-node is-cue" style="--mock-cue-delay: .3s; --node-x: 22%; --node-y: 14%">인사팀</span>
-                      <span class="difference-spread-node is-cue" style="--mock-cue-delay: .38s; --node-x: 20%; --node-y: 86%">재무팀</span>
+                      <span class="difference-spread-node" style="--node-x: 76%; --node-y: 14%">영업본부</span>
+                      <span class="difference-spread-node" style="--node-x: 78%; --node-y: 86%">개발본부</span>
+                      <span class="difference-spread-node" style="--node-x: 22%; --node-y: 14%">인사팀</span>
+                      <span class="difference-spread-node" style="--node-x: 20%; --node-y: 86%">재무팀</span>
                     </div>
 
                     <span class="difference-card-foot">한 팀의 자산이 <strong>7개 본부</strong>로 확산</span>
                   </div>
 
                 </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- ③ 현장 검증 — 현장 투입 → 검증 → 커리큘럼 반영 3단계.
+                 섹션의 결론이라 이 판만 다크로 둔다. -->
+            <li>
+              <div class="difference-block-head">
+                <span class="difference-block-no">03</span>
+                <h3 class="difference-block-title">현장 검증</h3>
+                <p class="difference-block-desc">우리는 AXMOS 얼라이언스와 함께 FDE 현장을 직접 뜁니다. 현장에서 검증된 것만 커리큘럼이 되고, 안 되던 것은 그 이유까지 교육이 됩니다.</p>
               </div>
 
-              <!-- ③ 현장 검증 — 현장 투입 → 검증 → 커리큘럼 반영 3단계.
-                   ①②와 같은 stage 문법을 쓰되 다크 판만 유지한다(섹션의 결론).
-                   3단계가 ①의 교육으로 되돌아가며 순환을 닫는 것이 이 화면의 요점이다. -->
-              <div class="difference-screen is-dark" data-difference-screen="2">
-                <div class="difference-screen-head">
+              <div class="preview-frame preview-frame--flush" aria-hidden="true">
+                <div class="preview-frame__bar">
+                  <span class="preview-frame__dots"><i></i><i></i><i></i></span>
                   <span class="difference-screen-title">AXMOS 얼라이언스 · FDE 현장</span>
                 </div>
 
-                <div class="difference-screen-body is-field" data-mock-motion="stage">
+                <div class="difference-screen is-dark">
+                <div class="difference-screen-body is-field">
 
                   <!-- 1단계 · 현장 투입 — 우리가 실제로 어디에 들어가 있는지. -->
-                  <div class="difference-card is-step is-first" style="--mock-step: 0">
+                  <div class="difference-card is-step is-first">
                     <div class="difference-step-head">
                       <span class="difference-step-no">1</span>
                       <span class="difference-card-label">현장 투입</span>
@@ -1145,7 +1111,7 @@
                     </div>
 
                     <ul class="difference-stack">
-                      <li class="difference-asset is-cue">
+                      <li class="difference-asset">
                         <span class="difference-asset-icon">
                           <!-- 공장 — 제조 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1157,7 +1123,7 @@
                           <span class="difference-asset-name">제조 · 품질 검사 자동화</span>
                         </span>
                       </li>
-                      <li class="difference-asset is-cue" style="--mock-cue-delay: .12s">
+                      <li class="difference-asset">
                         <span class="difference-asset-icon">
                           <!-- 카드 — 금융 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1170,7 +1136,7 @@
                           <span class="difference-asset-name">금융 · 여신 심사 보조</span>
                         </span>
                       </li>
-                      <li class="difference-asset is-cue" style="--mock-cue-delay: .22s">
+                      <li class="difference-asset">
                         <span class="difference-asset-icon">
                           <!-- 카트 — 유통 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1188,7 +1154,7 @@
 
                     <span class="difference-card-foot"><strong>12개 산업</strong>에 투입 중</span>
 
-                    <span class="difference-flow-arrow is-flow">
+                    <span class="difference-flow-arrow">
                       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
                           stroke-linecap="round" stroke-linejoin="round" />
@@ -1198,7 +1164,7 @@
 
                   <!-- 2단계 · 검증 — 현장에서 통한 것만 남기고 나머지는 버린다.
                        "걸러낸다"가 이 칸의 전부라, 통과와 탈락을 함께 보여준다. -->
-                  <div class="difference-card is-step is-mid" style="--mock-step: 1">
+                  <div class="difference-card is-step is-mid">
                     <div class="difference-step-head">
                       <span class="difference-step-no">2</span>
                       <span class="difference-card-label">검증</span>
@@ -1206,7 +1172,7 @@
                     </div>
 
                     <ul class="difference-stack">
-                      <li class="difference-trial is-pass is-cue">
+                      <li class="difference-trial is-pass">
                         <span class="difference-trial-mark">
                           <!-- 체크 — 현장에서 통과 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1219,7 +1185,7 @@
                         </span>
                         <span class="difference-trial-count">38</span>
                       </li>
-                      <li class="difference-trial is-fail is-cue" style="--mock-cue-delay: .14s">
+                      <li class="difference-trial is-fail">
                         <span class="difference-trial-mark">
                           <!-- 가위표 — 현장에서 탈락 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1235,11 +1201,11 @@
                     </ul>
 
                     <!-- 안 되던 것도 버리지 않는다 — 이게 왜 남다른지의 핵심이라 강조한다. -->
-                    <p class="difference-trial-note is-cue" style="--mock-cue-delay: .26s">
+                    <p class="difference-trial-note">
                       안 되던 <strong>14건</strong>도 <strong>“이건 왜 안 되는지”</strong>로 함께 가르칩니다
                     </p>
 
-                    <span class="difference-flow-arrow is-flow">
+                    <span class="difference-flow-arrow">
                       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
                           stroke-linecap="round" stroke-linejoin="round" />
@@ -1248,7 +1214,7 @@
                   </div>
 
                   <!-- 3단계 · 커리큘럼 반영 — ①의 교육으로 되돌아가며 순환이 닫힌다. -->
-                  <div class="difference-card is-step is-last" style="--mock-step: 2">
+                  <div class="difference-card is-step is-last">
                     <div class="difference-step-head">
                       <span class="difference-step-no">3</span>
                       <span class="difference-card-label">커리큘럼 반영</span>
@@ -1256,7 +1222,7 @@
                     </div>
 
                     <ul class="difference-stack">
-                      <li class="difference-asset is-cue">
+                      <li class="difference-asset">
                         <span class="difference-asset-icon">
                           <!-- 책 — 교육 콘텐츠 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1271,7 +1237,7 @@
                         </span>
                         <span class="difference-chip is-brand">신규</span>
                       </li>
-                      <li class="difference-asset is-cue" style="--mock-cue-delay: .12s">
+                      <li class="difference-asset">
                         <span class="difference-asset-icon">
                           <!-- 책 — 교육 콘텐츠 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1289,7 +1255,7 @@
                     </ul>
 
                     <!-- 순환이 닫히는 지점. ①의 2단계 교육으로 되돌아간다. -->
-                    <div class="difference-loop is-cue" style="--mock-cue-delay: .24s">
+                    <div class="difference-loop">
                       <span class="difference-loop-mark">
                         <!-- 되돌아가는 화살표 — 다시 교육으로 -->
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1304,33 +1270,13 @@
                   </div>
 
                 </div>
+                </div>
               </div>
-
-            </div>
-          </div>
+            </li>
+          </ol>
         </div>
 
-        <!-- 목업을 글로 푸는 설명 3열이자, 지금 몇 번째 화면인지 알려주는 인디케이터.
-             활성 항목만 브랜드 컬러 + 진행바가 차오르고 나머지는 흐려진다. -->
-        <ol class="difference-legend" data-difference-legend>
-          <li class="difference-legend-item is-active" data-difference-legend-item="0">
-            <span class="difference-legend-progress"><span class="difference-legend-progress-bar"></span></span>
-            <strong class="difference-legend-title">정량적 관리</strong>
-            <p class="desc">교육 전후 역량을 같은 문항·같은 기준으로 두 번 잽니다. <br> 무엇이 얼마나 늘었는지 점수로 보고할 수 있습니다.</p>
-          </li>
-          <li class="difference-legend-item" data-difference-legend-item="1">
-            <span class="difference-legend-progress"><span class="difference-legend-progress-bar"></span></span>
-            <strong class="difference-legend-title">문화 정착</strong>
-            <p class="desc">검증된 에이전트와 프롬프트가 사내에 공유·축적됩니다. <br> 한 팀의 역량이 조직 전체의 기본기가 됩니다.</p>
-          </li>
-          <li class="difference-legend-item" data-difference-legend-item="2">
-            <span class="difference-legend-progress"><span class="difference-legend-progress-bar"></span></span>
-            <strong class="difference-legend-title">현장 검증</strong>
-            <p class="desc">우리는 AXMOS 얼라이언스와 함께 FDE 현장을 직접 뜁니다. 현장에서 검증된 것만 커리큘럼이 되고, 안 되던 것은 그 이유까지 교육이 됩니다.</p>
-          </li>
-        </ol>
-
-        <!-- 모바일 전용 대체 뷰(560px 이하) — 위 목업·legend는 그대로 두고
+        <!-- 모바일 전용 대체 뷰(560px 이하) — 위 목업은 그대로 두고
              CSS가 이 범위에서만 서로 보임/숨김을 맞바꾼다(mobile.css).
              목업이 세로로 접히면 카드 3장이 너무 길어져(사용자 확인) 순환
              없이 9개 항목을 정적으로 다 나열하는 별도 마크업을 쓴다. -->
@@ -1534,12 +1480,10 @@
   <script src="js/fade-up.js"></script>
   <script src="js/header-scroll.js"></script>
   <script src="js/nav-menu.js"></script>
-  <script src="js/feature-card-cycle.js"></script>
   <script src="js/proof-card-slider.js"></script>
   <script src="js/stat-reveal.js"></script>
   <script src="js/part-nav.js"></script>
   <script src="js/journey-stage.js"></script>
-  <script src="js/difference-cycle.js"></script>
 </body>
 
 </html>

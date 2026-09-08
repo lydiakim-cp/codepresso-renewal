@@ -82,7 +82,7 @@
 | Journey Stage | `journey-stage.css` | `.journey-stage`, `.journey-track`, `.journey-viewport`, `.journey-step`(+`.is-active`) | **스크롤로 판 안의 내용만 교차 페이드**되는 스테이지. 보이지 않는 트랙이 스크롤 길이를 만들고 `js/journey-stage.js`가 활성 스텝을 옮긴다. 판은 `.content-panel` + `.surface-glass` 조합. 좌측 `.choice-list__item`에 `data-journey-program="n"`을 주면 표시이자 이동 버튼이 된다. index PART 1·PART 2(진단 쇼케이스)와 skills 04가 함께 쓴다. 페이지는 `--stage-panel-height`(판 실측 높이)와 `--stage-tail`만 넘긴다 — data 접두사만 다르면(`data-diagnosis-*`) 같은 컴포넌트로 두 번째 스테이지를 만든다 |
 | Compare Panel | `compare-panel.css` | `.compare-panel`, `__item`(+`.is-after`), `__label`, `__title`, `__desc`, `__arrow` | "지금 → 바뀐 뒤" 두 상태를 좌우로 대비 |
 | Timeline | `timeline.css` | `.timeline > li`, `__marker`, `__term`, `__body`, `__title`, `__desc` | 기간이 있는 단계를 세로로 잇는 진행 흐름 |
-| Cycle | `cycle.css` | `.cycle > li`(+`.is-return`·`.blue`·`.dark`), `.cycle-head`, `.cycle-no`, `.cycle-en`, `.cycle-desc`, `.cycle-arrow`, `.cycle-note` | N단계 순서/순환을 가로 칸 + 경계 화살표로. 열 수는 `--cycle-columns`(기본 4). 순환형 결론 칸은 `.is-return`(유리 표면), 화살표는 반투명 글래스모피즘 노드. 칸별 컬러 테마는 `.blue`(하늘색 카드+브랜드 파랑 번호)·`.dark`(잉크 카드+흰 번호), 무클래스는 기본(흰 카드+하늘색 번호). why-codepresso.html 03(4단계 순환)·skillcertify.html 05(5단계 선형)·cases.html 공통점(3단계 선형)이 함께 쓰며 공용 승격 — 선형 페이지 둘 다 결론 칸도 기본 배경 그대로 둔다 |
+| Cycle | `cycle.css` | `.cycle > li`(+`.is-return`·`.blue`·`.dark`), `.cycle-head`, `.cycle-no`, `.cycle-en`, `.cycle-desc`, `.cycle-arrow`, `.cycle-note` | N단계 순서/순환을 가로 칸 + 경계 화살표로. 열 수는 `--cycle-columns`(기본 4). 순환형 결론 칸은 `.is-return`(유리 표면), 화살표는 반투명 글래스모피즘 노드. 칸별 컬러 테마는 `.blue`(하늘색 카드+브랜드 파랑 번호)·`.dark`(잉크 카드+흰 번호), 무클래스는 기본(흰 카드+하늘색 번호). why-codepresso.html 03(4단계 순환)·skillcertify.html 05(5단계 선형)·cases.html 공통점(3단계 선형)이 함께 쓰며 공용 승격 — 선형 페이지 둘 다 결론 칸도 기본 배경 그대로 둔다. index How it works(3단계 순환)는 흰 섹션이라 칸을 `.blue`로 가라앉히고 마지막 칸만 `.is-return` — 브랜드 면 위 h3·cycle-en·description 반전은 컴포넌트가 갖는다(첫 `.is-return` 사용처) |
 | FAQ List | `faq-list.css` | `.faq-list > details`, `__question`, `__icon`, `__answer` | 질문을 눌러 답을 펼치는 아코디언 (`<details>` native) |
 | Catalog Board | `catalog-board.css` | `.tab-catalog`, `__rail`, `__category`, `__count`, `__panel`, `__items > li` | 여러 분류의 항목 묶음을 대시보드처럼 한 판에 (`js/catalog-board.js`와 짝). **`__items`는 auto-fill 그리드 + nth-child 진입 stagger를 이미 갖고 있다** — 카드 나열이 필요하면 새로 만들지 말고 이걸 쓰고 `li` 안쪽만 덮는다(difference 07이 그렇게 했다) |
 | Product Mock | `product-mock.css` | `.journey-mock`(+`.mock-detail`·`.camp-ticker`), `-head`, `-title`, `-badge`(+`.is-live`), `-progress`, `-list`, `-item`(+`.is-current`·`.is-done`), `-check`, `-speaker`, `-avatar`, `-bubble`, `.journey-app*`(SkillFit 3단 앱 화면) | 제품 학습·강의 화면 목업 셸. index PART 1과 skills 04가 함께 쓴다(원래 index.css에 있던 712줄을 공용으로 올림). 목업 내부는 `opacity: 0`이 기본이고 **쓰는 페이지가 진입 신호로 띄워야 한다** — index는 `journey-stage.js`의 `.is-popping`, skills는 `.catalog-learn.is-visible`. 움직임은 `mock-motion.css`가 담당 |
@@ -127,10 +127,10 @@
 |---|---|---|---|
 | `main-hero` | 메인 첫 화면(메인 전용 — 서브페이지는 `sub-hero`, `components/ui/hero.css`를 쓴다) | `css/pages/index.css` | — |
 | `outcomes` | 도입 사례 슬라이더(안쪽은 `proof-card`) | `css/pages/index.css` | `js/proof-card-slider.js` |
-| `features` | 3단 카드 자동 순환 | `css/pages/index.css` | `js/feature-card-cycle.js` |
+| `features` | How it works 3단계(진단→교육→재진단) — 공용 `cycle` 3열 | `css/components/ui/cycle.css` | — |
 | `journey` | PART 1 교육 여정 | `css/pages/index.css` (스테이지 골격은 `components/ui/journey-stage.css`) | `js/journey-stage.js` |
 | `diagnosis` | PART 2 진단 쇼케이스 | `css/pages/index.css` | `js/journey-stage.js` |
-| `difference` | PART 3 차별점 3화면 순환 | `css/pages/index.css` | `js/difference-cycle.js` |
+| `difference` | PART 3 차별점 3블록(머리글 + 제품 화면) | `css/pages/index.css` | — |
 | `insight` | 콘텐츠·아티클 | `css/pages/index.css` | — |
 | `cta-final` | 최하단 전환 (공용 — `components/ui/`) | `css/main.css` | — |
 | Floating CTA | `floating-cta.css` | `.floating-cta`, `-link`, `-mock`, `-copy`, `-action`, `-close`, `.is-shown` | hero CTA가 화면 밖으로 나가면 우측 하단에 따라붙는 배너. `js/floating-cta.js`와 짝 (`data-floating-cta="{기준 요소 id}"`) |

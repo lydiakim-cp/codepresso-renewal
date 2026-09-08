@@ -71,6 +71,16 @@
   color: var(--color-surface);
 }
 
+/* 브랜드 면 위라 안쪽 글씨도 함께 반전한다 — 번호 칩만 뒤집으면 본문이 안 읽힌다. */
+.cycle > li.is-return h3,
+.cycle > li.is-return .cycle-en {
+  color: var(--color-surface);
+}
+
+.cycle > li.is-return .description {
+  color: color-mix(in srgb, var(--color-surface) 82%, transparent);
+}
+
 .cycle-head {
   display: flex;
   align-items: center;
