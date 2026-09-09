@@ -720,14 +720,17 @@
             <code>journey-stage · journey-track · journey-viewport · journey-step · journey-stage.js</code>
           </article>
           <article class="guide-motion-item">
-            <div><p class="tag">화면 순환</p><h3>Difference Cycle</h3></div>
-            <p>PART 3의 세 화면(역량 변화 리포트 · 사내 자산 라이브러리 · AXMOS 얼라이언스)을 5초마다 자동 순환하고, 하단 항목을 선택하면 그 화면으로 바로 전환합니다.</p>
+            <div><p class="tag">카드 나열</p><h3>Difference Blocks</h3></div>
+            <p>PART 3의 세 가지 차이(역량 변화 리포트 · 사내 자산 라이브러리 · AXMOS 얼라이언스)를 카드 세 장에 나눠 담습니다. 카드마다 제품 화면이 먼저 오고 그 아래 제목·설명이 화면을 글로 풉니다.</p>
             <div class="guide-motion-static-preview">
-              <div class="difference-mock">
-                <div class="preview-frame preview-frame--flush">
-                  <div class="difference-screens">
-                    <div class="difference-screen is-active">
-                      <div class="difference-screen-head"><span class="difference-screen-title">역량 변화 리포트</span></div>
+              <ul class="difference-blocks">
+                <li>
+                  <div class="preview-frame preview-frame--flush">
+                    <div class="preview-frame__bar">
+                      <span class="preview-frame__dots"><i></i><i></i><i></i></span>
+                      <span class="difference-screen-title">역량 변화 리포트</span>
+                    </div>
+                    <div class="difference-screen">
                       <div class="difference-screen-body">
                         <div class="difference-card"></div>
                         <div class="difference-card"></div>
@@ -735,10 +738,14 @@
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                  <div class="difference-block-head">
+                    <h3 class="stage-step-title">정량적 관리</h3>
+                    <p class="desc">교육 전후 역량을 같은 문항·같은 기준으로 두 번 잽니다.</p>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <code>difference-screen</code>
+            <code>difference-blocks · difference-block-head</code>
           </article>
           <article class="guide-motion-item">
             <div><p class="tag">헤더 상태</p><h3>Header &amp; Menu</h3></div>
