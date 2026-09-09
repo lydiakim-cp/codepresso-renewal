@@ -283,7 +283,7 @@
     --section-gap: var(--space-48);
   }
 
-  /* 세 가지 차이를 카드 세 장에 나눠 담는다. 흰 섹션이라 카드는 틴트로
+  /* 세 가지 차이를 카드 세 장에 나눠 담는다. 흰 섹션이라 카드는 옅은 회색으로
      가라앉히고, 그 안의 제품 화면(preview-frame)만 흰 면으로 떠오른다. */
   .difference-blocks {
     display: grid;
@@ -296,8 +296,11 @@
     gap: var(--space-28);
     padding: var(--space-35);
     border-radius: var(--radius-xl);
-    background: var(--color-brand-tint-2);
+    background: var(--color-surface-mist);
   }
+
+  /* 회색 카드 위에 얹히는 화면이라 그림자 없이 면으로만 띄운다. */
+  .difference-blocks .preview-frame { box-shadow: none; }
 
   .difference-block-head {
     display: grid;
@@ -307,7 +310,7 @@
     max-width: 72ch;
   }
 
-  /* 틴트 카드 위라 칩은 흰 면으로 띄운다 — cycle의 .blue 칸과 같은 처리다. */
+  /* 회색 카드 위라 칩은 흰 면으로 띄운다 — cycle의 .blue 칸과 같은 처리다. */
   .difference-block-no {
     display: inline-flex;
     align-items: center;
