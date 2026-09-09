@@ -96,11 +96,19 @@
 
   .journey-track { display: none; }
 
+  /* 1단에서는 판 하나를 고정할 수 없다 — 껍데기는 배경 없는 스택으로 풀고,
+     판의 생김새(면·선·그림자·여백)는 단계마다 하나씩 옮겨 준다. */
   .journey-viewport {
     position: static;
     display: flex;
     flex-direction: column;
-    gap: var(--space-48);
+    gap: var(--space-24);
+    padding: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   /* 1단에서는 스테이지가 풀려 단계가 위에서 아래로 쌓인다 — 컴포넌트의
@@ -111,6 +119,17 @@
     visibility: visible;
     height: auto;
     transform: none;
+  }
+
+  /* 각 단계가 제 박스를 갖는다 — .content-panel + .surface-glass와 같은 조합. */
+  .journey-viewport > .journey-step {
+    padding: var(--content-panel-padding);
+    border-radius: var(--radius-lg);
+    background: var(--color-glass-surface);
+    border: 1px solid var(--color-glass-line);
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
   }
 
   /* 스테이지가 풀리면 is-popping을 붙여 줄 주체가 없다 — 목업을 그냥 켜 둔다.
@@ -637,9 +656,13 @@
   }
 
   .journey-viewport {
-    gap: var(--space-40);
-    padding: var(--space-18);
+    gap: var(--space-16);
+    min-width: 0;
+  }
 
+  /* 좁은 화면에서는 단계 박스마다 여백을 줄이고, 넘치는 목업은 그 박스 안에서 흐른다. */
+  .journey-viewport > .journey-step {
+    padding: var(--space-18);
     min-width: 0;
     overflow-x: auto;
   }
@@ -660,8 +683,6 @@
   }
 
   .diagnosis-products { display: none; width: 0; }
-
-  .diagnosis-preview-panel { gap: var(--space-24); }
 
   .difference-blocks { display: none; }
 
