@@ -81,6 +81,11 @@
   color: color-mix(in srgb, var(--color-surface) 82%, transparent);
 }
 
+.cycle > li.is-return .tag {
+  background: color-mix(in srgb, var(--color-surface) 24%, transparent);
+  color: var(--color-surface);
+}
+
 .cycle-head {
   display: flex;
   align-items: center;
@@ -107,7 +112,8 @@
   background: var(--color-brand-tint-2);
 }
 
-.cycle > li.blue .cycle-no {
+.cycle > li.blue .cycle-no,
+.cycle > li.blue .tag {
   background: var(--color-surface);
 }
 

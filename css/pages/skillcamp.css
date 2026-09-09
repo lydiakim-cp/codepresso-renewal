@@ -62,9 +62,13 @@
     gap: var(--space-20);
   }
 
-  /* 01 우측 — 목업 대신 실제 화면 캡처 한 장(skillcertify 히어로와 같은 역할). 420px 칸보다 넓게 560px로 키운다. */
-  .skillcamp .scenario-layout {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
+  /* 01 우측 — 목업 대신 실제 화면 캡처 한 장(skillcertify 히어로와 같은 역할). 420px 칸보다 넓게 560px로 키운다.
+     900px 이하는 mobile.css가 1단으로 접는데 이 규칙이 특이성으로 이겨 왼쪽 칸이 0px이 됐다 —
+     skillpath와 같이 데스크톱 폭에서만 걸리게 한다. */
+  @media (min-width: 901px) {
+    .skillcamp .scenario-layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
+    }
   }
 
   .skillcamp .scenario-layout .hero-visual img {

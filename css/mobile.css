@@ -36,7 +36,7 @@
   }
 
   .scenario-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--space-35);
   }
 
@@ -81,7 +81,7 @@
 
   .diagnosis-preview-caption { height: auto; }
 
-  .difference-mock { padding: var(--space-24); }
+  .difference-blocks > li { padding: var(--space-24); }
 
   .difference-screen-body,
   .difference-screen-body.is-cycle,
@@ -89,10 +89,6 @@
   .difference-screen-body.is-field {
     grid-template-columns: 1fr;
   }
-
-  .difference-block-head { grid-template-columns: minmax(0, 1fr); }
-
-  .difference-block-desc { grid-column: 1; }
 
   .difference-screen-body { min-height: 0; }
 
@@ -107,19 +103,24 @@
     gap: var(--space-48);
   }
 
+  /* 1단에서는 스테이지가 풀려 단계가 위에서 아래로 쌓인다 — 컴포넌트의
+     height: 0(비활성 단계를 접는 값)까지 함께 풀어야 다 보인다. */
   .journey-step {
     grid-area: auto;
     opacity: 1;
     visibility: visible;
+    height: auto;
     transform: none;
   }
 
-  .journey-mock > *,
-  .journey-app-rail > *,
-  .journey-app-side > *,
-  .journey-app-main > *,
-  .journey-app-tutor > *,
-  .journey-app-skill {
+  /* 스테이지가 풀리면 is-popping을 붙여 줄 주체가 없다 — 목업을 그냥 켜 둔다.
+     컴포넌트 쪽 게이트가 .journey-step 한 겹을 더 갖고 있어 여기서도 맞춰야 이긴다. */
+  .journey-step .journey-mock > *,
+  .journey-step .journey-app-rail > *,
+  .journey-step .journey-app-side > *,
+  .journey-step .journey-app-main > *,
+  .journey-step .journey-app-tutor > *,
+  .journey-step .journey-app-skill {
     opacity: 1;
   }
 
@@ -419,12 +420,18 @@
 
   .skillpath .catalog-group .item-grid { --item-grid-columns: 2; }
 
+  /* 헤더가 스크롤로 숨는 순간 top 기준 배너만 허공에 떠 본문을 가린다 —
+     모바일에서는 화면 아래에 붙여 엄지 위치에 두고 본문과 겹치지 않게 한다. */
   .floating-cta {
     right: var(--space-16);
     left: var(--space-16);
-    top: calc(75px + var(--space-12));
+    top: auto;
+    bottom: var(--space-16);
     width: auto;
+    transform: translateY(12px);
   }
+
+  .floating-cta.is-shown { transform: translateY(0); }
 
   .floating-cta-link { padding: var(--space-12); }
 
@@ -497,7 +504,7 @@
     gap: 20px;
   }
 
-  .section-cta { flex-wrap: wrap; }
+  .section-cta { flex-wrap: wrap; flex-shrink: 1; min-width: 0; }
   .section-content { min-height: 0; }
 
   .header-actions .btn-ghost { display: none; }
@@ -602,8 +609,9 @@
 
   .part-nav::-webkit-scrollbar { display: none; }
 
+  /* 터치 타깃 44px — 세로 padding을 키운다(인디케이터 높이는 nav를 따라가 함께 커진다) */
   .part-nav-item {
-    padding: var(--space-6) var(--space-12);
+    padding: var(--space-12) var(--space-12);
     white-space: nowrap;
   }
 
@@ -642,11 +650,21 @@
     zoom: var(--mock-fit);
   }
 
+  .skillpath .journey [data-scenario-screens] {
+    min-width: 0;
+    overflow-x: auto;
+  }
+
+  .journey-track-mock {
+    --mock-fit-width: 560px;
+    zoom: var(--mock-fit);
+  }
+
   .diagnosis-products { display: none; width: 0; }
 
   .diagnosis-preview-panel { gap: var(--space-24); }
 
-  .difference-mock { display: none; }
+  .difference-blocks { display: none; }
 
   .difference-mobile { display: block; }
 
@@ -765,7 +783,7 @@
 
   .difference-page .slide-rail::after { display: none; }
 
-  .difference-page .slide-rail-label { white-space: normal; }
+  .difference-page .slide-rail-label { flex: 0 1 auto; white-space: normal; }
 
   .difference-page .cycle {
     grid-template-columns: 1fr;
