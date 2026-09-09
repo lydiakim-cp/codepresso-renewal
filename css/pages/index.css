@@ -294,7 +294,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-28);
-    padding: var(--space-35);
+    padding: var(--space-48) var(--space-100);
     border-radius: var(--radius-xl);
     background: var(--color-surface-mist);
   }
@@ -307,10 +307,9 @@
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
     gap: var(--space-8) var(--space-12);
-    max-width: 72ch;
   }
 
-  /* 회색 카드 위라 칩은 흰 면으로 띄운다 — cycle의 .blue 칸과 같은 처리다. */
+  /* 목업 안 step-no·course-mark와 같은 칩 문법 — 틴트 면에 브랜드 글자. */
   .difference-block-no {
     display: inline-flex;
     align-items: center;
@@ -319,7 +318,7 @@
     width: var(--space-28);
     height: var(--space-28);
     border-radius: var(--radius-md);
-    background: var(--color-surface);
+    background: var(--color-brand-tint-2);
     color: var(--color-brand);
     font-size: var(--text-body-14);
     line-height: var(--leading-body-14);
