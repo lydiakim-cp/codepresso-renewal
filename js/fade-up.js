@@ -15,13 +15,15 @@
     return;
   }
 
+  // 면적 비율(threshold)이 아니라 위치로 판정한다 — 뷰포트보다 훨씬 긴 섹션은
+  // 교차 비율이 15%에 영원히 못 닿아 opacity: 0으로 남는다(cases.html 사례 목록 5120px).
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add('is-visible');
       observer.unobserve(entry.target);
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
 
   targets.forEach((el) => observer.observe(el));
 })();
