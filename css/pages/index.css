@@ -111,6 +111,49 @@
 
   .features .cycle { --cycle-columns: 3; }
 
+  /* 각 단계가 쓰는 제품 — 라벨 + 칩 줄을 한 덩이로 묶어 카드 바닥에 붙인다(auto).
+     윗선은 장식이 아니라 구분선 — 카드의 본문(제목·설명)과 부록(도구 목록)을 나눈다. */
+  .features .step-products-group {
+    margin-block-start: auto;
+    padding-block-start: var(--space-16);
+    border-block-start: 1px solid color-mix(in srgb, var(--color-brand) 16%, transparent);
+  }
+
+  .features .cycle > li.is-return .step-products-group {
+    border-block-start-color: color-mix(in srgb, var(--color-surface) 26%, transparent);
+  }
+
+  .features .step-products-label {
+    color: var(--color-ink-lighter);
+    font-size: var(--text-body-14);
+    line-height: var(--leading-body-14);
+  }
+
+  .features .cycle > li.is-return .step-products-label {
+    color: color-mix(in srgb, var(--color-surface) 68%, transparent);
+  }
+
+  .features .step-products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-block-start: var(--space-6);
+  }
+
+  /* 칩은 각 칸의 바탕과 반대쪽으로 칠한다 — 밝은 틴트 칸에서는 어두운 면,
+     브랜드 면 칸에서는 옅은 흰 면. 파랑을 빼서 제목·설명과 색으로 경쟁하지 않는다. */
+  .features .cycle > li.blue .step-products .tag {
+    background: var(--color-ink);
+    border: 0;
+    color: var(--color-surface);
+  }
+
+  .features .cycle > li.is-return .step-products .tag {
+    background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+    border: 0;
+    color: var(--color-brand-dark);
+  }
+
   /* 글만 네 덩이라 읽기 전에 눈이 쉴 곳이 없다 — 칸 좌상단에 도형을 하나 준다.
      세 아이콘 모두 판 없는 단색 글리프로 통일한다(면/선이 섞이면 따로 논다). */
   .features .cycle-icon {
@@ -295,13 +338,6 @@
     background:
       radial-gradient(90% 140% at 100% 0%, color-mix(in srgb, var(--color-brand) 26%, transparent), transparent 60%),
       linear-gradient(140deg, var(--color-ink-heaviest) 0%, var(--color-ink-heaviest) 100%);
-  }
-
-  .difference-screen-title {
-    font-size: var(--text-body-13);
-    line-height: var(--leading-body-13);
-    font-weight: var(--font-weight-medium);
-    color: var(--color-ink-lighter);
   }
 
   .difference-screen-body {
