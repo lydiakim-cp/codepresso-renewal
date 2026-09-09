@@ -7,6 +7,11 @@ body {
   letter-spacing: var(--tracking-base);
   line-height: 1.6;
   font-size: var(--text-body);
+
+  /* 한글은 기본값(break-all에 가까운 동작)이면 어절 한가운데서 끊긴다("스택까/지").
+     어절 단위로 끊고, 끊을 곳이 없는 긴 영문·URL만 예외로 강제 줄바꿈한다. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 h1 {
