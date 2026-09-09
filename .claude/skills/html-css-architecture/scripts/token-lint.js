@@ -16,6 +16,7 @@
  *   4. font-weight 리터럴          — var(--font-weight-*)로만
  *   5. border-radius 리터럴        — var(--radius-*)로만 (50%·999px 알약은 허용)
  *   6. padding/margin/gap 리터럴   — --space 스케일에 없는 값이면 경고
+ *   7. 요소에 새로 붙은 max-width  — 폭은 컨테이너·그리드가 정한다(--container-* 는 허용)
  *
  * 종료 코드 — 새 오류(✗) 1건 이상이면 1.
  */
@@ -154,6 +155,15 @@ for (const abs of files) {
     if (radius && !isDecl) {
       const v = radius[1].trim();
       if (!v.includes('var(') && !RADIUS_OK.test(v)) push('✗', n, `border-radius ${v} 리터럴 — var(--radius-*)를 쓴다`);
+    }
+
+    // 7. 임의의 폭 제한 — 요청에 없던 max-width가 매번 생겨 손수정으로 걷어냈다
+    const maxw = line.match(/max-width\s*:\s*([^;]+)/);
+    if (maxw && !isDecl && !line.includes('@media')) {
+      const v = maxw[1].trim();
+      if (!/var\(--container-|100%|none|inherit/.test(v)) {
+        push('⚠', n, `max-width ${v} — 폭은 컨테이너·그리드가 정한다. 정말 필요하면 사용자에게 먼저 묻는다`);
+      }
     }
 
     // 6. 여백 스케일
