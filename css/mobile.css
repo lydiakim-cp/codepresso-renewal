@@ -336,7 +336,6 @@
   .content-panel,
   .skillfit .content-panel { --content-panel-padding: var(--space-24); }
 
-  .metric-card__visual { width: 64px; height: 64px; }
   .metric-card__glow:first-child { width: 140px; height: 140px; }
   .metric-card__glow:nth-child(2) { width: 200px; height: 200px; }
 
@@ -517,7 +516,7 @@
     display: block;
     margin-inline: calc(-1 * var(--space-20));
     aspect-ratio: 1448 / 800;
-    background: url("../images/main-bg.png") center / cover no-repeat;
+    background: url("../images/main_banner_img_pc.avif") center / cover no-repeat;
     margin-top: -48px;
   }
 
