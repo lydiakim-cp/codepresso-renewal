@@ -17,7 +17,7 @@
 
 | 담을 콘텐츠의 형태 | 고르는 것 | 고르지 않는 것 |
 |---|---|---|
-| 기능·특징 3~4개, 아이콘 + 한 줄 설명 | `feature-card` (자동 순환은 `data-feature-cycle`) | `content-panel` — 큰 시각 요소가 없으면 과하다 |
+| 기능·특징 3~4개, 아이콘 + 한 줄 설명 | `feature-card` (전환 애니메이션 없이 항상 펼친 정적 카드) | `content-panel` — 큰 시각 요소가 없으면 과하다 |
 | 분류(카테고리)가 있는 20개 이상의 목록 | `tab-catalog` (좌측 rail이 분류, panel이 항목) | 카드 그리드를 새로 만들기 — `__items`가 그리드 + stagger를 이미 갖고 있다 |
 | 순서가 있고 **기간·날짜가 붙는** 단계 | `timeline` | `cycle` — 기간 칸이 없다 |
 | 순서가 있고 기간이 없는 N단계(선형·순환) | `cycle` (`--cycle-columns`, 순환 결론 칸은 `.is-return`) | `process-steps` — ax-build·ax-grow(다크) 전용이다 |
@@ -99,7 +99,7 @@
 | Text 유틸리티 | `text.css` | `.text-label`, `.text-caption`, `.desc`, `.description` 등 | 자잘한 보조 텍스트 스타일. **14px/ink-light 카드 설명은 `.description` 하나로 통일**(cycle·problem·industry 카드가 각자 갖고 있던 같은 3줄을 걷어냈다) |
 | Surface | `surface.css` | `.surface-glass` 등 | 배경 표면(유리 질감 등) 유틸리티 |
 | Summary Banner | `summary-banner.css` | `.summary-banner`, `.dark`, `.stats-light`, `.bridge-inner`/`.bridge-copy`/`.bridge-title`/`.bridge-desc` | 한 줄 강조 배너, 통계 묶음 배경. **브릿지 변형** — 어두운 배너 안에서 좌 문구 · 우 CTA로 갈라 다음 페이지로 넘긴다(skills 07 · aifluent 06이 같은 값을 쓰고 있어 페이지 스코프에서 공용으로 올렸다). 진입 시 CTA 화살표가 두 번 튀는 연출과 `prefers-reduced-motion` 대응도 컴포넌트가 갖는다 |
-| Feature Card | `feature-card.css` | `.feature-card`, `-icon-row`, `-icon`, `-arrow`, `-progress` | 아이콘+제목+설명형 카드 (자동 순환 가능, `js/feature-card-cycle.js`) |
+| Feature Card | `feature-card.css` | `.feature-card`, `-icon-row`, `-icon`, `-arrow` | 아이콘+제목+설명형 카드. 전환 애니메이션 없이 항상 펼친 정적 카드 |
 | Card / Grid | `layout.css` | `.card`, `.grid`, `.flex-row` | 카탈로그 문서에서 쓰는 범용 카드/그리드 (서비스 페이지에도 쓸 수 있음) |
 | Dot Line | `layout.css` | `.dot-line` | 섹션 사이 점선 구분선 |
 | Fade Up | `layout.css` | `.fade-up`, `.is-visible` | 스크롤 진입 모션 (`js/fade-up.js`와 짝, [subpage-guide.md](subpage-guide.md) 4번) |
@@ -261,7 +261,7 @@ skillcertify(3장 축소판) 두 페이지가 카드 껍데기·로고 판(`outc
 
 - 01은 `catalog-group--stacked` + `item-grid`(4열 타일) + `catalog-group__note`,
   02는 `scenario-layout` + `timeline`(term 칸 사용) + `journey-mock` 목업 4장 +
-  `start-card` 3열, 이용 방식은 `feature-card`(자동 순환), 03은 `start-card` 3열이다.
+  `start-card` 3열, 이용 방식은 `feature-card`(정적), 03은 `start-card` 3열이다.
 - 섹션 이름이 두 번째 `features`라 `features-enterprise`로 한 단어를 붙였다
   (aifluent의 `features-mode`·`catalog-level`과 같은 방식).
 

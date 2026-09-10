@@ -91,16 +91,11 @@
 }
 /* 공용 컴포넌트 다크 반전 */
 
-.main-dark .features .feature-card.is-active {
+.main-dark .features .feature-card {
   background: var(--color-axpresso-box-tint);
-  box-shadow: none;
 }
 
 .main-dark .feature-card .section-body-title {
-  color: var(--color-axpresso-ink);
-}
-
-.main-dark .feature-card.is-active .section-body-title {
   color: color-mix(in srgb, var(--color-brand) 45%, white);
 }
 
@@ -108,14 +103,6 @@
   border: 0;
   background: var(--color-axpresso-box);
   box-shadow: none;
-}
-
-.main-dark .feature-card-progress {
-  background: var(--color-line);
-}
-
-.main-dark .feature-card-progress-bar {
-  background: var(--color-axpresso-ink);
 }
 
 .main-dark .process-steps {

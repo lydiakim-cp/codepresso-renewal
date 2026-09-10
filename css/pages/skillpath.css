@@ -61,10 +61,6 @@
     border: 1px solid var(--color-line);
   }
 
-  .skillpath .start-icon {
-    background: var(--color-brand-tint-2);
-  }
-
   /* 두 번째 묶음은 목업 옆 STEP 목록과 한 섹션이라 위쪽 간격만 벌린다. */
   .skillpath .journey .section-content + .section-content {
     margin-top: var(--space-48);
@@ -78,6 +74,11 @@
 
   /* 03 기업 도입 — 조건 3장을 가로로 나란히. */
   .skillpath .features-enterprise .start-grid {
+    --start-columns: 3;
+  }
+
+  /* 04 이용 방식 — 세 가지 이용 기준을 한눈에 비교한다. */
+  .skillpath .features .start-grid {
     --start-columns: 3;
   }
 

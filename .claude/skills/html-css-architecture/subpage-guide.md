@@ -209,7 +209,7 @@ SKILL.md의 "페이지·섹션 구조 관례"를 그대로 따른다:
 | `js/fade-up.js` | `.fade-up` 요소가 스크롤로 화면에 들어오면 `.is-visible`을 붙여 위로 떠오르며 나타나게 함 | **항상 필요** (섹션에 `fade-up` 클래스를 쓰는 한) |
 | `js/header-scroll.js` | GNB를 스크롤에 따라 투명→반투명+blur로 전환, 숨김/등장 처리 | **항상 필요** (GNB를 쓰는 한) |
 | `js/nav-menu.js` | GNB 메가메뉴 열기/닫기(hover + 키보드) | **항상 필요** (GNB를 쓰는 한) |
-| `js/feature-card-cycle.js` | `how-it-works`의 `feature-card` 자동 순환 | `feature-card-grid[data-feature-cycle]`을 이 페이지에 쓸 때만 |
+| `js/feature-card-cycle.js` | `blend-cycle` 자동 순환(`feature-card-grid`는 정적이라 이 스크립트가 필요 없다) | `blend-cycle[data-feature-cycle]`을 이 페이지에 쓸 때만 |
 | `js/proof-card-slider.js` | `proof-card` 덱 슬라이더 | `proof-card-deck[data-proof-deck]`을 쓸 때만 |
 | `js/stat-reveal.js` | `metric-card` 숫자 카운트업 + 진행바 | `[data-stat-reveal]`을 쓸 때만 |
 | `js/part-nav.js` | PART 1/2 같은 세그먼트 내비게이션의 스크롤 연동 활성 표시 | `part-nav[data-part-nav]`를 쓸 때만 |

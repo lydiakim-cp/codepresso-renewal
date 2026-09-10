@@ -286,6 +286,33 @@
     background: var(--color-axpresso-bg-4);
   }
 
+  /* 공통·직군별 업무를 함께 조합해 쓸 수 있음을 +로 연결한다. */
+  .ax-build .catalog-group__plus {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    align-self: center;
+    justify-self: center;
+  }
+
+  .ax-build .catalog-group__plus svg {
+    display: block;
+    width: 32px;
+    height: 32px;
+  }
+
+  @media (min-width: 901px) {
+    .ax-build .catalog-group {
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    }
+
+    .ax-build .catalog-group__plain { grid-column: 1; }
+    .ax-build .catalog-group__plus { grid-column: 2; grid-row: 1 / -1; }
+    .ax-build .catalog-group__tabbed { grid-column: 3; }
+  }
+
   .ax-build .catalog-group .tag {
     background: var(--color-axpresso-box);
     color: var(--color-axpresso-ink);

@@ -487,23 +487,6 @@
     introObserver.observe(root);
   }
 
-  /* 목업은 고정 560px 폭 디자인이라, 그보다 좁은 화면(모바일)에서는 통째로 줄여 넣는다
-     — 내용을 다시 짜지 않고 원본 비율 그대로 보여주는 쪽을 택했다.
-     transform:scale은 레이아웃 공간을 그대로 차지해 버려서, 마운트 높이를 축소된
-     높이로 직접 맞춰준다(그렇지 않으면 원본 높이만큼 빈 공간이 아래 남는다). */
-  function fitToContainer() {
-    root.style.transform = 'none';
-    mount.style.height = 'auto';
-    var naturalWidth = root.scrollWidth;
-    var naturalHeight = root.scrollHeight;
-    var available = mount.clientWidth;
-    var scale = Math.min(1, available / naturalWidth);
-    if (scale < 1) {
-      root.style.transform = 'scale(' + scale + ')';
-      mount.style.height = Math.ceil(naturalHeight * scale) + 'px';
-    }
-  }
-  root.style.transformOrigin = 'top left';
-  fitToContainer();
-  window.addEventListener('resize', fitToContainer);
+  /* SkillPath 전용 목업은 CSS가 데스크톱과 모바일 폭을 직접 제어한다.
+     인라인 transform·transform-origin·높이를 지정하지 않아 레이아웃이 축소되지 않는다. */
 })();

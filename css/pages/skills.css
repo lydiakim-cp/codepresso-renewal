@@ -66,19 +66,10 @@
     }
   }
 
-  /* 02 Why It Matters — feature-card 자동 순환. 활성 카드만 흰색으로 구분 */
-  .skills .features .feature-card.is-active {
+  /* 02 Why It Matters — feature-card. 흰 배경으로 구분 */
+  .skills .features .feature-card {
     background: var(--color-surface);
     box-shadow: var(--shadow-sm);
-  }
-
-  .skills .features .feature-card .section-body-description {
-    opacity: .45;
-    transform: translateY(0);
-  }
-
-  .skills .features .feature-card.is-active .section-body-description {
-    opacity: 1;
   }
 
   /* 03 Assess · 04 Learn — 제품 카드. 공용 content-panel을 그대로 쓰고 */

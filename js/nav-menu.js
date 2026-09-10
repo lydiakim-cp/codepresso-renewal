@@ -11,7 +11,10 @@
  * 먼저 돌면 [data-nav-item]이 아직 없다. 그래서 `partials:loaded`를 기다렸다가 초기화한다.
  */
 (() => {
+  let started = false;
   const init = () => {
+  if (started) return;
+  started = true;
   const items = Array.from(document.querySelectorAll("[data-nav-item]"));
   if (!items.length) return;
 
@@ -85,5 +88,12 @@
   window.addEventListener("scroll", closeAll, { passive: true });
   };
 
-  document.addEventListener("partials:loaded", init, { once: true });
+  // partials 주입을 기다린다. 이미 끝났거나(표식) include-partials.js가 아예 없는
+  // 경우(헤더가 외부 패키지로 대체된 경우)에도 초기화가 한 번은 돌게 한다.
+  if (document.documentElement.dataset.partials === 'loaded') {
+    init();
+  } else {
+    document.addEventListener('partials:loaded', init, { once: true });
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  }
 })();

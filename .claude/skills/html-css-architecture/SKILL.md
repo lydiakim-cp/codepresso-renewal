@@ -244,6 +244,7 @@ css/
 | **작업을 마친 뒤 — 색·구조·배치를 디자이너 시점으로 검수한다** | [references/design-qa.md](references/design-qa.md) (대비 자동 검수: `scripts/contrast-audit.js`) |
 | **작업을 마치기 직전** | [references/checklist.md](references/checklist.md) |
 | **다른 프로젝트에 이식한다 / 왜 필요한지 설명한다** | [references/porting.md](references/porting.md) |
+| **헤더·푸터를 기존 코드프레소 것으로 교체한다** | [references/header-footer-swap.md](references/header-footer-swap.md) |
 
 ## 게이트 — 문서가 아니라 기계가 지키는 것
 

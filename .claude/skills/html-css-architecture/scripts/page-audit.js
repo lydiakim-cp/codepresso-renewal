@@ -41,8 +41,15 @@ const HOOKS = [
   { script: 'js/stack-scroll.js', test: /data-stack-scroll/ },
 ];
 
+/* 헤더·푸터 공급 방식. 외부 패키지로 교체되면 required를 false로 내리거나
+   패키지 스크립트 이름을 여기 적는다 → references/header-footer-swap.md */
+const HEADER_SUPPLY = { required: true };
+
 /* GNB·footer 조각 안에 훅이 있어 페이지 마크업만 봐서는 알 수 없는 것들 */
 const PARTIAL_SCRIPTS = ['js/header-scroll.js', 'js/nav-menu.js'];
+
+/* 마크업 훅 없이 <main>만 있으면 도는 것들. 헤더와 무관하게 살아남아야 한다. */
+const STANDALONE_SCRIPTS = ['js/scroll-progress.js'];
 
 /* 스타일이 사라졌는데 마크업에 남은 클래스들. 새로 생긴 것과 구분하기 위한 기록이며,
    비우는 것이 목표다(각 항목은 "마크업에서 지운다" 또는 "CSS를 되살린다" 중 하나). */
@@ -149,20 +156,30 @@ const auditPage = (file) => {
     if (!isDark && hasImport) err.push('main-dark.css를 @import했는데 <main>에 main-dark 클래스가 없다');
   }
 
-  // 3. partials · 스크립트 순서
+  // 3. 헤더·푸터 공급 방식 · 스크립트 순서
+  // 헤더·푸터는 외부 패키지로 교체될 예정이라 공급 방식을 하나로 못 박지 않는다.
+  // 지금은 partials 주입(data-include)이고, 교체 후에는 패키지 스크립트가 그린다.
+  // 검사하는 것은 "방식이 무엇이냐"가 아니라 "페이지마다 다르지 않으냐"다.
   const scripts = [...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map((m) => m[1]);
-  for (const part of ['partials/header.html', 'partials/footer.html']) {
-    if (!html.includes(`data-include="${part}"`)) err.push(`${part}을 data-include로 불러오지 않았다`);
-  }
-  if (/<header[\s>]/.test(html) || /<footer[\s>]/.test(html)) {
-    err.push('페이지에 <header>/<footer> 태그를 직접 썼다 — partials 조각을 쓴다');
-  }
-  if (scripts.length && scripts[0] !== 'js/include-partials.js') {
-    err.push(`include-partials.js가 첫 스크립트가 아니다 (현재 첫 스크립트: ${scripts[0]})`);
+  const usesPartials = html.includes('data-include="partials/');
+
+  if (usesPartials) {
+    for (const part of ['partials/header.html', 'partials/footer.html']) {
+      if (!html.includes(`data-include="${part}"`)) err.push(`${part}을 data-include로 불러오지 않았다`);
+    }
+    if (/<header[\s>]/.test(html) || /<footer[\s>]/.test(html)) {
+      err.push('페이지에 <header>/<footer> 태그를 직접 썼다 — partials 조각을 쓴다');
+    }
+    if (scripts.length && scripts[0] !== 'js/include-partials.js') {
+      err.push(`include-partials.js가 첫 스크립트가 아니다 (현재 첫 스크립트: ${scripts[0]})`);
+    }
+  } else if (HEADER_SUPPLY.required) {
+    // 아직 교체 전인데 슬롯이 통째로 사라졌다면 GNB가 없는 페이지가 된 것이다.
+    err.push('헤더·푸터를 불러오는 곳이 없다 — partials 슬롯이나 패키지 스크립트 중 하나는 있어야 한다');
   }
 
   // 4. 훅 ↔ 스크립트 양방향
-  const known = new Set([...HOOKS.map((h) => h.script), ...PARTIAL_SCRIPTS]);
+  const known = new Set([...HOOKS.map((h) => h.script), ...PARTIAL_SCRIPTS, ...STANDALONE_SCRIPTS]);
   for (const { script, test } of HOOKS) {
     const used = test.test(html);
     const loaded = scripts.includes(script);

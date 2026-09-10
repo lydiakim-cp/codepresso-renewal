@@ -110,7 +110,7 @@ JS가 토글하는 상태는 **반드시 `is-` 접두사**를 쓴다. `active`, 
 JS가 요소를 찾을 때는 클래스가 아니라 `data-*` 속성을 쓴다. 스타일용 클래스와 동작용 훅을 분리해, CSS를 정리해도 JS가 깨지지 않게 한다.
 
 ```html
-<div class="feature-card-grid" data-feature-cycle data-interval="5000">
+<ol class="blend-cycle" data-feature-cycle data-interval="5000">
 ```
 
 - 명명은 `data-{기능}` 또는 `data-{기능}-{부분}` (`data-journey-stage`, `data-journey-track-step`).

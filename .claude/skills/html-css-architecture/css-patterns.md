@@ -343,9 +343,9 @@ transition: opacity var(--duration-scroll) var(--ease-scroll),
 ## 5. 상태와 JS 훅
 
 ```html
-<div class="feature-card-grid" data-feature-cycle data-interval="5000">
-  <article class="feature-card is-active">…</article>
-</div>
+<ol class="blend-cycle" data-feature-cycle data-interval="5000">
+  <li class="blend-step is-active">…</li>
+</ol>
 ```
 
 | 용도 | 방식 | 규칙 |

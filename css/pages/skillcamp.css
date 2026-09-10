@@ -20,10 +20,7 @@
     gap: var(--space-16);
   }
 
-  /* 아이콘 상자에도 연한 브랜드 면을 깔아 카드 첫머리가 비어 보이지 않게 한다. */
-  .skillcamp .process .start-icon {
-    background: var(--color-brand-tint-2);
-  }
+
 
   /* start-card는 면이 없는 골격이라 sunken 섹션 위에서 묻힌다 — 흰 면과 선을 준다. */
   .skillcamp .process .start-card {
@@ -47,13 +44,18 @@
     background: var(--color-surface-sunken);
   }
 
-  /* 왼쪽 개발 2개는 한 열로 세우고, 오른쪽 비개발 7개는 4열이라 두 줄에서 끝난다. */
+  /* 왼쪽 개발 2개는 한 열로 세우고, 오른쪽 비개발 7개는 4열이라 두 줄에서 끝난다.
+     태그 색(dark vs 틴트)에 맞춰 카드 배경도 같은 축으로 대비시킨다. */
   .skillcamp .catalog-group__plain:first-child {
     --item-grid-columns: 1;
   }
 
   .skillcamp .catalog-group__plain + .catalog-group__plain {
     --item-grid-columns: 4;
+  }
+
+  .skillcamp .catalog-group__plain + .catalog-group__plain .item-grid > li {
+    background: var(--color-brand-tint-2);
   }
 
   /* 01 장면 목록 — 기간 라벨을 쓰지 않아 공용 timeline의 96px 첫 칸을 걷어낸다. */

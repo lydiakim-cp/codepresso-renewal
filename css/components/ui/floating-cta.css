@@ -5,7 +5,7 @@
   position: fixed;
   right: var(--space-24);
 
-  top: calc(75px + var(--space-16));
+  top: calc(var(--header-height) + var(--space-16));
   z-index: 90;
   width: 280px;
 

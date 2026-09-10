@@ -23,6 +23,23 @@
     gap: var(--space-12);
   }
 
+  .axpresso .tool-flow-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-box);
+    height: var(--icon-box);
+    border-radius: var(--radius-lg);
+    border: 1px solid color-mix(in srgb, var(--color-surface) 24%, transparent);
+    background: var(--color-axpresso-box-tint);
+  }
+
+  .axpresso .tool-flow-icon img {
+    width: var(--icon-lg);
+    height: var(--icon-lg);
+    object-fit: contain;
+  }
+
   /* 칩은 섹션이 화면에 들어올 때 왼쪽부터 시간차로 들어온다 */
   .axpresso .fade-up .tool-flow-tools > li {
     opacity: 0;
@@ -39,7 +56,6 @@
   .axpresso .fade-up.is-visible .tool-flow-tools > li:nth-child(2) { transition-delay: .08s; }
   .axpresso .fade-up.is-visible .tool-flow-tools > li:nth-child(3) { transition-delay: .16s; }
   .axpresso .fade-up.is-visible .tool-flow-tools > li:nth-child(4) { transition-delay: .24s; }
-  .axpresso .fade-up.is-visible .tool-flow-tools > li:nth-child(5) { transition-delay: .32s; }
 
   .axpresso .tool-flow-join {
     color: var(--color-ink-lighter);
@@ -81,10 +97,7 @@
     background: var(--color-axpresso-box);
   }
 
-  .axpresso .start-icon {
-    background: var(--color-axpresso-box-tint);
-  }
-
+ 
   /* 05 Results — 결론 배너. 다크 위라 잉크색·브랜드 강조를 밝은 쪽으로 뒤집는다 */
   .axpresso .summary-banner {
     margin-top: var(--space-32);

@@ -10,8 +10,11 @@
 
   .nav { display: none; }
 
+  /* 모바일 헤더는 60px — fixed 헤더에 기댄 것들이 같이 줄도록 토큰째 덮는다. */
+  :root { --header-height: 60px; }
+
   .header-inner {
-    height: 60px;
+    height: var(--header-height);
     padding: var(--space-10) var(--space-20);
     gap: var(--space-12);
     justify-content: space-between;
@@ -328,7 +331,8 @@
   /* 트랙 타일은 4열 → 3열, 카드 3장(대표 트랙 경로·기업 도입)은 본문이 길어 한 열로 세운다 */
   .skillpath .catalog-group .item-grid { --item-grid-columns: 3; }
   .skillpath .journey .start-grid,
-  .skillpath .features-enterprise .start-grid { --start-columns: 1; }
+  .skillpath .features-enterprise .start-grid,
+  .skillpath .features .start-grid { --start-columns: 1; }
 
   .site-footer-inner {
     grid-template-columns: minmax(0, 1fr);
@@ -525,6 +529,69 @@
 
   .skillfit .skillfit-mock-screen { grid-template-columns: 26px minmax(0, 1fr); }
   .skillfit .skillfit-mock-screen .journey-app-side { display: none; }
+
+  /* SkillPath 02 STEP 러닝패스 — 런타임 목업의 560px 고정 캔버스를 풀고,
+     우측 플로팅 패널을 목록 아래로 내려 좁은 화면에서도 가로 넘침 없이 읽는다. */
+  .skillpath .journey-track-mock {
+    padding-top: 0;
+    zoom: 1;
+  }
+
+  .skillpath .journey-track-mock .stage,
+  .skillpath .journey-track-mock .track-list {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .skillpath .journey-track-mock .track-row {
+    gap: var(--space-12);
+  }
+
+  .skillpath .journey-track-mock .track-rail {
+    width: 56px;
+  }
+
+  .skillpath .journey-track-mock .level-badge-card {
+    width: 52px;
+    height: 58px;
+    padding: var(--space-6);
+  }
+
+  .skillpath .journey-track-mock .level-badge-card .ring {
+    width: 42px;
+    height: 42px;
+  }
+
+  .skillpath .journey-track-mock .level-badge-card .ring-inner {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+
+  .skillpath .journey-track-mock .level-head {
+    padding: var(--space-12);
+  }
+
+  .skillpath .journey-track-mock .level-title,
+  .skillpath .journey-track-mock .course-body .title {
+    overflow-wrap: anywhere;
+  }
+
+  .skillpath .journey-track-mock .track-panel {
+    position: static;
+    width: 100%;
+    margin-top: var(--space-20);
+    transform-origin: top center;
+  }
+
+  .skillpath .journey-track-mock .track-tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .skillpath .journey-track-mock .track-tabs::-webkit-scrollbar {
+    display: none;
+  }
 
   .catalog-group {
     --item-grid-columns: 2;
