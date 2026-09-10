@@ -239,12 +239,31 @@
 
   .difference-page .industry-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: var(--space-20);
+  }
+
+  /* 2열이 되면 3번째 칸이 새 행 맨 앞인데도 왼쪽 선을 물려받는다 — 위쪽 선으로 바꾼다 */
+  .difference-page .industry-cards > li + li {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .difference-page .industry-cards > li:nth-child(n + 3) {
+    border-top: 1px solid var(--color-line);
+    padding-top: var(--space-20);
+  }
+
+  .difference-page .industry-cards > li:nth-child(2n) {
+    border-left: 1px solid var(--color-line);
+    padding-left: var(--space-24);
   }
 
   .difference-page .start-grid { --start-columns: 1; }
 
-  /* slide-pair·join·break는 이제 기본이 세로 스택이라 900px 전용 규칙이 필요 없다.
-     비교 두 열(diagnosis-slide)도 900px까지는 나란히 유지한다 — 열 폭이 아직 여유 있다. */
+  /* 비교 두 열(diagnosis-slide)은 900px까지 나란히 유지하지만, "코드프레소" 열의
+     카드+join+카드 가로 배치는 열 폭이 절반으로 줄면 join(96px 알약)에 카드가
+     눌린다 — 이 열만 실패 열처럼 세로로 되돌린다(.slide-join은 원래도 가로라 그대로 둔다). */
+  .difference-page .slide-pair.is-joined { flex-direction: column; }
 
   .difference-page .cycle { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
@@ -423,6 +442,19 @@
 
   .difference-page .industry-cards {
     grid-template-columns: 1fr;
+    row-gap: var(--space-20);
+  }
+
+  /* 1열이 되면 모든 칸이 위쪽 구분선 하나로만 나뉜다(900px 규칙의 왼쪽 선을 여기서 되돌린다) */
+  .difference-page .industry-cards > li:nth-child(2n),
+  .difference-page .industry-cards > li:nth-child(n + 3) {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .difference-page .industry-cards > li + li {
+    border-top: 1px solid var(--color-line);
+    padding-top: var(--space-20);
   }
 
   .difference-page .position-dot {

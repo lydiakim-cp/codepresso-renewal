@@ -33,7 +33,7 @@
       </nav>
       <div class="guide-sidebar-note">
         <strong>현재 버전</strong>
-        <span>2026.08</span>
+        <span>2026.09</span>
         <p>새 화면을 만들기 전, 이 가이드의 구조를 먼저 확인하세요.</p>
       </div>
     </aside>
@@ -554,6 +554,146 @@
             </div>
             <div><p class="tag">분류별 목록</p><h3>Catalog Board</h3><p>항목이 많고 분류가 여러 개일 때, 실제 관리 화면처럼 한 판에 담습니다. 왼쪽에서 분야를 고르면 오른쪽 목록이 바뀝니다. <code>preview-frame--flush</code> 안에 넣어 제품 화면처럼 보여주는 것이 기본입니다.</p><code>tab-catalog · catalog-board.js</code></div>
           </article>
+          <article class="guide-component-row">
+            <div class="guide-component-demo">
+              <div class="feature-card-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr))">
+                <article class="feature-card">
+                  <div class="feature-card-icon-row">
+                    <span class="feature-card-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.5523 9.55228 19 9 19H3C2.44772 19 2 18.5523 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="var(--color-brand)"/><path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="var(--color-brand)"/><path d="M21 19H15C14.4477 19 14 18.5523 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.5523 21.5523 19 21 19Z" fill="var(--color-ink-lighter)"/><path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="var(--color-ink-lighter)"/></svg>
+                    </span>
+                  </div>
+                  <div class="section-body">
+                    <div class="section-body-heading">
+                      <p class="section-body-title">01 · 핵심 팀</p>
+                      <span class="feature-card-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                    </div>
+                    <p class="section-body-subtitle">내부에 실행을 이어갈<br>핵심 팀이 있습니다</p>
+                    <div class="section-body-description">현장에서 직접 문제를 정의할 담당자를 정합니다.</div>
+                  </div>
+                </article>
+                <article class="feature-card">
+                  <div class="feature-card-icon-row">
+                    <span class="feature-card-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" fill="var(--color-brand)"/><path d="M2 17L12 22L22 17" stroke="var(--color-ink-lighter)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="var(--color-ink-lighter)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </div>
+                  <div class="section-body">
+                    <div class="section-body-heading">
+                      <p class="section-body-title">02 · 대상 업무</p>
+                      <span class="feature-card-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                    </div>
+                    <p class="section-body-subtitle">반복되는 업무가<br>이미 정해져 있습니다</p>
+                    <div class="section-body-description">매주 되풀이되는 작업부터 자동화 대상으로 잡습니다.</div>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div><p class="tag">기능 · 조건 카드</p><h3>Feature Card</h3><p>아이콘 + 번호 라벨 + 제목 + 설명을 한 장에 담는 기본 카드입니다. 펼치고 접는 전환 없이 항상 펼친 상태로, 기능·특징·조건 3~4개를 나열할 때 씁니다. 큰 시각 요소가 함께 필요하면 Content Panel을 씁니다.</p><code>feature-card-grid · feature-card · section-body</code></div>
+          </article>
+          <article class="guide-component-row">
+            <div class="guide-component-demo">
+              <ul class="feature-points">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span>직무별 현업 시나리오와 실제 데이터</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span>AI 협업 과정과 산출물 동시 평가</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span>진단 결과와 이어지는 학습 경로</span>
+                </li>
+              </ul>
+            </div>
+            <div><p class="tag">근거 목록</p><h3>Feature Points</h3><p>체크 아이콘 + 한 줄 문장으로 근거·조건·특징을 세우는 목록입니다. 카드가 필요 없을 만큼 짧은 항목일 때 Feature Card 대신 씁니다. 설명 칸 안에 넣어 쓰는 것이 기본입니다.</p><code>feature-points &gt; li</code></div>
+          </article>
+          <article class="guide-component-row">
+            <div class="guide-component-demo">
+              <div class="summary-banner dark" style="width: 100%; padding: var(--space-32)">
+                <div class="bridge-inner">
+                  <div class="bridge-copy">
+                    <p class="bridge-title">역량 데이터는, <strong class="brand">도구 활용</strong>의 출발점이 됩니다</p>
+                    <p class="bridge-desc">진단 결과가 어떤 에이전트와 자동화가 필요한지 알려줍니다.</p>
+                  </div>
+                  <a class="btn btn-outline-inverse" href="#components">차별점 보기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                </div>
+              </div>
+            </div>
+            <div><p class="tag">결론 한 줄 · 다음 페이지</p><h3>Summary Banner</h3><p>섹션의 결론 문장을 본문 폭 안에서 한 줄로 맺습니다. 화면 끝까지 배경을 칠하는 Statement와 달리 본문 폭 안에서 잘립니다. <code>dark</code>에 <code>bridge-inner</code>를 얹으면 좌 문구 · 우 CTA로 갈라 다음 페이지로 넘기는 브릿지가 됩니다.</p><code>summary-banner · dark · bridge-inner · stats-light</code></div>
+          </article>
+          <article class="guide-component-row">
+            <div class="guide-component-demo">
+              <div class="cta-final" style="width: 100%; min-height: 0; padding: var(--space-48) var(--space-24); border-radius: var(--radius-lg)">
+                <div class="section-wrap col cta-final-inner">
+                  <h2 class="cta-final-title" style="font-size: var(--text-heading-32); line-height: var(--leading-heading-32)">다음 분기 교육은 몰입형으로 바꿔보세요</h2>
+                  <p class="cta-final-desc">목표와 일정에 맞는 커리큘럼을 제안해 드립니다.</p>
+                  <div class="cta-final-actions">
+                    <a class="btn btn-primary btn-lg" href="#components">커리큘럼 제안 받기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div><p class="tag">최하단 전환</p><h3>CTA Final</h3><p>모든 페이지의 마지막에 한 번 놓는 전환 유도 섹션입니다. 짙은 브랜드 배경 위에 제목 · 설명 · 버튼 하나만 둡니다. 페이지마다 문구만 바꿔 쓰고, 구조를 바꾸지 않습니다.</p><code>cta-final · cta-final-title · cta-final-actions</code></div>
+          </article>
+        </div>
+        <div class="guide-inventory">
+          <div class="guide-block-head"><h3>전체 컴포넌트 인벤토리</h3><span>위에서 예시로 보여준 것을 포함한 전체 목록</span></div>
+          <h4>범용 컴포넌트 — 모든 페이지에서 바로 씁니다</h4>
+          <div class="guide-inventory-grid">
+            <article><h5>Hero</h5><p>서브페이지 첫 화면. 보조 정보는 유리 띠 한 장(질문형 · 수치형)으로 넣습니다.</p><code>sub-hero · hero-facts</code></article>
+            <article><h5>Button &amp; Link</h5><p>주요 행동은 Primary, 보조는 Ghost와 화살표 링크입니다.</p><code>btn · link-arrow</code></article>
+            <article><h5>Icon Size</h5><p>아이콘 크기는 세 단계와 이미지용 48px 박스만 씁니다.</p><code>icon-sm · icon-md · icon-lg · icon-box</code></article>
+            <article><h5>Tag</h5><p>콘텐츠 분류와 짧은 상태 라벨입니다.</p><code>tag · dark · solid · sm · outline</code></article>
+            <article><h5>Metric Card</h5><p>자랑할 성과 수치. 나쁜 수치에는 쓰지 않습니다.</p><code>metric-card · stat-reveal.js</code></article>
+            <article><h5>Feature Card</h5><p>아이콘 + 제목 + 설명 카드. 기능·조건 3~4개를 나열합니다.</p><code>feature-card-grid · feature-card</code></article>
+            <article><h5>Feature Points</h5><p>체크 아이콘 + 한 줄 문장 목록.</p><code>feature-points &gt; li</code></article>
+            <article><h5>Content Panel</h5><p>설명 + 큰 시각 요소를 한 판에 담습니다.</p><code>content-panel · --compact</code></article>
+            <article><h5>Start Card</h5><p>우열이 아니라 둘 중 하나를 고르는 갈래 카드입니다.</p><code>start-grid · start-card</code></article>
+            <article><h5>Compare Panel</h5><p>지금 → 바뀐 뒤, 우열이 있는 두 상태를 대비합니다.</p><code>compare-panel · is-after</code></article>
+            <article><h5>Pain Card</h5><p>“이런 고민이 있다면”을 세우는 문제 제기 카드입니다.</p><code>pain-grid · pain-card · --detail</code></article>
+            <article><h5>Choice List</h5><p>여러 항목 중 하나를 눌러 들어가는 목록입니다.</p><code>choice-list · is-active</code></article>
+            <article><h5>Timeline</h5><p>기간·날짜가 붙는 단계를 세로로 잇습니다.</p><code>timeline &gt; li</code></article>
+            <article><h5>Cycle</h5><p>기간 없는 N단계. 순환의 결론 칸은 <code>is-return</code>입니다.</p><code>cycle &gt; li · --cycle-columns</code></article>
+            <article><h5>Catalog Board</h5><p>분류가 여러 개인 20개 이상의 목록을 한 판에 담습니다.</p><code>tab-catalog · catalog-board.js</code></article>
+            <article><h5>FAQ List</h5><p>질문을 눌러 답을 펼칩니다. native <code>details</code>입니다.</p><code>faq-list &gt; details</code></article>
+            <article><h5>Outcome Card</h5><p>고객사 로고 판 + 성과 문장. 로고는 잘리지 않습니다.</p><code>outcome-list · outcome-logo</code></article>
+            <article><h5>Media Card</h5><p>썸네일 + 제목형 콘텐츠(뉴스 · 아티클) 카드입니다.</p><code>media-card</code></article>
+            <article><h5>Assessment Card</h5><p>자가진단 · 설문 시작을 유도하는 카드입니다.</p><code>assessment-card</code></article>
+            <article><h5>Part Nav</h5><p>두 파트를 오가는 캡슐형 세그먼트 내비입니다.</p><code>part-nav · --compact</code></article>
+            <article><h5>Preview Frame</h5><p>제품 화면을 담는 목업 프레임입니다.</p><code>preview-frame · --flush</code></article>
+            <article><h5>Product Mock</h5><p>제품 학습·강의 화면 목업 셸. 진입 신호는 쓰는 페이지가 줍니다.</p><code>journey-mock · journey-app</code></article>
+            <article><h5>Mock Motion</h5><p>목업을 실제로 돌아가는 화면처럼 연출합니다(CSS만).</p><code>data-mock-motion</code></article>
+            <article><h5>Skeleton</h5><p>콘텐츠 대기 · 자리표시 상태입니다.</p><code>skeleton-block · skeleton-line</code></article>
+            <article><h5>Journey Stage</h5><p>스크롤에 따라 판 안 내용만 교차 페이드됩니다.</p><code>journey-stage · journey-stage.js</code></article>
+            <article><h5>Scenario Switch</h5><p>좌측 단계를 읽어 내리면 우측 목업이 그 화면으로 바뀝니다.</p><code>scenario-layout · scenario-switch.js</code></article>
+            <article><h5>Statement</h5><p>화면 끝까지 닿는 강조 띠. 페이지당 1곳입니다.</p><code>statement · is-ink</code></article>
+            <article><h5>Summary Banner</h5><p>본문 폭 안의 결론 한 줄. <code>bridge-inner</code>로 다음 페이지에 넘깁니다.</p><code>summary-banner · dark</code></article>
+            <article><h5>Product Feature</h5><p>제품 기능 하나를 좌 설명 · 우 화면 2단으로 눕힙니다.</p><code>product-feature · is-sunken</code></article>
+            <article><h5>Proof Card</h5><p>도입 사례를 덱으로 넘겨 보여줍니다.</p><code>proof-card · proof-card-slider.js</code></article>
+            <article><h5>CTA Final</h5><p>페이지 최하단 전환 유도. 페이지마다 문구만 바꿉니다.</p><code>cta-final</code></article>
+            <article><h5>Floating CTA</h5><p>hero CTA가 화면 밖으로 나가면 따라붙는 배너입니다.</p><code>floating-cta · floating-cta.js</code></article>
+          </div>
+          <h4>공용 프리미티브 — 섹션의 뼈대와 보조 텍스트</h4>
+          <div class="guide-inventory-grid is-reference">
+            <article><h5>Layout</h5><p>모든 섹션의 기본 골격과 정렬입니다.</p><code>section-wrap · col · row · is-sticky</code></article>
+            <article><h5>Section Body</h5><p>카드 안 제목 + 부제 + 설명 묶음입니다.</p><code>section-body-title · -subtitle</code></article>
+            <article><h5>Text 유틸리티</h5><p>라벨 · 캡션 · 카드 설명 등 보조 텍스트입니다.</p><code>text-label · text-caption · description</code></article>
+            <article><h5>Surface</h5><p>유리 질감 등 배경 표면 유틸리티입니다.</p><code>surface-glass</code></article>
+            <article><h5>Fade Up</h5><p>스크롤 진입 모션입니다.</p><code>fade-up · is-visible</code></article>
+            <article><h5>Dot Line</h5><p>섹션 사이 점선 구분선입니다.</p><code>dot-line</code></article>
+            <article><h5>Item Grid</h5><p>한 줄 칩을 auto-fill로 깔고 진입 stagger를 갖습니다.</p><code>item-grid &gt; li</code></article>
+            <article><h5>Header / GNB</h5><p>최상단 내비게이션. 마크업은 <code>partials/header.html</code> 하나입니다.</p><code>header · nav-panel</code></article>
+            <article><h5>Site Footer</h5><p>전 페이지 공용 푸터. 마크업은 <code>partials/footer.html</code> 하나입니다.</p><code>site-footer</code></article>
+            <article><h5>Main Dark</h5><p>AXpresso 계열 다크 톤. <code>main</code>에 붙여 토큰을 뒤집습니다.</p><code>main-dark</code></article>
+          </div>
+          <p class="guide-inventory-note">여기에 없는 화면이 필요하면 새로 만들기 전에 먼저 물어봐 주세요. 같은 역할의 컴포넌트를 두 벌 만들면 이후 문구를 고칠 때 두 곳을 고쳐야 합니다.</p>
         </div>
       </section>
 
@@ -1127,8 +1267,14 @@
             </div>
             <code>data-mock-motion="stage" · is-step · is-cue · is-flow · --mock-step</code>
           </article>
+          <article class="guide-motion-item">
+            <div><p class="tag">G · 작업 처리</p><h3>작업이 자동으로 처리된다 (run)</h3></div>
+            <p>작업 큐의 항목을 Agent가 위에서부터 하나씩 처리하고, 마지막 1건만 사람 확인에서 멈춥니다. “자동으로 돌아가되 판단은 사람이 한다”는 결론이 화면 안에서 읽히는 것이 요점입니다. <code>stage</code>와 같이 무한 반복이 아니라 한 번만 재생됩니다.</p>
+            <p class="guide-inventory-note">움직임만 공용(<code>mock-motion.css</code>)이고 작업 큐 뼈대(<code>run-queue</code> · <code>run-tasks</code> · <code>run-log</code>)는 <code>pages/ax-build.css</code>가 갖고 있어, 살아 있는 예시는 <b>ax-build.html 01번 섹션</b>에서 봅니다. 다른 페이지에서 쓰게 되면 그때 공용으로 올립니다.</p>
+            <code>data-mock-motion="run" · is-task · is-line · is-hold · --mock-run-step</code>
+          </article>
         </div>
-        <div class="guide-callout"><strong>고르는 기준</strong><span>기존 목업을 크게 바꾸지 않고 생기만 더할 때는 <code>focus</code>, 실제 서비스 화면임을 보여야 할 때는 <code>replay</code>, 스크롤 중 눈에 띄어야 할 때는 <code>deck</code>, 정보를 함께 전달해야 할 때는 <code>detail</code>, 숫자로 설득할 때는 <code>ticker</code>, 단계가 순서대로 진행되는 것을 보여줄 때는 <code>stage</code>를 씁니다. 연출은 CSS만으로 돌아가 별도 스크립트가 필요 없고, 움직임 줄이기 설정에서는 모두 완성된 화면으로 정지합니다. <code>stage</code>만 예외로 무한 반복이 아니라 한 번만 재생됩니다 — 단계는 쌓이는 것이라 도로 사라지면 방금 읽은 순서가 부정되기 때문입니다.</span></div>
+        <div class="guide-callout"><strong>고르는 기준</strong><span>기존 목업을 크게 바꾸지 않고 생기만 더할 때는 <code>focus</code>, 실제 서비스 화면임을 보여야 할 때는 <code>replay</code>, 스크롤 중 눈에 띄어야 할 때는 <code>deck</code>, 정보를 함께 전달해야 할 때는 <code>detail</code>, 숫자로 설득할 때는 <code>ticker</code>, 단계가 순서대로 진행되는 것을 보여줄 때는 <code>stage</code>, 자동 처리가 어디서 멈추는지 보일 때는 <code>run</code>을 씁니다. 연출은 CSS만으로 돌아가 별도 스크립트가 필요 없고, 움직임 줄이기 설정에서는 모두 완성된 화면으로 정지합니다. <code>stage</code>와 <code>run</code>만 예외로 무한 반복이 아니라 한 번만 재생됩니다 — 단계는 쌓이는 것이라 도로 사라지면 방금 읽은 순서가 부정되기 때문입니다.</span></div>
       </section>
       <section class="guide-section guide-usage" id="usage">
         <p class="guide-kicker">09 · COMPONENT USAGE</p>
@@ -1149,7 +1295,7 @@
           </article>
         </div>
       </section>
-      <footer class="guide-footer">Codepresso Design Guide · 마지막 업데이트 2026.08</footer>
+      <footer class="guide-footer">Codepresso Design Guide · 마지막 업데이트 2026.09</footer>
     </main>
   </div>
   <!--

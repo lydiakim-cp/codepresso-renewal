@@ -90,7 +90,7 @@
 | Site Footer | `site-footer.css` | `.site-footer`, `-inner`, `-brand`, `-tagline`, `-nav`, `-group`, `-group-title`, `-legal`, `-company`, `-copyright` | 전 페이지 공용 최하단 푸터. 마크업은 `partials/footer.html` 하나이며 `js/include-partials.js`가 삽입한다 |
 | Mock Motion | `mock-motion.css` | `.mock-screen`, `[data-mock-motion]`(focus·replay·deck·detail·ticker·stage·run), `.mock-deck-*`, `.mock-detail-*`, `.is-quiet`, `.is-focus`, `.is-pop`, `.is-shimmer`, `.is-task`/`.is-line`/`.is-hold`(run) | 제품 화면 목업을 실제로 돌아가는 화면처럼 연출 (CSS만, JS 없음). 목업 안은 드래그 선택이 꺼져 있다(`user-select: none`). deck·detail의 2단·겹침 뼈대도 여기 있다(index.html이 쓰면서 designsystem.css에서 올림). `stage`·`run`은 무한 반복이 아니라 한 번 재생이라, 다시 보여주려면 쓰는 쪽이 되감는다(`difference-cycle.js`의 `replayStage()`). `run`은 작업 큐를 Agent가 처리하고 마지막 1건만 `is-hold`로 멈추는 연출(ax-build 01) — 뼈대(`.run-*`)는 페이지 CSS가 갖고 여기는 움직임만 정의한다. 목업 안 텍스트는 14px 제약의 예외 — **9px는 하한이지 기본값이 아니다**(`--mock-text-title` 15px ~ `--mock-text-sm` 9px 4단). 7종 사용법은 [mock-motion-guide.md](mock-motion-guide.md) |
 
-## B. 레이아웃/텍스트 프리미티브 — 카탈로그에 없지만 전 페이지 공용
+## B. 레이아웃/텍스트 프리미티브 — 전 페이지 공용
 
 | 컴포넌트 | CSS 파일 | 대표 클래스 | 용도 |
 |---|---|---|---|
@@ -100,6 +100,7 @@
 | Surface | `surface.css` | `.surface-glass` 등 | 배경 표면(유리 질감 등) 유틸리티 |
 | Summary Banner | `summary-banner.css` | `.summary-banner`, `.dark`, `.stats-light`, `.bridge-inner`/`.bridge-copy`/`.bridge-title`/`.bridge-desc` | 한 줄 강조 배너, 통계 묶음 배경. **브릿지 변형** — 어두운 배너 안에서 좌 문구 · 우 CTA로 갈라 다음 페이지로 넘긴다(skills 07 · aifluent 06이 같은 값을 쓰고 있어 페이지 스코프에서 공용으로 올렸다). 진입 시 CTA 화살표가 두 번 튀는 연출과 `prefers-reduced-motion` 대응도 컴포넌트가 갖는다 |
 | Feature Card | `feature-card.css` | `.feature-card`, `-icon-row`, `-icon`, `-arrow` | 아이콘+제목+설명형 카드. 전환 애니메이션 없이 항상 펼친 정적 카드 |
+| Feature Points | `feature-points.css` | `.feature-points > li` | 체크 아이콘 + 한 줄 문장 목록. 근거·조건·특징을 카드 없이 세울 때 쓴다(aifluent 02·06). 항목이 길어지면 `feature-card`로 올린다 |
 | Card / Grid | `layout.css` | `.card`, `.grid`, `.flex-row` | 카탈로그 문서에서 쓰는 범용 카드/그리드 (서비스 페이지에도 쓸 수 있음) |
 | Dot Line | `layout.css` | `.dot-line` | 섹션 사이 점선 구분선 |
 | Fade Up | `layout.css` | `.fade-up`, `.is-visible` | 스크롤 진입 모션 (`js/fade-up.js`와 짝, [subpage-guide.md](subpage-guide.md) 4번) |

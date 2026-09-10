@@ -68,13 +68,12 @@
           <ul class="problem-grid" data-stat-reveal data-stat-card=".problem-card">
             <!-- 1행 — 도입은 88%인데, 성과는 6%다. is-fact / is-gap 한 쌍. -->
             <li class="problem-card is-fact">
-              <!-- 거의 다 찬 막대 — "많다"를 도형으로 한 번 더 말한다 -->
               <div class="problem-visual" aria-hidden="true">
-                <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="8" y="60" width="14" height="28" rx="3" fill="color-mix(in srgb, var(--color-brand) 28%, var(--color-surface))"/>
-                  <rect x="29" y="44" width="14" height="44" rx="3" fill="color-mix(in srgb, var(--color-brand) 42%, var(--color-surface))"/>
-                  <rect x="50" y="26" width="14" height="62" rx="3" fill="color-mix(in srgb, var(--color-brand) 62%, var(--color-surface))"/>
-                  <rect x="71" y="12" width="14" height="76" rx="3" fill="var(--color-brand)"/>
+                <!-- 막대 그래프 — 109.막대 그래프.svg. "도입은 이미 보편적"인 확산을 뜻한다 -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"/>
+                  <path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"/>
+                  <path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="var(--color-brand)"/>
                 </svg>
               </div>
               <div class="problem-card-body">
@@ -85,15 +84,12 @@
             </li>
 
             <li class="problem-card is-gap">
-              <!--
-                도넛 — 6%만 칠하고 나머지 94%를 비워 둔다. 숫자 6이 작다는 것을
-                "빈 자리"로 보여야 나쁜 수치로 읽힌다.
-                r=28 → 둘레 175.9. 6% ≈ 10.6 이므로 dasharray "10.6 175.9".
-              -->
               <div class="problem-visual" aria-hidden="true">
-                <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="48" cy="48" r="28" stroke="color-mix(in srgb, var(--color-critical) 16%, var(--color-surface))" stroke-width="12"/>
-                  <circle class="problem-donut" cx="48" cy="48" r="28" stroke="var(--color-critical)" stroke-width="12" stroke-linecap="round" stroke-dasharray="10.6 175.9" transform="rotate(-90 48 48)"/>
+                <!-- 원형 그래프 — 111.원형 그래프.svg. 성과를 재는 지표인데 값이 작다는 뜻 -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14.49 12.0098H22C22 9.3576 20.9464 6.81408 19.0711 4.93872C17.1957 3.06336 14.6522 2.00977 12 2.00977V9.50977C12.3278 9.50976 12.6524 9.5745 12.9552 9.70026C13.258 9.82602 13.5329 10.0103 13.7643 10.2426C13.9956 10.4749 14.1788 10.7506 14.3033 11.0538C14.4279 11.3571 14.4913 11.6819 14.49 12.0098Z" fill="var(--color-critical)"/>
+                  <path d="M11.9902 14.5098C11.3272 14.5098 10.6913 14.2464 10.2225 13.7775C9.75363 13.3087 9.49023 12.6728 9.49023 12.0098C9.49023 11.3467 9.75363 10.7108 10.2225 10.242C10.6913 9.77316 11.3272 9.50977 11.9902 9.50977V2.00977C9.33807 2.00977 6.79452 3.06336 4.91916 4.93872C3.0438 6.81408 1.99023 9.3576 1.99023 12.0098C1.99023 14.6619 3.0438 17.2054 4.91916 19.0808C6.79452 20.9562 9.33807 22.0098 11.9902 22.0098C14.6422 22.0092 17.1853 20.9553 19.0602 19.0798L13.7502 13.7698C13.5213 14.0046 13.2476 14.1911 12.9453 14.3182C12.643 14.4454 12.3182 14.5105 11.9902 14.5098Z" fill="color-mix(in srgb, var(--color-critical) 16%, var(--color-surface))"/>
+                  <path d="M14.4908 12.0098C14.4911 12.3368 14.4268 12.6606 14.3015 12.9626C14.1762 13.2647 13.9924 13.539 13.7607 13.7698L19.0707 19.0798C20.9462 17.2048 22.0002 14.6617 22.0007 12.0098H14.4908Z" fill="color-mix(in srgb, var(--color-critical) 40%, var(--color-surface))"/>
                 </svg>
               </div>
               <div class="problem-card-body">
@@ -106,12 +102,12 @@
             <!-- 2행 — 파일럿은 도는데 95%가 손익에 안 닿고, 배운 것은 12%만 현업으로 간다.
                  둘 다 "거의 다 새어 나간다"는 같은 이야기라 같은 행에 둔다. -->
             <li class="problem-card is-gap">
-              <!-- 아래로 꺾이는 선 + 끊어진 뒷부분 — "가다가 멈춘다" -->
               <div class="problem-visual" aria-hidden="true">
-                <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10 30L34 30L50 66" stroke="var(--color-critical)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M50 66L66 80L86 80" stroke="color-mix(in srgb, var(--color-critical) 22%, var(--color-surface))" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 11"/>
-                  <circle cx="50" cy="66" r="7" fill="var(--color-critical)"/>
+                <!-- 취소·거절 — 114.취소,거절.svg. 파일럿이 손익까지 못 간 실패를 뜻한다 -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="var(--color-critical)"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.884 8.88389L8.88398 16.8839L7.11621 15.1161L15.1162 7.11612L16.884 8.88389Z" fill="var(--color-surface)"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M8.88398 7.11612L16.884 15.1161L15.1162 16.8839L7.11621 8.88389L8.88398 7.11612Z" fill="var(--color-surface)"/>
                 </svg>
               </div>
               <div class="problem-card-body">
@@ -122,12 +118,11 @@
             </li>
 
             <li class="problem-card is-gap">
-              <!-- 깔때기 — 위로 많이 들어가고 아래로 조금 나온다.
-                   흘러 나가는 양(12%)만 진하게, 새는 부분은 옅게 둔다. -->
               <div class="problem-visual" aria-hidden="true">
-                <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 14H84L56 52V82H40V52L12 14Z" fill="color-mix(in srgb, var(--color-critical) 14%, var(--color-surface))" stroke="color-mix(in srgb, var(--color-critical) 34%, var(--color-surface))" stroke-width="4" stroke-linejoin="round"/>
-                  <path d="M40 66H56V82H40V66Z" fill="var(--color-critical)"/>
+                <!-- 차단·금지 — 121.차단,금지.svg. 배운 것이 현업까지 못 가고 막힌다는 뜻 -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.66016 18.3401L18.4202 5.58008" stroke="var(--color-critical)" stroke-width="2.5" stroke-miterlimit="10"/>
+                  <path d="M12 4.5C13.9883 4.50265 15.8944 5.29368 17.3004 6.69963C18.7063 8.10558 19.4974 10.0117 19.5 12C19.5 13.9891 18.7098 15.8968 17.3033 17.3033C15.8968 18.7098 13.9891 19.5 12 19.5C10.0109 19.5 8.10322 18.7098 6.6967 17.3033C5.29018 15.8968 4.5 13.9891 4.5 12C4.50265 10.0117 5.29367 8.10558 6.69962 6.69963C8.10557 5.29368 10.0117 4.50265 12 4.5ZM12 2C10.6868 2 9.38642 2.25867 8.17317 2.76122C6.95991 3.26376 5.85752 4.00035 4.92893 4.92894C3.05357 6.8043 2 9.34784 2 12C2 14.6522 3.05357 17.1957 4.92893 19.0711C5.85752 19.9997 6.95991 20.7363 8.17317 21.2388C9.38642 21.7413 10.6868 22 12 22C14.6522 22 17.1957 20.9464 19.0711 19.0711C20.9464 17.1957 22 14.6522 22 12C22 9.34784 20.9464 6.8043 19.0711 4.92894C17.1957 3.05358 14.6522 2 12 2Z" fill="var(--color-critical)"/>
                 </svg>
               </div>
               <div class="problem-card-body">
@@ -145,7 +140,8 @@
       02 Diagnosis — 좌우 비교 레이아웃(사용자 지시로 위아래 두 줄 → 좌우 두 열로 전환).
 
       좌열 "한쪽만 바꾼 회사" · 우열 "코드프레소"가 나란히 놓여 실패와 우리를 한눈에
-      대비시킨다. 각 열 안에서는 카드 두 장이 세로로 쌓이고(slide-pair가 이제 세로 스택),
+      대비시킨다. 좌열은 카드 두 장이 세로로 쌓이고, 우열은 카드 두 장 사이에 join을
+      가로로 끼운다(아래 "두 열의 높이가 어긋났던 원인" 참고).
       좌열의 ✕ 연결 노드는 뺐다(사용자 지적) — 두 카드는 서로 다른 회사의 독립된
       실패 사례라 "끊어진 연결"이 아니었다. 우열의 화살표+데이터 알약만 남긴다 —
       그건 slide-note가 명시하는 실제 데이터 흐름이라 근거가 있다.
@@ -156,6 +152,12 @@
       감싸는 판을 두지 않고 열 단위로 나눈다 — 판 안에 판이 겹치면
       프레젠테이션이 아니라 카드 더미가 된다. 720px 이하에서는 두 열이 나란히
       두기엔 좁아 다시 위아래로 쌓인다(mobile.css).
+
+      두 열의 높이가 어긋났던 원인 — "코드프레소" 열만 slide-pair 안에 card·join·card를
+      세로로 쌓아 join 높이(알약 96px)만큼 "한쪽만 바꾼 회사" 열보다 길어졌고,
+      맺음말 slide-note까지 그 열에만 붙어 있었다. join을 두 카드 사이 가로 배치로
+      바꾸고(.slide-pair.is-joined), slide-note는 두 열 바깥으로 빼 전체 폭 각주로
+      공유한다 — 이제 두 열 다 카드 2장 높이로만 맞춰진다.
 
       카드 안 목업 4장은 뺐다 — 카드 폭 277px에 눌려 11~12px 텍스트가 회색 덩어리로만
       읽혔고, 실패한 남의 회사 화면을 우리 제품 목업 셸로 그리는 것도 의미가 맞지 않았다.
@@ -201,7 +203,7 @@
           <div class="slide-row">
             <p class="slide-rail"><span class="slide-rail-label is-dark" data-i18n="why-codepresso-intro-label-02">코드프레소는 도구와 사람을 데이터로 잇습니다</span></p>
 
-            <div class="slide-pair">
+            <div class="slide-pair is-joined">
               <article class="slide-card is-ours">
                 <p class="tag slide-card-tag" data-i18n="why-codepresso-intro-item-tag-01">업무 자동화 · AXpresso</p>
                 <div class="slide-card-head">
@@ -244,10 +246,11 @@
                 <p class="description slide-fact" data-i18n="why-codepresso-intro-item-fact-02">진단 반영 역량 점수 <strong>72점</strong> · 학습 경로 <strong>자동 생성</strong></p>
               </article>
             </div>
-
-            <p class="slide-note" data-i18n="why-codepresso-intro-note">어디서부터 시작해도 좋습니다. 자동화에서 쌓인 활용 데이터가 역량 진단으로, 진단 결과가 다시 업무 개선으로 이어질 때 전환이 완성됩니다.</p>
           </div>
         </div>
+
+        <!-- 두 열 다 카드 2장 높이로 끝나도록 맺음말은 열 안이 아니라 바깥 전체 폭으로 뺐다 -->
+        <p class="slide-note" data-i18n="why-codepresso-intro-note">어디서부터 시작해도 좋습니다. 자동화에서 쌓인 활용 데이터가 역량 진단으로, 진단 결과가 다시 업무 개선으로 이어질 때 전환이 완성됩니다.</p>
       </div>
     </section>
 
