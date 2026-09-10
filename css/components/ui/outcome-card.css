@@ -60,9 +60,10 @@
 }
 
 .outcome-detail {
-  color: var(--color-ink-light);
+  color: var(--color-ink-lighter);
   font-size: var(--text-body-muted);
   line-height: var(--leading-body-muted);
+  margin-bottom: var(--space-16);
 }
 
 .outcome-client {

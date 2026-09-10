@@ -154,29 +154,6 @@
     color: var(--color-brand-dark);
   }
 
-  /* 글만 네 덩이라 읽기 전에 눈이 쉴 곳이 없다 — 칸 좌상단에 도형을 하나 준다.
-     세 아이콘 모두 판 없는 단색 글리프로 통일한다(면/선이 섞이면 따로 논다). */
-  .features .cycle-icon {
-    display: block;
-    width: var(--icon-lg);
-    height: var(--icon-lg);
-    color: var(--color-brand);
-  }
-
-  .features .cycle-icon svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  /* 브랜드 면 칸에서는 글리프만 흰색으로 뒤집는다. */
-  .features .cycle > li.is-return .cycle-icon { color: var(--color-surface); }
-
-  /* 숫자 칩을 뺀 자리 — 12px 균등 간격이면 아이콘·라벨·제목이 따로 논다.
-     아이콘 아래는 띄우고, 라벨은 제목에 붙여 한 덩이로 읽히게 한다. */
-  .features .cycle-icon { margin-block-end: var(--space-8); }
-  .features .cycle .cycle-head { margin-block-end: calc(var(--space-8) * -1); }
-
   .features.fade-up.is-visible .cycle > li:nth-child(2) { transition-delay: .08s; }
   .features.fade-up.is-visible .cycle > li:nth-child(3) { transition-delay: .16s; }
 
@@ -1126,6 +1103,14 @@
     font-size: var(--text-body-14);
     line-height: var(--leading-body-14);
     color: var(--color-ink-lighter);
+  }
+
+  /* 데스크톱 desc의 "그래서 무엇이 남는가"를 모바일에도 그룹마다 한 줄로 남긴다. */
+  .difference-mobile-note {
+    margin-block-start: var(--space-10);
+    font-size: var(--text-body-14);
+    line-height: var(--leading-body-14);
+    color: var(--color-ink-light);
   }
 
   .difference-mobile-field {

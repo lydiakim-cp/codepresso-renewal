@@ -86,11 +86,33 @@
   color: var(--color-surface);
 }
 
+/* 글만 여러 덩이라 읽기 전에 눈이 쉴 곳이 없다 — 칸 좌상단에 도형을 하나 준다.
+   아이콘은 판 없는 단색 글리프로 통일한다(면/선이 섞이면 따로 논다). */
+.cycle-icon {
+  display: block;
+  width: var(--icon-lg);
+  height: var(--icon-lg);
+  margin-block-end: var(--space-8);
+  color: var(--color-brand);
+}
+
+.cycle-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* 브랜드 면 칸에서는 글리프만 흰색으로 뒤집는다. */
+.cycle > li.is-return .cycle-icon { color: var(--color-surface); }
+
+/* 숫자 칩을 뺀 자리 — 12px 균등 간격이면 아이콘·라벨·제목이 따로 논다.
+   아이콘 아래는 띄우고, 라벨은 제목에 붙여 한 덩이로 읽히게 한다. */
+.cycle-icon + .cycle-head { margin-block-end: calc(var(--space-8) * -1); }
+
 .cycle-head {
   display: flex;
   align-items: center;
   gap: var(--space-10);
-
 }
 
 .cycle-en {
