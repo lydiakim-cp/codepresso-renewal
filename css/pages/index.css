@@ -4,7 +4,7 @@
 @layer components {
   /* Component: Main Hero */
   .main-hero {
-    background: var(--color-surface-sunken) url("../../images/main-bg.png") center / cover no-repeat;
+    background: var(--color-surface-sunken) url("../../images/backgrounds/main-bg.png") center / cover no-repeat;
     overflow-x: hidden;
   }
 

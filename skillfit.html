@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="SkillFit — 진단 결과가 곧 나만의 학습 계획이 되는 개인화 학습 | 코드프레소">
   <meta property="og:description" content="SkillFit. AI 진단 인터뷰가 현재 수준과 취약점을 찾고 학습 경로를 설계합니다. 강의를 보는 대신, 브라우저에서 직접 코드를 씁니다.">
-  <meta property="og:image" content="images/skillfit/learn.png">
+  <meta property="og:image" content="images/products/skillfit/learn.png">
 
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pages/skillfit.css">
@@ -28,17 +28,17 @@
     <section class="sub-hero">
       <div class="hero-wrap">
         <div class="sub-hero-copy">
-          <p class="tag">Learn · AI 개인화 학습</p>
+          <p class="tag" data-i18n="skillfit-hero-eyebrow">Learn · AI 개인화 학습</p>
           <h1 class="hero-title">SkillFit</h1>
-          <p class="hero-desc">진단 결과가 곧, <br data-break="desktop">나만의 학습 계획이 됩니다.</p>
-          <p class="hero-desc">AI 진단 인터뷰가 현재 수준과 취약점을 찾고, 필요한 학습 경로를 자동으로 설계합니다. <br data-break="desktop">강의를 보는 대신 <strong>브라우저에서 직접 코드를 씁니다</strong>.</p>
+          <p class="hero-desc" data-i18n="skillfit-hero-desc-01">AI 인터뷰로, <br data-break="desktop">나에게 맞는 학습을 시작합니다.</p>
+          <p class="hero-desc" data-i18n="skillfit-hero-desc-02">AI 인터뷰가 현재 수준과 보완할 스킬을 파악해, 필요한 학습 경로와 콘텐츠를 설계합니다. <br data-break="desktop">강의를 보는 데 그치지 않고 <strong>브라우저에서 직접 코드를 씁니다</strong>.</p>
           <div class="hero-actions">
             <a class="btn btn-primary btn-lg" href="#">
-              2~3주 체험 프로그램 신청
+              <span data-i18n="skillfit-hero-cta-primary">2~3주 체험 프로그램 신청</span>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <a class="btn btn-ghost btn-lg" href="#skillfit-tracks">
-              트랙 둘러보기
+              <span data-i18n="skillfit-hero-cta-secondary">트랙 둘러보기</span>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
@@ -59,12 +59,12 @@
             </span>
             <div>
               <div class="metric-card__value"><span class="num" data-target="51">0</span><span class="unit">개</span></div>
-              <p class="metric-card__label text-label">트랙 · 3단계 레벨</p>
+              <p class="metric-card__label text-label" data-i18n="skillfit-hero-fact-label-01">트랙 · 3단계 레벨</p>
             </div>
           </li>
           <li class="metric-card">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 과제 유형 — images/icon/ic_todo.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로 바꿨다. -->
+              <!-- 과제 유형 — images/icons/service/ic_todo.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로 바꿨다. -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
                 <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="var(--color-brand)"/>
@@ -75,7 +75,7 @@
             </span>
             <div>
               <div class="metric-card__value"><span class="num" data-target="4">0</span><span class="unit">가지</span></div>
-              <p class="metric-card__label text-label">과제 유형이 섞여 나옵니다</p>
+              <p class="metric-card__label text-label" data-i18n="skillfit-hero-fact-label-02">실력을 확인하는 과제 유형</p>
             </div>
           </li>
           <li class="metric-card">
@@ -91,7 +91,7 @@
             </span>
             <div>
               <div class="metric-card__value"><span class="num" data-target="0">0</span><span class="unit">개</span></div>
-              <p class="metric-card__label text-label">설치할 프로그램</p>
+              <p class="metric-card__label text-label" data-i18n="skillfit-hero-fact-label-03">설치할 프로그램</p>
             </div>
           </li>
         </ul>
@@ -103,40 +103,47 @@
     <section class="intro fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <h2>교육은 했는데, <br data-break="mobile">실력이 늘었는지는 모릅니다</h2>
-          <p class="desc">지금 기업 교육에서 반복되는 세 가지입니다.</p>
+          <h2 data-i18n="skillfit-intro-title">교육을 마쳐도, <br data-break="mobile">실력 변화는 확인하기 어렵습니다</h2>
+          <p class="desc" data-i18n="skillfit-intro-desc">지금 기업 교육에서 반복되는 세 가지입니다.</p>
         </div>
         <div class="section-content">
           <ul class="pain-grid">
             <li class="pain-card pain-card--detail">
               <span class="pain-card__icon" aria-hidden="true">
+                <!-- 수준이 섞여 있습니다 — images/icons/library/103.팀.svg를 현재 문제 카드 톤으로 적용. -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="currentColor"/>
+                  <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="currentColor"/>
+                  <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 13.9217 22 14.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="currentColor"/>
+                  <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="currentColor"/>
+                  <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="currentColor"/>
+                  <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="currentColor"/>
                 </svg>
               </span>
-              <p class="pain-card__title">수준이 섞여 있습니다</p>
-              <p>전원이 같은 강의를 듣습니다. 아는 사람은 지루하고, 모르는 사람은 따라가지 못합니다.</p>
+              <p class="pain-card__title" data-i18n="skillfit-intro-item-title-01">수준이 섞여 있습니다</p>
+              <p data-i18n="skillfit-intro-item-desc-01">전원이 같은 강의를 듣습니다. 아는 사람은 지루하고, 모르는 사람은 따라가지 못합니다.</p>
             </li>
             <li class="pain-card pain-card--detail">
               <span class="pain-card__icon" aria-hidden="true">
+                <!-- 수료율만 남습니다 — images/icons/library/001.문서,글.svg를 현재 문제 카드 톤으로 적용. -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6ZM14 2v6h6M8 15h5"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="currentColor"/>
+                  <path d="M16.5 7H7.5M16.5 12H7.5M16.5 16H7.5" stroke="var(--color-surface)" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </span>
-              <p class="pain-card__title">수료율만 남습니다</p>
-              <p>누가 끝까지 들었는지는 집계되는데, 그것이 실력인지는 아무도 모릅니다.</p>
+              <p class="pain-card__title" data-i18n="skillfit-intro-item-title-02">수료율만 남습니다</p>
+              <p data-i18n="skillfit-intro-item-desc-02">누가 끝까지 들었는지는 집계되는데, 그것이 실력인지는 아무도 모릅니다.</p>
             </li>
             <li class="pain-card pain-card--detail">
               <span class="pain-card__icon" aria-hidden="true">
+                <!-- 본 것과 할 수 있는 것은 다릅니다 — images/icons/library/081.키보드.svg를 현재 문제 카드 톤으로 적용. -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" />
-                  <path d="M10.5 8.5 16 12l-5.5 3.5V8.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                  <path d="M21 5H3C1.89543 5 1 5.89543 1 7V17C1 18.1046 1.89543 19 3 19H21C22.1046 19 23 18.1046 23 17V7C23 5.89543 22.1046 5 21 5Z" fill="currentColor"/>
+                  <path d="M5 15.5H19M5 8.5H19M5 12H19" stroke="var(--color-surface)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="1 2.5"/>
                 </svg>
               </span>
-              <p class="pain-card__title">본 것과 할 수 있는 것은 다릅니다</p>
-              <p>영상을 끝까지 본 사람과 실제로 코드를 쓸 수 있는 사람은 같지 않습니다.</p>
+              <p class="pain-card__title" data-i18n="skillfit-intro-item-title-03">본 것과 할 수 있는 것은 다릅니다</p>
+              <p data-i18n="skillfit-intro-item-desc-03">영상을 끝까지 본 사람과 실제로 코드를 쓸 수 있는 사람은 같지 않습니다.</p>
             </li>
           </ul>
         </div>
@@ -147,19 +154,19 @@
     <section class="journey is-sunken fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag">학습 흐름</p>
-          <h2>진단에서 학습 계획까지, 네 단계</h2>
-          <p class="desc">무엇을 모르는지 찾는 데서 시작해, 실제로 코드를 쓰고 피드백을 받는 데까지 이어집니다.</p>
+          <p class="tag" data-i18n="skillfit-journey-tag">학습 흐름</p>
+          <h2 data-i18n="skillfit-journey-title">진단에서 학습 계획까지, 네 단계</h2>
+          <p class="desc" data-i18n="skillfit-journey-desc">무엇을 모르는지 찾는 데서 시작해, 실제로 코드를 쓰고 피드백을 받는 데까지 이어집니다.</p>
         </div>
         <div class="section-content">
           <ol class="cycle">
             <li>
               <div class="cycle-head">
                 <span class="cycle-no">1</span>
-                <p class="cycle-en">Interview</p>
+                <p class="cycle-en" data-i18n="skillfit-journey-item-en-01">Interview</p>
               </div>
-              <h3>진단 인터뷰</h3>
-              <p class="description">대화로 현재 수준과 취약점을 찾습니다</p>
+              <h3 data-i18n="skillfit-journey-item-title-01">진단 인터뷰</h3>
+              <p class="description" data-i18n="skillfit-journey-item-desc-01">대화로 현재 수준과 취약점을 찾습니다</p>
               <span class="cycle-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
@@ -167,10 +174,10 @@
             <li>
               <div class="cycle-head">
                 <span class="cycle-no">2</span>
-                <p class="cycle-en">Path</p>
+                <p class="cycle-en" data-i18n="skillfit-journey-item-en-02">Path</p>
               </div>
-              <h3>맞춤 학습 경로</h3>
-              <p class="description">아는 구간은 건너뛰고 부족한 곳부터</p>
+              <h3 data-i18n="skillfit-journey-item-title-02">맞춤 학습 경로</h3>
+              <p class="description" data-i18n="skillfit-journey-item-desc-02">아는 구간은 건너뛰고 부족한 곳부터</p>
               <span class="cycle-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
@@ -178,10 +185,10 @@
             <li>
               <div class="cycle-head">
                 <span class="cycle-no">3</span>
-                <p class="cycle-en">Practice</p>
+                <p class="cycle-en" data-i18n="skillfit-journey-item-en-03">Practice</p>
               </div>
-              <h3>실습과 채점</h3>
-              <p class="description">브라우저에서 코드를 쓰고 실행합니다</p>
+              <h3 data-i18n="skillfit-journey-item-title-03">실습과 채점</h3>
+              <p class="description" data-i18n="skillfit-journey-item-desc-03">브라우저에서 코드를 쓰고 실행합니다</p>
               <span class="cycle-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
@@ -189,10 +196,10 @@
             <li>
               <div class="cycle-head">
                 <span class="cycle-no">4</span>
-                <p class="cycle-en">Tutor</p>
+                <p class="cycle-en" data-i18n="skillfit-journey-item-en-04">Tutor</p>
               </div>
-              <h3>1:1 AI 튜터</h3>
-              <p class="description">어디가 왜 부족했는지 문장으로 돌아옵니다</p>
+              <h3 data-i18n="skillfit-journey-item-title-04">1:1 AI 튜터</h3>
+              <p class="description" data-i18n="skillfit-journey-item-desc-04">부족한 이유와 다음 학습 방향을 알려줍니다</p>
             </li>
           </ol>
 
@@ -204,21 +211,21 @@
     <section class="deliverables product-feature fade-up">
       <div class="section-wrap row">
         <div class="feature-copy">
-          <p class="tag">맞춤 학습 경로</p>
-          <h2>이미 아는 내용은 건너뜁니다</h2>
-          <p class="desc">진단에서 확인된 취약점이 2~3주 학습 계획으로 바뀝니다. 필요한 구간만 뽑아 순서대로 이어 붙입니다.</p>
+          <p class="tag" data-i18n="skillfit-deliverables-tag-01">맞춤 학습 경로</p>
+          <h2 data-i18n="skillfit-deliverables-title-01">이미 아는 내용은 건너뜁니다</h2>
+          <p class="desc" data-i18n="skillfit-deliverables-desc-01">진단에서 확인한 보완 영역을 바탕으로 2~3주 학습 계획을 제안합니다. 필요한 구간만 골라 순서대로 학습합니다.</p>
           <ul class="feature-points">
             <li>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              51개 트랙, 입문·중급·심화 3단계 중 필요한 구간만 선택
+              <span data-i18n="skillfit-deliverables-point-01-01">51개 트랙, 입문·중급·심화 3단계 중 필요한 구간만 선택</span>
             </li>
             <li>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              스킬 단위 진행률로 어디까지 왔는지 항상 보입니다
+              <span data-i18n="skillfit-deliverables-point-01-02">스킬 단위 진행률로 어디까지 왔는지 항상 보입니다</span>
             </li>
             <li>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              통과하지 못한 스킬은 다시 풀 수 있습니다
+              <span data-i18n="skillfit-deliverables-point-01-03">통과하지 못한 스킬은 다시 풀 수 있습니다</span>
             </li>
           </ul>
         </div>
@@ -293,69 +300,71 @@
     <section class="catalog is-sunken fade-up" id="skillfit-tracks">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag">트랙</p>
-          <h2>기본기부터 AI 시대 스택까지</h2>
-          <p class="desc">51개 트랙이 입문·중급·심화 3단계로 나뉘어 있고, 학습 계획은 그 안에서 조합됩니다.</p>
+          <p class="tag" data-i18n="skillfit-catalog-tag">트랙</p>
+          <h2 data-i18n="skillfit-catalog-title">기본기부터 AI 시대 스택까지</h2>
+          <p class="desc" data-i18n="skillfit-catalog-desc">51개 트랙이 입문·중급·심화 3단계로 나뉘어 있고, 학습 계획은 그 안에서 조합됩니다.</p>
         </div>
         <div class="section-content">
+          <div class="track-carousel-viewport" data-track-carousel aria-label="대표 학습 트랙">
           <ul class="track-grid">
             <li class="track-card">
               <div class="track-card__head">
-                <p class="tag">인공지능</p>
-                <span class="track-card__mark" aria-hidden="true"><img src="images/트랙아이콘/tensorflow.png" alt="" width="32" height="32" loading="lazy"></span>
+                <p class="tag" data-i18n="skillfit-catalog-track-tag-01">인공지능</p>
+                <span class="track-card__mark" aria-hidden="true"><img src="images/icons/track/tensorflow.png" alt="" width="32" height="32" loading="lazy"></span>
               </div>
-              <p class="section-body-subtitle">Tensorflow<br>이미지 데이터 분석</p>
+              <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-01">Tensorflow<br>이미지 데이터 분석</p>
             </li>
             <li class="track-card">
               <div class="track-card__head">
-                <p class="tag">인공지능</p>
-                <span class="track-card__mark" aria-hidden="true"><img src="images/트랙아이콘/ai-agent.png" alt="" width="32" height="32" loading="lazy"></span>
+                <p class="tag" data-i18n="skillfit-catalog-track-tag-02">인공지능</p>
+                <span class="track-card__mark" aria-hidden="true"><img src="images/icons/track/ai-agent.png" alt="" width="32" height="32" loading="lazy"></span>
               </div>
-              <p class="section-body-subtitle">LangChain<br>AI 에이전트</p>
+              <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-02">LangChain<br>AI 에이전트</p>
             </li>
             <li class="track-card">
               <div class="track-card__head">
-                <p class="tag">인공지능</p>
+                <p class="tag" data-i18n="skillfit-catalog-track-tag-03">인공지능</p>
                 <span class="track-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
               </div>
-              <p class="section-body-subtitle">PyTorch<br>딥러닝 모델 학습</p>
+              <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-03">PyTorch<br>딥러닝 모델 학습</p>
             </li>
             <li class="track-card">
               <div class="track-card__head">
-                <p class="tag">인공지능</p>
-                <span class="track-card__mark" aria-hidden="true"><img src="images/트랙아이콘/ai-agent.png" alt="" width="32" height="32" loading="lazy"></span>
+                <p class="tag" data-i18n="skillfit-catalog-track-tag-04">인공지능</p>
+                <span class="track-card__mark" aria-hidden="true"><img src="images/icons/track/ai-agent.png" alt="" width="32" height="32" loading="lazy"></span>
               </div>
-              <p class="section-body-subtitle">프롬프트<br>엔지니어링</p>
+              <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-04">프롬프트<br>엔지니어링</p>
             </li>
             <li class="track-card">
               <div class="track-card__head">
-                <p class="tag">데이터</p>
-                <span class="track-card__mark" aria-hidden="true"><img src="images/트랙아이콘/python.png" alt="" width="32" height="32" loading="lazy"></span>
+                <p class="tag" data-i18n="skillfit-catalog-track-tag-05">데이터</p>
+                <span class="track-card__mark" aria-hidden="true"><img src="images/icons/track/python.png" alt="" width="32" height="32" loading="lazy"></span>
               </div>
-              <p class="section-body-subtitle">Python<br>데이터 분석</p>
+              <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-05">Python<br>데이터 분석</p>
             </li>
             <li class="track-card">
               <div class="track-card__head">
-                <p class="tag">프로그래밍</p>
+                <p class="tag" data-i18n="skillfit-catalog-track-tag-06">프로그래밍</p>
                 <span class="track-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
               </div>
-              <p class="section-body-subtitle">Java<br>객체지향 프로그래밍</p>
+              <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-06">Java<br>객체지향 프로그래밍</p>
             </li>
             <li class="track-card">
               <div class="track-card__head">
-                <p class="tag">웹 개발</p>
-                <span class="track-card__mark" aria-hidden="true"><img src="images/트랙아이콘/springboot.png" alt="" width="32" height="32" loading="lazy"></span>
+                <p class="tag" data-i18n="skillfit-catalog-track-tag-07">웹 개발</p>
+                <span class="track-card__mark" aria-hidden="true"><img src="images/icons/track/springboot.png" alt="" width="32" height="32" loading="lazy"></span>
               </div>
-              <p class="section-body-subtitle">Spring<br>웹 백엔드</p>
+              <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-07">Spring<br>웹 백엔드</p>
             </li>
             <li class="track-card">
               <div class="track-card__head">
-                <p class="tag">개발 환경</p>
-                <span class="track-card__mark" aria-hidden="true"><img src="images/트랙아이콘/git.png" alt="" width="32" height="32" loading="lazy"></span>
+                <p class="tag" data-i18n="skillfit-catalog-track-tag-08">개발 환경</p>
+                <span class="track-card__mark" aria-hidden="true"><img src="images/icons/track/git.png" alt="" width="32" height="32" loading="lazy"></span>
               </div>
-              <p class="section-body-subtitle">Git<br>협업 워크플로</p>
+              <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-08">Git<br>협업 워크플로</p>
             </li>
           </ul>
+          </div>
           </div>
         </div>
       </div>
@@ -365,21 +374,21 @@
     <section class="deliverables product-feature fade-up">
       <div class="section-wrap row">
         <div class="feature-copy">
-          <p class="tag">실습 환경</p>
-          <h2>읽고 넘어가는 학습이 아닙니다</h2>
-          <p class="desc">브라우저에서 코드를 쓰고, 실제로 실행하고, 결과로 채점받습니다. 설치할 것도, 환경 설정도 없습니다.</p>
+          <p class="tag" data-i18n="skillfit-deliverables-tag-02">실습 환경</p>
+          <h2 data-i18n="skillfit-deliverables-title-02">직접 코드를 쓰고 실행하며 배웁니다</h2>
+          <p class="desc" data-i18n="skillfit-deliverables-desc-02">브라우저에서 코드를 쓰고, 실제로 실행하고, 결과로 채점받습니다. 설치할 것도, 환경 설정도 없습니다.</p>
           <ul class="feature-points">
             <li>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              객관식 · 빈칸 채우기 · 코드 해석 · 코드 작성 네 가지 과제
+              <span data-i18n="skillfit-deliverables-point-02-01">객관식 · 빈칸 채우기 · 코드 해석 · 코드 작성 네 가지 과제</span>
             </li>
             <li>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              제출한 코드는 실제 실행 환경에서 돌려 채점합니다
+              <span data-i18n="skillfit-deliverables-point-02-02">제출한 코드는 실제 실행 환경에서 돌려 채점합니다</span>
             </li>
             <li>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              레슨마다 실무 시나리오가 먼저 오고, 그 안에서 과제를 풉니다
+              <span data-i18n="skillfit-deliverables-point-02-03">레슨마다 실무 시나리오가 먼저 오고, 그 안에서 과제를 풉니다</span>
             </li>
           </ul>
         </div>
@@ -494,21 +503,21 @@
     <section class="deliverables product-feature is-sunken fade-up">
       <div class="section-wrap row">
         <div class="feature-copy">
-          <p class="tag">1:1 AI 튜터</p>
-          <h2>막히면 언제든 물어봅니다</h2>
-          <p class="desc">학습 화면을 벗어나지 않아도 됩니다. 복습·읽기·연습 어느 모드에서든 튜터를 부를 수 있습니다.</p>
+          <p class="tag" data-i18n="skillfit-deliverables-tag-03">1:1 AI 튜터</p>
+          <h2 data-i18n="skillfit-deliverables-title-03">학습 중 궁금한 점은 바로 물어보세요</h2>
+          <p class="desc" data-i18n="skillfit-deliverables-desc-03">학습 화면을 벗어나지 않고 복습·읽기·연습 어느 단계에서든 AI 튜터에게 질문할 수 있습니다.</p>
           <ul class="feature-points">
             <li>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              제출한 코드를 기준별로 채점하고 근거를 문장으로 돌려줍니다
+              <span data-i18n="skillfit-deliverables-point-03-01">제출한 코드를 기준별로 채점하고, 판단 근거를 문장으로 알려줍니다</span>
             </li>
             <li>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              어디가 왜 부족했는지 알고 다시 풉니다
+              <span data-i18n="skillfit-deliverables-point-03-02">어디가 왜 부족했는지 알고 다시 풉니다</span>
             </li>
             <li>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              직접 만들고, AI가 옆에서 돕습니다
+              <span data-i18n="skillfit-deliverables-point-03-03">직접 만들고, AI가 옆에서 돕습니다</span>
             </li>
           </ul>
         </div>
@@ -564,9 +573,9 @@
     <section class="statement fade-up">
       <div class="section-wrap col">
         <div class="statement-inner">
-          <p class="statement-eyebrow">변화 리포트</p>
-          <h2 class="statement-title">끝나고 나면, <strong>무엇이 달라졌는지가 남습니다</strong></h2>
-          <p class="statement-desc">시작할 때의 진단과 끝난 뒤의 재진단을 나란히 놓고, 어느 영역이 얼마나 올라갔는지 개인과 조직 단위로 확인합니다.</p>
+          <p class="statement-eyebrow" data-i18n="skillfit-statement-eyebrow">변화 리포트</p>
+          <h2 class="statement-title" data-i18n="skillfit-statement-title">학습 후, <strong>무엇이 달라졌는지 확인합니다</strong></h2>
+          <p class="statement-desc" data-i18n="skillfit-statement-desc">시작할 때의 진단과 끝난 뒤의 재진단을 나란히 놓고, 어느 영역이 얼마나 올라갔는지 개인과 조직 단위로 확인합니다.</p>
         </div>
       </div>
     </section>
@@ -575,34 +584,37 @@
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag">조직 운영</p>
-          <h2>담당자는 관리 화면 하나로 봅니다</h2>
-          <p class="desc">기수를 만들고 기간을 정하면 그 기간에만 학습이 열립니다.</p>
+          <p class="tag" data-i18n="skillfit-features-tag">조직 운영</p>
+          <h2 data-i18n="skillfit-features-title">담당자는 한 화면에서 학습 현황을 확인합니다</h2>
+          <p class="desc" data-i18n="skillfit-features-desc">기수를 만들고 기간을 정하면 그 기간에만 학습이 열립니다.</p>
         </div>
         <div class="section-content">
           <div class="feature-card-grid" data-feature-cycle>
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 기수 관리 — images/icon/ic_team.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로 바꿨다. -->
+                  <!-- 기수 관리 — images/icons/library/003.일정,캘린더.svg를 브랜드 블루 톤으로 적용. -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                    <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                    <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                    <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                    <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)"/>
-                    <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"/>
+                    <path d="M19.5 4.01953H4.5C3.39543 4.01953 2.5 4.91496 2.5 6.01953V19.0195C2.5 20.1241 3.39543 21.0195 4.5 21.0195H19.5C20.6046 21.0195 21.5 20.1241 21.5 19.0195V6.01953C21.5 4.91496 20.6046 4.01953 19.5 4.01953Z" fill="var(--color-brand)"/>
+                    <path d="M8.48001 3.01953H7.5C7.22386 3.01953 7 3.24339 7 3.51953V5.51953C7 5.79567 7.22386 6.01953 7.5 6.01953H8.48001C8.75615 6.01953 8.98001 5.79567 8.98001 5.51953V3.51953C8.98001 3.24339 8.75615 3.01953 8.48001 3.01953Z" fill="var(--color-brand-dark)"/>
+                    <path d="M16.5 3.01953H15.5C15.2239 3.01953 15 3.24339 15 3.51953V5.51953C15 5.79567 15.2239 6.01953 15.5 6.01953H16.5C16.7761 6.01953 17 5.79567 17 5.51953V3.51953C17 3.24339 16.7761 3.01953 16.5 3.01953Z" fill="var(--color-brand-dark)"/>
+                    <path d="M8.74023 9.5H7.24023C6.96409 9.5 6.74023 9.72386 6.74023 10V11.5C6.74023 11.7761 6.96409 12 7.24023 12H8.74023C9.01638 12 9.24023 11.7761 9.24023 11.5V10C9.24023 9.72386 9.01638 9.5 8.74023 9.5Z" fill="var(--color-surface)"/>
+                    <path d="M12.75 9.5H11.25C10.9739 9.5 10.75 9.72386 10.75 10V11.5C10.75 11.7761 10.9739 12 11.25 12H12.75C13.0261 12 13.25 11.7761 13.25 11.5V10C13.25 9.72386 13.0261 9.5 12.75 9.5Z" fill="var(--color-surface)"/>
+                    <path d="M16.7598 9.5H15.2598C14.9836 9.5 14.7598 9.72386 14.7598 10V11.5C14.7598 11.7761 14.9836 12 15.2598 12H16.7598C17.0359 12 17.2598 11.7761 17.2598 11.5V10C17.2598 9.72386 17.0359 9.5 16.7598 9.5Z" fill="var(--color-surface)"/>
+                    <path d="M8.74023 14H7.24023C6.96409 14 6.74023 14.2239 6.74023 14.5V16C6.74023 16.2761 6.96409 16.5 7.24023 16.5H8.74023C9.01638 16.5 9.24023 16.2761 9.24023 16V14.5C9.24023 14.2239 9.01638 14 8.74023 14Z" fill="var(--color-surface)"/>
+                    <path d="M12.75 14H11.25C10.9739 14 10.75 14.2239 10.75 14.5V16C10.75 16.2761 10.9739 16.5 11.25 16.5H12.75C13.0261 16.5 13.25 16.2761 13.25 16V14.5C13.25 14.2239 13.0261 14 12.75 14Z" fill="var(--color-surface)"/>
+                    <path d="M16.7598 14H15.2598C14.9836 14 14.7598 14.2239 14.7598 14.5V16C14.7598 16.2761 14.9836 16.5 15.2598 16.5H16.7598C17.0359 16.5 17.2598 16.2761 17.2598 16V14.5C17.2598 14.2239 17.0359 14 16.7598 14Z" fill="var(--color-surface)"/>
                   </svg>
                 </span>
               </div>
               <div class="section-body">
                 <div class="section-body-heading">
-                  <p class="section-body-title">기수 관리</p>
+                  <p class="section-body-title" data-i18n="skillfit-features-item-title-01">기수 관리</p>
                 </div>
-                <p class="section-body-subtitle">대상자와 기간을 <br> 기수 단위로 엽니다</p>
+                <p class="section-body-subtitle" data-i18n="skillfit-features-item-subtitle-01">대상자와 기간을 <br> 기수 단위로 엽니다</p>
                 <div class="feature-card-desc-row">
                   <div class="section-body-description">
-                    <p>명단과 기간을 정하면 그 기간에만 학습이 열리고, 종료와 함께 닫힙니다.</p>
+                    <p data-i18n="skillfit-features-item-desc-01">명단과 기간을 정하면 그 기간에만 학습이 열리고, 종료와 함께 닫힙니다.</p>
                   </div>
                 </div>
               </div>
@@ -614,22 +626,24 @@
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 진행 대시보드 — images/icon/ic_barChart.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로 바꿨다. -->
+                  <!-- 진행 대시보드 — images/icons/library/077.브라우저 창.svg를 브랜드 블루 톤으로 적용. -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                    <path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="color-mix(in srgb, var(--color-brand) 65%, var(--color-surface))"/>
-                    <path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="var(--color-brand)"/>
+                    <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"/>
+                    <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"/>
+                    <path d="M16 4.5H15C14.7239 4.5 14.5 4.72386 14.5 5V6C14.5 6.27614 14.7239 6.5 15 6.5H16C16.2761 6.5 16.5 6.27614 16.5 6V5C16.5 4.72386 16.2761 4.5 16 4.5Z" fill="var(--color-surface)"/>
+                    <path d="M12.5 4.5H11.5C11.2239 4.5 11 4.72386 11 5V6C11 6.27614 11.2239 6.5 11.5 6.5H12.5C12.7761 6.5 13 6.27614 13 6V5C13 4.72386 12.7761 4.5 12.5 4.5Z" fill="var(--color-surface)"/>
+                    <path d="M19.5 4.5H18.5C18.2239 4.5 18 4.72386 18 5V6C18 6.27614 18.2239 6.5 18.5 6.5H19.5C19.7761 6.5 20 6.27614 20 6V5C20 4.72386 19.7761 4.5 19.5 4.5Z" fill="var(--color-surface)"/>
                   </svg>
                 </span>
               </div>
               <div class="section-body">
                 <div class="section-body-heading">
-                  <p class="section-body-title">진행 대시보드</p>
+                  <p class="section-body-title" data-i18n="skillfit-features-item-title-02">진행 대시보드</p>
                 </div>
-                <p class="section-body-subtitle">조직 · 트랙 · 개인별 <br> 진행률과 점수</p>
+                <p class="section-body-subtitle" data-i18n="skillfit-features-item-subtitle-02">조직 · 트랙 · 개인별 <br> 진행률과 점수를 확인합니다</p>
                 <div class="feature-card-desc-row">
                   <div class="section-body-description">
-                    <p>누가 어디서 멈췄는지 개인 단위까지 확인할 수 있습니다.</p>
+                    <p data-i18n="skillfit-features-item-desc-02">구성원별 학습 진행 상황과 보완이 필요한 영역을 확인할 수 있습니다.</p>
                   </div>
                 </div>
               </div>
@@ -641,11 +655,11 @@
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 리포트 — images/icon/ic_lineChart.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로 바꿨다. -->
+                  <!-- 리포트 — images/icons/library/005.문서,결재.svg를 브랜드 블루 톤으로 적용. -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                    <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"/>
-                    <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"/>
+                    <path d="M20 7V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58578 21.4142C4.21071 21.0391 4 20.5304 4 20V4C4 3.46957 4.21071 2.96083 4.58578 2.58575C4.96086 2.21068 5.46957 2 6 2H15L20 7Z" fill="var(--color-brand)"/>
+                    <path d="M16 7H20L15 2V6C15 6.26522 15.1054 6.51956 15.2929 6.70709C15.4804 6.89463 15.7348 7 16 7Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
+                    <path d="M16.5 11H7.5M16.5 15H7.5" stroke="var(--color-surface)" stroke-width="2" stroke-linecap="round"/>
                   </svg>
                 </span>
               </div>
@@ -653,7 +667,7 @@
                 <div class="section-body-heading">
                   <p class="section-body-title">리포트</p>
                 </div>
-                <p class="section-body-subtitle">화면에서 보고 <br> 엑셀로 내려받습니다</p>
+                <p class="section-body-subtitle">화면에서 확인하고 <br> 엑셀 파일로 내려받습니다</p>
                 <div class="feature-card-desc-row">
                   <div class="section-body-description">
                     <p>기수가 끝나면 개인 리포트와 조직 요약을 함께 전달합니다.</p>
@@ -664,6 +678,7 @@
                 <span class="feature-card-progress-bar"></span>
               </span>
             </article>
+
           </div>
         </div>
       </div>
@@ -673,26 +688,26 @@
     <section class="process fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag">도입 절차</p>
-          <h2>명단과 기간만 주시면 됩니다</h2>
-          <p class="desc">체험 프로그램은 2~3주 한 기수로 진행하고, 종료와 함께 결과를 전달합니다.</p>
+          <p class="tag" data-i18n="skillfit-process-tag">도입 절차</p>
+          <h2 data-i18n="skillfit-process-title">명단과 기간만 주시면 됩니다</h2>
+          <p class="desc" data-i18n="skillfit-process-desc">체험 프로그램은 2~3주 한 기수로 진행하고, 종료와 함께 결과를 전달합니다.</p>
         </div>
         <div class="section-content">
           <ol class="timeline">
             <li>
-              <span class="timeline__term">신청 후 2일</span>
+              <span class="timeline__term" data-i18n="skillfit-process-item-term-01">신청 후 2일</span>
               <span class="timeline__marker" aria-hidden="true"></span>
               <div class="timeline__body">
-                <h3 class="timeline__title">기수 개설</h3>
-                <p class="timeline__desc">대상자 명단과 학습 기간을 받아 기수를 만들고 계정을 준비합니다.</p>
+                <h3 class="timeline__title" data-i18n="skillfit-process-item-title-01">기수 개설</h3>
+                <p class="timeline__desc" data-i18n="skillfit-process-item-desc-01">대상자 명단과 학습 기간을 받아 기수를 만들고 계정을 준비합니다.</p>
               </div>
             </li>
             <li>
-              <span class="timeline__term">1일차</span>
+              <span class="timeline__term" data-i18n="skillfit-process-item-term-02">1일차</span>
               <span class="timeline__marker" aria-hidden="true"></span>
               <div class="timeline__body">
-                <h3 class="timeline__title">진단 인터뷰</h3>
-                <p class="timeline__desc">학습자는 링크로 접속해 진단 인터뷰부터 시작합니다. 결과가 곧 학습 계획이 됩니다.</p>
+                <h3 class="timeline__title" data-i18n="skillfit-process-item-title-02">진단 인터뷰</h3>
+                <p class="timeline__desc" data-i18n="skillfit-process-item-desc-02">학습자는 링크로 접속해 진단 인터뷰부터 시작합니다. 결과가 곧 학습 계획이 됩니다.</p>
               </div>
             </li>
             <li>
@@ -732,7 +747,7 @@
                   <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </span>
               </summary>
-              <p class="faq-list__answer">괜찮습니다. 진단 인터뷰가 현재 수준을 먼저 확인하고 입문 레벨부터 경로를 만듭니다. 이미 아는 영역이 있으면 그 구간은 건너뜁니다.</p>
+              <p class="faq-list__answer">네. 진단 인터뷰가 현재 수준을 먼저 확인하고 입문 레벨부터 학습 경로를 제안합니다. 이미 아는 영역은 건너뛸 수 있습니다.</p>
             </details>
             <details>
               <summary class="faq-list__question">
@@ -750,7 +765,7 @@
                   <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </span>
               </summary>
-              <p class="faq-list__answer">없습니다. 코드 작성과 실행, 채점이 모두 브라우저 안에서 이뤄집니다. 개발 환경을 맞추다 첫 주를 보내는 일이 없습니다.</p>
+              <p class="faq-list__answer">없습니다. 코드 작성·실행·채점이 모두 브라우저에서 이뤄지므로 별도의 개발 환경을 설치하거나 설정할 필요가 없습니다.</p>
             </details>
             <details>
               <summary class="faq-list__question">
@@ -768,7 +783,7 @@
                   <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </span>
               </summary>
-              <p class="faq-list__answer">대화형 진단이라 첫 결과에는 오차가 있습니다. 대신 학습을 시작한 뒤의 정답률과 제출 코드가 계속 반영되어 경로가 조정됩니다. 진단은 한 번의 판정이 아니라 계속 고쳐지는 추정입니다.</p>
+              <p class="faq-list__answer">대화형 진단의 첫 결과는 학습을 시작하기 위한 기준입니다. 이후 정답률과 제출 코드가 반영되면서 학습 경로를 계속 조정합니다.</p>
             </details>
           </div>
         </div>
@@ -778,7 +793,7 @@
     <!-- 최하단 전환 — hero와 같은 CTA를 반복한다 -->
     <section class="cta-final fade-up">
       <div class="section-wrap col cta-final-inner">
-        <h2 class="cta-final-title">2~3주 뒤, 무엇이 달라졌는지 확인하세요</h2>
+        <h2 class="cta-final-title">2~3주 뒤, 구성원의 실력 변화를 확인하세요</h2>
         <p class="cta-final-desc">대상자 명단과 기간만 알려주시면 기수를 만들어 드립니다.</p>
         <div class="cta-final-actions">
           <a class="btn btn-primary btn-lg" href="#">
@@ -798,6 +813,7 @@
   <script src="js/nav-menu.js"></script>
   <script src="js/stat-reveal.js"></script>
   <script src="js/feature-card-cycle.js"></script>
+  <script src="js/track-carousel.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 ---
 name: html-css-architecture
-description: 코드프레소 리뉴얼 사이트(순수 HTML/CSS/바닐라 JS — Tailwind·React 없음)의 마크업·스타일 규범과 디자인 QA 기준. 제1규칙은 "새로 만들지 말고 기존 컴포넌트·토큰·패턴을 찾아 그대로 재사용". HTML/CSS를 쓰거나 고칠 때, 섹션·서브페이지를 만들거나 리디자인할 때, 화면이 심심해 배경·아이콘·모션을 보강할 때, 목업에 연출을 넣을 때, 반응형·CSS 중복 정리·리팩터링·커밋을 할 때, 그리고 **작업을 마친 뒤 색·구조·배치를 디자이너 시점으로 QA·검수할 때**(강조 섹션·강조 배경 폭·움직이는 목업·애니메이션 점검) 항상 먼저 로드한다.
+description: 순수 HTML/CSS/바닐라 JS(Tailwind·React 없이 직접 CSS를 짜는) 프로젝트의 마크업·스타일 규범과 디자인 QA 기준. 제1규칙은 "새로 만들지 말고 기존 컴포넌트·토큰·패턴을 찾아 그대로 재사용". HTML/CSS를 쓰거나 고칠 때, 섹션·서브페이지를 만들거나 리디자인할 때, 화면이 심심해 배경·아이콘·모션을 보강할 때, 목업에 연출을 넣을 때, 반응형·CSS 중복 정리·리팩터링·커밋을 할 때, 그리고 **작업을 마친 뒤 색·구조·배치를 디자이너 시점으로 QA·검수할 때**(강조 섹션·강조 배경 폭·움직이는 목업·애니메이션 점검) 항상 먼저 로드한다. 이 스킬의 구체 토큰값·컴포넌트명·어휘표는 "코드프레소" 프로젝트 기준이며, 다른 프로젝트에서는 [references/porting-guide.md](references/porting-guide.md)를 따라 자사 값으로 교체해 쓴다.
 ---
 
 # HTML · CSS 작업 규범
@@ -88,6 +88,11 @@ css/
 ## 3. 절대 깨지 않는 제약
 
 협의 없이 예외를 만들지 않는다. 바꿔야 할 이유가 생기면 사용자에게 확인받는다.
+
+> 🔧 **코드프레소 값 — 교체 지점.** 이 절의 규칙 형식(최소 폰트 하한을 둔다·토큰만
+> 쓴다·그림자는 상호작용 신호로만 쓴다·breakpoint를 소수로 고정한다 같은 **원칙**)은
+> 범용이다. 아래 나오는 **구체 수치**(14px·900/720/560·`--space-*` 스케일 등)만
+> 자사 디자인 정책의 값으로 바꾼다. → [references/porting-guide.md](references/porting-guide.md) 1단계
 
 **타이포**
 - **서비스 페이지 최소 폰트는 14px.** 작아 보이게 하려면 크기 대신 `color`(`--color-ink-lighter`)나 weight로 위계를 낮춘다. (13px은 `codepresso-designsystem.html` 문서 chrome 전용)
@@ -241,6 +246,8 @@ css/
 | CSS 중복을 정리한다 / 리팩터링 후 확인한다 | [references/cleanup.md](references/cleanup.md) |
 | **작업을 마친 뒤 — 색·구조·배치를 디자이너 시점으로 검수한다** | [references/design-qa.md](references/design-qa.md) (대비 자동 검수: `scripts/contrast-audit.js`) |
 | **작업을 마치기 직전** | [references/checklist.md](references/checklist.md) |
+| **다른 프로젝트에 이 스킬을 이식한다** | [references/porting-guide.md](references/porting-guide.md) |
+| **이 스킬이 왜 필요한지, 반박에 대한 답** | [references/why-this-skill.md](references/why-this-skill.md) |
 
 ## 게이트 — 문서가 아니라 기계가 지키는 것
 

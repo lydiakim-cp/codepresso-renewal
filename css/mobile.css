@@ -477,7 +477,48 @@
 /* max-width: 560px */
 
 @media (max-width: 560px) {
-  .skillfit .track-grid { grid-template-columns: minmax(0, 1fr); }
+  /* SkillFit 트랙 — 중앙 카드를 기준으로 양옆 다음 항목을 살짝 보여 주는 모바일 캐러셀. */
+  .skillfit .track-carousel-viewport {
+    overflow: hidden;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    touch-action: pan-y;
+  }
+
+  .skillfit .track-grid {
+    --track-gap: 8px;
+    display: flex;
+    width: max-content;
+    gap: var(--track-gap);
+    transform: translate3d(var(--track-translate, 0px), 0, 0);
+    will-change: transform;
+  }
+
+  .skillfit .track-grid.is-transitioning {
+    transition: transform 360ms cubic-bezier(.22, .8, .32, 1);
+  }
+
+  .skillfit .track-card {
+    flex: 0 0 70vw;
+    min-height: 40vh;
+    opacity: .38;
+    filter: blur(1.5px);
+    transform: scale(.9);
+    transition: opacity 280ms ease, filter 280ms ease, transform 280ms ease;
+  }
+
+  .skillfit .track-card.is-current {
+    opacity: 1;
+    filter: none;
+    transform: scale(1);
+  }
+
+  .skillfit .track-card__mark,
+  .skillfit .track-card__mark img,
+  .skillfit .track-card__mark svg {
+    width: 50px;
+    height: 50px;
+  }
 
   .skillfit .skillfit-home-screen { grid-template-columns: minmax(0, 1fr); }
   .skillfit .skillfit-home-nav { display: none; }
@@ -498,7 +539,7 @@
   .wrap > section,
   main > section,
   .parts-group > section {
-    min-height: 100svh;
+    min-height: 80svh;
     justify-content: center;
     padding-block: 56px;
   }
@@ -535,7 +576,7 @@
     display: block;
     margin-inline: calc(-1 * var(--space-20));
     aspect-ratio: 1448 / 800;
-    background: url("../images/main_banner_img_pc.avif") center / cover no-repeat;
+    background: url("../images/backgrounds/main-banner-img-pc.avif") center / cover no-repeat;
     margin-top: -48px;
   }
 
@@ -778,7 +819,6 @@
 
   .bridge-inner {
     flex-direction: column;
-    align-items: stretch;
     gap: var(--space-20);
     text-align: center;
   }

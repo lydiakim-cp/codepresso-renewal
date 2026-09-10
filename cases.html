@@ -29,9 +29,9 @@
     <section class="sub-hero">
       <div class="hero-wrap">
         <div class="sub-hero-copy">
-          <p class="tag">Customer cases</p>
-          <h1 class="hero-title">숫자로 증명하는 전환</h1>
-          <p class="hero-desc">익명의 후기가 아닙니다. <strong>실명과 숫자</strong>로 공개합니다.</p>
+          <p class="tag" data-i18n="cases-hero-eyebrow">Customer cases</p>
+          <h1 class="hero-title" data-i18n="cases-hero-title">숫자로 증명하는 전환</h1>
+          <p class="hero-desc" data-i18n="cases-hero-desc">익명의 후기가 아닙니다. <strong>실명과 숫자</strong>로 공개합니다.</p>
         </div>
 
         <!-- 누적 성과 3개. hero-facts와 같은 유리 띠 외피에 수치를 담는 hero-facts
@@ -54,7 +54,7 @@
             </span>
             <div>
               <div class="metric-card__value"><span class="num" data-target="102">0</span><span class="unit">개</span></div>
-              <p class="metric-card__label text-label">고객사</p>
+              <p class="metric-card__label text-label" data-i18n="cases-hero-fact-label-01">고객사</p>
             </div>
           </li>
           <li class="metric-card">
@@ -71,7 +71,7 @@
             </span>
             <div>
               <div class="metric-card__value"><span class="num" data-target="75000">0</span><span class="unit">+</span></div>
-              <p class="metric-card__label text-label">누적 사용자</p>
+              <p class="metric-card__label text-label" data-i18n="cases-hero-fact-label-02">누적 사용자</p>
             </div>
           </li>
           <li class="metric-card">
@@ -85,7 +85,7 @@
             </span>
             <div>
               <div class="metric-card__value"><span class="num" data-target="96">0</span><span class="unit">%</span></div>
-              <p class="metric-card__label text-label">고객 만족도</p>
+              <p class="metric-card__label text-label" data-i18n="cases-hero-fact-label-03">고객 만족도</p>
             </div>
           </li>
         </ul>
@@ -104,8 +104,8 @@
     <section class="catalog fade-up">
       <div class="section-wrap col">
         <div class="section-title text-left">
-          <h2>일하는 방식은 두 갈래로 바뀝니다</h2>
-          <p class="desc">손이 하던 일을 넘긴 조직과, 사람의 실력을 키운 조직. <br data-break="desktop">
+          <h2 data-i18n="cases-catalog-title">일하는 방식은 두 갈래로 바뀝니다</h2>
+          <p class="desc" data-i18n="cases-catalog-desc">손이 하던 일을 넘긴 조직과, 사람의 실력을 키운 조직. <br data-break="desktop">
             모든 사례는 고객사 이름과 실제로 잰 수치를 그대로 싣습니다.</p>
         </div>
 
@@ -115,9 +115,9 @@
           <div class="case-filter" data-case-filter>
             <nav class="part-nav part-nav--compact part-nav--animated" aria-label="사례 분류">
               <span class="part-nav-indicator" aria-hidden="true"></span>
-              <button type="button" class="part-nav-item is-active" data-case-tab="all" aria-pressed="true">전체</button>
-              <button type="button" class="part-nav-item" data-case-tab="tool" aria-pressed="false">업무 자동화</button>
-              <button type="button" class="part-nav-item" data-case-tab="people" aria-pressed="false">역량 진단·교육</button>
+              <button type="button" class="part-nav-item is-active" data-case-tab="all" aria-pressed="true" data-i18n="cases-catalog-filter-01">전체</button>
+              <button type="button" class="part-nav-item" data-case-tab="tool" aria-pressed="false" data-i18n="cases-catalog-filter-02">업무 자동화</button>
+              <button type="button" class="part-nav-item" data-case-tab="people" aria-pressed="false" data-i18n="cases-catalog-filter-03">역량 진단·교육</button>
             </nav>
             <!-- 지금 몇 건이 남았는지. 화면 밖 사용자에게도 알리기 위해 aria-live를 둔다.
                  내용은 case-filter.js가 채운다(JS가 없으면 카드는 전부 보이므로 이 줄만 빈다). -->
@@ -141,190 +141,190 @@
           <ul class="outcome-list" data-case-list>
             <li data-case-axis="tool">
               <div class="outcome-logo">
-                <img src="images/logos/logo-translink.svg" alt="트랜스링크인베스트먼트 로고" loading="lazy">
+                <img src="images/clients/dark/logo-translink.svg" alt="트랜스링크인베스트먼트 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="outcome-tags">
-                  <span class="tag">업무 자동화 · AXpresso</span>
-                  <span class="tag tag-industry">금융·VC</span>
+                  <span class="tag" data-i18n="cases-catalog-badge-tool">업무 자동화 · AXpresso</span>
+                  <span class="tag tag-industry" data-i18n="cases-catalog-industry-01">금융·VC</span>
                 </p>
                 <p class="outcome-shift">
                   <span class="outcome-before">3~5일</span>
                   <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                   <span class="outcome-after">1시간</span>
                 </p>
-                <p class="outcome-detail">월 <strong>30시간</strong> 절감. "의사결정 속도가 달라졌다"</p>
+                <p class="outcome-detail" data-i18n="cases-catalog-detail-01">월 <strong>30시간</strong> 절감. "의사결정 속도가 달라졌다"</p>
                 <p class="outcome-client">트랜스링크인베스트먼트 <span class="outcome-person">박희덕 대표</span></p>
               </div>
             </li>
             <li data-case-axis="tool">
               <div class="outcome-logo outcome-logo--invert">
-                <img src="images/logos/logo-chainlogis.png" alt="체인로지스 로고" loading="lazy">
+                <img src="images/clients/case-study/체인로지스.png" alt="체인로지스 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="outcome-tags">
-                  <span class="tag">업무 자동화 · AXpresso</span>
-                  <span class="tag tag-industry">물류</span>
+                  <span class="tag" data-i18n="cases-catalog-badge-tool">업무 자동화 · AXpresso</span>
+                  <span class="tag tag-industry" data-i18n="cases-catalog-industry-02">물류</span>
                 </p>
                 <p class="outcome-shift">
                   <span class="outcome-before">2~4시간</span>
                   <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                   <span class="outcome-after">3분</span>
                 </p>
-                <p class="outcome-detail">월 <strong>80시간</strong> 절감, CS 문의 <strong>90%</strong> AI 처리. "풀타임 1명"</p>
+                <p class="outcome-detail" data-i18n="cases-catalog-detail-02">월 <strong>80시간</strong> 절감, CS 문의 <strong>90%</strong> AI 처리. "풀타임 1명"</p>
                 <p class="outcome-client">체인로지스 <span class="outcome-person">김동현 대표</span></p>
               </div>
             </li>
             <li data-case-axis="tool">
               <div class="outcome-logo">
-                <img src="images/logos/logo-dongtan-first.png" alt="동탄퍼스트안과 로고" loading="lazy">
+                <img src="images/clients/case-study/동탄퍼스트안과.png" alt="동탄퍼스트안과 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="outcome-tags">
-                  <span class="tag">업무 자동화 · AXpresso</span>
-                  <span class="tag tag-industry">의료</span>
+                  <span class="tag" data-i18n="cases-catalog-badge-tool">업무 자동화 · AXpresso</span>
+                  <span class="tag tag-industry" data-i18n="cases-catalog-industry-03">의료</span>
                 </p>
-                <p class="outcome-headline">상담 90% 자동화</p>
-                <p class="outcome-detail">검사 결과 정리 월 <strong>15시간</strong> 절감</p>
-                <p class="outcome-client">동탄퍼스트안과 <span class="outcome-industry">/ 상담 · 검사 결과 정리</span></p>
+                <p class="outcome-headline" data-i18n="cases-catalog-headline-03">상담 90% 자동화</p>
+                <p class="outcome-detail" data-i18n="cases-catalog-detail-03">검사 결과 정리 월 <strong>15시간</strong> 절감</p>
+                <p class="outcome-client">동탄퍼스트안과 <span class="outcome-industry" data-i18n="cases-catalog-industry-tag-03">/ 상담 · 검사 결과 정리</span></p>
               </div>
             </li>
             <li data-case-axis="tool">
               <div class="outcome-logo">
-                <img src="images/logos/logo-expert-tax.png" alt="세무법인 엑스퍼트 로고" loading="lazy">
+                <img src="images/clients/case-study/세무법인엑스퍼트.png" alt="세무법인 엑스퍼트 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="outcome-tags">
-                  <span class="tag">업무 자동화 · AXpresso</span>
-                  <span class="tag tag-industry">세무·회계</span>
+                  <span class="tag" data-i18n="cases-catalog-badge-tool">업무 자동화 · AXpresso</span>
+                  <span class="tag tag-industry" data-i18n="cases-catalog-industry-04">세무·회계</span>
                 </p>
                 <p class="outcome-shift">
                   <span class="outcome-before">2~3시간</span>
                   <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                   <span class="outcome-after">10분</span>
                 </p>
-                <p class="outcome-detail">정산 월 <strong>50시간</strong> + 영수증 처리 월 <strong>40시간</strong> 절감</p>
-                <p class="outcome-client">세무법인 엑스퍼트 <span class="outcome-industry">/ 세무 정산 자동화</span></p>
+                <p class="outcome-detail" data-i18n="cases-catalog-detail-04">정산 월 <strong>50시간</strong> + 영수증 처리 월 <strong>40시간</strong> 절감</p>
+                <p class="outcome-client">세무법인 엑스퍼트 <span class="outcome-industry" data-i18n="cases-catalog-industry-tag-04">/ 세무 정산 자동화</span></p>
               </div>
             </li>
             <li data-case-axis="tool">
               <div class="outcome-logo outcome-logo--tall">
-                <img src="images/logos/logo-wooha.png" alt="우하컴퍼니 로고" loading="lazy">
+                <img src="images/clients/case-study/우하컴퍼니.png" alt="우하컴퍼니 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="outcome-tags">
-                  <span class="tag">업무 자동화 · AXpresso</span>
-                  <span class="tag tag-industry">이커머스</span>
+                  <span class="tag" data-i18n="cases-catalog-badge-tool">업무 자동화 · AXpresso</span>
+                  <span class="tag tag-industry" data-i18n="cases-catalog-industry-05">이커머스</span>
                 </p>
                 <p class="outcome-shift">
                   <span class="outcome-before">2~3시간</span>
                   <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                   <span class="outcome-after">30초</span>
                 </p>
-                <p class="outcome-detail">월 <strong>60시간</strong> 절감 · <strong>99%</strong> 단축</p>
-                <p class="outcome-client">우하컴퍼니 <span class="outcome-industry">/ 정산 자동화</span></p>
+                <p class="outcome-detail" data-i18n="cases-catalog-detail-05">월 <strong>60시간</strong> 절감 · <strong>99%</strong> 단축</p>
+                <p class="outcome-client">우하컴퍼니 <span class="outcome-industry" data-i18n="cases-catalog-industry-tag-05">/ 정산 자동화</span></p>
               </div>
             </li>
             <li data-case-axis="tool">
               <div class="outcome-logo outcome-logo--tall">
-                <img src="images/logos/logo-bujatape.png" alt="부자테이프 로고" loading="lazy">
+                <img src="images/clients/case-study/부자테이프.png" alt="부자테이프 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="outcome-tags">
-                  <span class="tag">업무 자동화 · AXpresso</span>
-                  <span class="tag tag-industry">제조업</span>
+                  <span class="tag" data-i18n="cases-catalog-badge-tool">업무 자동화 · AXpresso</span>
+                  <span class="tag tag-industry" data-i18n="cases-catalog-industry-06">제조업</span>
                 </p>
                 <p class="outcome-shift">
                   <span class="outcome-before">2~4시간</span>
                   <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                   <span class="outcome-after">5분</span>
                 </p>
-                <p class="outcome-detail">월 <strong>80시간</strong> 절감</p>
-                <p class="outcome-client">부자테이프 <span class="outcome-industry">/ 콘텐츠 제작 자동화</span></p>
+                <p class="outcome-detail" data-i18n="cases-catalog-detail-06">월 <strong>80시간</strong> 절감</p>
+                <p class="outcome-client">부자테이프 <span class="outcome-industry" data-i18n="cases-catalog-industry-tag-06">/ 콘텐츠 제작 자동화</span></p>
               </div>
             </li>
             <li data-case-axis="people">
               <div class="outcome-logo">
-                <img src="images/logos/logo-hyundai-ngv.svg" alt="현대엔지비 로고" loading="lazy">
+                <img src="images/clients/case-study/현대엔지비.svg" alt="현대엔지비 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="outcome-tags">
-                  <span class="tag">역량 진단·교육</span>
-                  <span class="tag tag-industry">교육·HRD</span>
+                  <span class="tag" data-i18n="cases-catalog-badge-people">역량 진단·교육</span>
+                  <span class="tag tag-industry" data-i18n="cases-catalog-industry-07">교육·HRD</span>
                 </p>
-                <p class="outcome-headline">337개 과정</p>
-                <p class="outcome-detail"><strong>6년</strong> 연속 협력, 파트너십 <strong>519%</strong> 성장</p>
-                <p class="outcome-client">현대엔지비 <span class="outcome-industry">/ 교육 파트너십 · 6년 연속</span></p>
+                <p class="outcome-headline" data-i18n="cases-catalog-headline-07">337개 과정</p>
+                <p class="outcome-detail" data-i18n="cases-catalog-detail-07"><strong>6년</strong> 연속 협력, 파트너십 <strong>519%</strong> 성장</p>
+                <p class="outcome-client">현대엔지비 <span class="outcome-industry" data-i18n="cases-catalog-industry-tag-07">/ 교육 파트너십 · 6년 연속</span></p>
               </div>
             </li>
             <li data-case-axis="people">
               <div class="outcome-logo">
-                <img src="images/logos/logo-hyundai-mobis.png" alt="현대모비스 로고" loading="lazy">
+                <img src="images/clients/dark/logo-hyundai-mobis.png" alt="현대모비스 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="outcome-tags">
-                  <span class="tag">역량 진단·교육</span>
-                  <span class="tag tag-industry">제조업</span>
+                  <span class="tag" data-i18n="cases-catalog-badge-people">역량 진단·교육</span>
+                  <span class="tag tag-industry" data-i18n="cases-catalog-industry-08">제조업</span>
                 </p>
-                <p class="outcome-headline">1,800명+ 평가</p>
-                <p class="outcome-detail">단일 평가 기준, 구직자 통과율 <strong>3.6%</strong>의 선발 체계 운영</p>
-                <p class="outcome-client">현대모비스 <span class="outcome-industry">/ 모비우스 부트캠프</span></p>
+                <p class="outcome-headline" data-i18n="cases-catalog-headline-08">1,800명+ 평가</p>
+                <p class="outcome-detail" data-i18n="cases-catalog-detail-08">단일 평가 기준, 구직자 통과율 <strong>3.6%</strong>의 선발 체계 운영</p>
+                <p class="outcome-client">현대모비스 <span class="outcome-industry" data-i18n="cases-catalog-industry-tag-08">/ 모비우스 부트캠프</span></p>
               </div>
             </li>
             <li data-case-axis="people">
               <div class="outcome-logo">
-                <img src="images/logos/logo-cj.svg" alt="CJ올리브네트웍스 로고" loading="lazy">
+                <img src="images/clients/dark/logo-cj.svg" alt="CJ올리브네트웍스 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="outcome-tags">
-                  <span class="tag">역량 진단·교육</span>
-                  <span class="tag tag-industry">IT·서비스</span>
+                  <span class="tag" data-i18n="cases-catalog-badge-people">역량 진단·교육</span>
+                  <span class="tag tag-industry" data-i18n="cases-catalog-industry-09">IT·서비스</span>
                 </p>
-                <p class="outcome-headline">비용·시간 30%↓</p>
-                <p class="outcome-detail"><strong>150명 → 30명 → 3명</strong> 선발 프로세스 효율화</p>
-                <p class="outcome-client">CJ올리브네트웍스 <span class="outcome-industry">/ 해외 개발자 채용</span></p>
+                <p class="outcome-headline" data-i18n="cases-catalog-headline-09">비용·시간 30%↓</p>
+                <p class="outcome-detail" data-i18n="cases-catalog-detail-09"><strong>150명 → 30명 → 3명</strong> 선발 프로세스 효율화</p>
+                <p class="outcome-client">CJ올리브네트웍스 <span class="outcome-industry" data-i18n="cases-catalog-industry-tag-09">/ 해외 개발자 채용</span></p>
               </div>
             </li>
             <li data-case-axis="people">
               <div class="outcome-logo">
-                <img src="images/logos/logo_1_삼성_(h36).svg" alt="삼성전자 로고" loading="lazy">
+                <img src="images/clients/dark/logo_1_삼성_(h36).svg" alt="삼성전자 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="outcome-tags">
-                  <span class="tag">역량 진단·교육</span>
-                  <span class="tag tag-industry">제조업</span>
+                  <span class="tag" data-i18n="cases-catalog-badge-people">역량 진단·교육</span>
+                  <span class="tag tag-industry" data-i18n="cases-catalog-industry-10">제조업</span>
                 </p>
-                <p class="outcome-headline">50회+ · 1,000명+</p>
-                <p class="outcome-detail">지속 운영 중인 평가 파트너십</p>
-                <p class="outcome-client">삼성전자 <span class="outcome-industry">/ 역량 평가 운영</span></p>
+                <p class="outcome-headline" data-i18n="cases-catalog-headline-10">50회+ · 1,000명+</p>
+                <p class="outcome-detail" data-i18n="cases-catalog-detail-10">지속 운영 중인 평가 파트너십</p>
+                <p class="outcome-client">삼성전자 <span class="outcome-industry" data-i18n="cases-catalog-industry-tag-10">/ 역량 평가 운영</span></p>
               </div>
             </li>
             <li data-case-axis="people">
               <div class="outcome-logo">
-                <img src="images/logos/logo-skt.png" alt="SK텔레콤 로고" loading="lazy">
+                <img src="images/clients/dark/logo-skt.png" alt="SK텔레콤 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="outcome-tags">
-                  <span class="tag">역량 진단·교육</span>
-                  <span class="tag tag-industry">통신</span>
+                  <span class="tag" data-i18n="cases-catalog-badge-people">역량 진단·교육</span>
+                  <span class="tag tag-industry" data-i18n="cases-catalog-industry-11">통신</span>
                 </p>
-                <p class="outcome-headline">20회+ · 700명+</p>
-                <p class="outcome-detail">"감이 아닌 데이터로 관리하는 사내 AI 활용 역량"</p>
-                <p class="outcome-client">SK텔레콤 <span class="outcome-industry">/ AI 역량 관리</span></p>
+                <p class="outcome-headline" data-i18n="cases-catalog-headline-11">20회+ · 700명+</p>
+                <p class="outcome-detail" data-i18n="cases-catalog-detail-11">"감이 아닌 데이터로 관리하는 사내 AI 활용 역량"</p>
+                <p class="outcome-client">SK텔레콤 <span class="outcome-industry" data-i18n="cases-catalog-industry-tag-11">/ AI 역량 관리</span></p>
               </div>
             </li>
             <li data-case-axis="people">
               <div class="outcome-logo">
-                <img src="images/logos/logo-amorepacific.png" alt="아모레퍼시픽 로고" loading="lazy">
+                <img src="images/clients/case-study/아모레퍼시픽.png" alt="아모레퍼시픽 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="outcome-tags">
-                  <span class="tag">역량 진단·교육</span>
-                  <span class="tag tag-industry">유통·소비재</span>
+                  <span class="tag" data-i18n="cases-catalog-badge-people">역량 진단·교육</span>
+                  <span class="tag tag-industry" data-i18n="cases-catalog-industry-12">유통·소비재</span>
                 </p>
-                <p class="outcome-headline">150회+ · 4,000명</p>
-                <p class="outcome-detail">지속 교육 파트너십</p>
-                <p class="outcome-client">아모레퍼시픽 <span class="outcome-industry">/ 전사 교육</span></p>
+                <p class="outcome-headline" data-i18n="cases-catalog-headline-12">150회+ · 4,000명</p>
+                <p class="outcome-detail" data-i18n="cases-catalog-detail-12">지속 교육 파트너십</p>
+                <p class="outcome-client">아모레퍼시픽 <span class="outcome-industry" data-i18n="cases-catalog-industry-tag-12">/ 전사 교육</span></p>
               </div>
             </li>
           </ul>
@@ -347,9 +347,9 @@
     <section class="process fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag">공통점</p>
-          <h2>업종도 규모도 달랐지만<br data-break="mobile"> 순서는 같았습니다</h2>
-          <p class="desc">어디가 비어 있는지 숫자로 확인한 조직만이 <br data-break="desktop">
+          <p class="tag" data-i18n="cases-process-eyebrow">공통점</p>
+          <h2 data-i18n="cases-process-title">업종도 규모도 달랐지만<br data-break="mobile"> 순서는 같았습니다</h2>
+          <p class="desc" data-i18n="cases-process-desc">어디가 비어 있는지 숫자로 확인한 조직만이 <br data-break="desktop">
             무엇을 바꿀지 정할 수 있었습니다.</p>
         </div>
 
@@ -360,8 +360,8 @@
                 <span class="cycle-no">1</span>
                 <p class="cycle-en">Assess</p>
               </div>
-              <h3>진단</h3>
-              <p class="description">감이 아니라 데이터로 현재 수준과 병목을 먼저 확인했습니다.</p>
+              <h3 data-i18n="cases-process-step-title-01">진단</h3>
+              <p class="description" data-i18n="cases-process-step-desc-01">감이 아니라 데이터로 현재 수준과 병목을 먼저 확인했습니다.</p>
               <span class="cycle-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
@@ -371,8 +371,8 @@
                 <span class="cycle-no">2</span>
                 <p class="cycle-en">Change</p>
               </div>
-              <h3>전환</h3>
-              <p class="description">전부 뒤집지 않고, 가장 오래 걸리던 업무 하나부터 바꿨습니다.</p>
+              <h3 data-i18n="cases-process-step-title-02">전환</h3>
+              <p class="description" data-i18n="cases-process-step-desc-02">전부 뒤집지 않고, 가장 오래 걸리던 업무 하나부터 바꿨습니다.</p>
               <span class="cycle-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
@@ -382,8 +382,8 @@
                 <span class="cycle-no">3</span>
                 <p class="cycle-en">Prove</p>
               </div>
-              <h3>증명</h3>
-              <p class="description">바뀐 만큼을 다시 수치로 재서, 위 사례의 숫자로 남겼습니다.</p>
+              <h3 data-i18n="cases-process-step-title-03">증명</h3>
+              <p class="description" data-i18n="cases-process-step-desc-03">바뀐 만큼을 다시 수치로 재서, 위 사례의 숫자로 남겼습니다.</p>
             </li>
           </ol>
         </div>
@@ -392,11 +392,11 @@
 
     <section class="cta-final fade-up">
       <div class="section-wrap col cta-final-inner">
-        <h2 class="cta-final-title">다음 사례의<br data-break="mobile"> 주인공이 되어보세요</h2>
-        <p class="cta-final-desc">준비물은 두 가지면 충분합니다. 내부 담당자 1명, 업무 프로세스 공유.</p>
+        <h2 class="cta-final-title" data-i18n="cases-cta-final-title">다음 사례의<br data-break="mobile"> 주인공이 되어보세요</h2>
+        <p class="cta-final-desc" data-i18n="cases-cta-final-desc">준비물은 두 가지면 충분합니다. 내부 담당자 1명, 업무 프로세스 공유.</p>
         <div class="cta-final-actions">
           <a href="#" class="btn btn-primary btn-lg">
-            도입 문의
+            <span data-i18n="cases-cta-final-cta">도입 문의</span>
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
@@ -413,6 +413,7 @@
   <script src="js/nav-menu.js"></script>
   <script src="js/stat-reveal.js"></script>
   <script src="js/case-filter.js"></script>
+  <script src="js/i18n.js"></script>
 </body>
 
 </html>

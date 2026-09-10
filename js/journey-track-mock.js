@@ -1,6 +1,6 @@
 /*
  * Journey Track Mock
- * 02 STEP 러닝패스 섹션 우측 목업 — Career Track 목업 UI(images/mockup/career-track-mock-skillpath.html)를
+ * 02 STEP 러닝패스 섹션 우측 목업 — Career Track 목업 UI(images/mockups/career-track-mock-skillpath.html)를
  * 그대로 옮긴다. 배지 아이콘이 base64 SVG라 마크업이 커서, skillpath.html 소스를 무겁게 하지 않도록
  * 이 파일로 분리해 두고 런타임에 마운트 지점에 주입한다.
  * 이 페이지에서만 쓰는 일회성 화면이라 사이트 공용 track-mock-* 컴포넌트(product-mock.css)와는 별개다.
