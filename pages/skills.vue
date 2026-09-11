@@ -1341,4 +1341,5 @@
 <script setup>
 useSeoMeta({ title: "AI 역량 진단·맞춤 교육 플랫폼 | 코드프레소", description: "AI를 얼마나 아는지가 아니라 업무에서 얼마나 잘 쓰는지 진단하고, 부족한 역량만 맞춤 교육으로 채워 재진단으로 성장을 증명합니다." })
 import '~/css/pages/skills.css'
+import '~/css/mobile.css'
 </script>

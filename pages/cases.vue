@@ -392,4 +392,5 @@
 <script setup>
 useSeoMeta({ title: "고객 사례 — 익명의 후기가 아니라 실명과 숫자로 증명합니다 | 코드프레소", description: "숫자로 증명하는 전환. 익명의 후기가 아닙니다. 실명과 숫자로 공개합니다." })
 import '~/css/pages/cases.css'
+import '~/css/mobile.css'
 </script>

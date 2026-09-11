@@ -571,4 +571,5 @@
 <script setup>
 useSeoMeta({ title: "AX Grow: AI 자동화 내재화 교육 | 코드프레소", description: "현장 맞춤 교육, 실제 업무 공동 구축, 사내 확산 설계까지 세 단계로 조직 스스로 AI 자동화를 실행하는 역량을 남깁니다." })
 import '~/css/pages/ax-grow.css'
+import '~/css/mobile.css'
 </script>

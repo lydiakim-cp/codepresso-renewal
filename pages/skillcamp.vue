@@ -541,4 +541,5 @@
 <script setup>
 useSeoMeta({ title: "SkillCamp — 짧고 강하게 몰입하는 오프라인 집체교육 | 코드프레소", description: "강사가 이끄는 집합·부트캠프 교육입니다. 실전 미션과 팀 프로젝트를 전문가 피드백으로 다듬으며 실전 역량을 끌어올립니다." })
 import '~/css/pages/skillcamp.css'
+import '~/css/mobile.css'
 </script>

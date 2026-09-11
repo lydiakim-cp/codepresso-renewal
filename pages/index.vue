@@ -884,6 +884,9 @@
 
                 </div>
                 </div>
+                <div class="difference-screen-indicator" aria-hidden="true">
+                  <i></i><i></i><i></i>
+                </div>
               </div>
 
               <div class="difference-block-head">
@@ -1050,6 +1053,9 @@
                   </div>
 
                 </div>
+                </div>
+                <div class="difference-screen-indicator" aria-hidden="true">
+                  <i></i><i></i><i></i>
                 </div>
               </div>
 
@@ -1226,6 +1232,9 @@
                   </div>
 
                 </div>
+                </div>
+                <div class="difference-screen-indicator" aria-hidden="true">
+                  <i></i><i></i><i></i>
                 </div>
               </div>
 
@@ -1407,4 +1416,5 @@
 <script setup>
 useSeoMeta({ title: "기업 AI 역량 진단·교육·업무 자동화 | 코드프레소", description: "업무를 가장 잘 아는 건 이미 우리 직원입니다. AI 활용 역량 진단부터 맞춤 교육, 업무 자동화까지 하나의 플랫폼에서 연결합니다." })
 import '~/css/pages/index.css'
+import '~/css/mobile.css'
 </script>

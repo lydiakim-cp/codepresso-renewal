@@ -1690,4 +1690,5 @@
 <script setup>
 useSeoMeta({ title: "Codepresso Design Guide v2", description: "" })
 import '~/css/pages/designsystem-v2.css'
+import '~/css/mobile.css'
 </script>

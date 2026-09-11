@@ -907,4 +907,5 @@
 <script setup>
 useSeoMeta({ title: "코드프레소 차별점 — 도구도 교육도, 그리고 연결까지 | 코드프레소", description: "도구 전문 회사는 사람을 못 바꾸고, 교육 회사는 도구가 없습니다. Codepresso는 둘 다, 그리고 연결까지 합니다." })
 import '~/css/pages/why-codepresso.css'
+import '~/css/mobile.css'
 </script>

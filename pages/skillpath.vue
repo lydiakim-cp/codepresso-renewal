@@ -430,4 +430,5 @@
 <script setup>
 useSeoMeta({ title: "SkillPath — 8개 분야 IT·SW 트랙과 STEP 학습 경로 | 코드프레소", description: "8개 분야 IT·SW 코스를 STEP 단위 트랙으로 잇는 온라인 자기주도 학습 서비스. 임직원은 자기 수준에서 시작해 필요한 깊이까지 올라갑니다." })
 import '~/css/pages/skillpath.css'
+import '~/css/mobile.css'
 </script>

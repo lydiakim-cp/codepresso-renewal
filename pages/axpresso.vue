@@ -478,4 +478,5 @@
 <script setup>
 useSeoMeta({ title: "AXpresso: AI 업무 자동화 | 코드프레소", description: "흩어진 도구와 수작업을 AI 중심 자동화 흐름으로 연결합니다. 빠른 도입으로 실제 운영까지 연결하는 AI 업무 자동화 플랫폼입니다." })
 import '~/css/pages/axpresso.css'
+import '~/css/mobile.css'
 </script>

@@ -718,4 +718,5 @@
 <script setup>
 useSeoMeta({ title: "AI Fluent: AI 활용 역량 진단 | 코드프레소", description: "문제 정의, 프롬프트 설계, 워크플로·Agent 활용, 결과 검증까지. 실제 업무 속 AI 활용 역량을 진단합니다." })
 import '~/css/pages/aifluent.css'
+import '~/css/mobile.css'
 </script>

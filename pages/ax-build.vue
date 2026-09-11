@@ -1107,4 +1107,5 @@
 <script setup>
 useSeoMeta({ title: "AX Build: AI 업무 자동화 구축 | 코드프레소", description: "반복 업무를 AI Agent의 일로 바꿉니다. 현장 진단부터 운영 배포까지, 보고서가 아닌 실제 돌아가는 결과물을 남깁니다." })
 import '~/css/pages/ax-build.css'
+import '~/css/mobile.css'
 </script>

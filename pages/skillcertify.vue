@@ -316,4 +316,5 @@
 <script setup>
 useSeoMeta({ title: "SkillCertify: 개발자 실무 역량 평가 | 코드프레소", description: "돌아가는 코드와 좋은 코드는 다릅니다. 실무 기준 프로젝트 과제와 부정행위 감지 기능으로 개발 역량을 정밀하게 검증합니다." })
 import '~/css/pages/skillcertify.css'
+import '~/css/mobile.css'
 </script>

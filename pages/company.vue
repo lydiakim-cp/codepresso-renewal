@@ -279,4 +279,5 @@
 <script setup>
 useSeoMeta({ title: "회사 소개 | 코드프레소", description: "역량이 공정하게 평가되는 세상. 2019년 설립 이후 AI 리터러시의 표준을 만들어 온 코드프레소의 미션과 연혁, 인증과 고객의 목소리를 소개합니다." })
 import '~/css/pages/company.css'
+import '~/css/mobile.css'
 </script>

@@ -778,4 +778,5 @@
 <script setup>
 useSeoMeta({ title: "SkillFit — 진단 결과가 곧 나만의 학습 계획이 되는 개인화 학습 | 코드프레소", description: "SkillFit. AI 진단 인터뷰가 현재 수준과 취약점을 찾고 학습 경로를 설계합니다. 강의를 보는 대신, 브라우저에서 직접 코드를 씁니다." })
 import '~/css/pages/skillfit.css'
+import '~/css/mobile.css'
 </script>
