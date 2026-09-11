@@ -362,7 +362,6 @@
                     <div class="metric-card__value"><span class="num">39,355</span><span class="unit">명</span></div>
                     <p class="metric-card__label text-label">누적 수강</p>
                     <div class="metric-card__visual" aria-hidden="true">
-                      <span class="metric-card__glow"></span><span class="metric-card__glow"></span>
                       <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
                         <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                         <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
@@ -440,8 +439,8 @@
 
           <article class="guide-v2-component-row" id="c-media-card">
             <div class="guide-component-demo">
-              <InsightList />
-            </div>
+              <InsightList>
+            </InsightList></div>
             <div><p class="tag">콘텐츠 목록</p><h3>Insight List</h3><p><code>data/insight-links.json</code>에 링크만 추가하면 기사 정보를 가져와 최신순으로 정렬합니다. 첫 항목은 대표 카드로 배치되며 이미지 오류 시 placeholder를 사용합니다.</p><code>InsightList · insight-list · insight-card</code></div>
           </article>
 
@@ -475,7 +474,7 @@
 
           <article class="guide-v2-component-row" id="c-part-nav"><div class="guide-component-demo"><div class="guide-part-nav-variants"><div><p class="text-label">최대 radius · 기본</p><nav class="part-nav part-nav--animated" data-guide-part-nav="" aria-label="캡슐형 Part Nav"><span class="part-nav-indicator" aria-hidden="true"></span><a class="part-nav-item is-active" href="#components">PART 1 · 교육</a><a class="part-nav-item" href="#components">PART 2 · 진단</a></nav></div><div><p class="text-label">최소 radius · compact</p><nav class="part-nav part-nav--compact part-nav--animated" data-guide-part-nav="" aria-label="사각형 Part Nav"><span class="part-nav-indicator" aria-hidden="true"></span><a class="part-nav-item is-active" href="#components">PART 1 · 교육</a><a class="part-nav-item" href="#components">PART 2 · 진단</a></nav></div></div></div><div><p class="tag">파트 이동</p><h3>Part Nav</h3><p>코드프레소의 기본은 부드러운 캡슐형입니다. 더 정돈된 제품 UI에는 8px compact 변형을 사용합니다.</p><code>part-nav · part-nav--compact</code></div></article>
 
-          <article class="guide-v2-component-row" id="c-assessment-card"><div class="guide-component-demo"><div class="assessment-card-frame"><span class="assessment-card-frame__glow" aria-hidden="true"></span><div class="assessment-card-stack"><span class="assessment-card-eyebrow">AI 리터러시 자가 진단 (1분 소요)</span><article class="assessment-card"><div class="assessment-card__head"><h3 class="assessment-card__title">당신은 AI를 쓰는 사람인가요,<br>다루는 사람인가요?</h3><p class="description">AI를 쓰는 사람과 다루는 사람은 다릅니다.<br>지금 나의 AI 활용 수준을 확인해보세요.</p></div><ul class="assessment-card__meta" aria-label="진단 정보"><li class="pill">11문항</li><li class="pill">약 1분</li><li class="pill">즉시 결과</li></ul><div class="assessment-card__action"><a class="btn btn-primary btn-lg assessment-card__cta" href="#components">AI 역량 진단 시작하기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div></article></div></div></div><div><p class="tag">자가 진단 CTA</p><h3>Assessment Card</h3><p>Hero나 캠페인 화면에서 진단 시작을 유도할 때 사용합니다.</p><code>assessment-card</code></div></article>
+          <article class="guide-v2-component-row" id="c-assessment-card"><div class="guide-component-demo"><div class="assessment-card-frame"><span class="assessment-card-frame__glow" aria-hidden="true"></span><div class="assessment-card-stack"><span class="assessment-card-eyebrow">AI 리터러시 자가 진단 (3분 소요)</span><article class="assessment-card"><div class="assessment-card__head"><h3 class="assessment-card__title">당신은 AI를 쓰는 사람인가요,<br>다루는 사람인가요?</h3><p class="description">AI를 쓰는 사람과 다루는 사람은 다릅니다.<br>지금 나의 AI 활용 수준을 확인해보세요.</p></div><ul class="assessment-card__meta" aria-label="진단 정보"><li class="pill">11문항</li><li class="pill">약 3분</li><li class="pill">즉시 결과</li></ul><div class="assessment-card__action"><a class="btn btn-primary btn-lg assessment-card__cta" href="#components">AI 역량 진단 시작하기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div></article></div></div></div><div><p class="tag">자가 진단 CTA</p><h3>Assessment Card</h3><p>Hero나 캠페인 화면에서 진단 시작을 유도할 때 사용합니다.</p><code>assessment-card</code></div></article>
 
           <article class="guide-v2-component-row" id="c-skeleton">
             <div class="guide-component-demo">
@@ -897,17 +896,17 @@
                   <article class="metric-card">
                     <div class="metric-card__value"><span class="num" data-target="39355">0</span><span class="unit">명</span></div>
                     <p class="metric-card__label text-label">누적 수강</p>
-                    <div class="metric-card__visual" aria-hidden="true"><span class="metric-card__glow"></span><span class="metric-card__glow"></span><img class="metric-card__icon" src="/images/icons/service/ic_barChart.svg" alt=""></div>
+                    <div class="metric-card__visual" aria-hidden="true"><img class="metric-card__icon" src="/images/icons/service/ic_barChart.svg" alt=""></div>
                   </article>
                   <article class="metric-card">
                     <div class="metric-card__value"><span class="num" data-target="1531">0</span><span class="unit">회</span></div>
                     <p class="metric-card__label text-label">교육 운영</p>
-                    <div class="metric-card__visual" aria-hidden="true"><span class="metric-card__glow"></span><span class="metric-card__glow"></span><img class="metric-card__icon" src="/images/icons/service/ic_barChart.svg" alt=""></div>
+                    <div class="metric-card__visual" aria-hidden="true"><img class="metric-card__icon" src="/images/icons/service/ic_barChart.svg" alt=""></div>
                   </article>
                   <article class="metric-card">
                     <div class="metric-card__value"><span class="num" data-target="80">0</span><span class="unit">%</span></div>
                     <p class="metric-card__label text-label">재구매율</p>
-                    <div class="metric-card__visual" aria-hidden="true"><span class="metric-card__glow"></span><span class="metric-card__glow"></span><img class="metric-card__icon" src="/images/icons/service/ic_barChart.svg" alt=""></div>
+                    <div class="metric-card__visual" aria-hidden="true"><img class="metric-card__icon" src="/images/icons/service/ic_barChart.svg" alt=""></div>
                   </article>
                 </div>
               </div>

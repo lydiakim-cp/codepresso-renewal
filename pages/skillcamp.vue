@@ -366,8 +366,6 @@
                 </div>
                 <p class="metric-card__label text-label" data-i18n="skillcamp-outcomes-stat-label-01">교육 차수</p>
                 <div class="metric-card__visual" aria-hidden="true">
-                  <span class="metric-card__glow"></span>
-                  <span class="metric-card__glow"></span>
                   <!-- 교육 차수 — ic_calendar.svg 기반 -->
                   <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
                     <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
@@ -383,8 +381,6 @@
                 </div>
                 <p class="metric-card__label text-label" data-i18n="skillcamp-outcomes-stat-label-02">전문 강사진</p>
                 <div class="metric-card__visual" aria-hidden="true">
-                  <span class="metric-card__glow"></span>
-                  <span class="metric-card__glow"></span>
                   <!-- 전문 강사진 — ic_team.svg 기반 -->
                   <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
                     <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
@@ -402,8 +398,6 @@
                 </div>
                 <p class="metric-card__label text-label" data-i18n="skillcamp-outcomes-stat-label-03">기업 교육 재구매율</p>
                 <div class="metric-card__visual" aria-hidden="true">
-                  <span class="metric-card__glow"></span>
-                  <span class="metric-card__glow"></span>
                   <!-- 재구매율 — ic_lineChart.svg 기반 -->
                   <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
                     <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>

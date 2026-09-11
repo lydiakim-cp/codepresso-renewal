@@ -27,17 +27,17 @@ for (const file of readdirSync(pages).filter((name) => name.endsWith('.vue'))) {
   const source = readFileSync(url, 'utf8');
   const match = /<template>([\s\S]*?)<\/template>([\s\S]*)/.exec(source);
   if (!match) continue;
-  // parse5는 Vue 컴포넌트 이름을 소문자로 바꾸므로 SFC 경계 컴포넌트는 보호한다.
-  const protectedTemplate = match[1]
-    .replace(/<SiteHeader\s*\/>/, '<!--NUXT_SITE_HEADER-->')
-    .replace(/<SiteFooter\s*\/>/, '<!--NUXT_SITE_FOOTER-->')
-    .replace(/<ClientInteractions[\s\S]*?\/>/, '<!--NUXT_INTERACTIONS-->');
+  // parse5는 Vue 컴포넌트 이름을 소문자로 바꾸므로 PascalCase 컴포넌트를 보호한다.
+  // 콘텐츠를 갱신해도 자동 등록 컴포넌트(예: InsightList)가 일반 HTML 태그가 되지 않는다.
+  const protectedComponents = [];
+  const protectedTemplate = match[1].replace(/<\/?[A-Z][A-Za-z0-9]*\b[^>]*>/g, (component) => {
+    const marker = `<!--NUXT_COMPONENT_${protectedComponents.length}-->`;
+    protectedComponents.push(component);
+    return marker;
+  });
   const tree = parseFragment(protectedTemplate);
   localize(tree);
-  const template = serialize(tree)
-    .replace('<!--NUXT_SITE_HEADER-->', '<SiteHeader />')
-    .replace('<!--NUXT_SITE_FOOTER-->', '<SiteFooter />')
-    .replace('<!--NUXT_INTERACTIONS-->', match[1].match(/<ClientInteractions[\s\S]*?\/>/)?.[0] || '');
+  const template = serialize(tree).replace(/<!--NUXT_COMPONENT_(\d+)-->/g, (_, index) => protectedComponents[Number(index)] || '');
   const cssName = pageCssNames[file] || file.replace(/\.vue$/, '');
   const pageScript = match[2]
     // public CSS 링크 대신 Vite가 원본 css/ 파일을 번들에 포함하게 한다.

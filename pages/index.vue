@@ -42,7 +42,7 @@
             <div class="assessment-card-stack">
               <span class="assessment-card-eyebrow">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle><path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9S9.5 5.5 12 3Z" stroke="currentColor" stroke-width="1.6"></path></svg>
-                <span data-i18n="index-hero-assessment-eyebrow">AI 역량 1분 진단</span>
+                <span data-i18n="index-hero-assessment-eyebrow">AI 역량 3분 진단</span>
               </span>
 
               <article class="assessment-card">
@@ -53,7 +53,7 @@
 
                 <ul class="assessment-card__meta" aria-label="진단 정보">
                   <li class="pill"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 4h7l4 4v12H7zM10 12h5M10 16h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg><span data-i18n="index-hero-assessment-meta-01">11문항</span></li>
-                  <li class="pill"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg><span data-i18n="index-hero-assessment-meta-02">약 1분</span></li>
+                  <li class="pill"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg><span data-i18n="index-hero-assessment-meta-02">약 3분</span></li>
                   <li class="pill"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><span data-i18n="index-hero-assessment-meta-03">즉시 결과</span></li>
                 </ul>
 
@@ -70,26 +70,7 @@
 
       <div class="hero-clients">
         <h3 class="hero-clients-title" data-i18n="index-hero-clients-title"><strong>코드프레소</strong>와 함께하는 기업들</h3>
-        <div class="hero-clients-marquee">
-          <ul class="hero-clients-track">
-            <li><img src="/images/clients/dark/logo_4_현대_(h36).svg" alt="현대"></li>
-            <li><img src="/images/clients/dark/logo_5_벡터_(h36).svg" alt="벡터"></li>
-            <li><img src="/images/clients/dark/logo_6_서강대_(h36).svg" alt="서강대"></li>
-            <li><img src="/images/clients/dark/logo_1_삼성_(h36).svg" alt="삼성"></li>
-            <li><img src="/images/clients/dark/logo_2_기획재정부_(h36).svg" alt="기획재정부"></li>
-            <li><img src="/images/clients/dark/logo_3_롯데_(h36).svg" alt="롯데"></li>
-          </ul>
-          <!-- 끊김 없이 이어지도록 같은 목록을 한 벌 더 둔다. 시각적 복제일
-               뿐이라 스크린리더에는 감춘다. -->
-          <ul class="hero-clients-track" aria-hidden="true">
-            <li><img src="/images/clients/dark/logo_4_현대_(h36).svg" alt="현대"></li>
-            <li><img src="/images/clients/dark/logo_5_벡터_(h36).svg" alt="벡터"></li>
-            <li><img src="/images/clients/dark/logo_6_서강대_(h36).svg" alt="서강대"></li>
-            <li><img src="/images/clients/dark/logo_1_삼성_(h36).svg" alt="삼성"></li>
-            <li><img src="/images/clients/dark/logo_2_기획재정부_(h36).svg" alt="기획재정부"></li>
-            <li><img src="/images/clients/dark/logo_3_롯데_(h36).svg" alt="롯데"></li>
-          </ul>
-        </div>
+        <ClientLogoMarquee />
       </div>
     </section>
 
@@ -99,7 +80,7 @@
           <div class="section-title text-left">
             <p class="tag" data-i18n="index-features-eyebrow">How it works</p>
             <h2 data-i18n="index-features-title">교육으로 AI역량을 키우고, <br data-break="mobile"> 진단으로 변화를 증명합니다</h2>
-            <p class="desc" data-i18n="index-features-desc">핵심은 교육입니다. <br data-break="mobile">외부 채용 대신 내부 직원을 사내 FDE로 키웁니다. <br data-break="desktop"> 그리고 교육이 잘 됐는지는 숫자로 확인합니다.</p>
+            <p class="desc" data-i18n="index-features-desc">핵심은 교육입니다. <br data-break="mobile">외부 채용 대신 내부 직원을 사내 FDE로 키웁니다. <br> 그리고 교육이 잘 됐는지는 숫자로 확인합니다.</p>
           </div>
           <div class="section-cta">
             <a href="/skills" class="btn btn-ghost"><span data-i18n="index-features-cta">역량 진단·교육 알아보기</span><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
@@ -221,8 +202,6 @@
                 </div>
                 <p class="metric-card__label text-label" data-i18n="index-outcomes-metric-label-01">누적 수강</p>
                 <div class="metric-card__visual" aria-hidden="true">
-                  <span class="metric-card__glow"></span>
-                  <span class="metric-card__glow"></span>
                   <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
                     <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                     <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
@@ -239,8 +218,6 @@
                 </div>
                 <p class="metric-card__label text-label" data-i18n="index-outcomes-metric-label-02">교육 운영</p>
                 <div class="metric-card__visual" aria-hidden="true">
-                  <span class="metric-card__glow"></span>
-                  <span class="metric-card__glow"></span>
                   <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
                     <path d="M19.5 4.01953H4.5C3.39543 4.01953 2.5 4.91496 2.5 6.01953V19.0195C2.5 20.1241 3.39543 21.0195 4.5 21.0195H19.5C20.6046 21.0195 21.5 20.1241 21.5 19.0195V6.01953C21.5 4.91496 20.6046 4.01953 19.5 4.01953Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                     <path d="M8.48001 3.01953H7.5C7.22386 3.01953 7 3.24339 7 3.51953V5.51953C7 5.79567 7.22386 6.01953 7.5 6.01953H8.48001C8.75615 6.01953 8.98001 5.79567 8.98001 5.51953V3.51953C8.98001 3.24339 8.75615 3.01953 8.48001 3.01953Z" fill="var(--color-brand)"></path>
@@ -260,8 +237,6 @@
                 </div>
                 <p class="metric-card__label text-label" data-i18n="index-outcomes-metric-label-03">재구매율</p>
                 <div class="metric-card__visual" aria-hidden="true">
-                  <span class="metric-card__glow"></span>
-                  <span class="metric-card__glow"></span>
                   <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
                     <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                     <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"></path>
@@ -508,7 +483,8 @@
                 <div class="content-panel__intro">
                   <p class="text-label brand" data-i18n="index-journey-step-label-02">SkillCamp · 라이브 교육</p>
                   <h3 class="stage-step-title" data-i18n="index-journey-step-title-02">현업 전문가와 <br data-break="mobile">실전처럼 부딪힙니다</h3>
-                  <p class="desc" data-i18n="index-journey-step-desc-02">강사 주도 라이브 세션에서 실제 업무 과제로 프로젝트를 수행합니다. <br data-break="desktop"> 질문하고, 막히고, 해결하며 배웁니다.</p>
+                  <p class="desc" data-i18n="index-journey-step-desc-02">강사와 함께 실제 업무 프로젝트를 수행하며  <br data-break="desktop"> 
+질문하고 해결하는 과정에서 배웁니다.</p>
                 </div>
               </article>
 
@@ -522,7 +498,6 @@
                 <div class="content-panel__visual preview-frame preview-frame--flush journey-mock skillfit-mock" aria-hidden="true">
                   <div class="preview-frame__bar">
                     <span class="preview-frame__dots"><i></i><i></i><i></i></span>
-                    <span class="text-caption">skillpath.codepresso.io</span>
                   </div>
 
                   <div class="skillfit-mock-screen">
@@ -659,7 +634,7 @@
                 <a class="part-nav-item" href="#part2-diagnosis" data-part-nav-item="part2-diagnosis"><span data-i18n="index-journey-nav-02">PART 2 · 진단</span></a>
               </nav>
               <h2 data-i18n="index-diagnosis-title">교육이 잘 됐는지<br>궁금하지 않으세요?</h2>
-              <p class="desc" data-i18n="index-diagnosis-desc">그래서 코드프레소는 교육의 전과 후를 진단합니다. <br data-break="desktop"> 시작 전엔 필요한 역량을 파악하고, 끝난 뒤엔 얼마나 성장했는지 증명합니다.</p>
+              <p class="desc" data-i18n="index-diagnosis-desc">그래서 코드프레소는 교육의 전과 후를 진단합니다. <br> 시작 전엔 필요한 역량을 파악하고, 끝난 뒤엔 얼마나 성장했는지 증명합니다.</p>
             </div>
 
             <div class="diagnosis-products">
@@ -739,7 +714,7 @@
         <div class="section-header">
           <div class="section-title text-left">
             <p class="tag" data-i18n="index-difference-eyebrow">03 · The Difference</p>
-            <h2 data-i18n="index-difference-title">교육으로<br>끝내지 않습니다</h2>
+            <h2 data-i18n="index-difference-title">교육으로 끝내지 않습니다</h2>
             <p class="desc" data-i18n="index-difference-desc">진단으로 확인하고, 라이브러리로 쌓고, 현장에서 검증합니다.</p>
           </div>
           <div class="section-cta">
@@ -914,7 +889,7 @@
               <div class="difference-block-head">
                 <span class="difference-block-no">01</span>
                 <h3 class="stage-step-title" data-i18n="index-difference-block-title-01">정량적 관리</h3>
-                <p class="desc" data-i18n="index-difference-block-desc-01">교육 전후를 같은 기준으로 진단해<br>무엇이 얼마나 달라졌는지 확인합니다.</p>
+                <p class="desc" data-i18n="index-difference-block-desc-01">교육 전후를 같은 기준으로 진단해 <br data-break="mobile">무엇이 얼마나 달라졌는지 확인합니다.</p>
               </div>
             </li>
 
@@ -1393,12 +1368,12 @@
         </div>
 
         <div class="section-content">
-          <InsightList />
+          <InsightList>
 
           <div class="insight-more">
             <a href="https://www.codepresso.kr/news" class="btn btn-primary" target="_blank" rel="noopener"><span data-i18n="index-insight-cta">인사이트 더보기</span><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
           </div>
-        </div>
+        </InsightList></div>
       </div>
     </section>
 

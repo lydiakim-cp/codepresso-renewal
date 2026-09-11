@@ -1,7 +1,7 @@
 .insight-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     column-gap: var(--space-48);
     height: 480px;
   }
@@ -31,6 +31,7 @@
   .insight-card__title {
     font-size: var(--text-body-18);
     line-height: var(--leading-body-18);
+    font-weight: normal;
   }
 
   .insight-card__thumb {
@@ -59,19 +60,75 @@
   }
 
   .insight-list > li:first-child .insight-card__title {
-    font-size: inherit;
-    line-height: inherit;
+    font-size: var(--text-h3);
+    line-height: var(--leading-h3);
   }
+
+  .insight-list > li:not(:first-child) .insight-card__title {
+    font-size: var(--text-body);
+  }
+
+  /* 우측 목록은 제목을 먼저 읽고 썸네일을 보도록 순서를 바꾼다. */
+  .insight-list > li:not(:first-child) .insight-card__body { order: -1; }
 
 @media (max-width: 900px) {
     .insight-list {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       grid-template-rows: auto;
       gap: var(--space-24);
       height: auto;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
     }
 
     .insight-list > li:first-child {
       grid-row: auto;
+    }
+
+    /* 모바일에서는 대표 카드를 따로 키우지 않고 목록 카드와 같은 밀도로 표시한다. */
+    .insight-list > li:first-child .insight-card {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-24);
+      padding-block: var(--space-12);
+    }
+
+    .insight-list > li:first-child .insight-card__thumb {
+      order: 0;
+      width: auto;
+      height: 96px;
+      border-radius: var(--radius-md);
+    }
+
+    .insight-list > li:first-child .insight-card__body {
+      order: -1;
+      gap: var(--space-8);
+    }
+
+    .insight-list > li:first-child .insight-card__title {
+      font-size: var(--text-body);
+      line-height: var(--leading-body);
+    }
+
+    .insight-list > li,
+    .insight-list .insight-card {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+
+    .insight-list .insight-card__body {
+      min-width: 0;
+    }
+
+    .insight-list .insight-card__title {
+      overflow-wrap: anywhere;
+    }
+
+    .insight-list .insight-card__thumb,
+    .insight-list .insight-card__thumb img {
+      max-width: 100%;
     }
 }

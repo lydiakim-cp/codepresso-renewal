@@ -2,10 +2,10 @@
   "name": "codepresso-renewal",
   "private": true,
   "scripts": {
-    "dev": "nuxt dev",
-    "build": "nuxt build",
-    "generate": "nuxt generate",
-    "prepare": "node scripts/build-i18n.mjs && node scripts/apply-i18n-pages.mjs",
+    "dev": "node scripts/dev.mjs",
+    "build": "npm run prepare && nuxt build",
+    "generate": "npm run prepare && nuxt generate",
+    "prepare": "node scripts/build-i18n.mjs && node scripts/apply-i18n-pages.mjs && node scripts/build-client-logos.mjs",
     "lint:tokens": "node .claude/skills/html-css-architecture/scripts/token-lint.js",
     "audit": "node .claude/skills/html-css-architecture/scripts/page-audit.js",
     "gate": "npm run lint:tokens && npm run audit"
