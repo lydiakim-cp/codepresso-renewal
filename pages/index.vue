@@ -1393,77 +1393,7 @@
         </div>
 
         <div class="section-content">
-          <div class="insight-layout">
-            <!-- 가장 최근 기사 — 큰 썸네일로 좌측 절반을 차지한다. -->
-            <a class="media-card insight-feature" href="https://www.newsis.com/view/ALSX20260629_0000006828" target="_blank" rel="noopener">
-              <div class="media-card__media insight-feature-thumb">
-                <img src="https://mmx.prnasia.com/media/MS1873716/e7f99217463f4f01ad4a757a51402cc6.jpg?id=OA2738334&amp;p=medium600" alt="">
-              </div>
-              <div class="media-card__body insight-feature-body">
-                <div class="media-card__meta">
-                  <span class="tag solid sm">뉴스</span>
-                  <time class="text-caption" datetime="2026-06-29">2026-06-29</time>
-                </div>
-                <h3 class="media-card__title insight-feature-title">AXMOS 컨소시엄, 부산정보산업진흥원•부산벤처기업협회와 'AX 사업협력' MOU 체결</h3>
-              </div>
-            </a>
-
-            <!-- 나머지 기사 — 우측에서 제목·썸네일 한 줄씩 상하로 쌓인다. -->
-            <ul class="insight-list">
-              <li>
-                <a class="media-card insight-row" href="https://www.etoday.co.kr/news/view/2576115" target="_blank" rel="noopener">
-                  <div class="media-card__body insight-row-body">
-                    <div class="media-card__meta">
-                      <span class="tag solid sm">뉴스</span>
-                      <time class="text-caption" datetime="2026-04-15">2026-04-15</time>
-                    </div>
-                    <h3 class="media-card__title insight-row-title">코드프레소, GITEX AI ASIA '슈퍼노바' 본상…한국 스타트업 최초 수상</h3>
-                  </div>
-                  <div class="media-card__media insight-row-thumb">
-                    <img src="https://img.etoday.co.kr/pto_db/2026/04/20260415173028_2322177_1200_900.jpg" alt="">
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a class="media-card insight-row" href="https://www.hankyung.com/newswire/article/4970127_KO70127_9" target="_blank" rel="noopener">
-                  <div class="media-card__body insight-row-body">
-                    <div class="media-card__meta">
-                      <span class="tag solid sm">뉴스</span>
-                      <time class="text-caption" datetime="2026-05-29">2026-05-29</time>
-                    </div>
-                    <h3 class="media-card__title insight-row-title">코드프레소, 6월 6일 가족 'AI 동화책' 원데이 클래스 개최</h3>
-                  </div>
-                  <div class="media-card__media insight-row-thumb">
-                    <img src="https://mma.prnasia.com/media2/2989783/AI.jpg?p=medium600" alt="">
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a class="media-card insight-row" href="https://www.asiae.co.kr/article/2026043014334321346" target="_blank" rel="noopener">
-                  <div class="media-card__body insight-row-body">
-                    <div class="media-card__meta">
-                      <span class="tag solid sm">인터뷰</span>
-                      <time class="text-caption" datetime="2026-05-03">2026-05-03</time>
-                    </div>
-                    <h3 class="media-card__title insight-row-title">"AI 역량 평가 글로벌 표준 만들 것" — 코드프레소 대표 인터뷰</h3>
-                  </div>
-                  <div class="media-card__media insight-row-thumb">
-                    <img src="https://cphoto.asiae.co.kr/listimglink/1/2026042216465136593_1776844012.jpg" alt="">
-                  </div>
-                </a>
-              </li>
-              <!-- 4번째 자리 — 기사가 3건뿐이라 빈 스켈레톤으로 자리를 잡아둔다.
-                   기사가 추가되면 위 .insight-row 구조로 교체한다. -->
-              <li class="insight-row-empty" aria-hidden="true">
-                <div class="insight-row-body">
-                  <span class="skeleton-block is-tag"></span>
-                  <span class="skeleton-block is-title"></span>
-                  <span class="skeleton-block is-title is-short"></span>
-                </div>
-                <div class="skeleton-block is-thumbnail insight-row-thumb"></div>
-              </li>
-            </ul>
-          </div>
+          <InsightList />
 
           <div class="insight-more">
             <a href="https://www.codepresso.kr/news" class="btn btn-primary" target="_blank" rel="noopener"><span data-i18n="index-insight-cta">인사이트 더보기</span><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>

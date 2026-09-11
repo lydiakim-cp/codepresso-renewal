@@ -798,14 +798,6 @@
 
   .difference-mobile { display: block; }
 
-  .insight-layout {
-    grid-template-columns: 1fr;
-    gap: var(--space-24);
-    height: auto;
-  }
-
-  .insight-row-empty { display: none; }
-
   .insight-more { margin-top: 0; }
 
   .main-dark .sub-hero .hero-wrap { padding-top: 88px; }

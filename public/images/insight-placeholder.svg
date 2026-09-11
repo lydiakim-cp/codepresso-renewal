@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">이미지 준비 중</title>
+  <desc id="desc">기사 이미지가 표시되지 않을 때 사용하는 대체 이미지</desc>
+  <rect width="800" height="600" fill="#f2f4f7"/>
+  <g fill="none" stroke="#98a2b3" stroke-linecap="round" stroke-linejoin="round" stroke-width="18">
+    <rect x="224" y="146" width="352" height="260" rx="24"/>
+    <circle cx="326" cy="240" r="34"/>
+    <path d="m246 374 104-98 78 72 48-44 78 70"/>
+  </g>
+  <text x="400" y="474" fill="#667085" font-family="Arial, sans-serif" font-size="30" text-anchor="middle">CODEPRESSO INSIGHT</text>
+</svg>

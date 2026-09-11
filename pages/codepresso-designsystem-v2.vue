@@ -440,20 +440,9 @@
 
           <article class="guide-v2-component-row" id="c-media-card">
             <div class="guide-component-demo">
-              <a class="media-card insight-feature" href="https://www.newsis.com/view/ALSX20260629_0000006828" target="_blank" rel="noopener">
-                <div class="media-card__media insight-feature-thumb">
-                  <img src="https://mmx.prnasia.com/media/MS1873716/e7f99217463f4f01ad4a757a51402cc6.jpg?id=OA2738334&amp;p=medium600" alt="">
-                </div>
-                <div class="media-card__body insight-feature-body">
-                  <div class="media-card__meta">
-                    <span class="tag">뉴스</span>
-                    <time class="text-caption" datetime="2026-06-29">2026-06-29</time>
-                  </div>
-                  <h3 class="media-card__title insight-feature-title">AXMOS 컨소시엄, 부산정보산업진흥원•부산벤처기업협회와 'AX 사업협력' MOU 체결</h3>
-                </div>
-              </a>
+              <InsightList />
             </div>
-            <div><p class="tag">콘텐츠 카드</p><h3>Media Card</h3><p>메인 Insight와 동일한 가로형 4:3 이미지 비율을 사용합니다.</p><code>media-card · insight-feature-thumb</code></div>
+            <div><p class="tag">콘텐츠 목록</p><h3>Insight List</h3><p><code>data/insight-links.json</code>에 링크만 추가하면 기사 정보를 가져와 최신순으로 정렬합니다. 첫 항목은 대표 카드로 배치되며 이미지 오류 시 placeholder를 사용합니다.</p><code>InsightList · insight-list · insight-card</code></div>
           </article>
 
           <article class="guide-v2-component-row" id="c-outcome-card">
