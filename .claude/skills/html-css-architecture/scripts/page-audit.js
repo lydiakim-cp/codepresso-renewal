@@ -249,7 +249,7 @@ const targets = process.argv.slice(2).length
       .readdirSync(ROOT)
       .filter((f) => f.endsWith('.html'))
       /* 카탈로그·프로토타입은 서비스 페이지 규범 대상이 아니다 */
-      .filter((f) => f !== 'codepresso-designsystem.html' && !f.startsWith('프로토타입'));
+      .filter((f) => f !== 'codepresso-designsystem.html' && f !== 'codepresso-designsystem-v2.html' && !f.startsWith('프로토타입'));
 
 /* mobile.css 구조 — breakpoint마다 @media 한 덩어리여야 한다(subpage-guide 1번).
    블록이 쪼개지면 같은 페이지 규칙이 두 곳에 흩어져 다음 사람이 찾지 못한다. */

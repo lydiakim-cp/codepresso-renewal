@@ -1,0 +1,132 @@
+/* Page: Design Guide v2 — Notion 스타일 문서형 레이아웃.
+   계층형 목차 + 표 전환. 본문 콘텐츠 데모 CSS는 designsystem.css 규칙을 재사용한다. */
+
+@import url("index.css") layer(components);
+@import url("designsystem.css") layer(components);
+
+@layer components {
+  /* ===== Topbar / Shell — v1과 동일 구조, 사이드바만 계층형으로 확장 ===== */
+  .guide-v2-shell { display: grid; grid-template-columns: 292px minmax(0, 1fr); max-width: 1600px; min-height: calc(100vh - 72px); margin: 0 auto; background: var(--color-surface); }
+
+  .guide-v2-sidebar { position: sticky; top: 72px; align-self: start; display: flex; flex-direction: column; max-height: calc(100vh - 72px); padding: var(--space-40) var(--space-24); border-right: 1px solid var(--color-line); background: var(--color-surface-sunken); }
+  .guide-v2-nav { flex: 1; margin-top: var(--space-16); overflow-y: auto; }
+  .guide-v2-nav-group { margin-bottom: var(--space-4); }
+  .guide-v2-nav-group > a { display: flex; align-items: center; gap: var(--space-10); padding: var(--space-8) var(--space-10); border-radius: var(--radius-sm); color: var(--color-ink-light); font-size: var(--text-body-13); font-weight: var(--font-weight-medium); }
+  .guide-v2-nav-group > a span { color: var(--color-ink-lighter); font-size: var(--text-label); font-family: var(--font-family-mono); }
+  .guide-v2-nav-group > a:hover,
+  .guide-v2-nav-group > a.is-active { background: var(--color-surface); color: var(--color-brand-dark); }
+  .guide-v2-nav-group > a.is-active span { color: var(--color-brand); }
+  .guide-v2-sub { display: flex; flex-direction: column; gap: var(--space-2); margin: var(--space-2) 0 var(--space-6) 26px; border-left: 1px solid var(--color-line); }
+  .guide-v2-sub a { padding: var(--space-4) var(--space-10); color: var(--color-ink-lighter); font-size: var(--text-label); line-height: 1.4; }
+  .guide-v2-sub a:hover,
+  .guide-v2-sub a.is-active { color: var(--color-brand-dark); background: var(--color-surface); }
+
+  .guide-v2-sidebar-note { flex: 0 0 auto; margin-top: var(--space-20); padding: var(--space-16); border-radius: var(--radius-md); background: var(--color-brand-tint-2); }
+  .guide-v2-sidebar-note strong,
+  .guide-v2-sidebar-note span { display: block; font-size: var(--text-label); }
+  .guide-v2-sidebar-note span { margin-top: var(--space-4); color: var(--color-brand); font-weight: var(--font-weight-semibold); }
+  .guide-v2-sidebar-note p { margin: var(--space-10) 0 0; color: var(--color-ink-light); font-size: var(--text-body-13); line-height: 1.55; }
+
+  .guide-v2-main { min-width: 0; padding: 0 var(--space-60) var(--space-100); }
+  /* 800px는 Notion식 문서 읽기 폭 — 요구사항에 명시된 레이아웃 전제라 컨테이너 토큰 대신 직접 지정한다 */
+  .guide-v2-section { max-width: 800px; margin: 0 auto; padding: var(--space-100) 0; border-bottom: 1px solid var(--color-line); }
+  .guide-v2-hero { padding-top: var(--space-100); max-width: 800px; }
+  .guide-v2-hero h1 { margin: var(--space-16) 0 var(--space-20); font-size: clamp(40px, 4.6vw, 58px); line-height: 1.16; letter-spacing: -.05em; color: var(--color-ink-heaviest); }
+  .guide-v2-hero p { margin: 0; max-width: 62ch; color: var(--color-ink-light); font-size: var(--text-body-18); line-height: var(--leading-body-18); }
+
+  .guide-v2-section-head { margin-bottom: var(--space-40); }
+  .guide-v2-section-head h2 { margin: var(--space-12) 0 var(--space-12); color: var(--color-ink-heaviest); font-size: var(--text-heading-32); line-height: var(--leading-heading-32); letter-spacing: -.03em; }
+  .guide-v2-section-head > p:last-child { margin: 0; color: var(--color-ink-light); font-size: var(--text-body-16); line-height: var(--leading-body-16); }
+  .guide-v2-subhead { margin: var(--space-48) 0 var(--space-16); scroll-margin-top: var(--space-40); }
+  .guide-v2-subhead h3 { margin: 0 0 var(--space-4); color: var(--color-ink-heaviest); font-size: var(--text-heading-20); }
+  .guide-v2-subhead p { margin: 0; color: var(--color-ink-lighter); font-size: var(--text-body-14); }
+
+  /* ===== Notion식 표 — 가벼운 구분선, 장식 없음 ===== */
+  .guide-v2-table-wrap { overflow-x: auto; border: 1px solid var(--color-line); border-radius: var(--radius-md); }
+  .guide-v2-table { width: 100%; border-collapse: collapse; font-size: var(--text-body-14); }
+  .guide-v2-table caption { display: none; }
+  .guide-v2-table th,
+  .guide-v2-table td { padding: var(--space-10) var(--space-16); border-bottom: 1px solid var(--color-line); text-align: left; vertical-align: top; }
+  .guide-v2-table thead th { color: var(--color-ink-lighter); font-size: var(--text-label); font-weight: var(--font-weight-medium); letter-spacing: .04em; text-transform: uppercase; background: var(--color-surface-sunken); }
+  .guide-v2-table tbody tr:last-child th,
+  .guide-v2-table tbody tr:last-child td { border-bottom: 0; }
+  .guide-v2-table tbody th { color: var(--color-ink-heaviest); font-weight: var(--font-weight-medium); white-space: nowrap; }
+  .guide-v2-table td { color: var(--color-ink-light); line-height: var(--leading-body-14); }
+  .guide-v2-table code { padding: var(--space-2) var(--space-6); border-radius: var(--radius-sm); background: var(--color-surface-sunken); color: var(--color-brand-dark); font-family: var(--font-family-mono); font-size: var(--text-label); }
+  .guide-v2-table .is-swatch { display: inline-flex; align-items: center; gap: var(--space-8); }
+  .guide-v2-table .is-swatch i { display: block; width: 20px; height: 20px; border-radius: var(--radius-sm); border: 1px solid var(--color-line); flex: 0 0 auto; }
+
+  /* 표 안 스와치 색 — 토큰 참조, raw 값 없음 */
+  .guide-v2-swatch-brand { background: var(--color-brand); }
+  .guide-v2-swatch-brand-dark { background: var(--color-brand-dark); }
+  .guide-v2-swatch-brand-tint { background: var(--color-brand-tint-2); }
+  .guide-v2-swatch-ink-heavy { background: var(--color-ink-heaviest); }
+  .guide-v2-swatch-ink { background: var(--color-ink); }
+  .guide-v2-swatch-ink-light { background: var(--color-ink-light); }
+  .guide-v2-swatch-ink-lighter { background: var(--color-ink-lighter); }
+  .guide-v2-swatch-surface { background: var(--color-surface); }
+  .guide-v2-swatch-sunken { background: var(--color-surface-sunken); }
+  .guide-v2-swatch-line { background: var(--color-line); }
+  .guide-v2-swatch-raised { background: var(--color-surface-raised); }
+  .guide-v2-swatch-deep { background: var(--color-surface-deep); }
+  .guide-v2-swatch-success { background: var(--color-success); }
+  .guide-v2-swatch-warning { background: var(--color-warning); }
+  .guide-v2-swatch-critical { background: var(--color-critical); }
+
+  /* radius/shadow 미니 프리뷰 셀 */
+  .guide-v2-mini-radius { display: block; width: 32px; height: 32px; background: var(--color-brand-tint-2); border: 1px solid var(--color-brand); }
+  .guide-v2-mini-radius.is-sm { border-radius: var(--radius-sm); }
+  .guide-v2-mini-radius.is-md { border-radius: var(--radius-md); }
+  .guide-v2-mini-radius.is-lg { border-radius: var(--radius-lg); }
+  .guide-v2-mini-radius.is-xl { border-radius: var(--radius-xl); }
+  .guide-v2-mini-radius.is-full { border-radius: var(--radius-full); }
+  .guide-v2-mini-shadow { display: block; width: 48px; height: 32px; border-radius: var(--radius-md); background: var(--color-surface); }
+  .guide-v2-mini-shadow.is-sm { box-shadow: var(--shadow-sm); }
+  .guide-v2-mini-shadow.is-md { box-shadow: var(--shadow-md); }
+
+  /* 여백 바 프리뷰 셀 */
+  .guide-v2-mini-bar { display: block; height: 8px; border-radius: var(--radius-full); background: var(--color-brand); }
+
+  /* 컴포넌트 실물 데모 — v1 guide-component-row 재사용, 폭만 1단 컬럼에 맞춘다 */
+  .guide-v2-component-list { display: grid; gap: var(--space-20); }
+  .guide-v2-component-row { display: grid; gap: var(--space-20); padding: var(--space-24); border: 1px solid var(--color-line); border-radius: var(--radius-lg); background: var(--color-surface); }
+  .guide-v2-component-row .guide-component-demo { min-height: 160px; }
+  .guide-v2-component-row h3 { margin: 0 0 var(--space-6); color: var(--color-ink-heaviest); font-size: var(--text-heading-20); }
+  .guide-v2-component-row p:not(.tag) { margin: 0; color: var(--color-ink-light); font-size: var(--text-body-14); line-height: var(--leading-body-14); }
+  .guide-v2-component-row .tag { margin-bottom: var(--space-6); }
+  .guide-v2-component-row code { display: inline-block; margin-top: var(--space-10); padding: var(--space-2) var(--space-6); border-radius: var(--radius-sm); background: var(--color-surface-sunken); color: var(--color-brand-dark); font-family: var(--font-family-mono); font-size: var(--text-label); }
+
+  .guide-v2-motion-list { display: grid; gap: var(--space-20); }
+
+  .guide-v2-callout { display: flex; gap: var(--space-16); margin-top: var(--space-20); padding: var(--space-16) var(--space-20); border-radius: var(--radius-md); background: var(--color-brand-tint-2); color: var(--color-ink-light); font-size: var(--text-body-14); line-height: 1.6; }
+  .guide-v2-callout strong { flex: 0 0 auto; color: var(--color-brand-dark); }
+  .guide-v2-callout code { font-family: var(--font-family-mono); color: var(--color-brand-dark); }
+
+  /* ===== 신규 섹션 10~12 — 매핑표/절차 카드는 표를 재사용, 프로즈는 일반 문단 ===== */
+  .guide-v2-prose p { margin: 0 0 var(--space-16); color: var(--color-ink-light); font-size: var(--text-body-14); line-height: var(--leading-body-16); }
+  .guide-v2-prose p:last-child { margin-bottom: 0; }
+  .guide-v2-prose strong { color: var(--color-ink-heaviest); font-weight: var(--font-weight-semibold); }
+  .guide-v2-prose code { padding: var(--space-2) var(--space-6); border-radius: var(--radius-sm); background: var(--color-surface-sunken); color: var(--color-brand-dark); font-family: var(--font-family-mono); font-size: var(--text-body-13); }
+
+  .guide-v2-order-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--color-line); }
+  .guide-v2-order-list li { display: grid; grid-template-columns: 28px 1fr; gap: var(--space-16); padding: var(--space-16) 0; border-bottom: 1px solid var(--color-line); }
+  .guide-v2-order-list li > span { color: var(--color-brand); font-family: var(--font-family-mono); font-size: var(--text-body-14); font-weight: var(--font-weight-semibold); }
+  .guide-v2-order-list h4 { margin: 0; color: var(--color-ink-heaviest); font-size: var(--text-body-16); font-weight: var(--font-weight-semibold); }
+  .guide-v2-order-list p { margin: var(--space-4) 0 0; color: var(--color-ink-light); font-size: var(--text-body-14); line-height: var(--leading-body-14); }
+
+  .guide-v2-usage { margin-top: var(--space-48); padding: var(--space-40); border-radius: var(--radius-xl); background: #071b40; color: var(--color-surface); }
+  .guide-v2-usage h2 { color: var(--color-surface); }
+  .guide-v2-usage .guide-kicker { color: #9ab9ff; }
+  .guide-v2-usage-intro { max-width: 62ch; margin: 0; color: rgb(255 255 255 / .76); font-size: var(--text-body-16); line-height: var(--leading-body-18); }
+  .guide-v2-prompt-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: var(--space-16); margin-top: var(--space-28); }
+  .guide-v2-prompt-card { padding: var(--space-20); border: 1px solid rgb(255 255 255 / .16); border-radius: var(--radius-md); background: rgb(255 255 255 / .06); }
+  .guide-v2-prompt-card ol { display: grid; gap: var(--space-12); margin: var(--space-16) 0 0; padding: 0; list-style: none; }
+  .guide-v2-prompt-card li { display: grid; gap: var(--space-2); }
+  .guide-v2-prompt-card li b { color: var(--color-surface); font-size: var(--text-body-14); }
+  .guide-v2-prompt-card li span { color: rgb(255 255 255 / .64); font-size: var(--text-label); }
+  .guide-v2-prompt-card.is-example { background: rgb(154 185 255 / .11); }
+  .guide-v2-prompt-text { margin: var(--space-16) 0 0; color: rgb(255 255 255 / .9); font-size: var(--text-body-14); line-height: var(--leading-body-18); }
+  .guide-v2-prompt-text strong { color: #9ab9ff; font-weight: var(--font-weight-semibold); }
+
+  .guide-v2-footer { padding: var(--space-32) 0 0; color: var(--color-ink-lighter); font-size: var(--text-body-13); text-align: center; }
+}

@@ -30,7 +30,7 @@ const CSS_DIR = path.join(ROOT, 'css');
 /* 토큰을 정의하는 파일 — 여기서만 raw 값을 쓴다(정의부니까) */
 const TOKEN_FILES = new Set(['css/tokens.css', 'css/main-dark.css']);
 /* 목업 안 텍스트는 14px 하한의 예외(--mock-text-* 4단), 카탈로그는 문서 chrome */
-const SMALL_TEXT_OK = /(mock-motion|product-mock|designsystem)\.css$/;
+const SMALL_TEXT_OK = /(mock-motion|product-mock|designsystem(-v\d+)?)\.css$/;
 /* 알약 모양·원 — 토큰으로 표현할 수 없는 형태값 */
 const RADIUS_OK = /^(50%|999px|9999px|100%|0|0px|inherit)$/;
 
