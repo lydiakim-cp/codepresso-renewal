@@ -46,7 +46,7 @@
     font-size: var(--text-heading-20);
     line-height: var(--leading-heading-20);
     letter-spacing: var(--tracking-heading-tight);
-    color: var(--color-ink-light);
+    color: var(--color-ink);
   }
   .hero-description strong { font-weight: var(--font-weight-semibold); color: var(--color-ink); }
   .hero-cta { display: flex; gap: var(--space-12); margin-top: 96px; }
@@ -143,7 +143,7 @@
   /* 칩은 각 칸의 바탕과 반대쪽으로 칠한다 — 밝은 틴트 칸에서는 어두운 면,
      브랜드 면 칸에서는 옅은 흰 면. 파랑을 빼서 제목·설명과 색으로 경쟁하지 않는다. */
   .features .cycle > li.blue .step-products .tag {
-    background: var(--color-ink);
+    background: var(--color-ink-heaviest);
     border: 0;
     color: var(--color-surface);
   }
@@ -461,7 +461,7 @@
   .difference-bar-name {
     font-size: var(--mock-text);
     line-height: var(--mock-leading);
-    color: var(--color-ink-light);
+    color: var(--color-ink);
     white-space: nowrap;
   }
 
@@ -1110,7 +1110,7 @@
     margin-block-start: var(--space-10);
     font-size: var(--text-body-14);
     line-height: var(--leading-body-14);
-    color: var(--color-ink-light);
+    color: var(--color-ink);
   }
 
   .difference-mobile-field {

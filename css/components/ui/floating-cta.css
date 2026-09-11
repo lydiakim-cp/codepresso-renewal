@@ -85,7 +85,7 @@
   display: block;
   font-size: var(--mock-text-q);
   line-height: var(--mock-leading-q);
-  color: var(--color-ink-light);
+  color: var(--color-ink);
 }
 
 .floating-cta-mock-levels {

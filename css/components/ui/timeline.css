@@ -70,7 +70,7 @@
 }
 
 .timeline__desc {
-  color: var(--color-ink-light);
+  color: var(--color-ink);
 }
 
 .fade-up .timeline > li {

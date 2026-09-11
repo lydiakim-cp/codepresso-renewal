@@ -303,7 +303,7 @@
   .skillfit .skillfit-tutor-answer p {
     font-size: inherit;
     line-height: inherit;
-    color: var(--color-ink-light);
+    color: var(--color-ink);
   }
 
   .skillfit .skillfit-tutor-answer strong {
@@ -318,7 +318,7 @@
     gap: var(--space-4) var(--space-12);
     padding-left: var(--space-12);
     border-left: 2px solid var(--color-brand-tint-2);
-    color: var(--color-ink-light);
+    color: var(--color-ink);
   }
 
   .skillfit .skillfit-tutor-terms b {
@@ -404,7 +404,7 @@
     border-radius: var(--radius-full);
     border: 1px solid var(--color-line-heavy);
     background: var(--color-surface);
-    color: var(--color-ink-light);
+    color: var(--color-ink);
   }
 
   .skillfit .track-card__mark {
@@ -441,7 +441,7 @@
 
   .skillfit .track-note {
     margin-top: var(--space-20);
-    color: var(--color-ink-light);
+    color: var(--color-ink);
     font-size: var(--text-body-14);
     line-height: var(--leading-body-14);
     text-align: center;

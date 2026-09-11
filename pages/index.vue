@@ -181,7 +181,7 @@
       <div class="section-wrap col">
         <div class="section-header">
           <div class="section-title text-left">
-            <p class="tag" data-i18n="index-outcomes-eyebrow">Proof</p>
+            <p class="tag" data-i18n="index-outcomes-eyebrow">02 · Proof</p>
             <h2 data-i18n="index-outcomes-title">도입한 기업에서는 <br data-break="mobile"> 이렇게 달라졌습니다</h2>
             <p class="desc" data-i18n="index-outcomes-desc">역량을 진단하고 키운 조직은 채용과 교육의 낭비가 줄었고, <br data-break="desktop"> 업무를 자동화한 조직은 실행 속도가 빨라졌습니다.</p>
           </div>
@@ -710,7 +710,7 @@
         <!-- 상단 헤더 — proof 섹션과 같은 구성. 타이틀·설명은 좌, CTA는 우. -->
         <div class="section-header">
           <div class="section-title text-left">
-            <p class="tag" data-i18n="index-difference-eyebrow">The Difference</p>
+            <p class="tag" data-i18n="index-difference-eyebrow">03 · The Difference</p>
             <h2 data-i18n="index-difference-title">교육으로 끝내지 않습니다</h2>
             <p class="desc" data-i18n="index-difference-desc">진단으로 확인하고, 라이브러리로 쌓고, 현장에서 검증합니다.</p>
           </div>
@@ -1368,7 +1368,6 @@
     <section class="insight fade-up" id="insight">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="index-insight-eyebrow">Insight</p>
           <h2 data-i18n="index-insight-title">최근 인사이트</h2>
           <p class="desc" data-i18n="index-insight-desc">AI 역량 진단과 교육, 업무 자동화에 관한 코드프레소의 최신 사례와 분석을 확인하세요.</p>
         </div>

@@ -64,7 +64,7 @@
 
   .cases .tag-industry {
     background: var(--color-surface-sunken);
-    color: var(--color-ink-light);
+    color: var(--color-ink);
   }
 
   .cases .outcome-list > li[data-case-axis="tool"] {

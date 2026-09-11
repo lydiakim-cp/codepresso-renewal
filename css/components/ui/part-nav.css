@@ -38,7 +38,7 @@
   font-size: var(--text-body-muted);
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--tracking-body-muted);
-  color: var(--color-ink-light);
+  color: var(--color-ink);
   white-space: nowrap;
   transition: background var(--duration-hover) var(--ease-hover),
               color var(--duration-hover) var(--ease-hover);

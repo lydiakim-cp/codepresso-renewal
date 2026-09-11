@@ -94,7 +94,7 @@
   }
 
   .difference-page .problem-label {
-    color: var(--color-ink-light);
+    color: var(--color-ink);
     font-size: var(--text-body-14);
     line-height: var(--leading-body-14);
     font-weight: var(--font-weight-medium);
@@ -172,7 +172,7 @@
     border: 1px solid var(--color-line);
     border-radius: var(--radius-full);
     background: var(--color-surface);
-    color: var(--color-ink-light);
+    color: var(--color-ink);
 
     font-size: var(--text-body-16);
     line-height: var(--leading-body-16);
@@ -235,7 +235,7 @@
   }
 
   .difference-page .slide-card-desc {
-    color: var(--color-ink-light);
+    color: var(--color-ink);
   }
 
   .difference-page .slide-card-desc strong {
@@ -291,7 +291,7 @@
   }
 
   .difference-page .slide-card.is-muted .slide-card-desc strong {
-    color: var(--color-ink-light);
+    color: var(--color-ink);
   }
 
   .difference-page .slide-join {
@@ -348,7 +348,7 @@
     max-width: 880px;
     margin-inline: auto;
     text-align: center;
-    color: var(--color-ink-light);
+    color: var(--color-ink);
   }
 
   /* scenario-mock — 목업 안 상단 바만 흰 판으로 띄운다(원래 diagnosis-mock와 공유하던 규칙) */

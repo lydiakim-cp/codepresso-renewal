@@ -28,7 +28,7 @@
   /* 면을 주지 않으면 글자만 떠 있어 칩으로 읽히지 않는다. 쓰는 쪽이 덮어써도 된다. */
   border: 1px solid var(--color-line);
   background: var(--color-surface);
-  color: var(--color-ink-light);
+  color: var(--color-ink);
 }
 
 .tag {
@@ -63,7 +63,7 @@
   border-left: 1px solid var(--color-surface-deep);
   border-right: 1px solid var(--color-surface-deep);
   box-shadow: var(--shadow-sm);
-  color: var(--color-ink-light);
+  color: var(--color-ink);
   padding: var(--space-2) var(--space-10);
   text-align: center;
 }

@@ -79,7 +79,7 @@
     <section class="intro fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="ax-build-intro-eyebrow">What It Is</p>
+          <p class="tag" data-i18n="ax-build-intro-eyebrow">01 · What It Is</p>
           <h2 data-i18n="ax-build-intro-title">사람이 반복하던 업무를,<br>Agent의 일로 바꿉니다</h2>
           <p class="desc" data-i18n="ax-build-intro-desc">사람이 처음부터 끝까지 하던 일을 세 갈래로 나눕니다. <br data-break="desktop">반복 실행은 Agent가 맡고, 사람은 판단만 남깁니다.</p>
         </div>
@@ -177,7 +177,7 @@
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="ax-build-features-eyebrow">Best Fit</p>
+          <p class="tag" data-i18n="ax-build-features-eyebrow">02 · Best Fit</p>
           <h2 data-i18n="ax-build-features-title">이런 팀이라면 AX Build가 맞습니다</h2>
         </div>
         <div class="section-content">
@@ -196,7 +196,7 @@
               </div>
               <div class="section-body">
                 <div class="section-body-heading">
-                  <p class="section-body-title" data-i18n="ax-build-features-item-label-01">반복</p>
+                  <p class="section-body-title" data-i18n="ax-build-features-item-label-01">01 · 반복</p>
                   <span class="feature-card-arrow" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
@@ -223,7 +223,7 @@
               </div>
               <div class="section-body">
                 <div class="section-body-heading">
-                  <p class="section-body-title" data-i18n="ax-build-features-item-label-02">지연</p>
+                  <p class="section-body-title" data-i18n="ax-build-features-item-label-02">02 · 지연</p>
                   <span class="feature-card-arrow" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
@@ -250,7 +250,7 @@
               </div>
               <div class="section-body">
                 <div class="section-body-heading">
-                  <p class="section-body-title" data-i18n="ax-build-features-item-label-03">성과</p>
+                  <p class="section-body-title" data-i18n="ax-build-features-item-label-03">03 · 성과</p>
                   <span class="feature-card-arrow" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
@@ -272,7 +272,7 @@
     <section class="catalog fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="ax-build-catalog-eyebrow">What Can Be Built</p>
+          <p class="tag" data-i18n="ax-build-catalog-eyebrow">03 · What Can Be Built</p>
           <h2 data-i18n="ax-build-catalog-title">어떤 업무부터 바꿀 수 있을까요?</h2>
           <p class="desc" data-i18n="ax-build-catalog-desc">다섯 분야 37개의 검증된 워크플로 중에서,<br data-break="desktop"> 자동화 가치가 크고 결과 기준이 분명한 업무부터 고릅니다.</p>
         </div>
@@ -805,7 +805,7 @@
       <div class="section-wrap row is-sticky">
         <div class="section-aside">
           <div class="section-title text-left">
-            <p class="tag" data-i18n="ax-build-process-eyebrow">20-Day Process</p>
+            <p class="tag" data-i18n="ax-build-process-eyebrow">04 · 20-Day Process</p>
             <h2 data-i18n="ax-build-process-title">진단부터 배포까지,<br>20일이면 충분합니다</h2>
             <p class="desc" data-i18n="ax-build-process-desc">무엇을 만들지 합의한 뒤 구축하고, <br data-break="desktop">실제 사용자와 함께 효과를 확인합니다.</p>
           </div>
@@ -908,7 +908,7 @@
     <section class="deliverables fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="ax-build-deliverables-eyebrow">Deliverables</p>
+          <p class="tag" data-i18n="ax-build-deliverables-eyebrow">05 · Deliverables</p>
           <h2 data-i18n="ax-build-deliverables-title">20일 뒤, 조직에 남는 것</h2>
         </div>
         <div class="section-content">
@@ -977,7 +977,7 @@
       <div class="section-wrap col">
         <div class="section-header">
           <div class="section-title text-left">
-            <p class="tag" data-i18n="ax-build-outcomes-eyebrow">Real Outcomes</p>
+            <p class="tag" data-i18n="ax-build-outcomes-eyebrow">06 · Real Outcomes</p>
             <h2 data-i18n="ax-build-outcomes-title">실제 고객 업무는 <br data-break="desktop">이렇게 달라졌습니다</h2>
           </div>
           <div class="section-cta">
@@ -1043,7 +1043,7 @@
     <section class="faq fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="ax-build-faq-eyebrow">FAQ</p>
+          <p class="tag" data-i18n="ax-build-faq-eyebrow">07 · FAQ</p>
           <h2 data-i18n="ax-build-faq-title">도입 전에 많이 묻는 질문</h2>
         </div>
         <div class="section-content">

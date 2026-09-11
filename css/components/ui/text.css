@@ -5,7 +5,7 @@
   font-size: var(--text-body-14);
   line-height: var(--leading-body-14);
   font-weight: var(--font-weight-medium);
-  color: var(--color-ink-light);
+  color: var(--color-ink);
 }
 
 
@@ -34,7 +34,7 @@
   font-size: var(--text-body-18);
   line-height: var(--leading-body-18);
   font-weight: var(--font-weight-regular);
-  color: var(--color-ink-light);
+  color: var(--color-ink);
 }
 
 .sub {
@@ -43,7 +43,7 @@
 
 /* 카드 본문 설명 — 14px/ink-light. cycle·outcome·problem 카드가 함께 쓴다. */
 .description {
-  color: var(--color-ink-light);
+  color: var(--color-ink);
   font-size: var(--text-body-muted);
   line-height: var(--leading-body-muted);
 }

@@ -7,7 +7,7 @@
       <div class="hero-wrap">
         <div class="sub-hero-copy">
           <h1 class="hero-title" data-i18n="company-hero-title">역량이 공정하게 <br data-break="mobile">평가되는 세상</h1>
-          <p class="hero-desc" data-i18n="company-hero-desc">비전은 <strong>AI 리터러시의 표준화</strong>. <br data-break="desktop">“AI계의 토익”을 만듭니다.</p>
+          <p class="hero-desc" data-i18n="company-hero-desc">비전은 <strong>AI 리터러시의 표준화</strong>. <br><strong>AI계의 토익</strong>을 만듭니다.</p>
         </div>
       </div>
     </section>
@@ -121,6 +121,67 @@
               <li data-i18n="company-about-year-item-05-02">글로벌 350개사 참가</li>
             </ul>
           </div>
+        </div>
+      </div>
+
+      <!-- 모바일 전용 — sticky 교차 연출이 풀리는 대신 연도+이미지를 한 판씩 이어 붙인다.
+           트랙 옵저버(data-journey-track-step)는 데스크톱 목록에만 있어 여기선 관찰 대상이 아니다. -->
+      <div class="company-years-mobile">
+        <div class="company-year-block">
+          <p class="company-year-num">2019</p>
+          <ul class="company-year-list">
+            <li data-i18n="company-about-year-item-01-01">㈜코드프레소 설립</li>
+            <li data-i18n="company-about-year-item-01-02">서울 강남구 테헤란로 사무실 개소</li>
+          </ul>
+          <figure class="company-era-image">
+            <img src="/images/company/history/회사연혁01.png" alt="㈜코드프레소 설립 당시 사무실" loading="lazy">
+          </figure>
+        </div>
+
+        <div class="company-year-block">
+          <p class="company-year-num">2021</p>
+          <ul class="company-year-list">
+            <li data-i18n="company-about-year-item-02-01">에듀테크 플랫폼 출시</li>
+            <li data-i18n="company-about-year-item-02-02">온라인 IT 교육 시작</li>
+          </ul>
+          <figure class="company-era-image">
+            <img src="/images/company/history/회사연혁02.png" alt="온라인 학습 플랫폼 화면" loading="lazy">
+          </figure>
+        </div>
+
+        <div class="company-year-block">
+          <p class="company-year-num">2023</p>
+          <ul class="company-year-list">
+            <li data-i18n="company-about-year-item-03-01">ISO 27001 인증 획득</li>
+            <li data-i18n="company-about-year-item-03-02">정보보호 경영시스템 구축</li>
+          </ul>
+          <figure class="company-era-image">
+            <img src="/images/company/history/회사연혁03.png" alt="정보보호 경영시스템 화면" loading="lazy">
+          </figure>
+        </div>
+
+        <div class="company-year-block">
+          <p class="company-year-num">2024</p>
+          <ul class="company-year-list">
+            <li data-i18n="company-about-year-item-04-01">Edison Awards 에듀케이션 부문 은상 수상</li>
+            <li data-i18n="company-about-year-item-04-02">Nexus 2050 우승</li>
+            <li data-i18n="company-about-year-item-04-03">SkillCertify 출시</li>
+            <li data-i18n="company-about-year-item-04-04">룩셈부르크 · 영국 법인 설립</li>
+          </ul>
+          <figure class="company-era-image">
+            <img src="/images/company/history/회사연혁04.jpg" alt="역량 인증 리포트 화면" loading="lazy">
+          </figure>
+        </div>
+
+        <div class="company-year-block">
+          <p class="company-year-num">2026</p>
+          <ul class="company-year-list">
+            <li data-i18n="company-about-year-item-05-01">GITEX AI ASIA 슈퍼노바 챌린지 3위</li>
+            <li data-i18n="company-about-year-item-05-02">글로벌 350개사 참가</li>
+          </ul>
+          <figure class="company-era-image">
+            <img src="/images/company/history/회사연혁05.webp" alt="AI 역량 진단 화면" loading="lazy">
+          </figure>
         </div>
       </div>
     </section>

@@ -79,7 +79,7 @@
     top: -4px;
     transform: translateX(-50%);
     border: 4px solid transparent;
-    border-top-color: var(--color-ink-light);
+    border-top-color: var(--color-ink);
   }.journey-track-mock .level-card {
     flex: 1;
     background: var(--color-surface);
@@ -95,7 +95,7 @@
   }.journey-track-mock .level-body {
     overflow: hidden;
     transition: height .32s cubic-bezier(.4, 0, .2, 1);
-  }.journey-track-mock .level-card.is-open .level-head { border-bottom: 1px solid var(--color-line); }.journey-track-mock .level-title { font-size: 14px; font-weight: 600; }.journey-track-mock .level-title-course { display: block; margin-top: 4px; font-size: 13px; font-weight: 500; color: var(--color-ink-light); }.journey-track-mock .level-meta {
+  }.journey-track-mock .level-card.is-open .level-head { border-bottom: 1px solid var(--color-line); }.journey-track-mock .level-title { font-size: 14px; font-weight: 600; }.journey-track-mock .level-title-course { display: block; margin-top: 4px; font-size: 13px; font-weight: 500; color: var(--color-ink); }.journey-track-mock .level-meta {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -166,7 +166,7 @@
     font-size: 11px;
     font-weight: 600;
   }.journey-track-mock .track-panel__title { margin: 10px 0 6px; font-size: 16px; font-weight: 600; line-height: 1.35; }.journey-track-mock .track-panel__desc {
-    font-size: 12px; line-height: 1.55; color: var(--color-ink-light);
+    font-size: 12px; line-height: 1.55; color: var(--color-ink);
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   }.journey-track-mock /* 폴더 탭 — 활성 탭은 흰 배경으로 앞서 뜨고, .journey-track-mock 비활성 탭은 아래 밴드와 같은 색으로 묻힌다 */
   .track-tabs {

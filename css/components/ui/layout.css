@@ -54,6 +54,11 @@ main > section,
   flex-direction: column;
   gap: 16px;
 }
+.section-title .tag{
+  padding: 0;
+  background: transparent;
+  color: var(--color-ink-light);
+}
 
 .section-title.text-center { align-items: center; text-align: center; }
 .section-title.text-center h2 { text-align: center; }
@@ -84,10 +89,10 @@ main > section,
 
 .dot-line {
   width: 100%;
-  border-top: 1px solid rgba(0, 0, 0, 0.09);
+  border-top: 1px solid var(--color-line);
 }
 @media(max-width: 560px) {
-  .dot-line { border-top: 20px solid rgba(0, 0, 0, 0.04);}
+  .dot-line { border-top: 20px solid var(--color-surface-mist); }
 }
 
 .card {

@@ -29,7 +29,7 @@
 }
 
 .start-desc {
-  color: var(--color-ink-light);
+  color: var(--color-ink);
 }
 
 /* 카드 높이가 달라도 버튼 밑선은 맞춘다 */

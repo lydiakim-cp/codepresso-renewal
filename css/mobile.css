@@ -452,14 +452,24 @@
     padding-top: var(--space-48);
   }
 
-  /* 회사 소개 연혁 — 1단에서는 journey-step이 풀려 세 시대가 위에서 아래로 쌓인다.
-     연도 목록에 앞선 목차로 읽히므로 시대 사이 간격만 준다. */
-  .company .company-eras { gap: var(--space-40); }
+  /* 회사 소개 연혁 — 1단에서는 sticky 교차 연출 대신 연도+이미지를 한 판씩 세로로 쌓는다.
+     이미지·연도가 각각 다른 섹션으로 떨어져 보이던 것을 전용 마크업(company-years-mobile)으로 합친다. */
+  .company .about .section-wrap.row { display: none; }
+  .company .company-years-mobile { display: flex; flex-direction: column; gap: var(--space-60); }
 
-  /* 1단에서는 sticky가 없어 스크롤 길이를 벌 이유가 없다 — 연도를 실제 높이로 되돌린다. */
-  .company .company-years { padding-top: 0; padding-bottom: 0; }
+  .company .company-year-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    max-width: 85%;
+    margin: 0 auto;
+  }
 
-  .company .company-year { min-height: 0; padding-bottom: var(--space-40); }
+  /* is-active 토글 없이 항상 보이는 목록이라, 데스크톱의 흐림(opacity: .3) 상태를 되돌린다. */
+  .company .company-year-block .company-year-num,
+  .company .company-year-block .company-year-list {
+    opacity: 1;
+  }
 }
 
 
@@ -577,7 +587,9 @@
     height: 28px;
   }
 
-  .company .company-offices { --start-columns: 1; }
+  /* 지도는 위, 거점 카드 3개는 그 아래 한 줄에 나란히 — row였던 지도+카드 배치를 세로로 되돌린다. */
+  .company .about-offices .section-content { flex-direction: column; }
+  .company .company-offices li { flex: 1; }
   .company .company-cert-list { gap: var(--space-32) var(--space-40); margin-top: var(--space-48); }
   .company .company-cert-list img { width: 110px; }
 

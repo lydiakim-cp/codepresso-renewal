@@ -70,7 +70,7 @@
 .hero-desc {
   font-size: var(--text-body-18);
   line-height: var(--leading-body-18);
-  color: var(--color-ink-light);
+  color: var(--color-ink);
 }
 
 /* 버튼이 둘 이상일 수 있어 flex로 눕힌다(중앙 정렬은 hero-copy가 이미 정한다). */

@@ -172,7 +172,7 @@
   }
 
   .ax-build .run-task-name {
-    color: var(--color-ink-light);
+    color: var(--color-ink);
     font-size: var(--run-text-lg);
     line-height: 18px;
     letter-spacing: 0;
@@ -232,7 +232,7 @@
   .ax-build .run-line {
     display: flex;
     gap: var(--space-8);
-    color: var(--color-ink-light);
+    color: var(--color-ink);
     font-size: var(--run-text);
     line-height: 15px;
     letter-spacing: 0;

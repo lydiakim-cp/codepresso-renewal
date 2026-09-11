@@ -86,7 +86,7 @@
     <section class="positioning fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="axpresso-positioning-eyebrow">Engagement Models</p>
+          <p class="tag" data-i18n="axpresso-positioning-eyebrow">01 · Engagement Models</p>
           <h2 data-i18n="axpresso-positioning-title">목적에 맞는 두 가지 시작 방식</h2>
           <p class="desc" data-i18n="axpresso-positioning-desc">빠른 현장 구축과 내부 실행 역량 중 <br data-break="desktop">지금 조직에 가장 필요한 목표에서 시작합니다.</p>
         </div>
@@ -148,7 +148,7 @@
       <div class="section-wrap row is-sticky">
         <div class="section-aside">
           <div class="section-title text-left">
-            <p class="tag" data-i18n="axpresso-process-eyebrow">How It Works</p>
+            <p class="tag" data-i18n="axpresso-process-eyebrow">02 · How It Works</p>
             <h2 data-i18n="axpresso-process-title">연결하고, 배포하고,<br>운영합니다</h2>
             <p class="desc" data-i18n="axpresso-process-desc">진단 보고서에서 끝나지 않습니다. <br data-break="desktop">실제 업무를 수행하는 AI Agent를 3주 안에 운영에 올립니다.</p>
           </div>
@@ -224,7 +224,7 @@
     <section class="intro fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="axpresso-intro-eyebrow">Redesign</p>
+          <p class="tag" data-i18n="axpresso-intro-eyebrow">03 · Redesign</p>
           <h2 data-i18n="axpresso-intro-title">흩어진 도구를 하나의 실행 시스템으로<br>다시 설계합니다</h2>
           <p class="desc" data-i18n="axpresso-intro-desc">단순 연동을 넘어, 도구·데이터·업무 인계를 <br data-break="desktop">AI가 실행할 수 있는 하나의 구조로 바꿉니다.</p>
         </div>
@@ -284,7 +284,7 @@
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="axpresso-features-eyebrow">Security &amp; Governance</p>
+          <p class="tag" data-i18n="axpresso-features-eyebrow">04 · Security &amp; Governance</p>
           <h2 data-i18n="axpresso-features-title">엔터프라이즈 운영을 전제로 설계합니다</h2>
           <p class="desc" data-i18n="axpresso-features-desc">실제 기업의 보안 검토와 컴플라이언스 요구를 반영해 운영 구조를 설계합니다.</p>
         </div>
@@ -303,7 +303,7 @@
               </div>
               <div class="section-body">
                 <div class="section-body-heading">
-                  <p class="section-body-title" data-i18n="axpresso-features-item-title-01">격리</p>
+                  <p class="section-body-title" data-i18n="axpresso-features-item-title-01">01 · 격리</p>
                   <span class="feature-card-arrow" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
@@ -329,7 +329,7 @@
               </div>
               <div class="section-body">
                 <div class="section-body-heading">
-                  <p class="section-body-title" data-i18n="axpresso-features-item-title-02">정책</p>
+                  <p class="section-body-title" data-i18n="axpresso-features-item-title-02">02 · 정책</p>
                   <span class="feature-card-arrow" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
@@ -356,7 +356,7 @@
               </div>
               <div class="section-body">
                 <div class="section-body-heading">
-                  <p class="section-body-title" data-i18n="axpresso-features-item-title-03">통제</p>
+                  <p class="section-body-title" data-i18n="axpresso-features-item-title-03">03 · 통제</p>
                   <span class="feature-card-arrow" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
@@ -379,7 +379,7 @@
       <div class="section-wrap col">
         <div class="section-header">
           <div class="section-title text-left">
-            <p class="tag" data-i18n="axpresso-outcomes-eyebrow">Results</p>
+            <p class="tag" data-i18n="axpresso-outcomes-eyebrow">05 · Results</p>
             <h2 data-i18n="axpresso-outcomes-title">이미 실제 업무에서 <br data-break="desktop">운영되고 있습니다</h2>
             <p class="desc" data-i18n="axpresso-outcomes-desc">발표용 데모가 아니라, 고객 현장에서 반복 업무를 수행하고 있는 결과입니다.</p>
           </div>

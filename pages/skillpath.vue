@@ -79,7 +79,7 @@
     <section class="catalog fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="skillpath-catalog-eyebrow">분야별 트랙</p>
+          <p class="tag" data-i18n="skillpath-catalog-eyebrow">01 · 분야별 트랙</p>
           <h2 data-i18n="skillpath-catalog-title">8개 분야 가운데 필요한 트랙부터</h2>
           <p class="desc" data-i18n="skillpath-catalog-desc">분야를 고르면 그 안의 코스가 STEP 순서로 이어집니다.</p>
         </div>
@@ -202,7 +202,7 @@
     <section class="journey fade-up">
       <div class="section-wrap col">
         <div class="section-title text-left">
-          <p class="tag" data-i18n="skillpath-journey-eyebrow">STEP 러닝패스</p>
+          <p class="tag" data-i18n="skillpath-journey-eyebrow">02 · STEP 러닝패스</p>
           <h2 data-i18n="skillpath-journey-title">강의 목록이 아니라, 배우는 순서입니다</h2>
           <p class="desc" data-i18n="skillpath-journey-desc">코스 하나가 아니라 STEP 순서를 설계합니다. <br data-break="desktop">데이터 사이언스 트랙의 21개 STEP은 이렇게 이어집니다.</p>
         </div>
@@ -252,7 +252,7 @@
     <section class="features-enterprise fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="skillpath-enterprise-eyebrow">기업 도입</p>
+          <p class="tag" data-i18n="skillpath-enterprise-eyebrow">03 · 기업 도입</p>
           <h2 data-i18n="skillpath-enterprise-title">교육 담당자가 쓸 화면까지 함께 드립니다</h2>
           <p class="desc" data-i18n="skillpath-enterprise-desc">실습 환경부터 진도 관리, 운영 대행까지 담당자가 따로 준비할 것이 없습니다.</p>
         </div>
@@ -320,7 +320,7 @@
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="skillpath-features-eyebrow">이용 방식</p>
+          <p class="tag" data-i18n="skillpath-features-eyebrow">04 · 이용 방식</p>
           <h2 data-i18n="skillpath-features-title">깊이는 구독으로, 시작점은 레벨로</h2>
           <p class="desc" data-i18n="skillpath-features-desc">구독 등급으로 이용 범위를 정하고, 코스 레벨로 어디서 시작할지 찾습니다.</p>
         </div>

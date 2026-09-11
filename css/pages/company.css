@@ -34,6 +34,35 @@
     font-weight: var(--font-weight-semibold);
   }
 
+  /* 01 Mission — 제목 검정 계열 그라데이션이 좌우로 흐른다(hero-clients-title과 같은 방식).
+     등장은 0.5초 늦게, 느리게 rise-in — 그라데이션 순환과 별개 애니메이션으로 겹친다. */
+  .company .company-hero-title {
+    background-image: linear-gradient(100deg,
+      var(--color-ink-heaviest) 0%,
+      var(--color-ink-light) 25%,
+      var(--color-ink-lighter) 50%,
+      var(--color-ink-light) 75%,
+      var(--color-ink-heaviest) 100%);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    --gradient-shift-to: -300%;
+    animation:
+      rise-in 1.1s var(--ease-scroll) .5s both,
+      gradient-shift 6s linear infinite;
+  }
+
+  /* desc는 제목보다 더 늦게 들어와 시차가 느껴지게 한다. */
+  .company .sub-hero-copy > .hero-desc {
+    animation-delay: .85s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .company .company-hero-title { animation: none; }
+  }
+
   /* 02 Philosophy — 인용 아래 화자 한 줄. 본문보다 한 단 낮춰 붙는 말로 읽히게 한다. */
   .company .company-byline {
     font-size: var(--text-body-14);
@@ -97,6 +126,11 @@
     border-radius: 14px;
   }
 
+  /* 모바일 전용 연도+이미지 목록 — 데스크톱은 sticky 교차 연출(좌측 판 + 우측 목록)을 그대로 쓴다. */
+  .company .company-years-mobile {
+    display: none;
+  }
+
   /* 교차 페이드로 겹쳐 놓이는 판이라 안쪽 간격은 스텝이 직접 정한다. */
   .company .company-eras .journey-step {
     display: flex;
@@ -114,7 +148,7 @@
 
   .company .company-era-desc {
     max-width: 480px;
-    color: var(--color-ink-light);
+    color: var(--color-ink);
   }
 
   .company .section-wrap.row.is-sticky > .section-aside{
@@ -211,7 +245,7 @@
     padding-left: var(--space-16);
     font-size: var(--text-body-18);
     line-height: var(--leading-body-18);
-    color: var(--color-ink-light);
+    color: var(--color-ink);
   }
 
   .company .company-year-list li::before {

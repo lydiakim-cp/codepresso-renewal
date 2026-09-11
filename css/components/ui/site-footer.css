@@ -21,7 +21,7 @@
 }
 
 .site-footer-tagline {
-  color: var(--color-ink-light);
+  color: var(--color-ink);
   font-size: var(--text-body-muted);
   line-height: var(--leading-body-14);
   letter-spacing: var(--tracking-body-normal);
@@ -53,7 +53,7 @@
 }
 
 .site-footer-group a {
-  color: var(--color-ink-light);
+  color: var(--color-ink);
   font-size: var(--text-body-muted);
   line-height: var(--leading-body-14);
   letter-spacing: var(--tracking-body-normal);

@@ -64,7 +64,7 @@
   overflow: hidden;
   font-size: var(--text-body-18);
   line-height: var(--leading-body-18);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: color var(--duration-hover) var(--ease-hover);
 }

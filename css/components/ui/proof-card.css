@@ -95,7 +95,7 @@
   margin: 0;
   font-size: var(--text-body-16);
   line-height: var(--leading-body-16);
-  color: var(--color-ink-light);
+  color: var(--color-ink);
 }
 
 .proof-card cite {

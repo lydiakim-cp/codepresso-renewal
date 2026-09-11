@@ -115,7 +115,7 @@
   }
 
   .skills .product-desc {
-    color: var(--color-ink-light);
+    color: var(--color-ink);
   }
 
   .skills .product-points {
@@ -131,7 +131,7 @@
     grid-template-columns: 20px minmax(0, 1fr);
     align-items: start;
     gap: var(--space-10);
-    color: var(--color-ink-light);
+    color: var(--color-ink);
     font-size: var(--text-body-muted);
     line-height: var(--leading-body-14);
     letter-spacing: var(--tracking-body-normal);
@@ -249,7 +249,7 @@
 
   .skills .blend-step-desc {
     margin-top: var(--space-6);
-    color: var(--color-ink-light);
+    color: var(--color-ink);
 
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -376,7 +376,7 @@
     gap: var(--space-6);
     font-size: var(--blend-text);
     line-height: var(--blend-leading);
-    color: var(--color-ink-light);
+    color: var(--color-ink);
   }
 
   .skills .blend-mock-legend b {
@@ -743,7 +743,7 @@
   }
 
   .skills .analyze-desc {
-    color: var(--color-ink-light);
+    color: var(--color-ink);
   }
 
   .skills .analyze-points {
@@ -877,7 +877,7 @@
     grid-template-columns: 44px minmax(0, 1fr) 26px;
     gap: var(--space-8);
     align-items: center;
-    color: var(--color-ink-light);
+    color: var(--color-ink);
     font-size: var(--mock-text);
   }
 
