@@ -237,26 +237,10 @@
 
   .difference-page .outcomes .section-wrap.row { grid-template-columns: minmax(0, 1fr); }
 
-  .difference-page .industry-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: var(--space-20);
-  }
+  /* 5열 가로 흐름(문제 → 처방 2장 → 효과)을 세로로 접고 화살표를 아래로 돌린다. */
+  .difference-page .industry-flow { grid-template-columns: minmax(0, 1fr); }
 
-  /* 2열이 되면 3번째 칸이 새 행 맨 앞인데도 왼쪽 선을 물려받는다 — 위쪽 선으로 바꾼다 */
-  .difference-page .industry-cards > li + li {
-    border-left: 0;
-    padding-left: 0;
-  }
-
-  .difference-page .industry-cards > li:nth-child(n + 3) {
-    border-top: 1px solid var(--color-line);
-    padding-top: var(--space-20);
-  }
-
-  .difference-page .industry-cards > li:nth-child(2n) {
-    border-left: 1px solid var(--color-line);
-    padding-left: var(--space-24);
-  }
+  .difference-page .industry-flow-arrow { transform: rotate(90deg); }
 
   .difference-page .start-grid { --start-columns: 1; }
 
@@ -440,22 +424,8 @@
     height: 64px;
   }
 
-  .difference-page .industry-cards {
-    grid-template-columns: 1fr;
-    row-gap: var(--space-20);
-  }
-
-  /* 1열이 되면 모든 칸이 위쪽 구분선 하나로만 나뉜다(900px 규칙의 왼쪽 선을 여기서 되돌린다) */
-  .difference-page .industry-cards > li:nth-child(2n),
-  .difference-page .industry-cards > li:nth-child(n + 3) {
-    border-left: 0;
-    padding-left: 0;
-  }
-
-  .difference-page .industry-cards > li + li {
-    border-top: 1px solid var(--color-line);
-    padding-top: var(--space-20);
-  }
+  /* 처방 2장도 나란히 두기엔 좁아진다 — 한 장씩 쌓는다. */
+  .difference-page .industry-stage--fix { grid-template-columns: minmax(0, 1fr); }
 
   .difference-page .position-dot {
     padding: var(--space-4) var(--space-10) var(--space-4) var(--space-8);

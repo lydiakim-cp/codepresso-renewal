@@ -141,9 +141,9 @@
   /* 02 Diagnosis — 프레젠테이션 슬라이드형 */
   .difference-page .diagnosis-slide {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
     align-items: start;
-    gap: var(--space-32);
+    gap: var(--space-48);
   }
 
   .difference-page .slide-row {
@@ -191,6 +191,7 @@
     flex-direction: column;
     gap: var(--space-20);
     flex: 1;
+    position: relative;
   }
 
   /* "코드프레소" 열만 쓰는 변형 — 카드 2장 사이에 join을 세로로 끼우지 않고
@@ -212,11 +213,18 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-16);
-    padding: var(--space-35);
+    padding: 48px;
 
     border: 0;
     border-radius: var(--radius-xl);
     background: var(--color-surface);
+  }
+
+  /* is-ours 카드만 아이콘을 가진다 — 아이콘 위, 제목 아래 2단 */
+  .difference-page .slide-card-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
   }
 
   .difference-page .slide-card-head h3 {
@@ -256,10 +264,34 @@
     color: var(--color-brand);
   }
 
-  /* 좌열은 연결 노드가 없어진 만큼 두 카드 사이를 넉넉히 벌린다 —
-     우열의 화살표+알약이 차지하는 세로 공간과 리듬을 맞춘다. */
+  /* 1행(한쪽만 바꾼 회사) — 2행(코드프레소)과 대비되도록 폭을 전체의 40%로 줄여
+     왼쪽에 작게 두고, 면도 옅게 죽여 시선이 2행으로 먼저 가게 한다. */
   .difference-page .slide-row.is-fail .slide-pair {
-    gap: var(--space-32);
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  .difference-page .slide-row.is-fail .slide-card {
+    flex: 1;
+    min-width: 0;
+    padding: var(--space-20);
+  }
+
+  .difference-page .slide-card.is-muted {
+    background: color-mix(in srgb, var(--color-surface) 55%, var(--color-brand-tint-2));
+  }
+
+  .difference-page .slide-card.is-muted .slide-card-head h3 {
+    font-size: var(--text-body-16);
+    line-height: var(--leading-body-16);
+  }
+
+  .difference-page .slide-card.is-muted .slide-card-desc {
+    color: var(--color-ink-lighter);
+  }
+
+  .difference-page .slide-card.is-muted .slide-card-desc strong {
+    color: var(--color-ink-light);
   }
 
   .difference-page .slide-join {
@@ -270,31 +302,32 @@
     align-self: center;
     flex: none;
     gap: var(--space-8);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
   }
 
   .difference-page .slide-join-pill {
-    display: inline-flex;
-    flex-direction: column;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    gap: var(--space-4);
-    width: 96px;
-    height: 96px;
+    flex-direction: column;
+    padding: var(--space-16);
     border-radius: var(--radius-full);
     background: var(--color-ink-heaviest);
     color: var(--color-surface);
     font-size: var(--text-body-14);
-    line-height: var(--leading-body-14);
-    font-weight: var(--font-weight-semibold);
     white-space: nowrap;
-
-    box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-brand) 14%, transparent);
-  }
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-brand) 14%, transparent);
+    width: 65px;
+    height: 65px;
+     }
 
   .difference-page .slide-join-pill svg {
     display: block;
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
     color: color-mix(in srgb, var(--color-surface) 85%, transparent);
   }
 
@@ -511,48 +544,98 @@
 
   .difference-page .fade-up.is-visible .start-grid > li:nth-child(2) { transition-delay: .1s; }
 
-  /* 06 Industry — 공용 tab-catalog 안의 4블록 정의형 목록.
-     면·테두리·그림자를 걷어 ax-build 03(What Can Be Built)처럼 평평하게 —
-     칸을 박스로 나누지 않고 세로 구분선 하나로만 나눈다. */
+  /* 06 Industry — 탭 줄은 part-nav 룩(가로 pill)으로 덮는다. 세로 224px 레일을 걷고
+     탭을 판 위로 올린다 — catalog-group의 "탭을 눕힌다" 패턴과 같은 방향. */
+  .difference-page .catalog .tab-catalog {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: var(--space-20);
+  }
 
+  .difference-page .catalog .tab-catalog__tabs {
+    position: relative;
+    flex-direction: row;
+    align-self: center;
+    width: fit-content;
+    gap: var(--space-2);
+    padding: var(--space-4);
+
+    border-right: 0;
+    border-radius: var(--radius-full);
+    background: var(--color-surface-sunken);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .difference-page .catalog .tab-catalog__tab {
+    padding: var(--space-6) var(--space-24);
+    border-radius: var(--radius-full);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .difference-page .catalog .tab-catalog__tab:hover { background: transparent; color: var(--color-brand); }
+
+  .difference-page .catalog .tab-catalog__tab.is-active {
+    background: var(--color-ink-heaviest);
+    color: var(--color-surface);
+  }
+
+  /* 06 Industry — 공용 tab-catalog 안을 "문제 → 처방 → 효과" 3단 인과 흐름으로 재구성.
+     처방 칸(AXpresso 적용 + 역량 교육 매핑)만 카드 2장을 세로로 묶어 문제 1장·효과 1장과
+     구분한다. 칸 사이는 compare-panel__arrow와 같은 화살표로 잇는다. */
   .difference-page .catalog .tab-catalog__panel {
     display: flex;
     flex-direction: column;
   }
 
-  .difference-page .industry-cards {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--space-24);
+  /* 세 단을 같은 높이로 편다 — 카드 장수가 달라도 판의 위아래 선이 맞는다. */
+  .difference-page .industry-flow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 2.2fr) auto minmax(0, 1fr);
+    align-items: stretch;
+    gap: var(--space-20);
 
     flex: 1;
-    align-content: stretch;
   }
 
-  .difference-page .industry-cards > li {
+  /* 단 이름은 카드 안 label이 맡는다 — 단은 카드만 담고 높이를 채운다. */
+  .difference-page .industry-stage {
+    display: grid;
+    grid-auto-rows: minmax(0, 1fr);
+    gap: var(--space-12);
+  }
+
+  /* 처방 두 장은 나란히 선다. */
+  .difference-page .industry-stage--fix {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .difference-page .industry-card {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: var(--space-10);
+    padding: var(--space-35);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
 
-    padding: 0;
-    height: 100%;
+  .difference-page .industry-stage--pain .industry-card {
+    border-color: color-mix(in srgb, var(--color-critical) 30%, var(--color-line));
+  }
+
+  /* 기대 효과는 흐름의 결론이라 흰 카드 대신 옅은 파랑 면으로 — 선 없이 면으로만 구분한다. */
+  .difference-page .industry-stage--result .industry-card {
     border: 0;
-    background: none;
+    background: var(--color-brand-tint-2);
   }
 
-  .difference-page .industry-cards > li + li {
-    border-left: 1px solid var(--color-line);
-    padding-left: var(--space-24);
-  }
-
-  .difference-page .industry-cards > li::before {
-    content: none;
-  }
-
+  /* margin-bottom: auto로 아이콘 아래가 늘어나 라벨·설명이 카드 바닥에 맞는다. */
   .difference-page .industry-card-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex: none;
+    margin-bottom: auto;
   }
 
   .difference-page .industry-card-icon svg {
@@ -566,10 +649,43 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  /* Pain Point만 브랜드 파랑에서 빼낸다 — 문제 칸이 우리 제품 칸과 같은 색이면 거짓이다.
-     빨강은 아이콘에만 남긴다(critical 14px semibold는 sunken 면에서 3.83으로 AA 미달). */
-  .difference-page .industry-card:has(.industry-card-icon--pain) .industry-card-label {
-    color: var(--color-ink-heaviest);
+  /* 문제 카드의 라벨은 테두리·아이콘과 같은 critical로 — 파랑이면 처방과 구분이 안 된다. */
+  .difference-page .industry-stage--pain .industry-card-label {
+    color: var(--color-critical);
+  }
+
+  /* 설명 세 줄분을 미리 확보해 줄 수가 다른 카드끼리도 아래 여백이 같아진다. */
+  .difference-page .industry-card .description {
+    min-height: 66px;
+  }
+
+  .difference-page .industry-flow-arrow {
+    align-self: center;
+    color: var(--color-brand);
+    opacity: 0.55;
+  }
+
+  /* 판을 열 때 문제 → 처방 → 효과 순으로 차례차례 떠오른다 —
+     컴포넌트의 item-grid stagger와 같은 관용구(rise-in + 단계별 delay). */
+  .difference-page .tab-catalog__panel.is-active .industry-flow > * {
+    --motion-rise: 6px;
+    animation: rise-in var(--duration-indicator) var(--ease-hover) both;
+  }
+
+  .difference-page .tab-catalog__panel.is-active .industry-flow > *:nth-child(1) { animation-delay: 0s; }
+  .difference-page .tab-catalog__panel.is-active .industry-flow > *:nth-child(2) { animation-delay: .06s; }
+  .difference-page .tab-catalog__panel.is-active .industry-flow > *:nth-child(3) { animation-delay: .12s; }
+  .difference-page .tab-catalog__panel.is-active .industry-flow > *:nth-child(4) { animation-delay: .18s; }
+  .difference-page .tab-catalog__panel.is-active .industry-flow > *:nth-child(5) { animation-delay: .24s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .difference-page .tab-catalog__panel.is-active .industry-flow > * { animation: none; }
+  }
+
+  .difference-page .industry-flow-arrow svg {
+    display: block;
+    width: 22px;
+    height: 22px;
   }
 
 
