@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Codepresso Design Guide v2</title>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/pages/designsystem-v2.css">
-  <link rel="stylesheet" href="css/mobile.css">
-</head>
-<body class="design-guide">
-  <header class="guide-topbar">
+<template>
+  <SiteHeader />
+<header class="guide-topbar">
     <a class="guide-brand" href="#overview" aria-label="Codepresso Design Guide 처음으로">
       <span class="guide-brand-mark">C</span>
       <span>CODEPRESSO</span><em>Design Guide v2</em>
@@ -20,7 +11,7 @@
   <div class="guide-v2-shell">
     <aside class="guide-v2-sidebar" aria-label="디자인 가이드 목차">
       <p class="guide-sidebar-label">GUIDE</p>
-      <nav class="guide-v2-nav" data-scrollspy-nav>
+      <nav class="guide-v2-nav" data-scrollspy-nav="">
         <div class="guide-v2-nav-group">
           <a href="#overview"><span>01</span>처음 보기</a>
         </div>
@@ -314,13 +305,13 @@
                     <h1 class="hero-title" style="font-size: var(--text-heading-32); line-height: var(--leading-heading-32)">역량 진단·교육</h1>
                     <p class="hero-desc">진단하고, 부족한 영역만 학습하고, 재진단으로 성장을 증명합니다.</p>
                     <div class="hero-actions">
-                      <a class="btn btn-primary" href="#components">3분 AI 활용 진단 시작<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                      <a class="btn btn-primary" href="#components">3분 AI 활용 진단 시작<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
                     </div>
                   </div>
                   <ul class="hero-facts surface-glass">
                     <li class="metric-card">
                       <span class="hero-fact-icon icon-lg" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="var(--color-brand)"/><path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="var(--color-brand)"/><path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="var(--color-brand)"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="var(--color-brand)"></path><path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="var(--color-brand)"></path><path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="var(--color-brand)"></path></svg>
                       </span>
                       <div>
                         <div class="metric-card__value">현재 수준은 어디인가?</div>
@@ -329,7 +320,7 @@
                     </li>
                     <li class="metric-card">
                       <span class="hero-fact-icon icon-lg" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/><path d="M2 17L12 22L22 17" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path><path d="M2 17L12 22L22 17" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 12L12 17L22 12" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                       </span>
                       <div>
                         <div class="metric-card__value">무엇을 배워야 하는가?</div>
@@ -338,7 +329,7 @@
                     </li>
                     <li class="metric-card">
                       <span class="hero-fact-icon icon-lg" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 17L9 11L13 15L21 7" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7H15" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7V13" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 17L9 11L13 15L21 7" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M21 7H15" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M21 7V13" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                       </span>
                       <div>
                         <div class="metric-card__value">성장이 증명됐는가?</div>
@@ -373,12 +364,12 @@
                     <div class="metric-card__visual" aria-hidden="true">
                       <span class="metric-card__glow"></span><span class="metric-card__glow"></span>
                       <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
-                        <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
-                        <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
-                        <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
-                        <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))" />
-                        <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)" />
-                        <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)" />
+                        <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
+                        <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
+                        <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
+                        <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
+                        <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)"></path>
+                        <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"></path>
                       </svg>
                     </div>
                   </article>
@@ -393,32 +384,32 @@
               <ul class="choice-list">
                 <li>
                   <a class="choice-list__item" href="#components">
-                    <span class="icon-box" aria-hidden="true"><img src="images/icons/service/ic_skillPath.svg" alt=""></span>
+                    <span class="icon-box" aria-hidden="true"><img src="/images/icons/service/ic_skillPath.svg" alt=""></span>
                     <span class="choice-list__body">
                       <span class="section-body-title">SkillPath</span>
                       <span class="text-caption">온라인 이러닝</span>
                     </span>
-                    <svg class="choice-list__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg class="choice-list__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </a>
                 </li>
                 <li>
                   <a class="choice-list__item" href="#components">
-                    <span class="icon-box" aria-hidden="true"><img src="images/icons/service/ic_edu.svg" alt=""></span>
+                    <span class="icon-box" aria-hidden="true"><img src="/images/icons/service/ic_edu.svg" alt=""></span>
                     <span class="choice-list__body">
                       <span class="section-body-title">SkillCamp</span>
                       <span class="text-caption">강사 주도형 교육</span>
                     </span>
-                    <svg class="choice-list__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg class="choice-list__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </a>
                 </li>
                 <li>
                   <a class="choice-list__item" href="#components">
-                    <span class="icon-box" aria-hidden="true"><img src="images/icons/service/ic_skillFit.svg" alt=""></span>
+                    <span class="icon-box" aria-hidden="true"><img src="/images/icons/service/ic_skillFit.svg" alt=""></span>
                     <span class="choice-list__body">
                       <span class="section-body-title">SkillFit</span>
                       <span class="text-caption">AI 기반 적응형 학습</span>
                     </span>
-                    <svg class="choice-list__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg class="choice-list__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </a>
                 </li>
               </ul>
@@ -451,7 +442,7 @@
             <div class="guide-component-demo">
               <a class="media-card insight-feature" href="https://www.newsis.com/view/ALSX20260629_0000006828" target="_blank" rel="noopener">
                 <div class="media-card__media insight-feature-thumb">
-                  <img src="https://mmx.prnasia.com/media/MS1873716/e7f99217463f4f01ad4a757a51402cc6.jpg?id=OA2738334&p=medium600" alt="">
+                  <img src="https://mmx.prnasia.com/media/MS1873716/e7f99217463f4f01ad4a757a51402cc6.jpg?id=OA2738334&amp;p=medium600" alt="">
                 </div>
                 <div class="media-card__body insight-feature-body">
                   <div class="media-card__meta">
@@ -470,12 +461,12 @@
               <ul class="outcome-list" style="max-width: 320px;">
                 <li>
                   <div class="outcome-logo">
-                    <img src="images/clients/case-study/체인로지스.png" alt="체인로지스 로고" loading="lazy">
+                    <img src="/images/clients/case-study/체인로지스.png" alt="체인로지스 로고" loading="lazy">
                   </div>
                   <div class="outcome-body">
                     <p class="outcome-shift">
                       <span class="outcome-before">2~4시간</span>
-                      <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                      <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
                       <span class="outcome-after">3분</span>
                     </p>
                     <p class="outcome-detail">월 <strong>80시간</strong> 절감. "풀타임 1명"</p>
@@ -487,15 +478,15 @@
             <div><p class="tag">고객 사례 카드</p><h3>Outcome Card</h3><p>고객사 로고 판(고정 높이, <code>object-fit: contain</code>) + "이전 → 이후" 성과 카드입니다.</p><code>outcome-list · outcome-logo · outcome-body</code></div>
           </article>
 
-          <article class="guide-v2-component-row" id="c-button-link"><div class="guide-component-demo"><a class="btn btn-primary" href="#components">주요 행동<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/></svg></a><a class="btn btn-ghost" href="#components">보조 행동</a><a class="link-arrow link-arrow-ink" href="#components"><span class="link-underline">자세히 보기</span></a></div><div><p class="tag">버튼과 링크</p><h3>Button &amp; Link</h3><p>주요 행동에는 Primary, 보조 행동에는 Ghost와 밑줄 링크를 사용합니다.</p><code>btn · link-arrow</code></div></article>
+          <article class="guide-v2-component-row" id="c-button-link"><div class="guide-component-demo"><a class="btn btn-primary" href="#components">주요 행동<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"></path></svg></a><a class="btn btn-ghost" href="#components">보조 행동</a><a class="link-arrow link-arrow-ink" href="#components"><span class="link-underline">자세히 보기</span></a></div><div><p class="tag">버튼과 링크</p><h3>Button &amp; Link</h3><p>주요 행동에는 Primary, 보조 행동에는 Ghost와 밑줄 링크를 사용합니다.</p><code>btn · link-arrow</code></div></article>
 
-          <article class="guide-v2-component-row" id="c-icon-size"><div class="guide-component-demo" style="display:flex;align-items:flex-end;gap:24px"><span class="icon-sm"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="icon-md"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="icon-lg"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div><p class="tag">아이콘 크기</p><h3>Icon Size</h3><p>아이콘 크기는 이 세 단계만 씁니다 — <code>icon-sm</code> 작게, <code>icon-md</code> 기본, <code>icon-lg</code> 크게.</p><code>icon-sm · icon-md · icon-lg</code></div></article>
+          <article class="guide-v2-component-row" id="c-icon-size"><div class="guide-component-demo" style="display:flex;align-items:flex-end;gap:24px"><span class="icon-sm"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="icon-md"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="icon-lg"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></div><div><p class="tag">아이콘 크기</p><h3>Icon Size</h3><p>아이콘 크기는 이 세 단계만 씁니다 — <code>icon-sm</code> 작게, <code>icon-md</code> 기본, <code>icon-lg</code> 크게.</p><code>icon-sm · icon-md · icon-lg</code></div></article>
 
           <article class="guide-v2-component-row" id="c-tag"><div class="guide-component-demo"><span class="tag">How it works</span><span class="tag">02 · Proof</span><span class="tag">뉴스</span><span class="tag">LATEST</span><span class="tag solid sm">뉴스</span><span class="tag solid sm">공지</span><span class="tag sm">약 3분</span><span class="tag sm">회원가입 없음</span><span class="tag dark">개발 직군</span><span class="tag dark sm">출시 예정</span><span class="tag outline">ISO 27001</span></div><div><p class="tag">분류 라벨</p><h3>Tag</h3><p>콘텐츠의 종류나 짧은 상태를 제목 앞에 붙일 때 씁니다.</p><code>tag · dark · solid · sm · outline</code></div></article>
 
-          <article class="guide-v2-component-row" id="c-part-nav"><div class="guide-component-demo"><div class="guide-part-nav-variants"><div><p class="text-label">최대 radius · 기본</p><nav class="part-nav part-nav--animated" data-guide-part-nav aria-label="캡슐형 Part Nav"><span class="part-nav-indicator" aria-hidden="true"></span><a class="part-nav-item is-active" href="#components">PART 1 · 교육</a><a class="part-nav-item" href="#components">PART 2 · 진단</a></nav></div><div><p class="text-label">최소 radius · compact</p><nav class="part-nav part-nav--compact part-nav--animated" data-guide-part-nav aria-label="사각형 Part Nav"><span class="part-nav-indicator" aria-hidden="true"></span><a class="part-nav-item is-active" href="#components">PART 1 · 교육</a><a class="part-nav-item" href="#components">PART 2 · 진단</a></nav></div></div></div><div><p class="tag">파트 이동</p><h3>Part Nav</h3><p>코드프레소의 기본은 부드러운 캡슐형입니다. 더 정돈된 제품 UI에는 8px compact 변형을 사용합니다.</p><code>part-nav · part-nav--compact</code></div></article>
+          <article class="guide-v2-component-row" id="c-part-nav"><div class="guide-component-demo"><div class="guide-part-nav-variants"><div><p class="text-label">최대 radius · 기본</p><nav class="part-nav part-nav--animated" data-guide-part-nav="" aria-label="캡슐형 Part Nav"><span class="part-nav-indicator" aria-hidden="true"></span><a class="part-nav-item is-active" href="#components">PART 1 · 교육</a><a class="part-nav-item" href="#components">PART 2 · 진단</a></nav></div><div><p class="text-label">최소 radius · compact</p><nav class="part-nav part-nav--compact part-nav--animated" data-guide-part-nav="" aria-label="사각형 Part Nav"><span class="part-nav-indicator" aria-hidden="true"></span><a class="part-nav-item is-active" href="#components">PART 1 · 교육</a><a class="part-nav-item" href="#components">PART 2 · 진단</a></nav></div></div></div><div><p class="tag">파트 이동</p><h3>Part Nav</h3><p>코드프레소의 기본은 부드러운 캡슐형입니다. 더 정돈된 제품 UI에는 8px compact 변형을 사용합니다.</p><code>part-nav · part-nav--compact</code></div></article>
 
-          <article class="guide-v2-component-row" id="c-assessment-card"><div class="guide-component-demo"><div class="assessment-card-frame"><span class="assessment-card-frame__glow" aria-hidden="true"></span><div class="assessment-card-stack"><span class="assessment-card-eyebrow">AI 리터러시 자가 진단 (1분 소요)</span><article class="assessment-card"><div class="assessment-card__head"><h3 class="assessment-card__title">당신은 AI를 쓰는 사람인가요,<br>다루는 사람인가요?</h3><p class="description">AI를 쓰는 사람과 다루는 사람은 다릅니다.<br>지금 나의 AI 활용 수준을 확인해보세요.</p></div><ul class="assessment-card__meta" aria-label="진단 정보"><li class="pill">11문항</li><li class="pill">약 1분</li><li class="pill">즉시 결과</li></ul><div class="assessment-card__action"><a class="btn btn-primary btn-lg assessment-card__cta" href="#components">AI 역량 진단 시작하기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></article></div></div></div><div><p class="tag">자가 진단 CTA</p><h3>Assessment Card</h3><p>Hero나 캠페인 화면에서 진단 시작을 유도할 때 사용합니다.</p><code>assessment-card</code></div></article>
+          <article class="guide-v2-component-row" id="c-assessment-card"><div class="guide-component-demo"><div class="assessment-card-frame"><span class="assessment-card-frame__glow" aria-hidden="true"></span><div class="assessment-card-stack"><span class="assessment-card-eyebrow">AI 리터러시 자가 진단 (1분 소요)</span><article class="assessment-card"><div class="assessment-card__head"><h3 class="assessment-card__title">당신은 AI를 쓰는 사람인가요,<br>다루는 사람인가요?</h3><p class="description">AI를 쓰는 사람과 다루는 사람은 다릅니다.<br>지금 나의 AI 활용 수준을 확인해보세요.</p></div><ul class="assessment-card__meta" aria-label="진단 정보"><li class="pill">11문항</li><li class="pill">약 1분</li><li class="pill">즉시 결과</li></ul><div class="assessment-card__action"><a class="btn btn-primary btn-lg assessment-card__cta" href="#components">AI 역량 진단 시작하기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div></article></div></div></div><div><p class="tag">자가 진단 CTA</p><h3>Assessment Card</h3><p>Hero나 캠페인 화면에서 진단 시작을 유도할 때 사용합니다.</p><code>assessment-card</code></div></article>
 
           <article class="guide-v2-component-row" id="c-skeleton">
             <div class="guide-component-demo">
@@ -613,7 +604,7 @@
                   <h3 class="compare-panel__title">사람이 자료를 모으고<br>보고서를 만듭니다</h3>
                 </div>
                 <span class="compare-panel__arrow" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
                 <div class="compare-panel__item is-after">
                   <p class="compare-panel__label">After</p>
@@ -655,13 +646,13 @@
                   <div class="cycle-head"><span class="cycle-no">1</span><p class="cycle-en">Data</p></div>
                   <h3>도구 사용 데이터</h3>
                   <p class="description">누가 무엇을 얼마나 쓰는가</p>
-                  <span class="cycle-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="cycle-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
                 </li>
                 <li>
                   <div class="cycle-head"><span class="cycle-no">2</span><p class="cycle-en">Assess</p></div>
                   <h3>역량 진단 반영</h3>
                   <p class="description">데이터가 진단을 정확하게</p>
-                  <span class="cycle-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="cycle-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
                 </li>
                 <li class="is-return">
                   <div class="cycle-head"><span class="cycle-no">3</span><p class="cycle-en">Improve</p></div>
@@ -676,17 +667,17 @@
           <article class="guide-v2-component-row" id="c-faq-list">
             <div class="guide-component-demo">
               <div class="faq-list">
-                <details open>
+                <details open="">
                   <summary class="faq-list__question">
                     어떤 업무를 먼저 골라야 하나요?
-                    <span class="faq-list__icon" aria-hidden="true"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span class="faq-list__icon" aria-hidden="true"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
                   </summary>
                   <p class="faq-list__answer">반복되고, 결과가 맞았는지 판단할 기준이 분명한 업무가 첫 대상으로 적합합니다.</p>
                 </details>
                 <details>
                   <summary class="faq-list__question">
                     사내 개발팀이 없어도 가능한가요?
-                    <span class="faq-list__icon" aria-hidden="true"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span class="faq-list__icon" aria-hidden="true"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
                   </summary>
                   <p class="faq-list__answer">가능합니다. 구축은 FDE가 담당하고 현업은 결과 확인만 맡습니다.</p>
                 </details>
@@ -698,7 +689,7 @@
           <article class="guide-v2-component-row" id="c-catalog-board">
             <div class="guide-component-demo">
               <div class="preview-frame preview-frame--flush">
-                <div class="tab-catalog" data-catalog-board>
+                <div class="tab-catalog" data-catalog-board="">
                   <div class="tab-catalog__tabs">
                     <button class="tab-catalog__tab is-active" type="button" data-catalog-category="guide-common">
                       <span class="tab-catalog__tab-label">공통</span><span class="tab-catalog__tab-count">3</span>
@@ -736,14 +727,14 @@
                 <article class="feature-card">
                   <div class="feature-card-icon-row">
                     <span class="feature-card-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.5523 9.55228 19 9 19H3C2.44772 19 2 18.5523 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="var(--color-brand)"/><path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="var(--color-brand)"/><path d="M21 19H15C14.4477 19 14 18.5523 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.5523 21.5523 19 21 19Z" fill="var(--color-ink-lighter)"/><path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="var(--color-ink-lighter)"/></svg>
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.5523 9.55228 19 9 19H3C2.44772 19 2 18.5523 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="var(--color-brand)"></path><path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="var(--color-brand)"></path><path d="M21 19H15C14.4477 19 14 18.5523 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.5523 21.5523 19 21 19Z" fill="var(--color-ink-lighter)"></path><path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="var(--color-ink-lighter)"></path></svg>
                     </span>
                   </div>
                   <div class="section-body">
                     <div class="section-body-heading">
                       <p class="section-body-title">01 · 핵심 팀</p>
                       <span class="feature-card-arrow" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                       </span>
                     </div>
                     <p class="section-body-subtitle">내부에 실행을 이어갈<br>핵심 팀이 있습니다</p>
@@ -753,14 +744,14 @@
                 <article class="feature-card">
                   <div class="feature-card-icon-row">
                     <span class="feature-card-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" fill="var(--color-brand)"/><path d="M2 17L12 22L22 17" stroke="var(--color-ink-lighter)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="var(--color-ink-lighter)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" fill="var(--color-brand)"></path><path d="M2 17L12 22L22 17" stroke="var(--color-ink-lighter)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 12L12 17L22 12" stroke="var(--color-ink-lighter)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </span>
                   </div>
                   <div class="section-body">
                     <div class="section-body-heading">
                       <p class="section-body-title">02 · 대상 업무</p>
                       <span class="feature-card-arrow" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                       </span>
                     </div>
                     <p class="section-body-subtitle">반복되는 업무가<br>이미 정해져 있습니다</p>
@@ -776,15 +767,15 @@
             <div class="guide-component-demo">
               <ul class="feature-points">
                 <li>
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   <span>직무별 현업 시나리오와 실제 데이터</span>
                 </li>
                 <li>
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   <span>AI 협업 과정과 산출물 동시 평가</span>
                 </li>
                 <li>
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   <span>진단 결과와 이어지는 학습 경로</span>
                 </li>
               </ul>
@@ -800,7 +791,7 @@
                     <p class="bridge-title">역량 데이터는, <strong class="brand">도구 활용</strong>의 출발점이 됩니다</p>
                     <p class="bridge-desc">진단 결과가 어떤 에이전트와 자동화가 필요한지 알려줍니다.</p>
                   </div>
-                  <a class="btn btn-outline-inverse" href="#components">차별점 보기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                  <a class="btn btn-outline-inverse" href="#components">차별점 보기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
                 </div>
               </div>
             </div>
@@ -814,7 +805,7 @@
                   <h2 class="cta-final-title" style="font-size: var(--text-heading-32); line-height: var(--leading-heading-32)">다음 분기 교육은 몰입형으로 바꿔보세요</h2>
                   <p class="cta-final-desc">목표와 일정에 맞는 커리큘럼을 제안해 드립니다.</p>
                   <div class="cta-final-actions">
-                    <a class="btn btn-primary btn-lg" href="#components">커리큘럼 제안 받기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    <a class="btn btn-primary btn-lg" href="#components">커리큘럼 제안 받기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
                   </div>
                 </div>
               </div>
@@ -913,21 +904,21 @@
             <p>Proof의 수치 카드는 화면 진입 후 왼쪽에서 오른쪽으로 순서대로 나타나고, 숫자가 목표 값까지 카운트됩니다.</p>
             <div class="guide-motion-live-preview">
               <div class="summary-banner stats-light">
-                <div class="summary-banner-stats" data-stat-reveal>
+                <div class="summary-banner-stats" data-stat-reveal="">
                   <article class="metric-card">
                     <div class="metric-card__value"><span class="num" data-target="39355">0</span><span class="unit">명</span></div>
                     <p class="metric-card__label text-label">누적 수강</p>
-                    <div class="metric-card__visual" aria-hidden="true"><span class="metric-card__glow"></span><span class="metric-card__glow"></span><img class="metric-card__icon" src="images/icons/service/ic_barChart.svg" alt=""></div>
+                    <div class="metric-card__visual" aria-hidden="true"><span class="metric-card__glow"></span><span class="metric-card__glow"></span><img class="metric-card__icon" src="/images/icons/service/ic_barChart.svg" alt=""></div>
                   </article>
                   <article class="metric-card">
                     <div class="metric-card__value"><span class="num" data-target="1531">0</span><span class="unit">회</span></div>
                     <p class="metric-card__label text-label">교육 운영</p>
-                    <div class="metric-card__visual" aria-hidden="true"><span class="metric-card__glow"></span><span class="metric-card__glow"></span><img class="metric-card__icon" src="images/icons/service/ic_barChart.svg" alt=""></div>
+                    <div class="metric-card__visual" aria-hidden="true"><span class="metric-card__glow"></span><span class="metric-card__glow"></span><img class="metric-card__icon" src="/images/icons/service/ic_barChart.svg" alt=""></div>
                   </article>
                   <article class="metric-card">
                     <div class="metric-card__value"><span class="num" data-target="80">0</span><span class="unit">%</span></div>
                     <p class="metric-card__label text-label">재구매율</p>
-                    <div class="metric-card__visual" aria-hidden="true"><span class="metric-card__glow"></span><span class="metric-card__glow"></span><img class="metric-card__icon" src="images/icons/service/ic_barChart.svg" alt=""></div>
+                    <div class="metric-card__visual" aria-hidden="true"><span class="metric-card__glow"></span><span class="metric-card__glow"></span><img class="metric-card__icon" src="/images/icons/service/ic_barChart.svg" alt=""></div>
                   </article>
                 </div>
               </div>
@@ -939,23 +930,23 @@
             <p>고객 사례 카드를 5초마다 자동으로 넘기고, 좌우 버튼으로도 넘길 수 있습니다.</p>
             <div class="guide-motion-live-preview">
               <div class="proof-card-stage">
-                <div class="proof-card-deck" data-proof-deck>
-                  <button type="button" class="proof-card-nav" aria-label="다른 사례 보기"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <div class="proof-card-deck" data-proof-deck="">
+                  <button type="button" class="proof-card-nav" aria-label="다른 사례 보기"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
                   <div class="proof-card-deck-list">
                     <article class="proof-card">
-                      <img src="images/clients/dark/logo-cj.svg" alt="CJ올리브네트웍스 로고">
+                      <img src="/images/clients/dark/logo-cj.svg" alt="CJ올리브네트웍스 로고">
                       <h3>검증 비용이 1/3로 줄어든 채용</h3>
                       <blockquote>"서류 합격 150명을 실기 평가로 검증해 30명, 최종 3명을 선발했습니다.<br>채용 검증에 들던 비용은 1/3로 줄었습니다."</blockquote>
                       <cite>CJ올리브네트웍스 | SkillCertify 채용 검증</cite>
                     </article>
                     <article class="proof-card">
-                      <img src="images/clients/dark/logo-translink.svg" alt="트랜스링크인베스트먼트 로고">
+                      <img src="/images/clients/dark/logo-translink.svg" alt="트랜스링크인베스트먼트 로고">
                       <h3>심사 소요 시간 3~5일 → 1시간</h3>
                       <blockquote>"3~5일 걸리던 기업 실사가 1시간으로 줄었습니다.<br>의사결정 속도가 완전히 달라졌습니다."</blockquote>
                       <cite>트랜스링크인베스트먼트 | 박희덕 대표</cite>
                     </article>
                   </div>
-                  <button type="button" class="proof-card-nav" aria-label="다음 사례 보기"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  <button type="button" class="proof-card-nav" aria-label="다음 사례 보기"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
                 </div>
               </div>
             </div>
@@ -1021,7 +1012,7 @@
             <div class="guide-motion-static-preview">
               <div class="preview-frame preview-frame--quiet">
                 <button class="nav-trigger" type="button" aria-expanded="true">역량 진단·교육
-                  <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </button>
                 <div class="skeleton-stack"><span class="skeleton-line"></span><span class="skeleton-line is-short"></span></div>
               </div>
@@ -1034,20 +1025,20 @@
             <div class="guide-motion-static-preview">
               <div class="hero-clients-marquee">
                 <ul class="hero-clients-track">
-                  <li><img src="images/clients/dark/logo_4_현대_(h36).svg" alt="현대"></li>
-                  <li><img src="images/clients/dark/logo_5_벡터_(h36).svg" alt="벡터"></li>
-                  <li><img src="images/clients/dark/logo_6_서강대_(h36).svg" alt="서강대"></li>
-                  <li><img src="images/clients/dark/logo_1_삼성_(h36).svg" alt="삼성"></li>
-                  <li><img src="images/clients/dark/logo_2_기획재정부_(h36).svg" alt="기획재정부"></li>
-                  <li><img src="images/clients/dark/logo_3_롯데_(h36).svg" alt="롯데"></li>
+                  <li><img src="/images/clients/dark/logo_4_현대_(h36).svg" alt="현대"></li>
+                  <li><img src="/images/clients/dark/logo_5_벡터_(h36).svg" alt="벡터"></li>
+                  <li><img src="/images/clients/dark/logo_6_서강대_(h36).svg" alt="서강대"></li>
+                  <li><img src="/images/clients/dark/logo_1_삼성_(h36).svg" alt="삼성"></li>
+                  <li><img src="/images/clients/dark/logo_2_기획재정부_(h36).svg" alt="기획재정부"></li>
+                  <li><img src="/images/clients/dark/logo_3_롯데_(h36).svg" alt="롯데"></li>
                 </ul>
                 <ul class="hero-clients-track" aria-hidden="true">
-                  <li><img src="images/clients/dark/logo_4_현대_(h36).svg" alt=""></li>
-                  <li><img src="images/clients/dark/logo_5_벡터_(h36).svg" alt=""></li>
-                  <li><img src="images/clients/dark/logo_6_서강대_(h36).svg" alt=""></li>
-                  <li><img src="images/clients/dark/logo_1_삼성_(h36).svg" alt=""></li>
-                  <li><img src="images/clients/dark/logo_2_기획재정부_(h36).svg" alt=""></li>
-                  <li><img src="images/clients/dark/logo_3_롯데_(h36).svg" alt=""></li>
+                  <li><img src="/images/clients/dark/logo_4_현대_(h36).svg" alt=""></li>
+                  <li><img src="/images/clients/dark/logo_5_벡터_(h36).svg" alt=""></li>
+                  <li><img src="/images/clients/dark/logo_6_서강대_(h36).svg" alt=""></li>
+                  <li><img src="/images/clients/dark/logo_1_삼성_(h36).svg" alt=""></li>
+                  <li><img src="/images/clients/dark/logo_2_기획재정부_(h36).svg" alt=""></li>
+                  <li><img src="/images/clients/dark/logo_3_롯데_(h36).svg" alt=""></li>
                 </ul>
               </div>
             </div>
@@ -1216,7 +1207,7 @@
                       </div>
                     </div>
                     <svg class="mock-replay-cursor is-cursor" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M5 3l14 8.5-6.2 1.4L10 19.5 5 3z" fill="var(--color-ink-heaviest)" stroke="var(--color-surface)" stroke-width="1.4" stroke-linejoin="round"/>
+                      <path d="M5 3l14 8.5-6.2 1.4L10 19.5 5 3z" fill="var(--color-ink-heaviest)" stroke="var(--color-surface)" stroke-width="1.4" stroke-linejoin="round"></path>
                     </svg>
                   </div>
                 </div>
@@ -1291,8 +1282,8 @@
                     <div class="mock-detail-head">
                       <span class="mock-detail-gauge">
                         <svg viewBox="0 0 64 64" aria-hidden="true">
-                          <circle cx="32" cy="32" r="28" fill="none" stroke="var(--color-brand-tint-2)" stroke-width="7"/>
-                          <circle class="is-gauge" cx="32" cy="32" r="28" fill="none" stroke="var(--color-brand)" stroke-width="7" stroke-linecap="round" stroke-dasharray="176" stroke-dashoffset="56"/>
+                          <circle cx="32" cy="32" r="28" fill="none" stroke="var(--color-brand-tint-2)" stroke-width="7"></circle>
+                          <circle class="is-gauge" cx="32" cy="32" r="28" fill="none" stroke="var(--color-brand)" stroke-width="7" stroke-linecap="round" stroke-dasharray="176" stroke-dashoffset="56"></circle>
                         </svg>
                         <b class="text-caption strong">68%</b>
                       </span>
@@ -1394,8 +1385,7 @@
                     </ul>
                     <span class="difference-flow-arrow is-flow">
                       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
-                          stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </span>
                   </div>
@@ -1421,8 +1411,7 @@
                     </ul>
                     <span class="difference-flow-arrow is-flow">
                       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
-                          stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </span>
                   </div>
@@ -1688,7 +1677,7 @@
               <tr><th scope="row">반응형을 손본다 · 애니메이션을 넣는다</th><td><code>references/responsive-motion.md</code></td></tr>
               <tr><th scope="row">화면이 심심하다</th><td><code>css-patterns.md</code> 4번</td></tr>
               <tr><th scope="row">제품 화면 목업에 연출을 넣는다</th><td><code>mock-motion-guide.md</code></td></tr>
-              <tr><th scope="row">새 서브페이지를 처음부터 만든다</th><td><code>templates/README.md</code> → <code>subpage-guide.md</code></td></tr>
+              <tr><th scope="row">새 서브페이지를 처음부터 만든다</th><td><code>pages/</code>의 기존 Vue 페이지 구조와 <code>subpage-guide.md</code></td></tr>
               <tr><th scope="row">예전에 걷어낸 것을 다시 넣지 않으려 확인한다</th><td><code>references/anti-patterns.md</code></td></tr>
               <tr><th scope="row">작업을 마친 뒤 디자이너 시점으로 검수한다</th><td><code>references/design-qa.md</code></td></tr>
               <tr><th scope="row">작업을 마치기 직전</th><td><code>references/checklist.md</code></td></tr>
@@ -1706,33 +1695,11 @@
     가이드의 모션 예시는 서비스와 똑같은 스크립트로 구동한다(로직을 다시 구현하지 않는다).
     스크롤스파이만 이 문서 전용(designsystem-scrollspy.js).
   -->
-  <script src="js/fade-up.js"></script>
-  <script src="js/stat-reveal.js"></script>
-  <script src="js/proof-card-slider.js"></script>
-  <script src="js/catalog-board.js"></script>
-  <script src="js/designsystem-scrollspy.js"></script>
-  <script>
-    // Part Nav 견본 — 실제 part-nav.js는 앵커로 페이지를 이동시키므로,
-    // 문서에서는 활성 표시가 옮겨가는 모습만 보여준다.
-    document.querySelectorAll('[data-guide-part-nav]').forEach((nav) => {
-      const indicator = nav.querySelector('.part-nav-indicator');
-      const items = [...nav.querySelectorAll('.part-nav-item')];
-      const move = (item) => { indicator.style.width = `${item.offsetWidth}px`; indicator.style.transform = `translateX(${item.offsetLeft - items[0].offsetLeft}px)`; };
-      move(items[0]);
-      items.forEach((item) => item.addEventListener('click', (event) => { event.preventDefault(); items.forEach((link) => link.classList.toggle('is-active', link === item)); move(item); }));
-      window.addEventListener('resize', () => move(nav.querySelector('.part-nav-item.is-active') || items[0]));
-    });
+  <SiteFooter />
+  <ClientInteractions :scripts='["js/fade-up.js","js/stat-reveal.js","js/proof-card-slider.js","js/catalog-board.js","js/designsystem-scrollspy.js"]' />
+</template>
 
-    // 진입 모션은 한 번 재생되면 끝이라, 문서에서는 다시 볼 수 있게 해준다.
-    document.querySelectorAll('[data-motion-replay]').forEach((button) => {
-      const target = document.querySelector(button.dataset.motionReplay);
-      if (!target) return;
-      button.addEventListener('click', () => {
-        target.classList.remove('is-visible');
-        // 클래스 제거가 렌더에 반영된 뒤 다시 붙여야 transition이 처음부터 재생된다.
-        requestAnimationFrame(() => requestAnimationFrame(() => target.classList.add('is-visible')));
-      });
-    });
-  </script>
-</body>
-</html>
+<script setup>
+useSeoMeta({ title: "Codepresso Design Guide v2", description: "" })
+import '~/css/pages/designsystem-v2.css'
+</script>

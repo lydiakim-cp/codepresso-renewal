@@ -13,7 +13,7 @@
   content: "";
   position: absolute;
   inset: -30px;
-  background-image: url("../../../images/backgrounds/bg-line2.png");
+  background-image: url("/images/backgrounds/bg-line2.png");
   background-repeat: no-repeat;
   background-position: center left;
   background-size: 160%;

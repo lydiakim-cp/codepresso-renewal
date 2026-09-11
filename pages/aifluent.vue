@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="ko">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AI Fluent: AI 활용 역량 진단 | 코드프레소</title>
-
-  <!-- 검색 결과·링크 미리보기 문구. hero 문구를 그대로 쓴다(마케팅팀 검수 대상).
-       TODO: og:image(1200x630) 에셋과 운영 도메인(og:url·canonical)이 확정되면 채운다. -->
-  <meta name="description" content="문제 정의, 프롬프트 설계, 워크플로·Agent 활용, 결과 검증까지. 실제 업무 속 AI 활용 역량을 진단합니다.">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Fluent: AI 활용 역량 진단 | 코드프레소">
-  <meta property="og:description" content="문제 정의, 프롬프트 설계, 워크플로·Agent 활용, 결과 검증까지. 실제 업무 속 AI 활용 역량을 진단합니다.">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/pages/aifluent.css">
-  <link rel="stylesheet" href="css/mobile.css">
-</head>
-
-<body>
-  <div data-include="partials/header.html"></div>
-
-  <main class="aifluent">
+<template>
+  <SiteHeader />
+<main class="aifluent">
     <!-- Hero — 첫 화면이라 fade-up 없음. 보조 띠에는 "무엇을 어떻게 보는가" 3가지를 눕힌다. -->
     <section class="sub-hero">
       <div class="hero-wrap">
@@ -30,10 +10,7 @@
           <p class="hero-desc" data-i18n="aifluent-hero-desc-01">AI를 얼마나 아는지가 아니라, <br data-break="desktop">업무에서 <strong>얼마나 잘 쓰는지</strong> 측정합니다</p>
           <p class="hero-desc" data-i18n="aifluent-hero-desc-02">실제 업무 시나리오에서 문제를 정의하고 AI와 협업하고 결과를 검증하는 전 과정을 평가합니다.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="#" data-i18n="aifluent-hero-cta">
-              기업 진단 문의
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
+            <a class="btn btn-primary btn-lg" href="#" data-i18n="aifluent-hero-cta">기업 진단 문의 &lt;svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M9 18L15 12L9 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"&gt;&lt;/path&gt;&lt;/svg&gt;</a>
           </div>
         </div>
 
@@ -43,10 +20,10 @@
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
               <!-- 실제 업무 수행 — images/icons/library/005.문서,결재.svg 기반, 브랜드 토큰으로 색상 조정 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 7V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58578 21.4142C4.21071 21.0391 4 20.5304 4 20V4C4 3.46957 4.21071 2.96083 4.58578 2.58575C4.96086 2.21068 5.46957 2 6 2H15L20 7Z" fill="var(--color-brand)"/>
-                <path d="M16 7H20L15 2V6C15 6.26522 15.1054 6.51956 15.2929 6.70709C15.4804 6.89463 15.7348 7 16 7Z" fill="var(--color-brand)"/>
-                <path d="M16.5 11H7.5C7.22386 11 7 11.2239 7 11.5V12.5C7 12.7761 7.22386 13 7.5 13H16.5C16.7761 13 17 12.7761 17 12.5V11.5C17 11.2239 16.7761 11 16.5 11Z" fill="var(--color-surface)"/>
-                <path d="M16.5 15H7.5C7.22386 15 7 15.2239 7 15.5V16.5C7 16.7761 7.22386 17 7.5 17H16.5C16.7761 17 17 16.7761 17 16.5V15.5C17 15.2239 16.7761 15 16.5 15Z" fill="var(--color-surface)"/>
+                <path d="M20 7V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58578 21.4142C4.21071 21.0391 4 20.5304 4 20V4C4 3.46957 4.21071 2.96083 4.58578 2.58575C4.96086 2.21068 5.46957 2 6 2H15L20 7Z" fill="var(--color-brand)"></path>
+                <path d="M16 7H20L15 2V6C15 6.26522 15.1054 6.51956 15.2929 6.70709C15.4804 6.89463 15.7348 7 16 7Z" fill="var(--color-brand)"></path>
+                <path d="M16.5 11H7.5C7.22386 11 7 11.2239 7 11.5V12.5C7 12.7761 7.22386 13 7.5 13H16.5C16.7761 13 17 12.7761 17 12.5V11.5C17 11.2239 16.7761 11 16.5 11Z" fill="var(--color-surface)"></path>
+                <path d="M16.5 15H7.5C7.22386 15 7 15.2239 7 15.5V16.5C7 16.7761 7.22386 17 7.5 17H16.5C16.7761 17 17 16.7761 17 16.5V15.5C17 15.2239 16.7761 15 16.5 15Z" fill="var(--color-surface)"></path>
               </svg>
             </span>
             <div>
@@ -58,10 +35,10 @@
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
               <!-- 과정·결과 평가 — images/icons/library/002.대화,채팅.svg 기반, 브랜드 토큰으로 색상 조정 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 4H20C21.1046 4 22 4.89543 22 6V16C22 17.1046 21.1046 18 20 18H12L7 23V18H4C2.89543 18 2 17.1046 2 16V6C2 4.89543 2.89543 4 4 4Z" fill="var(--color-brand)"/>
-                <path d="M8.5 9.75H7C6.72386 9.75 6.5 9.97386 6.5 10.25V11.75C6.5 12.0261 6.72386 12.25 7 12.25H8.5C8.77614 12.25 9 12.0261 9 11.75V10.25C9 9.97386 8.77614 9.75 8.5 9.75Z" fill="var(--color-surface)"/>
-                <path d="M12.75 9.75H11.25C10.9739 9.75 10.75 9.97386 10.75 10.25V11.75C10.75 12.0261 10.9739 12.25 11.25 12.25H12.75C13.0261 12.25 13.25 12.0261 13.25 11.75V10.25C13.25 9.97386 13.0261 9.75 12.75 9.75Z" fill="var(--color-surface)"/>
-                <path d="M17 9.75H15.5C15.2239 9.75 15 9.97386 15 10.25V11.75C15 12.0261 15.2239 12.25 15.5 12.25H17C17.2761 12.25 17.5 12.0261 17.5 11.75V10.25C17.5 9.97386 17.2761 9.75 17 9.75Z" fill="var(--color-surface)"/>
+                <path d="M4 4H20C21.1046 4 22 4.89543 22 6V16C22 17.1046 21.1046 18 20 18H12L7 23V18H4C2.89543 18 2 17.1046 2 16V6C2 4.89543 2.89543 4 4 4Z" fill="var(--color-brand)"></path>
+                <path d="M8.5 9.75H7C6.72386 9.75 6.5 9.97386 6.5 10.25V11.75C6.5 12.0261 6.72386 12.25 7 12.25H8.5C8.77614 12.25 9 12.0261 9 11.75V10.25C9 9.97386 8.77614 9.75 8.5 9.75Z" fill="var(--color-surface)"></path>
+                <path d="M12.75 9.75H11.25C10.9739 9.75 10.75 9.97386 10.75 10.25V11.75C10.75 12.0261 10.9739 12.25 11.25 12.25H12.75C13.0261 12.25 13.25 12.0261 13.25 11.75V10.25C13.25 9.97386 13.0261 9.75 12.75 9.75Z" fill="var(--color-surface)"></path>
+                <path d="M17 9.75H15.5C15.2239 9.75 15 9.97386 15 10.25V11.75C15 12.0261 15.2239 12.25 15.5 12.25H17C17.2761 12.25 17.5 12.0261 17.5 11.75V10.25C17.5 9.97386 17.2761 9.75 17 9.75Z" fill="var(--color-surface)"></path>
               </svg>
             </span>
             <div>
@@ -73,8 +50,8 @@
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
               <!-- 다음 행동 — images/icons/library/034.깃발,목표.svg 기반, 브랜드 토큰으로 색상 조정 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 16H5V4H22L18 10L22 16Z" fill="var(--color-brand-dark)"/>
-                <path d="M3.75 3H4.25C4.51522 3 4.76962 3.10534 4.95715 3.29288C5.14469 3.48041 5.25 3.73478 5.25 4V22H2.75V4C2.75 3.73478 2.85537 3.48041 3.04291 3.29288C3.23044 3.10534 3.48478 3 3.75 3Z" fill="var(--color-brand)"/>
+                <path d="M22 16H5V4H22L18 10L22 16Z" fill="var(--color-brand-dark)"></path>
+                <path d="M3.75 3H4.25C4.51522 3 4.76962 3.10534 4.95715 3.29288C5.14469 3.48041 5.25 3.73478 5.25 4V22H2.75V4C2.75 3.73478 2.85537 3.48041 3.04291 3.29288C3.23044 3.10534 3.48478 3 3.75 3Z" fill="var(--color-brand)"></path>
               </svg>
             </span>
             <div>
@@ -105,8 +82,8 @@
 
                   <!-- 3분 AI 활용 진단 — images/icons/library/101.사용자,프로필.svg 기반, 브랜드 토큰으로 색상 조정 -->
                   <svg class="icon-lg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 10H14C15.3261 10 16.5979 10.5268 17.5355 11.4644C18.4732 12.4021 19 13.6739 19 15V21C19 21.5304 18.7893 22.0391 18.4142 22.4142C18.0391 22.7893 17.5304 23 17 23H7C6.46957 23 5.96086 22.7893 5.58579 22.4142C5.21071 22.0391 5 21.5304 5 21V15C5 13.6739 5.52678 12.4021 6.46447 11.4644C7.40215 10.5268 8.67392 10 10 10Z" fill="var(--color-brand)"/>
-                <path d="M12 9C14.2091 9 16 7.20914 16 5C16 2.79086 14.2091 1 12 1C9.79086 1 8 2.79086 8 5C8 7.20914 9.79086 9 12 9Z" fill="var(--color-brand)"/>
+                <path d="M10 10H14C15.3261 10 16.5979 10.5268 17.5355 11.4644C18.4732 12.4021 19 13.6739 19 15V21C19 21.5304 18.7893 22.0391 18.4142 22.4142C18.0391 22.7893 17.5304 23 17 23H7C6.46957 23 5.96086 22.7893 5.58579 22.4142C5.21071 22.0391 5 21.5304 5 21V15C5 13.6739 5.52678 12.4021 6.46447 11.4644C7.40215 10.5268 8.67392 10 10 10Z" fill="var(--color-brand)"></path>
+                <path d="M12 9C14.2091 9 16 7.20914 16 5C16 2.79086 14.2091 1 12 1C9.79086 1 8 2.79086 8 5C8 7.20914 9.79086 9 12 9Z" fill="var(--color-brand)"></path>
               </svg>
                 </span>
                 <div class="content-panel__intro">
@@ -119,10 +96,7 @@
                   <li class="tag sm" data-i18n="aifluent-features-mode-meta-02">개인 결과</li>
                   <li class="tag sm" data-i18n="aifluent-features-mode-meta-03">회원가입 없음</li>
                 </ul>
-                <a class="btn btn-ghost" href="#" data-i18n="aifluent-features-mode-cta-01">
-                  지금 시작하기
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <a class="btn btn-ghost" href="#" data-i18n="aifluent-features-mode-cta-01">지금 시작하기 &lt;svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M9 18L15 12L9 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"&gt;&lt;/path&gt;&lt;/svg&gt;</a>
               </div>
             </li>
             <li>
@@ -131,12 +105,12 @@
 
                   <!-- 기업 정밀 — images/icons/service/ic_team.svg의 실제 path, 하드코딩 색을 브랜드 토큰으로 교체 -->
                   <svg class="icon-lg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)"/>
-                    <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"/>
+                    <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
+                    <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
+                    <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 10.9217 22 11.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
+                    <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
+                    <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="var(--color-brand)"></path>
+                    <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"></path>
                   </svg>
                 </span>
                 <div class="content-panel__intro">
@@ -149,10 +123,7 @@
                   <li class="tag sm" data-i18n="aifluent-features-mode-meta-05">과정과 산출물 다면 평가</li>
                   <li class="tag sm" data-i18n="aifluent-features-mode-meta-06">개인·조직 리포트</li>
                 </ul>
-                <a class="btn btn-primary" href="#" data-i18n="aifluent-hero-cta">
-                  기업 진단 문의
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <a class="btn btn-primary" href="#" data-i18n="aifluent-hero-cta">기업 진단 문의 &lt;svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M9 18L15 12L9 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"&gt;&lt;/path&gt;&lt;/svg&gt;</a>
               </div>
             </li>
           </ul>
@@ -175,10 +146,10 @@
                 <span class="feature-card-icon" aria-hidden="true">
                   <!-- 문제 정의 — images/icons/library/002.대화,채팅.svg 기반, 브랜드 토큰으로 색상 조정 -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 4H20C21.1046 4 22 4.89543 22 6V16C22 17.1046 21.1046 18 20 18H12L7 23V18H4C2.89543 18 2 17.1046 2 16V6C2 4.89543 2.89543 4 4 4Z" fill="var(--color-brand)"/>
-                <path d="M8.5 9.75H7C6.72386 9.75 6.5 9.97386 6.5 10.25V11.75C6.5 12.0261 6.72386 12.25 7 12.25H8.5C8.77614 12.25 9 12.0261 9 11.75V10.25C9 9.97386 8.77614 9.75 8.5 9.75Z" fill="var(--color-surface)"/>
-                <path d="M12.75 9.75H11.25C10.9739 9.75 10.75 9.97386 10.75 10.25V11.75C10.75 12.0261 10.9739 12.25 11.25 12.25H12.75C13.0261 12.25 13.25 12.0261 13.25 11.75V10.25C13.25 9.97386 13.0261 9.75 12.75 9.75Z" fill="var(--color-surface)"/>
-                <path d="M17 9.75H15.5C15.2239 9.75 15 9.97386 15 10.25V11.75C15 12.0261 15.2239 12.25 15.5 12.25H17C17.2761 12.25 17.5 12.0261 17.5 11.75V10.25C17.5 9.97386 17.2761 9.75 17 9.75Z" fill="var(--color-surface)"/>
+                <path d="M4 4H20C21.1046 4 22 4.89543 22 6V16C22 17.1046 21.1046 18 20 18H12L7 23V18H4C2.89543 18 2 17.1046 2 16V6C2 4.89543 2.89543 4 4 4Z" fill="var(--color-brand)"></path>
+                <path d="M8.5 9.75H7C6.72386 9.75 6.5 9.97386 6.5 10.25V11.75C6.5 12.0261 6.72386 12.25 7 12.25H8.5C8.77614 12.25 9 12.0261 9 11.75V10.25C9 9.97386 8.77614 9.75 8.5 9.75Z" fill="var(--color-surface)"></path>
+                <path d="M12.75 9.75H11.25C10.9739 9.75 10.75 9.97386 10.75 10.25V11.75C10.75 12.0261 10.9739 12.25 11.25 12.25H12.75C13.0261 12.25 13.25 12.0261 13.25 11.75V10.25C13.25 9.97386 13.0261 9.75 12.75 9.75Z" fill="var(--color-surface)"></path>
+                <path d="M17 9.75H15.5C15.2239 9.75 15 9.97386 15 10.25V11.75C15 12.0261 15.2239 12.25 15.5 12.25H17C17.2761 12.25 17.5 12.0261 17.5 11.75V10.25C17.5 9.97386 17.2761 9.75 17 9.75Z" fill="var(--color-surface)"></path>
               </svg>
                 </span>
               </div>
@@ -186,7 +157,7 @@
                 <div class="section-body-heading">
                   <p class="section-body-title" data-i18n="aifluent-features-item-title-01">문제 정의</p>
                   <span class="feature-card-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
                 </div>
                 <p class="section-body-subtitle" data-i18n="aifluent-features-item-subtitle-01">무엇을 맡길지 <br> 먼저 정합니다</p>
@@ -203,9 +174,9 @@
                 <span class="feature-card-icon" aria-hidden="true">
                   <!-- 프롬프트 설계 — images/icons/library/038.작성,글쓰기.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15.86 3.65039L19.4 7.19038L7.90999 18.6704L4 19.0004L4.37999 15.1404L15.86 3.65039Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                    <path d="M18.0498 8.54065L14.5098 5.00064L16.6398 2.88065C16.8271 2.69439 17.0806 2.58984 17.3448 2.58984C17.6089 2.58984 17.8624 2.69439 18.0498 2.88065L20.1698 5.00064C20.2635 5.0936 20.3379 5.20419 20.3887 5.32605C20.4394 5.44791 20.4656 5.57862 20.4656 5.71063C20.4656 5.84264 20.4394 5.97336 20.3887 6.09521C20.3379 6.21707 20.2635 6.32766 20.1698 6.42062L18.0498 8.54065Z" fill="var(--color-brand)"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 21C3 20.4477 3.44772 20 4 20H20C20.5523 20 21 20.4477 21 21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21Z" fill="var(--color-brand)"/>
+                    <path d="M15.86 3.65039L19.4 7.19038L7.90999 18.6704L4 19.0004L4.37999 15.1404L15.86 3.65039Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
+                    <path d="M18.0498 8.54065L14.5098 5.00064L16.6398 2.88065C16.8271 2.69439 17.0806 2.58984 17.3448 2.58984C17.6089 2.58984 17.8624 2.69439 18.0498 2.88065L20.1698 5.00064C20.2635 5.0936 20.3379 5.20419 20.3887 5.32605C20.4394 5.44791 20.4656 5.57862 20.4656 5.71063C20.4656 5.84264 20.4394 5.97336 20.3887 6.09521C20.3379 6.21707 20.2635 6.32766 20.1698 6.42062L18.0498 8.54065Z" fill="var(--color-brand)"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 21C3 20.4477 3.44772 20 4 20H20C20.5523 20 21 20.4477 21 21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21Z" fill="var(--color-brand)"></path>
                   </svg>
                 </span>
               </div>
@@ -213,7 +184,7 @@
                 <div class="section-body-heading">
                   <p class="section-body-title" data-i18n="aifluent-features-item-title-02">프롬프트 설계</p>
                   <span class="feature-card-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
                 </div>
                 <p class="section-body-subtitle" data-i18n="aifluent-features-item-subtitle-02">맥락과 기준을 <br> 함께 전달합니다</p>
@@ -230,12 +201,12 @@
                 <span class="feature-card-icon" aria-hidden="true">
                   <!-- 워크플로·Agent — images/icons/library/072.챗봇.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17.0098 6H7.00977C4.80063 6 3.00977 7.79086 3.00977 10V17C3.00977 19.2091 4.80063 21 7.00977 21H17.0098C19.2189 21 21.0098 19.2091 21.0098 17V10C21.0098 7.79086 19.2189 6 17.0098 6Z" fill="var(--color-brand)"/>
-                    <path d="M12.0098 2C12.3413 2 12.6593 2.1317 12.8937 2.36612C13.1281 2.60054 13.2598 2.91848 13.2598 3.25V6H10.7598V3.25C10.7598 2.91848 10.8915 2.60054 11.1259 2.36612C11.3603 2.1317 11.6782 2 12.0098 2Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"/>
-                    <path d="M10.0098 12C10.0098 11.1716 9.33819 10.5 8.50977 10.5C7.68134 10.5 7.00977 11.1716 7.00977 12V14C7.00977 14.8284 7.68134 15.5 8.50977 15.5C9.33819 15.5 10.0098 14.8284 10.0098 14V12Z" fill="var(--color-surface)"/>
-                    <path d="M17.0098 12C17.0098 11.1716 16.3382 10.5 15.5098 10.5C14.6813 10.5 14.0098 11.1716 14.0098 12V14C14.0098 14.8284 14.6813 15.5 15.5098 15.5C16.3382 15.5 17.0098 14.8284 17.0098 14V12Z" fill="var(--color-surface)"/>
-                    <path d="M3.00977 10V16C2.47933 16 1.97065 15.7893 1.59558 15.4142C1.22051 15.0391 1.00977 14.5304 1.00977 14V12C1.00977 11.4696 1.22051 10.9609 1.59558 10.5858C1.97065 10.2107 2.47933 10 3.00977 10Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"/>
-                    <path d="M21.0098 10C21.5402 10 22.0489 10.2107 22.424 10.5858C22.7991 10.9609 23.0098 11.4696 23.0098 12V14C23.0098 14.5304 22.7991 15.0391 22.424 15.4142C22.0489 15.7893 21.5402 16 21.0098 16V10Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"/>
+                    <path d="M17.0098 6H7.00977C4.80063 6 3.00977 7.79086 3.00977 10V17C3.00977 19.2091 4.80063 21 7.00977 21H17.0098C19.2189 21 21.0098 19.2091 21.0098 17V10C21.0098 7.79086 19.2189 6 17.0098 6Z" fill="var(--color-brand)"></path>
+                    <path d="M12.0098 2C12.3413 2 12.6593 2.1317 12.8937 2.36612C13.1281 2.60054 13.2598 2.91848 13.2598 3.25V6H10.7598V3.25C10.7598 2.91848 10.8915 2.60054 11.1259 2.36612C11.3603 2.1317 11.6782 2 12.0098 2Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                    <path d="M10.0098 12C10.0098 11.1716 9.33819 10.5 8.50977 10.5C7.68134 10.5 7.00977 11.1716 7.00977 12V14C7.00977 14.8284 7.68134 15.5 8.50977 15.5C9.33819 15.5 10.0098 14.8284 10.0098 14V12Z" fill="var(--color-surface)"></path>
+                    <path d="M17.0098 12C17.0098 11.1716 16.3382 10.5 15.5098 10.5C14.6813 10.5 14.0098 11.1716 14.0098 12V14C14.0098 14.8284 14.6813 15.5 15.5098 15.5C16.3382 15.5 17.0098 14.8284 17.0098 14V12Z" fill="var(--color-surface)"></path>
+                    <path d="M3.00977 10V16C2.47933 16 1.97065 15.7893 1.59558 15.4142C1.22051 15.0391 1.00977 14.5304 1.00977 14V12C1.00977 11.4696 1.22051 10.9609 1.59558 10.5858C1.97065 10.2107 2.47933 10 3.00977 10Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                    <path d="M21.0098 10C21.5402 10 22.0489 10.2107 22.424 10.5858C22.7991 10.9609 23.0098 11.4696 23.0098 12V14C23.0098 14.5304 22.7991 15.0391 22.424 15.4142C22.0489 15.7893 21.5402 16 21.0098 16V10Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
                   </svg>
                 </span>
               </div>
@@ -243,7 +214,7 @@
                 <div class="section-body-heading">
                   <p class="section-body-title" data-i18n="aifluent-features-item-title-03">워크플로·Agent</p>
                   <span class="feature-card-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
                 </div>
                 <p class="section-body-subtitle" data-i18n="aifluent-features-item-subtitle-03">한 번이 아니라 <br> 반복 가능하게 만듭니다</p>
@@ -260,8 +231,8 @@
                 <span class="feature-card-icon" aria-hidden="true">
                   <!-- 결과 검증 — images/icons/service/ic_axBuild.svg의 실제 path, 하드코딩 색을 브랜드 토큰으로 교체 -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21.5001 5L12.0001 1L2.50007 5V9C2.49107 12.0185 3.39297 14.9695 5.08786 17.4672C6.78276 19.9649 9.19179 21.8932 12.0001 23C14.8083 21.8932 17.2174 19.9649 18.9123 17.4672C20.6072 14.9695 21.5091 12.0185 21.5001 9V5Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4089 11.5203L15.2373 7.70001L17.0032 9.46964L11.3316 15.1293L7.7002 11.181L9.54027 9.48864L11.4089 11.5203Z" fill="var(--color-brand)"/>
+                    <path d="M21.5001 5L12.0001 1L2.50007 5V9C2.49107 12.0185 3.39297 14.9695 5.08786 17.4672C6.78276 19.9649 9.19179 21.8932 12.0001 23C14.8083 21.8932 17.2174 19.9649 18.9123 17.4672C20.6072 14.9695 21.5091 12.0185 21.5001 9V5Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4089 11.5203L15.2373 7.70001L17.0032 9.46964L11.3316 15.1293L7.7002 11.181L9.54027 9.48864L11.4089 11.5203Z" fill="var(--color-brand)"></path>
                   </svg>
                 </span>
               </div>
@@ -269,7 +240,7 @@
                 <div class="section-body-heading">
                   <p class="section-body-title" data-i18n="aifluent-features-item-title-04">결과 검증</p>
                   <span class="feature-card-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
                 </div>
                 <p class="section-body-subtitle" data-i18n="aifluent-features-item-subtitle-04">그대로 쓰지 않고 <br> 확인해서 완성합니다</p>
@@ -297,15 +268,15 @@
           <p class="desc" data-i18n="aifluent-intro-desc">참가자는 현업과 비슷한 자료와 목표를 받아 AI와 함께 결과물을 만듭니다. 입력한 문장이 아니라 일한 과정과 산출물을 봅니다.</p>
           <ul class="feature-points">
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="aifluent-intro-point-01">직무별 현업 시나리오와 실제 데이터</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="aifluent-intro-point-02">AI 협업 과정과 산출물 동시 평가</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="aifluent-intro-point-03">AI 자동 채점과 전문가 검증을 결합한 다면 평가</span>
             </li>
           </ul>
@@ -313,7 +284,7 @@
 
         <div class="mission-visual">
           <div class="preview-frame preview-frame--flush">
-            <img src="images/products/aifluent/aifluent-sample2.png" alt="실무 미션 수행 화면 예시">
+            <img src="/images/products/aifluent/aifluent-sample2.png" alt="실무 미션 수행 화면 예시">
           </div>
         </div>
       </div>
@@ -339,10 +310,10 @@
                   <span class="workflow-icon icon-md" aria-hidden="true">
                     <!-- AI 바이브코딩 - images/icons/library/078.개발,코딩.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" fill="var(--color-brand)"/>
-                      <path d="M12.8102 6L9.2002 18H11.2002L14.8102 6H12.8102Z" fill="var(--color-surface)"/>
-                      <path d="M6.55996 8H8.45996L6.36996 12L8.45996 16H6.55996L4.45996 12L6.55996 8Z" fill="var(--color-surface)"/>
-                      <path d="M17.37 8H15.46L17.56 12L15.46 16H17.37L19.47 12L17.37 8Z" fill="var(--color-surface)"/>
+                      <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" fill="var(--color-brand)"></path>
+                      <path d="M12.8102 6L9.2002 18H11.2002L14.8102 6H12.8102Z" fill="var(--color-surface)"></path>
+                      <path d="M6.55996 8H8.45996L6.36996 12L8.45996 16H6.55996L4.45996 12L6.55996 8Z" fill="var(--color-surface)"></path>
+                      <path d="M17.37 8H15.46L17.56 12L15.46 16H17.37L19.47 12L17.37 8Z" fill="var(--color-surface)"></path>
                     </svg>
                   </span>
                   <span data-i18n="aifluent-catalog-item-01">AI 바이브코딩 업무효율화</span>
@@ -351,12 +322,12 @@
                   <span class="workflow-icon icon-md" aria-hidden="true">
                     <!-- AI Agent - images/icons/library/071.인공지능.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5V22H11V5H13Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                      <path d="M15.0098 5C15.0098 3.34315 13.6666 2 12.0098 2C10.3529 2 9.00977 3.34315 9.00977 5C9.00977 6.65685 10.3529 8 12.0098 8C13.6666 8 15.0098 6.65685 15.0098 5Z" fill="var(--color-brand)"/>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M20 10V15.5352L17 17.5352V22H15V16.4648L18 14.4648V10H20Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                      <path d="M22.0098 9C22.0098 7.34315 20.6666 6 19.0098 6C17.3529 6 16.0098 7.34315 16.0098 9C16.0098 10.6569 17.3529 12 19.0098 12C20.6666 12 22.0098 10.6569 22.0098 9Z" fill="var(--color-brand)"/>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M6.00977 14.4648V10H4.00977V15.5352L7.0097 17.5352V22H9.0097V16.4648L6.00977 14.4648Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                      <path d="M2.00977 9C2.00977 10.6569 3.35291 12 5.00977 12C6.66662 12 8.00977 10.6569 8.00977 9C8.00977 7.34315 6.66662 6 5.00977 6C3.35291 6 2.00977 7.34315 2.00977 9Z" fill="var(--color-brand)"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5V22H11V5H13Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
+                      <path d="M15.0098 5C15.0098 3.34315 13.6666 2 12.0098 2C10.3529 2 9.00977 3.34315 9.00977 5C9.00977 6.65685 10.3529 8 12.0098 8C13.6666 8 15.0098 6.65685 15.0098 5Z" fill="var(--color-brand)"></path>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M20 10V15.5352L17 17.5352V22H15V16.4648L18 14.4648V10H20Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
+                      <path d="M22.0098 9C22.0098 7.34315 20.6666 6 19.0098 6C17.3529 6 16.0098 7.34315 16.0098 9C16.0098 10.6569 17.3529 12 19.0098 12C20.6666 12 22.0098 10.6569 22.0098 9Z" fill="var(--color-brand)"></path>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M6.00977 14.4648V10H4.00977V15.5352L7.0097 17.5352V22H9.0097V16.4648L6.00977 14.4648Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
+                      <path d="M2.00977 9C2.00977 10.6569 3.35291 12 5.00977 12C6.66662 12 8.00977 10.6569 8.00977 9C8.00977 7.34315 6.66662 6 5.00977 6C3.35291 6 2.00977 7.34315 2.00977 9Z" fill="var(--color-brand)"></path>
                     </svg>
                   </span>
                   <span data-i18n="aifluent-catalog-item-02">AI Agent 업무효율화</span>
@@ -365,10 +336,10 @@
                   <span class="workflow-icon icon-md" aria-hidden="true">
                     <!-- Prompt Engineering - images/icons/library/082.연필.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M15.44 5.07031L5.54004 14.9703L9.08004 18.5003L18.98 8.60031L15.44 5.07031Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"/>
-                      <path d="M4.74984 15.7607L4.08984 17.7507L6.27984 19.9407L8.28984 19.2907L9.07984 18.5007L5.53984 14.9707L4.74984 15.7607Z" fill="color-mix(in srgb, var(--color-brand) 20%, var(--color-surface))"/>
-                      <path d="M3 21L6.28 19.94L4.09 17.75L3 21Z" fill="var(--color-brand-dark)"/>
-                      <path d="M20.3904 4.36069L19.6804 3.66071C19.3057 3.2882 18.7988 3.0791 18.2704 3.0791C17.7421 3.0791 17.2351 3.2882 16.8604 3.66071L15.4404 5.07068L18.9805 8.61069L20.3904 7.1907C20.5764 7.00496 20.7239 6.78436 20.8246 6.54156C20.9252 6.29877 20.977 6.03853 20.977 5.7757C20.977 5.51286 20.9252 5.25259 20.8246 5.0098C20.7239 4.767 20.5764 4.54643 20.3904 4.36069Z" fill="var(--color-brand)"/>
+                      <path d="M15.44 5.07031L5.54004 14.9703L9.08004 18.5003L18.98 8.60031L15.44 5.07031Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                      <path d="M4.74984 15.7607L4.08984 17.7507L6.27984 19.9407L8.28984 19.2907L9.07984 18.5007L5.53984 14.9707L4.74984 15.7607Z" fill="color-mix(in srgb, var(--color-brand) 20%, var(--color-surface))"></path>
+                      <path d="M3 21L6.28 19.94L4.09 17.75L3 21Z" fill="var(--color-brand-dark)"></path>
+                      <path d="M20.3904 4.36069L19.6804 3.66071C19.3057 3.2882 18.7988 3.0791 18.2704 3.0791C17.7421 3.0791 17.2351 3.2882 16.8604 3.66071L15.4404 5.07068L18.9805 8.61069L20.3904 7.1907C20.5764 7.00496 20.7239 6.78436 20.8246 6.54156C20.9252 6.29877 20.977 6.03853 20.977 5.7757C20.977 5.51286 20.9252 5.25259 20.8246 5.0098C20.7239 4.767 20.5764 4.54643 20.3904 4.36069Z" fill="var(--color-brand)"></path>
                     </svg>
                   </span>
                   Prompt Engineering
@@ -383,11 +354,11 @@
                   <span class="workflow-icon icon-md" aria-hidden="true">
                     <!-- Prompt Engineering for Developers — images/icons/library/077.브라우저 창.svg 기반, 브랜드 토큰으로 색상 조정 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"/>
-                <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"/>
-                <path d="M16 4.5H15C14.7239 4.5 14.5 4.72386 14.5 5V6C14.5 6.27614 14.7239 6.5 15 6.5H16C16.2761 6.5 16.5 6.27614 16.5 6V5C16.5 4.72386 16.2761 4.5 16 4.5Z" fill="var(--color-brand)"/>
-                <path d="M12.5 4.5H11.5C11.2239 4.5 11 4.72386 11 5V6C11 6.27614 11.2239 6.5 11.5 6.5H12.5C12.7761 6.5 13 6.27614 13 6V5C13 4.72386 12.7761 4.5 12.5 4.5Z" fill="var(--color-brand)"/>
-                <path d="M19.5 4.5H18.5C18.2239 4.5 18 4.72386 18 5V6C18 6.27614 18.2239 6.5 18.5 6.5H19.5C19.7761 6.5 20 6.27614 20 6V5C20 4.72386 19.7761 4.5 19.5 4.5Z" fill="var(--color-brand)"/>
+                <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"></path>
+                <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"></path>
+                <path d="M16 4.5H15C14.7239 4.5 14.5 4.72386 14.5 5V6C14.5 6.27614 14.7239 6.5 15 6.5H16C16.2761 6.5 16.5 6.27614 16.5 6V5C16.5 4.72386 16.2761 4.5 16 4.5Z" fill="var(--color-brand)"></path>
+                <path d="M12.5 4.5H11.5C11.2239 4.5 11 4.72386 11 5V6C11 6.27614 11.2239 6.5 11.5 6.5H12.5C12.7761 6.5 13 6.27614 13 6V5C13 4.72386 12.7761 4.5 12.5 4.5Z" fill="var(--color-brand)"></path>
+                <path d="M19.5 4.5H18.5C18.2239 4.5 18 4.72386 18 5V6C18 6.27614 18.2239 6.5 18.5 6.5H19.5C19.7761 6.5 20 6.27614 20 6V5C20 4.72386 19.7761 4.5 19.5 4.5Z" fill="var(--color-brand)"></path>
               </svg>
                   </span>
                   Prompt Engineering for Developers
@@ -396,9 +367,9 @@
                   <span class="workflow-icon icon-md" aria-hidden="true">
                     <!-- LangChain - images/icons/library/124.링크,연결.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M13.5936 5.1038L10.7637 7.93366L8.99597 6.16589L11.826 3.3359C12.998 2.16421 14.5876 1.50586 16.2449 1.50586C17.9021 1.50586 19.4915 2.16408 20.6636 3.33577C21.2452 3.91613 21.7066 4.60547 22.0215 5.36436C22.3366 6.12367 22.4988 6.9377 22.4988 7.7598C22.4988 8.5819 22.3366 9.3959 22.0215 10.1552C21.7064 10.9145 21.2446 11.6042 20.6626 12.1848L17.8322 15.0052L16.0675 13.2343L18.8971 10.4148C19.2461 10.0665 19.5235 9.65242 19.7124 9.19703C19.9015 8.74143 19.9988 8.25304 19.9988 7.7598C19.9988 7.26655 19.9015 6.77812 19.7124 6.32253C19.5234 5.86695 19.2463 5.45314 18.8971 5.10479L18.8961 5.1038C18.1929 4.40079 17.2392 4.00586 16.2449 4.00586C15.2506 4.00586 14.2968 4.40087 13.5936 5.1038Z" fill="var(--color-brand)"/>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M7.93367 10.7638L5.1038 13.5936C5.10376 13.5937 5.10385 13.5936 5.1038 13.5936C4.40088 14.2968 4.00586 15.2506 4.00586 16.2449C4.00586 17.2391 4.40069 18.1927 5.10354 18.8959C5.80674 19.5987 6.76055 19.9938 7.75479 19.9938C8.7491 19.9938 9.70269 19.5989 10.4059 18.896C10.4059 18.896 10.406 18.896 10.4059 18.896L13.2359 16.066L15.0037 17.8337L12.1737 20.6638C11.0016 21.8355 9.41206 22.4938 7.75479 22.4938C6.09752 22.4938 4.50809 21.8356 3.33604 20.6639C2.16434 19.4918 1.50586 17.9022 1.50586 16.2449C1.50586 14.5876 2.16407 12.9982 3.33577 11.8261L6.16591 8.996L7.93367 10.7638Z" fill="var(--color-brand)"/>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.3641 8.63565C15.8523 9.1238 15.8523 9.91526 15.3641 10.4034L10.4142 15.3534C9.926 15.8416 9.13455 15.8416 8.64639 15.3534C8.15824 14.8653 8.15823 14.0738 8.64639 13.5856L13.5964 8.63565C14.0845 8.14749 14.876 8.14749 15.3641 8.63565Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"/>
+                      <path d="M13.5936 5.1038L10.7637 7.93366L8.99597 6.16589L11.826 3.3359C12.998 2.16421 14.5876 1.50586 16.2449 1.50586C17.9021 1.50586 19.4915 2.16408 20.6636 3.33577C21.2452 3.91613 21.7066 4.60547 22.0215 5.36436C22.3366 6.12367 22.4988 6.9377 22.4988 7.7598C22.4988 8.5819 22.3366 9.3959 22.0215 10.1552C21.7064 10.9145 21.2446 11.6042 20.6626 12.1848L17.8322 15.0052L16.0675 13.2343L18.8971 10.4148C19.2461 10.0665 19.5235 9.65242 19.7124 9.19703C19.9015 8.74143 19.9988 8.25304 19.9988 7.7598C19.9988 7.26655 19.9015 6.77812 19.7124 6.32253C19.5234 5.86695 19.2463 5.45314 18.8971 5.10479L18.8961 5.1038C18.1929 4.40079 17.2392 4.00586 16.2449 4.00586C15.2506 4.00586 14.2968 4.40087 13.5936 5.1038Z" fill="var(--color-brand)"></path>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M7.93367 10.7638L5.1038 13.5936C5.10376 13.5937 5.10385 13.5936 5.1038 13.5936C4.40088 14.2968 4.00586 15.2506 4.00586 16.2449C4.00586 17.2391 4.40069 18.1927 5.10354 18.8959C5.80674 19.5987 6.76055 19.9938 7.75479 19.9938C8.7491 19.9938 9.70269 19.5989 10.4059 18.896C10.4059 18.896 10.406 18.896 10.4059 18.896L13.2359 16.066L15.0037 17.8337L12.1737 20.6638C11.0016 21.8355 9.41206 22.4938 7.75479 22.4938C6.09752 22.4938 4.50809 21.8356 3.33604 20.6639C2.16434 19.4918 1.50586 17.9022 1.50586 16.2449C1.50586 14.5876 2.16407 12.9982 3.33577 11.8261L6.16591 8.996L7.93367 10.7638Z" fill="var(--color-brand)"></path>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.3641 8.63565C15.8523 9.1238 15.8523 9.91526 15.3641 10.4034L10.4142 15.3534C9.926 15.8416 9.13455 15.8416 8.64639 15.3534C8.15824 14.8653 8.15823 14.0738 8.64639 13.5856L13.5964 8.63565C14.0845 8.14749 14.876 8.14749 15.3641 8.63565Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
                     </svg>
                   </span>
                   LangChain
@@ -407,12 +378,12 @@
                   <span class="workflow-icon icon-md" aria-hidden="true">
                     <!-- LangGraph - images/icons/library/076.네트워크.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.2607 4.37012V14.2501H10.7607V4.37012H13.2607Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7442 13.3467L5.66409 18.7334L4.27734 16.6533L12.3575 11.2666L13.7442 13.3467Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6641 11.2666L19.7442 16.6533L18.3575 18.7334L10.2773 13.3467L11.6641 11.2666Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                      <path d="M15.0107 8V4C15.0107 3.44772 14.563 3 14.0107 3L10.0107 3C9.45846 3 9.01074 3.44772 9.01074 4V8C9.01074 8.55228 9.45846 9 10.0107 9H14.0107C14.563 9 15.0107 8.55228 15.0107 8Z" fill="var(--color-brand)"/>
-                      <path d="M9.01074 20V16C9.01074 15.4477 8.56303 15 8.01074 15H4.01074C3.45846 15 3.01074 15.4477 3.01074 16V20C3.01074 20.5523 3.45846 21 4.01074 21H8.01074C8.56303 21 9.01074 20.5523 9.01074 20Z" fill="var(--color-brand)"/>
-                      <path d="M21.0107 20V16C21.0107 15.4477 20.563 15 20.0107 15H16.0107C15.4585 15 15.0107 15.4477 15.0107 16V20C15.0107 20.5523 15.4585 21 16.0107 21H20.0107C20.563 21 21.0107 20.5523 21.0107 20Z" fill="var(--color-brand)"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.2607 4.37012V14.2501H10.7607V4.37012H13.2607Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7442 13.3467L5.66409 18.7334L4.27734 16.6533L12.3575 11.2666L13.7442 13.3467Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6641 11.2666L19.7442 16.6533L18.3575 18.7334L10.2773 13.3467L11.6641 11.2666Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
+                      <path d="M15.0107 8V4C15.0107 3.44772 14.563 3 14.0107 3L10.0107 3C9.45846 3 9.01074 3.44772 9.01074 4V8C9.01074 8.55228 9.45846 9 10.0107 9H14.0107C14.563 9 15.0107 8.55228 15.0107 8Z" fill="var(--color-brand)"></path>
+                      <path d="M9.01074 20V16C9.01074 15.4477 8.56303 15 8.01074 15H4.01074C3.45846 15 3.01074 15.4477 3.01074 16V20C3.01074 20.5523 3.45846 21 4.01074 21H8.01074C8.56303 21 9.01074 20.5523 9.01074 20Z" fill="var(--color-brand)"></path>
+                      <path d="M21.0107 20V16C21.0107 15.4477 20.563 15 20.0107 15H16.0107C15.4585 15 15.0107 15.4477 15.0107 16V20C15.0107 20.5523 15.4585 21 16.0107 21H20.0107C20.563 21 21.0107 20.5523 21.0107 20Z" fill="var(--color-brand)"></path>
                     </svg>
                   </span>
                   LangGraph
@@ -421,7 +392,7 @@
                   <span class="workflow-icon icon-md" aria-hidden="true">
                     <!-- Hugging Face - images/icons/library/033.클라우드.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M19 10.05C19 10.05 19 10.02 19 10C19 6.69 16.31 4 13 4C10.36 4 8.13 5.7 7.32 8.07C7.05 8.03 6.78 8 6.5 8C3.46 8 1 10.46 1 13.5C1 16.54 3.46 19 6.5 19H18.5C20.99 19 23 16.98 23 14.5C23 12.19 21.25 10.3 19 10.05Z" fill="var(--color-brand)"/>
+                      <path d="M19 10.05C19 10.05 19 10.02 19 10C19 6.69 16.31 4 13 4C10.36 4 8.13 5.7 7.32 8.07C7.05 8.03 6.78 8 6.5 8C3.46 8 1 10.46 1 13.5C1 16.54 3.46 19 6.5 19H18.5C20.99 19 23 16.98 23 14.5C23 12.19 21.25 10.3 19 10.05Z" fill="var(--color-brand)"></path>
                     </svg>
                   </span>
                   Hugging Face
@@ -430,8 +401,8 @@
                   <span class="workflow-icon icon-md" aria-hidden="true">
                     <!-- AI 코드리뷰 - images/icons/library/113.승인,완료.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"/>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M17.509 9.7163L11.3951 16.5082L6.9436 12.0314L8.71637 10.2686L11.3048 12.8718L15.6509 8.04371L17.509 9.7163Z" fill="var(--color-surface)"/>
+                      <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"></path>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M17.509 9.7163L11.3951 16.5082L6.9436 12.0314L8.71637 10.2686L11.3048 12.8718L15.6509 8.04371L17.509 9.7163Z" fill="var(--color-surface)"></path>
                     </svg>
                   </span>
                   <span data-i18n="aifluent-catalog-item-07">AI 코드리뷰</span>
@@ -457,7 +428,7 @@
           <ul class="start-grid">
             <li>
               <div class="content-panel start-card">
-                <span class="start-icon" aria-hidden="true"><img src="images/icons/badges/badge-general.svg" alt=""></span>
+                <span class="start-icon" aria-hidden="true"><img src="/images/icons/badges/badge-general.svg" alt=""></span>
                 <div class="content-panel__intro">
                   <p class="text-label brand">Entry</p>
                   <h3 data-i18n="aifluent-catalog-level-item-title-01">기초 인식</h3>
@@ -467,7 +438,7 @@
             </li>
             <li>
               <div class="content-panel start-card">
-                <span class="start-icon" aria-hidden="true"><img src="images/icons/badges/badge-beginner.svg" alt=""></span>
+                <span class="start-icon" aria-hidden="true"><img src="/images/icons/badges/badge-beginner.svg" alt=""></span>
                 <div class="content-panel__intro">
                   <p class="text-label brand">Beginner</p>
                   <h3 data-i18n="aifluent-catalog-level-item-title-02">개별 과제 수행</h3>
@@ -477,7 +448,7 @@
             </li>
             <li>
               <div class="content-panel start-card">
-                <span class="start-icon" aria-hidden="true"><img src="images/icons/badges/badge-inter.svg" alt=""></span>
+                <span class="start-icon" aria-hidden="true"><img src="/images/icons/badges/badge-inter.svg" alt=""></span>
                 <div class="content-panel__intro">
                   <p class="text-label brand">Intermediate</p>
                   <h3 data-i18n="aifluent-catalog-level-item-title-03">업무 흐름 설계</h3>
@@ -487,7 +458,7 @@
             </li>
             <li>
               <div class="content-panel start-card">
-                <span class="start-icon" aria-hidden="true"><img src="images/icons/badges/badge-prof.svg" alt=""></span>
+                <span class="start-icon" aria-hidden="true"><img src="/images/icons/badges/badge-prof.svg" alt=""></span>
                 <div class="content-panel__intro">
                   <p class="text-label brand">Professional</p>
                   <h3 data-i18n="aifluent-catalog-level-item-title-04">성과와 확산 주도</h3>
@@ -518,7 +489,7 @@
               <h3 data-i18n="aifluent-process-item-title-01">목적 확인</h3>
               <p class="description" data-i18n="aifluent-process-item-desc-01">채용, 교육 전후 측정, AX 전략 등 진단 목적을 정합니다.</p>
               <span class="cycle-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               </span>
             </li>
             <li>
@@ -529,7 +500,7 @@
               <h3 data-i18n="aifluent-process-item-title-02">대상·트랙 설계</h3>
               <p class="description" data-i18n="aifluent-process-item-desc-02">직군과 수준에 맞는 평가 트랙과 문항을 구성합니다.</p>
               <span class="cycle-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               </span>
             </li>
             <li>
@@ -540,7 +511,7 @@
               <h3 data-i18n="aifluent-process-item-title-03">실무 평가</h3>
               <p class="description" data-i18n="aifluent-process-item-desc-03">참가자가 실제 업무 시나리오를 AI와 함께 수행합니다.</p>
               <span class="cycle-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               </span>
             </li>
             <li>
@@ -551,7 +522,7 @@
               <h3 data-i18n="aifluent-process-item-title-04">다면 채점</h3>
               <p class="description" data-i18n="aifluent-process-item-desc-04">AI 자동 채점과 전문가 검증으로 과정과 결과를 평가합니다.</p>
               <span class="cycle-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               </span>
             </li>
             <li>
@@ -576,19 +547,19 @@
           <p class="desc" data-i18n="aifluent-deliverables-desc">개인은 강점과 보완할 역량을, 조직은 직군별 분포와 Skill Gap을 확인합니다.</p>
           <ul class="feature-points">
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="aifluent-deliverables-point-01">개인별 역량 수준과 세부 평가 결과</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="aifluent-deliverables-point-02">팀·조직별 역량 분포와 벤치마크</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="aifluent-deliverables-point-03">직군별 Skill Gap과 교육 우선순위</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="aifluent-deliverables-point-04">교육 전후 변화와 재진단 비교</span>
             </li>
           </ul>
@@ -596,7 +567,7 @@
 
         <div class="report-visual">
           <div class="preview-frame preview-frame--flush">
-            <img src="images/products/aifluent/aifluent-sample.svg" alt="개인 결과 리포트 화면 예시">
+            <img src="/images/products/aifluent/aifluent-sample.svg" alt="개인 결과 리포트 화면 예시">
           </div>
         </div>
       </div>
@@ -610,10 +581,7 @@
               <p class="bridge-title" data-i18n="aifluent-deliverables-bridge-title">진단 결과가 <strong class="brand">개인별 학습 경로</strong>가 됩니다</p>
               <p class="bridge-desc" data-i18n="aifluent-deliverables-bridge-desc">부족한 역량을 기준으로 SkillFit과 맞춤 교육 과정을 연결합니다.</p>
             </div>
-            <a class="btn btn-outline-inverse" href="skills.html" data-i18n="aifluent-deliverables-bridge-cta">
-              SkillFit 보기
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
+            <a class="btn btn-outline-inverse" href="/skills" data-i18n="aifluent-deliverables-bridge-cta">SkillFit 보기 &lt;svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M9 18L15 12L9 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"&gt;&lt;/path&gt;&lt;/svg&gt;</a>
           </div>
         </div>
       </div>
@@ -633,9 +601,9 @@
 
                 <!-- 교육 전 진단 — images/icons/library/025.검색.svg 기반, 브랜드 토큰으로 색상 조정 -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.5 17.21C14.2059 17.21 17.2101 14.2059 17.2101 10.5C17.2101 6.79422 14.2059 3.79004 10.5 3.79004C6.7942 3.79004 3.79004 6.79422 3.79004 10.5C3.79004 14.2059 6.7942 17.21 10.5 17.21Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"/>
-                <path d="M10.5 4.5C12.0913 4.5 13.6174 5.13214 14.7426 6.25735C15.8678 7.38257 16.5 8.9087 16.5 10.5C16.5 12.0913 15.8678 13.6174 14.7426 14.7426C13.6174 15.8679 12.0913 16.5 10.5 16.5C8.9087 16.5 7.38257 15.8679 6.25735 14.7426C5.13214 13.6174 4.5 12.0913 4.5 10.5C4.5 8.9087 5.13214 7.38257 6.25735 6.25735C7.38257 5.13214 8.9087 4.5 10.5 4.5ZM10.5 2C8.24647 2.00265 6.08599 2.89904 4.49251 4.49252C2.89902 6.08601 2.00265 8.24647 2 10.5C2 11.6162 2.21985 12.7215 2.64702 13.7528C3.07418 14.7841 3.7003 15.7211 4.48959 16.5104C5.27889 17.2997 6.21592 17.9258 7.24719 18.353C8.27846 18.7801 9.38376 19 10.5 19C11.6166 19.0013 12.7225 18.7824 13.7544 18.3557C14.7862 17.929 15.7238 17.3029 16.5133 16.5133C17.3029 15.7238 17.929 14.7862 18.3557 13.7544C18.7824 12.7225 19.0013 11.6166 19 10.5C19 8.24566 18.1045 6.08365 16.5104 4.48959C14.9163 2.89553 12.7543 2 10.5 2Z" fill="var(--color-brand)"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4852 14.7068L21.8852 20.1168L20.1158 21.8829L14.7158 16.4729L16.4852 14.7068Z" fill="var(--color-brand)"/>
+                <path d="M10.5 17.21C14.2059 17.21 17.2101 14.2059 17.2101 10.5C17.2101 6.79422 14.2059 3.79004 10.5 3.79004C6.7942 3.79004 3.79004 6.79422 3.79004 10.5C3.79004 14.2059 6.7942 17.21 10.5 17.21Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"></path>
+                <path d="M10.5 4.5C12.0913 4.5 13.6174 5.13214 14.7426 6.25735C15.8678 7.38257 16.5 8.9087 16.5 10.5C16.5 12.0913 15.8678 13.6174 14.7426 14.7426C13.6174 15.8679 12.0913 16.5 10.5 16.5C8.9087 16.5 7.38257 15.8679 6.25735 14.7426C5.13214 13.6174 4.5 12.0913 4.5 10.5C4.5 8.9087 5.13214 7.38257 6.25735 6.25735C7.38257 5.13214 8.9087 4.5 10.5 4.5ZM10.5 2C8.24647 2.00265 6.08599 2.89904 4.49251 4.49252C2.89902 6.08601 2.00265 8.24647 2 10.5C2 11.6162 2.21985 12.7215 2.64702 13.7528C3.07418 14.7841 3.7003 15.7211 4.48959 16.5104C5.27889 17.2997 6.21592 17.9258 7.24719 18.353C8.27846 18.7801 9.38376 19 10.5 19C11.6166 19.0013 12.7225 18.7824 13.7544 18.3557C14.7862 17.929 15.7238 17.3029 16.5133 16.5133C17.3029 15.7238 17.929 14.7862 18.3557 13.7544C18.7824 12.7225 19.0013 11.6166 19 10.5C19 8.24566 18.1045 6.08365 16.5104 4.48959C14.9163 2.89553 12.7543 2 10.5 2Z" fill="var(--color-brand)"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4852 14.7068L21.8852 20.1168L20.1158 21.8829L14.7158 16.4729L16.4852 14.7068Z" fill="var(--color-brand)"></path>
               </svg>
               </span>
               <p class="usecase-label" data-i18n="aifluent-catalog-usecase-item-label-01">교육 전 진단</p>
@@ -646,9 +614,9 @@
 
                 <!-- 교육 후 성과 측정 — images/icons/library/109.막대 그래프.svg 기반, 브랜드 토큰으로 색상 조정 -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="var(--color-brand)"/>
-                <path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="var(--color-brand)"/>
-                <path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="var(--color-brand)"/>
+                <path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="var(--color-brand)"></path>
+                <path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="var(--color-brand)"></path>
+                <path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="var(--color-brand)"></path>
               </svg>
               </span>
               <p class="usecase-label" data-i18n="aifluent-catalog-usecase-item-label-02">교육 후 성과 측정</p>
@@ -658,9 +626,9 @@
               <span class="usecase-icon icon-md" aria-hidden="true">
                 <!-- 채용·선발 — images/icons/library/092.일체형 컴퓨터.svg 기반, 브랜드 토큰으로 색상 조정 -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.5107 21H8.51074L9.51074 16H14.5107L15.5107 21Z" fill="var(--color-brand)"/>
-                <path d="M2.01074 16.67C2.03356 16.9125 2.15166 17.1361 2.33913 17.2917C2.5266 17.4473 2.76813 17.5223 3.01074 17.5H21.0107C21.2528 17.5196 21.4929 17.4437 21.6798 17.2886C21.8666 17.1335 21.9854 16.9115 22.0107 16.67V15H2.01074V16.67Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"/>
-                <path d="M21.0107 3H3.01074C2.74553 3 2.49117 3.10534 2.30363 3.29288C2.1161 3.48041 2.01074 3.73478 2.01074 4V15H22.0107V4C22.0107 3.73478 21.9054 3.48041 21.7178 3.29288C21.5303 3.10534 21.276 3 21.0107 3Z" fill="var(--color-brand)"/>
+                <path d="M15.5107 21H8.51074L9.51074 16H14.5107L15.5107 21Z" fill="var(--color-brand)"></path>
+                <path d="M2.01074 16.67C2.03356 16.9125 2.15166 17.1361 2.33913 17.2917C2.5266 17.4473 2.76813 17.5223 3.01074 17.5H21.0107C21.2528 17.5196 21.4929 17.4437 21.6798 17.2886C21.8666 17.1335 21.9854 16.9115 22.0107 16.67V15H2.01074V16.67Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"></path>
+                <path d="M21.0107 3H3.01074C2.74553 3 2.49117 3.10534 2.30363 3.29288C2.1161 3.48041 2.01074 3.73478 2.01074 4V15H22.0107V4C22.0107 3.73478 21.9054 3.48041 21.7178 3.29288C21.5303 3.10534 21.276 3 21.0107 3Z" fill="var(--color-brand)"></path>
               </svg>
               </span>
               <p class="usecase-label" data-i18n="aifluent-catalog-usecase-item-label-03">채용·선발</p>
@@ -670,8 +638,8 @@
               <span class="usecase-icon icon-md" aria-hidden="true">
                 <!-- AX 전략 수립 — images/icons/library/034.깃발,목표.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22 16H5V4H22L18 10L22 16Z" fill="var(--color-brand)"/>
-                  <path d="M3.75 3H4.25C4.51522 3 4.76962 3.10534 4.95715 3.29288C5.14469 3.48041 5.25 3.73478 5.25 4V22H2.75V4C2.75 3.73478 2.85537 3.48041 3.04291 3.29288C3.23044 3.10534 3.48478 3 3.75 3Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"/>
+                  <path d="M22 16H5V4H22L18 10L22 16Z" fill="var(--color-brand)"></path>
+                  <path d="M3.75 3H4.25C4.51522 3 4.76962 3.10534 4.95715 3.29288C5.14469 3.48041 5.25 3.73478 5.25 4V22H2.75V4C2.75 3.73478 2.85537 3.48041 3.04291 3.29288C3.23044 3.10534 3.48478 3 3.75 3Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"></path>
                 </svg>
               </span>
               <p class="usecase-label" data-i18n="aifluent-catalog-usecase-item-label-04">AX 전략 수립</p>
@@ -695,7 +663,7 @@
               <summary class="faq-list__question">
                 <span data-i18n="aifluent-faq-question-01">3분 진단과 기업용 실무 평가는 무엇이 다른가요?</span>
                 <span class="faq-list__icon" aria-hidden="true">
-                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
               </summary>
               <p class="faq-list__answer" data-i18n="aifluent-faq-answer-01">3분 진단은 개인이 자신의 기본적인 AI 활용 습관을 빠르게 확인하는 맛보기입니다. 기업용 평가는 직무별 실무 미션을 수행하며 과정과 결과물을 여러 역량 차원에서 정밀하게 평가합니다.</p>
@@ -704,7 +672,7 @@
               <summary class="faq-list__question">
                 <span data-i18n="aifluent-faq-question-02">개발 직군만 대상인가요?</span>
                 <span class="faq-list__icon" aria-hidden="true">
-                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
               </summary>
               <p class="faq-list__answer" data-i18n="aifluent-faq-answer-02">아닙니다. 마케팅, HR, 경영관리, CS, R&amp;D 등 비개발 직군의 AI 업무 활용 트랙과 개발 직군의 전문 기술 트랙을 함께 제공합니다.</p>
@@ -713,7 +681,7 @@
               <summary class="faq-list__question">
                 <span data-i18n="aifluent-faq-question-03">결과는 어떤 형태로 받나요?</span>
                 <span class="faq-list__icon" aria-hidden="true">
-                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
               </summary>
               <p class="faq-list__answer" data-i18n="aifluent-faq-answer-03">개인은 4단계 수준과 세부 역량별 점수, 강점과 보완 영역을 확인합니다. 기업 담당자는 팀·직군·조직별 역량 분포와 Skill Gap을 대시보드와 리포트로 봅니다.</p>
@@ -722,7 +690,7 @@
               <summary class="faq-list__question">
                 <span data-i18n="aifluent-faq-question-04">교육 전후의 변화를 비교할 수 있나요?</span>
                 <span class="faq-list__icon" aria-hidden="true">
-                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
               </summary>
               <p class="faq-list__answer" data-i18n="aifluent-faq-answer-04">가능합니다. 같은 기준으로 사전·사후 진단을 진행해 변화를 비교하고 다음 교육 계획에 반영합니다.</p>
@@ -738,22 +706,16 @@
         <h2 class="cta-final-title" data-i18n="aifluent-cta-final-title">우리 조직의 AX 수준, <br data-break="desktop">숫자로 확인하세요</h2>
         <p class="cta-final-desc" data-i18n="aifluent-cta-final-desc">직군별 실무 평가 설계부터 함께 잡아 드립니다. 개인 맛보기 진단은 위 진단 모드에서 바로 해볼 수 있습니다.</p>
         <div class="cta-final-actions">
-          <a class="btn btn-primary btn-lg" href="#" data-i18n="aifluent-hero-cta">
-            기업 진단 문의
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
+          <a class="btn btn-primary btn-lg" href="#" data-i18n="aifluent-hero-cta">기업 진단 문의 &lt;svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M9 18L15 12L9 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"&gt;&lt;/path&gt;&lt;/svg&gt;</a>
         </div>
       </div>
     </section>
   </main>
+  <SiteFooter />
+  <ClientInteractions :scripts='["js/fade-up.js","js/header-scroll.js","js/nav-menu.js"]' />
+</template>
 
-  <div data-include="partials/footer.html"></div>
-
-  <script src="js/include-partials.js"></script>
-  <script src="js/i18n.js"></script>
-  <script src="js/fade-up.js"></script>
-  <script src="js/header-scroll.js"></script>
-  <script src="js/nav-menu.js"></script>
-</body>
-
-</html>
+<script setup>
+useSeoMeta({ title: "AI Fluent: AI 활용 역량 진단 | 코드프레소", description: "문제 정의, 프롬프트 설계, 워크플로·Agent 활용, 결과 검증까지. 실제 업무 속 AI 활용 역량을 진단합니다." })
+import '~/css/pages/aifluent.css'
+</script>

@@ -7,15 +7,10 @@
  * main 배경 전환(--scroll-progress)은 js/scroll-progress.js가 따로 맡는다 —
  * 헤더가 교체돼도 배경이 같이 죽지 않게 분리했다.
  *
- * GNB는 partials/header.html에서 fetch로 삽입되므로(js/include-partials.js) 이 스크립트가
- * 먼저 돌면 .header가 아직 없다. 그래서 `partials:loaded`를 기다렸다가 초기화한다.
- * 헤더가 없는 페이지에서는 조용히 아무것도 하지 않는다.
+ * Nuxt의 SiteHeader 컴포넌트가 먼저 렌더되므로 mount 뒤에 바로 초기화한다.
  */
 (() => {
-  let started = false;
   const init = () => {
-  if (started) return;
-  started = true;
   const header = document.querySelector(".header");
   if (!header) return;
 
@@ -63,12 +58,5 @@
   update();
   };
 
-  // partials 주입을 기다린다. 이미 끝났거나(표식) include-partials.js가 아예 없는
-  // 경우(헤더가 외부 패키지로 대체된 경우)에도 초기화가 한 번은 돌게 한다.
-  if (document.documentElement.dataset.partials === 'loaded') {
-    init();
-  } else {
-    document.addEventListener('partials:loaded', init, { once: true });
-    document.addEventListener('DOMContentLoaded', init, { once: true });
-  }
+  init();
 })();

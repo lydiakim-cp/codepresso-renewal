@@ -28,7 +28,7 @@ process.stdin.on('end', () => {
   } catch {
     /* 훅 입력이 없거나 형식이 다르면 조용히 통과한다 — 검사가 작업을 막지 않는다 */
   }
-  if (!/\.(css|html)$/i.test(file)) process.exit(0);
+  if (!/\.(css|html|vue|ts)$/i.test(file)) process.exit(0);
 
   /* designsystem 카탈로그·프로토타입은 서비스 페이지 규범 대상이 아니다 */
   if (/designsystem|프로토타입/.test(file)) process.exit(0);

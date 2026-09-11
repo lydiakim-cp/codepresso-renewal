@@ -13,7 +13,7 @@
   content: "";
   position: absolute;
   inset: -40px;
-  background-image: url("../../../images/backgrounds/bg-line2.png");
+  background-image: url("/images/backgrounds/bg-line2.png");
   background-repeat: no-repeat;
   background-position: var(--hero-texture-position, top right);
   background-size: 160%;

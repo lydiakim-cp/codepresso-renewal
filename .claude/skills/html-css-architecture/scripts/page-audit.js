@@ -22,6 +22,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..', '..', '..', '..');
+const NUXT_ROUTE = 'pages/index.vue';
 
 /* 마크업 훅 → 그 훅을 읽는 스크립트. js/*.js가 실제로 찾는 선택자에서 뽑았다.
    훅이 있는데 스크립트가 없으면 인터랙션이 콘솔 에러 없이 조용히 죽는다. */
@@ -97,31 +98,22 @@ for (const f of walkCss(path.join(ROOT, 'css'))) {
 }
 const exists = (p) => fs.existsSync(path.join(ROOT, p));
 
-/* templates/ 조각은 페이지가 아니다 — 링크·meta·스크립트 검사는 뜻이 없고,
-   "CSS에 없는 클래스"와 태그 균형만 본다. 조각이 썩으면 조립 결과가 썩는다. */
-const auditTemplate = (file) => {
-  const html = read(file);
+/* Nuxt 전환 뒤에는 루트 HTML은 마케팅 폴백 원본이다. 실제 배포 경로는 단일
+   catch-all SSR route가 소유하므로, 정적 <link>/<script> 규범 대신 전환 불변식을
+   검사한다. */
+const auditNuxtShell = () => {
   const err = [];
   const warn = [];
-
-  const unknown = new Set();
-  for (const m of html.matchAll(/class="([^"]*)"/g)) {
-    for (const cls of m[1].split(/\s+/)) {
-      /* {페이지이름} 같은 치환 자리표시자는 검사 대상이 아니다 */
-      if (cls && !cls.startsWith('{') && !definedClasses.has(cls) && !jsHooks.has(cls) && !SECTION_VOCAB.has(cls)) {
-        unknown.add(cls);
-      }
-    }
-  }
-  if (unknown.size) err.push(`CSS에 없는 클래스: ${[...unknown].join(', ')}`);
-
-  for (const tag of ['section', 'div', 'ul', 'ol', 'li', 'article', 'details']) {
-    const open = (html.match(new RegExp(`<${tag}[\\s>]`, 'g')) || []).length;
-    const close = (html.match(new RegExp(`</${tag}>`, 'g')) || []).length;
-    if (open !== close) err.push(`<${tag}> 짝이 맞지 않는다 (열림 ${open} · 닫힘 ${close}) — 조각을 자를 때 깨졌다`);
-  }
-
-  return { file, err, warn };
+  if (!exists(NUXT_ROUTE)) err.push(`${NUXT_ROUTE}가 없다 — Nuxt 페이지가 없다`);
+  const vuePages = exists('pages') ? fs.readdirSync(path.join(ROOT, 'pages')).filter((file) => file.endsWith('.vue')) : [];
+  if (vuePages.length < 15) err.push(`pages/에 Vue 페이지가 ${vuePages.length}개뿐이다 — 서비스 페이지 일부가 아직 전환되지 않았다`);
+  const config = exists('nuxt.config.ts') ? read('nuxt.config.ts') : '';
+  for (const css of ['main.css', 'main-dark.css', 'mobile.css']) if (!config.includes(css)) err.push(`nuxt.config.ts css 배열에 ${css}가 없다`);
+  for (const component of ['components/SiteHeader.vue', 'components/SiteFooter.vue', 'components/ClientInteractions.vue']) if (!exists(component)) err.push(`${component}가 없다`);
+  if (!exists('public/images/mockups')) err.push('public/images/mockups가 없다 — iframe 목업 경로가 끊긴다');
+  if (!exists('public/images')) err.push('public/images가 없다 — SVG/이미지 public 경로가 끊긴다');
+  if (!exists('data/content.json')) err.push('data/content.json이 없다');
+  return { file: 'Nuxt shell', err, warn };
 };
 
 const auditPage = (file) => {
@@ -218,6 +210,8 @@ const auditPage = (file) => {
     refs.add(v.split(/[?#]/)[0]);
   }
   for (const ref of refs) {
+    // Nuxt SSR이 대체한 과거 fetch 스크립트는 마케팅 폴백 HTML에만 남아 있다.
+    if (ref === 'js/include-partials.js' || ref === 'js/i18n.js') continue;
     if (!exists(ref)) err.push(`가리키는 파일이 없다: ${ref}`);
   }
 
@@ -243,13 +237,9 @@ const auditPage = (file) => {
   return { file, err, warn };
 };
 
-const targets = process.argv.slice(2).length
-  ? process.argv.slice(2)
-  : fs
-      .readdirSync(ROOT)
-      .filter((f) => f.endsWith('.html'))
-      /* 카탈로그·프로토타입은 서비스 페이지 규범 대상이 아니다 */
-      .filter((f) => f !== 'codepresso-designsystem.html' && f !== 'codepresso-designsystem-v2.html' && !f.startsWith('프로토타입'));
+/* Nuxt 전환 후 루트 HTML은 필요할 때만 보관하는 아카이브다. 기본 감사 대상은
+   pages/*.vue의 Nuxt shell 불변식이며, 정적 HTML은 파일명을 명시했을 때만 검사한다. */
+const targets = process.argv.slice(2);
 
 /* mobile.css 구조 — breakpoint마다 @media 한 덩어리여야 한다(subpage-guide 1번).
    블록이 쪼개지면 같은 페이지 규칙이 두 곳에 흩어져 다음 사람이 찾지 못한다. */
@@ -269,21 +259,13 @@ const auditMobileCss = () => {
   return warn;
 };
 
-const TEMPLATE_DIR = path.join(ROOT, 'templates');
-const templateTargets = fs.existsSync(TEMPLATE_DIR)
-  ? ['templates/subpage.template.html']
-      .concat(
-        fs
-          .readdirSync(path.join(TEMPLATE_DIR, 'sections'))
-          .filter((f) => f.endsWith('.html'))
-          .map((f) => 'templates/sections/' + f)
-      )
-      .filter((f) => fs.existsSync(path.join(ROOT, f)))
-  : [];
-
 let failed = 0;
-for (const t of targets.concat(templateTargets)) {
-  const { file, err, warn } = t.indexOf('templates/') === 0 ? auditTemplate(t) : auditPage(t);
+const nuxtShell = auditNuxtShell();
+console.log(`\n${nuxtShell.err.length ? '✗' : '✓'} ${nuxtShell.file}`);
+nuxtShell.err.forEach((m) => console.log(`  ✗ ${m}`));
+if (nuxtShell.err.length) failed += 1;
+for (const t of targets) {
+  const { file, err, warn } = auditPage(t);
   const head = err.length ? '✗' : warn.length ? '⚠' : '✓';
   console.log(`\n${head} ${file}`);
   err.forEach((m) => console.log(`  ✗ ${m}`));
@@ -296,5 +278,5 @@ console.log(`\n${mobileWarn.length ? '⚠' : '✓'} css/mobile.css`);
 mobileWarn.forEach((m) => console.log(`  ⚠ ${m}`));
 if (!mobileWarn.length) console.log('  900/720/560 각 1블록 — 통과');
 
-console.log(`\n${targets.length}개 페이지 + 조각 ${templateTargets.length}개 중 ${failed}개에 오류가 있다.`);
+console.log(`\n${targets.length}개 레거시 입력 페이지 중 ${failed}개에 오류가 있다.`);
 process.exit(failed ? 1 : 0);

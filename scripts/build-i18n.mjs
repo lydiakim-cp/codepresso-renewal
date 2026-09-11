@@ -152,4 +152,5 @@ for (const row of dataRows) {
 }
 
 writeFileSync(OUT_PATH, JSON.stringify(content, null, 2), { encoding: 'utf8' });
+
 console.log(`data/content.json 생성 완료 — key ${Object.keys(content).length}개`);

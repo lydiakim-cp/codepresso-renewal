@@ -1,0 +1,1110 @@
+<template>
+  <SiteHeader />
+<!-- GNB는 partials/header.html 하나로 관리한다. js/include-partials.js가 fetch해 삽입한다.
+       (fetch를 쓰므로 file:// 직접 열기로는 안 보인다 — 로컬 정적 서버로 확인한다) -->
+  
+
+  <main class="ax-build main-dark">
+    <!-- Hero — 제품 한 줄 정의 + CTA + 핵심 조건 3개. 첫 화면이라 fade-up을 붙이지 않는다. -->
+    <section class="sub-hero">
+      <div class="hero-wrap">
+        <div class="sub-hero-copy">
+          <p class="tag" data-i18n="ax-build-hero-eyebrow">AX Build</p>
+          <h1 class="hero-title" data-i18n="ax-build-hero-title">매일 손으로 하던 업무,<br>20일 뒤에는 AI Agent가 합니다</h1>
+          <p class="hero-desc" data-i18n="ax-build-hero-desc">보고서나 시제품이 아니라, 현장에서 돌아가는 결과물이 남습니다.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#">
+              <span data-i18n="ax-build-hero-cta">우리 업무 진단받기</span>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 제품의 핵심 약속 3개. hero-facts와 같은 유리 띠 외피(1장 + 세로 구분선 +
+             그림자 없음)에 질문 대신 수치를 담는 hero-facts 변형. -->
+        <ul class="hero-facts surface-glass">
+          <li class="metric-card is-visible">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 캘린더 — ic_calendar.svg 기반, 하드코딩 색을 브랜드 톤으로 교체 -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
+                <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"></path>
+                <path d="M16.5 3H15.5C15.2239 3 15 3.22386 15 3.5V5.5C15 5.77614 15.2239 6 15.5 6H16.5C16.7761 6 17 5.77614 17 5.5V3.5C17 3.22386 16.7761 3 16.5 3Z" fill="var(--color-brand)"></path>
+                <path d="M2.5 9H21.5V10.5H2.5V9Z" fill="var(--color-brand)"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2 17.6L8.4 14.8L9.6 13.6L11.2 15.2L14.9 11.5L16.1 12.7L11.2 17.6Z" fill="var(--color-brand-dark)"></path>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value"><span>20</span><span class="unit">일</span></div>
+              <p class="metric-card__label text-label" data-i18n="ax-build-hero-fact-label-01">현장 진단부터 운영 배포까지</p>
+            </div>
+          </li>
+          <li class="metric-card is-visible">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- AI Agent — images/icons/library/072.챗봇.svg를 히어로 브랜드 톤으로 적용. -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.0098 6H7.00977C4.80063 6 3.00977 7.79086 3.00977 10V17C3.00977 19.2091 4.80063 21 7.00977 21H17.0098C19.2189 21 21.0098 19.2091 21.0098 17V10C21.0098 7.79086 19.2189 6 17.0098 6Z" fill="var(--color-brand)"></path>
+                <path d="M12.0098 2C12.3413 2 12.6593 2.1317 12.8937 2.36612C13.1281 2.60054 13.2598 2.91848 13.2598 3.25V6H10.7598V3.25C10.7598 2.91848 10.8915 2.60054 11.1259 2.36612C11.3603 2.1317 11.6782 2 12.0098 2Z" fill="var(--color-brand-dark)"></path>
+                <path d="M10.0098 12C10.0098 11.1716 9.33819 10.5 8.50977 10.5C7.68134 10.5 7.00977 11.1716 7.00977 12V14C7.00977 14.8284 7.68134 15.5 8.50977 15.5C9.33819 15.5 10.0098 14.8284 10.0098 14V12Z" fill="var(--color-surface)"></path>
+                <path d="M17.0098 12C17.0098 11.1716 16.3382 10.5 15.5098 10.5C14.6813 10.5 14.0098 11.1716 14.0098 12V14C14.0098 14.8284 14.6813 15.5 15.5098 15.5C16.3382 15.5 17.0098 14.8284 17.0098 14V12Z" fill="var(--color-surface)"></path>
+                <path d="M3.00977 10V16C2.47933 16 1.97065 15.7893 1.59558 15.4142C1.22051 15.0391 1.00977 14.5304 1.00977 14V12C1.00977 11.4696 1.22051 10.9609 1.59558 10.5858C1.97065 10.2107 2.47933 10 3.00977 10Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"></path>
+                <path d="M21.0098 10C21.5402 10 22.0489 10.2107 22.424 10.5858C22.7991 10.9609 23.0098 11.4696 23.0098 12V14C23.0098 14.5304 22.7991 15.0391 22.424 15.4142C22.0489 15.7893 21.5402 16 21.0098 16V10Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"></path>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value"><span>AI Agent</span></div>
+              <p class="metric-card__label text-label" data-i18n="ax-build-hero-fact-label-02">실제 업무를 수행하는 결과물</p>
+            </div>
+          </li>
+          <li class="metric-card is-visible">
+            <span class="hero-fact-icon icon-lg" aria-hidden="true">
+              <!-- 방패 — ic_shield.svg 기반, 민트색(#7AD7B5)을 브랜드 색으로 교체 -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21.5 5L12 1L2.5 5V9C2.49 12.02 3.39 14.97 5.09 17.47C6.78 19.96 9.19 21.89 12 23C14.81 21.89 17.22 19.96 18.91 17.47C20.61 14.97 21.51 12.02 21.5 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.41 11.52L15.24 7.7L17 9.47L11.33 15.13L7.7 11.18L9.54 9.49L11.41 11.52Z" fill="var(--color-brand)"></path>
+              </svg>
+            </span>
+            <div>
+              <div class="metric-card__value"><span>3</span><span class="unit">개월</span></div>
+              <p class="metric-card__label text-label" data-i18n="ax-build-hero-fact-label-03">배포 이후 안정화 지원</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 01 What It Is — Agent가 반복 업무를 도는 실행 화면 하나로 결론을 보여준다.
+         3칸 나란히(stage)는 칸끼리 비슷해 차이가 안 읽혀, 한 화면 안에서 시간이
+         흐르는 mock-motion G·run으로 교체했다. 3건 자동 완료 → 1건만 사람 확인. -->
+    <section class="intro fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag" data-i18n="ax-build-intro-eyebrow">01 · What It Is</p>
+          <h2 data-i18n="ax-build-intro-title">사람이 반복하던 업무를,<br>Agent의 일로 바꿉니다</h2>
+          <p class="desc" data-i18n="ax-build-intro-desc">사람이 처음부터 끝까지 하던 일을 세 갈래로 나눕니다. <br data-break="desktop">반복 실행은 Agent가 맡고, 사람은 판단만 남깁니다.</p>
+        </div>
+        <div class="section-content">
+          <!-- 좌 작업 큐 · 우 실행 로그 2단. 앞 3건은 Agent가 자동 완료하고
+               마지막 1건만 사람 확인에서 멈춘다 — 결론이 화면 안에서 읽힌다. -->
+          <div class="run preview-frame preview-frame--flush" data-mock-motion="run" aria-hidden="true">
+            <div class="preview-frame__bar">
+              <span class="preview-frame__dots"><i></i><i></i><i></i></span>
+              <span class="run-flow">주간 실적 보고 <span class="run-flow-meta">매일 09:00 자동 실행</span></span>
+              <span class="run-state is-run-state">
+                <i class="is-pulse"></i><b>실행 중</b>
+              </span>
+            </div>
+
+            <div class="run-body">
+              <!-- 좌: 작업 큐. is-task + --mock-run-step으로 켜지는 순서를 준다 -->
+              <div class="run-queue">
+                <div class="run-queue-head">
+                  <span class="run-queue-title">작업 큐</span>
+                  <span class="run-count"><b class="is-run-count">3</b>/4 완료</span>
+                </div>
+                <ul class="run-tasks">
+                  <li class="run-task is-task" style="--mock-run-step: 0">
+                    <span class="run-mark"><span class="run-spin"></span></span>
+                    <span class="run-task-body">
+                      <span class="run-task-name">이메일 분류</span>
+                      <span class="run-bar"><i></i></span>
+                    </span>
+                    <span class="run-task-meta">42건</span>
+                  </li>
+                  <li class="run-task is-task" style="--mock-run-step: 1">
+                    <span class="run-mark"><span class="run-spin"></span></span>
+                    <span class="run-task-body">
+                      <span class="run-task-name">보고서 초안 작성</span>
+                      <span class="run-bar"><i></i></span>
+                    </span>
+                    <span class="run-task-meta">1건</span>
+                  </li>
+                  <li class="run-task is-task" style="--mock-run-step: 2">
+                    <span class="run-mark"><span class="run-spin"></span></span>
+                    <span class="run-task-body">
+                      <span class="run-task-name">부서별 데이터 취합</span>
+                      <span class="run-bar"><i></i></span>
+                    </span>
+                    <span class="run-task-meta">3건</span>
+                  </li>
+                  <!-- 마지막 칸만 사람 확인에서 멈춘다 — 이 섹션의 결론 -->
+                  <li class="run-task is-hold is-task" style="--mock-run-step: 3">
+                    <span class="run-mark">
+                      <span class="run-spin"></span>
+                      <svg class="run-person" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12a4 4 0 100-8 4 4 0 000 8Z" fill="currentColor"></path>
+                        <path d="M4 20a8 8 0 0116 0Z" fill="currentColor"></path>
+                      </svg>
+                    </span>
+                    <span class="run-task-body">
+                      <span class="run-task-name">요약 발송</span>
+                      <span class="run-bar"><i></i></span>
+                    </span>
+                    <span class="run-task-meta">확인 대기</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- 우: 실행 로그. 같은 --mock-run-step으로 큐와 박자를 맞춘다 -->
+              <div class="run-log">
+                <p class="run-log-title">실행 로그</p>
+                <ul class="run-lines">
+                  <li class="run-line is-line" style="--mock-run-step: 0">
+                    <span class="run-time">09:00</span>메일함에서 <b>42건</b> 분류 완료
+                  </li>
+                  <li class="run-line is-line" style="--mock-run-step: 1">
+                    <span class="run-time">09:02</span>주간 보고서 초안 생성
+                  </li>
+                  <li class="run-line is-line" style="--mock-run-step: 2">
+                    <span class="run-time">09:04</span>부서별 데이터 <b>3건</b> 취합
+                  </li>
+                  <li class="run-line is-hold is-line" style="--mock-run-step: 3">
+                    <span class="run-time">09:05</span>승인 대기 1건 — <b>사람 확인 필요</b>
+                  </li>
+                </ul>
+                <p class="run-verdict is-verdict">
+                  <span class="run-verdict-value">3<em>건</em></span>
+                  <span class="run-verdict-label">Agent 자동 완료 · 사람은 1건만 판단</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 Best Fit -->
+    <section class="features fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag" data-i18n="ax-build-features-eyebrow">02 · Best Fit</p>
+          <h2 data-i18n="ax-build-features-title">이런 팀이라면 AX Build가 맞습니다</h2>
+        </div>
+        <div class="section-content">
+          <!-- 메인 How it works와 같은 feature-card 자동 순환.
+               5초마다 활성 카드가 넘어가며 아이콘이 사라지고 설명이 펼쳐진다. -->
+          <div class="feature-card-grid">
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 시계 — 반복 업무에 묶인 시간 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" fill="color-mix(in srgb, var(--color-brand) 20%, var(--color-surface))"></path>
+                    <path d="M12 6C12.5523 6 13 6.44772 13 7V11.586L15.707 14.293L14.293 15.707L11 12.414V7C11 6.44772 11.4477 6 12 6Z" fill="var(--color-brand)"></path>
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title" data-i18n="ax-build-features-item-label-01">01 · 반복</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle" data-i18n="ax-build-features-item-title-01">핵심 인력의 시간이 <br> 반복 업무에 묶여 있습니다</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p data-i18n="ax-build-features-item-desc-01">정산, 분류, 조사, 보고처럼 매일 또는 매주 같은 형태로 돌아오는 업무가 많습니다.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 데이터 스택 — 자료는 있지만 결과까지 오래 걸리는 상태 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C7.58 2 4 3.34 4 5C4 6.66 7.58 8 12 8C16.42 8 20 6.66 20 5C20 3.34 16.42 2 12 2Z" fill="var(--color-brand)"></path>
+                    <path d="M4 8.5V12C4 13.66 7.58 15 12 15C16.42 15 20 13.66 20 12V8.5C18.3 9.7 15.4 10.4 12 10.4C8.6 10.4 5.7 9.7 4 8.5Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"></path>
+                    <path d="M4 15.5V19C4 20.66 7.58 22 12 22C16.42 22 20 20.66 20 19V15.5C18.3 16.7 15.4 17.4 12 17.4C8.6 17.4 5.7 16.7 4 15.5Z" fill="color-mix(in srgb, var(--color-brand) 20%, var(--color-surface))"></path>
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title" data-i18n="ax-build-features-item-label-02">02 · 지연</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle" data-i18n="ax-build-features-item-title-02">데이터는 있는데, <br> 결과를 만드는 데 오래 걸립니다</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p data-i18n="ax-build-features-item-desc-02">필요한 자료는 있지만 사람이 모으고 검토하고 정리해야 다음 단계로 넘어갑니다.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card-icon-row">
+                <span class="feature-card-icon" aria-hidden="true">
+                  <!-- 성과 그래프 — PoC가 아닌 실제 운영 성과. ic_lineChart.svg 기반 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.88 3H5.12C3.95 3 3 3.9 3 5V19C3 20.1 3.95 21 5.12 21H18.88C20.05 21 21 20.1 21 19V5C21 3.9 20.05 3 18.88 3Z" fill="color-mix(in srgb, var(--color-brand) 18%, var(--color-surface))"></path>
+                    <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand-dark)"></path>
+                    <path d="M16.3 8.22L11 13.51L8 10.51L3 15.5V18.49L8 13.5L11 16.5L17.71 9.8L16.3 8.22Z" fill="var(--color-brand)"></path>
+                  </svg>
+                </span>
+              </div>
+              <div class="section-body">
+                <div class="section-body-heading">
+                  <p class="section-body-title" data-i18n="ax-build-features-item-label-03">03 · 성과</p>
+                  <span class="feature-card-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </span>
+                </div>
+                <p class="section-body-subtitle" data-i18n="ax-build-features-item-title-03">AI 실험보다 <br> 실제 운영 성과가 필요합니다</p>
+                <div class="feature-card-desc-row">
+                  <div class="section-body-description">
+                    <p data-i18n="ax-build-features-item-desc-03">또 하나의 PoC가 아니라, 현업이 매일 쓰고 시간 절감 효과를 확인할 수 있는 결과물이 필요합니다.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 What Can Be Built — 37개 워크플로를 실제 관리 화면처럼 보여준다 -->
+    <section class="catalog fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag" data-i18n="ax-build-catalog-eyebrow">03 · What Can Be Built</p>
+          <h2 data-i18n="ax-build-catalog-title">어떤 업무부터 바꿀 수 있을까요?</h2>
+          <p class="desc" data-i18n="ax-build-catalog-desc">다섯 분야 37개의 검증된 워크플로 중에서,<br data-break="desktop"> 자동화 가치가 크고 결과 기준이 분명한 업무부터 고릅니다.</p>
+        </div>
+        <div class="section-content">
+          <div class="catalog-group">
+            <!-- 공통 — 분야를 가리지 않고 늘 쓰는 묶음이라 탭에 넣지 않고 항상 펼쳐 둔다 -->
+            <div class="catalog-group__plain">
+              <p class="tag" data-i18n="ax-build-catalog-plain-label">공통 업무</p>
+              <ul class="item-grid">
+                <li>
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- 녹음 — 013.녹음.svg -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12.5 1H11.5C9.29086 1 7.5 2.79086 7.5 5V12C7.5 14.2091 9.29086 16 11.5 16H12.5C14.7091 16 16.5 14.2091 16.5 12V5C16.5 2.79086 14.7091 1 12.5 1Z" fill="var(--color-brand)"></path>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M5.75 9.00977V12.0098C5.75 13.5347 6.35583 14.9973 7.43418 16.0757C8.51251 17.154 9.975 17.7598 11.5 17.7598H12.5C14.025 17.7598 15.4876 17.154 16.5659 16.0757C17.6442 14.9973 18.25 13.5348 18.25 12.0098V9.00977H20.75V12.0098C20.75 14.1978 19.8808 16.2962 18.3337 17.8434C16.7865 19.3906 14.688 20.2598 12.5 20.2598H11.5C9.31197 20.2598 7.21359 19.3906 5.66641 17.8434C4.11924 16.2963 3.25 14.1978 3.25 12.0098V9.00977H5.75Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.25 18.5V23H10.75V18.5H13.25Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                    </svg>
+                  </span>
+                  <span data-i18n="ax-build-catalog-plain-item-01">회의록 자동 작성</span>
+                </li>
+                <li>
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- 할일 — 015.할일.svg -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                      <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0001 8.58579L17.293 6.29289L18.7072 7.70711L15.0001 11.4142L12.293 8.70711L13.7072 7.29289L15.0001 8.58579Z" fill="var(--color-brand)"></path>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0001 14.5858L17.293 12.2929L18.7072 13.7071L15.0001 17.4142L12.293 14.7071L13.7072 13.2929L15.0001 14.5858Z" fill="var(--color-brand)"></path>
+                      <path d="M10.4998 14H6.50977C6.23362 14 6.00977 14.2239 6.00977 14.5V15.53C6.00977 15.8061 6.23362 16.03 6.50977 16.03H10.4998C10.7759 16.03 10.9998 15.8061 10.9998 15.53V14.5C10.9998 14.2239 10.7759 14 10.4998 14Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                    </svg>
+                  </span>
+                  <span data-i18n="ax-build-catalog-plain-item-02">태스크 관리</span>
+                </li>
+                <li>
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- 인터넷·지구 — 067.인터넷,지구.svg -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12.0107 21.5C17.2574 21.5 21.5107 17.2467 21.5107 12C21.5107 6.75329 17.2574 2.5 12.0107 2.5C6.76404 2.5 2.51074 6.75329 2.51074 12C2.51074 17.2467 6.76404 21.5 12.0107 21.5Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                      <path d="M6.86077 11.61C6.72472 11.4752 6.61671 11.3148 6.54301 11.138C6.4693 10.9612 6.43136 10.7716 6.43136 10.5801C6.43136 10.3885 6.4693 10.1989 6.54301 10.0221C6.61671 9.84531 6.72472 9.68486 6.86077 9.55005C7.03886 9.37424 7.18025 9.16485 7.27676 8.93396C7.37327 8.70307 7.42297 8.45532 7.42297 8.20508C7.42297 7.95483 7.37327 7.70708 7.27676 7.4762C7.18025 7.24531 7.03886 7.03585 6.86077 6.86005L5.29077 5.29004C4.40699 6.17138 3.70635 7.21892 3.22923 8.37225C2.7521 9.52559 2.50793 10.7619 2.51077 12.0101C2.51081 13.8296 3.03506 15.6107 4.02078 17.1401L6.86077 14.3C7.03886 14.1242 7.18025 13.9148 7.27676 13.684C7.37327 13.4531 7.42297 13.2053 7.42297 12.9551C7.42297 12.7048 7.37327 12.4571 7.27676 12.2262C7.18025 11.9953 7.03886 11.7859 6.86077 11.61Z" fill="var(--color-brand)"></path>
+                      <path d="M17.6999 4.37988L12.0099 10.0699C11.6551 10.4276 11.4561 10.911 11.4561 11.4149C11.4561 11.9187 11.6551 12.4022 12.0099 12.7599L14.5399 15.2799C14.7149 15.4577 14.9235 15.5989 15.1535 15.6953C15.3836 15.7916 15.6305 15.8412 15.8799 15.8412C16.1294 15.8412 16.3763 15.7916 16.6064 15.6953C16.8364 15.5989 17.045 15.4577 17.2199 15.2799L18.7399 13.7699C19.0833 13.429 19.5443 13.2328 20.028 13.2216C20.5117 13.2105 20.9812 13.3852 21.3399 13.7099C21.4523 13.1401 21.5092 12.5607 21.5099 11.9799C21.5095 10.504 21.165 9.04868 20.5036 7.72937C19.8422 6.41006 18.8822 5.26319 17.6999 4.37988Z" fill="var(--color-brand)"></path>
+                      <path d="M9.18074 19.0799L7.76074 20.4899C9.07274 21.1505 10.5218 21.4931 11.9908 21.4899C12.7215 21.4847 13.4494 21.3975 14.1608 21.2298L11.9908 19.0599C11.6138 18.693 11.1076 18.4895 10.5816 18.4932C10.0557 18.497 9.5524 18.7077 9.18074 19.0799Z" fill="var(--color-brand)"></path>
+                    </svg>
+                  </span>
+                  <span data-i18n="ax-build-catalog-plain-item-03">다국어 번역</span>
+                </li>
+                <li>
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- 검색 — 025.검색.svg -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10.5 17.21C14.2059 17.21 17.2101 14.2059 17.2101 10.5C17.2101 6.79422 14.2059 3.79004 10.5 3.79004C6.7942 3.79004 3.79004 6.79422 3.79004 10.5C3.79004 14.2059 6.7942 17.21 10.5 17.21Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                      <path d="M10.5 4.5C12.0913 4.5 13.6174 5.13214 14.7426 6.25735C15.8678 7.38257 16.5 8.9087 16.5 10.5C16.5 12.0913 15.8678 13.6174 14.7426 14.7426C13.6174 15.8679 12.0913 16.5 10.5 16.5C8.9087 16.5 7.38257 15.8679 6.25735 14.7426C5.13214 13.6174 4.5 12.0913 4.5 10.5C4.5 8.9087 5.13214 7.38257 6.25735 6.25735C7.38257 5.13214 8.9087 4.5 10.5 4.5ZM10.5 2C8.24647 2.00265 6.08599 2.89904 4.49251 4.49252C2.89902 6.08601 2.00265 8.24647 2 10.5C2 11.6162 2.21985 12.7215 2.64702 13.7528C3.07418 14.7841 3.7003 15.7211 4.48959 16.5104C5.27889 17.2997 6.21592 17.9258 7.24719 18.353C8.27846 18.7801 9.38376 19 10.5 19C11.6166 19.0013 12.7225 18.7824 13.7544 18.3557C14.7862 17.929 15.7238 17.3029 16.5133 16.5133C17.3029 15.7238 17.929 14.7862 18.3557 13.7544C18.7824 12.7225 19.0013 11.6166 19 10.5C19 8.24566 18.1045 6.08365 16.5104 4.48959C14.9163 2.89553 12.7543 2 10.5 2Z" fill="var(--color-brand)"></path>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4852 14.7068L21.8852 20.1168L20.1158 21.8829L14.7158 16.4729L16.4852 14.7068Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                    </svg>
+                  </span>
+                  <span data-i18n="ax-build-catalog-plain-item-04">문서 자동 정리·검색</span>
+                </li>
+                <li>
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- 이메일 — 008.이메일.svg -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.5 6.5V17.5C2.49936 18.0136 2.69631 18.5076 3.05002 18.8799C3.40373 19.2523 3.88711 19.4743 4.40003 19.5H19.6C20.1129 19.4743 20.5963 19.2523 20.95 18.8799C21.3037 18.5076 21.5006 18.0136 21.5 17.5V6.5H2.5Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                      <path d="M12 14L21.5 7V6.5C21.5006 5.98645 21.3037 5.49232 20.95 5.12C20.5963 4.74767 20.1129 4.52568 19.6 4.5H4.40003C3.88711 4.52568 3.40373 4.74767 3.05002 5.12C2.69631 5.49232 2.49936 5.98645 2.5 6.5V7L12 14Z" fill="var(--color-brand)"></path>
+                    </svg>
+                  </span>
+                  <span data-i18n="ax-build-catalog-plain-item-05">이메일 분류·응답 초안</span>
+                </li>
+                <li>
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- 회의·미팅 — 107.회의,미팅.svg -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16 10C16 7.79086 14.2091 6 12 6C9.79086 6 8 7.79086 8 10V14C8 16.2091 9.79086 18 12 18C14.2091 18 16 16.2091 16 14V10Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                      <path d="M12 5C13.1046 5 14 4.10457 14 3C14 1.89543 13.1046 1 12 1C10.8954 1 10 1.89543 10 3C10 4.10457 10.8954 5 12 5Z" fill="var(--color-brand)"></path>
+                      <path d="M12 23C13.1046 23 14 22.1046 14 21C14 19.8954 13.1046 19 12 19C10.8954 19 10 19.8954 10 21C10 22.1046 10.8954 23 12 23Z" fill="var(--color-brand)"></path>
+                      <path d="M19 10C20.1046 10 21 9.10457 21 8C21 6.89543 20.1046 6 19 6C17.8954 6 17 6.89543 17 8C17 9.10457 17.8954 10 19 10Z" fill="var(--color-brand)"></path>
+                      <path d="M19 18C20.1046 18 21 17.1046 21 16C21 14.8954 20.1046 14 19 14C17.8954 14 17 14.8954 17 16C17 17.1046 17.8954 18 19 18Z" fill="var(--color-brand)"></path>
+                      <path d="M5 10C6.10457 10 7 9.10457 7 8C7 6.89543 6.10457 6 5 6C3.89543 6 3 6.89543 3 8C3 9.10457 3.89543 10 5 10Z" fill="var(--color-brand)"></path>
+                      <path d="M5 18C6.10457 18 7 17.1046 7 16C7 14.8954 6.10457 14 5 14C3.89543 14 3 14.8954 3 16C3 17.1046 3.89543 18 5 18Z" fill="var(--color-brand)"></path>
+                    </svg>
+                  </span>
+                  <span data-i18n="ax-build-catalog-plain-item-06">회의 준비 브리프</span>
+                </li>
+                <li>
+                  <span class="workflow-icon icon-md" aria-hidden="true">
+                    <!-- 챗봇 — 072.챗봇.svg -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M17.0098 6H7.00977C4.80063 6 3.00977 7.79086 3.00977 10V17C3.00977 19.2091 4.80063 21 7.00977 21H17.0098C19.2189 21 21.0098 19.2091 21.0098 17V10C21.0098 7.79086 19.2189 6 17.0098 6Z" fill="var(--color-brand)"></path>
+                      <path d="M12.0098 2C12.3413 2 12.6593 2.1317 12.8937 2.36612C13.1281 2.60054 13.2598 2.91848 13.2598 3.25V6H10.7598V3.25C10.7598 2.91848 10.8915 2.60054 11.1259 2.36612C11.3603 2.1317 11.6782 2 12.0098 2Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                      <path d="M10.0098 12C10.0098 11.1716 9.33819 10.5 8.50977 10.5C7.68134 10.5 7.00977 11.1716 7.00977 12V14C7.00977 14.8284 7.68134 15.5 8.50977 15.5C9.33819 15.5 10.0098 14.8284 10.0098 14V12Z" fill="var(--color-surface)"></path>
+                      <path d="M17.0098 12C17.0098 11.1716 16.3382 10.5 15.5098 10.5C14.6813 10.5 14.0098 11.1716 14.0098 12V14C14.0098 14.8284 14.6813 15.5 15.5098 15.5C16.3382 15.5 17.0098 14.8284 17.0098 14V12Z" fill="var(--color-surface)"></path>
+                      <path d="M3.00977 10V16C2.47933 16 1.97065 15.7893 1.59558 15.4142C1.22051 15.0391 1.00977 14.5304 1.00977 14V12C1.00977 11.4696 1.22051 10.9609 1.59558 10.5858C1.97065 10.2107 2.47933 10 3.00977 10Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                      <path d="M21.0098 10C21.5402 10 22.0489 10.2107 22.424 10.5858C22.7991 10.9609 23.0098 11.4696 23.0098 12V14C23.0098 14.5304 22.7991 15.0391 22.424 15.4142C22.0489 15.7893 21.5402 16 21.0098 16V10Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                    </svg>
+                  </span>
+                  <span data-i18n="ax-build-catalog-plain-item-07">사내 Q&amp;A 어시스턴트</span>
+                </li>
+
+              </ul>
+            </div>
+
+            <span class="catalog-group__plus" role="img" aria-label="공통 업무와 직군별 업무를 함께 활용">
+              <!-- 공통 업무 + 직군별 업무 — images/icons/library/115.추가,더하기.svg -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="var(--color-brand)"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.25 7.0498V16.9498H10.75V7.0498H13.25Z" fill="var(--color-axpresso-ink)"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.0498 10.75H16.9498V13.25H7.0498V10.75Z" fill="var(--color-axpresso-ink)"></path>
+              </svg>
+            </span>
+
+            <!-- 직군별 — 탭으로 갈아 끼운다 -->
+            <div class="catalog-group__tabbed">
+              <p class="tag" data-i18n="ax-build-catalog-tabbed-label">직군별 업무</p>
+              <div class="tab-catalog" data-catalog-board="" data-catalog-autoplay="3000">
+                <div class="tab-catalog__tabs" role="tablist" aria-label="직군별 자동화 분야">
+                <button class="tab-catalog__tab is-active" type="button" data-catalog-category="marketing">
+                  <span class="tab-catalog__tab-label" data-i18n="ax-build-catalog-tab-marketing">마케팅</span>
+                  <span class="tab-catalog__tab-count">7</span>
+                </button>
+                <button class="tab-catalog__tab" type="button" data-catalog-category="sales">
+                  <span class="tab-catalog__tab-label" data-i18n="ax-build-catalog-tab-sales">영업</span>
+                  <span class="tab-catalog__tab-count">7</span>
+                </button>
+                <button class="tab-catalog__tab" type="button" data-catalog-category="management">
+                  <span class="tab-catalog__tab-label" data-i18n="ax-build-catalog-tab-management">경영관리</span>
+                  <span class="tab-catalog__tab-count">8</span>
+                </button>
+                <button class="tab-catalog__tab" type="button" data-catalog-category="rnd">
+                  <span class="tab-catalog__tab-label" data-i18n="ax-build-catalog-tab-rnd">R&amp;D</span>
+                  <span class="tab-catalog__tab-count">8</span>
+                </button>
+                </div>
+
+                <div class="tab-catalog__panels">
+                <div class="tab-catalog__panel is-active" data-catalog-panel="marketing">
+                  <ul class="item-grid">
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 작성·글쓰기 — 038.작성,글쓰기.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M15.86 3.65039L19.4 7.19038L7.90999 18.6704L4 19.0004L4.37999 15.1404L15.86 3.65039Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                          <path d="M18.0498 8.54065L14.5098 5.00064L16.6398 2.88065C16.8271 2.69439 17.0806 2.58984 17.3448 2.58984C17.6089 2.58984 17.8624 2.69439 18.0498 2.88065L20.1698 5.00064C20.2635 5.0936 20.3379 5.20419 20.3887 5.32605C20.4394 5.44791 20.4656 5.57862 20.4656 5.71063C20.4656 5.84264 20.4394 5.97336 20.3887 6.09521C20.3379 6.21707 20.2635 6.32766 20.1698 6.42062L18.0498 8.54065Z" fill="var(--color-brand)"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M3 21C3 20.4477 3.44772 20 4 20H20C20.5523 20 21 20.4477 21 21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-marketing-item-01">콘텐츠 자동 생성</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 브라우저 창 — 077.브라우저 창.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                          <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"></path>
+                          <path d="M16 4.5H15C14.7239 4.5 14.5 4.72386 14.5 5V6C14.5 6.27614 14.7239 6.5 15 6.5H16C16.2761 6.5 16.5 6.27614 16.5 6V5C16.5 4.72386 16.2761 4.5 16 4.5Z" fill="var(--color-surface)"></path>
+                          <path d="M12.5 4.5H11.5C11.2239 4.5 11 4.72386 11 5V6C11 6.27614 11.2239 6.5 11.5 6.5H12.5C12.7761 6.5 13 6.27614 13 6V5C13 4.72386 12.7761 4.5 12.5 4.5Z" fill="var(--color-surface)"></path>
+                          <path d="M19.5 4.5H18.5C18.2239 4.5 18 4.72386 18 5V6C18 6.27614 18.2239 6.5 18.5 6.5H19.5C19.7761 6.5 20 6.27614 20 6V5C20 4.72386 19.7761 4.5 19.5 4.5Z" fill="var(--color-surface)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-marketing-item-02">랜딩 페이지 자동 생성</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 일정·캘린더 — 003.일정,캘린더.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M19.5 4.01953H4.5C3.39543 4.01953 2.5 4.91496 2.5 6.01953V19.0195C2.5 20.1241 3.39543 21.0195 4.5 21.0195H19.5C20.6046 21.0195 21.5 20.1241 21.5 19.0195V6.01953C21.5 4.91496 20.6046 4.01953 19.5 4.01953Z" fill="var(--color-brand)"></path>
+                          <path d="M8.48001 3.01953H7.5C7.22386 3.01953 7 3.24339 7 3.51953V5.51953C7 5.79567 7.22386 6.01953 7.5 6.01953H8.48001C8.75615 6.01953 8.98001 5.79567 8.98001 5.51953V3.51953C8.98001 3.24339 8.75615 3.01953 8.48001 3.01953Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                          <path d="M8.74023 9.5H7.24023C6.96409 9.5 6.74023 9.72386 6.74023 10V11.5C6.74023 11.7761 6.96409 12 7.24023 12H8.74023C9.01638 12 9.24023 11.7761 9.24023 11.5V10C9.24023 9.72386 9.01638 9.5 8.74023 9.5Z" fill="var(--color-surface)"></path>
+                          <path d="M12.75 9.5H11.25C10.9739 9.5 10.75 9.72386 10.75 10V11.5C10.75 11.7761 10.9739 12 11.25 12H12.75C13.0261 12 13.25 11.7761 13.25 11.5V10C13.25 9.72386 13.0261 9.5 12.75 9.5Z" fill="var(--color-surface)"></path>
+                          <path d="M16.7598 9.5H15.2598C14.9836 9.5 14.7598 9.72386 14.7598 10V11.5C14.7598 11.7761 14.9836 12 15.2598 12H16.7598C17.0359 12 17.2598 11.7761 17.2598 11.5V10C17.2598 9.72386 17.0359 9.5 16.7598 9.5Z" fill="var(--color-surface)"></path>
+                          <path d="M16.5 3.01953H15.5C15.2239 3.01953 15 3.24339 15 3.51953V5.51953C15 5.79567 15.2239 6.01953 15.5 6.01953H16.5C16.7761 6.01953 17 5.79567 17 5.51953V3.51953C17 3.24339 16.7761 3.01953 16.5 3.01953Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                          <path d="M8.74023 14H7.24023C6.96409 14 6.74023 14.2239 6.74023 14.5V16C6.74023 16.2761 6.96409 16.5 7.24023 16.5H8.74023C9.01638 16.5 9.24023 16.2761 9.24023 16V14.5C9.24023 14.2239 9.01638 14 8.74023 14Z" fill="var(--color-surface)"></path>
+                          <path d="M12.75 14H11.25C10.9739 14 10.75 14.2239 10.75 14.5V16C10.75 16.2761 10.9739 16.5 11.25 16.5H12.75C13.0261 16.5 13.25 16.2761 13.25 16V14.5C13.25 14.2239 13.0261 14 12.75 14Z" fill="var(--color-surface)"></path>
+                          <path d="M16.7598 14H15.2598C14.9836 14 14.7598 14.2239 14.7598 14.5V16C14.7598 16.2761 14.9836 16.5 15.2598 16.5H16.7598C17.0359 16.5 17.2598 16.2761 17.2598 16V14.5C17.2598 14.2239 17.0359 14 16.7598 14Z" fill="var(--color-surface)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-marketing-item-03">SEO·콘텐츠 캘린더</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 공유 — 009.공유.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M16.3702 3.92029L17.6299 6.07974L7.48087 12L17.6299 17.9203L16.3702 20.0797L2.51929 12L16.3702 3.92029Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                          <path d="M5 15C6.65685 15 8 13.6569 8 12C8 10.3431 6.65685 9 5 9C3.34315 9 2 10.3431 2 12C2 13.6569 3.34315 15 5 15Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                          <path d="M17 8C18.6569 8 20 6.65685 20 5C20 3.34315 18.6569 2 17 2C15.3431 2 14 3.34315 14 5C14 6.65685 15.3431 8 17 8Z" fill="var(--color-brand)"></path>
+                          <path d="M17 22C18.6569 22 20 20.6569 20 19C20 17.3431 18.6569 16 17 16C15.3431 16 14 17.3431 14 19C14 20.6569 15.3431 22 17 22Z" fill="var(--color-brand)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-marketing-item-04">소셜 미디어 자동 배포</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 방송 — 075.방송.svg. 단색 원본이라 전부 브랜드 색으로 둔다 -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12.0005 14.9997C13.6573 14.9997 15.0005 13.6565 15.0005 11.9997C15.0005 10.3428 13.6573 8.99969 12.0005 8.99969C10.3436 8.99969 9.00049 10.3428 9.00049 11.9997C9.00049 13.6565 10.3436 14.9997 12.0005 14.9997Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M8.46911 8.45529C6.51679 10.416 6.51895 13.5839 8.4676 15.5326L7.05339 16.9468C4.32203 14.2154 4.32419 9.78344 7.05188 7.0441L8.46911 8.45529Z" fill="var(--color-brand)"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M15.542 15.5441C17.4943 13.5834 17.4921 10.4154 15.5435 8.4668L16.9577 7.05258C19.6891 9.78394 19.6869 14.2159 16.9592 16.9553L15.542 15.5441Z" fill="var(--color-brand)"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M5.63675 5.6377C2.11898 9.14647 2.11768 14.8426 5.63765 18.3626L4.22344 19.7768C-0.0765834 15.4768 -0.0778871 8.51291 4.22435 4.22168L5.63675 5.6377Z" fill="var(--color-brand)"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M18.3643 18.3617C21.8821 14.8529 21.8834 9.15679 18.3634 5.63681L19.7776 4.2226C24.0776 8.52262 24.0789 15.4865 19.7767 19.7777L18.3643 18.3617Z" fill="var(--color-brand)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-marketing-item-05">언론·평판 모니터링</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 공지 — 016.공지.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M4 6H8V14H4C3.46957 14 2.96089 13.7893 2.58582 13.4142C2.21074 13.0391 2 12.5304 2 12V8C2 7.46957 2.21074 6.96086 2.58582 6.58578C2.96089 6.21071 3.46957 6 4 6Z" fill="var(--color-brand)"></path>
+                          <path d="M6.25 14H3.75V21H6.25V14Z" fill="var(--color-brand)"></path>
+                          <path d="M19 7C19.7956 7 20.5587 7.31607 21.1213 7.87868C21.6839 8.44129 22 9.20435 22 10C22 10.7956 21.6839 11.5587 21.1213 12.1213C20.5587 12.6839 19.7956 13 19 13V7Z" fill="var(--color-brand)"></path>
+                          <path d="M18.29 18.6893L8 14.0093V6.00926L18.29 1.37925C18.3659 1.34412 18.4494 1.3286 18.5328 1.33409C18.6163 1.33958 18.697 1.36591 18.7677 1.41069C18.8383 1.45546 18.8966 1.51725 18.9372 1.59037C18.9778 1.6635 18.9994 1.74563 19 1.82927V18.2793C18.9931 18.3595 18.9669 18.4368 18.9237 18.5047C18.8805 18.5726 18.8216 18.6291 18.7519 18.6694C18.6822 18.7096 18.6038 18.7324 18.5234 18.7359C18.443 18.7393 18.3629 18.7234 18.29 18.6893Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-marketing-item-06">이메일 캠페인</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 대화·채팅 — 002.대화,채팅.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M4 4H20C21.1046 4 22 4.89543 22 6V16C22 17.1046 21.1046 18 20 18H12L7 23V18H4C2.89543 18 2 17.1046 2 16V6C2 4.89543 2.89543 4 4 4Z" fill="var(--color-brand)"></path>
+                          <path d="M8.5 9.75H7C6.72386 9.75 6.5 9.97386 6.5 10.25V11.75C6.5 12.0261 6.72386 12.25 7 12.25H8.5C8.77614 12.25 9 12.0261 9 11.75V10.25C9 9.97386 8.77614 9.75 8.5 9.75Z" fill="var(--color-surface)"></path>
+                          <path d="M12.75 9.75H11.25C10.9739 9.75 10.75 9.97386 10.75 10.25V11.75C10.75 12.0261 10.9739 12.25 11.25 12.25H12.75C13.0261 12.25 13.25 12.0261 13.25 11.75V10.25C13.25 9.97386 13.0261 9.75 12.75 9.75Z" fill="var(--color-surface)"></path>
+                          <path d="M17 9.75H15.5C15.2239 9.75 15 9.97386 15 10.25V11.75C15 12.0261 15.2239 12.25 15.5 12.25H17C17.2761 12.25 17.5 12.0261 17.5 11.75V10.25C17.5 9.97386 17.2761 9.75 17 9.75Z" fill="var(--color-surface)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-marketing-item-07">고객 사례·인터뷰 자동 정리</span>
+                    </li>
+
+                  </ul>
+                </div>
+
+                <div class="tab-catalog__panel" data-catalog-panel="sales">
+                  <ul class="item-grid">
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 연락처 — 041.연락처.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5.03027 2H18.0303C18.5607 2 19.0694 2.21071 19.4445 2.58578C19.8195 2.96086 20.0303 3.46957 20.0303 4V20C20.0303 20.5304 19.8195 21.0391 19.4445 21.4142C19.0694 21.7893 18.5607 22 18.0303 22H5.03027C4.76506 22 4.51072 21.8946 4.32318 21.7071C4.13564 21.5196 4.03027 21.2652 4.03027 21V3C4.03027 2.73478 4.13564 2.48041 4.32318 2.29288C4.51072 2.10534 4.76506 2 5.03027 2Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                          <path d="M5.01074 7H3.01074C2.7346 7 2.51074 7.22386 2.51074 7.5V8.5C2.51074 8.77614 2.7346 9 3.01074 9H5.01074C5.28688 9 5.51074 8.77614 5.51074 8.5V7.5C5.51074 7.22386 5.28688 7 5.01074 7Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                          <path d="M5.01074 11H3.01074C2.7346 11 2.51074 11.2239 2.51074 11.5V12.5C2.51074 12.7761 2.7346 13 3.01074 13H5.01074C5.28688 13 5.51074 12.7761 5.51074 12.5V11.5C5.51074 11.2239 5.28688 11 5.01074 11Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                          <path d="M5.01074 15H3.01074C2.7346 15 2.51074 15.2239 2.51074 15.5V16.5C2.51074 16.7761 2.7346 17 3.01074 17H5.01074C5.28688 17 5.51074 16.7761 5.51074 16.5V15.5C5.51074 15.2239 5.28688 15 5.01074 15Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                          <path d="M12.5103 9.47977L11.2203 10.7698C11.6024 11.3214 12.0342 11.8369 12.5103 12.3098C12.9832 12.7828 13.4988 13.2113 14.0503 13.5898L15.3403 12.3098L17.8103 14.7798L17.0803 15.5198L15.8403 16.7598C15.1987 16.5225 14.5767 16.2349 13.9803 15.8998C12.9184 15.314 11.9452 14.58 11.0903 13.7198C10.2367 12.8652 9.50635 11.8959 8.92032 10.8398C8.58858 10.243 8.30436 9.62112 8.07031 8.97977L9.31032 7.73976L10.0403 7.00977L12.5103 9.47977Z" fill="var(--color-brand)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-sales-item-01">고객 데이터 관리(CRM)</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 영업·외근 — 112.영업,외근.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M21 5H3C2.44772 5 2 5.44772 2 6V19C2 19.5523 2.44772 20 3 20H21C21.5523 20 22 19.5523 22 19V6C22 5.44772 21.5523 5 21 5Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                          <path d="M10 3H14C14.2652 3 14.5196 3.10537 14.7071 3.29291C14.8946 3.48044 15 3.73478 15 4V5H9V4C9 3.73478 9.10534 3.48044 9.29288 3.29291C9.48041 3.10537 9.73478 3 10 3Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                          <path d="M21 5.00977H3C2.73478 5.00977 2.48043 5.11512 2.29289 5.30266C2.10536 5.49019 2 5.74455 2 6.00977V12.0098C2 12.5402 2.21071 13.0489 2.58578 13.424C2.96086 13.7991 3.46957 14.0098 4 14.0098H20C20.5304 14.0098 21.0391 13.7991 21.4142 13.424C21.7893 13.0489 22 12.5402 22 12.0098V6.00977C22 5.74455 21.8946 5.49019 21.7071 5.30266C21.5196 5.11512 21.2652 5.00977 21 5.00977Z" fill="var(--color-brand)"></path>
+                          <path d="M7 9H5V12H7V9Z" fill="var(--color-surface)"></path>
+                          <path d="M19 9H17V12H19V9Z" fill="var(--color-surface)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-sales-item-02">잠재 고객 발굴</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 진행·제출 — 118.진행,제출.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="var(--color-brand)"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M16 13.25H7V10.75H16V13.25Z" fill="var(--color-surface)"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M14.3276 12L11.0658 8.33045L12.9343 6.66954L17.6725 12L12.9343 17.3305L11.0658 15.6695L14.3276 12Z" fill="var(--color-surface)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-sales-item-03">아웃리치 시퀀스</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 수익·금액 — 119.수익,금액.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="var(--color-brand)"></path>
+                          <path d="M15.4802 17H12.9802L10.7402 8H13.2402L15.4802 17Z" fill="var(--color-surface)"></path>
+                          <path d="M15.4998 8L13.2598 17H15.7598L17.9998 8" fill="var(--color-surface)"></path>
+                          <path d="M8.5 17H11L13.23 8H10.73L8.5 17Z" fill="var(--color-surface)"></path>
+                          <path d="M8.46973 8L10.7097 17H8.20972L5.96973 8" fill="var(--color-surface)"></path>
+                          <rect x="16" y="10.5" width="3" height="2" fill="var(--color-surface)"></rect>
+                          <rect x="5" y="10.5" width="3" height="2" fill="var(--color-surface)"></rect>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-sales-item-04">제안서·견적서 자동 작성</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 문서·결재 — 005.문서,결재.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20 7V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58578 21.4142C4.21071 21.0391 4 20.5304 4 20V4C4 3.46957 4.21071 2.96083 4.58578 2.58575C4.96086 2.21068 5.46957 2 6 2H15L20 7Z" fill="var(--color-brand)"></path>
+                          <path d="M16 7H20L15 2V6C15 6.26522 15.1054 6.51956 15.2929 6.70709C15.4804 6.89463 15.7348 7 16 7Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                          <path d="M16.5 11H7.5C7.22386 11 7 11.2239 7 11.5V12.5C7 12.7761 7.22386 13 7.5 13H16.5C16.7761 13 17 12.7761 17 12.5V11.5C17 11.2239 16.7761 11 16.5 11Z" fill="var(--color-surface)"></path>
+                          <path d="M16.5 15H7.5C7.22386 15 7 15.2239 7 15.5V16.5C7 16.7761 7.22386 17 7.5 17H16.5C16.7761 17 17 16.7761 17 16.5V15.5C17 15.2239 16.7761 15 16.5 15Z" fill="var(--color-surface)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-sales-item-05">계약서 초안·리뷰</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 전화 — 031.전화.svg. 단색 원본이라 브랜드 색 하나로 둔다 -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.4693 7.86983L8.60932 9.73982C9.36983 10.8431 10.2301 11.8741 11.1793 12.8198C12.1285 13.7692 13.1629 14.6295 14.2693 15.3898L16.1293 13.5298C16.3167 13.3436 16.5701 13.239 16.8343 13.239C17.0985 13.239 17.352 13.3436 17.5393 13.5298L21.0793 17.0698C21.2656 17.2572 21.3701 17.5106 21.3701 17.7748C21.3701 18.039 21.2656 18.2925 21.0793 18.4798L20.3193 19.2398L18.7693 20.7898C18.4929 21.0648 18.142 21.2529 17.7601 21.3311C17.3781 21.4092 16.9816 21.374 16.6193 21.2298C15.7659 20.8657 14.9315 20.4585 14.1193 20.0098C12.004 18.8298 10.0622 17.3625 8.34932 15.6498C6.63507 13.9383 5.16763 11.9963 3.98932 9.87982C3.53872 9.06865 3.13148 8.23415 2.76933 7.37982C2.62636 7.01663 2.59278 6.61955 2.67274 6.23752C2.75271 5.85548 2.9427 5.50519 3.21932 5.22983L4.75932 3.68982L5.51933 2.91982C5.61229 2.82609 5.72288 2.7517 5.84474 2.70093C5.9666 2.65016 6.09731 2.62402 6.22932 2.62402C6.36134 2.62402 6.49204 2.65016 6.6139 2.70093C6.73576 2.7517 6.84636 2.82609 6.93932 2.91982L10.4693 6.45982C10.6556 6.64719 10.7601 6.90064 10.7601 7.16483C10.7601 7.42901 10.6556 7.68246 10.4693 7.86983Z" fill="var(--color-brand)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-sales-item-06">영업 통화 분석</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 선 그래프 — 110.선 그래프.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                          <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                          <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-sales-item-07">파이프라인 리포트</span>
+                    </li>
+
+                  </ul>
+                </div>
+
+                <div class="tab-catalog__panel" data-catalog-panel="management">
+                  <ul class="item-grid">
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 시간·기록 — 120.시간,기록.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="var(--color-brand)"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M10.75 7.5H13.25V11.875L16.75 14.5L15.25 16.5L10.75 13.125V7.5Z" fill="var(--color-surface)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-management-item-01">근태·휴가 관리</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 회계·계산 — 014.회계,계산.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="var(--color-brand)"></path>
+                          <path d="M16.5 5H7.5C7.22386 5 7 5.22386 7 5.5V7.5C7 7.77614 7.22386 8 7.5 8H16.5C16.7761 8 17 7.77614 17 7.5V5.5C17 5.22386 16.7761 5 16.5 5Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                          <path d="M9.25 9.75H7.75C7.47386 9.75 7.25 9.97386 7.25 10.25V11.75C7.25 12.0261 7.47386 12.25 7.75 12.25H9.25C9.52614 12.25 9.75 12.0261 9.75 11.75V10.25C9.75 9.97386 9.52614 9.75 9.25 9.75Z" fill="var(--color-surface)"></path>
+                          <path d="M12.75 9.75H11.25C10.9739 9.75 10.75 9.97386 10.75 10.25V11.75C10.75 12.0261 10.9739 12.25 11.25 12.25H12.75C13.0261 12.25 13.25 12.0261 13.25 11.75V10.25C13.25 9.97386 13.0261 9.75 12.75 9.75Z" fill="var(--color-surface)"></path>
+                          <path d="M16.2598 9.75H14.7598C14.4836 9.75 14.2598 9.97386 14.2598 10.25V11.75C14.2598 12.0261 14.4836 12.25 14.7598 12.25H16.2598C16.5359 12.25 16.7598 12.0261 16.7598 11.75V10.25C16.7598 9.97386 16.5359 9.75 16.2598 9.75Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                          <path d="M9.25 13.25H7.75C7.47386 13.25 7.25 13.4739 7.25 13.75V15.25C7.25 15.5261 7.47386 15.75 7.75 15.75H9.25C9.52614 15.75 9.75 15.5261 9.75 15.25V13.75C9.75 13.4739 9.52614 13.25 9.25 13.25Z" fill="var(--color-surface)"></path>
+                          <path d="M12.75 13.25H11.25C10.9739 13.25 10.75 13.4739 10.75 13.75V15.25C10.75 15.5261 10.9739 15.75 11.25 15.75H12.75C13.0261 15.75 13.25 15.5261 13.25 15.25V13.75C13.25 13.4739 13.0261 13.25 12.75 13.25Z" fill="var(--color-surface)"></path>
+                          <path d="M16.2598 13.25H14.7598C14.4836 13.25 14.2598 13.4739 14.2598 13.75V15.25C14.2598 15.5261 14.4836 15.75 14.7598 15.75H16.2598C16.5359 15.75 16.7598 15.5261 16.7598 15.25V13.75C16.7598 13.4739 16.5359 13.25 16.2598 13.25Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                          <path d="M9.25 16.75H7.75C7.47386 16.75 7.25 16.9739 7.25 17.25V18.75C7.25 19.0261 7.47386 19.25 7.75 19.25H9.25C9.52614 19.25 9.75 19.0261 9.75 18.75V17.25C9.75 16.9739 9.52614 16.75 9.25 16.75Z" fill="var(--color-surface)"></path>
+                          <path d="M12.75 16.75H11.25C10.9739 16.75 10.75 16.9739 10.75 17.25V18.75C10.75 19.0261 10.9739 19.25 11.25 19.25H12.75C13.0261 19.25 13.25 19.0261 13.25 18.75V17.25C13.25 16.9739 13.0261 16.75 12.75 16.75Z" fill="var(--color-surface)"></path>
+                          <path d="M16.2598 16.75H14.7598C14.4836 16.75 14.2598 16.9739 14.2598 17.25V18.75C14.2598 19.0261 14.4836 19.25 14.7598 19.25H16.2598C16.5359 19.25 16.7598 19.0261 16.7598 18.75V17.25C16.7598 16.9739 16.5359 16.75 16.2598 16.75Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-management-item-02">경비·정산 처리</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 카드·결제 — 040.카드,결제.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                          <path d="M22 6.5H2V9.5H22V6.5Z" fill="var(--color-brand)"></path>
+                          <path d="M20 11H4V14H20V11Z" fill="var(--color-surface)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-management-item-03">인보이스·수금</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 막대 그래프 — 109.막대 그래프.svg. 단색 원본이라 3단 높이만 톤을 나눈다 -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                          <path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="var(--color-brand)"></path>
+                          <path d="M20 3H17C16.4477 3 16 3.44772 16 4V20C16 20.5523 16.4477 21 17 21H20C20.5523 21 21 20.5523 21 20V4C21 3.44772 20.5523 3 20 3Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-management-item-04">재무 대시보드</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 인사정보 — 004.인사정보.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                          <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="var(--color-brand)"></path>
+                          <path d="M10 12H14C14.5304 12 15.0391 12.2107 15.4142 12.5858C15.7893 12.9609 16 13.4696 16 14V17C16 17.2652 15.8946 17.5196 15.7071 17.7071C15.5196 17.8946 15.2652 18 15 18H9C8.73478 18 8.48041 17.8946 8.29288 17.7071C8.10534 17.5196 8 17.2652 8 17V14C8 13.4696 8.21071 12.9609 8.58578 12.5858C8.96086 12.2107 9.46957 12 10 12Z" fill="var(--color-brand)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-management-item-05">채용 프로세스</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 사원증 — 098.사원증.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18 3H6C4.89543 3 4 3.89543 4 5V21C4 22.1046 4.89543 23 6 23H18C19.1046 23 20 22.1046 20 21V5C20 3.89543 19.1046 3 18 3Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                          <path d="M12 8C11.6044 8 11.2178 8.1173 10.8889 8.33706C10.56 8.55682 10.3036 8.86918 10.1522 9.23463C10.0009 9.60009 9.96126 10.0022 10.0384 10.3902C10.1156 10.7781 10.3061 11.1345 10.5858 11.4142C10.8655 11.6939 11.2219 11.8844 11.6098 11.9616C11.9978 12.0387 12.3999 11.9991 12.7654 11.8478C13.1308 11.6964 13.4432 11.44 13.6629 11.1111C13.8827 10.7822 14 10.3956 14 10C14 9.46957 13.7893 8.96086 13.4142 8.58579C13.0391 8.21071 12.5304 8 12 8Z" fill="var(--color-brand)"></path>
+                          <path d="M16 16C16 15.2044 15.6839 14.4413 15.1213 13.8787C14.5587 13.3161 13.7956 13 13 13H11C10.2044 13 9.44129 13.3161 8.87868 13.8787C8.31607 14.4413 8 15.2044 8 16C8 16.2652 8.10536 16.5196 8.29289 16.7071C8.48043 16.8946 8.73478 17 9 17H15C15.2652 17 15.5196 16.8946 15.7071 16.7071C15.8946 16.5196 16 16.2652 16 16Z" fill="var(--color-brand)"></path>
+                          <path d="M10 1H14C14.2652 1 14.5196 1.10536 14.7071 1.29289C14.8946 1.48043 15 1.73478 15 2V3H9V2C9 1.73478 9.10536 1.48043 9.29289 1.29289C9.48043 1.10536 9.73478 1 10 1Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-management-item-06">온보딩·오프보딩</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 목표·OKR — 011.목표,OKR.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="var(--color-brand)"></path>
+                          <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" fill="var(--color-surface)"></path>
+                          <path d="M12 14.5C13.3807 14.5 14.5 13.3807 14.5 12C14.5 10.6193 13.3807 9.5 12 9.5C10.6193 9.5 9.5 10.6193 9.5 12C9.5 13.3807 10.6193 14.5 12 14.5Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-management-item-07">성과 평가·1on1</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 서명 — 026.서명.svg. 단색 원본이라 브랜드 색 하나로 둔다 -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M9.08664 5.18651C8.22428 6.07383 7.35587 7.50805 6.75858 9.28963L6.75534 9.29929C5.74022 12.2473 5.75033 14.3788 6.11772 15.8818C6.18984 15.7847 6.26165 15.6862 6.33314 15.5865C7.83388 13.4927 9.07523 10.9908 9.82944 8.74653C10.623 6.31921 10.6115 5.03487 10.5026 4.44106C10.4907 4.37621 10.4777 4.31992 10.4645 4.27142C10.1684 4.33009 9.70398 4.55131 9.08664 5.18651ZM11.2029 3.09723L11.8891 2.05244L11.7624 1.96923L11.6195 1.91871C9.98554 1.34102 8.3982 2.30782 7.29384 3.44414C6.11755 4.65447 5.07902 6.43661 4.38988 8.49009C3.02832 12.4469 3.21132 15.4088 4.02481 17.5612C4.08858 17.7299 4.15588 17.8928 4.22613 18.0498C3.33593 18.8967 2.43613 19.5104 1.57178 19.8256L2.42827 22.1743C3.54636 21.7666 4.60958 21.0656 5.59562 20.1869C6.10788 20.7674 6.60902 21.1685 6.97368 21.4206L6.97688 21.4228C7.34507 21.6756 7.79536 21.7843 8.24179 21.7229C8.68768 21.6616 9.0901 21.4363 9.37611 21.0976L11.5982 18.4181L12.2452 20.4048C12.3375 20.6921 12.5045 20.9524 12.7324 21.1567C12.9624 21.3628 13.2454 21.5037 13.5523 21.5612C13.8596 21.6188 14.1761 21.59 14.4672 21.4788C14.758 21.3678 15.0104 21.1797 15.1998 20.9379L15.209 20.9261L16.9498 18.5896L17.5173 20.4432L17.5208 20.4545C17.6126 20.7444 17.7804 21.0072 18.01 21.213C18.24 21.4191 18.523 21.56 18.8299 21.6175C19.1372 21.6751 19.4537 21.6462 19.7448 21.5351C20.0356 21.424 20.288 21.236 20.4774 20.9941L20.4872 20.9816L23.0036 17.5931L20.9965 16.1026L19.4432 18.1942L18.8767 16.3438C18.7894 16.0479 18.6228 15.7783 18.391 15.5672C18.1551 15.3522 17.8615 15.2069 17.5431 15.1518C17.2243 15.0967 16.8973 15.1349 16.6008 15.2606C16.3126 15.3827 16.067 15.5813 15.8876 15.8309L14.1461 18.1683L13.528 16.2708C13.4401 15.9852 13.2778 15.7249 13.0543 15.5193C12.8239 15.3073 12.5381 15.1624 12.2276 15.1034C11.9169 15.0443 11.5961 15.0742 11.3017 15.1893C11.0196 15.2996 10.7753 15.4828 10.591 15.7162L7.89625 18.9658C7.72027 18.806 7.52855 18.6102 7.33578 18.3747C7.69445 17.9457 8.03806 17.4992 8.36509 17.0429C10.0189 14.7356 11.3717 12.0071 12.2009 9.53774L12.204 9.52848C13.0692 6.88392 13.1741 5.14821 12.9615 3.98983C12.8536 3.40202 12.6635 2.96213 12.4505 2.63929C12.3449 2.47931 12.2374 2.35369 12.1387 2.25679C12.0896 2.20854 12.0431 2.16793 12.0009 2.13408C11.9798 2.11717 11.9598 2.10199 11.9411 2.08841C11.9318 2.08163 11.9228 2.07525 11.9141 2.06926L11.9013 2.06056L11.8952 2.05643L11.8921 2.05442C11.8906 2.05342 11.8891 2.05244 11.2029 3.09723Z" fill="var(--color-brand)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-management-item-08">계약서 라이프사이클</span>
+                    </li>
+
+                  </ul>
+                </div>
+
+                <div class="tab-catalog__panel" data-catalog-panel="rnd">
+                  <ul class="item-grid">
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 문서·글 — 001.문서,글.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                          <path d="M16.5 7H7.5C7.22386 7 7 7.22386 7 7.5V8.5C7 8.77614 7.22386 9 7.5 9H16.5C16.7761 9 17 8.77614 17 8.5V7.5C17 7.22386 16.7761 7 16.5 7Z" fill="var(--color-brand)"></path>
+                          <path d="M16.5 11H7.5C7.22386 11 7 11.2239 7 11.5V12.5C7 12.7761 7.22386 13 7.5 13H16.5C16.7761 13 17 12.7761 17 12.5V11.5C17 11.2239 16.7761 11 16.5 11Z" fill="var(--color-brand)"></path>
+                          <path d="M16.5 15H7.5C7.22386 15 7 15.2239 7 15.5V16.5C7 16.7761 7.22386 17 7.5 17H16.5C16.7761 17 17 16.7761 17 16.5V15.5C17 15.2239 16.7761 15 16.5 15Z" fill="var(--color-brand)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-rnd-item-01">PRD·기획서 자동 작성</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 태그 — 036.태그.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12.9204 2H21.0004C21.2656 2 21.52 2.10534 21.7075 2.29288C21.8951 2.48041 22.0004 2.73478 22.0004 3V11.07C22.0006 11.3339 21.9486 11.5952 21.8473 11.839C21.7461 12.0827 21.5976 12.3039 21.4104 12.49L11.4104 22.49C11.2247 22.6759 11.0041 22.8235 10.7613 22.9241C10.5185 23.0248 10.2583 23.0766 9.99542 23.0766C9.73259 23.0766 9.47232 23.0248 9.22952 22.9241C8.98673 22.8235 8.76616 22.6759 8.58041 22.49L1.51041 15.42C1.32445 15.2342 1.17694 15.0137 1.07629 14.7709C0.975645 14.5281 0.923828 14.2678 0.923828 14.005C0.923828 13.7422 0.975645 13.4819 1.07629 13.2391C1.17694 12.9963 1.32445 12.7757 1.51041 12.59L11.5104 2.59C11.8838 2.21441 12.3908 2.00223 12.9204 2Z" fill="var(--color-brand)"></path>
+                          <path d="M16.3398 9.66016C17.4444 9.66016 18.3398 8.76473 18.3398 7.66016C18.3398 6.55559 17.4444 5.66016 16.3398 5.66016C15.2353 5.66016 14.3398 6.55559 14.3398 7.66016C14.3398 8.76473 15.2353 9.66016 16.3398 9.66016Z" fill="var(--color-surface)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-rnd-item-02">이슈·버그 분류</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 개발·코딩 — 078.개발,코딩.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" fill="var(--color-brand)"></path>
+                          <path d="M12.8102 6L9.2002 18H11.2002L14.8102 6H12.8102Z" fill="var(--color-surface)"></path>
+                          <path d="M6.55996 8H8.45996L6.36996 12L8.45996 16H6.55996L4.45996 12L6.55996 8Z" fill="var(--color-surface)"></path>
+                          <path d="M17.37 8H15.46L17.56 12L15.46 16H17.37L19.47 12L17.37 8Z" fill="var(--color-surface)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-rnd-item-03">코드 리뷰 보조</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 메모 — 018.메모.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3.97949 6.00977V20.1198C4.00765 20.6309 4.23072 21.1118 4.60278 21.4634C4.97485 21.815 5.46758 22.0105 5.97949 22.0098H17.9795C18.4914 22.0105 18.9841 21.815 19.3562 21.4634C19.7283 21.1118 19.9513 20.6309 19.9795 20.1198V6.00977H3.97949Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                          <path d="M19.9795 4.00977C19.9795 3.47933 19.7688 2.97062 19.3937 2.59555C19.0186 2.22048 18.5099 2.00977 17.9795 2.00977H5.97949C5.44906 2.00977 4.94035 2.22048 4.56528 2.59555C4.1902 2.97062 3.97949 3.47933 3.97949 4.00977V6.00977H19.9795V4.00977Z" fill="var(--color-brand)"></path>
+                          <path d="M16.5833 9H7.41667C7.18655 9 7 9.22386 7 9.5V10.5C7 10.7761 7.18655 11 7.41667 11H16.5833C16.8135 11 17 10.7761 17 10.5V9.5C17 9.22386 16.8135 9 16.5833 9Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                          <path d="M16.5833 12.5H7.41667C7.18655 12.5 7 12.7239 7 13V14C7 14.2761 7.18655 14.5 7.41667 14.5H16.5833C16.8135 14.5 17 14.2761 17 14V13C17 12.7239 16.8135 12.5 16.5833 12.5Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                          <path d="M16.5833 16H7.41667C7.18655 16 7 16.2239 7 16.5V17.5C7 17.7761 7.18655 18 7.41667 18H16.5833C16.8135 18 17 17.7761 17 17.5V16.5C17 16.2239 16.8135 16 16.5833 16Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-rnd-item-04">기술 문서 자동 작성</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 깃발·목표 — 034.깃발,목표.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M22 16H5V4H22L18 10L22 16Z" fill="var(--color-brand)"></path>
+                          <path d="M3.75 3H4.25C4.51522 3 4.76962 3.10534 4.95715 3.29288C5.14469 3.48041 5.25 3.73478 5.25 4V22H2.75V4C2.75 3.73478 2.85537 3.48041 3.04291 3.29288C3.23044 3.10534 3.48478 3 3.75 3Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-rnd-item-05">릴리스 노트 자동 생성</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 아이디어 — 010.아이디어.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 17C16.4183 17 20 13.4183 20 9C20 4.58172 16.4183 1 12 1C7.58172 1 4 4.58172 4 9C4 13.4183 7.58172 17 12 17Z" fill="var(--color-brand)"></path>
+                          <path d="M15 16H9V19H15V16Z" fill="var(--color-brand)"></path>
+                          <path d="M8.97949 19V22C8.97949 22.2652 9.08486 22.5196 9.2724 22.7071C9.45994 22.8946 9.71428 23 9.97949 23H13.9795C14.2447 23 14.499 22.8946 14.6866 22.7071C14.8741 22.5196 14.9795 22.2652 14.9795 22V19H8.97949Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-rnd-item-06">연구 자료 수집·요약</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 원형 그래프 — 111.원형 그래프.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M14.49 12.0098H22C22 9.3576 20.9464 6.81408 19.0711 4.93872C17.1957 3.06336 14.6522 2.00977 12 2.00977V9.50977C12.3278 9.50976 12.6524 9.5745 12.9552 9.70026C13.258 9.82602 13.5329 10.0103 13.7643 10.2426C13.9956 10.4749 14.1788 10.7506 14.3033 11.0538C14.4279 11.3571 14.4913 11.6819 14.49 12.0098Z" fill="var(--color-brand)"></path>
+                          <path d="M11.9902 14.5098C11.3272 14.5098 10.6913 14.2464 10.2225 13.7775C9.75363 13.3087 9.49023 12.6728 9.49023 12.0098C9.49023 11.3467 9.75363 10.7108 10.2225 10.242C10.6913 9.77316 11.3272 9.50977 11.9902 9.50977V2.00977C9.33807 2.00977 6.79452 3.06336 4.91916 4.93872C3.0438 6.81408 1.99023 9.3576 1.99023 12.0098C1.99023 14.6619 3.0438 17.2054 4.91916 19.0808C6.79452 20.9562 9.33807 22.0098 11.9902 22.0098C14.6422 22.0092 17.1853 20.9553 19.0602 19.0798L13.7502 13.7698C13.5213 14.0046 13.2476 14.1911 12.9453 14.3182C12.643 14.4454 12.3182 14.5105 11.9902 14.5098Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
+                          <path d="M14.4908 12.0098C14.4911 12.3368 14.4268 12.6606 14.3015 12.9626C14.1762 13.2647 13.9924 13.539 13.7607 13.7698L19.0707 19.0798C20.9462 17.2048 22.0002 14.6617 22.0007 12.0098H14.4908Z" fill="color-mix(in srgb, var(--color-brand) 40%, var(--color-surface))"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-rnd-item-07">실험·A/B 테스트 운영</span>
+                    </li>
+                    <li>
+                      <span class="workflow-icon icon-md" aria-hidden="true">
+                        <!-- 도움말·문의 — 116.도움말,문의.svg -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12Z" fill="var(--color-brand)"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5212 8.33717C10.6934 8.56552 10.25 9.11472 10.25 9.73306H7.75C7.75 7.65796 9.30198 6.35599 10.8564 5.92718C12.3917 5.50366 14.3687 5.79882 15.5344 7.35835C16.0144 7.98384 16.2678 8.75342 16.249 9.54272C16.2302 10.3359 15.9378 11.0962 15.4243 11.6999L15.3976 11.7312L15.369 11.7607C14.8881 12.2561 14.2417 12.5701 13.8507 12.76C13.7836 12.7926 13.724 12.8216 13.674 12.8472C13.2648 13.0568 13.1419 13.1743 13.0807 13.2883C13.0805 13.2896 13.0804 13.2909 13.0804 13.292V14H10.5804V13.2819C10.5819 12.9423 10.6517 12.6071 10.7851 12.2955L10.7926 12.2779L10.8007 12.2605C11.2343 11.328 12.0171 10.887 12.5342 10.6221C12.6635 10.5558 12.776 10.4995 12.8748 10.4501C13.223 10.2757 13.4005 10.1868 13.5457 10.0486C13.6747 9.88365 13.7449 9.68559 13.7497 9.48327C13.7549 9.26792 13.6857 9.05442 13.5491 8.87765L13.5418 8.86828L13.5348 8.85877C13.1523 8.34401 12.3651 8.10439 11.5212 8.33717Z" fill="var(--color-surface)"></path>
+                          <path d="M12 18.3604C12.8284 18.3604 13.5 17.6888 13.5 16.8604C13.5 16.0319 12.8284 15.3604 12 15.3604C11.1716 15.3604 10.5 16.0319 10.5 16.8604C10.5 17.6888 11.1716 18.3604 12 18.3604Z" fill="var(--color-surface)"></path>
+                        </svg>
+                      </span>
+                      <span data-i18n="ax-build-catalog-rnd-item-08">고객 피드백 → 백로그</span>
+                    </li>
+
+                  </ul>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="catalog-note" data-i18n="ax-build-catalog-note">목록에 없는 업무도 진단 후 맞춤 설계할 수 있습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 20-Day Process — 좌측 sticky 요약 + 우측 단계 목록.
+         .section-wrap.row.is-sticky는 index.html PART 1·2가 쓰는 공용 골격이라
+         그대로 쓴다(좌측이 .section-aside여야 sticky가 걸린다).
+         우측 각 단계의 SVG는 images/icons/service/의 기존 아이콘을 인라인으로 옮기고
+         하드코딩 색(#E7ECEF·#F57C75·#A9C5F7 등)을 브랜드 토큰으로 교체한 것이다. -->
+    <section class="process fade-up">
+      <div class="section-wrap row is-sticky">
+        <div class="section-aside">
+          <div class="section-title text-left">
+            <p class="tag" data-i18n="ax-build-process-eyebrow">04 · 20-Day Process</p>
+            <h2 data-i18n="ax-build-process-title">진단부터 배포까지,<br>20일이면 충분합니다</h2>
+            <p class="desc" data-i18n="ax-build-process-desc">무엇을 만들지 합의한 뒤 구축하고, <br data-break="desktop">실제 사용자와 함께 효과를 확인합니다.</p>
+          </div>
+
+          <a class="btn btn-primary" href="#">
+            <span data-i18n="ax-build-process-cta">20일 일정 상담받기</span>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </a>
+        </div>
+
+        <ol class="process-steps">
+          <li>
+            <div class="step-head">
+              <span class="step-term" data-i18n="ax-build-process-step-term-01">Day 1</span>
+              <span class="step-no" aria-hidden="true">01</span>
+            </div>
+            <span class="step-icon" aria-hidden="true">
+              <!-- 현장 진단 — images/icons/library/025.검색.svg를 다크 섹션 톤으로 적용. -->
+              <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 17.21C14.2059 17.21 17.2101 14.2059 17.2101 10.5C17.2101 6.79422 14.2059 3.79004 10.5 3.79004C6.7942 3.79004 3.79004 6.79422 3.79004 10.5C3.79004 14.2059 6.7942 17.21 10.5 17.21Z" fill="color-mix(in srgb, var(--color-brand) 26%, var(--color-axpresso-bg-2))"></path>
+                <path d="M10.5 4.5C12.0913 4.5 13.6174 5.13214 14.7426 6.25735C15.8678 7.38257 16.5 8.9087 16.5 10.5C16.5 12.0913 15.8678 13.6174 14.7426 14.7426C13.6174 15.8679 12.0913 16.5 10.5 16.5C8.9087 16.5 7.38257 15.8679 6.25735 14.7426C5.13214 13.6174 4.5 12.0913 4.5 10.5C4.5 8.9087 5.13214 7.38257 6.25735 6.25735C7.38257 5.13214 8.9087 4.5 10.5 4.5ZM10.5 2C8.24647 2.00265 6.08599 2.89904 4.49251 4.49252C2.89902 6.08601 2.00265 8.24647 2 10.5C2 11.6162 2.21985 12.7215 2.64702 13.7528C3.07418 14.7841 3.7003 15.7211 4.48959 16.5104C5.27889 17.2997 6.21592 17.9258 7.24719 18.353C8.27846 18.7801 9.38376 19 10.5 19C11.6166 19.0013 12.7225 18.7824 13.7544 18.3557C14.7862 17.929 15.7238 17.3029 16.5133 16.5133C17.3029 15.7238 17.929 14.7862 18.3557 13.7544C18.7824 12.7225 19.0013 11.6166 19 10.5C19 8.24566 18.1045 6.08365 16.5104 4.48959C14.9163 2.89553 12.7543 2 10.5 2Z" fill="var(--color-axpresso-ink-light)"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4852 14.7068L21.8852 20.1168L20.1158 21.8829L14.7158 16.4729L16.4852 14.7068Z" fill="var(--color-brand)"></path>
+              </svg>
+            </span>
+            <div class="step-body">
+              <h3 data-i18n="ax-build-process-step-title-01">현장 진단</h3>
+              <p class="step-desc" data-i18n="ax-build-process-step-desc-01">실제 업무를 관찰하고, 시간이 많이 드는 지점과 자동화 목표를 찾습니다.</p>
+            </div>
+          </li>
+
+          <li>
+            <div class="step-head">
+              <span class="step-term" data-i18n="ax-build-process-step-term-02">Day 2~5</span>
+              <span class="step-no" aria-hidden="true">02</span>
+            </div>
+            <span class="step-icon" aria-hidden="true">
+              <!-- 범위 설계 — ic_structure.svg 기반. #A9C5F7을 브랜드 파생 톤으로 교체 -->
+              <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.75 16V7H13.25V16H10.75Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25 12.2598V16H3.75L3.75 11.5098C3.75 11.0458 3.9342 10.6006 4.26254 10.2723C4.59088 9.94397 5.03608 9.75977 5.5 9.75977H18.5C18.9641 9.75977 19.4092 9.94408 19.7374 10.2723C20.0655 10.6004 20.25 11.0455 20.25 11.5098V16H17.75V12.2598H6.25Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
+                <path d="M6.66667 16H3.33333C2.8731 16 2.5 16.3731 2.5 16.8333V20.1667C2.5 20.6269 2.8731 21 3.33333 21H6.66667C7.1269 21 7.5 20.6269 7.5 20.1667V16.8333C7.5 16.3731 7.1269 16 6.66667 16Z" fill="var(--color-brand)"></path>
+                <path d="M13.6667 16H10.3333C9.8731 16 9.5 16.3731 9.5 16.8333V20.1667C9.5 20.6269 9.8731 21 10.3333 21H13.6667C14.1269 21 14.5 20.6269 14.5 20.1667V16.8333C14.5 16.3731 14.1269 16 13.6667 16Z" fill="var(--color-brand)"></path>
+                <path d="M13.6667 2H10.3333C9.8731 2 9.5 2.3731 9.5 2.83333V6.16667C9.5 6.6269 9.8731 7 10.3333 7H13.6667C14.1269 7 14.5 6.6269 14.5 6.16667V2.83333C14.5 2.3731 14.1269 2 13.6667 2Z" fill="var(--color-brand-dark)"></path>
+                <path d="M20.6667 16H17.3333C16.8731 16 16.5 16.3731 16.5 16.8333V20.1667C16.5 20.6269 16.8731 21 17.3333 21H20.6667C21.1269 21 21.5 20.6269 21.5 20.1667V16.8333C21.5 16.3731 21.1269 16 20.6667 16Z" fill="var(--color-brand)"></path>
+              </svg>
+            </span>
+            <div class="step-body">
+              <h3 data-i18n="ax-build-process-step-title-02">설계와 목표 합의</h3>
+              <p class="step-desc" data-i18n="ax-build-process-step-desc-02">Agent가 맡을 범위, 사람이 확인할 지점, 측정할 KPI를 함께 정합니다.</p>
+            </div>
+          </li>
+
+          <li>
+            <div class="step-head">
+              <span class="step-term" data-i18n="ax-build-process-step-term-03">Day 6~15</span>
+              <span class="step-no" aria-hidden="true">03</span>
+            </div>
+            <span class="step-icon" aria-hidden="true">
+              <!-- Agent 구축 — ic_axBuild.svg 기반. 단색 #1A61EA를 면·강조로 나누고 코어를 진하게 -->
+              <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 19.75C16.2802 19.75 19.75 16.2802 19.75 12C19.75 7.71979 16.2802 4.25 12 4.25C7.71979 4.25 4.25 7.71979 4.25 12C4.25 16.2802 7.71979 19.75 12 19.75Z" fill="color-mix(in srgb, var(--color-brand) 30%, var(--color-surface))"></path>
+                <path d="M10 2H14C14.2652 2 14.5196 2.10536 14.7071 2.29289C14.8946 2.48043 15 2.73478 15 3V5H9V3C9 2.73478 9.10536 2.48043 9.29289 2.29289C9.48043 2.10536 9.73478 2 10 2Z" fill="var(--color-brand)"></path>
+                <path d="M2.34082 8.73944L4.34082 5.27534C4.47343 5.04566 4.69187 4.87805 4.94805 4.80941C5.20423 4.74077 5.47716 4.77671 5.70685 4.90932L7.4389 5.90932L4.4389 11.1055L2.70685 10.1055C2.47716 9.97286 2.30958 9.75444 2.24094 9.49826C2.1723 9.24208 2.20821 8.96913 2.34082 8.73944Z" fill="var(--color-brand)"></path>
+                <path d="M4.3418 18.7394L2.3418 15.2753C2.20919 15.0457 2.17326 14.7727 2.2419 14.5165C2.31054 14.2603 2.47814 14.0419 2.70782 13.9093L4.43987 12.9093L7.43987 18.1055L5.70782 19.1055C5.47814 19.2381 5.20519 19.274 4.94901 19.2053C4.69283 19.1367 4.47441 18.9691 4.3418 18.7394Z" fill="var(--color-brand)"></path>
+                <path d="M13.9902 22H9.99023C9.72502 22 9.47068 21.8946 9.28314 21.7071C9.09561 21.5196 8.99023 21.2652 8.99023 21V19H14.9902V21C14.9902 21.2652 14.8849 21.5196 14.6974 21.7071C14.5098 21.8946 14.2555 22 13.9902 22Z" fill="var(--color-brand)"></path>
+                <path d="M21.6533 15.2762L19.6533 18.7403C19.5207 18.97 19.3023 19.1376 19.0461 19.2062C18.7899 19.2749 18.517 19.2389 18.2873 19.1063L16.5552 18.1063L19.5552 12.9102L21.2873 13.9102C21.517 14.0428 21.6846 14.2612 21.7532 14.5174C21.8218 14.7735 21.7859 15.0465 21.6533 15.2762Z" fill="var(--color-brand)"></path>
+                <path d="M19.6543 5.27618L21.6543 8.74028C21.7869 8.96997 21.8228 9.24294 21.7542 9.49912C21.6855 9.7553 21.518 9.9737 21.2883 10.1063L19.5562 11.1063L16.5562 5.91016L18.2883 4.91016C18.518 4.77755 18.7909 4.74163 19.0471 4.81028C19.3033 4.87892 19.5217 5.0465 19.6543 5.27618Z" fill="var(--color-brand)"></path>
+                <path d="M12 14.5C13.3807 14.5 14.5 13.3807 14.5 12C14.5 10.6193 13.3807 9.5 12 9.5C10.6193 9.5 9.5 10.6193 9.5 12C9.5 13.3807 10.6193 14.5 12 14.5Z" fill="var(--color-brand-dark)"></path>
+              </svg>
+            </span>
+            <div class="step-body">
+              <h3 data-i18n="ax-build-process-step-title-03">Agent 구축</h3>
+              <p class="step-desc" data-i18n="ax-build-process-step-desc-03">FDE가 현업 담당자와 확인을 반복하며 실제 업무 흐름을 Agent로 구현합니다.</p>
+            </div>
+          </li>
+
+          <li>
+            <div class="step-head">
+              <span class="step-term" data-i18n="ax-build-process-step-term-04">Day 16~20</span>
+              <span class="step-no" aria-hidden="true">04</span>
+            </div>
+            <span class="step-icon" aria-hidden="true">
+              <!-- 배포·성과 측정 — ic_lineChart.svg 기반. #E7ECEF(회색)·#F57C75(연어)를 브랜드 톤으로 교체 -->
+              <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"></path>
+                <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand-dark)"></path>
+                <path d="M16.3 8.21973L11 13.5097L8 10.5097L3 15.5V18.49L8 13.4997L11 16.4997L17.71 9.79973L16.3 8.21973Z" fill="var(--color-brand)"></path>
+              </svg>
+            </span>
+            <div class="step-body">
+              <h3 data-i18n="ax-build-process-step-title-04">배포와 성과 측정</h3>
+              <p class="step-desc" data-i18n="ax-build-process-step-desc-04">실사용 환경에 배포하고, 시간 절감과 처리 정확도를 기준으로 효과를 검증합니다.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 05 Deliverables -->
+    <section class="deliverables fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag" data-i18n="ax-build-deliverables-eyebrow">05 · Deliverables</p>
+          <h2 data-i18n="ax-build-deliverables-title">20일 뒤, 조직에 남는 것</h2>
+        </div>
+        <div class="section-content">
+          <ul class="deliverable-list">
+            <li>
+              <span class="deliverable-icon" aria-hidden="true">
+                <!-- 진단 결과 문서 — ic_todo.svg 기반, 회색(#E7ECEF)을 브랜드 톤으로 교체 -->
+                <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="currentColor" fill-opacity="0.14"></path>
+                  <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="currentColor" fill-opacity="0.45"></path>
+                  <path d="M10.5 14H6.51C6.23 14 6.01 14.22 6.01 14.5V15.53C6.01 15.81 6.23 16.03 6.51 16.03H10.5C10.78 16.03 11 15.81 11 15.53V14.5C11 14.22 10.78 14 10.5 14Z" fill="currentColor" fill-opacity="0.45"></path>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M15 8.59L17.29 6.29L18.71 7.71L15 11.41L12.29 8.71L13.71 7.29L15 8.59Z" fill="currentColor"></path>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M15 14.59L17.29 12.29L18.71 13.71L15 17.41L12.29 14.71L13.71 13.29L15 14.59Z" fill="currentColor"></path>
+                </svg>
+              </span>
+              <h3 data-i18n="ax-build-deliverables-item-title-01">업무 진단 결과</h3>
+              <p class="deliverable-desc" data-i18n="ax-build-deliverables-item-desc-01">자동화 대상, 병목 구간, 목표 KPI가 정리된 실행 기준을 제공합니다.</p>
+            </li>
+            <li>
+              <span class="deliverable-icon" aria-hidden="true">
+                <!-- 배포된 Agent — ic_axBuild 계열의 구조를 브랜드 색으로 단순화 -->
+                <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17 9H7C5.89543 9 5 9.89543 5 11V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V11C19 9.89543 18.1046 9 17 9Z" fill="currentColor" fill-opacity="0.16"></path>
+                  <path d="M12 2C11.4477 2 11 2.44772 11 3V6H13V3C13 2.44772 12.5523 2 12 2Z" fill="currentColor"></path>
+                  <path d="M15 6H9C7.89543 6 7 6.89543 7 8V9H17V8C17 6.89543 16.1046 6 15 6Z" fill="currentColor"></path>
+                  <path d="M10 13C10.5523 13 11 13.4477 11 14V15C11 15.5523 10.5523 16 10 16C9.44772 16 9 15.5523 9 15V14C9 13.4477 9.44772 13 10 13Z" fill="currentColor"></path>
+                  <path d="M14 13C14.5523 13 15 13.4477 15 14V15C15 15.5523 14.5523 16 14 16C13.4477 16 13 15.5523 13 15V14C13 13.4477 13.4477 13 14 13Z" fill="currentColor"></path>
+                  <path d="M9.5 18H14.5V19.5H9.5V18Z" fill="currentColor"></path>
+                </svg>
+              </span>
+              <h3 data-i18n="ax-build-deliverables-item-title-02">운영 가능한 AI Agent</h3>
+              <p class="deliverable-desc" data-i18n="ax-build-deliverables-item-desc-02">시연용 화면이 아니라, 현업의 실제 업무를 수행하는 Agent가 배포됩니다.</p>
+            </li>
+            <li>
+              <span class="deliverable-icon" aria-hidden="true">
+                <!-- 성과 리포트 — ic_lineChart.svg 기반, 연어색(#F57C75)을 브랜드 색으로 교체 -->
+                <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.88 3H5.12C3.95 3 3 3.9 3 5V19C3 20.1 3.95 21 5.12 21H18.88C20.05 21 21 20.1 21 19V5C21 3.9 20.05 3 18.88 3Z" fill="currentColor" fill-opacity="0.14"></path>
+                  <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="currentColor"></path>
+                  <path d="M16.3 8.22L11 13.51L8 10.51L3 15.5V18.49L8 13.5L11 16.5L17.71 9.8L16.3 8.22Z" fill="currentColor"></path>
+                </svg>
+              </span>
+              <h3 data-i18n="ax-build-deliverables-item-title-03">성과 측정 리포트</h3>
+              <p class="deliverable-desc" data-i18n="ax-build-deliverables-item-desc-03">도입 전후의 소요 시간과 처리량을 비교해 개선 효과를 확인합니다.</p>
+            </li>
+            <li>
+              <span class="deliverable-icon" aria-hidden="true">
+                <!-- 안정화 지원 — ic_handshaking 개념을 24px 그리드로 단순화 -->
+                <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21.5 5L12 1L2.5 5V9C2.49 12.02 3.39 14.97 5.09 17.47C6.78 19.96 9.19 21.89 12 23C14.81 21.89 17.22 19.96 18.91 17.47C20.61 14.97 21.51 12.02 21.5 9V5Z" fill="currentColor" fill-opacity="0.16"></path>
+                  <path d="M12 7C12.5523 7 13 7.44772 13 8V11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H13V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V13H8C7.44772 13 7 12.5523 7 12C7 11.4477 7.44772 11 8 11H11V8C11 7.44772 11.4477 7 12 7Z" fill="currentColor"></path>
+                </svg>
+              </span>
+              <h3 data-i18n="ax-build-deliverables-item-title-04">3개월 안정화 지원</h3>
+              <p class="deliverable-desc" data-i18n="ax-build-deliverables-item-desc-04">실사용에서 발견되는 예외를 보완하고, 운영에 안착하도록 지원합니다.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 Real Outcomes — 공용 outcome-card(components/ui/outcome-card.css) 마크업을
+         그대로 쓴다. cases.html·skillcertify.html과 같은 카드 껍데기·로고 판·타이포로
+         통일해, 다크 배경 위에서도 별도 오버라이드 없이 같은 디자인으로 읽힌다. -->
+    <section class="outcomes fade-up">
+      <div class="section-wrap col">
+        <div class="section-header">
+          <div class="section-title text-left">
+            <p class="tag" data-i18n="ax-build-outcomes-eyebrow">06 · Real Outcomes</p>
+            <h2 data-i18n="ax-build-outcomes-title">실제 고객 업무는 <br data-break="desktop">이렇게 달라졌습니다</h2>
+          </div>
+          <div class="section-cta">
+            <a href="/cases" class="btn btn-outline-inverse">
+              <span data-i18n="ax-build-outcomes-cta">고객 사례 전체 보기</span>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+          </div>
+        </div>
+        <div class="section-content">
+          <ul class="outcome-list">
+            <li>
+              <div class="outcome-logo">
+                <img src="/images/clients/dark/logo-translink.svg" alt="트랜스링크인베스트먼트 로고" loading="lazy">
+              </div>
+              <div class="outcome-body">
+                <p class="tag sm" data-i18n="ax-build-outcomes-item-tag-01">금융·VC</p>
+                <p class="outcome-shift">
+                  <span class="outcome-before" data-i18n="ax-build-outcomes-item-before-01">3~5일</span>
+                  <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+                  <span class="outcome-after" data-i18n="ax-build-outcomes-item-after-01">1시간 이내</span>
+                </p>
+                <p class="outcome-detail" data-i18n="ax-build-outcomes-item-detail-01">100개 이상 포트폴리오사 실사 자동화 · 월 30시간 절감</p>
+                <p class="outcome-client" data-i18n="ax-build-outcomes-item-client-01">트랜스링크인베스트먼트</p>
+              </div>
+            </li>
+            <li>
+              <div class="outcome-logo outcome-logo--invert">
+                <img src="/images/clients/case-study/체인로지스.png" alt="체인로지스 로고" loading="lazy">
+              </div>
+              <div class="outcome-body">
+                <p class="tag sm" data-i18n="ax-build-outcomes-item-tag-02">물류·마케팅</p>
+                <p class="outcome-shift">
+                  <span class="outcome-before" data-i18n="ax-build-outcomes-item-before-02">2~4시간</span>
+                  <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+                  <span class="outcome-after" data-i18n="ax-build-outcomes-item-after-02">3분</span>
+                </p>
+                <p class="outcome-detail" data-i18n="ax-build-outcomes-item-detail-02">분류·게시 자동화 · 처리량 20배 향상</p>
+                <p class="outcome-client" data-i18n="ax-build-outcomes-item-client-02">체인로지스</p>
+              </div>
+            </li>
+            <li>
+              <div class="outcome-logo">
+                <img src="/images/clients/case-study/우하컴퍼니.png" alt="우하컴퍼니 로고" loading="lazy">
+              </div>
+              <div class="outcome-body">
+                <p class="tag sm" data-i18n="ax-build-outcomes-item-tag-03">이커머스·정산</p>
+                <p class="outcome-shift">
+                  <span class="outcome-before" data-i18n="ax-build-outcomes-item-before-03">2~3시간</span>
+                  <span class="outcome-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+                  <span class="outcome-after" data-i18n="ax-build-outcomes-item-after-03">30초</span>
+                </p>
+                <p class="outcome-detail" data-i18n="ax-build-outcomes-item-detail-03">주문 정산 자동화 · 월 60시간 절감</p>
+                <p class="outcome-client" data-i18n="ax-build-outcomes-item-client-03">UHA Company</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 FAQ -->
+    <section class="faq fade-up">
+      <div class="section-wrap col">
+        <div class="section-title text-center">
+          <p class="tag" data-i18n="ax-build-faq-eyebrow">07 · FAQ</p>
+          <h2 data-i18n="ax-build-faq-title">도입 전에 많이 묻는 질문</h2>
+        </div>
+        <div class="section-content">
+          <div class="faq-list">
+            <details>
+              <summary class="faq-list__question">
+                <span data-i18n="ax-build-faq-question-01">어떤 업무를 먼저 골라야 하나요?</span>
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer" data-i18n="ax-build-faq-answer-01">매일 또는 매주 같은 형태로 반복되고, 결과가 맞았는지 판단할 기준이 분명한 업무가 첫 대상으로 적합합니다. Day 1 현장 진단에서 실제 업무를 관찰해 자동화 가치가 큰 순서로 후보를 정리해 드립니다.</p>
+            </details>
+            <details>
+              <summary class="faq-list__question">
+                <span data-i18n="ax-build-faq-question-02">사내 개발팀이 없어도 가능한가요?</span>
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer" data-i18n="ax-build-faq-answer-02">가능합니다. 구축은 코드프레소 FDE가 담당하고, 현업 담당자는 업무 흐름을 알려주고 결과를 확인하는 역할만 맡습니다. 개발 인력이 없어도 진행에 지장이 없습니다.</p>
+            </details>
+            <details>
+              <summary class="faq-list__question">
+                <span data-i18n="ax-build-faq-question-03">20일이 끝나면 바로 사용할 수 있나요?</span>
+                <span class="faq-list__icon" aria-hidden="true">
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </span>
+              </summary>
+              <p class="faq-list__answer" data-i18n="ax-build-faq-answer-03">Day 16~20에 실사용 환경으로 배포하므로 20일 뒤에는 현업에서 바로 씁니다. 이후 3개월간 실사용에서 나오는 예외를 보완하며 운영에 안착하도록 지원합니다.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-final fade-up">
+      <div class="section-wrap col cta-final-inner">
+        <h2 class="cta-final-title" data-i18n="ax-build-cta-final-title">다음 달, 첫 자동화가<br>실제 업무에서 돌아갑니다</h2>
+        <p class="cta-final-desc" data-i18n="ax-build-cta-final-desc">첫 미팅에서 자동화 후보 업무와 기대 효과부터 함께 확인합니다.</p>
+        <div class="cta-final-actions">
+          <a href="#" class="btn btn-primary btn-lg">
+            <span data-i18n="ax-build-cta-final-cta">우리 업무 진단받기</span>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer도 partials/footer.html 하나로 관리한다. -->
+  
+
+  <!-- 공용 스크립트 — GNB(header-scroll·nav-menu), 섹션 진입 모션(fade-up).
+       catalog-board.js는 이 페이지의 워크플로 보드 전용이며, data-catalog-autoplay로
+       3초 자동 전환을 켰다(hover 시 정지, 클릭 시 그 탭부터 재시작). -->
+  <SiteFooter />
+  <ClientInteractions :scripts='["js/fade-up.js","js/header-scroll.js","js/nav-menu.js","js/catalog-board.js"]' />
+</template>
+
+<script setup>
+useSeoMeta({ title: "AX Build: AI 업무 자동화 구축 | 코드프레소", description: "반복 업무를 AI Agent의 일로 바꿉니다. 현장 진단부터 운영 배포까지, 보고서가 아닌 실제 돌아가는 결과물을 남깁니다." })
+import '~/css/pages/ax-build.css'
+</script>

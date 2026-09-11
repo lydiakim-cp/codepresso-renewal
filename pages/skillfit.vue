@@ -1,28 +1,6 @@
-<!DOCTYPE html>
-<html lang="ko">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>SkillFit — 진단 결과가 곧 나만의 학습 계획이 되는 개인화 학습 | 코드프레소</title>
-
-  <!-- 검색 결과·링크 미리보기 문구. hero 문구를 그대로 쓴다(마케팅팀 검수 대상).
-       TODO: og:image(1200x630) 에셋과 운영 도메인(og:url·canonical)이 확정되면 채운다. -->
-  <meta name="description" content="SkillFit. AI 진단 인터뷰가 현재 수준과 취약점을 찾고 학습 경로를 설계합니다. 강의를 보는 대신, 브라우저에서 직접 코드를 씁니다.">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="SkillFit — 진단 결과가 곧 나만의 학습 계획이 되는 개인화 학습 | 코드프레소">
-  <meta property="og:description" content="SkillFit. AI 진단 인터뷰가 현재 수준과 취약점을 찾고 학습 경로를 설계합니다. 강의를 보는 대신, 브라우저에서 직접 코드를 씁니다.">
-  <meta property="og:image" content="images/products/skillfit/learn.png">
-
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/pages/skillfit.css">
-  <link rel="stylesheet" href="css/mobile.css">
-</head>
-
-<body>
-  <div data-include="partials/header.html"></div>
-
-  <main class="skillfit">
+<template>
+  <SiteHeader />
+<main class="skillfit">
     <!-- Hero — 첫 화면이라 fade-up 없음. CTA가 둘인 것은 독자가 둘이기 때문이다
          (담당자용 체험 프로그램 신청 · 학습자용 트랙 둘러보기). -->
     <section class="sub-hero">
@@ -35,26 +13,26 @@
           <div class="hero-actions">
             <a class="btn btn-primary btn-lg" href="#">
               <span data-i18n="skillfit-hero-cta-primary">2~3주 체험 프로그램 신청</span>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </a>
             <a class="btn btn-ghost btn-lg" href="#skillfit-tracks">
               <span data-i18n="skillfit-hero-cta-secondary">트랙 둘러보기</span>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </a>
           </div>
         </div>
 
         <!-- 다른 서비스가 따라 쓰기 어려운 것 셋을 수치로. 칸은 metric-card라
              stat-reveal.js의 기본 대상에 그대로 걸린다(cases hero와 같은 판단). -->
-        <ul class="hero-facts surface-glass" data-stat-reveal>
+        <ul class="hero-facts surface-glass" data-stat-reveal="">
           <li class="metric-card">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
               <!-- 트랙 수 — skillpath 카탈로그 "프로그래밍" 타일과 같은 키보드 path. -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21 5H3C1.89543 5 1 5.89543 1 7V17C1 18.1046 1.89543 19 3 19H21C22.1046 19 23 18.1046 23 17V7C23 5.89543 22.1046 5 21 5Z" fill="var(--color-brand)"/>
-                <path d="M16 14.5H8C7.72386 14.5 7.5 14.7239 7.5 15V16C7.5 16.2761 7.72386 16.5 8 16.5H16C16.2761 16.5 16.5 16.2761 16.5 16V15C16.5 14.7239 16.2761 14.5 16 14.5Z" fill="var(--color-surface)"/>
-                <path d="M9 8.5H6C5.72386 8.5 5.5 8.72386 5.5 9V10.5C5.5 10.7761 5.72386 11 6 11H9C9.27614 11 9.5 10.7761 9.5 10.5V9C9.5 8.72386 9.27614 8.5 9 8.5Z" fill="var(--color-surface)"/>
-                <path d="M18 8.5H15C14.7239 8.5 14.5 8.72386 14.5 9V10.5C14.5 10.7761 14.7239 11 15 11H18C18.2761 11 18.5 10.7761 18.5 10.5V9C18.5 8.72386 18.2761 8.5 18 8.5Z" fill="var(--color-surface)"/>
+                <path d="M21 5H3C1.89543 5 1 5.89543 1 7V17C1 18.1046 1.89543 19 3 19H21C22.1046 19 23 18.1046 23 17V7C23 5.89543 22.1046 5 21 5Z" fill="var(--color-brand)"></path>
+                <path d="M16 14.5H8C7.72386 14.5 7.5 14.7239 7.5 15V16C7.5 16.2761 7.72386 16.5 8 16.5H16C16.2761 16.5 16.5 16.2761 16.5 16V15C16.5 14.7239 16.2761 14.5 16 14.5Z" fill="var(--color-surface)"></path>
+                <path d="M9 8.5H6C5.72386 8.5 5.5 8.72386 5.5 9V10.5C5.5 10.7761 5.72386 11 6 11H9C9.27614 11 9.5 10.7761 9.5 10.5V9C9.5 8.72386 9.27614 8.5 9 8.5Z" fill="var(--color-surface)"></path>
+                <path d="M18 8.5H15C14.7239 8.5 14.5 8.72386 14.5 9V10.5C14.5 10.7761 14.7239 11 15 11H18C18.2761 11 18.5 10.7761 18.5 10.5V9C18.5 8.72386 18.2761 8.5 18 8.5Z" fill="var(--color-surface)"></path>
               </svg>
             </span>
             <div>
@@ -66,11 +44,11 @@
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
               <!-- 과제 유형 — images/icons/service/ic_todo.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로 바꿨다. -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="var(--color-brand)"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0001 8.58579L17.293 6.29289L18.7072 7.70711L15.0001 11.4142L12.293 8.70711L13.7072 7.29289L15.0001 8.58579Z" fill="var(--color-brand-dark)"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0001 14.5858L17.293 12.2929L18.7072 13.7071L15.0001 17.4142L12.293 14.7071L13.7072 13.2929L15.0001 14.5858Z" fill="var(--color-brand-dark)"/>
-                <path d="M10.4998 14H6.50977C6.23362 14 6.00977 14.2239 6.00977 14.5V15.53C6.00977 15.8061 6.23362 16.03 6.50977 16.03H10.4998C10.7759 16.03 10.9998 15.8061 10.9998 15.53V14.5C10.9998 14.2239 10.7759 14 10.4998 14Z" fill="var(--color-brand)"/>
+                <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
+                <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="var(--color-brand)"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0001 8.58579L17.293 6.29289L18.7072 7.70711L15.0001 11.4142L12.293 8.70711L13.7072 7.29289L15.0001 8.58579Z" fill="var(--color-brand-dark)"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0001 14.5858L17.293 12.2929L18.7072 13.7071L15.0001 17.4142L12.293 14.7071L13.7072 13.2929L15.0001 14.5858Z" fill="var(--color-brand-dark)"></path>
+                <path d="M10.4998 14H6.50977C6.23362 14 6.00977 14.2239 6.00977 14.5V15.53C6.00977 15.8061 6.23362 16.03 6.50977 16.03H10.4998C10.7759 16.03 10.9998 15.8061 10.9998 15.53V14.5C10.9998 14.2239 10.7759 14 10.4998 14Z" fill="var(--color-brand)"></path>
               </svg>
             </span>
             <div>
@@ -82,11 +60,11 @@
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
               <!-- 설치 없음 — skillpath 카탈로그 "웹 개발 첫걸음" 타일과 같은 브라우저 창 path. -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"/>
-                <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"/>
-                <path d="M16 4.5H15C14.7239 4.5 14.5 4.72386 14.5 5V6C14.5 6.27614 14.7239 6.5 15 6.5H16C16.2761 6.5 16.5 6.27614 16.5 6V5C16.5 4.72386 16.2761 4.5 16 4.5Z" fill="var(--color-surface)"/>
-                <path d="M12.5 4.5H11.5C11.2239 4.5 11 4.72386 11 5V6C11 6.27614 11.2239 6.5 11.5 6.5H12.5C12.7761 6.5 13 6.27614 13 6V5C13 4.72386 12.7761 4.5 12.5 4.5Z" fill="var(--color-surface)"/>
-                <path d="M19.5 4.5H18.5C18.2239 4.5 18 4.72386 18 5V6C18 6.27614 18.2239 6.5 18.5 6.5H19.5C19.7761 6.5 20 6.27614 20 6V5C20 4.72386 19.7761 4.5 19.5 4.5Z" fill="var(--color-surface)"/>
+                <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
+                <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"></path>
+                <path d="M16 4.5H15C14.7239 4.5 14.5 4.72386 14.5 5V6C14.5 6.27614 14.7239 6.5 15 6.5H16C16.2761 6.5 16.5 6.27614 16.5 6V5C16.5 4.72386 16.2761 4.5 16 4.5Z" fill="var(--color-surface)"></path>
+                <path d="M12.5 4.5H11.5C11.2239 4.5 11 4.72386 11 5V6C11 6.27614 11.2239 6.5 11.5 6.5H12.5C12.7761 6.5 13 6.27614 13 6V5C13 4.72386 12.7761 4.5 12.5 4.5Z" fill="var(--color-surface)"></path>
+                <path d="M19.5 4.5H18.5C18.2239 4.5 18 4.72386 18 5V6C18 6.27614 18.2239 6.5 18.5 6.5H19.5C19.7761 6.5 20 6.27614 20 6V5C20 4.72386 19.7761 4.5 19.5 4.5Z" fill="var(--color-surface)"></path>
               </svg>
             </span>
             <div>
@@ -112,12 +90,12 @@
               <span class="pain-card__icon" aria-hidden="true">
                 <!-- 수준이 섞여 있습니다 — images/icons/library/103.팀.svg를 현재 문제 카드 톤으로 적용. -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="currentColor"/>
-                  <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="currentColor"/>
-                  <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 13.9217 22 14.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="currentColor"/>
-                  <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="currentColor"/>
-                  <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="currentColor"/>
-                  <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="currentColor"/>
+                  <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="currentColor"></path>
+                  <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="currentColor"></path>
+                  <path d="M21 19H15C14.7348 19 14.4804 18.8946 14.2929 18.7071C14.1053 18.5196 14 18.2652 14 18V13C14 11.9391 14.4214 10.9217 15.1716 10.1716C15.9217 9.42142 16.9391 9 18 9C19.0609 9 20.0783 9.42142 20.8284 10.1716C21.5786 13.9217 22 14.9391 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19Z" fill="currentColor"></path>
+                  <path d="M18 8C19.3807 8 20.5 6.88071 20.5 5.5C20.5 4.11929 19.3807 3 18 3C16.6193 3 15.5 4.11929 15.5 5.5C15.5 6.88071 16.6193 8 18 8Z" fill="currentColor"></path>
+                  <path d="M11.1201 12H12.8701C13.931 12 14.9484 12.4214 15.6985 13.1716C16.4487 13.9217 16.8701 14.9391 16.8701 16V21C16.8701 21.2652 16.7648 21.5196 16.5772 21.7071C16.3897 21.8946 16.1353 22 15.8701 22H8.12012C7.8549 22 7.60055 21.8946 7.41301 21.7071C7.22547 21.5196 7.12012 21.2652 7.12012 21V16C7.12012 14.9391 7.54154 13.9217 8.29169 13.1716C9.04183 12.4214 10.0593 12 11.1201 12Z" fill="currentColor"></path>
+                  <path d="M12 11C13.3807 11 14.5 9.88071 14.5 8.5C14.5 7.11929 13.3807 6 12 6C10.6193 6 9.5 7.11929 9.5 8.5C9.5 9.88071 10.6193 11 12 11Z" fill="currentColor"></path>
                 </svg>
               </span>
               <p class="pain-card__title" data-i18n="skillfit-intro-item-title-01">수준이 섞여 있습니다</p>
@@ -127,8 +105,8 @@
               <span class="pain-card__icon" aria-hidden="true">
                 <!-- 수료율만 남습니다 — images/icons/library/001.문서,글.svg를 현재 문제 카드 톤으로 적용. -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="currentColor"/>
-                  <path d="M16.5 7H7.5M16.5 12H7.5M16.5 16H7.5" stroke="var(--color-surface)" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="currentColor"></path>
+                  <path d="M16.5 7H7.5M16.5 12H7.5M16.5 16H7.5" stroke="var(--color-surface)" stroke-width="2" stroke-linecap="round"></path>
                 </svg>
               </span>
               <p class="pain-card__title" data-i18n="skillfit-intro-item-title-02">수료율만 남습니다</p>
@@ -138,8 +116,8 @@
               <span class="pain-card__icon" aria-hidden="true">
                 <!-- 본 것과 할 수 있는 것은 다릅니다 — images/icons/library/081.키보드.svg를 현재 문제 카드 톤으로 적용. -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M21 5H3C1.89543 5 1 5.89543 1 7V17C1 18.1046 1.89543 19 3 19H21C22.1046 19 23 18.1046 23 17V7C23 5.89543 22.1046 5 21 5Z" fill="currentColor"/>
-                  <path d="M5 15.5H19M5 8.5H19M5 12H19" stroke="var(--color-surface)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="1 2.5"/>
+                  <path d="M21 5H3C1.89543 5 1 5.89543 1 7V17C1 18.1046 1.89543 19 3 19H21C22.1046 19 23 18.1046 23 17V7C23 5.89543 22.1046 5 21 5Z" fill="currentColor"></path>
+                  <path d="M5 15.5H19M5 8.5H19M5 12H19" stroke="var(--color-surface)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="1 2.5"></path>
                 </svg>
               </span>
               <p class="pain-card__title" data-i18n="skillfit-intro-item-title-03">본 것과 할 수 있는 것은 다릅니다</p>
@@ -168,7 +146,7 @@
               <h3 data-i18n="skillfit-journey-item-title-01">진단 인터뷰</h3>
               <p class="description" data-i18n="skillfit-journey-item-desc-01">대화로 현재 수준과 취약점을 찾습니다</p>
               <span class="cycle-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               </span>
             </li>
             <li>
@@ -179,7 +157,7 @@
               <h3 data-i18n="skillfit-journey-item-title-02">맞춤 학습 경로</h3>
               <p class="description" data-i18n="skillfit-journey-item-desc-02">아는 구간은 건너뛰고 부족한 곳부터</p>
               <span class="cycle-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               </span>
             </li>
             <li>
@@ -190,7 +168,7 @@
               <h3 data-i18n="skillfit-journey-item-title-03">실습과 채점</h3>
               <p class="description" data-i18n="skillfit-journey-item-desc-03">브라우저에서 코드를 쓰고 실행합니다</p>
               <span class="cycle-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               </span>
             </li>
             <li>
@@ -216,15 +194,15 @@
           <p class="desc" data-i18n="skillfit-deliverables-desc-01">진단에서 확인한 보완 영역을 바탕으로 2~3주 학습 계획을 제안합니다. 필요한 구간만 골라 순서대로 학습합니다.</p>
           <ul class="feature-points">
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillfit-deliverables-point-01-01">51개 트랙, 입문·중급·심화 3단계 중 필요한 구간만 선택</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillfit-deliverables-point-01-02">스킬 단위 진행률로 어디까지 왔는지 항상 보입니다</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillfit-deliverables-point-01-03">통과하지 못한 스킬은 다시 풀 수 있습니다</span>
             </li>
           </ul>
@@ -305,61 +283,61 @@
           <p class="desc" data-i18n="skillfit-catalog-desc">51개 트랙이 입문·중급·심화 3단계로 나뉘어 있고, 학습 계획은 그 안에서 조합됩니다.</p>
         </div>
         <div class="section-content">
-          <div class="track-carousel-viewport" data-track-carousel aria-label="대표 학습 트랙">
+          <div class="track-carousel-viewport" data-track-carousel="" aria-label="대표 학습 트랙">
           <ul class="track-grid">
             <li class="track-card">
               <div class="track-card__head">
                 <p class="tag" data-i18n="skillfit-catalog-track-tag-01">인공지능</p>
-                <span class="track-card__mark" aria-hidden="true"><img src="images/icons/track/tensorflow.png" alt="" width="32" height="32" loading="lazy"></span>
+                <span class="track-card__mark" aria-hidden="true"><img src="/images/icons/track/tensorflow.png" alt="" width="32" height="32" loading="lazy"></span>
               </div>
               <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-01">Tensorflow<br>이미지 데이터 분석</p>
             </li>
             <li class="track-card">
               <div class="track-card__head">
                 <p class="tag" data-i18n="skillfit-catalog-track-tag-02">인공지능</p>
-                <span class="track-card__mark" aria-hidden="true"><img src="images/icons/track/ai-agent.png" alt="" width="32" height="32" loading="lazy"></span>
+                <span class="track-card__mark" aria-hidden="true"><img src="/images/icons/track/ai-agent.png" alt="" width="32" height="32" loading="lazy"></span>
               </div>
               <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-02">LangChain<br>AI 에이전트</p>
             </li>
             <li class="track-card">
               <div class="track-card__head">
                 <p class="tag" data-i18n="skillfit-catalog-track-tag-03">인공지능</p>
-                <span class="track-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="track-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
               </div>
               <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-03">PyTorch<br>딥러닝 모델 학습</p>
             </li>
             <li class="track-card">
               <div class="track-card__head">
                 <p class="tag" data-i18n="skillfit-catalog-track-tag-04">인공지능</p>
-                <span class="track-card__mark" aria-hidden="true"><img src="images/icons/track/ai-agent.png" alt="" width="32" height="32" loading="lazy"></span>
+                <span class="track-card__mark" aria-hidden="true"><img src="/images/icons/track/ai-agent.png" alt="" width="32" height="32" loading="lazy"></span>
               </div>
               <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-04">프롬프트<br>엔지니어링</p>
             </li>
             <li class="track-card">
               <div class="track-card__head">
                 <p class="tag" data-i18n="skillfit-catalog-track-tag-05">데이터</p>
-                <span class="track-card__mark" aria-hidden="true"><img src="images/icons/track/python.png" alt="" width="32" height="32" loading="lazy"></span>
+                <span class="track-card__mark" aria-hidden="true"><img src="/images/icons/track/python.png" alt="" width="32" height="32" loading="lazy"></span>
               </div>
               <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-05">Python<br>데이터 분석</p>
             </li>
             <li class="track-card">
               <div class="track-card__head">
                 <p class="tag" data-i18n="skillfit-catalog-track-tag-06">프로그래밍</p>
-                <span class="track-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="track-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
               </div>
               <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-06">Java<br>객체지향 프로그래밍</p>
             </li>
             <li class="track-card">
               <div class="track-card__head">
                 <p class="tag" data-i18n="skillfit-catalog-track-tag-07">웹 개발</p>
-                <span class="track-card__mark" aria-hidden="true"><img src="images/icons/track/springboot.png" alt="" width="32" height="32" loading="lazy"></span>
+                <span class="track-card__mark" aria-hidden="true"><img src="/images/icons/track/springboot.png" alt="" width="32" height="32" loading="lazy"></span>
               </div>
               <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-07">Spring<br>웹 백엔드</p>
             </li>
             <li class="track-card">
               <div class="track-card__head">
                 <p class="tag" data-i18n="skillfit-catalog-track-tag-08">개발 환경</p>
-                <span class="track-card__mark" aria-hidden="true"><img src="images/icons/track/git.png" alt="" width="32" height="32" loading="lazy"></span>
+                <span class="track-card__mark" aria-hidden="true"><img src="/images/icons/track/git.png" alt="" width="32" height="32" loading="lazy"></span>
               </div>
               <p class="section-body-subtitle" data-i18n="skillfit-catalog-track-title-08">Git<br>협업 워크플로</p>
             </li>
@@ -367,7 +345,7 @@
           </div>
           </div>
         </div>
-      </div>
+      
     </section>
 
     <!-- 03 실습 환경 — 이 페이지에서 가장 강한 차별점이라 독립 섹션으로 올렸다. -->
@@ -379,15 +357,15 @@
           <p class="desc" data-i18n="skillfit-deliverables-desc-02">브라우저에서 코드를 쓰고, 실제로 실행하고, 결과로 채점받습니다. 설치할 것도, 환경 설정도 없습니다.</p>
           <ul class="feature-points">
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillfit-deliverables-point-02-01">객관식 · 빈칸 채우기 · 코드 해석 · 코드 작성 네 가지 과제</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillfit-deliverables-point-02-02">제출한 코드는 실제 실행 환경에서 돌려 채점합니다</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillfit-deliverables-point-02-03">레슨마다 실무 시나리오가 먼저 오고, 그 안에서 과제를 풉니다</span>
             </li>
           </ul>
@@ -407,32 +385,31 @@
 
                 <!-- 홈 -->
                 <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M4 10.5 12 4l8 6.5V20H4v-9.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                  <path d="M4 10.5 12 4l8 6.5V20H4v-9.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
                 </svg>
 
                 <!-- 탐색 -->
                 <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" />
-                  <path d="m15 9-2 4-4 2 2-4 4-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                  <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"></circle>
+                  <path d="m15 9-2 4-4 2 2-4 4-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
                 </svg>
 
                 <!-- 학습(현재 위치) -->
                 <svg class="journey-app-rail-icon is-current" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <rect x="4" y="4" width="16" height="16" rx="5" fill="currentColor" />
-                  <path d="m10.5 9 5 3-5 3V9Z" fill="var(--color-surface)" />
+                  <rect x="4" y="4" width="16" height="16" rx="5" fill="currentColor"></rect>
+                  <path d="m10.5 9 5 3-5 3V9Z" fill="var(--color-surface)"></path>
                 </svg>
 
                 <!-- 검색 -->
                 <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" />
-                  <path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2"></circle>
+                  <path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
                 </svg>
 
                 <!-- 설정 -->
                 <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
-                  <path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"></circle>
+                  <path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
                 </svg>
               </div>
 
@@ -508,15 +485,15 @@
           <p class="desc" data-i18n="skillfit-deliverables-desc-03">학습 화면을 벗어나지 않고 복습·읽기·연습 어느 단계에서든 AI 튜터에게 질문할 수 있습니다.</p>
           <ul class="feature-points">
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillfit-deliverables-point-03-01">제출한 코드를 기준별로 채점하고, 판단 근거를 문장으로 알려줍니다</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillfit-deliverables-point-03-02">어디가 왜 부족했는지 알고 다시 풉니다</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillfit-deliverables-point-03-03">직접 만들고, AI가 옆에서 돕습니다</span>
             </li>
           </ul>
@@ -528,8 +505,7 @@
             <div class="journey-app-tutor-head skillfit-tutor-head">
               <span class="skillfit-tutor-icon">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M17 4H7a4 4 0 0 0-4 4v5a4 4 0 0 0 4 4h1v3l4-3h5a4 4 0 0 0 4-4V8a4 4 0 0 0-4-4Z"
-                    fill="currentColor" />
+                  <path d="M17 4H7a4 4 0 0 0-4 4v5a4 4 0 0 0 4 4h1v3l4-3h5a4 4 0 0 0 4-4V8a4 4 0 0 0-4-4Z" fill="currentColor"></path>
                 </svg>
               </span>
               <span class="skillfit-tutor-title">
@@ -540,7 +516,7 @@
 
             <div class="skillfit-tutor-chat">
               <p class="journey-mock-bubble is-mine is-chat" style="--mock-chat-step: 0">
-                <span class="skillfit-tutor-quote">Lesson 1 &middot; AI와 대화하는 가장 확실한 지도</span>
+                <span class="skillfit-tutor-quote">Lesson 1 · AI와 대화하는 가장 확실한 지도</span>
                 RICJ 프레임워크에 대해 더 자세히 설명해줘
               </p>
 
@@ -595,15 +571,15 @@
                 <span class="feature-card-icon" aria-hidden="true">
                   <!-- 기수 관리 — images/icons/library/003.일정,캘린더.svg를 브랜드 블루 톤으로 적용. -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19.5 4.01953H4.5C3.39543 4.01953 2.5 4.91496 2.5 6.01953V19.0195C2.5 20.1241 3.39543 21.0195 4.5 21.0195H19.5C20.6046 21.0195 21.5 20.1241 21.5 19.0195V6.01953C21.5 4.91496 20.6046 4.01953 19.5 4.01953Z" fill="var(--color-brand)"/>
-                    <path d="M8.48001 3.01953H7.5C7.22386 3.01953 7 3.24339 7 3.51953V5.51953C7 5.79567 7.22386 6.01953 7.5 6.01953H8.48001C8.75615 6.01953 8.98001 5.79567 8.98001 5.51953V3.51953C8.98001 3.24339 8.75615 3.01953 8.48001 3.01953Z" fill="var(--color-brand-dark)"/>
-                    <path d="M16.5 3.01953H15.5C15.2239 3.01953 15 3.24339 15 3.51953V5.51953C15 5.79567 15.2239 6.01953 15.5 6.01953H16.5C16.7761 6.01953 17 5.79567 17 5.51953V3.51953C17 3.24339 16.7761 3.01953 16.5 3.01953Z" fill="var(--color-brand-dark)"/>
-                    <path d="M8.74023 9.5H7.24023C6.96409 9.5 6.74023 9.72386 6.74023 10V11.5C6.74023 11.7761 6.96409 12 7.24023 12H8.74023C9.01638 12 9.24023 11.7761 9.24023 11.5V10C9.24023 9.72386 9.01638 9.5 8.74023 9.5Z" fill="var(--color-surface)"/>
-                    <path d="M12.75 9.5H11.25C10.9739 9.5 10.75 9.72386 10.75 10V11.5C10.75 11.7761 10.9739 12 11.25 12H12.75C13.0261 12 13.25 11.7761 13.25 11.5V10C13.25 9.72386 13.0261 9.5 12.75 9.5Z" fill="var(--color-surface)"/>
-                    <path d="M16.7598 9.5H15.2598C14.9836 9.5 14.7598 9.72386 14.7598 10V11.5C14.7598 11.7761 14.9836 12 15.2598 12H16.7598C17.0359 12 17.2598 11.7761 17.2598 11.5V10C17.2598 9.72386 17.0359 9.5 16.7598 9.5Z" fill="var(--color-surface)"/>
-                    <path d="M8.74023 14H7.24023C6.96409 14 6.74023 14.2239 6.74023 14.5V16C6.74023 16.2761 6.96409 16.5 7.24023 16.5H8.74023C9.01638 16.5 9.24023 16.2761 9.24023 16V14.5C9.24023 14.2239 9.01638 14 8.74023 14Z" fill="var(--color-surface)"/>
-                    <path d="M12.75 14H11.25C10.9739 14 10.75 14.2239 10.75 14.5V16C10.75 16.2761 10.9739 16.5 11.25 16.5H12.75C13.0261 16.5 13.25 16.2761 13.25 16V14.5C13.25 14.2239 13.0261 14 12.75 14Z" fill="var(--color-surface)"/>
-                    <path d="M16.7598 14H15.2598C14.9836 14 14.7598 14.2239 14.7598 14.5V16C14.7598 16.2761 14.9836 16.5 15.2598 16.5H16.7598C17.0359 16.5 17.2598 16.2761 17.2598 16V14.5C17.2598 14.2239 17.0359 14 16.7598 14Z" fill="var(--color-surface)"/>
+                    <path d="M19.5 4.01953H4.5C3.39543 4.01953 2.5 4.91496 2.5 6.01953V19.0195C2.5 20.1241 3.39543 21.0195 4.5 21.0195H19.5C20.6046 21.0195 21.5 20.1241 21.5 19.0195V6.01953C21.5 4.91496 20.6046 4.01953 19.5 4.01953Z" fill="var(--color-brand)"></path>
+                    <path d="M8.48001 3.01953H7.5C7.22386 3.01953 7 3.24339 7 3.51953V5.51953C7 5.79567 7.22386 6.01953 7.5 6.01953H8.48001C8.75615 6.01953 8.98001 5.79567 8.98001 5.51953V3.51953C8.98001 3.24339 8.75615 3.01953 8.48001 3.01953Z" fill="var(--color-brand-dark)"></path>
+                    <path d="M16.5 3.01953H15.5C15.2239 3.01953 15 3.24339 15 3.51953V5.51953C15 5.79567 15.2239 6.01953 15.5 6.01953H16.5C16.7761 6.01953 17 5.79567 17 5.51953V3.51953C17 3.24339 16.7761 3.01953 16.5 3.01953Z" fill="var(--color-brand-dark)"></path>
+                    <path d="M8.74023 9.5H7.24023C6.96409 9.5 6.74023 9.72386 6.74023 10V11.5C6.74023 11.7761 6.96409 12 7.24023 12H8.74023C9.01638 12 9.24023 11.7761 9.24023 11.5V10C9.24023 9.72386 9.01638 9.5 8.74023 9.5Z" fill="var(--color-surface)"></path>
+                    <path d="M12.75 9.5H11.25C10.9739 9.5 10.75 9.72386 10.75 10V11.5C10.75 11.7761 10.9739 12 11.25 12H12.75C13.0261 12 13.25 11.7761 13.25 11.5V10C13.25 9.72386 13.0261 9.5 12.75 9.5Z" fill="var(--color-surface)"></path>
+                    <path d="M16.7598 9.5H15.2598C14.9836 9.5 14.7598 9.72386 14.7598 10V11.5C14.7598 11.7761 14.9836 12 15.2598 12H16.7598C17.0359 12 17.2598 11.7761 17.2598 11.5V10C17.2598 9.72386 17.0359 9.5 16.7598 9.5Z" fill="var(--color-surface)"></path>
+                    <path d="M8.74023 14H7.24023C6.96409 14 6.74023 14.2239 6.74023 14.5V16C6.74023 16.2761 6.96409 16.5 7.24023 16.5H8.74023C9.01638 16.5 9.24023 16.2761 9.24023 16V14.5C9.24023 14.2239 9.01638 14 8.74023 14Z" fill="var(--color-surface)"></path>
+                    <path d="M12.75 14H11.25C10.9739 14 10.75 14.2239 10.75 14.5V16C10.75 16.2761 10.9739 16.5 11.25 16.5H12.75C13.0261 16.5 13.25 16.2761 13.25 16V14.5C13.25 14.2239 13.0261 14 12.75 14Z" fill="var(--color-surface)"></path>
+                    <path d="M16.7598 14H15.2598C14.9836 14 14.7598 14.2239 14.7598 14.5V16C14.7598 16.2761 14.9836 16.5 15.2598 16.5H16.7598C17.0359 16.5 17.2598 16.2761 17.2598 16V14.5C17.2598 14.2239 17.0359 14 16.7598 14Z" fill="var(--color-surface)"></path>
                   </svg>
                 </span>
               </div>
@@ -625,11 +601,11 @@
                 <span class="feature-card-icon" aria-hidden="true">
                   <!-- 진행 대시보드 — images/icons/library/077.브라우저 창.svg를 브랜드 블루 톤으로 적용. -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"/>
-                    <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"/>
-                    <path d="M16 4.5H15C14.7239 4.5 14.5 4.72386 14.5 5V6C14.5 6.27614 14.7239 6.5 15 6.5H16C16.2761 6.5 16.5 6.27614 16.5 6V5C16.5 4.72386 16.2761 4.5 16 4.5Z" fill="var(--color-surface)"/>
-                    <path d="M12.5 4.5H11.5C11.2239 4.5 11 4.72386 11 5V6C11 6.27614 11.2239 6.5 11.5 6.5H12.5C12.7761 6.5 13 6.27614 13 6V5C13 4.72386 12.7761 4.5 12.5 4.5Z" fill="var(--color-surface)"/>
-                    <path d="M19.5 4.5H18.5C18.2239 4.5 18 4.72386 18 5V6C18 6.27614 18.2239 6.5 18.5 6.5H19.5C19.7761 6.5 20 6.27614 20 6V5C20 4.72386 19.7761 4.5 19.5 4.5Z" fill="var(--color-surface)"/>
+                    <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"></path>
+                    <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"></path>
+                    <path d="M16 4.5H15C14.7239 4.5 14.5 4.72386 14.5 5V6C14.5 6.27614 14.7239 6.5 15 6.5H16C16.2761 6.5 16.5 6.27614 16.5 6V5C16.5 4.72386 16.2761 4.5 16 4.5Z" fill="var(--color-surface)"></path>
+                    <path d="M12.5 4.5H11.5C11.2239 4.5 11 4.72386 11 5V6C11 6.27614 11.2239 6.5 11.5 6.5H12.5C12.7761 6.5 13 6.27614 13 6V5C13 4.72386 12.7761 4.5 12.5 4.5Z" fill="var(--color-surface)"></path>
+                    <path d="M19.5 4.5H18.5C18.2239 4.5 18 4.72386 18 5V6C18 6.27614 18.2239 6.5 18.5 6.5H19.5C19.7761 6.5 20 6.27614 20 6V5C20 4.72386 19.7761 4.5 19.5 4.5Z" fill="var(--color-surface)"></path>
                   </svg>
                 </span>
               </div>
@@ -651,9 +627,9 @@
                 <span class="feature-card-icon" aria-hidden="true">
                   <!-- 리포트 — images/icons/library/005.문서,결재.svg를 브랜드 블루 톤으로 적용. -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20 7V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58578 21.4142C4.21071 21.0391 4 20.5304 4 20V4C4 3.46957 4.21071 2.96083 4.58578 2.58575C4.96086 2.21068 5.46957 2 6 2H15L20 7Z" fill="var(--color-brand)"/>
-                    <path d="M16 7H20L15 2V6C15 6.26522 15.1054 6.51956 15.2929 6.70709C15.4804 6.89463 15.7348 7 16 7Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"/>
-                    <path d="M16.5 11H7.5M16.5 15H7.5" stroke="var(--color-surface)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M20 7V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58578 21.4142C4.21071 21.0391 4 20.5304 4 20V4C4 3.46957 4.21071 2.96083 4.58578 2.58575C4.96086 2.21068 5.46957 2 6 2H15L20 7Z" fill="var(--color-brand)"></path>
+                    <path d="M16 7H20L15 2V6C15 6.26522 15.1054 6.51956 15.2929 6.70709C15.4804 6.89463 15.7348 7 16 7Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
+                    <path d="M16.5 11H7.5M16.5 15H7.5" stroke="var(--color-surface)" stroke-width="2" stroke-linecap="round"></path>
                   </svg>
                 </span>
               </div>
@@ -735,7 +711,7 @@
               <summary class="faq-list__question">
                 사전 지식이 없어도 되나요?
                 <span class="faq-list__icon" aria-hidden="true">
-                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
               </summary>
               <p class="faq-list__answer">네. 진단 인터뷰가 현재 수준을 먼저 확인하고 입문 레벨부터 학습 경로를 제안합니다. 이미 아는 영역은 건너뛸 수 있습니다.</p>
@@ -744,7 +720,7 @@
               <summary class="faq-list__question">
                 하루에 얼마나 써야 하나요?
                 <span class="faq-list__icon" aria-hidden="true">
-                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
               </summary>
               <p class="faq-list__answer">하루 30분에서 1시간을 기준으로 2~3주 계획을 만듭니다. 스킬 단위로 끊어져 있어 시간이 날 때 한 스킬씩 진행할 수 있습니다.</p>
@@ -753,7 +729,7 @@
               <summary class="faq-list__question">
                 설치할 프로그램이 있나요?
                 <span class="faq-list__icon" aria-hidden="true">
-                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
               </summary>
               <p class="faq-list__answer">없습니다. 코드 작성·실행·채점이 모두 브라우저에서 이뤄지므로 별도의 개발 환경을 설치하거나 설정할 필요가 없습니다.</p>
@@ -762,7 +738,7 @@
               <summary class="faq-list__question">
                 어떤 언어와 기술을 다루나요?
                 <span class="faq-list__icon" aria-hidden="true">
-                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
               </summary>
               <p class="faq-list__answer">Python · Java · JavaScript · C++ · SQL · Git · Linux 같은 기본기부터 프롬프트 엔지니어링 · LangChain · LangGraph · PyTorch · TensorFlow까지 51개 트랙을 제공합니다.</p>
@@ -771,7 +747,7 @@
               <summary class="faq-list__question">
                 진단 결과가 정확한가요?
                 <span class="faq-list__icon" aria-hidden="true">
-                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
               </summary>
               <p class="faq-list__answer">대화형 진단의 첫 결과는 학습을 시작하기 위한 기준입니다. 이후 정답률과 제출 코드가 반영되면서 학습 경로를 계속 조정합니다.</p>
@@ -789,22 +765,17 @@
         <div class="cta-final-actions">
           <a class="btn btn-primary btn-lg" href="#">
             체험 프로그램 신청
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </a>
         </div>
       </div>
     </section>
   </main>
+  <SiteFooter />
+  <ClientInteractions :scripts='["js/fade-up.js","js/header-scroll.js","js/nav-menu.js","js/stat-reveal.js","js/track-carousel.js"]' />
+</template>
 
-  <div data-include="partials/footer.html"></div>
-
-  <script src="js/include-partials.js"></script>
-  <script src="js/fade-up.js"></script>
-  <script src="js/header-scroll.js"></script>
-  <script src="js/nav-menu.js"></script>
-  <script src="js/stat-reveal.js"></script>
-  <script src="js/track-carousel.js"></script>
-  <script src="js/i18n.js"></script>
-</body>
-
-</html>
+<script setup>
+useSeoMeta({ title: "SkillFit — 진단 결과가 곧 나만의 학습 계획이 되는 개인화 학습 | 코드프레소", description: "SkillFit. AI 진단 인터뷰가 현재 수준과 취약점을 찾고 학습 경로를 설계합니다. 강의를 보는 대신, 브라우저에서 직접 코드를 씁니다." })
+import '~/css/pages/skillfit.css'
+</script>

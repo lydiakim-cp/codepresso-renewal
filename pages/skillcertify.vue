@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="ko">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>SkillCertify: 개발자 실무 역량 평가 | 코드프레소</title>
-
-  <!-- 검색 결과·링크 미리보기 문구. hero 문구를 그대로 쓴다(마케팅팀 검수 대상).
-       TODO: og:image(1200x630) 에셋과 운영 도메인(og:url·canonical)이 확정되면 채운다. -->
-  <meta name="description" content="돌아가는 코드와 좋은 코드는 다릅니다. 실무 기준 프로젝트 과제와 부정행위 감지 기능으로 개발 역량을 정밀하게 검증합니다.">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="SkillCertify: 개발자 실무 역량 평가 | 코드프레소">
-  <meta property="og:description" content="돌아가는 코드와 좋은 코드는 다릅니다. 실무 기준 프로젝트 과제와 부정행위 감지 기능으로 개발 역량을 정밀하게 검증합니다.">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/pages/skillcertify.css">
-  <link rel="stylesheet" href="css/mobile.css">
-</head>
-
-<body>
-  <div data-include="partials/header.html"></div>
-
-  <main class="skillcertify">
+<template>
+  <SiteHeader />
+<main class="skillcertify">
     <!-- Hero — 좌우 2단, 첫 화면이라 fade-up 없음. -->
     <section class="sub-hero">
       <div class="hero-wrap">
@@ -33,12 +13,12 @@
             <div class="hero-actions">
               <a class="btn btn-primary btn-lg" href="#">
                 <span data-i18n="skillcertify-hero-cta">2주 PoC 신청</span>
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               </a>
             </div>
           </div>
           <div class="hero-visual">
-            <img src="images/products/skillcertify/screens/sub_1_certify_0.Ca1t6TRr.svg" alt="SkillCertify 평가 화면 예시 — 응시자 프로필과 채점 결과 요약, 코드 에디터">
+            <img src="/images/products/skillcertify/screens/sub_1_certify_0.Ca1t6TRr.svg" alt="SkillCertify 평가 화면 예시 — 응시자 프로필과 채점 결과 요약, 코드 에디터">
           </div>
         </div>
       </div>
@@ -68,17 +48,17 @@
           <h2 data-i18n="skillcertify-deliverables-title-01">실무 역량을 정확하게 측정하는 프로젝트형 평가</h2>
           <ul class="feature-points">
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillcertify-deliverables-point-01-01">실제 업무 환경에서 필요한 기술 적용력을 평가</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillcertify-deliverables-point-01-02">이론 문제 풀이가 아닌, 실제 프로젝트와 유사한 과제로 실무 역량 측정</span>
             </li>
           </ul>
         </div>
         <div class="content-panel bg">
-          <img src="images/products/skillcertify/screens/sub_1_certify_1.CtJcntr5.svg" alt="실무 프로젝트 화면 예시 — 백엔드 개발자 과제 화면과 코드 에디터">
+          <img src="/images/products/skillcertify/screens/sub_1_certify_1.CtJcntr5.svg" alt="실무 프로젝트 화면 예시 — 백엔드 개발자 과제 화면과 코드 에디터">
         </div>
       </div>
     </section>
@@ -91,17 +71,17 @@
           <h2 data-i18n="skillcertify-deliverables-title-02">코드 품질 및 성능까지 평가하는 심층 다면 평가</h2>
           <ul class="feature-points">
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillcertify-deliverables-point-02-01">문제 해결 여부를 넘어, 코드 품질과 성능까지 세밀하게 분석</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillcertify-deliverables-point-02-02">효율성·가독성·유지보수성·성능 최적화까지 종합 평가</span>
             </li>
           </ul>
         </div>
         <div class="content-panel bg">
-          <img src="images/products/skillcertify/screens/sub_1_certify_2.Bs5PuAs2.svg" alt="채점 리포트 화면 예시 — 지원자 답안과 정답 코드를 나란히 비교하는 화면">
+          <img src="/images/products/skillcertify/screens/sub_1_certify_2.Bs5PuAs2.svg" alt="채점 리포트 화면 예시 — 지원자 답안과 정답 코드를 나란히 비교하는 화면">
         </div>
       </div>
     </section>
@@ -114,17 +94,17 @@
           <h2 data-i18n="skillcertify-deliverables-title-03">맞춤형 시험을 제작 가능한 기술 · 직무별 평가 콘텐츠</h2>
           <ul class="feature-points">
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillcertify-deliverables-point-03-01">기업이 요구하는 기술 스택·직무에 맞춘 평가 콘텐츠 구성</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               <span data-i18n="skillcertify-deliverables-point-03-02">웹 개발, 클라우드, AI, 데이터 분석 등 분야별 세분화된 콘텐츠로 <br data-break="desktop"> 최적의 인재 선별</span>
             </li>
           </ul>
         </div>
         <div class="content-panel bg">
-          <img src="images/products/skillcertify/screens/sub_1_certify_3.CzB0bdcf.svg" alt="평가 카탈로그 화면 예시 — 직무 트랙과 난이도(Level)를 선택해 평가를 구성하는 화면">
+          <img src="/images/products/skillcertify/screens/sub_1_certify_3.CzB0bdcf.svg" alt="평가 카탈로그 화면 예시 — 직무 트랙과 난이도(Level)를 선택해 평가를 구성하는 화면">
         </div>
       </div>
     </section>
@@ -137,17 +117,17 @@
           <h2 data-i18n="skillcertify-deliverables-title-04">공정한 평가를 보장하는 AI 시험 감독 기능</h2>
           <ul class="feature-points">
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span data-i18n="skillcertify-deliverables-point-04-01">탭 감독, 단축키 제한, 다중 모니터 감지, 복사·붙여넣기 추적 등  <br data-break="desktop">온라인에서도 오프라인 수준의 공정성 제공</span>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <span data-i18n="skillcertify-deliverables-point-04-01">탭 감독, 단축키 제한, 다중 모니터 감지, 복사·붙여넣기 추적 등 <br data-break="desktop">온라인에서도 오프라인 수준의 공정성 제공</span>
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span data-i18n="skillcertify-deliverables-point-04-02">AI 감독 솔루션 ProctorMatic으로 모바일 카메라 기반  <br data-break="desktop">실시간 부정행위 감지</span>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <span data-i18n="skillcertify-deliverables-point-04-02">AI 감독 솔루션 ProctorMatic으로 모바일 카메라 기반 <br data-break="desktop">실시간 부정행위 감지</span>
             </li>
           </ul>
         </div>
         <div class="content-panel bg">
-          <img src="images/products/skillcertify/screens/sub_1_certify_4.CJGUkdYE.svg" alt="감독 경고 화면 예시 — 화면 이탈·복사붙여넣기 등 이상 행동이 감지되어 관리자에게 보고된다는 경고 팝업">
+          <img src="/images/products/skillcertify/screens/sub_1_certify_4.CJGUkdYE.svg" alt="감독 경고 화면 예시 — 화면 이탈·복사붙여넣기 등 이상 행동이 감지되어 관리자에게 보고된다는 경고 팝업">
         </div>
       </div>
     </section>
@@ -169,7 +149,7 @@
               <h3 data-i18n="skillcertify-process-item-title-01">접수·사전 설문</h3>
               <p class="description" data-i18n="skillcertify-process-item-desc-01">2일 이내 진행</p>
               <span class="cycle-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               </span>
             </li>
             <li>
@@ -179,7 +159,7 @@
               <h3 data-i18n="skillcertify-process-item-title-02">계정·크레딧 지급</h3>
               <p class="description" data-i18n="skillcertify-process-item-desc-02">조직·데모 계정 + 크레딧 3~5개</p>
               <span class="cycle-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               </span>
             </li>
             <li>
@@ -189,7 +169,7 @@
               <h3 data-i18n="skillcertify-process-item-title-03">평가 생성·초대</h3>
               <p class="description" data-i18n="skillcertify-process-item-desc-03">최대 3회 평가 운영</p>
               <span class="cycle-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               </span>
             </li>
             <li>
@@ -199,7 +179,7 @@
               <h3 data-i18n="skillcertify-process-item-title-04">역량 리포트</h3>
               <p class="description" data-i18n="skillcertify-process-item-desc-04">결과 분석과 만족도 조사</p>
               <span class="cycle-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               </span>
             </li>
             <li>
@@ -226,40 +206,40 @@
           <ul class="outcome-list">
             <li>
               <div class="outcome-logo">
-                <img src="images/clients/dark/logo-cj.svg" alt="CJ올리브네트웍스 로고" loading="lazy">
+                <img src="/images/clients/dark/logo-cj.svg" alt="CJ올리브네트웍스 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="tag sm" data-i18n="skillcertify-outcomes-item-tag-01">글로벌 개발자 채용</p>
                 <p class="outcome-headline" data-i18n="skillcertify-outcomes-item-headline-01">150명 → 30명 → 3명</p>
                 <p class="outcome-detail" data-i18n="skillcertify-outcomes-item-detail-01">프로젝트형 평가로 후보를 선별 · 채용 기간과 비용 <strong>1/3</strong> 절감</p>
-                <p class="outcome-client" data-i18n="skillcertify-outcomes-item-client-01">CJ올리브네트웍스 <span class="outcome-industry">/ 해외 개발자 채용</span></p>
+                <p class="outcome-client" data-i18n="skillcertify-outcomes-item-client-01">CJ올리브네트웍스 &lt;span class="outcome-industry"&gt;/ 해외 개발자 채용&lt;/span&gt;</p>
               </div>
             </li>
             <li>
               <div class="outcome-logo">
-                <img src="images/clients/dark/logo-hyundai-mobis.png" alt="현대모비스 로고" loading="lazy">
+                <img src="/images/clients/dark/logo-hyundai-mobis.png" alt="현대모비스 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="tag sm" data-i18n="skillcertify-outcomes-item-tag-02">SW 인재 양성</p>
                 <p class="outcome-headline" data-i18n="skillcertify-outcomes-item-headline-02">사전·사후 평가</p>
                 <p class="outcome-detail" data-i18n="skillcertify-outcomes-item-detail-02">엄격한 평가 기반의 검증된 모빌리티 SW 인재 Upskilling</p>
-                <p class="outcome-client" data-i18n="skillcertify-outcomes-item-client-02">현대모비스 <span class="outcome-industry">/ 모비우스 부트캠프</span></p>
+                <p class="outcome-client" data-i18n="skillcertify-outcomes-item-client-02">현대모비스 &lt;span class="outcome-industry"&gt;/ 모비우스 부트캠프&lt;/span&gt;</p>
               </div>
             </li>
             <li>
               <div class="outcome-logo">
-                <img src="images/clients/dark/logo-skt.png" alt="SK텔레콤 로고" loading="lazy">
+                <img src="/images/clients/dark/logo-skt.png" alt="SK텔레콤 로고" loading="lazy">
               </div>
               <div class="outcome-body">
                 <p class="tag sm" data-i18n="skillcertify-outcomes-item-tag-03">역량 정량 관리</p>
                 <p class="outcome-headline" data-i18n="skillcertify-outcomes-item-headline-03">감이 아닌 데이터</p>
                 <p class="outcome-detail" data-i18n="skillcertify-outcomes-item-detail-03">막연했던 사내 AI 활용 역량을 정량 데이터로 관리</p>
-                <p class="outcome-client" data-i18n="skillcertify-outcomes-item-client-03">SK텔레콤 <span class="outcome-industry">/ AI 역량 관리</span></p>
+                <p class="outcome-client" data-i18n="skillcertify-outcomes-item-client-03">SK텔레콤 &lt;span class="outcome-industry"&gt;/ AI 역량 관리&lt;/span&gt;</p>
               </div>
             </li>
           </ul>
           <div class="cases-more">
-            <a class="link-arrow link-arrow-ink" href="cases.html"><span data-i18n="skillcertify-outcomes-more">고객 사례 전체 보기</span><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="link-arrow link-arrow-ink" href="/cases"><span data-i18n="skillcertify-outcomes-more">고객 사례 전체 보기</span><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
           </div>
         </div>
       </div>
@@ -278,7 +258,7 @@
               <summary class="faq-list__question">
                 <span data-i18n="skillcertify-faq-question-01">기존 코딩테스트와 무엇이 다른가요?</span>
                 <span class="faq-list__icon" aria-hidden="true">
-                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
               </summary>
               <p class="faq-list__answer" data-i18n="skillcertify-faq-answer-01">짧은 알고리즘 문제의 정답 여부만 보는 대신, 실제 직무 프로젝트에서 기능 정확성, 실행 성능, 코드 구조와 품질, 문제 해결 과정을 함께 평가합니다.</p>
@@ -287,7 +267,7 @@
               <summary class="faq-list__question">
                 <span data-i18n="skillcertify-faq-question-02">어떤 직무를 평가할 수 있나요?</span>
                 <span class="faq-list__icon" aria-hidden="true">
-                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
               </summary>
               <p class="faq-list__answer" data-i18n="skillcertify-faq-answer-02">AI, 데이터 분석, 웹 개발, 클라우드, 사이버보안, 알고리즘, 자료구조, 자동차 SW, DevOps, SW 엔지니어링 등 50개 직무 영역을 제공하며, 직무별·경력별 맞춤 구성이 가능합니다.</p>
@@ -296,7 +276,7 @@
               <summary class="faq-list__question">
                 <span data-i18n="skillcertify-faq-question-03">원격 평가의 부정행위는 어떻게 확인하나요?</span>
                 <span class="faq-list__icon" aria-hidden="true">
-                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
               </summary>
               <p class="faq-list__answer" data-i18n="skillcertify-faq-answer-03">카메라, 화면, 마이크와 브라우저 이벤트를 기록해 이상 징후를 표시하고, 관리자가 이벤트 타임라인과 근거를 검토해 최종 판단합니다.</p>
@@ -305,7 +285,7 @@
               <summary class="faq-list__question">
                 <span data-i18n="skillcertify-faq-question-04">채용 외에도 사용할 수 있나요?</span>
                 <span class="faq-list__icon" aria-hidden="true">
-                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
               </summary>
               <p class="faq-list__answer" data-i18n="skillcertify-faq-answer-04">가능합니다. 교육 전후의 역량 변화 측정, 사내 직무 인증, 승진·배치 기준, 조직 역량 진단에 동일한 평가 기준을 활용할 수 있습니다.</p>
@@ -323,20 +303,17 @@
         <div class="cta-final-actions">
           <a class="btn btn-primary btn-lg" href="#">
             <span data-i18n="skillcertify-cta-final-cta">PoC 신청하기</span>
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </a>
         </div>
       </div>
     </section>
   </main>
+  <SiteFooter />
+  <ClientInteractions :scripts='["js/fade-up.js","js/header-scroll.js","js/nav-menu.js"]' />
+</template>
 
-  <div data-include="partials/footer.html"></div>
-
-  <script src="js/include-partials.js"></script>
-  <script src="js/i18n.js"></script>
-  <script src="js/fade-up.js"></script>
-  <script src="js/header-scroll.js"></script>
-  <script src="js/nav-menu.js"></script>
-</body>
-
-</html>
+<script setup>
+useSeoMeta({ title: "SkillCertify: 개발자 실무 역량 평가 | 코드프레소", description: "돌아가는 코드와 좋은 코드는 다릅니다. 실무 기준 프로젝트 과제와 부정행위 감지 기능으로 개발 역량을 정밀하게 검증합니다." })
+import '~/css/pages/skillcertify.css'
+</script>

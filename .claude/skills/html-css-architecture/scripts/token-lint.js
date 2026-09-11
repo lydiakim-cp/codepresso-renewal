@@ -59,7 +59,7 @@ for (const f of walk(CSS_DIR)) {
 /* 값을 마크업이 정하는 변수(카드마다 다른 좌표·개수)는 HTML의 style=""가 정의한다.
    여기까지 모아야 "정의되지 않은 변수"가 오탐을 내지 않는다. */
 const collectInlineVars = (dir) => {
-  for (const f of fs.readdirSync(dir).filter((n) => n.endsWith('.html'))) {
+  for (const f of fs.readdirSync(dir).filter((n) => n.endsWith('.html') || n.endsWith('.vue'))) {
     const html = fs.readFileSync(path.join(dir, f), 'utf8');
     for (const m of html.matchAll(/style="([^"]*)"/g)) {
       for (const d of m[1].matchAll(/(--[a-zA-Z0-9-]+)\s*:/g)) defined.add(d[1]);
@@ -68,6 +68,8 @@ const collectInlineVars = (dir) => {
 };
 collectInlineVars(ROOT);
 collectInlineVars(path.join(ROOT, 'partials'));
+if (fs.existsSync(path.join(ROOT, 'components'))) collectInlineVars(path.join(ROOT, 'components'));
+if (fs.existsSync(path.join(ROOT, 'pages'))) collectInlineVars(path.join(ROOT, 'pages'));
 
 /* JS가 런타임에 심는 변수도 정의로 본다 — style.setProperty('--case-index', n) 류 */
 for (const f of fs.readdirSync(path.join(ROOT, 'js')).filter((n) => n.endsWith('.js'))) {
