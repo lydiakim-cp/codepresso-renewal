@@ -1,7 +1,6 @@
 <template>
   <SiteHeader />
 <main class="aifluent">
-    <!-- Hero — 첫 화면이라 fade-up 없음. 보조 띠에는 "무엇을 어떻게 보는가" 3가지를 눕힌다. -->
     <section class="sub-hero">
       <div class="hero-wrap">
         <div class="sub-hero-copy">
@@ -14,11 +13,9 @@
           </div>
         </div>
 
-        <!-- 평가 방식 3가지. skills·skillcamp hero와 같은 유리 띠 마크업을 그대로 쓴다. -->
         <ul class="hero-facts surface-glass">
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 실제 업무 수행 — images/icons/library/005.문서,결재.svg 기반, 브랜드 토큰으로 색상 조정 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 7V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58578 21.4142C4.21071 21.0391 4 20.5304 4 20V4C4 3.46957 4.21071 2.96083 4.58578 2.58575C4.96086 2.21068 5.46957 2 6 2H15L20 7Z" fill="var(--color-brand)"></path>
                 <path d="M16 7H20L15 2V6C15 6.26522 15.1054 6.51956 15.2929 6.70709C15.4804 6.89463 15.7348 7 16 7Z" fill="var(--color-brand)"></path>
@@ -33,7 +30,6 @@
           </li>
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 과정·결과 평가 — images/icons/library/002.대화,채팅.svg 기반, 브랜드 토큰으로 색상 조정 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 4H20C21.1046 4 22 4.89543 22 6V16C22 17.1046 21.1046 18 20 18H12L7 23V18H4C2.89543 18 2 17.1046 2 16V6C2 4.89543 2.89543 4 4 4Z" fill="var(--color-brand)"></path>
                 <path d="M8.5 9.75H7C6.72386 9.75 6.5 9.97386 6.5 10.25V11.75C6.5 12.0261 6.72386 12.25 7 12.25H8.5C8.77614 12.25 9 12.0261 9 11.75V10.25C9 9.97386 8.77614 9.75 8.5 9.75Z" fill="var(--color-surface)"></path>
@@ -48,7 +44,6 @@
           </li>
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 다음 행동 — images/icons/library/034.깃발,목표.svg 기반, 브랜드 토큰으로 색상 조정 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22 16H5V4H22L18 10L22 16Z" fill="var(--color-brand-dark)"></path>
                 <path d="M3.75 3H4.25C4.51522 3 4.76962 3.10534 4.95715 3.29288C5.14469 3.48041 5.25 3.73478 5.25 4V22H2.75V4C2.75 3.73478 2.85537 3.48041 3.04291 3.29288C3.23044 3.10534 3.48478 3 3.75 3Z" fill="var(--color-brand)"></path>
@@ -63,10 +58,6 @@
       </div>
     </section>
 
-    <!--
-      진단 모드 — 개인 맛보기 vs 기업 정밀. 우열이 아니라 선택지라 compare-panel이 아니라
-      공용 content-panel + start-card 갈래 배치를 쓴다(why-codepresso 06과 같은 마크업).
-    -->
     <section class="features-mode fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -79,8 +70,6 @@
             <li>
               <div class="content-panel start-card">
                 <span class="start-icon" aria-hidden="true">
-
-                  <!-- 3분 AI 활용 진단 — images/icons/library/101.사용자,프로필.svg 기반, 브랜드 토큰으로 색상 조정 -->
                   <svg class="icon-lg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 10H14C15.3261 10 16.5979 10.5268 17.5355 11.4644C18.4732 12.4021 19 13.6739 19 15V21C19 21.5304 18.7893 22.0391 18.4142 22.4142C18.0391 22.7893 17.5304 23 17 23H7C6.46957 23 5.96086 22.7893 5.58579 22.4142C5.21071 22.0391 5 21.5304 5 21V15C5 13.6739 5.52678 12.4021 6.46447 11.4644C7.40215 10.5268 8.67392 10 10 10Z" fill="var(--color-brand)"></path>
                 <path d="M12 9C14.2091 9 16 7.20914 16 5C16 2.79086 14.2091 1 12 1C9.79086 1 8 2.79086 8 5C8 7.20914 9.79086 9 12 9Z" fill="var(--color-brand)"></path>
@@ -102,8 +91,6 @@
             <li>
               <div class="content-panel start-card is-primary">
                 <span class="start-icon" aria-hidden="true">
-
-                  <!-- 기업 정밀 — images/icons/service/ic_team.svg의 실제 path, 하드코딩 색을 브랜드 토큰으로 교체 -->
                   <svg class="icon-lg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                     <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
@@ -131,7 +118,6 @@
       </div>
     </section>
 
-    <!-- 01 What We Measure — 네 역량. 아이콘+제목+한 줄 설명이라 공용 feature-card 자동 순환을 쓴다. -->
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -144,7 +130,6 @@
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 문제 정의 — images/icons/library/002.대화,채팅.svg 기반, 브랜드 토큰으로 색상 조정 -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 4H20C21.1046 4 22 4.89543 22 6V16C22 17.1046 21.1046 18 20 18H12L7 23V18H4C2.89543 18 2 17.1046 2 16V6C2 4.89543 2.89543 4 4 4Z" fill="var(--color-brand)"></path>
                 <path d="M8.5 9.75H7C6.72386 9.75 6.5 9.97386 6.5 10.25V11.75C6.5 12.0261 6.72386 12.25 7 12.25H8.5C8.77614 12.25 9 12.0261 9 11.75V10.25C9 9.97386 8.77614 9.75 8.5 9.75Z" fill="var(--color-surface)"></path>
@@ -172,7 +157,6 @@
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 프롬프트 설계 — images/icons/library/038.작성,글쓰기.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15.86 3.65039L19.4 7.19038L7.90999 18.6704L4 19.0004L4.37999 15.1404L15.86 3.65039Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
                     <path d="M18.0498 8.54065L14.5098 5.00064L16.6398 2.88065C16.8271 2.69439 17.0806 2.58984 17.3448 2.58984C17.6089 2.58984 17.8624 2.69439 18.0498 2.88065L20.1698 5.00064C20.2635 5.0936 20.3379 5.20419 20.3887 5.32605C20.4394 5.44791 20.4656 5.57862 20.4656 5.71063C20.4656 5.84264 20.4394 5.97336 20.3887 6.09521C20.3379 6.21707 20.2635 6.32766 20.1698 6.42062L18.0498 8.54065Z" fill="var(--color-brand)"></path>
@@ -199,7 +183,6 @@
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 워크플로·Agent — images/icons/library/072.챗봇.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.0098 6H7.00977C4.80063 6 3.00977 7.79086 3.00977 10V17C3.00977 19.2091 4.80063 21 7.00977 21H17.0098C19.2189 21 21.0098 19.2091 21.0098 17V10C21.0098 7.79086 19.2189 6 17.0098 6Z" fill="var(--color-brand)"></path>
                     <path d="M12.0098 2C12.3413 2 12.6593 2.1317 12.8937 2.36612C13.1281 2.60054 13.2598 2.91848 13.2598 3.25V6H10.7598V3.25C10.7598 2.91848 10.8915 2.60054 11.1259 2.36612C11.3603 2.1317 11.6782 2 12.0098 2Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
@@ -229,7 +212,6 @@
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 결과 검증 — images/icons/service/ic_axBuild.svg의 실제 path, 하드코딩 색을 브랜드 토큰으로 교체 -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21.5001 5L12.0001 1L2.50007 5V9C2.49107 12.0185 3.39297 14.9695 5.08786 17.4672C6.78276 19.9649 9.19179 21.8932 12.0001 23C14.8083 21.8932 17.2174 19.9649 18.9123 17.4672C20.6072 14.9695 21.5091 12.0185 21.5001 9V5Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4089 11.5203L15.2373 7.70001L17.0032 9.46964L11.3316 15.1293L7.7002 11.181L9.54027 9.48864L11.4089 11.5203Z" fill="var(--color-brand)"></path>
@@ -256,10 +238,6 @@
       </div>
     </section>
 
-    <!--
-      02 Real-Work Assessment — 좌 설명 · 우 실무 화면.
-      "시험이 아니라 업무를 한다"는 글로만 두면 안 읽혀서, 미션 수행 화면을 이미지로 함께 둔다.
-    -->
     <section class="intro fade-up">
       <div class="section-wrap row">
         <div class="section-title text-left">
@@ -290,10 +268,6 @@
       </div>
     </section>
 
-    <!--
-      03 Assessment Tracks — 전 직군 · 개발 직군 두 묶음.
-      "라벨 + 타일 목록 두 묶음"이 그대로 공용 catalog-group의 역할이라 skillcamp와 같은 마크업을 쓴다.
-    -->
     <section class="catalog fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -308,7 +282,6 @@
               <ul class="item-grid">
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- AI 바이브코딩 - images/icons/library/078.개발,코딩.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" fill="var(--color-brand)"></path>
                       <path d="M12.8102 6L9.2002 18H11.2002L14.8102 6H12.8102Z" fill="var(--color-surface)"></path>
@@ -320,7 +293,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- AI Agent - images/icons/library/071.인공지능.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5V22H11V5H13Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
                       <path d="M15.0098 5C15.0098 3.34315 13.6666 2 12.0098 2C10.3529 2 9.00977 3.34315 9.00977 5C9.00977 6.65685 10.3529 8 12.0098 8C13.6666 8 15.0098 6.65685 15.0098 5Z" fill="var(--color-brand)"></path>
@@ -334,7 +306,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- Prompt Engineering - images/icons/library/082.연필.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M15.44 5.07031L5.54004 14.9703L9.08004 18.5003L18.98 8.60031L15.44 5.07031Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
                       <path d="M4.74984 15.7607L4.08984 17.7507L6.27984 19.9407L8.28984 19.2907L9.07984 18.5007L5.53984 14.9707L4.74984 15.7607Z" fill="color-mix(in srgb, var(--color-brand) 20%, var(--color-surface))"></path>
@@ -352,7 +323,6 @@
               <ul class="item-grid">
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- Prompt Engineering for Developers — images/icons/library/077.브라우저 창.svg 기반, 브랜드 토큰으로 색상 조정 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"></path>
                 <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"></path>
@@ -365,7 +335,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- LangChain - images/icons/library/124.링크,연결.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M13.5936 5.1038L10.7637 7.93366L8.99597 6.16589L11.826 3.3359C12.998 2.16421 14.5876 1.50586 16.2449 1.50586C17.9021 1.50586 19.4915 2.16408 20.6636 3.33577C21.2452 3.91613 21.7066 4.60547 22.0215 5.36436C22.3366 6.12367 22.4988 6.9377 22.4988 7.7598C22.4988 8.5819 22.3366 9.3959 22.0215 10.1552C21.7064 10.9145 21.2446 11.6042 20.6626 12.1848L17.8322 15.0052L16.0675 13.2343L18.8971 10.4148C19.2461 10.0665 19.5235 9.65242 19.7124 9.19703C19.9015 8.74143 19.9988 8.25304 19.9988 7.7598C19.9988 7.26655 19.9015 6.77812 19.7124 6.32253C19.5234 5.86695 19.2463 5.45314 18.8971 5.10479L18.8961 5.1038C18.1929 4.40079 17.2392 4.00586 16.2449 4.00586C15.2506 4.00586 14.2968 4.40087 13.5936 5.1038Z" fill="var(--color-brand)"></path>
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M7.93367 10.7638L5.1038 13.5936C5.10376 13.5937 5.10385 13.5936 5.1038 13.5936C4.40088 14.2968 4.00586 15.2506 4.00586 16.2449C4.00586 17.2391 4.40069 18.1927 5.10354 18.8959C5.80674 19.5987 6.76055 19.9938 7.75479 19.9938C8.7491 19.9938 9.70269 19.5989 10.4059 18.896C10.4059 18.896 10.406 18.896 10.4059 18.896L13.2359 16.066L15.0037 17.8337L12.1737 20.6638C11.0016 21.8355 9.41206 22.4938 7.75479 22.4938C6.09752 22.4938 4.50809 21.8356 3.33604 20.6639C2.16434 19.4918 1.50586 17.9022 1.50586 16.2449C1.50586 14.5876 2.16407 12.9982 3.33577 11.8261L6.16591 8.996L7.93367 10.7638Z" fill="var(--color-brand)"></path>
@@ -376,7 +345,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- LangGraph - images/icons/library/076.네트워크.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M13.2607 4.37012V14.2501H10.7607V4.37012H13.2607Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7442 13.3467L5.66409 18.7334L4.27734 16.6533L12.3575 11.2666L13.7442 13.3467Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
@@ -390,7 +358,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- Hugging Face - images/icons/library/033.클라우드.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M19 10.05C19 10.05 19 10.02 19 10C19 6.69 16.31 4 13 4C10.36 4 8.13 5.7 7.32 8.07C7.05 8.03 6.78 8 6.5 8C3.46 8 1 10.46 1 13.5C1 16.54 3.46 19 6.5 19H18.5C20.99 19 23 16.98 23 14.5C23 12.19 21.25 10.3 19 10.05Z" fill="var(--color-brand)"></path>
                     </svg>
@@ -399,7 +366,6 @@
                 </li>
                 <li class="is-upcoming">
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- AI 코드리뷰 - images/icons/library/113.승인,완료.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"></path>
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M17.509 9.7163L11.3951 16.5082L6.9436 12.0314L8.71637 10.2686L11.3048 12.8718L15.6509 8.04371L17.509 9.7163Z" fill="var(--color-surface)"></path>
@@ -415,8 +381,6 @@
       </div>
     </section>
 
-    <!-- 04 Common Standard — 직군이 달라도 같은 4단계.
-         순서가 아니라 "수준의 정의"라 화살표로 잇지 않고 갈래 카드(start-card) 4칸으로 눕힌다. -->
     <section class="catalog-level fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -471,8 +435,6 @@
       </div>
     </section>
 
-    <!-- 05 Enterprise Process — 목적 확인부터 학습 연결까지.
-         기간이 붙지 않는 5단계라 공용 cycle을 가로 5칸으로 쓴다(열 수는 페이지가 정한다). -->
     <section class="process fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -538,7 +500,6 @@
       </div>
     </section>
 
-    <!-- 06 Actionable Report — 좌 읽는 법 · 우 리포트 화면. 실제 리포트 샘플 이미지를 그대로 보여준다. -->
     <section class="deliverables fade-up">
       <div class="section-wrap row">
         <div class="section-title text-left">
@@ -572,8 +533,6 @@
         </div>
       </div>
 
-      <!-- 진단 → 학습 다리. 별도 섹션이 아니라 06의 결론 배너다(공용 summary-banner.dark).
-           좌 문구 · 우 CTA 배치는 skills.html의 브릿지와 같은 마크업을 쓴다. -->
       <div class="section-wrap col report-bridge">
         <div class="summary-banner dark">
           <div class="bridge-inner">
@@ -587,7 +546,6 @@
       </div>
     </section>
 
-    <!-- 07 Use Cases — 목적 4가지. 한 줄 칩 그리드인 공용 item-grid를 그대로 쓴다. -->
     <section class="catalog-usecase fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -598,8 +556,6 @@
           <ul class="item-grid usecase-cards">
             <li>
               <span class="usecase-icon icon-md" aria-hidden="true">
-
-                <!-- 교육 전 진단 — images/icons/library/025.검색.svg 기반, 브랜드 토큰으로 색상 조정 -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 17.21C14.2059 17.21 17.2101 14.2059 17.2101 10.5C17.2101 6.79422 14.2059 3.79004 10.5 3.79004C6.7942 3.79004 3.79004 6.79422 3.79004 10.5C3.79004 14.2059 6.7942 17.21 10.5 17.21Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"></path>
                 <path d="M10.5 4.5C12.0913 4.5 13.6174 5.13214 14.7426 6.25735C15.8678 7.38257 16.5 8.9087 16.5 10.5C16.5 12.0913 15.8678 13.6174 14.7426 14.7426C13.6174 15.8679 12.0913 16.5 10.5 16.5C8.9087 16.5 7.38257 15.8679 6.25735 14.7426C5.13214 13.6174 4.5 12.0913 4.5 10.5C4.5 8.9087 5.13214 7.38257 6.25735 6.25735C7.38257 5.13214 8.9087 4.5 10.5 4.5ZM10.5 2C8.24647 2.00265 6.08599 2.89904 4.49251 4.49252C2.89902 6.08601 2.00265 8.24647 2 10.5C2 11.6162 2.21985 12.7215 2.64702 13.7528C3.07418 14.7841 3.7003 15.7211 4.48959 16.5104C5.27889 17.2997 6.21592 17.9258 7.24719 18.353C8.27846 18.7801 9.38376 19 10.5 19C11.6166 19.0013 12.7225 18.7824 13.7544 18.3557C14.7862 17.929 15.7238 17.3029 16.5133 16.5133C17.3029 15.7238 17.929 14.7862 18.3557 13.7544C18.7824 12.7225 19.0013 11.6166 19 10.5C19 8.24566 18.1045 6.08365 16.5104 4.48959C14.9163 2.89553 12.7543 2 10.5 2Z" fill="var(--color-brand)"></path>
@@ -611,8 +567,6 @@
             </li>
             <li>
               <span class="usecase-icon icon-md" aria-hidden="true">
-
-                <!-- 교육 후 성과 측정 — images/icons/library/109.막대 그래프.svg 기반, 브랜드 토큰으로 색상 조정 -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="var(--color-brand)"></path>
                 <path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="var(--color-brand)"></path>
@@ -624,7 +578,6 @@
             </li>
             <li>
               <span class="usecase-icon icon-md" aria-hidden="true">
-                <!-- 채용·선발 — images/icons/library/092.일체형 컴퓨터.svg 기반, 브랜드 토큰으로 색상 조정 -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15.5107 21H8.51074L9.51074 16H14.5107L15.5107 21Z" fill="var(--color-brand)"></path>
                 <path d="M2.01074 16.67C2.03356 16.9125 2.15166 17.1361 2.33913 17.2917C2.5266 17.4473 2.76813 17.5223 3.01074 17.5H21.0107C21.2528 17.5196 21.4929 17.4437 21.6798 17.2886C21.8666 17.1335 21.9854 16.9115 22.0107 16.67V15H2.01074V16.67Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"></path>
@@ -636,7 +589,6 @@
             </li>
             <li>
               <span class="usecase-icon icon-md" aria-hidden="true">
-                <!-- AX 전략 수립 — images/icons/library/034.깃발,목표.svg, 하드코딩 색을 브랜드 토큰으로 교체 -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M22 16H5V4H22L18 10L22 16Z" fill="var(--color-brand)"></path>
                   <path d="M3.75 3H4.25C4.51522 3 4.76962 3.10534 4.95715 3.29288C5.14469 3.48041 5.25 3.73478 5.25 4V22H2.75V4C2.75 3.73478 2.85537 3.48041 3.04291 3.29288C3.23044 3.10534 3.48478 3 3.75 3Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"></path>
@@ -650,7 +602,6 @@
       </div>
     </section>
 
-    <!-- 08 FAQ -->
     <section class="faq fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -700,7 +651,6 @@
       </div>
     </section>
 
-    <!-- 최하단 전환 — 공용 컴포넌트 -->
     <section class="cta-final fade-up">
       <div class="section-wrap col cta-final-inner">
         <h2 class="cta-final-title" data-i18n="aifluent-cta-final-title">우리 조직의 AX 수준, <br data-break="desktop">숫자로 확인하세요</h2>
@@ -717,6 +667,10 @@
 
 <script setup>
 useSeoMeta({ title: "AI Fluent: AI 활용 역량 진단 | 코드프레소", description: "문제 정의, 프롬프트 설계, 워크플로·Agent 활용, 결과 검증까지. 실제 업무 속 AI 활용 역량을 진단합니다." })
-import '~/css/pages/aifluent.css'
-import '~/css/mobile.css'
+
 </script>
+
+<style>
+@import '~/css/pages/aifluent.css';
+@import '~/css/mobile.css';
+</style>

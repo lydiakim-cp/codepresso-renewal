@@ -1,7 +1,6 @@
 <template>
   <SiteHeader />
 <main class="skillcertify">
-    <!-- Hero — 좌우 2단, 첫 화면이라 fade-up 없음. -->
     <section class="sub-hero">
       <div class="hero-wrap">
         <div class="hero-row">
@@ -24,7 +23,6 @@
       </div>
     </section>
 
-    <!-- 이런 고민을 가지고 계시다면 — 문제 제기 3카드. -->
     <section class="intro fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -40,7 +38,6 @@
       </div>
     </section>
 
-    <!-- 01 프로젝트형 평가 -->
     <section class="deliverables product-feature is-sunken fade-up">
       <div class="section-wrap row">
         <div class="feature-copy">
@@ -63,7 +60,6 @@
       </div>
     </section>
 
-    <!-- 02 심층 다면 평가 -->
     <section class="deliverables product-feature fade-up">
       <div class="section-wrap row">
         <div class="feature-copy">
@@ -86,7 +82,6 @@
       </div>
     </section>
 
-    <!-- 03 기술·직무별 평가 콘텐츠 -->
     <section class="deliverables product-feature is-sunken fade-up">
       <div class="section-wrap row">
         <div class="feature-copy">
@@ -109,7 +104,6 @@
       </div>
     </section>
 
-    <!-- 04 AI 시험 감독 기능 -->
     <section class="deliverables product-feature fade-up">
       <div class="section-wrap row">
         <div class="feature-copy">
@@ -132,7 +126,6 @@
       </div>
     </section>
 
-    <!-- 05 2주 PoC — 5단계를 가로 박스 순서로. -->
     <section class="process fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -195,7 +188,6 @@
       </div>
     </section>
 
-    <!-- 06 고객 사례 — outcome-list 3장, cases.html 데이터 재사용 -->
     <section class="outcomes fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -245,7 +237,6 @@
       </div>
     </section>
 
-    <!-- 07 FAQ -->
     <section class="faq fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -295,7 +286,6 @@
       </div>
     </section>
 
-    <!-- 최하단 전환 — 공용 컴포넌트 -->
     <section class="cta-final fade-up">
       <div class="section-wrap col cta-final-inner">
         <h2 class="cta-final-title" data-i18n="skillcertify-cta-final-title">채용과 육성에 하나의 실무 기준을</h2>
@@ -315,6 +305,10 @@
 
 <script setup>
 useSeoMeta({ title: "SkillCertify: 개발자 실무 역량 평가 | 코드프레소", description: "돌아가는 코드와 좋은 코드는 다릅니다. 실무 기준 프로젝트 과제와 부정행위 감지 기능으로 개발 역량을 정밀하게 검증합니다." })
-import '~/css/pages/skillcertify.css'
-import '~/css/mobile.css'
+
 </script>
+
+<style>
+@import '~/css/pages/skillcertify.css';
+@import '~/css/mobile.css';
+</style>

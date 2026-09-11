@@ -2,7 +2,6 @@
   <SiteHeader />
 <main class="company">
 
-    <!-- 01 Mission — 첫 화면. 주인공이 제품이 아니라 미션 한 문장이라 hero-facts는 두지 않는다. -->
     <section class="sub-hero">
       <div class="hero-wrap">
         <div class="sub-hero-copy">
@@ -12,7 +11,6 @@
       </div>
     </section>
 
-    <!-- 02 Philosophy — 대표의 한 문장. 페이지에서 statement는 이 한 곳뿐이다. -->
     <section class="statement fade-up">
       <div class="section-wrap col">
         <div class="statement-inner">
@@ -23,13 +21,8 @@
       </div>
     </section>
 
-    <!-- 03 History — 좌측 시대 판이 sticky로 고정된 채 우측 연도 목록이 흐르고,
-         지금 보는 구간에 맞춰 좌측 판이 교차 페이드로 바뀐다(skills 04와 같은 journey-stage).
-         구간 표시는 연도 하나하나에 붙어 있어 연도가 바뀔 때마다 좌측 판도 바뀐다. -->
     <section class="about is-dark fade-up" data-journey-stage="">
       <div class="section-wrap row is-sticky">
-        <!-- 제목도 시대 판과 함께 좌측에 붙어 따라온다 — 연도를 읽는 내내 지금 어느
-             섹션의 어느 시대인지 화면에 남는다. -->
         <div class="section-aside">
           <div class="section-title text-left">
             <h2 data-i18n="company-about-title">2019년부터, <br>역량의 증명을 만들어 왔습니다</h2>
@@ -78,7 +71,6 @@
           </div>
         </div>
 
-        <!-- 우측 연도 목록 — 연도(28px) 아래 그 해의 일들(18px). 점과 세로선이 시대를 잇는다. -->
         <div class="company-years">
           <div class="company-year" data-journey-track-step="0">
             <p class="company-year-num">2019</p>
@@ -124,8 +116,6 @@
         </div>
       </div>
 
-      <!-- 모바일 전용 — sticky 교차 연출이 풀리는 대신 연도+이미지를 한 판씩 이어 붙인다.
-           트랙 옵저버(data-journey-track-step)는 데스크톱 목록에만 있어 여기선 관찰 대상이 아니다. -->
       <div class="company-years-mobile">
         <div class="company-year-block">
           <p class="company-year-num">2019</p>
@@ -186,7 +176,6 @@
       </div>
     </section>
 
-    <!-- 04 Trust — 인증·수상·파트너십 로고만 남긴 판. 라벨은 tag.outline. -->
     <section class="features-trust fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -228,7 +217,6 @@
       </div>
     </section>
 
-    <!-- 05 Offices — 지사·법인 거점만 따로 뺀 섹션. -->
     <section class="about-offices fade-up is-dark">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -278,8 +266,6 @@
       </div>
     </section>
 
-    <!-- 05 Voices — index의 사례 덱(proof-card)을 그대로 쓴다. 담당자 후기는 회사를
-         밝히지 않는 것이 있어 카드 안 로고 이미지만 뺐다. -->
     <section class="outcomes fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -339,6 +325,10 @@
 
 <script setup>
 useSeoMeta({ title: "회사 소개 | 코드프레소", description: "역량이 공정하게 평가되는 세상. 2019년 설립 이후 AI 리터러시의 표준을 만들어 온 코드프레소의 미션과 연혁, 인증과 고객의 목소리를 소개합니다." })
-import '~/css/pages/company.css'
-import '~/css/mobile.css'
+
 </script>
+
+<style>
+@import '~/css/pages/company.css';
+@import '~/css/mobile.css';
+</style>

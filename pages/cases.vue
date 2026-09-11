@@ -1,13 +1,7 @@
 <template>
   <SiteHeader />
-<!-- GNB는 partials/header.html 하나로 관리한다. js/include-partials.js가 fetch해 삽입한다.
-       (fetch를 쓰므로 file:// 직접 열기로는 안 보인다 — 로컬 정적 서버로 확인한다) -->
-  
 
   <main class="cases">
-    <!-- Hero — 한 줄 정의 + 신뢰 수치 3개. 첫 화면이라 fade-up을 붙이지 않는다.
-         이 페이지는 "증거"가 주인공이라 hero의 수치도 장식이 아니라 첫 번째 증거다.
-         ax-build hero-facts의 유리 표면 metric-card 패턴을 그대로 쓴다. -->
     <section class="sub-hero">
       <div class="hero-wrap">
         <div class="sub-hero-copy">
@@ -16,17 +10,9 @@
           <p class="hero-desc" data-i18n="cases-hero-desc">익명의 후기가 아닙니다. <strong>실명과 숫자</strong>로 공개합니다.</p>
         </div>
 
-        <!-- 누적 성과 3개. hero-facts와 같은 유리 띠 외피에 수치를 담는 hero-facts
-             변형(질문형과 짝) + 카운트업(data-stat-reveal). 칸은 metric-card라
-             stat-reveal.js의 기본 대상에 그대로 걸린다(data-stat-card 불필요).
-             ax-build hero는 기간·산출물이라 세는 수치가 아니어서 카운트업이 없는데,
-             여기는 반대 판단이다. 75,000+처럼 접미사가 붙는 값은 .unit이 받는다. -->
         <ul class="hero-facts surface-glass" data-stat-reveal="">
           <li class="metric-card">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 고객사 — 건물 형태. 하드코딩 색만 브랜드 토큰으로 바꿨다.
-                   앞판은 25% 틴트, 뒷판·창은 원색으로 두어 index outcomes 카드들과
-                   같은 2단 명도 규칙을 지킨다. -->
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M13 3H4C3.44772 3 3 3.44772 3 4V21H14V4C14 3.44772 13.5523 3 13 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                 <path d="M20 9H14V21H21V10C21 9.44772 20.5523 9 20 9Z" fill="var(--color-brand)"></path>
@@ -41,7 +27,6 @@
           </li>
           <li class="metric-card">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 누적 사용자 — index outcomes 첫 카드(누적 수강)와 같은 사람 아이콘 path -->
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                 <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
@@ -58,7 +43,6 @@
           </li>
           <li class="metric-card">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 고객 만족도 — index outcomes 재구매율 카드와 같은 상승 그래프 path -->
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                 <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"></path>
@@ -74,15 +58,6 @@
       </div>
     </section>
 
-    <!-- 사례 목록 — 두 갈래(업무 자동화·역량 진단·교육)를 한 판에서 걸러 본다. 어휘표의 catalog(목록·분류를 한 판에).
-         분류 컨트롤은 새로 만들지 않고 공용 part-nav의 segmented control을 그대로 쓴다
-         (--animated로 인디케이터가 슬라이딩한다). 다만 part-nav.js는 앵커 스크롤 전용이라
-         짝이 되는 js/case-filter.js를 새로 만들어 카드 필터만 맡긴다.
-
-         배지·필터 문구는 GNB 메뉴명(업무 자동화 / 역량 진단·교육)과 같은 말을 쓴다 —
-         방문자가 배지만 보고도 어느 서비스인지 알 수 있어야 하고, 페이지마다 다른 말로
-         부르면 같은 것을 가리키는지 알 수 없다. data-case-axis의 tool/people은
-         내부 식별자라 그대로 둔다(화면에 안 나온다). -->
     <section class="catalog fade-up">
       <div class="section-wrap col">
         <div class="section-title text-left">
@@ -91,8 +66,6 @@
         </div>
 
         <div class="section-content">
-          <!-- 필터. 앵커로 이동하는 탭이 아니라 목록을 거르는 컨트롤이라
-               <a>가 아닌 <button>이고, 활성 상태를 aria-pressed가 함께 알린다. -->
           <div class="case-filter" data-case-filter="">
             <nav class="part-nav part-nav--compact part-nav--animated" aria-label="사례 분류">
               <span class="part-nav-indicator" aria-hidden="true"></span>
@@ -100,25 +73,9 @@
               <button type="button" class="part-nav-item" data-case-tab="tool" aria-pressed="false" data-i18n="cases-catalog-filter-02">업무 자동화</button>
               <button type="button" class="part-nav-item" data-case-tab="people" aria-pressed="false" data-i18n="cases-catalog-filter-03">역량 진단·교육</button>
             </nav>
-            <!-- 지금 몇 건이 남았는지. 화면 밖 사용자에게도 알리기 위해 aria-live를 둔다.
-                 내용은 case-filter.js가 채운다(JS가 없으면 카드는 전부 보이므로 이 줄만 빈다). -->
-            <p class="case-count text-caption" data-case-count="" role="status" aria-live="polite"></p>
+
           </div>
 
-          <!-- 카드는 ax-build 06 Real Outcomes의 outcome-list(이전 → 이후 + 상세)와 역할이
-               같아 클래스 이름을 그대로 쓴다. 다만 그 정의가 ax-build.css 안(페이지 전용)이라
-               가져다 쓰면 스타일이 로드되지 않으므로, 인벤토리 C 규칙대로 구조만 본떠
-               cases.css에 다시 정의한다.
-
-               구조는 로고 판(.outcome-logo) + 본문(.outcome-body) 2단이고,
-               12곳 모두 고객사 실제 로고를 쓴다.
-               로고는 비율이 제각각이라(아모레퍼시픽 10:1 ~ 우하컴퍼니 1:1) 판을 고정하고
-               안에서 contain한다. 세로로 쌓인 로고(우하컴퍼니·부자테이프)만
-               .outcome-logo--tall로 높이 허용치를 올린다 — 가로형과 같은 44px로 묶으면
-               2단 로고가 절반 크기로 보인다.
-
-               before→after가 없는 사례는 성과 한 줄(.outcome-headline)이 .outcome-shift
-               자리를 대신 차지한다 — 둘은 같은 크기·같은 높이라 카드 리듬이 어긋나지 않는다. -->
           <ul class="outcome-list" data-case-list="">
             <li data-case-axis="tool">
               <div class="outcome-logo">
@@ -314,17 +271,6 @@
       </div>
     </section>
 
-    <!--
-      사례를 다 읽은 자리에서 12곳의 공통점을 구조로 보여준다.
-      어휘표의 process(단계·절차). 앞 섹션이 옅은 면(tint-2)이고 바로 아래
-      cta-final이 잉크 판이라, 이 섹션은 흰 면으로 둔다 — 진한 판 둘이 붙으면
-      페이지가 두 번 닫히고, 여기서 한 번 숨을 돌려야 CTA가 산다.
-
-      skills 01의 loop(4단계 + 경계 화살표)와 같은 구조를 공용 cycle로 쓴다.
-      순환이 아니라 한 방향 3단계라 마지막 칸에는 화살표가 없다. 결론 칸도 다른
-      칸과 같은 기본 배경으로 둔다(skillcertify 05와 같은 처리 — 결론 강조는
-      배경이 아니라 위 사례 12장이 이미 맡고 있다).
-    -->
     <section class="process fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -384,13 +330,15 @@
     </section>
   </main>
 
-  <!-- Footer도 partials/footer.html 하나로 관리한다. -->
   <SiteFooter />
   <ClientInteractions :scripts='["js/fade-up.js","js/header-scroll.js","js/nav-menu.js","js/stat-reveal.js","js/case-filter.js"]' />
 </template>
 
 <script setup>
 useSeoMeta({ title: "고객 사례 — 익명의 후기가 아니라 실명과 숫자로 증명합니다 | 코드프레소", description: "숫자로 증명하는 전환. 익명의 후기가 아닙니다. 실명과 숫자로 공개합니다." })
-import '~/css/pages/cases.css'
-import '~/css/mobile.css'
 </script>
+
+<style>
+@import '~/css/pages/cases.css';
+@import '~/css/mobile.css';
+</style>

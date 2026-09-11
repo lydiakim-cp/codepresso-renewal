@@ -1,8 +1,5 @@
 <template>
   <SiteHeader />
-<!-- GNB는 partials/header.html 하나로 관리한다. js/include-partials.js가 fetch해 삽입한다.
-       (fetch를 쓰므로 file:// 직접 열기로는 안 보인다 — 로컬 정적 서버로 확인한다) -->
-  
 
   <main class="index">
     <section class="main-hero">
@@ -84,13 +81,9 @@
           </div>
         </div>
         <div class="section-content">
-          <!-- 진단 → 교육 → 재진단. 흰 섹션이라 칸은 틴트(.blue)로 가라앉히고,
-               순환이 닫히는 마지막 칸만 .is-return으로 채운다. -->
           <ol class="cycle">
             <li class="blue">
               <span class="cycle-icon" aria-hidden="true">
-                <!-- 교육 전 · 진단 — images/icons/library/025.검색.svg의 실제 path.
-                     하드코딩 색만 currentColor로 바꿨다(옅은 판은 fill-opacity로 눌렀다). -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10.5 17.21C14.2059 17.21 17.2101 14.2059 17.2101 10.5C17.2101 6.79422 14.2059 3.79004 10.5 3.79004C6.7942 3.79004 3.79004 6.79422 3.79004 10.5C3.79004 14.2059 6.7942 17.21 10.5 17.21Z" fill="currentColor" fill-opacity="0.35"></path>
                   <path d="M10.5 4.5C12.0913 4.5 13.6174 5.13214 14.7426 6.25735C15.8678 7.38257 16.5 8.9087 16.5 10.5C16.5 12.0913 15.8678 13.6174 14.7426 14.7426C13.6174 15.8679 12.0913 16.5 10.5 16.5C8.9087 16.5 7.38257 15.8679 6.25735 14.7426C5.13214 13.6174 4.5 12.0913 4.5 10.5C4.5 8.9087 5.13214 7.38257 6.25735 6.25735C7.38257 5.13214 8.9087 4.5 10.5 4.5ZM10.5 2C8.24647 2.00265 6.08599 2.89904 4.49251 4.49252C2.89902 6.08601 2.00265 8.24647 2 10.5C2 11.6162 2.21985 12.7215 2.64702 13.7528C3.07418 14.7841 3.7003 15.7211 4.48959 16.5104C5.27889 17.2997 6.21592 17.9258 7.24719 18.353C8.27846 18.7801 9.38376 19 10.5 19C11.6166 19.0013 12.7225 18.7824 13.7544 18.3557C14.7862 17.929 15.7238 17.3029 16.5133 16.5133C17.3029 15.7238 17.929 14.7862 18.3557 13.7544C18.7824 12.7225 19.0013 11.6166 19 10.5C19 8.24566 18.1045 6.08365 16.5104 4.48959C14.9163 2.89553 12.7543 2 10.5 2Z" fill="currentColor"></path>
@@ -116,8 +109,6 @@
             </li>
             <li class="blue">
               <span class="cycle-icon" aria-hidden="true">
-                <!-- 교육 중 · 교육 — images/icons/library/015.할일.svg의 실제 path.
-                     하드코딩 색만 currentColor로 바꿨다(옅은 판은 fill-opacity로 눌렀다). -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="currentColor" fill-opacity="0.35"></path>
                   <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="currentColor" fill-opacity="0.35"></path>
@@ -146,8 +137,6 @@
             </li>
             <li class="is-return">
               <span class="cycle-icon" aria-hidden="true">
-                <!-- 교육 후 · 증명 — images/icons/library/109.막대 그래프.svg의 실제 path.
-                     하드코딩 색만 currentColor로 바꿨다(옅은 판은 fill-opacity로 눌렀다). -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="currentColor"></path>
                   <path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="currentColor"></path>
@@ -269,9 +258,6 @@
       </div>
     </section>
 
-
-    <!-- PART 1(교육) + PART 2(진단) 묶음 — 두 파트가 하나의 흐름으로 읽히도록
-         배경 그라디언트를 이 래퍼가 한 번만 소유한다. -->
     <div class="parts-group">
       <section class="journey fade-up" id="part1-education">
         <div class="section-wrap row is-sticky">
@@ -333,22 +319,14 @@
           </div>
 
           <div class="journey-stage" data-journey-stage="">
-            <!-- 스크롤 길이를 만드는 트랙. 각 구간에 진입하면 같은 index의
-                 .journey-step이 활성화된다(js/journey-stage.js). -->
             <div class="journey-track" data-journey-track="">
               <div data-journey-track-step="0"></div>
               <div data-journey-track-step="1"></div>
               <div data-journey-track-step="2"></div>
             </div>
 
-            <!-- 판은 하나로 고정되고, 안의 내용만 교차 페이드된다.
-                 PART 2의 진단 프리뷰와 같은 .content-panel + .surface-glass 조합이며,
-                 스텝 순서도 같다(목업 → 설명). -->
             <div class="content-panel journey-viewport surface-glass">
               <article class="content-panel__item journey-step is-active" data-journey-step="0">
-                <!-- 목업: 8개 분야 트랙 중 하나를 고르면 STEP 학습 경로가 펼쳐지는 화면.
-                     연출은 공용 detail(mock-motion.css) — 좌측 트랙 목록에서 선택이 켜지고
-                     우측 STEP 상세가 밀려 들어온다. -->
                 <div class="content-panel__visual preview-frame preview-frame--flush journey-mock mock-detail" data-mock-motion="detail" aria-hidden="true" style="--mock-gauge-to: 117">
                   <div class="mock-detail-aside">
                     <span class="text-caption">분야 트랙 8</span>
@@ -419,11 +397,6 @@
               </article>
 
               <article class="content-panel__item journey-step" data-journey-step="1">
-                <!-- 목업: 라이브 강의가 지금 돌아가는 현황판.
-                     연출은 공용 ticker(mock-motion.css) — 수치가 pop 되고,
-                     막대가 자라고, 새 이수 기록이 위에서 밀려들며 반짝인다.
-                     한눈에 들어와야 하는 자리라 읽을 것은 수치 3개와 최근
-                     기록 2줄로 줄이고, 나머지는 스켈레톤으로 접는다. -->
                 <div class="content-panel__visual preview-frame journey-mock mock-ticker camp-ticker" data-mock-motion="ticker" aria-hidden="true">
                   <div class="journey-mock-head">
                     <span class="journey-mock-speaker">
@@ -436,8 +409,6 @@
                     <span class="journey-mock-badge is-live">LIVE</span>
                   </div>
 
-                  <!-- 강의가 돌아가는 것을 증명하는 수치 3개. 가운데(참여율)만
-                       is-current로 강조해 어디를 보라는지 하나로 좁힌다. -->
                   <div class="mock-ticker-stats">
                     <article>
                       <span class="text-caption">수강</span>
@@ -453,7 +424,6 @@
                     </article>
                   </div>
 
-                  <!-- 회차별 과제 제출 추이. 마지막(이번 회차)만 강조한다. -->
                   <div class="mock-ticker-chart">
                     <span class="is-bar" style="--mock-bar-h: 38%"></span>
                     <span class="is-bar" style="--mock-bar-h: 52%; animation-delay: .08s"></span>
@@ -462,7 +432,6 @@
                     <span class="is-bar is-current" style="--mock-bar-h: 94%; animation-delay: .32s"></span>
                   </div>
 
-                  <!-- 방금 들어온 기록 — 맨 위 한 줄만 밀려들며 반짝인다. -->
                   <ul class="journey-mock-list">
                     <li class="journey-mock-item is-feed">
                       <span class="journey-mock-avatar">박</span>
@@ -486,53 +455,40 @@
               </article>
 
               <article class="content-panel__item journey-step" data-journey-step="2">
-                <!-- 목업: 실제 SkillFit 학습 화면(레일 · 스킬 목록 · 레슨)을 UI로 옮기고,
-                     AI 튜터 채팅만 실제 제품처럼 우하단에 팝업으로 겹친다.
-                     읽혀야 하는 것(트랙명 · 진도 · 현재 스킬 · 레슨 제목)만 텍스트로 남기고
-                     본문은 스켈레톤으로 접는다.
-                     채팅은 무한 반복 relay(skillfit-chat-relay)로 질문→답변이 순서대로
-                     쌓였다가 함께 리셋된다 — 스크롤 진입 팝인(journey-stage.js)과는 별개. -->
                 <div class="content-panel__visual preview-frame preview-frame--flush journey-mock skillfit-mock" aria-hidden="true">
                   <div class="preview-frame__bar">
                     <span class="preview-frame__dots"><i></i><i></i><i></i></span>
                   </div>
 
                   <div class="skillfit-mock-screen">
-                    <!-- 최좌측 — 아이콘 메뉴 레일. -->
                     <div class="journey-app-rail">
                       <span class="journey-app-rail-logo"></span>
 
-                      <!-- 홈 -->
                       <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <path d="M4 10.5 12 4l8 6.5V20H4v-9.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
                       </svg>
 
-                      <!-- 탐색 -->
                       <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"></circle>
                         <path d="m15 9-2 4-4 2 2-4 4-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
                       </svg>
 
-                      <!-- 학습(현재 위치) -->
                       <svg class="journey-app-rail-icon is-current" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <rect x="4" y="4" width="16" height="16" rx="5" fill="currentColor"></rect>
                         <path d="m10.5 9 5 3-5 3V9Z" fill="#fff"></path>
                       </svg>
 
-                      <!-- 검색 -->
                       <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2"></circle>
                         <path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
                       </svg>
 
-                      <!-- 설정 -->
                       <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"></circle>
                         <path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
                       </svg>
                     </div>
 
-                    <!-- 좌 — 학습 중인 트랙 + 스킬 목록. 지금 보는 스킬만 이름을 남긴다. -->
                     <div class="journey-app-side">
                       <div class="journey-app-track">
                         <span class="journey-app-track-badge">진행중</span>
@@ -566,7 +522,6 @@
                       </ul>
                     </div>
 
-                    <!-- 중앙 — 실무 시나리오가 레슨 본문 위에 먼저 온다. -->
                     <div class="journey-app-main">
                       <div class="journey-app-scenario">
                         <span class="journey-app-scenario-label">실무 시나리오</span>
@@ -574,8 +529,6 @@
                         <span class="skeleton-line is-short"></span>
                       </div>
 
-                      <!-- 난이도가 실력에 맞춰 올라갔다는 것이 이 목업의 핵심 메시지라,
-                           레슨 라벨 옆에 칩으로 붙여 팝업에 가리지 않게 둔다. -->
                       <div class="skillfit-mock-lesson-meta">
                         <p class="journey-app-eyebrow">LESSON 1</p>
                         <p class="journey-app-adapt">난이도 <strong>심화</strong></p>
@@ -583,18 +536,15 @@
 
                       <p class="journey-app-lesson">AI와 대화하는<br>가장 확실한 지도</p>
 
-                      <!-- 본문은 튜터 팝업이 덮는 자리라 스켈레톤으로만 둔다. -->
                       <div class="skeleton-stack">
                         <span class="skeleton-line"></span>
                         <span class="skeleton-line is-short"></span>
                       </div>
 
-                      <!-- 실력에 맞춰 난이도가 조정됐다는 것이 이 목업의 핵심 메시지다. -->
                       <p class="journey-app-adapt">정답률 92% → 난이도 <strong>심화</strong></p>
                     </div>
                   </div>
 
-                  <!-- 우하단 — AI 튜터. 실제 제품처럼 화면 위에 떠서 겹친다. -->
                   <div class="journey-app-tutor skillfit-mock-tutor">
                     <div class="journey-app-tutor-head">
                       <span class="journey-app-tutor-name">AI 튜터</span>
@@ -603,7 +553,6 @@
 
                     <p class="journey-mock-bubble is-mine is-chat" style="--mock-chat-step: 0">RICJ가 뭐예요?</p>
                     <p class="journey-mock-bubble is-chat" style="--mock-chat-step: 1">역할 · 지시 · 배경 · 판단 기준 4단 공식이에요</p>
-                    <!-- 타이핑 인디케이터 — 지금 답하는 중이라는 신호. -->
                     <p class="journey-mock-bubble journey-app-typing is-chat" style="--mock-chat-step: 2">
                       <span></span><span></span><span></span>
                     </p>
@@ -668,7 +617,6 @@
             <a href="/skills" class="btn btn-primary"><span data-i18n="index-diagnosis-cta">역량 진단 자세히 보기</span><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
           </div>
 
-          <!-- PART 1과 같은 journey-stage 컴포넌트 — data 접두사만 diagnosis다. -->
           <div class="journey-stage diagnosis-preview" data-diagnosis-stage="">
             <div class="journey-track" data-diagnosis-track="">
               <div data-diagnosis-track-step="0"></div>
@@ -699,15 +647,9 @@
       </section>
     </div>
 
-    <!-- PART 3 · 차별점. 좌우 2단 sticky가 아니라 상하 배치다 —
-         상단에 섹션 카피 + CTA, 가운데에 세 가지 차이를 한 화면에 담은 제품 목업,
-         하단에 그 화면을 ①②③로 풀어 읽는 설명 3열.
-         목업 안의 본문은 스켈레톤 바로 접고, 세 가지 차이를 증명하는 수치·라벨만
-         실제 텍스트로 남긴다 — 읽을 것을 줄여야 무엇을 보라는 건지 전달된다. -->
     <section class="difference fade-up" id="part3-difference">
       <div class="section-wrap col difference-layout">
 
-        <!-- 상단 헤더 — proof 섹션과 같은 구성. 타이틀·설명은 좌, CTA는 우. -->
         <div class="section-header">
           <div class="section-title text-left">
             <p class="tag" data-i18n="index-difference-eyebrow">03 · The Difference</p>
@@ -719,15 +661,8 @@
           </div>
         </div>
 
-        <!-- 세 가지 차이를 카드 세 장으로 나눠 위에서 아래로 펼친다.
-             카드마다 제품 화면이 먼저 오고 그 아래 제목·설명이 화면을 글로 푼다.
-             화면은 장식이라 스크린리더에는 숨기고, 제목·설명만 읽힌다. -->
         <ul class="difference-blocks">
 
-              <!-- ① 정량적 관리 — 진단 → 교육 → 재진단 3단계를 한 화면에 나란히 두고
-                   좌에서 우로 하나씩 켠다(mock-motion의 stage 연출, ②와 같은 문법).
-                   1단계에서 낮게 찬 영역별 막대가 3단계에서 같은 자리에 한 번 더
-                   차오르는 것이 이 화면의 전부다 — "같은 잣대로 두 번 쟀다". -->
             <li>
               <div class="preview-frame preview-frame--flush" aria-hidden="true">
                 <div class="preview-frame__bar">
@@ -737,7 +672,6 @@
                 <div class="difference-screen">
                 <div class="difference-screen-body is-cycle">
 
-                  <!-- 1단계 · 진단 — 문항에 답하면 영역별 점수가 낮게 찬다. -->
                   <div class="difference-card is-step is-first">
                     <div class="difference-step-head">
                       <span class="difference-step-no">1</span>
@@ -745,7 +679,6 @@
                       <span class="difference-step-desc">IT·AI 실무역량 확인</span>
                     </div>
 
-                    <!-- 채점 결과 — 3단계에서 이 막대가 그대로 다시 등장한다. -->
                     <ul class="difference-bars">
                       <li>
                         <span class="difference-gauge-bar">
@@ -779,7 +712,6 @@
                     </span>
                   </div>
 
-                  <!-- 2단계 · 교육 — 1단계에서 낮았던 영역이 그대로 커리큘럼이 된다. -->
                   <div class="difference-card is-step is-mid">
                     <div class="difference-step-head">
                       <span class="difference-step-no">2</span>
@@ -787,7 +719,6 @@
                       <span class="difference-step-desc">수준과 직무에 맞는 학습 제공</span>
                     </div>
 
-                    <!-- 배정된 과정 — 취약 영역 2개가 먼저, 나머지는 가라앉힌다. -->
                     <ul class="difference-stack">
                       <li class="difference-course">
                         <span class="difference-course-mark">1</span>
@@ -811,7 +742,6 @@
                       </li>
                     </ul>
 
-                    <!-- 수강 진행률 — 교육이 실제로 돌아가고 있다는 신호. -->
                     <div class="difference-progress">
                       <span class="difference-track"><span style="width: 82%"></span></span>
                       <span class="difference-bar-value">82%</span>
@@ -826,7 +756,6 @@
                     </span>
                   </div>
 
-                  <!-- 3단계 · 재진단 — 1단계와 같은 영역·같은 자리 막대가 한 번 더 찬다. -->
                   <div class="difference-card is-step is-last">
                     <div class="difference-step-head">
                       <span class="difference-step-no">3</span>
@@ -834,8 +763,6 @@
                       <span class="difference-step-desc">교육 전후 역량 변화 확인</span>
                     </div>
 
-                    <!-- 진단 막대(회색)를 깔고 그 위에 재진단 막대(브랜드)가 덮어쓰며 뻗는다.
-                         1단계와 같은 영역·같은 순서라야 "같은 잣대"가 읽힌다. -->
                     <ul class="difference-bars">
                       <li>
                         <span class="difference-gauge-bar">
@@ -868,9 +795,6 @@
                       <span class="difference-key is-brand"><i></i>교육 후 재진단</span>
                     </span>
 
-                    <!-- 이 화면의 결론. 흐름에서 빼내 우측 상단에 띄운다 —
-                         칸 아래에 두면 기둥이 그만큼 짧아져 1단계와 눈높이가
-                         어긋난다. 배지 하나로 줄여 "얼마나 올랐나"만 남긴다. -->
                     <span class="difference-verdict">
                       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -893,7 +817,6 @@
               </div>
             </li>
 
-            <!-- ② 문화 정착 — 공유 허브 → 라이브러리 → 전사 확산 3단계. -->
             <li>
               <div class="preview-frame preview-frame--flush" aria-hidden="true">
                 <div class="preview-frame__bar">
@@ -903,7 +826,6 @@
                 <div class="difference-screen">
                 <div class="difference-screen-body is-library">
 
-                  <!-- 1단계 · 공유 허브 — 동료에게 프롬프트를 보내는 메시지 창. -->
                   <div class="difference-card is-step is-first">
                     <div class="difference-step-head">
                       <span class="difference-step-no">1</span>
@@ -911,26 +833,21 @@
                       <span class="difference-step-desc">에이전트·프롬프트를 사내에 공유</span>
                     </div>
 
-                    <!-- 메신저 창 — 받는 사람 줄 + 말풍선 + 첨부 파일. -->
                     <div class="difference-chat">
                       <div class="difference-chat-head">
                         <span class="journey-mock-avatar">마</span>
                         <span class="difference-asset-name">마케팅팀</span>
                       </div>
 
-                      <!-- 상대 말풍선 — 읽을 필요 없는 배경이라 스켈레톤으로 둔다. -->
                       <div class="difference-bubble is-them">
                         <span class="skeleton-line" style="width: 84px"></span>
                       </div>
 
-                      <!-- 내 말풍선 — 이 단계에서 유일하게 읽혀야 하는 문장. -->
                       <div class="difference-bubble is-me">
                         <span class="difference-bubble-text">마케팅 문구 프롬프트 공유드립니다</span>
 
-                        <!-- 첨부 파일 카드 — 대화 첨부 UI 그대로. -->
                         <span class="difference-attach">
                           <span class="difference-asset-icon">
-                            <!-- 문서 — 첨부된 프롬프트 파일 -->
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M13.5 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9l-5.5-5.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
                               <path d="M13.5 3.5V9H19" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
@@ -943,11 +860,9 @@
                         </span>
                       </div>
 
-                      <!-- 방금 전송됐다는 신호. 말풍선보다 늦게 떠야 순서가 읽힌다. -->
                       <span class="difference-chat-foot">전송됨 · 방금</span>
                     </div>
 
-                    <!-- 다음 칸으로 넘긴다는 신호. 칸 오른쪽 경계에 걸친다. -->
                     <span class="difference-flow-arrow">
                       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -955,7 +870,6 @@
                     </span>
                   </div>
 
-                  <!-- 2단계 · 라이브러리 — 공유된 자산이 목록으로 차곡차곡 쌓인다. -->
                   <div class="difference-card is-step is-mid">
                     <div class="difference-step-head">
                       <span class="difference-step-no">2</span>
@@ -964,10 +878,8 @@
                     </div>
 
                     <ul class="difference-stack">
-                      <!-- 맨 위 = 방금 들어온 자산. 1단계에서 보낸 그 파일이다. -->
                       <li class="difference-asset">
                         <span class="difference-asset-icon">
-                          <!-- 대화 — 프롬프트 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20 15a3 3 0 0 1-3 3H8l-4 3V6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
                           </svg>
@@ -980,7 +892,6 @@
 
                       <li class="difference-asset">
                         <span class="difference-asset-icon">
-                          <!-- 톱니 — 에이전트 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"></circle>
                             <path d="M12 3v2.5m0 13V21M3 12h2.5m13 0H21M5.6 5.6l1.8 1.8m9.2 9.2 1.8 1.8M18.4 5.6l-1.8 1.8m-9.2 9.2-1.8 1.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path>
@@ -994,7 +905,6 @@
 
                       <li class="difference-asset">
                         <span class="difference-asset-icon">
-                          <!-- 표 — 데이터 워크플로우 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="3.5" y="4.5" width="17" height="15" rx="2.5" stroke="currentColor" stroke-width="1.7"></rect>
                             <path d="M3.5 9.5h17M9.5 9.5v10" stroke="currentColor" stroke-width="1.7"></path>
@@ -1006,7 +916,6 @@
                         <span class="difference-chip">워크플로우</span>
                       </li>
 
-                      <!-- 아래로 갈수록 가라앉는 스켈레톤 행 — "더 쌓여 있다"를 형태로 보여준다. -->
                       <li class="difference-asset is-quiet">
                         <span class="difference-asset-icon"></span>
                         <span class="difference-asset-body">
@@ -1024,7 +933,6 @@
                     </span>
                   </div>
 
-                  <!-- 3단계 · 전사 확산 — 한 팀에 있던 자산이 다른 본부로 퍼진다. -->
                   <div class="difference-card is-step is-last">
                     <div class="difference-step-head">
                       <span class="difference-step-no">3</span>
@@ -1032,8 +940,6 @@
                       <span class="difference-step-desc">팀을 넘어 조직 전체의 문화로</span>
                     </div>
 
-                    <!-- 가운데 원본 팀에서 바깥 본부로 파장이 번지는 방사형 그림.
-                         노드 위치는 --node-x/--node-y로 마크업이 직접 정한다. -->
                     <div class="difference-spread-map">
                       <span class="difference-spread-wave"></span>
                       <span class="difference-spread-wave" style="animation-delay: 1.3s"></span>
@@ -1063,8 +969,6 @@
               </div>
             </li>
 
-            <!-- ③ 현장 검증 — 현장 투입 → 검증 → 커리큘럼 반영 3단계.
-                 섹션의 결론이라 이 판만 다크로 둔다. -->
             <li>
               <div class="preview-frame preview-frame--flush" aria-hidden="true">
                 <div class="preview-frame__bar">
@@ -1074,7 +978,6 @@
                 <div class="difference-screen is-dark">
                 <div class="difference-screen-body is-field">
 
-                  <!-- 1단계 · 현장 투입 — 우리가 실제로 어디에 들어가 있는지. -->
                   <div class="difference-card is-step is-first">
                     <div class="difference-step-head">
                       <span class="difference-step-no">1</span>
@@ -1085,7 +988,6 @@
                     <ul class="difference-stack">
                       <li class="difference-asset">
                         <span class="difference-asset-icon">
-                          <!-- 공장 — 제조 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 20V10l5 3V10l5 3V6l6 3v11H4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
                           </svg>
@@ -1096,7 +998,6 @@
                       </li>
                       <li class="difference-asset">
                         <span class="difference-asset-icon">
-                          <!-- 카드 — 금융 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.7"></rect>
                             <path d="M3 10.5h18" stroke="currentColor" stroke-width="1.7"></path>
@@ -1108,7 +1009,6 @@
                       </li>
                       <li class="difference-asset">
                         <span class="difference-asset-icon">
-                          <!-- 카트 — 유통 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3 4h2.2l2.3 10.5h9.6L19 7H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
                             <circle cx="9" cy="19" r="1.4" stroke="currentColor" stroke-width="1.7"></circle>
@@ -1130,8 +1030,6 @@
                     </span>
                   </div>
 
-                  <!-- 2단계 · 검증 — 현장에서 통한 것만 남기고 나머지는 버린다.
-                       "걸러낸다"가 이 칸의 전부라, 통과와 탈락을 함께 보여준다. -->
                   <div class="difference-card is-step is-mid">
                     <div class="difference-step-head">
                       <span class="difference-step-no">2</span>
@@ -1142,7 +1040,6 @@
                     <ul class="difference-stack">
                       <li class="difference-trial is-pass">
                         <span class="difference-trial-mark">
-                          <!-- 체크 — 현장에서 통과 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
                           </svg>
@@ -1154,7 +1051,6 @@
                       </li>
                       <li class="difference-trial is-fail">
                         <span class="difference-trial-mark">
-                          <!-- 가위표 — 현장에서 탈락 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7 7l10 10M17 7L7 17" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path>
                           </svg>
@@ -1166,7 +1062,6 @@
                       </li>
                     </ul>
 
-                    <!-- 안 되던 것도 버리지 않는다 — 이게 왜 남다른지의 핵심이라 강조한다. -->
                     <p class="difference-trial-note">
                       안 되던 <strong>14건</strong>도 <strong>“이건 왜 안 되는지”</strong>로 함께 가르칩니다
                     </p>
@@ -1178,7 +1073,6 @@
                     </span>
                   </div>
 
-                  <!-- 3단계 · 커리큘럼 반영 — ①의 교육으로 되돌아가며 순환이 닫힌다. -->
                   <div class="difference-card is-step is-last">
                     <div class="difference-step-head">
                       <span class="difference-step-no">3</span>
@@ -1189,7 +1083,6 @@
                     <ul class="difference-stack">
                       <li class="difference-asset">
                         <span class="difference-asset-icon">
-                          <!-- 책 — 교육 콘텐츠 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H5.5A1.5 1.5 0 0 1 4 15.5v-10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
                             <path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h4.5a1.5 1.5 0 0 0 1.5-1.5v-10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
@@ -1202,7 +1095,6 @@
                       </li>
                       <li class="difference-asset">
                         <span class="difference-asset-icon">
-                          <!-- 책 — 교육 콘텐츠 -->
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H5.5A1.5 1.5 0 0 1 4 15.5v-10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
                             <path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h4.5a1.5 1.5 0 0 0 1.5-1.5v-10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
@@ -1215,10 +1107,8 @@
                       </li>
                     </ul>
 
-                    <!-- 순환이 닫히는 지점. ①의 2단계 교육으로 되돌아간다. -->
                     <div class="difference-loop">
                       <span class="difference-loop-mark">
-                        <!-- 되돌아가는 화살표 — 다시 교육으로 -->
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M20 11a8 8 0 1 0-2.3 5.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
                           <path d="M20 4.5V11h-6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -1243,10 +1133,6 @@
             </li>
         </ul>
 
-        <!-- 모바일 전용 대체 뷰(560px 이하) — 위 목업은 그대로 두고
-             CSS가 이 범위에서만 서로 보임/숨김을 맞바꾼다(mobile.css).
-             목업이 세로로 접히면 카드 3장이 너무 길어져(사용자 확인) 순환
-             없이 9개 항목을 정적으로 다 나열하는 별도 마크업을 쓴다. -->
         <div class="difference-mobile">
           <div class="difference-mobile-group">
             <p class="difference-mobile-heading" data-i18n="index-difference-m-heading-01">① 정량적 관리</p>
@@ -1320,7 +1206,6 @@
             <p class="difference-mobile-note" data-i18n="index-difference-m-note-02">교육이 끝난 뒤에도 조직 안에서 계속 활용이 가능합니다.</p>
           </div>
 
-          <!-- ③ 현장 검증 — 데스크톱은 다크 목업 한 판, 모바일은 다크 띠 + 같은 3단 구성. -->
           <div class="difference-mobile-group">
             <p class="difference-mobile-heading" data-i18n="index-difference-m-heading-03">③ 현장 검증</p>
             <ul class="difference-mobile-row">
@@ -1404,13 +1289,16 @@
     </section>
   </main>
 
-  <!-- Footer도 partials/footer.html 하나로 관리한다. -->
   <SiteFooter />
   <ClientInteractions :scripts='["js/fade-up.js","js/scroll-progress.js","js/header-scroll.js","js/nav-menu.js","js/proof-card-slider.js","js/stat-reveal.js","js/part-nav.js","js/journey-stage.js"]' />
 </template>
 
 <script setup>
 useSeoMeta({ title: "기업 AI 역량 진단·교육·업무 자동화 | 코드프레소", description: "업무를 가장 잘 아는 건 이미 우리 직원입니다. AI 활용 역량 진단부터 맞춤 교육, 업무 자동화까지 하나의 플랫폼에서 연결합니다." })
-import '~/css/pages/index.css'
-import '~/css/mobile.css'
+
 </script>
+
+<style>
+@import '~/css/pages/index.css';
+@import '~/css/mobile.css';
+</style>

@@ -1,11 +1,6 @@
 <template>
   <SiteHeader />
-<!-- GNB는 partials/header.html 하나로 관리한다. js/include-partials.js가 fetch해 삽입한다.
-       (fetch를 쓰므로 file:// 직접 열기로는 안 보인다 — 로컬 정적 서버로 확인한다) -->
-  
-
   <main class="ax-grow main-dark">
-    <!-- Hero — 제품 한 줄 정의 + CTA + 핵심 조건 3개. 첫 화면이라 fade-up을 붙이지 않는다. -->
     <section class="sub-hero">
       <div class="hero-wrap">
         <div class="sub-hero-copy">
@@ -20,12 +15,9 @@
           </div>
         </div>
 
-        <!-- 제품의 핵심 약속 3개. ax-build hero-facts와 같은 유리 띠 외피(1장 + 세로
-             구분선 + 그림자 없음)에 수치를 담는다. -->
         <ul class="hero-facts surface-glass">
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 캘린더 — ic_calendar.svg 기반, 하드코딩 색을 강조 톤으로 교체 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                 <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"></path>
@@ -41,7 +33,6 @@
           </li>
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 졸업모자 형태 대신 사람+체크 — 현업 맞춤 학습. ic_shield.svg 뼈대 재사용 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M21.5 5L12 1L2.5 5V9C2.49 12.02 3.39 14.97 5.09 17.47C6.78 19.96 9.19 21.89 12 23C14.81 21.89 17.22 19.96 18.91 17.47C20.61 14.97 21.51 12.02 21.5 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.41 11.52L15.24 7.7L17 9.47L11.33 15.13L7.7 11.18L9.54 9.49L11.41 11.52Z" fill="var(--color-brand)"></path>
@@ -54,7 +45,6 @@
           </li>
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 사내 확산 — images/icons/library/074.통신.svg -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11.9997 7.9405C14.817 7.93178 17.5598 8.84488 19.8097 10.5405C19.9792 10.6675 20.1901 10.7267 20.401 10.7063C20.6119 10.686 20.8076 10.5876 20.9497 10.4305L22.4697 8.6305C22.5423 8.54685 22.5972 8.44937 22.631 8.34393C22.6649 8.23849 22.6771 8.12728 22.6668 8.01701C22.6565 7.90674 22.624 7.79969 22.5712 7.70233C22.5184 7.60496 22.4465 7.5193 22.3597 7.45051C19.391 5.16438 15.7466 3.92967 11.9997 3.9405C8.23591 3.93166 4.57649 5.17727 1.5997 7.48051C1.51291 7.5493 1.44095 7.63496 1.38817 7.73232C1.33539 7.82969 1.30288 7.93674 1.2926 8.04701C1.28232 8.15728 1.29449 8.26849 1.32837 8.37393C1.36224 8.47937 1.41712 8.57685 1.4897 8.6605L3.0097 10.4505C3.14921 10.6118 3.34544 10.7132 3.55769 10.7336C3.76994 10.7541 3.98193 10.6921 4.1497 10.5605C6.41111 8.85538 9.16749 7.93541 11.9997 7.9405Z" fill="#DBECFF"></path>
                 <path d="M5.15951 12.9699L6.67952 14.7699C6.80986 14.9229 6.99187 15.0227 7.19098 15.0504C7.39008 15.0781 7.59241 15.0316 7.75952 14.9199C9.00265 14.0515 10.4831 13.5871 11.9995 13.5899C13.5085 13.585 14.9823 14.046 16.2195 14.9099C16.3862 15.0198 16.5877 15.0642 16.7851 15.0347C16.9826 15.0052 17.1622 14.9037 17.2895 14.7499L18.8095 12.9499C18.8846 12.8616 18.9403 12.7585 18.9731 12.6473C19.006 12.5361 19.0151 12.4193 19.0001 12.3044C18.985 12.1895 18.946 12.079 18.8856 11.98C18.8253 11.8811 18.7448 11.7959 18.6495 11.7299C16.7139 10.3333 14.3864 9.5843 11.9995 9.58989C9.60009 9.58308 7.26069 10.3395 5.31952 11.7499C5.22421 11.8159 5.14378 11.9011 5.0834 12C5.02303 12.099 4.98403 12.2095 4.96896 12.3244C4.95389 12.4393 4.96306 12.5562 4.99588 12.6673C5.0287 12.7785 5.08444 12.8816 5.15951 12.9699Z" fill="#B8D3FB"></path>
@@ -70,7 +60,6 @@
       </div>
     </section>
 
-    <!-- 01 How AX Grow Works — 세 단계가 하나의 프로그램으로 이어진다. -->
     <section class="process fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -115,7 +104,6 @@
       </div>
     </section>
 
-    <!-- 02 Why It Works — "일회성 교육"과 "AX Grow"를 좌우로 대비. 공용 compare-panel. -->
     <section class="intro fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -142,7 +130,6 @@
       </div>
     </section>
 
-    <!-- 03 Best Fit -->
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -150,12 +137,10 @@
           <h2 data-i18n="ax-grow-features-title">이런 조직이라면 AX Grow가 맞습니다</h2>
         </div>
         <div class="section-content">
-          <!-- 메인 How it works와 같은 feature-card 자동 순환. -->
           <div class="feature-card-grid">
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 핵심 팀 — images/icons/library/103.팀.svg -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="#C7CED5"></path>
                     <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="#C7CED5"></path>
@@ -185,7 +170,6 @@
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 실무 성과 — images/icons/library/022.메달.svg -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 11H16L21.99 1H15.99L10 11Z" fill="#F57C75"></path>
                     <path d="M13.99 11H7.98999L2 1H8L13.99 11Z" fill="#F57C75"></path>
@@ -212,7 +196,6 @@
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 조직 확산 — images/icons/library/074.통신.svg -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11.9997 7.9405C14.817 7.93178 17.5598 8.84488 19.8097 10.5405C19.9792 10.6675 20.1901 10.7267 20.401 10.7063C20.6119 10.686 20.8076 10.5876 20.9497 10.4305L22.4697 8.6305C22.5423 8.54685 22.5972 8.44937 22.631 8.34393C22.6649 8.23849 22.6771 8.12728 22.6668 8.01701C22.6565 7.90674 22.624 7.79969 22.5712 7.70233C22.5184 7.60496 22.4465 7.5193 22.3597 7.45051C19.391 5.16438 15.7466 3.92967 11.9997 3.9405C8.23591 3.93166 4.57649 5.17727 1.5997 7.48051C1.51291 7.5493 1.44095 7.63496 1.38817 7.73232C1.33539 7.82969 1.30288 7.93674 1.2926 8.04701C1.28232 8.15728 1.29449 8.26849 1.32837 8.37393C1.36224 8.47937 1.41712 8.57685 1.4897 8.6605L3.0097 10.4505C3.14921 10.6118 3.34544 10.7132 3.55769 10.7336C3.76994 10.7541 3.98193 10.6921 4.1497 10.5605C6.41111 8.85538 9.16749 7.93541 11.9997 7.9405Z" fill="#DBECFF"></path>
                     <path d="M5.15951 12.9699L6.67952 14.7699C6.80986 14.9229 6.99187 15.0227 7.19098 15.0504C7.39008 15.0781 7.59241 15.0316 7.75952 14.9199C9.00265 14.0515 10.4831 13.5871 11.9995 13.5899C13.5085 13.585 14.9823 14.046 16.2195 14.9099C16.3862 15.0198 16.5877 15.0642 16.7851 15.0347C16.9826 15.0052 17.1622 14.9037 17.2895 14.7499L18.8095 12.9499C18.8846 12.8616 18.9403 12.7585 18.9731 12.6473C19.006 12.5361 19.0151 12.4193 19.0001 12.3044C18.985 12.1895 18.946 12.079 18.8856 11.98C18.8253 11.8811 18.7448 11.7959 18.6495 11.7299C16.7139 10.3333 14.3864 9.5843 11.9995 9.58989C9.60009 9.58308 7.26069 10.3395 5.31952 11.7499C5.22421 11.8159 5.14378 11.9011 5.0834 12C5.02303 12.099 4.98403 12.2095 4.96896 12.3244C4.95389 12.4393 4.96306 12.5562 4.99588 12.6673C5.0287 12.7785 5.08444 12.8816 5.15951 12.9699Z" fill="#B8D3FB"></path>
@@ -241,7 +224,6 @@
       </div>
     </section>
 
-    <!-- 04 16-Day Process — 좌측 sticky 요약 + 우측 단계 목록. ax-build 04와 같은 공용 골격. -->
     <section class="process-days fade-up">
       <div class="section-wrap row is-sticky">
         <div class="section-aside">
@@ -256,7 +238,6 @@
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </a>
 
-          <!-- AI Fluent 진단 유도 — 공용 summary-banner.dark 한 줄 배너로 흐름을 끊지 않는다. -->
           <p class="summary-banner dark fluent-note" data-i18n="ax-grow-process-days-banner">교육 설계 전, 팀의 <strong class="brand">준비도</strong>를 확인하세요<br>&lt;a class="link-underline" href="skills.html"&gt;AI Fluent 보기&lt;/a&gt;</p>
         </div>
 
@@ -267,7 +248,6 @@
               <span class="step-no" aria-hidden="true">01</span>
             </div>
             <span class="step-icon" aria-hidden="true">
-              <!-- 진단과 교육 설계 — images/icons/library/025.검색.svg -->
               <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 17.21C14.2059 17.21 17.2101 14.2059 17.2101 10.5C17.2101 6.79422 14.2059 3.79004 10.5 3.79004C6.7942 3.79004 3.79004 6.79422 3.79004 10.5C3.79004 14.2059 6.7942 17.21 10.5 17.21Z" fill="color-mix(in srgb, var(--color-brand) 26%, var(--color-axpresso-bg-2))"></path>
                 <path d="M10.5 4.5C12.0913 4.5 13.6174 5.13214 14.7426 6.25735C15.8678 7.38257 16.5 8.9087 16.5 10.5C16.5 12.0913 15.8678 13.6174 14.7426 14.7426C13.6174 15.8679 12.0913 16.5 10.5 16.5C8.9087 16.5 7.38257 15.8679 6.25735 14.7426C5.13214 13.6174 4.5 12.0913 4.5 10.5C4.5 8.9087 5.13214 7.38257 6.25735 6.25735C7.38257 5.13214 8.9087 4.5 10.5 4.5ZM10.5 2C8.24647 2.00265 6.08599 2.89904 4.49251 4.49252C2.89902 6.08601 2.00265 8.24647 2 10.5C2 11.6162 2.21985 12.7215 2.64702 13.7528C3.07418 14.7841 3.7003 15.7211 4.48959 16.5104C5.27889 17.2997 6.21592 17.9258 7.24719 18.353C8.27846 18.7801 9.38376 19 10.5 19C11.6166 19.0013 12.7225 18.7824 13.7544 18.3557C14.7862 17.929 15.7238 17.3029 16.5133 16.5133C17.3029 15.7238 17.929 14.7862 18.3557 13.7544C18.7824 12.7225 19.0013 11.6166 19 10.5C19 8.24566 18.1045 6.08365 16.5104 4.48959C14.9163 2.89553 12.7543 2 10.5 2Z" fill="var(--color-axpresso-ink-light)"></path>
@@ -286,7 +266,6 @@
               <span class="step-no" aria-hidden="true">02</span>
             </div>
             <span class="step-icon" aria-hidden="true">
-              <!-- 집중 학습 — 캘린더 뼈대 재사용 -->
               <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                 <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"></path>
@@ -307,7 +286,6 @@
               <span class="step-no" aria-hidden="true">03</span>
             </div>
             <span class="step-icon" aria-hidden="true">
-              <!-- Agent 공동 구축 — ic_axBuild.svg 기반 -->
               <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 19.75C16.2802 19.75 19.75 16.2802 19.75 12C19.75 7.71979 16.2802 4.25 12 4.25C7.71979 4.25 4.25 7.71979 4.25 12C4.25 16.2802 7.71979 19.75 12 19.75Z" fill="color-mix(in srgb, var(--color-brand) 30%, var(--color-surface))"></path>
                 <path d="M10 2H14C14.2652 2 14.5196 2.10536 14.7071 2.29289C14.8946 2.48043 15 2.73478 15 3V5H9V3C9 2.73478 9.10536 2.48043 9.29289 2.29289C9.48043 2.10536 9.73478 2 10 2Z" fill="var(--color-brand)"></path>
@@ -331,7 +309,6 @@
               <span class="step-no" aria-hidden="true">04</span>
             </div>
             <span class="step-icon" aria-hidden="true">
-              <!-- 성과 공유·확산 — ic_lineChart.svg 기반 -->
               <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"></path>
                 <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand-dark)"></path>
@@ -347,7 +324,6 @@
       </div>
     </section>
 
-    <!-- 05 What Remains -->
     <section class="deliverables fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -358,7 +334,6 @@
           <ul class="deliverable-list">
             <li>
               <span class="deliverable-icon" aria-hidden="true">
-                <!-- 조직 역량 진단 -->
                 <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="currentColor" fill-opacity="0.14"></path>
                   <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="currentColor" fill-opacity="0.45"></path>
@@ -372,7 +347,6 @@
             </li>
             <li>
               <span class="deliverable-icon" aria-hidden="true">
-                <!-- 직무 맞춤 교육 자료 -->
                 <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M18.88 3H5.12C3.95 3 3 3.9 3 5V19C3 20.1 3.95 21 5.12 21H18.88C20.05 21 21 20.1 21 19V5C21 3.9 20.05 3 18.88 3Z" fill="currentColor" fill-opacity="0.14"></path>
                   <path d="M8 8H16V9.5H8V8Z" fill="currentColor" fill-opacity="0.45"></path>
@@ -385,7 +359,6 @@
             </li>
             <li>
               <span class="deliverable-icon" aria-hidden="true">
-                <!-- 함께 구축한 AI Agent -->
                 <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17 9H7C5.89543 9 5 9.89543 5 11V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V11C19 9.89543 18.1046 9 17 9Z" fill="currentColor" fill-opacity="0.16"></path>
                   <path d="M12 2C11.4477 2 11 2.44772 11 3V6H13V3C13 2.44772 12.5523 2 12 2Z" fill="currentColor"></path>
@@ -400,7 +373,6 @@
             </li>
             <li>
               <span class="deliverable-icon" aria-hidden="true">
-                <!-- 사내 확산 로드맵 -->
                 <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M10.75 16V7H13.25V16H10.75Z" fill="currentColor" fill-opacity="0.35"></path>
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25 12.2598V16H3.75L3.75 11.5098C3.75 11.0458 3.9342 10.6006 4.26254 10.2723C4.59088 9.94397 5.03608 9.75977 5.5 9.75977H18.5C18.9641 9.75977 19.4092 9.94408 19.7374 10.2723C20.0655 10.6004 20.25 11.0455 20.25 11.5098V16H17.75V12.2598H6.25Z" fill="currentColor" fill-opacity="0.25"></path>
@@ -417,7 +389,6 @@
       </div>
     </section>
 
-    <!-- 06 Internal Capability — 한 문장 강조 + 근거 3개. 공용 statement + content-panel. -->
     <section class="statement fade-up">
       <div class="section-wrap col">
         <div class="statement-inner">
@@ -448,8 +419,6 @@
       </div>
     </section>
 
-    <!-- 07 Build vs Grow — 두 제품 중 우리 조직에 맞는 쪽을 고르게 한다.
-         why-codepresso.html 06 start-grid와 같은 역할 · 같은 마크업(content-panel 기반). -->
     <section class="positioning fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -461,7 +430,6 @@
             <li>
               <div class="content-panel start-card">
                 <span class="start-icon" aria-hidden="true">
-                  <!-- 톱니바퀴 — flat_icon_svg/027.설정,관리.svg 기반, 색만 브랜드 톤으로 -->
                   <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 19.75C16.2802 19.75 19.75 16.2802 19.75 12C19.75 7.71979 16.2802 4.25 12 4.25C7.71979 4.25 4.25 7.71979 4.25 12C4.25 16.2802 7.71979 19.75 12 19.75Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
                     <path d="M10 2H14C14.2652 2 14.5196 2.10536 14.7071 2.29289C14.8946 2.48043 15 2.73478 15 3V5H9V3C9 2.73478 9.10536 2.48043 9.29289 2.29289C9.48043 2.10536 9.73478 2 10 2Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
@@ -487,7 +455,6 @@
             <li>
               <div class="content-panel start-card is-here">
                 <span class="start-icon" aria-hidden="true">
-                  <!-- 깃발 — flat_icon_svg/034.깃발,목표.svg 기반, 색만 브랜드 톤으로 -->
                   <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22 16H5V4H22L18 10L22 16Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"></path>
                     <path d="M3.75 3H4.25C4.51522 3 4.76962 3.10534 4.95715 3.29288C5.14469 3.48041 5.25 3.73478 5.25 4V22H2.75V4C2.75 3.73478 2.85537 3.48041 3.04291 3.29288C3.23044 3.10534 3.48478 3 3.75 3Z" fill="var(--color-surface)"></path>
@@ -505,7 +472,6 @@
       </div>
     </section>
 
-    <!-- 08 FAQ -->
     <section class="faq fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -560,16 +526,16 @@
     </section>
   </main>
 
-  <!-- Footer도 partials/footer.html 하나로 관리한다. -->
-  
-
-  <!-- 공용 스크립트 — GNB(header-scroll·nav-menu), 섹션 진입 모션(fade-up). -->
   <SiteFooter />
   <ClientInteractions :scripts='["js/fade-up.js","js/header-scroll.js","js/nav-menu.js"]' />
 </template>
 
 <script setup>
 useSeoMeta({ title: "AX Grow: AI 자동화 내재화 교육 | 코드프레소", description: "현장 맞춤 교육, 실제 업무 공동 구축, 사내 확산 설계까지 세 단계로 조직 스스로 AI 자동화를 실행하는 역량을 남깁니다." })
-import '~/css/pages/ax-grow.css'
-import '~/css/mobile.css'
+
 </script>
+
+<style>
+@import '~/css/pages/ax-grow.css';
+@import '~/css/mobile.css';
+</style>

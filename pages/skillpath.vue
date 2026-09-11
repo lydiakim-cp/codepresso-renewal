@@ -1,7 +1,6 @@
 <template>
   <SiteHeader />
 <main class="skillpath">
-    <!-- Hero — 첫 화면이라 fade-up 없음. 보조 띠에는 서비스 규모(분야·STEP·구독)를 미리 보인다. -->
     <section class="sub-hero">
       <div class="hero-wrap">
         <div class="sub-hero-copy">
@@ -21,11 +20,9 @@
           </div>
         </div>
 
-        <!-- 서비스 규모 3칸. skills·skillcamp·aifluent hero와 같은 유리 띠 마크업을 그대로 쓴다. -->
         <ul class="hero-facts surface-glass">
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 분야 구조 — ic_structure.svg 기반, 하드코딩 색을 브랜드 토큰으로 교체 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M10.75 16V7H13.25V16H10.75Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25 12.2598V16H3.75L3.75 11.5098C3.75 11.0458 3.9342 10.6006 4.26254 10.2723C4.59088 9.94397 5.03608 9.75977 5.5 9.75977H18.5C18.9641 9.75977 19.4092 9.94408 19.7374 10.2723C20.0655 10.6004 20.25 11.0455 20.25 11.5098V16H17.75V12.2598H6.25Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
@@ -42,7 +39,6 @@
           </li>
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 학습 경로 — 015.할일.svg 기반, 하드코딩 색을 브랜드 토큰으로 교체 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                 <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
@@ -58,7 +54,6 @@
           </li>
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 구독 — 040.카드,결제.svg 기반, 하드코딩 색을 브랜드 토큰으로 교체 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                 <path d="M22 6.5H2V9.5H22V6.5Z" fill="var(--color-brand)"></path>
@@ -74,8 +69,6 @@
       </div>
     </section>
 
-    <!-- 01 분야별 트랙 — 8개를 한 판에 눕힌다. 항목이 짧은 분류 목록이라 공용
-         catalog-group(.row)로 타일 4열을 만들고 각주는 __note 슬롯에 담는다. -->
     <section class="catalog fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -89,7 +82,6 @@
               <ul class="item-grid">
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 데이터 사이언스 — ic_barChart.svg 기반 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M6 15H3C2.44772 15 2 15.4477 2 16V20C2 20.5523 2.44772 21 3 21H6C6.55228 21 7 20.5523 7 20V16C7 15.4477 6.55228 15 6 15Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
                       <path d="M13 9H10C9.44772 9 9 9.44772 9 10V20C9 20.5523 9.44772 21 10 21H13C13.5523 21 14 20.5523 14 20V10C14 9.44772 13.5523 9 13 9Z" fill="color-mix(in srgb, var(--color-brand) 65%, var(--color-surface))"></path>
@@ -100,7 +92,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 인공지능 — 071.인공지능.svg 기반 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5V22H11V5H13Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
                       <path d="M15.0098 5C15.0098 3.34315 13.6666 2 12.0098 2C10.3529 2 9.00977 3.34315 9.00977 5C9.00977 6.65685 10.3529 8 12.0098 8C13.6666 8 15.0098 6.65685 15.0098 5Z" fill="var(--color-brand)"></path>
@@ -114,7 +105,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 클라우드 컴퓨팅 — 033.클라우드.svg 기반 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M19 10.05C19 10.05 19 10.02 19 10C19 6.69 16.31 4 13 4C10.36 4 8.13 5.7 7.32 8.07C7.05 8.03 6.78 8 6.5 8C3.46 8 1 10.46 1 13.5C1 16.54 3.46 19 6.5 19H18.5C20.99 19 23 16.98 23 14.5C23 12.19 21.25 10.3 19 10.05Z" fill="var(--color-brand)"></path>
                     </svg>
@@ -123,7 +113,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 웹 개발 첫걸음 — 077.브라우저 창.svg 기반 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
                       <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"></path>
@@ -136,7 +125,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 웹 개발 실무 — 078.개발,코딩.svg 기반 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" fill="var(--color-brand)"></path>
                       <path d="M12.8102 6L9.2002 18H11.2002L14.8102 6H12.8102Z" fill="var(--color-surface)"></path>
@@ -148,7 +136,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- SW 공학 — 027.설정,관리.svg 기반 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12 19.75C16.2802 19.75 19.75 16.2802 19.75 12C19.75 7.71979 16.2802 4.25 12 4.25C7.71979 4.25 4.25 7.71979 4.25 12C4.25 16.2802 7.71979 19.75 12 19.75Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
                       <path d="M10 2H14C14.2652 2 14.5196 2.10536 14.7071 2.29289C14.8946 2.48043 15 2.73478 15 3V5H9V3C9 2.73478 9.10536 2.48043 9.29289 2.29289C9.48043 2.10536 9.73478 2 10 2Z" fill="var(--color-brand)"></path>
@@ -164,7 +151,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 자동차 SW — 049.승용차.svg 기반 -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M4 11H20C20.5304 11 21.0391 11.2107 21.4142 11.5858C21.7893 11.9609 22 12.4696 22 13V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 12.4696 2.21071 11.9609 2.58579 11.5858C2.96086 11.2107 3.46957 11 4 11Z" fill="var(--color-brand)"></path>
                       <path d="M8 4H16C17.0609 4 18.0783 4.42142 18.8284 5.17157C19.5786 5.92172 20 6.93913 20 8V11H4V8C4 6.93913 4.42143 5.92172 5.17157 5.17157C5.92172 4.42142 6.93913 4 8 4Z" fill="var(--color-brand)"></path>
@@ -179,7 +165,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 프로그래밍 — 081.키보드.svg 기반(키 3개만 남겨 24px에서 뭉치지 않게 한다) -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M21 5H3C1.89543 5 1 5.89543 1 7V17C1 18.1046 1.89543 19 3 19H21C22.1046 19 23 18.1046 23 17V7C23 5.89543 22.1046 5 21 5Z" fill="var(--color-brand)"></path>
                       <path d="M16 14.5H8C7.72386 14.5 7.5 14.7239 7.5 15V16C7.5 16.2761 7.72386 16.5 8 16.5H16C16.2761 16.5 16.5 16.2761 16.5 16V15C16.5 14.7239 16.2761 14.5 16 14.5Z" fill="var(--color-surface)"></path>
@@ -197,8 +182,6 @@
       </div>
     </section>
 
-    <!-- 02 STEP 러닝패스 — 좌 STEP 묶음 · 우 학습 화면. 읽어 내려가면 목업이 그 구간으로
-         바뀐다(scenario-switch.js). "경로를 판다"가 글로만 남지 않게 화면으로 보인다. -->
     <section class="journey fade-up">
       <div class="section-wrap col">
         <div class="section-title text-left">
@@ -248,7 +231,6 @@
       </div>
     </section>
 
-    <!-- 03 기업 도입 — B2B 랜딩이라 담당자 얘기를 상품 정보(04)보다 앞에 둔다. skillcamp 02와 같은 start-card 3열. -->
     <section class="features-enterprise fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -261,7 +243,6 @@
             <li>
               <div class="content-panel start-card">
                 <span class="start-icon" aria-hidden="true">
-                  <!-- 웹 기반 실습환경 — 077.브라우저 창.svg 기반 -->
                   <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                     <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"></path>
@@ -279,7 +260,6 @@
             <li>
               <div class="content-panel start-card">
                 <span class="start-icon" aria-hidden="true">
-                  <!-- 담당자용 관리 도구 — ic_lineChart.svg 기반 -->
                   <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                     <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"></path>
@@ -295,7 +275,6 @@
             <li>
               <div class="content-panel start-card">
                 <span class="start-icon" aria-hidden="true">
-                  <!-- 원스톱 교육 운영 — ic_team.svg 기반 -->
                   <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                     <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
@@ -316,7 +295,6 @@
       </div>
     </section>
 
-    <!-- 04 이용 방식 — 공용 start-card 3열로 세 가지 이용 기준을 동시에 비교한다. -->
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -329,7 +307,6 @@
             <li>
               <div class="content-panel start-card">
                 <span class="start-icon" aria-hidden="true">
-                  <!-- 구독 — 040.카드,결제.svg 기반, 하드코딩 색을 브랜드 토큰으로 교체 -->
                   <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
                     <path d="M22 6.5H2V9.5H22V6.5Z" fill="var(--color-brand)"></path>
@@ -347,7 +324,6 @@
             <li>
               <div class="content-panel start-card">
                 <span class="start-icon" aria-hidden="true">
-                  <!-- 레벨 태그 — 036.태그.svg 기반, 하드코딩 색을 브랜드 토큰으로 교체 -->
                   <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12.9204 2H21.0004C21.2656 2 21.52 2.10534 21.7075 2.29288C21.8951 2.48041 22.0004 2.73478 22.0004 3V11.07C22.0006 11.3339 21.9486 11.5952 21.8473 11.839C21.7461 12.0827 21.5976 12.3039 21.4104 12.49L11.4104 22.49C11.2247 22.6759 11.0041 22.8235 10.7613 22.9241C10.5185 23.0248 10.2583 23.0766 9.99542 23.0766C9.73259 23.0766 9.47232 23.0248 9.22952 22.9241C8.98673 22.8235 8.76616 22.6759 8.58041 22.49L1.51041 15.42C1.32445 15.2342 1.17694 15.0137 1.07629 14.7709C0.975645 14.5281 0.923828 14.2678 0.923828 14.005C0.923828 13.7422 0.975645 13.4819 1.07629 13.2391C1.17694 12.9963 1.32445 12.7757 1.51041 12.59L11.5104 2.59C11.8838 2.21441 12.3908 2.00223 12.9204 2Z" fill="var(--color-brand)"></path>
                     <path d="M16.3398 9.66016C17.4444 9.66016 18.3398 8.76473 18.3398 7.66016C18.3398 6.55559 17.4444 5.66016 16.3398 5.66016C15.2353 5.66016 14.3398 6.55559 14.3398 7.66016C14.3398 8.76473 15.2353 9.66016 16.3398 9.66016Z" fill="var(--color-surface)"></path>
@@ -364,7 +340,6 @@
             <li>
               <div class="content-panel start-card">
                 <span class="start-icon" aria-hidden="true">
-                  <!-- 교육·행사 — 019.트로피.svg 기반, 하드코딩 색을 브랜드 토큰으로 교체 -->
                   <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 2H16C16.5304 2 17.0391 2.21074 17.4142 2.58582C17.7893 2.96089 18 3.46957 18 4V12C18 13.5913 17.3679 15.1175 16.2426 16.2427C15.1174 17.3679 13.5913 18 12 18C10.4087 18 8.88257 17.3679 7.75735 16.2427C6.63214 15.1175 6 13.5913 6 12V4C6 3.46957 6.21071 2.96089 6.58578 2.58582C6.96086 2.21074 7.46957 2 8 2Z" fill="var(--color-brand)"></path>
                     <path d="M13.25 15H10.75V23H13.25V15Z" fill="var(--color-brand)"></path>
@@ -385,7 +360,6 @@
       </div>
     </section>
 
-    <!-- 진단 → 교육 → 재진단 다리. 섹션이 아니라 사이에 낀 배너다(전체 폭 강조 띠를 쓰지 않는다). -->
     <section class="fade-up bridge">
       <div class="section-wrap col">
         <div class="summary-banner dark">
@@ -409,7 +383,6 @@
       </div>
     </section>
 
-    <!-- 최하단 전환 — 공용 컴포넌트 -->
     <section class="cta-final fade-up">
       <div class="section-wrap col cta-final-inner">
         <h2 class="cta-final-title" data-i18n="skillpath-cta-final-title">긴 학습에는 순서가 필요합니다</h2>
@@ -429,6 +402,10 @@
 
 <script setup>
 useSeoMeta({ title: "SkillPath — 8개 분야 IT·SW 트랙과 STEP 학습 경로 | 코드프레소", description: "8개 분야 IT·SW 코스를 STEP 단위 트랙으로 잇는 온라인 자기주도 학습 서비스. 임직원은 자기 수준에서 시작해 필요한 깊이까지 올라갑니다." })
-import '~/css/pages/skillpath.css'
-import '~/css/mobile.css'
+
 </script>
+
+<style>
+@import '~/css/pages/skillpath.css';
+@import '~/css/mobile.css';
+</style>

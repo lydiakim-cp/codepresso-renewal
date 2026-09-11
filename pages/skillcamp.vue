@@ -1,7 +1,6 @@
 <template>
   <SiteHeader />
 <main class="skillcamp">
-    <!-- Hero — 첫 화면이라 fade-up 없음. 보조 띠에는 운영 포맷 3종의 기간만 미리 보인다. -->
     <section class="sub-hero">
       <div class="hero-wrap">
         <div class="sub-hero-copy">
@@ -17,11 +16,9 @@
           </div>
         </div>
 
-        <!-- 운영 포맷 3종의 기간. ax-grow hero-facts와 같은 유리 띠 마크업을 그대로 쓴다. -->
         <ul class="hero-facts surface-glass">
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 캘린더 — ic_calendar.svg 기반, 하드코딩 색을 브랜드 토큰으로 교체 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                 <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"></path>
@@ -36,7 +33,6 @@
           </li>
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 구성원 — ic_team.svg 기반, 하드코딩 색을 브랜드 토큰으로 교체 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                 <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
@@ -53,7 +49,6 @@
           </li>
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 선발·검증 — ic_shield.svg 기반, 하드코딩 색을 브랜드 토큰으로 교체 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M21.5 5L12 1L2.5 5V9C2.49 12.02 3.39 14.97 5.09 17.47C6.78 19.96 9.19 21.89 12 23C14.81 21.89 17.22 19.96 18.91 17.47C20.61 14.97 21.51 12.02 21.5 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.41 11.52L15.24 7.7L17 9.47L11.33 15.13L7.7 11.18L9.54 9.49L11.41 11.52Z" fill="var(--color-brand)"></path>
@@ -68,8 +63,6 @@
       </div>
     </section>
 
-    <!-- 01 배우는 방식 — 좌 단계 · 우 화면. 읽어 내려가면 목업이 그 단계로 바뀐다(scenario-switch.js).
-         카드 3장으로는 "해낸다"가 글로만 남아, 실제 학습 화면 3장으로 보여준다. -->
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-left">
@@ -105,7 +98,6 @@
             </li>
           </ol>
 
-          <!-- 우측 목업 3장 대신 실제 학습 화면 캡처 한 장으로 보여준다. -->
           <figure class="hero-visual">
             <img src="/images/products/skillpath/skillpath01.png" alt="실전 미션 화면 — Git Skills Assessment 진행률과 코드 에디터">
           </figure>
@@ -113,8 +105,6 @@
       </div>
     </section>
 
-    <!-- 02 운영 포맷 — 포맷 3장과 그 포맷으로 여는 대표 과정을 한 섹션에 담는다.
-         둘을 따로 두면 "어떤 포맷인가"와 "무엇을 배우나"가 끊겨 읽힌다. -->
     <section class="process fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -123,12 +113,10 @@
           <p class="desc" data-i18n="skillcamp-process-desc">인식을 바꾸는 것이 목표라면 특강으로 충분합니다. <br data-break="desktop">실무 역량까지 가져가려면 집합 과정 이상을 권합니다.</p>
         </div>
         <div class="section-content">
-          <!-- 포맷 3종 — 공용 start-card를 한 칸(--start-columns: 1)으로 눕혀 가로로 쓴다. -->
           <ul class="start-grid">
             <li>
               <div class="content-panel start-card">
                 <span class="start-icon" aria-hidden="true">
-                  <!-- 특강 — ic_calendar.svg 기반 -->
                     <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                       <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"></path>
@@ -158,7 +146,6 @@
             <li>
               <div class="content-panel start-card">
                 <span class="start-icon" aria-hidden="true">
-                  <!-- 집합 과정 — ic_team.svg 기반 -->
                     <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                       <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
@@ -190,7 +177,6 @@
             <li>
               <div class="content-panel start-card">
                 <span class="start-icon" aria-hidden="true">
-                  <!-- 부트캠프 — ic_shield.svg 기반(선발·검증) -->
                     <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M21.5 5L12 1L2.5 5V9C2.49 12.02 3.39 14.97 5.09 17.47C6.78 19.96 9.19 21.89 12 23C14.81 21.89 17.22 19.96 18.91 17.47C20.61 14.97 21.51 12.02 21.5 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M11.41 11.52L15.24 7.7L17 9.47L11.33 15.13L7.7 11.18L9.54 9.49L11.41 11.52Z" fill="var(--color-brand)"></path>
@@ -217,14 +203,12 @@
             </li>
           </ul>
 
-          <!-- 같은 섹션 안에서 한 단 내려가는 묶음 — 위 포맷으로 실제로 여는 과정들이다. -->
           <div class="catalog-group">
             <div class="catalog-group__plain">
               <p class="tag dark" data-i18n="skillcamp-process-catalog-group-01">개발 직군</p>
               <ul class="item-grid">
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 개발·코딩 — 078.개발,코딩.svg -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" fill="var(--color-brand)"></path>
                       <path d="M12.8102 6L9.2002 18H11.2002L14.8102 6H12.8102Z" fill="var(--color-surface)"></path>
@@ -236,7 +220,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 아이디어 — 010.아이디어.svg -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12 17C16.4183 17 20 13.4183 20 9C20 4.58172 16.4183 1 12 1C7.58172 1 4 4.58172 4 9C4 13.4183 7.58172 17 12 17Z" fill="var(--color-brand)"></path>
                       <path d="M15 16H9V19H15V16Z" fill="var(--color-brand)"></path>
@@ -253,7 +236,6 @@
               <ul class="item-grid">
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 챗봇 — 072.챗봇.svg -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M17.0098 6H7.00977C4.80063 6 3.00977 7.79086 3.00977 10V17C3.00977 19.2091 4.80063 21 7.00977 21H17.0098C19.2189 21 21.0098 19.2091 21.0098 17V10C21.0098 7.79086 19.2189 6 17.0098 6Z" fill="var(--color-brand)"></path>
                       <path d="M12.0098 2C12.3413 2 12.6593 2.1317 12.8937 2.36612C13.1281 2.60054 13.2598 2.91848 13.2598 3.25V6H10.7598V3.25C10.7598 2.91848 10.8915 2.60054 11.1259 2.36612C11.3603 2.1317 11.6782 2 12.0098 2Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
@@ -267,7 +249,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 작성·글쓰기 — 038.작성,글쓰기.svg -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M15.86 3.65039L19.4 7.19038L7.90999 18.6704L4 19.0004L4.37999 15.1404L15.86 3.65039Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
                       <path d="M18.0498 8.54065L14.5098 5.00064L16.6398 2.88065C16.8271 2.69439 17.0806 2.58984 17.3448 2.58984C17.6089 2.58984 17.8624 2.69439 18.0498 2.88065L20.1698 5.00064C20.2635 5.0936 20.3379 5.20419 20.3887 5.32605C20.4394 5.44791 20.4656 5.57862 20.4656 5.71063C20.4656 5.84264 20.4394 5.97336 20.3887 6.09521C20.3379 6.21707 20.2635 6.32766 20.1698 6.42062L18.0498 8.54065Z" fill="var(--color-brand)"></path>
@@ -278,7 +259,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 할일 — 015.할일.svg -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
                       <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="color-mix(in srgb, var(--color-brand) 70%, var(--color-surface))"></path>
@@ -291,7 +271,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 인터넷·지구 — 067.인터넷,지구.svg -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12.0107 21.5C17.2574 21.5 21.5107 17.2467 21.5107 12C21.5107 6.75329 17.2574 2.5 12.0107 2.5C6.76404 2.5 2.51074 6.75329 2.51074 12C2.51074 17.2467 6.76404 21.5 12.0107 21.5Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
                       <path d="M6.86077 11.61C6.72472 11.4752 6.61671 11.3148 6.54301 11.138C6.4693 10.9612 6.43136 10.7716 6.43136 10.5801C6.43136 10.3885 6.4693 10.1989 6.54301 10.0221C6.61671 9.84531 6.72472 9.68486 6.86077 9.55005C7.03886 9.37424 7.18025 9.16485 7.27676 8.93396C7.37327 8.70307 7.42297 8.45532 7.42297 8.20508C7.42297 7.95483 7.37327 7.70708 7.27676 7.4762C7.18025 7.24531 7.03886 7.03585 6.86077 6.86005L5.29077 5.29004C4.40699 6.17138 3.70635 7.21892 3.22923 8.37225C2.7521 9.52559 2.50793 10.7619 2.51077 12.0101C2.51081 13.8296 3.03506 15.6107 4.02078 17.1401L6.86077 14.3C7.03886 14.1242 7.18025 13.9148 7.27676 13.684C7.37327 13.4531 7.42297 13.2053 7.42297 12.9551C7.42297 12.7048 7.37327 12.4571 7.27676 12.2262C7.18025 11.9953 7.03886 11.7859 6.86077 11.61Z" fill="var(--color-brand)"></path>
@@ -303,7 +282,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 브라우저 창 — 077.브라우저 창.svg -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
                       <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"></path>
@@ -316,7 +294,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 검색 — 025.검색.svg -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M10.5 17.21C14.2059 17.21 17.2101 14.2059 17.2101 10.5C17.2101 6.79422 14.2059 3.79004 10.5 3.79004C6.7942 3.79004 3.79004 6.79422 3.79004 10.5C3.79004 14.2059 6.7942 17.21 10.5 17.21Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
                       <path d="M10.5 4.5C12.0913 4.5 13.6174 5.13214 14.7426 6.25735C15.8678 7.38257 16.5 8.9087 16.5 10.5C16.5 12.0913 15.8678 13.6174 14.7426 14.7426C13.6174 15.8679 12.0913 16.5 10.5 16.5C8.9087 16.5 7.38257 15.8679 6.25735 14.7426C5.13214 13.6174 4.5 12.0913 4.5 10.5C4.5 8.9087 5.13214 7.38257 6.25735 6.25735C7.38257 5.13214 8.9087 4.5 10.5 4.5ZM10.5 2C8.24647 2.00265 6.08599 2.89904 4.49251 4.49252C2.89902 6.08601 2.00265 8.24647 2 10.5C2 11.6162 2.21985 12.7215 2.64702 13.7528C3.07418 14.7841 3.7003 15.7211 4.48959 16.5104C5.27889 17.2997 6.21592 17.9258 7.24719 18.353C8.27846 18.7801 9.38376 19 10.5 19C11.6166 19.0013 12.7225 18.7824 13.7544 18.3557C14.7862 17.929 15.7238 17.3029 16.5133 16.5133C17.3029 15.7238 17.929 14.7862 18.3557 13.7544C18.7824 12.7225 19.0013 11.6166 19 10.5C19 8.24566 18.1045 6.08365 16.5104 4.48959C14.9163 2.89553 12.7543 2 10.5 2Z" fill="var(--color-brand)"></path>
@@ -327,7 +304,6 @@
                 </li>
                 <li>
                   <span class="workflow-icon icon-md" aria-hidden="true">
-                    <!-- 이메일 — 008.이메일.svg -->
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M2.5 6.5V17.5C2.49936 18.0136 2.69631 18.5076 3.05002 18.8799C3.40373 19.2523 3.88711 19.4743 4.40003 19.5H19.6C20.1129 19.4743 20.5963 19.2523 20.95 18.8799C21.3037 18.5076 21.5006 18.0136 21.5 17.5V6.5H2.5Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
                       <path d="M12 14L21.5 7V6.5C21.5006 5.98645 21.3037 5.49232 20.95 5.12C20.5963 4.74767 20.1129 4.52568 19.6 4.5H4.40003C3.88711 4.52568 3.40373 4.74767 3.05002 5.12C2.69631 5.49232 2.49936 5.98645 2.5 6.5V7L12 14Z" fill="var(--color-brand)"></path>
@@ -342,8 +318,6 @@
       </div>
     </section>
 
-    <!-- 03 증거 — 수치와 사례를 한 섹션에서 잇는다. index 02(Proof)와 같은 골격:
-         제목 + CTA 헤더 → stats-light 수치 띠 → proof-card 덱(js/proof-card-slider.js). -->
     <section class="outcomes fade-up">
       <div class="section-wrap col">
         <div class="section-header">
@@ -366,7 +340,6 @@
                 </div>
                 <p class="metric-card__label text-label" data-i18n="skillcamp-outcomes-stat-label-01">교육 차수</p>
                 <div class="metric-card__visual" aria-hidden="true">
-                  <!-- 교육 차수 — ic_calendar.svg 기반 -->
                   <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
                     <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                     <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"></path>
@@ -381,7 +354,6 @@
                 </div>
                 <p class="metric-card__label text-label" data-i18n="skillcamp-outcomes-stat-label-02">전문 강사진</p>
                 <div class="metric-card__visual" aria-hidden="true">
-                  <!-- 전문 강사진 — ic_team.svg 기반 -->
                   <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
                     <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                     <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
@@ -398,7 +370,6 @@
                 </div>
                 <p class="metric-card__label text-label" data-i18n="skillcamp-outcomes-stat-label-03">기업 교육 재구매율</p>
                 <div class="metric-card__visual" aria-hidden="true">
-                  <!-- 재구매율 — ic_lineChart.svg 기반 -->
                   <svg class="metric-card__icon" viewBox="0 0 24 24" fill="none">
                     <path d="M18.8824 3H5.11765C3.9481 3 3 3.89543 3 5V19C3 20.1046 3.9481 21 5.11765 21H18.8824C20.0519 21 21 20.1046 21 19V5C21 3.89543 20.0519 3 18.8824 3Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                     <path d="M18.5 13H16.5V9.5H13V7.5H18.5V13Z" fill="var(--color-brand)"></path>
@@ -409,8 +380,6 @@
             </div>
           </div>
 
-
-          <!-- 고객 사례 — index 02와 같은 proof-card 덱. 한 장씩 넘어간다. -->
           <div class="proof-card-stage">
             <div class="proof-card-deck" data-proof-deck="">
               <button type="button" class="proof-card-nav" aria-label="이전 사례 보기"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
@@ -438,7 +407,6 @@
             </div>
           </div>
 
-          <!-- 진단 연계 유도 — 공용 summary-banner.dark + bridge-*(좌 문구 · 우 CTA). -->
           <div class="summary-banner dark report-bridge">
             <div class="bridge-inner">
               <div class="bridge-copy">
@@ -455,7 +423,6 @@
       </div>
     </section>
 
-    <!-- 04 FAQ -->
     <section class="faq fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -496,7 +463,6 @@
       </div>
     </section>
 
-    <!-- 진단 → 교육 → 재진단 다리. 섹션이 아니라 사이에 낀 배너다(전체 폭 강조 띠를 쓰지 않는다). -->
     <section class="fade-up bridge">
       <div class="section-wrap col">
         <div class="summary-banner dark">
@@ -520,7 +486,6 @@
       </div>
     </section>
 
-    <!-- 최하단 전환 — 공용 컴포넌트 -->
     <section class="cta-final fade-up">
       <div class="section-wrap col cta-final-inner">
         <h2 class="cta-final-title" data-i18n="skillcamp-cta-final-title">다음 분기 교육은 몰입형으로 바꿔보세요</h2>
@@ -540,6 +505,10 @@
 
 <script setup>
 useSeoMeta({ title: "SkillCamp — 짧고 강하게 몰입하는 오프라인 집체교육 | 코드프레소", description: "강사가 이끄는 집합·부트캠프 교육입니다. 실전 미션과 팀 프로젝트를 전문가 피드백으로 다듬으며 실전 역량을 끌어올립니다." })
-import '~/css/pages/skillcamp.css'
-import '~/css/mobile.css'
+
 </script>
+
+<style>
+@import '~/css/pages/skillcamp.css';
+@import '~/css/mobile.css';
+</style>

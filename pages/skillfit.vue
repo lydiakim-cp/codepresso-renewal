@@ -1,8 +1,6 @@
 <template>
   <SiteHeader />
 <main class="skillfit">
-    <!-- Hero — 첫 화면이라 fade-up 없음. CTA가 둘인 것은 독자가 둘이기 때문이다
-         (담당자용 체험 프로그램 신청 · 학습자용 트랙 둘러보기). -->
     <section class="sub-hero">
       <div class="hero-wrap">
         <div class="sub-hero-copy">
@@ -22,12 +20,9 @@
           </div>
         </div>
 
-        <!-- 다른 서비스가 따라 쓰기 어려운 것 셋을 수치로. 칸은 metric-card라
-             stat-reveal.js의 기본 대상에 그대로 걸린다(cases hero와 같은 판단). -->
         <ul class="hero-facts surface-glass" data-stat-reveal="">
           <li class="metric-card">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 트랙 수 — skillpath 카탈로그 "프로그래밍" 타일과 같은 키보드 path. -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M21 5H3C1.89543 5 1 5.89543 1 7V17C1 18.1046 1.89543 19 3 19H21C22.1046 19 23 18.1046 23 17V7C23 5.89543 22.1046 5 21 5Z" fill="var(--color-brand)"></path>
                 <path d="M16 14.5H8C7.72386 14.5 7.5 14.7239 7.5 15V16C7.5 16.2761 7.72386 16.5 8 16.5H16C16.2761 16.5 16.5 16.2761 16.5 16V15C16.5 14.7239 16.2761 14.5 16 14.5Z" fill="var(--color-surface)"></path>
@@ -42,7 +37,6 @@
           </li>
           <li class="metric-card">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 과제 유형 — images/icons/service/ic_todo.svg의 실제 path. 하드코딩 색만 브랜드 토큰으로 바꿨다. -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
                 <path d="M10.49 8H6.5C6.22386 8 6 8.22386 6 8.5V9.5C6 9.77614 6.22386 10 6.5 10H10.49C10.7661 10 10.99 9.77614 10.99 9.5V8.5C10.99 8.22386 10.7661 8 10.49 8Z" fill="var(--color-brand)"></path>
@@ -58,7 +52,6 @@
           </li>
           <li class="metric-card">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 설치 없음 — skillpath 카탈로그 "웹 개발 첫걸음" 타일과 같은 브라우저 창 path. -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 35%, var(--color-surface))"></path>
                 <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"></path>
@@ -76,8 +69,6 @@
       </div>
     </section>
 
-    <!-- 문제 제기 — 뒤의 네 단계가 해결책으로 읽히게 하는 자리.
-         한 줄짜리 카드로는 "문제"로 읽히지 않아 아이콘 + 소제목 변형(pain-card--detail)을 쓴다. -->
     <section class="intro fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -88,7 +79,6 @@
           <ul class="pain-grid">
             <li class="pain-card pain-card--detail">
               <span class="pain-card__icon" aria-hidden="true">
-                <!-- 수준이 섞여 있습니다 — images/icons/library/103.팀.svg를 현재 문제 카드 톤으로 적용. -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M6 9C7.06087 9 8.07827 9.42142 8.82841 10.1716C9.57856 10.9217 10 11.9391 10 13V18C10 18.2652 9.89464 18.5196 9.70711 18.7071C9.51957 18.8946 9.26522 19 9 19H3C2.73478 19 2.48043 18.8946 2.29289 18.7071C2.10536 18.5196 2 18.2652 2 18V13C2 11.9391 2.42142 10.9217 3.17157 10.1716C3.92172 9.42142 4.93913 9 6 9Z" fill="currentColor"></path>
                   <path d="M6 8C7.38071 8 8.5 6.88071 8.5 5.5C8.5 4.11929 7.38071 3 6 3C4.61929 3 3.5 4.11929 3.5 5.5C3.5 6.88071 4.61929 8 6 8Z" fill="currentColor"></path>
@@ -103,7 +93,6 @@
             </li>
             <li class="pain-card pain-card--detail">
               <span class="pain-card__icon" aria-hidden="true">
-                <!-- 수료율만 남습니다 — images/icons/library/001.문서,글.svg를 현재 문제 카드 톤으로 적용. -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" fill="currentColor"></path>
                   <path d="M16.5 7H7.5M16.5 12H7.5M16.5 16H7.5" stroke="var(--color-surface)" stroke-width="2" stroke-linecap="round"></path>
@@ -114,7 +103,6 @@
             </li>
             <li class="pain-card pain-card--detail">
               <span class="pain-card__icon" aria-hidden="true">
-                <!-- 본 것과 할 수 있는 것은 다릅니다 — images/icons/library/081.키보드.svg를 현재 문제 카드 톤으로 적용. -->
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M21 5H3C1.89543 5 1 5.89543 1 7V17C1 18.1046 1.89543 19 3 19H21C22.1046 19 23 18.1046 23 17V7C23 5.89543 22.1046 5 21 5Z" fill="currentColor"></path>
                   <path d="M5 15.5H19M5 8.5H19M5 12H19" stroke="var(--color-surface)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="1 2.5"></path>
@@ -128,7 +116,6 @@
       </div>
     </section>
 
-    <!-- 학습자가 지나는 네 단계. 아래 세 섹션이 02~04를 하나씩 펼치므로 여기서는 흐름만 보여준다. -->
     <section class="journey is-sunken fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -185,7 +172,6 @@
       </div>
     </section>
 
-    <!-- 02 맞춤 학습 경로 -->
     <section class="deliverables product-feature fade-up">
       <div class="section-wrap row">
         <div class="feature-copy">
@@ -207,8 +193,6 @@
             </li>
           </ul>
         </div>
-        <!-- 학습 홈 화면. 진단이 짠 경로가 "이어서 학습"으로 이어진다는 것만 읽히면 되므로
-             그 카드와 수치 4칸만 텍스트로 남기고 나머지는 스켈레톤으로 가라앉힌다. -->
         <div class="content-panel bg">
           <div class="preview-frame preview-frame--flush skillfit-home" data-mock-motion="ticker" aria-hidden="true">
             <div class="preview-frame__bar">
@@ -216,7 +200,6 @@
             </div>
 
             <div class="skillfit-home-screen">
-              <!-- 좌 — 학습 메뉴와 이어서 학습 진입점. -->
               <div class="skillfit-home-nav">
                 <div class="skillfit-home-brand">
                   <span class="journey-app-rail-logo"></span>
@@ -239,7 +222,6 @@
                 </div>
               </div>
 
-              <!-- 우 — 오늘의 학습 상태. -->
               <div class="skillfit-home-main">
                 <p class="journey-app-lesson">오늘도 한 챕터 완주해볼까요?</p>
 
@@ -274,7 +256,6 @@
       </div>
     </section>
 
-    <!-- 51개 트랙 — hero 보조 CTA(트랙 둘러보기)가 도착하는 자리라 id를 준다. -->
     <section class="catalog is-sunken fade-up" id="skillfit-tracks">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -348,7 +329,6 @@
       
     </section>
 
-    <!-- 03 실습 환경 — 이 페이지에서 가장 강한 차별점이라 독립 섹션으로 올렸다. -->
     <section class="deliverables product-feature fade-up">
       <div class="section-wrap row">
         <div class="feature-copy">
@@ -370,8 +350,6 @@
             </li>
           </ul>
         </div>
-        <!-- 학습 화면. index PART 1이 쓰는 skillfit-mock을 그대로 쓰되, 여기서는
-             튜터 팝업 없이 실습 본문만 보여준다(튜터는 아래 04가 맡는다). -->
         <div class="content-panel bg">
           <div class="preview-frame preview-frame--flush skillfit-mock" data-mock-motion="focus" aria-hidden="true">
             <div class="preview-frame__bar">
@@ -379,41 +357,34 @@
             </div>
 
             <div class="skillfit-mock-screen">
-              <!-- 최좌측 — 아이콘 메뉴 레일. index PART 1의 SkillFit 목업과 같은 부품이다. -->
               <div class="journey-app-rail">
                 <span class="journey-app-rail-logo"></span>
 
-                <!-- 홈 -->
                 <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M4 10.5 12 4l8 6.5V20H4v-9.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
                 </svg>
 
-                <!-- 탐색 -->
                 <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"></circle>
                   <path d="m15 9-2 4-4 2 2-4 4-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
                 </svg>
 
-                <!-- 학습(현재 위치) -->
                 <svg class="journey-app-rail-icon is-current" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <rect x="4" y="4" width="16" height="16" rx="5" fill="currentColor"></rect>
                   <path d="m10.5 9 5 3-5 3V9Z" fill="var(--color-surface)"></path>
                 </svg>
 
-                <!-- 검색 -->
                 <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2"></circle>
                   <path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
                 </svg>
 
-                <!-- 설정 -->
                 <svg class="journey-app-rail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"></circle>
                   <path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
                 </svg>
               </div>
 
-              <!-- 좌 — 학습 중인 트랙과 스킬별 정답률. -->
               <div class="journey-app-side">
                 <div class="journey-app-track">
                   <span class="journey-app-track-badge">진행중</span>
@@ -446,7 +417,6 @@
                 </ul>
               </div>
 
-              <!-- 우 — 실무 시나리오가 레슨 본문 위에 먼저 온다. -->
               <div class="journey-app-main">
                 <div class="journey-app-scenario">
                   <span class="journey-app-scenario-label">실무 시나리오</span>
@@ -467,7 +437,6 @@
                   <span class="skeleton-line is-short"></span>
                 </div>
 
-                <!-- 화면 안에서 다음 과제로 넘어간다는 신호. 실제 학습 화면의 하단 바다. -->
                 <span class="skillfit-mock-button is-wide">다음</span>
               </div>
             </div>
@@ -476,7 +445,6 @@
       </div>
     </section>
 
-    <!-- 04 1:1 AI 튜터 -->
     <section class="deliverables product-feature is-sunken fade-up">
       <div class="section-wrap row">
         <div class="feature-copy">
@@ -498,8 +466,6 @@
             </li>
           </ul>
         </div>
-        <!-- AI 튜터 대화창. 03과 같은 학습 화면 위에서 열리는 패널이라
-             부품(journey-app-tutor-* · journey-mock-bubble · journey-app-ask)을 그대로 쓴다. -->
         <div class="content-panel bg">
           <div class="preview-frame preview-frame--flush skillfit-tutor" aria-hidden="true">
             <div class="journey-app-tutor-head skillfit-tutor-head">
@@ -545,7 +511,6 @@
       </div>
     </section>
 
-    <!-- 본문 중간 강조 1곳 — 변화 리포트. 기획서 3절 A안(먼저 만들고 쓴다)을 전제로 한 문구다. -->
     <section class="statement fade-up">
       <div class="section-wrap col">
         <div class="statement-inner">
@@ -556,7 +521,6 @@
       </div>
     </section>
 
-    <!-- 여기부터 독자가 학습자에서 교육 담당자로 바뀐다. -->
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -569,7 +533,6 @@
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 기수 관리 — images/icons/library/003.일정,캘린더.svg를 브랜드 블루 톤으로 적용. -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19.5 4.01953H4.5C3.39543 4.01953 2.5 4.91496 2.5 6.01953V19.0195C2.5 20.1241 3.39543 21.0195 4.5 21.0195H19.5C20.6046 21.0195 21.5 20.1241 21.5 19.0195V6.01953C21.5 4.91496 20.6046 4.01953 19.5 4.01953Z" fill="var(--color-brand)"></path>
                     <path d="M8.48001 3.01953H7.5C7.22386 3.01953 7 3.24339 7 3.51953V5.51953C7 5.79567 7.22386 6.01953 7.5 6.01953H8.48001C8.75615 6.01953 8.98001 5.79567 8.98001 5.51953V3.51953C8.98001 3.24339 8.75615 3.01953 8.48001 3.01953Z" fill="var(--color-brand-dark)"></path>
@@ -599,7 +562,6 @@
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 진행 대시보드 — images/icons/library/077.브라우저 창.svg를 브랜드 블루 톤으로 적용. -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2 18C2 18.5304 2.21074 19.0391 2.58582 19.4142C2.96089 19.7893 3.46957 20 4 20H20C20.5304 20 21.0392 19.7893 21.4142 19.4142C21.7893 19.0391 22 18.5304 22 18V8H2V18Z" fill="color-mix(in srgb, var(--color-brand) 22%, var(--color-surface))"></path>
                     <path d="M19.9996 3H3.99957C3.40568 3.07282 2.86389 3.37521 2.49011 3.84244C2.11633 4.30966 1.94025 4.90461 1.99957 5.5V8H21.9996V5.5C22.0563 4.90512 21.8793 4.31152 21.506 3.84489C21.1327 3.37827 20.5924 3.07525 19.9996 3Z" fill="var(--color-brand)"></path>
@@ -625,7 +587,6 @@
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 리포트 — images/icons/library/005.문서,결재.svg를 브랜드 블루 톤으로 적용. -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20 7V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58578 21.4142C4.21071 21.0391 4 20.5304 4 20V4C4 3.46957 4.21071 2.96083 4.58578 2.58575C4.96086 2.21068 5.46957 2 6 2H15L20 7Z" fill="var(--color-brand)"></path>
                     <path d="M16 7H20L15 2V6C15 6.26522 15.1054 6.51956 15.2929 6.70709C15.4804 6.89463 15.7348 7 16 7Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
@@ -651,7 +612,6 @@
       </div>
     </section>
 
-    <!-- 도입 절차 — 담당자가 가장 궁금해하는 "우리가 뭘 해야 하나". 기간이 붙어 timeline. -->
     <section class="process fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -698,7 +658,6 @@
       </div>
     </section>
 
-    <!-- FAQ — 마지막 질문(진단 정확도)은 피하지 않고 한계를 인정하는 편이 신뢰를 만든다. -->
     <section class="faq is-sunken fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -757,7 +716,6 @@
       </div>
     </section>
 
-    <!-- 최하단 전환 — hero와 같은 CTA를 반복한다 -->
     <section class="cta-final fade-up">
       <div class="section-wrap col cta-final-inner">
         <h2 class="cta-final-title">2~3주 뒤, 구성원의 실력 변화를 확인하세요</h2>
@@ -777,6 +735,10 @@
 
 <script setup>
 useSeoMeta({ title: "SkillFit — 진단 결과가 곧 나만의 학습 계획이 되는 개인화 학습 | 코드프레소", description: "SkillFit. AI 진단 인터뷰가 현재 수준과 취약점을 찾고 학습 경로를 설계합니다. 강의를 보는 대신, 브라우저에서 직접 코드를 씁니다." })
-import '~/css/pages/skillfit.css'
-import '~/css/mobile.css'
+
 </script>
+
+<style>
+@import '~/css/pages/skillfit.css';
+@import '~/css/mobile.css';
+</style>

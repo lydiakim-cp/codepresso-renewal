@@ -141,8 +141,6 @@
         <div class="guide-component-list">
           <article class="guide-component-row">
             <div class="guide-component-demo">
-              <!-- 실제로는 <section class="sub-hero">가 화면 끝까지 sunken 배경 +
-                   bg-line2 텍스처를 깐다. 카탈로그 안에서는 데모 칸 폭에 맞춰 축소한다. -->
               <div class="sub-hero" style="border-radius: var(--radius-lg); padding: var(--space-40) var(--space-24)">
                 <div class="hero-wrap" style="padding: 0; max-width: none">
                   <div class="sub-hero-copy">
@@ -411,8 +409,6 @@
           </article>
           <article class="guide-component-row">
             <div class="guide-component-demo">
-              <!-- 실제로는 <section class="statement">이 화면 끝까지 배경을 칠한다.
-                   카탈로그 안에서는 데모 칸 폭에 맞춰 보여준다. -->
               <div class="statement" style="border-radius: var(--radius-lg)">
                 <div class="section-wrap col">
                   <div class="statement-inner">
@@ -1286,21 +1282,16 @@
       <footer class="guide-footer">Codepresso Design Guide · 마지막 업데이트 2026.09</footer>
     </main>
   </div>
-  <!--
-    가이드의 모션 예시는 서비스와 똑같은 스크립트로 구동한다(로직을 다시 구현하지 않는다).
-    - fade-up.js            : .fade-up 진입 모션
-    - stat-reveal.js        : [data-stat-reveal] 수치 카운트업
-    - proof-card-slider.js  : [data-proof-deck] 카드 덱 전환
-    - catalog-board.js      : [data-catalog-board] 분류별 목록 전환
-    part-nav.js는 실제 섹션 id로 페이지를 스크롤하므로 문서에서는 쓰지 않고,
-    아래 인라인 스크립트가 인디케이터 이동만 재현한다.
-  -->
   <SiteFooter />
   <ClientInteractions :scripts='["js/fade-up.js","js/stat-reveal.js","js/proof-card-slider.js","js/catalog-board.js"]' />
 </template>
 
 <script setup>
 useSeoMeta({ title: "Codepresso Design Guide", description: "" })
-import '~/css/pages/designsystem.css'
-import '~/css/mobile.css'
+
 </script>
+
+<style>
+@import '~/css/pages/designsystem.css';
+@import '~/css/mobile.css';
+</style>

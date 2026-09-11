@@ -1,10 +1,7 @@
 <template>
   <SiteHeader />
-<!-- GNB는 partials/header.html 하나로 관리한다. js/include-partials.js가 fetch해 삽입한다. -->
-  
 
   <main class="axpresso main-dark">
-    <!-- Hero — 제품 한 줄 정의 + CTA 2개 + 핵심 수치 3개. 첫 화면이라 fade-up을 붙이지 않는다. -->
     <section class="sub-hero">
       <div class="hero-wrap">
         <div class="sub-hero-copy">
@@ -23,12 +20,9 @@
           </div>
         </div>
 
-        <!-- 핵심 수치 3개. ax-build·ax-grow hero와 같은 유리 띠 외피(1장 + 세로 구분선 +
-             그림자 없음)에 metric-card 슬롯을 담는다. -->
         <ul class="hero-facts surface-glass">
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 캘린더 — ic_calendar.svg 기반, 하드코딩 색을 브랜드 톤으로 교체 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19.5 4H4.5C3.39543 4 2.5 4.89543 2.5 6V19C2.5 20.1046 3.39543 21 4.5 21H19.5C20.6046 21 21.5 20.1046 21.5 19V6C21.5 4.89543 20.6046 4 19.5 4Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                 <path d="M8.48 3H7.5C7.22386 3 7 3.22386 7 3.5V5.5C7 5.77614 7.22386 6 7.5 6H8.48C8.75614 6 8.98 5.77614 8.98 5.5V3.5C8.98 3.22386 8.75614 3 8.48 3Z" fill="var(--color-brand)"></path>
@@ -44,7 +38,6 @@
           </li>
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 최대 업무 시간 단축 — images/icons/library/120.시간,기록.svg 기반, 브랜드 톤으로 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M10.75 7.5H13.25V11.875L16.75 14.5L15.25 16.5L10.75 13.125V7.5Z" fill="var(--color-brand)"></path>
@@ -57,7 +50,6 @@
           </li>
           <li class="metric-card is-visible">
             <span class="hero-fact-icon icon-lg" aria-hidden="true">
-              <!-- 엔터프라이즈 고객 — images/icons/library/063.기관.svg 기반, 브랜드 톤으로 -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 17H20C20.2652 17 20.5196 17.1053 20.7071 17.2929C20.8946 17.4804 21 17.7348 21 18V22H3V18C3 17.7348 3.10537 17.4804 3.29291 17.2929C3.48044 17.1053 3.73478 17 4 17Z" fill="var(--color-brand)"></path>
                 <path d="M7 3H17C17.2652 3 17.5196 3.10536 17.7071 3.29289C17.8946 3.48043 18 3.73478 18 4V7H6V4C6 3.73478 6.10537 3.48043 6.29291 3.29289C6.48044 3.10536 6.73478 3 7 3Z" fill="var(--color-brand-dark)"></path>
@@ -81,8 +73,6 @@
       </div>
     </section>
 
-    <!-- 01 Engagement Models — 두 제품 중 조직 목표에 맞는 쪽을 고르게 한다.
-         ax-grow why-codepresso 06과 같은 역할 · 같은 공용 start-card 배치. -->
     <section class="positioning fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -95,7 +85,6 @@
             <li>
               <div class="content-panel start-card">
                 <span class="start-icon" aria-hidden="true">
-                  <!-- 톱니바퀴 — flat_icon_svg/027.설정,관리.svg 기반, 색만 브랜드 톤으로 -->
                   <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 19.75C16.2802 19.75 19.75 16.2802 19.75 12C19.75 7.71979 16.2802 4.25 12 4.25C7.71979 4.25 4.25 7.71979 4.25 12C4.25 16.2802 7.71979 19.75 12 19.75Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
                     <path d="M10 2H14C14.2652 2 14.5196 2.10536 14.7071 2.29289C14.8946 2.48043 15 2.73478 15 3V5H9V3C9 2.73478 9.10536 2.48043 9.29289 2.29289C9.48043 2.10536 9.73478 2 10 2Z" fill="color-mix(in srgb, var(--color-brand) 55%, var(--color-surface))"></path>
@@ -121,7 +110,6 @@
             <li>
               <div class="content-panel start-card">
                 <span class="start-icon" aria-hidden="true">
-                  <!-- 깃발 — flat_icon_svg/034.깃발,목표.svg 기반, 색만 브랜드 톤으로 -->
                   <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22 16H5V4H22L18 10L22 16Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"></path>
                     <path d="M3.75 3H4.25C4.51522 3 4.76962 3.10534 4.95715 3.29288C5.14469 3.48041 5.25 3.73478 5.25 4V22H2.75V4C2.75 3.73478 2.85537 3.48041 3.04291 3.29288C3.23044 3.10534 3.48478 3 3.75 3Z" fill="var(--color-surface)"></path>
@@ -143,7 +131,6 @@
       </div>
     </section>
 
-    <!-- 02 How It Works — 좌측 제목 sticky + 우측 3주 단계. ax-build 04와 같은 process-steps. -->
     <section class="process fade-up">
       <div class="section-wrap row is-sticky">
         <div class="section-aside">
@@ -161,7 +148,6 @@
               <span class="step-no" aria-hidden="true">01</span>
             </div>
             <span class="step-icon" aria-hidden="true">
-              <!-- 업무와 시스템 진단 — images/icons/library/025.검색.svg 기반, 브랜드 톤으로 -->
               <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 17.21C14.2059 17.21 17.2101 14.2059 17.2101 10.5C17.2101 6.79422 14.2059 3.79004 10.5 3.79004C6.7942 3.79004 3.79004 6.79422 3.79004 10.5C3.79004 14.2059 6.7942 17.21 10.5 17.21Z" fill="color-mix(in srgb, var(--color-brand) 20%, var(--color-surface))"></path>
                 <path d="M10.5 4.5C12.0913 4.5 13.6174 5.13214 14.7426 6.25735C15.8678 7.38257 16.5 8.9087 16.5 10.5C16.5 12.0913 15.8678 13.6174 14.7426 14.7426C13.6174 15.8679 12.0913 16.5 10.5 16.5C8.9087 16.5 7.38257 15.8679 6.25735 14.7426C5.13214 13.6174 4.5 12.0913 4.5 10.5C4.5 8.9087 5.13214 7.38257 6.25735 6.25735C7.38257 5.13214 8.9087 4.5 10.5 4.5ZM10.5 2C8.24647 2.00265 6.08599 2.89904 4.49251 4.49252C2.89902 6.08601 2.00265 8.24647 2 10.5C2 11.6162 2.21985 12.7215 2.64702 13.7528C3.07418 14.7841 3.7003 15.7211 4.48959 16.5104C5.27889 17.2997 6.21592 17.9258 7.24719 18.353C8.27846 18.7801 9.38376 19 10.5 19C11.6166 19.0013 12.7225 18.7824 13.7544 18.3557C14.7862 17.929 15.7238 17.3029 16.5133 16.5133C17.3029 15.7238 17.929 14.7862 18.3557 13.7544C18.7824 12.7225 19.0013 11.6166 19 10.5C19 8.24566 18.1045 6.08365 16.5104 4.48959C14.9163 2.89553 12.7543 2 10.5 2Z" fill="var(--color-brand)"></path>
@@ -180,7 +166,6 @@
               <span class="step-no" aria-hidden="true">02</span>
             </div>
             <span class="step-icon" aria-hidden="true">
-              <!-- Agent 구축 — ic_axBuild.svg 기반. 면·강조로 나누고 코어를 진하게 -->
               <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 19.75C16.2802 19.75 19.75 16.2802 19.75 12C19.75 7.71979 16.2802 4.25 12 4.25C7.71979 4.25 4.25 7.71979 4.25 12C4.25 16.2802 7.71979 19.75 12 19.75Z" fill="color-mix(in srgb, var(--color-brand) 30%, var(--color-surface))"></path>
                 <path d="M10 2H14C14.2652 2 14.5196 2.10536 14.7071 2.29289C14.8946 2.48043 15 2.73478 15 3V5H9V3C9 2.73478 9.10536 2.48043 9.29289 2.29289C9.48043 2.10536 9.73478 2 10 2Z" fill="var(--color-brand)"></path>
@@ -204,7 +189,6 @@
               <span class="step-no" aria-hidden="true">03</span>
             </div>
             <span class="step-icon" aria-hidden="true">
-              <!-- 검증과 운영 — images/icons/library/022.메달.svg 기반, 브랜드 톤으로 -->
               <svg class="icon-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 11H16L21.99 1H15.99L10 11Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"></path>
                 <path d="M13.99 11H7.98999L2 1H8L13.99 11Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"></path>
@@ -220,7 +204,6 @@
       </div>
     </section>
 
-    <!-- 03 Redesign — 흩어진 도구가 하나의 실행 시스템으로 모이는 그림 + 재설계 두 축. -->
     <section class="intro fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -230,7 +213,6 @@
         </div>
         <div class="section-content">
           <div class="content-panel">
-            <!-- 도구 5개가 하나의 실행 시스템으로 모이는 그림. 칩은 공용 .tag를 그대로 쓴다. -->
             <div class="content-panel__visual tool-flow">
               <ul class="tool-flow-tools">
                 <li class="tool-flow-icon"><img src="/images/slack_icon.svg" alt="Slack" loading="lazy"></li>
@@ -265,7 +247,6 @@
       </div>
     </section>
 
-    <!-- FDE — 이 페이지의 단 하나뿐인 전체 폭 강조 띠. -->
     <section class="statement fade-up">
       <div class="section-wrap col">
         <div class="statement-inner">
@@ -280,7 +261,6 @@
       </div>
     </section>
 
-    <!-- 04 Security & Governance — ax-build 02와 같은 feature-card 자동 순환(5초). -->
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
@@ -293,7 +273,6 @@
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 데이터 스택 — 지역이 분리된 전용 저장 환경 -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2C7.58 2 4 3.34 4 5C4 6.66 7.58 8 12 8C16.42 8 20 6.66 20 5C20 3.34 16.42 2 12 2Z" fill="var(--color-brand)"></path>
                     <path d="M4 8.5V12C4 13.66 7.58 15 12 15C16.42 15 20 13.66 20 12V8.5C18.3 9.7 15.4 10.4 12 10.4C8.6 10.4 5.7 9.7 4 8.5Z" fill="color-mix(in srgb, var(--color-brand) 45%, var(--color-surface))"></path>
@@ -320,7 +299,6 @@
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 방패 + 체크 — 기존 보안 정책 기준을 그대로 따른다 -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21.5 5L12 1L2.5 5V9C2.49 12.02 3.39 14.97 5.09 17.47C6.78 19.96 9.19 21.89 12 23C14.81 21.89 17.22 19.96 18.91 17.47C20.61 14.97 21.51 12.02 21.5 9V5Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M11.41 11.52L15.24 7.7L17 9.47L11.33 15.13L7.7 11.18L9.54 9.49L11.41 11.52Z" fill="var(--color-brand)"></path>
@@ -346,7 +324,6 @@
             <article class="feature-card">
               <div class="feature-card-icon-row">
                 <span class="feature-card-icon" aria-hidden="true">
-                  <!-- 승인과 모니터링 — images/icons/library/070.잠금,숨김.svg 기반, 브랜드 톤으로 -->
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19 8H5C3.89543 8 3 8.89543 3 10V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V10C21 8.89543 20.1046 8 19 8Z" fill="var(--color-brand)"></path>
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.25C11.0054 3.25 10.0516 3.6451 9.34833 4.34836C8.64508 5.05162 8.25 6.00543 8.25 7V8H5.75V7C5.75 5.34241 6.40845 3.7527 7.58056 2.58059C8.75266 1.40849 10.3424 0.75 12 0.75C13.6576 0.75 15.2473 1.4085 16.4194 2.58059C17.5915 3.75269 18.25 5.34239 18.25 7V8H15.75V7C15.75 6.00545 15.3549 5.05163 14.6516 4.34836C13.9484 3.64509 12.9946 3.25 12 3.25Z" fill="color-mix(in srgb, var(--color-brand) 25%, var(--color-surface))"></path>
@@ -374,7 +351,6 @@
       </div>
     </section>
 
-    <!-- 05 Results — 공용 outcome-card 마크업. ax-build 06과 같은 3장 + 결론 배너. -->
     <section class="outcomes fade-up">
       <div class="section-wrap col">
         <div class="section-header">
@@ -439,7 +415,6 @@
             </li>
           </ul>
 
-          <!-- 섹션 결론 한 줄 — People Axis(역량 진단)로 넘기는 연결 고리. -->
           <p class="summary-banner">
             <span data-i18n="axpresso-outcomes-banner">도구가 만든 데이터는, <strong class="brand">사람의 성장 근거</strong>가 됩니다</span>
             <span class="description" data-i18n="axpresso-outcomes-banner-sub">에이전트 사용 로그는 역량 진단과 맞춤 학습의 출발점입니다.</span>
@@ -467,16 +442,16 @@
     </section>
   </main>
 
-  <!-- Footer도 partials/footer.html 하나로 관리한다. -->
-  
-
-  <!-- 공용 스크립트. -->
   <SiteFooter />
   <ClientInteractions :scripts='["js/fade-up.js","js/header-scroll.js","js/nav-menu.js"]' />
 </template>
 
 <script setup>
 useSeoMeta({ title: "AXpresso: AI 업무 자동화 | 코드프레소", description: "흩어진 도구와 수작업을 AI 중심 자동화 흐름으로 연결합니다. 빠른 도입으로 실제 운영까지 연결하는 AI 업무 자동화 플랫폼입니다." })
-import '~/css/pages/axpresso.css'
-import '~/css/mobile.css'
+
 </script>
+
+<style>
+@import '~/css/pages/axpresso.css';
+@import '~/css/mobile.css';
+</style>

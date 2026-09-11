@@ -149,7 +149,6 @@
         <p>문서·표·목차 구조로 다듬은 v2입니다. 왼쪽 목차는 스크롤 위치에 맞춰 자동으로 움직입니다.</p>
       </section>
 
-      <!-- FOUNDATION -->
       <section class="guide-v2-section" id="foundation">
         <div class="guide-v2-section-head">
           <p class="guide-kicker">FOUNDATION</p>
@@ -258,7 +257,6 @@
         </div>
       </section>
 
-      <!-- LAYOUT -->
       <section class="guide-v2-section" id="layout">
         <div class="guide-v2-section-head">
           <p class="guide-kicker">LAYOUT</p>
@@ -288,7 +286,6 @@
         <div class="guide-callout"><strong>기억하기</strong><span>제목 정렬은 바깥 영역이 아니라 <code>section-title</code>에 적용합니다. 그래서 카드나 버튼의 정렬은 영향을 받지 않습니다.</span></div>
       </section>
 
-      <!-- COMPONENTS -->
       <section class="guide-v2-section" id="components">
         <div class="guide-v2-section-head">
           <p class="guide-kicker">COMPONENTS</p>
@@ -866,7 +863,6 @@
         </div>
       </section>
 
-      <!-- MOTION -->
       <section class="guide-v2-section" id="motion">
         <div class="guide-v2-section-head">
           <p class="guide-kicker">MOTION</p>
@@ -1036,7 +1032,6 @@
         <div class="guide-callout"><strong>접근성</strong><span>모든 자동 모션은 <code>prefers-reduced-motion</code> 환경에서 멈추거나 즉시 표시됩니다. 새 모션도 같은 기준을 따라야 합니다.</span></div>
       </section>
 
-      <!-- RULES -->
       <section class="guide-v2-section" id="rules">
         <div class="guide-v2-section-head">
           <p class="guide-kicker">RULES</p>
@@ -1089,7 +1084,6 @@
         </div>
       </section>
 
-      <!-- PATTERNS -->
       <section class="guide-v2-section" id="patterns">
         <div class="guide-v2-section-head">
           <p class="guide-kicker">PATTERNS</p>
@@ -1104,7 +1098,6 @@
         </ol>
       </section>
 
-      <!-- MOCKUP MOTION -->
       <section class="guide-v2-section" id="mockup-motion">
         <div class="guide-v2-section-head">
           <p class="guide-kicker">MOCKUP MOTION</p>
@@ -1431,7 +1424,6 @@
         <div class="guide-callout"><strong>고르는 기준</strong><span>생기만 더할 때는 <code>focus</code>, 실제 서비스 화면임을 보여야 할 때는 <code>replay</code>, 스크롤 중 눈에 띄어야 할 때는 <code>deck</code>, 정보를 함께 전달해야 할 때는 <code>detail</code>, 숫자로 설득할 때는 <code>ticker</code>, 단계가 순서대로 진행되는 것을 보여줄 때는 <code>stage</code>, 자동 처리가 어디서 멈추는지 보일 때는 <code>run</code>을 씁니다.</span></div>
       </section>
 
-      <!-- COMPONENT USAGE -->
       <section class="guide-v2-section guide-v2-usage" id="usage">
         <p class="guide-kicker">COMPONENT USAGE</p>
         <h2>AI에게 이렇게 요청하면 됩니다.</h2>
@@ -1452,7 +1444,6 @@
         </div>
       </section>
 
-      <!-- NUXT -->
       <section class="guide-v2-section" id="nuxt">
         <div class="guide-v2-section-head">
           <p class="guide-kicker">NUXT MIGRATION</p>
@@ -1518,7 +1509,6 @@
         </div>
       </section>
 
-      <!-- PORTING -->
       <section class="guide-v2-section" id="porting">
         <div class="guide-v2-section-head">
           <p class="guide-kicker">PORTING</p>
@@ -1583,7 +1573,6 @@
         </div>
       </section>
 
-      <!-- SKILL META -->
       <section class="guide-v2-section" id="skill-meta">
         <div class="guide-v2-section-head">
           <p class="guide-kicker">SKILL STRUCTURE</p>
@@ -1679,16 +1668,16 @@
     </main>
   </div>
 
-  <!--
-    가이드의 모션 예시는 서비스와 똑같은 스크립트로 구동한다(로직을 다시 구현하지 않는다).
-    스크롤스파이만 이 문서 전용(designsystem-scrollspy.js).
-  -->
   <SiteFooter />
   <ClientInteractions :scripts='["js/fade-up.js","js/stat-reveal.js","js/proof-card-slider.js","js/catalog-board.js","js/designsystem-scrollspy.js"]' />
 </template>
 
 <script setup>
 useSeoMeta({ title: "Codepresso Design Guide v2", description: "" })
-import '~/css/pages/designsystem-v2.css'
-import '~/css/mobile.css'
+
 </script>
+
+<style>
+@import '~/css/pages/designsystem-v2.css';
+@import '~/css/mobile.css';
+</style>
