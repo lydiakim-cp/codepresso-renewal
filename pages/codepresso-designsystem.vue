@@ -37,7 +37,7 @@
 
       <section class="guide-section" id="foundation">
         <div class="guide-section-head">
-          <p class="guide-kicker">02 · FOUNDATION</p>
+          <p class="guide-kicker">FOUNDATION</p>
           <h2>기본 규칙</h2>
           <p>모든 화면의 분위기를 결정하는 가장 작은 약속입니다. 새 색상이나 임의의 간격을 추가하기 전에 아래 기준을 먼저 사용합니다.</p>
         </div>
@@ -105,7 +105,7 @@
 
       <section class="guide-section" id="layout">
         <div class="guide-section-head">
-          <p class="guide-kicker">03 · LAYOUT</p>
+          <p class="guide-kicker">LAYOUT</p>
           <h2>섹션을 구성하는 세 가지 방식</h2>
           <p>내용의 성격에 따라 배치만 고르면 됩니다. 제목의 정렬과 sticky 여부는 별도의 옵션으로 조합합니다.</p>
         </div>
@@ -134,7 +134,7 @@
 
       <section class="guide-section" id="components">
         <div class="guide-section-head">
-          <p class="guide-kicker">04 · COMPONENTS</p>
+          <p class="guide-kicker">COMPONENTS</p>
           <h2>자주 쓰는 카드와 정보 단위</h2>
           <p>비슷한 정보를 보여줄 때는 이미 준비된 디자인을 사용합니다. 내용만 바꿔도 화면의 일관성이 유지됩니다.</p>
         </div>
@@ -279,20 +279,20 @@
           </article>
           <article class="guide-component-row">
             <div class="guide-component-demo">
-              <a class="media-card insight-feature" href="https://www.newsis.com/view/ALSX20260629_0000006828" target="_blank" rel="noopener">
-                <div class="media-card__media insight-feature-thumb">
+              <a class="insight-card" href="https://www.newsis.com/view/ALSX20260629_0000006828" target="_blank" rel="noopener">
+                <div class="insight-card__thumb">
                   <img src="https://mmx.prnasia.com/media/MS1873716/e7f99217463f4f01ad4a757a51402cc6.jpg?id=OA2738334&amp;p=medium600" alt="">
                 </div>
-                <div class="media-card__body insight-feature-body">
-                  <div class="media-card__meta">
+                <div class="insight-card__body">
+                  <div class="insight-card__meta">
                     <span class="tag">뉴스</span>
                     <time class="text-caption" datetime="2026-06-29">2026-06-29</time>
                   </div>
-                  <h3 class="media-card__title insight-feature-title">AXMOS 컨소시엄, 부산정보산업진흥원•부산벤처기업협회와 'AX 사업협력' MOU 체결</h3>
+                  <h3 class="insight-card__title">AXMOS 컨소시엄, 부산정보산업진흥원•부산벤처기업협회와 'AX 사업협력' MOU 체결</h3>
                 </div>
               </a>
             </div>
-            <div><p class="tag">콘텐츠 카드</p><h3>Media Card</h3><p>메인 Insight와 동일한 가로형 4:3 이미지 비율을 사용합니다. 뉴스, 사례, 블로그처럼 이미지와 제목을 함께 보여줄 때 사용합니다.</p><code>media-card · insight-feature-thumb</code></div>
+            <div><p class="tag">콘텐츠 카드</p><h3>Insight Card</h3><p>메인 Insight와 동일한 가로형 4:3 이미지 비율을 사용합니다. 뉴스, 사례, 블로그처럼 이미지와 제목을 함께 보여줄 때 사용합니다.</p><code>insight-card · insight-card__thumb</code></div>
           </article>
           <article class="guide-component-row">
             <div class="guide-component-demo">
@@ -317,7 +317,7 @@
           </article>
           <article class="guide-component-row"><div class="guide-component-demo"><a class="btn btn-primary" href="#components">주요 행동<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"></path></svg></a><a class="btn btn-ghost" href="#components">보조 행동</a><a class="link-arrow link-arrow-ink" href="#components"><span class="link-underline">자세히 보기</span></a></div><div><p class="tag">버튼과 링크</p><h3>Button &amp; Link</h3><p>주요 행동에는 Primary, 보조 행동에는 Ghost와 밑줄 링크를 사용합니다.</p><code>btn · link-arrow</code></div></article>
           <article class="guide-component-row"><div class="guide-component-demo" style="display:flex;align-items:flex-end;gap:24px"><span class="icon-sm"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="icon-md"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="icon-lg"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></div><div><p class="tag">아이콘 크기</p><h3>Icon Size</h3><p>아이콘 크기는 이 세 단계만 씁니다 — <code>icon-sm</code> 작게(라벨 옆·메뉴), <code>icon-md</code> 기본(카드), <code>icon-lg</code> 크게(한 칸의 주인공). 새로운 크기를 만들지 않습니다.</p><code>icon-sm · icon-md · icon-lg</code></div></article>
-          <article class="guide-component-row"><div class="guide-component-demo"><span class="tag">How it works</span><span class="tag">02 · Proof</span><span class="tag">뉴스</span><span class="tag">LATEST</span><span class="tag solid sm">뉴스</span><span class="tag solid sm">공지</span><span class="tag sm">약 3분</span><span class="tag sm">회원가입 없음</span><span class="tag dark">개발 직군</span><span class="tag dark sm">출시 예정</span><span class="tag outline">ISO 27001</span></div><div><p class="tag">분류 라벨</p><h3>Tag</h3><p>콘텐츠의 종류나 짧은 상태를 제목 앞에 붙일 때 씁니다. 기본 외에 <code>dark</code>(짙은 배경), <code>solid</code>(이미지 위), <code>outline</code>(로고·사진 아래 이름표), <code>sm</code>(작게)을 <code>tag dark sm</code>처럼 겹쳐 씁니다.</p><code>tag · dark · solid · sm · outline</code></div></article>
+          <article class="guide-component-row"><div class="guide-component-demo"><span class="tag">How it works</span><span class="tag">Proof</span><span class="tag">뉴스</span><span class="tag">LATEST</span><span class="tag solid sm">뉴스</span><span class="tag solid sm">공지</span><span class="tag sm">약 3분</span><span class="tag sm">회원가입 없음</span><span class="tag dark">개발 직군</span><span class="tag dark sm">출시 예정</span><span class="tag outline">ISO 27001</span></div><div><p class="tag">분류 라벨</p><h3>Tag</h3><p>콘텐츠의 종류나 짧은 상태를 제목 앞에 붙일 때 씁니다. 기본 외에 <code>dark</code>(짙은 배경), <code>solid</code>(이미지 위), <code>outline</code>(로고·사진 아래 이름표), <code>sm</code>(작게)을 <code>tag dark sm</code>처럼 겹쳐 씁니다.</p><code>tag · dark · solid · sm · outline</code></div></article>
           <article class="guide-component-row"><div class="guide-component-demo"><div class="guide-part-nav-variants"><div><p class="text-label">최대 radius · 기본</p><nav class="part-nav part-nav--animated" data-guide-part-nav="" aria-label="캡슐형 Part Nav"><span class="part-nav-indicator" aria-hidden="true"></span><a class="part-nav-item is-active" href="#components">PART 1 · 교육</a><a class="part-nav-item" href="#components">PART 2 · 진단</a></nav></div><div><p class="text-label">최소 radius · compact</p><nav class="part-nav part-nav--compact part-nav--animated" data-guide-part-nav="" aria-label="사각형 Part Nav"><span class="part-nav-indicator" aria-hidden="true"></span><a class="part-nav-item is-active" href="#components">PART 1 · 교육</a><a class="part-nav-item" href="#components">PART 2 · 진단</a></nav></div></div></div><div><p class="tag">파트 이동</p><h3>Part Nav</h3><p>코드프레소의 기본은 부드러운 캡슐형입니다. 더 정돈된 제품 UI에는 8px compact 변형을 사용합니다. 각 예시를 클릭하면 실제처럼 활성 표시가 움직입니다.</p><code>part-nav · part-nav--compact</code></div></article>
           <article class="guide-component-row"><div class="guide-component-demo"><div class="assessment-card-frame"><span class="assessment-card-frame__glow" aria-hidden="true"></span><div class="assessment-card-stack"><span class="assessment-card-eyebrow">AI 리터러시 자가 진단 (3분 소요)</span><article class="assessment-card"><div class="assessment-card__head"><h3 class="assessment-card__title">당신은 AI를 쓰는 사람인가요,<br>다루는 사람인가요?</h3><p class="description">AI를 쓰는 사람과 다루는 사람은 다릅니다.<br>지금 나의 AI 활용 수준을 확인해보세요.</p></div><ul class="assessment-card__meta" aria-label="진단 정보"><li class="pill">11문항</li><li class="pill">약 3분</li><li class="pill">즉시 결과</li></ul><div class="assessment-card__action"><a class="btn btn-primary btn-lg assessment-card__cta" href="#components">AI 역량 진단 시작하기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div></article></div></div></div><div><p class="tag">자가 진단 CTA</p><h3>Assessment Card</h3><p>Hero나 캠페인 화면에서 진단 시작을 유도할 때 사용합니다. 카드 자체 hover와 CTA hover도 실제 서비스 규칙을 그대로 따릅니다.</p><code>assessment-card</code></div></article>
           <article class="guide-component-row">
@@ -373,7 +373,7 @@
             <div class="guide-component-demo">
               <div class="section-wrap row" style="padding: 0">
                 <div class="feature-copy">
-                  <p class="tag">03 · 실습 환경</p>
+                  <p class="tag">실습 환경</p>
                   <h3>읽고 넘어가는 학습이 아닙니다</h3>
                   <p class="desc">브라우저에서 코드를 쓰고, 실제로 실행하고, 결과로 채점받습니다.</p>
                 </div>
@@ -555,7 +555,7 @@
                   </div>
                   <div class="section-body">
                     <div class="section-body-heading">
-                      <p class="section-body-title">01 · 핵심 팀</p>
+                      <p class="section-body-title">핵심 팀</p>
                       <span class="feature-card-arrow" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                       </span>
@@ -572,7 +572,7 @@
                   </div>
                   <div class="section-body">
                     <div class="section-body-heading">
-                      <p class="section-body-title">02 · 대상 업무</p>
+                      <p class="section-body-title">대상 업무</p>
                       <span class="feature-card-arrow" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                       </span>
@@ -654,7 +654,7 @@
             <article><h5>Catalog Board</h5><p>분류가 여러 개인 20개 이상의 목록을 한 판에 담습니다.</p><code>tab-catalog · catalog-board.js</code></article>
             <article><h5>FAQ List</h5><p>질문을 눌러 답을 펼칩니다. native <code>details</code>입니다.</p><code>faq-list &gt; details</code></article>
             <article><h5>Outcome Card</h5><p>고객사 로고 판 + 성과 문장. 로고는 잘리지 않습니다.</p><code>outcome-list · outcome-logo</code></article>
-            <article><h5>Media Card</h5><p>썸네일 + 제목형 콘텐츠(뉴스 · 아티클) 카드입니다.</p><code>media-card</code></article>
+            <article><h5>Insight Card</h5><p>썸네일 + 제목형 콘텐츠(뉴스 · 아티클) 카드입니다.</p><code>insight-card</code></article>
             <article><h5>Assessment Card</h5><p>자가진단 · 설문 시작을 유도하는 카드입니다.</p><code>assessment-card</code></article>
             <article><h5>Part Nav</h5><p>두 파트를 오가는 캡슐형 세그먼트 내비입니다.</p><code>part-nav · --compact</code></article>
             <article><h5>Preview Frame</h5><p>제품 화면을 담는 목업 프레임입니다.</p><code>preview-frame · --flush</code></article>
@@ -689,7 +689,7 @@
 
       <section class="guide-section" id="motion">
         <div class="guide-section-head">
-          <p class="guide-kicker">05 · MOTION</p>
+          <p class="guide-kicker">MOTION</p>
           <h2>현재 화면에 사용 중인 움직임</h2>
           <p>움직임은 정보를 더 잘 읽게 만드는 경우에만 사용합니다. 아래 목록은 메인 페이지에서 실제로 구동되는 모션과 이를 담당하는 컴포넌트입니다.</p>
         </div>
@@ -858,7 +858,7 @@
 
       <section class="guide-section" id="rules">
         <div class="guide-section-head">
-          <p class="guide-kicker">06 · RULES</p>
+          <p class="guide-kicker">RULES</p>
           <h2>이름과 상태를 붙이는 규칙</h2>
           <p>같은 것에는 같은 이름을 씁니다. 아래는 이미 코드에 정착된 규칙이라, 새 화면을 만들 때도 그대로 따릅니다.</p>
         </div>
@@ -927,7 +927,7 @@
 
       <section class="guide-section" id="patterns">
         <div class="guide-section-head">
-          <p class="guide-kicker">07 · PATTERNS</p>
+          <p class="guide-kicker">PATTERNS</p>
           <h2>화면을 만들 때의 순서</h2>
           <p>처음부터 예쁜 화면을 만들려고 하기보다, 정보의 순서와 필요한 패턴을 먼저 고르면 훨씬 빠릅니다.</p>
         </div>
@@ -941,7 +941,7 @@
 
       <section class="guide-section" id="mockup-motion">
         <div class="guide-section-head">
-          <p class="guide-kicker">08 · MOCKUP MOTION</p>
+          <p class="guide-kicker">MOCKUP MOTION</p>
           <h2>목업을 살아 있는 화면으로</h2>
           <p>제품 화면을 보여줄 때, 정지된 그림 대신 실제로 돌아가는 화면처럼 연출합니다. 읽어야 할 것만 텍스트로 남기고 나머지는 스켈레톤으로 가라앉힌 뒤, 확대·이동·pop으로 시선을 한 곳에 모읍니다. 여섯 가지 연출은 부모에 <code>data-mock-motion</code> 값만 바꿔 고릅니다.</p>
         </div>
@@ -1265,7 +1265,7 @@
         <div class="guide-callout"><strong>고르는 기준</strong><span>기존 목업을 크게 바꾸지 않고 생기만 더할 때는 <code>focus</code>, 실제 서비스 화면임을 보여야 할 때는 <code>replay</code>, 스크롤 중 눈에 띄어야 할 때는 <code>deck</code>, 정보를 함께 전달해야 할 때는 <code>detail</code>, 숫자로 설득할 때는 <code>ticker</code>, 단계가 순서대로 진행되는 것을 보여줄 때는 <code>stage</code>, 자동 처리가 어디서 멈추는지 보일 때는 <code>run</code>을 씁니다. 연출은 CSS만으로 돌아가 별도 스크립트가 필요 없고, 움직임 줄이기 설정에서는 모두 완성된 화면으로 정지합니다. <code>stage</code>와 <code>run</code>만 예외로 무한 반복이 아니라 한 번만 재생됩니다 — 단계는 쌓이는 것이라 도로 사라지면 방금 읽은 순서가 부정되기 때문입니다.</span></div>
       </section>
       <section class="guide-section guide-usage" id="usage">
-        <p class="guide-kicker">09 · COMPONENT USAGE</p>
+        <p class="guide-kicker">COMPONENT USAGE</p>
         <h2>AI에게 이렇게 요청하면 됩니다.</h2>
         <p class="guide-usage-intro">새 화면을 만들 때 처음부터 디자인을 설명하지 않아도 됩니다. 위에서 확인한 컴포넌트 이름과 넣을 내용, 배치 방식만 함께 전달하세요.</p>
         <div class="guide-prompt-grid">

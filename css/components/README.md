@@ -27,7 +27,7 @@
 ## 카테고리 (`ui/` 안에서)
 
 - Foundation UI: `button`, `link`, `badge`, `surface`, `skeleton`, `text`
-- Content UI: `metric-card`, `media-card`, `choice-list`, `assessment-card`, `summary-banner`
+- Content UI: `metric-card`, `insight-list`, `choice-list`, `assessment-card`, `summary-banner`
 - Frame UI: `content-panel`, `preview-frame`, `layout`, `section-body`
 - Navigation UI: `header`
 - 조합·연출: `feature-card`, `compare-panel`, `timeline`, `faq-list`, `tab-catalog`, `mock-motion`

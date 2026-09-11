@@ -1,16 +1,16 @@
 <template>
   <ul class="insight-list">
     <li v-for="insight in insights" :key="insight.url">
-      <a class="media-card insight-card" :href="insight.url" target="_blank" rel="noopener">
-        <div class="media-card__media insight-card__thumb">
+      <a class="insight-card" :href="insight.url" target="_blank" rel="noopener">
+        <div class="insight-card__thumb">
           <img :src="insight.image" alt="" loading="lazy" @error="useImageFallback">
         </div>
-        <div class="media-card__body insight-card__body">
-          <div class="media-card__meta">
+        <div class="insight-card__body">
+          <div class="insight-card__meta">
             <span class="tag solid sm">{{ insight.category }}</span>
             <time v-if="insight.date" class="text-caption" :datetime="insight.date">{{ insight.date }}</time>
           </div>
-          <h3 class="media-card__title insight-card__title">{{ insight.title }}</h3>
+          <h3 class="insight-card__title">{{ insight.title }}</h3>
         </div>
       </a>
     </li>

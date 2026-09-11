@@ -1,5 +1,9 @@
 /* Theme: main-dark (AXpresso 다크모드)
-   `<main class="{페이지명} main-dark">` 에 붙는 다크모드 테마 층. */
+   `<main class="{페이지명} main-dark">` 에 붙는 다크모드 테마 층.
+   정적 HTML의 페이지별 `@import ... layer(components)`와 같은 우선순위를
+   Nuxt 전역 CSS에서도 유지한다. */
+
+@layer components {
 
 .main-dark {
   --color-ink: var(--color-axpresso-ink);
@@ -240,5 +244,7 @@
   .main-dark .hero-facts { animation: none; }
 
   .main-dark .hero-facts .metric-card { transition-duration: 0.001ms; }
+}
+
 }
 

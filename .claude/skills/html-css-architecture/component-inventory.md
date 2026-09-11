@@ -4,7 +4,7 @@
 
 ## 가이드 동기화 규칙
 
-- A 범용 컴포넌트와 B 공용 프리미티브는 디자인 가이드의 **04 · Components** 예시 또는 **전체 컴포넌트 인벤토리**에 반드시 표시한다.
+- A 범용 컴포넌트와 B 공용 프리미티브는 디자인 가이드의 **Components** 예시 또는 **전체 컴포넌트 인벤토리**에 반드시 표시한다.
 - C 메인 전용 섹션은 가이드의 **메인 전용 참조** 목록에도 표시하되, 다른 페이지에서 클래스를 그대로 복사해 재사용하지 않는다.
 - 컴포넌트를 추가·삭제·공용 승격하면 같은 변경에서 `codepresso-designsystem.html`과 이 문서를 함께 갱신한다.
 - **`partials/` 조각(header·footer)은 컴포넌트가 아니라 마크업 조각이다** — 전 페이지가 그 파일 하나를 `data-include`로 불러온다([references/page-structure.md](references/page-structure.md)). 페이지 HTML에 `<header>`/`<footer>`를 직접 쓰지 않는다.
@@ -21,14 +21,14 @@
 | 분류(카테고리)가 있는 20개 이상의 목록 | `tab-catalog` (좌측 rail이 분류, panel이 항목) | 카드 그리드를 새로 만들기 — `__items`가 그리드 + stagger를 이미 갖고 있다 |
 | 순서가 있고 **기간·날짜가 붙는** 단계 | `timeline` | `cycle` — 기간 칸이 없다 |
 | 순서가 있고 기간이 없는 N단계(선형·순환) | `cycle` (`--cycle-columns`, 순환 결론 칸은 `.is-return`) | `process-steps` — ax-build·ax-grow(다크) 전용이다 |
-| 두 갈래 중 하나를 고르게 한다 | `content-panel` + 공용 `start-card` (ax-grow 07 · why-codepresso 06 · axpresso 01) | `compare-panel` — 우열이 아니라 선택지일 때는 대비가 아니다 |
+| 두 갈래 중 하나를 고르게 한다 | `content-panel` + 공용 `start-card` (ax-grow why-codepresso axpresso 01) | `compare-panel` — 우열이 아니라 선택지일 때는 대비가 아니다 |
 | 지금 vs 바뀐 뒤 (우열이 있는 대비) | `compare-panel` | `content-panel` 2개 나열 |
 | 여러 항목 중 하나를 눌러 들어간다 | `choice-list` (아이콘은 공용 `.icon-box`) | `feature-card` — 클릭 대상이면 리스트가 맞다 |
 | 자랑할 성과 숫자 | `metric-card` (+ `[data-stat-reveal]`) | 나쁜 수치에 쓰지 않는다 — 큰 숫자+아이콘은 자랑으로 읽힌다 |
-| 고객사 로고 + 성과 문장 | `outcome-card` (`.outcome-list > li`) | `media-card` — 로고는 잘리면 안 되므로 contain이다 |
+| 고객사 로고 + 성과 문장 | `outcome-card` (`.outcome-list > li`) | `insight-card` — 로고는 잘리면 안 되므로 contain이다 |
 | 스크롤에 따라 판 안 내용만 바뀐다 | `journey-stage` (+`content-panel`·`surface-glass`) | 섹션을 여러 개로 쪼개기 |
 | 제품 화면을 보여준다 | `preview-frame` + `product-mock` + `mock-motion` ([mock-motion-guide.md](mock-motion-guide.md)) | 스크린샷 이미지 — 움직이지 않으면 죽은 화면이 된다 |
-| 썸네일 + 제목형 콘텐츠(뉴스·아티클) | `media-card` (+`tag.is-solid`) | `content-panel` |
+| 썸네일 + 제목형 콘텐츠(뉴스·아티클) | `insight-card` (+`tag.is-solid`) | `content-panel` |
 | 한 문장만 던지는 강조 — 화면 끝까지 | `statement` (페이지당 1곳) | `summary-banner.dark` — 1248px 안에서 잘리는 배너다 |
 | 섹션의 결론 문장 한 줄 — 본문 폭 안 | `summary-banner`(+`.dark`) | `statement` — 전체 폭은 페이지당 1곳뿐 |
 | 질문과 답 | `faq-list` (`<details>` native) | 아코디언 새로 만들기 |
@@ -71,8 +71,8 @@
 | Choice List | `choice-list.css` | `.choice-list`, `__item`, `__body`, `__arrow` (아이콘은 공용 `.icon-box`) | 여러 항목 중 하나를 고르는 리스트 |
 | Preview Frame | `preview-frame.css` | `.preview-frame`, `__bar`, `__dots` | 제품/서비스 화면을 보여주는 목업 프레임 |
 | Skeleton | `skeleton.css` | `.skeleton-block`, `.skeleton-line`, `.skeleton-stack` | 콘텐츠 대기/자리표시 상태 |
-| Media Card | `media-card.css` | `.media-card`, `__media`, `__body`, `__meta`, `__title` | 썸네일 + 제목형 콘텐츠 카드 (뉴스·블로그 등) |
-| Outcome Card | `outcome-card.css` | `.outcome-list > li`, `.outcome-logo`(+`--tall`·`--invert`), `.outcome-body`, `.outcome-client`, `.outcome-industry` | 고객사 로고 판 + 성과 카드. 로고는 고정 높이(132px) 판 안에서 `object-fit: contain`(잘리면 안 되므로 `media-card`의 cover와 다름). cases.html·skillcertify.html이 공용으로 쓰고, 그리드 열 수·카드 테두리/hover 색·본문 gap·`outcome-headline` 등 수치 표시부는 페이지 스코프가 정한다. `outcome-shift`·`outcome-before`·`outcome-arrow`는 ax-build·cases가 같은 값으로 중복돼 컴포넌트로 올렸다 |
+| Insight Card | `insight-list.css` | `.insight-card`, `__thumb`, `__body`, `__meta`, `__title` | 썸네일 + 제목형 콘텐츠 카드 (뉴스·블로그 등). `.insight-list`가 첫 항목만 대표 카드로 확대한다 |
+| Outcome Card | `outcome-card.css` | `.outcome-list > li`, `.outcome-logo`(+`--tall`·`--invert`), `.outcome-body`, `.outcome-client`, `.outcome-industry` | 고객사 로고 판 + 성과 카드. 로고는 고정 높이(132px) 판 안에서 `object-fit: contain`(잘리면 안 되므로 `insight-card`의 cover와 다름). cases.html·skillcertify.html이 공용으로 쓰고, 그리드 열 수·카드 테두리/hover 색·본문 gap·`outcome-headline` 등 수치 표시부는 페이지 스코프가 정한다. `outcome-shift`·`outcome-before`·`outcome-arrow`는 ax-build·cases가 같은 값으로 중복돼 컴포넌트로 올렸다 |
 | Part Nav | `part-nav.css` | `.part-nav`, `-item`, `-indicator`, `--compact` | 두 파트를 잇는 캡슐형 세그먼트 내비 (`js/part-nav.js`와 짝) |
 | Assessment Card | `assessment-card.css` | `.assessment-card`, `__head`, `__title`, `__meta`, `__action` | 자가진단/설문 시작 유도 카드 |
 | Content Panel | `content-panel.css` | `.content-panel`, `__item`, `__intro`, `__visual`, `--compact` | 설명 + 큰 시각 요소를 한 판에 담는 패널 |
@@ -98,7 +98,7 @@
 | Section Body | `section-body.css` | `.section-body`, `-heading`, `-title`, `-subtitle`, `-description` | 카드/패널 내부 텍스트 묶음(제목+부제+설명) |
 | Text 유틸리티 | `text.css` | `.text-label`, `.text-caption`, `.desc`, `.description` 등 | 자잘한 보조 텍스트 스타일. **14px/ink-light 카드 설명은 `.description` 하나로 통일**(cycle·problem·industry 카드가 각자 갖고 있던 같은 3줄을 걷어냈다) |
 | Surface | `surface.css` | `.surface-glass` 등 | 배경 표면(유리 질감 등) 유틸리티 |
-| Summary Banner | `summary-banner.css` | `.summary-banner`, `.dark`, `.stats-light`, `.bridge-inner`/`.bridge-copy`/`.bridge-title`/`.bridge-desc` | 한 줄 강조 배너, 통계 묶음 배경. **브릿지 변형** — 어두운 배너 안에서 좌 문구 · 우 CTA로 갈라 다음 페이지로 넘긴다(skills 07 · aifluent 06이 같은 값을 쓰고 있어 페이지 스코프에서 공용으로 올렸다). 진입 시 CTA 화살표가 두 번 튀는 연출과 `prefers-reduced-motion` 대응도 컴포넌트가 갖는다 |
+| Summary Banner | `summary-banner.css` | `.summary-banner`, `.dark`, `.stats-light`, `.bridge-inner`/`.bridge-copy`/`.bridge-title`/`.bridge-desc` | 한 줄 강조 배너, 통계 묶음 배경. **브릿지 변형** — 어두운 배너 안에서 좌 문구 · 우 CTA로 갈라 다음 페이지로 넘긴다(skills aifluent 06이 같은 값을 쓰고 있어 페이지 스코프에서 공용으로 올렸다). 진입 시 CTA 화살표가 두 번 튀는 연출과 `prefers-reduced-motion` 대응도 컴포넌트가 갖는다 |
 | Feature Card | `feature-card.css` | `.feature-card`, `-icon-row`, `-icon`, `-arrow` | 아이콘+제목+설명형 카드. 전환 애니메이션 없이 항상 펼친 정적 카드 |
 | Feature Points | `feature-points.css` | `.feature-points > li` | 체크 아이콘 + 한 줄 문장 목록. 근거·조건·특징을 카드 없이 세울 때 쓴다(aifluent 02·06). 항목이 길어지면 `feature-card`로 올린다 |
 | Card / Grid | `layout.css` | `.card`, `.grid`, `.flex-row` | 카탈로그 문서에서 쓰는 범용 카드/그리드 (서비스 페이지에도 쓸 수 있음) |
@@ -226,7 +226,7 @@ skillcertify(3장 축소판) 두 페이지가 카드 껍데기·로고 판(`outc
 
 **로고 판(`outcome-logo`)은 고정 높이 + `object-fit: contain`이다** — 로고는 비율이
 제각각(아모레퍼시픽 10:1 ~ 우하컴퍼니 1:1)이라 판을 고정하고 안에서 맞춘다.
-**`media-card`를 쓰지 않는다** — 그쪽 `__media img`는 `object-fit: cover`라 로고가 잘린다.
+**`insight-card`를 쓰지 않는다** — 그쪽 `__thumb img`는 `object-fit: cover`라 로고가 잘린다.
 
 **고객사 로고를 받으면 세 가지를 먼저 확인한다** (실제로 다 겪었다):
 

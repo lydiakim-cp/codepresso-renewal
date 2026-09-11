@@ -15,25 +15,22 @@
 
         <div class="hero-content">
           <div class="main-hero-copy">
-            <div class="hero-copy-wrap">
-              <h1 data-i18n="index-hero-title">전 직원을<br>AI 네이티브 개발자로</h1>
-              <p class="hero-description" data-i18n="index-hero-desc">AI 인재, 밖에서 찾지 마세요.<br data-break="desktop"> 우리 일을 가장 잘 아는 사람이, AI 인재가 될 수 있습니다.</p>
-            </div>
-            <div class="hero-copy-wrap">
-              <div class="hero-cta">
-                <a class="btn btn-primary btn-lg" href="#"><span data-i18n="index-hero-cta-primary">도입 문의</span></a>
-              </div>
+            <h1 data-i18n="index-hero-title">전 직원을<br>AI 네이티브 개발자로</h1>
+            <p class="hero-description" data-i18n="index-hero-desc">AI 인재, 밖에서 찾지 마세요.<br> 우리 일을 가장 잘 아는 사람이, AI 인재가 될 수 있습니다.</p>
 
-              <div class="hero-links">
-                <a class="link-arrow link-arrow-ink" href="/skills">
-                  <span class="link-underline" data-i18n="index-hero-link-01">우리 조직에 맞는 교육이 궁금하신가요?</span>
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                </a>
-                <a class="link-arrow link-arrow-ink" href="/axpresso">
-                  <span class="link-underline" data-i18n="index-hero-link-02">업무 자동화가 먼저 필요하신가요?</span>
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                </a>
-              </div>
+            <div class="hero-cta">
+              <a class="btn btn-primary " href="#"><span data-i18n="index-hero-cta-primary">도입 문의</span></a>
+            </div>
+
+            <div class="hero-links">
+              <a class="link-arrow link-arrow-ink" href="/skills">
+                <span class="link-underline" data-i18n="index-hero-link-01">우리 조직에 맞는 교육이 궁금하신가요?</span>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </a>
+              <a class="link-arrow link-arrow-ink" href="/axpresso">
+                <span class="link-underline" data-i18n="index-hero-link-02">업무 자동화가 먼저 필요하신가요?</span>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </a>
             </div>
           </div>
 
@@ -48,7 +45,7 @@
               <article class="assessment-card">
                 <div class="assessment-card__head">
                   <h3 data-i18n="index-hero-assessment-title">업무에서 AI를 얼마나<br>잘 활용하고 있나요?</h3>
-                  <p class="description" data-i18n="index-hero-assessment-desc">3분 진단으로<br data-break="desktop"> 나의 AI 활용 수준을 확인해 보세요.</p>
+                  <p class="description" data-i18n="index-hero-assessment-desc">3분 진단으로<br> 나의 AI 활용 수준을 확인해 보세요.</p>
                 </div>
 
                 <ul class="assessment-card__meta" aria-label="진단 정보">
@@ -58,7 +55,7 @@
                 </ul>
 
                 <div class="assessment-card__action">
-                  <a class="btn btn-primary btn-lg assessment-card__cta" href="#"><span data-i18n="index-hero-assessment-cta">AI 역량 진단 시작하기</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+                  <a class="btn btn-primary  assessment-card__cta" href="#"><span data-i18n="index-hero-assessment-cta">시작하기</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
                   <span class="assessment-card__hint"><span class="assessment-card__hint-tail" aria-hidden="true"></span><span class="assessment-card__hint-text" data-i18n="index-hero-assessment-hint">지금 진단을 하고 바로 결과를 받아 보세요</span></span>
                 </div>
               </article>
@@ -184,7 +181,7 @@
       <div class="section-wrap col">
         <div class="section-header">
           <div class="section-title text-left">
-            <p class="tag" data-i18n="index-outcomes-eyebrow">02 · Proof</p>
+            <p class="tag" data-i18n="index-outcomes-eyebrow">Proof</p>
             <h2 data-i18n="index-outcomes-title">도입한 기업에서는 <br data-break="mobile"> 이렇게 달라졌습니다</h2>
             <p class="desc" data-i18n="index-outcomes-desc">역량을 진단하고 키운 조직은 채용과 교육의 낭비가 줄었고, <br data-break="desktop"> 업무를 자동화한 조직은 실행 속도가 빨라졌습니다.</p>
           </div>
@@ -713,7 +710,7 @@
         <!-- 상단 헤더 — proof 섹션과 같은 구성. 타이틀·설명은 좌, CTA는 우. -->
         <div class="section-header">
           <div class="section-title text-left">
-            <p class="tag" data-i18n="index-difference-eyebrow">03 · The Difference</p>
+            <p class="tag" data-i18n="index-difference-eyebrow">The Difference</p>
             <h2 data-i18n="index-difference-title">교육으로 끝내지 않습니다</h2>
             <p class="desc" data-i18n="index-difference-desc">진단으로 확인하고, 라이브러리로 쌓고, 현장에서 검증합니다.</p>
           </div>
@@ -1391,11 +1388,11 @@
         <h2 class="cta-final-title" data-i18n="index-cta-final-title">AI 인재 채용 공고를 내기 전에,<br data-break="desktop"> 내부에서 먼저 찾아보세요</h2>
         <p class="cta-final-desc" data-i18n="index-cta-final-desc">가장 유력한 AI 인재 후보는 이미 회사에 출근해 있습니다.<br data-break="desktop"> 진단부터 교육, 문화 정착까지, 내재화의 첫걸음을 함께 설계합니다.</p>
         <div class="cta-final-actions">
-          <a href="#" class="btn btn-primary btn-lg">
+          <a href="#" class="btn btn-primary ">
             <span data-i18n="index-cta-final-btn-01">도입 상담하기</span>
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </a>
-          <a href="/skills" class="btn btn-outline-inverse btn-lg">
+          <a href="/skills" class="btn btn-outline-inverse ">
             <span data-i18n="index-cta-final-btn-02">서비스 전체 보기</span>
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </a>

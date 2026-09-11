@@ -54,7 +54,7 @@
 
 .cta-final .btn-primary {
   background: var(--color-surface);
-  color: var(--color-brand-dark);
+  color: var(--color-brand-dark) !important;
 }
 
 .cta-final .btn-primary:hover {

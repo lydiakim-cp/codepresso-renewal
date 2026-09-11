@@ -40,7 +40,7 @@
             <a href="#c-metric-card">Metric Card</a>
             <a href="#c-choice-list">Choice List</a>
             <a href="#c-preview-frame">Preview Frame</a>
-            <a href="#c-media-card">Media Card</a>
+            <a href="#c-insight-card">Insight Card</a>
             <a href="#c-outcome-card">Outcome Card</a>
             <a href="#c-button-link">Button &amp; Link</a>
             <a href="#c-icon-size">Icon Size</a>
@@ -149,10 +149,10 @@
         <p>문서·표·목차 구조로 다듬은 v2입니다. 왼쪽 목차는 스크롤 위치에 맞춰 자동으로 움직입니다.</p>
       </section>
 
-      <!-- 02 · FOUNDATION -->
+      <!-- FOUNDATION -->
       <section class="guide-v2-section" id="foundation">
         <div class="guide-v2-section-head">
-          <p class="guide-kicker">02 · FOUNDATION</p>
+          <p class="guide-kicker">FOUNDATION</p>
           <h2>기본 규칙</h2>
           <p>모든 화면의 분위기를 결정하는 가장 작은 약속입니다. 새 색상이나 임의의 간격을 추가하기 전에 아래 기준을 먼저 사용합니다.</p>
         </div>
@@ -258,10 +258,10 @@
         </div>
       </section>
 
-      <!-- 03 · LAYOUT -->
+      <!-- LAYOUT -->
       <section class="guide-v2-section" id="layout">
         <div class="guide-v2-section-head">
-          <p class="guide-kicker">03 · LAYOUT</p>
+          <p class="guide-kicker">LAYOUT</p>
           <h2>섹션을 구성하는 세 가지 방식</h2>
           <p>내용의 성격에 따라 배치만 고르면 됩니다. 제목의 정렬과 sticky 여부는 별도의 옵션으로 조합합니다.</p>
         </div>
@@ -288,10 +288,10 @@
         <div class="guide-callout"><strong>기억하기</strong><span>제목 정렬은 바깥 영역이 아니라 <code>section-title</code>에 적용합니다. 그래서 카드나 버튼의 정렬은 영향을 받지 않습니다.</span></div>
       </section>
 
-      <!-- 04 · COMPONENTS -->
+      <!-- COMPONENTS -->
       <section class="guide-v2-section" id="components">
         <div class="guide-v2-section-head">
-          <p class="guide-kicker">04 · COMPONENTS</p>
+          <p class="guide-kicker">COMPONENTS</p>
           <h2>자주 쓰는 카드와 정보 단위</h2>
           <p>비슷한 정보를 보여줄 때는 이미 준비된 디자인을 사용합니다. 내용만 바꿔도 화면의 일관성이 유지됩니다. 아래는 실물 마크업 그대로의 프리뷰입니다.</p>
         </div>
@@ -437,7 +437,7 @@
             <div><p class="tag">제품 화면</p><h3>Preview Frame</h3><p>서비스 화면, 리포트, 교육 콘텐츠 등 실제 화면의 느낌을 보여주는 창 틀입니다.</p><code>preview-frame · preview-frame__bar</code></div>
           </article>
 
-          <article class="guide-v2-component-row" id="c-media-card">
+          <article class="guide-v2-component-row" id="c-insight-card">
             <div class="guide-component-demo">
               <InsightList>
             </InsightList></div>
@@ -470,7 +470,7 @@
 
           <article class="guide-v2-component-row" id="c-icon-size"><div class="guide-component-demo" style="display:flex;align-items:flex-end;gap:24px"><span class="icon-sm"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="icon-md"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="icon-lg"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--color-brand)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></div><div><p class="tag">아이콘 크기</p><h3>Icon Size</h3><p>아이콘 크기는 이 세 단계만 씁니다 — <code>icon-sm</code> 작게, <code>icon-md</code> 기본, <code>icon-lg</code> 크게.</p><code>icon-sm · icon-md · icon-lg</code></div></article>
 
-          <article class="guide-v2-component-row" id="c-tag"><div class="guide-component-demo"><span class="tag">How it works</span><span class="tag">02 · Proof</span><span class="tag">뉴스</span><span class="tag">LATEST</span><span class="tag solid sm">뉴스</span><span class="tag solid sm">공지</span><span class="tag sm">약 3분</span><span class="tag sm">회원가입 없음</span><span class="tag dark">개발 직군</span><span class="tag dark sm">출시 예정</span><span class="tag outline">ISO 27001</span></div><div><p class="tag">분류 라벨</p><h3>Tag</h3><p>콘텐츠의 종류나 짧은 상태를 제목 앞에 붙일 때 씁니다.</p><code>tag · dark · solid · sm · outline</code></div></article>
+          <article class="guide-v2-component-row" id="c-tag"><div class="guide-component-demo"><span class="tag">How it works</span><span class="tag">Proof</span><span class="tag">뉴스</span><span class="tag">LATEST</span><span class="tag solid sm">뉴스</span><span class="tag solid sm">공지</span><span class="tag sm">약 3분</span><span class="tag sm">회원가입 없음</span><span class="tag dark">개발 직군</span><span class="tag dark sm">출시 예정</span><span class="tag outline">ISO 27001</span></div><div><p class="tag">분류 라벨</p><h3>Tag</h3><p>콘텐츠의 종류나 짧은 상태를 제목 앞에 붙일 때 씁니다.</p><code>tag · dark · solid · sm · outline</code></div></article>
 
           <article class="guide-v2-component-row" id="c-part-nav"><div class="guide-component-demo"><div class="guide-part-nav-variants"><div><p class="text-label">최대 radius · 기본</p><nav class="part-nav part-nav--animated" data-guide-part-nav="" aria-label="캡슐형 Part Nav"><span class="part-nav-indicator" aria-hidden="true"></span><a class="part-nav-item is-active" href="#components">PART 1 · 교육</a><a class="part-nav-item" href="#components">PART 2 · 진단</a></nav></div><div><p class="text-label">최소 radius · compact</p><nav class="part-nav part-nav--compact part-nav--animated" data-guide-part-nav="" aria-label="사각형 Part Nav"><span class="part-nav-indicator" aria-hidden="true"></span><a class="part-nav-item is-active" href="#components">PART 1 · 교육</a><a class="part-nav-item" href="#components">PART 2 · 진단</a></nav></div></div></div><div><p class="tag">파트 이동</p><h3>Part Nav</h3><p>코드프레소의 기본은 부드러운 캡슐형입니다. 더 정돈된 제품 UI에는 8px compact 변형을 사용합니다.</p><code>part-nav · part-nav--compact</code></div></article>
 
@@ -532,7 +532,7 @@
             <div class="guide-component-demo">
               <div class="section-wrap row" style="padding: 0">
                 <div class="feature-copy">
-                  <p class="tag">03 · 실습 환경</p>
+                  <p class="tag">실습 환경</p>
                   <h3>읽고 넘어가는 학습이 아닙니다</h3>
                   <p class="desc">브라우저에서 코드를 쓰고, 실제로 실행하고, 결과로 채점받습니다.</p>
                 </div>
@@ -720,7 +720,7 @@
                   </div>
                   <div class="section-body">
                     <div class="section-body-heading">
-                      <p class="section-body-title">01 · 핵심 팀</p>
+                      <p class="section-body-title">핵심 팀</p>
                       <span class="feature-card-arrow" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                       </span>
@@ -737,7 +737,7 @@
                   </div>
                   <div class="section-body">
                     <div class="section-body-heading">
-                      <p class="section-body-title">02 · 대상 업무</p>
+                      <p class="section-body-title">대상 업무</p>
                       <span class="feature-card-arrow" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                       </span>
@@ -826,7 +826,7 @@
                 <tr><th scope="row">Catalog Board</th><td>분류가 여러 개인 20개 이상의 목록을 한 판에 담습니다.</td><td><code>tab-catalog · catalog-board.js</code></td></tr>
                 <tr><th scope="row">FAQ List</th><td>질문을 눌러 답을 펼칩니다. native <code>details</code>입니다.</td><td><code>faq-list &gt; details</code></td></tr>
                 <tr><th scope="row">Outcome Card</th><td>고객사 로고 판 + 성과 문장. 로고는 잘리지 않습니다.</td><td><code>outcome-list · outcome-logo</code></td></tr>
-                <tr><th scope="row">Media Card</th><td>썸네일 + 제목형 콘텐츠(뉴스 · 아티클) 카드입니다.</td><td><code>media-card</code></td></tr>
+                <tr><th scope="row">Insight Card</th><td>썸네일 + 제목형 콘텐츠(뉴스 · 아티클) 카드입니다.</td><td><code>insight-card</code></td></tr>
                 <tr><th scope="row">Assessment Card</th><td>자가진단 · 설문 시작을 유도하는 카드입니다.</td><td><code>assessment-card</code></td></tr>
                 <tr><th scope="row">Part Nav</th><td>두 파트를 오가는 캡슐형 세그먼트 내비입니다.</td><td><code>part-nav · --compact</code></td></tr>
                 <tr><th scope="row">Preview Frame</th><td>제품 화면을 담는 목업 프레임입니다.</td><td><code>preview-frame · --flush</code></td></tr>
@@ -866,10 +866,10 @@
         </div>
       </section>
 
-      <!-- 05 · MOTION -->
+      <!-- MOTION -->
       <section class="guide-v2-section" id="motion">
         <div class="guide-v2-section-head">
-          <p class="guide-kicker">05 · MOTION</p>
+          <p class="guide-kicker">MOTION</p>
           <h2>현재 화면에 사용 중인 움직임</h2>
           <p>움직임은 정보를 더 잘 읽게 만드는 경우에만 사용합니다. 아래 목록은 메인 페이지에서 실제로 구동되는 모션과 이를 담당하는 컴포넌트입니다.</p>
         </div>
@@ -1036,10 +1036,10 @@
         <div class="guide-callout"><strong>접근성</strong><span>모든 자동 모션은 <code>prefers-reduced-motion</code> 환경에서 멈추거나 즉시 표시됩니다. 새 모션도 같은 기준을 따라야 합니다.</span></div>
       </section>
 
-      <!-- 06 · RULES -->
+      <!-- RULES -->
       <section class="guide-v2-section" id="rules">
         <div class="guide-v2-section-head">
-          <p class="guide-kicker">06 · RULES</p>
+          <p class="guide-kicker">RULES</p>
           <h2>이름과 상태를 붙이는 규칙</h2>
           <p>같은 것에는 같은 이름을 씁니다. 아래는 이미 코드에 정착된 규칙이라, 새 화면을 만들 때도 그대로 따릅니다.</p>
         </div>
@@ -1089,10 +1089,10 @@
         </div>
       </section>
 
-      <!-- 07 · PATTERNS -->
+      <!-- PATTERNS -->
       <section class="guide-v2-section" id="patterns">
         <div class="guide-v2-section-head">
-          <p class="guide-kicker">07 · PATTERNS</p>
+          <p class="guide-kicker">PATTERNS</p>
           <h2>화면을 만들 때의 순서</h2>
           <p>처음부터 예쁜 화면을 만들려고 하기보다, 정보의 순서와 필요한 패턴을 먼저 고르면 훨씬 빠릅니다.</p>
         </div>
@@ -1104,10 +1104,10 @@
         </ol>
       </section>
 
-      <!-- 08 · MOCKUP MOTION -->
+      <!-- MOCKUP MOTION -->
       <section class="guide-v2-section" id="mockup-motion">
         <div class="guide-v2-section-head">
-          <p class="guide-kicker">08 · MOCKUP MOTION</p>
+          <p class="guide-kicker">MOCKUP MOTION</p>
           <h2>목업을 살아 있는 화면으로</h2>
           <p>제품 화면을 보여줄 때, 정지된 그림 대신 실제로 돌아가는 화면처럼 연출합니다. 여섯 가지 연출은 부모에 <code>data-mock-motion</code> 값만 바꿔 고릅니다.</p>
         </div>
@@ -1431,9 +1431,9 @@
         <div class="guide-callout"><strong>고르는 기준</strong><span>생기만 더할 때는 <code>focus</code>, 실제 서비스 화면임을 보여야 할 때는 <code>replay</code>, 스크롤 중 눈에 띄어야 할 때는 <code>deck</code>, 정보를 함께 전달해야 할 때는 <code>detail</code>, 숫자로 설득할 때는 <code>ticker</code>, 단계가 순서대로 진행되는 것을 보여줄 때는 <code>stage</code>, 자동 처리가 어디서 멈추는지 보일 때는 <code>run</code>을 씁니다.</span></div>
       </section>
 
-      <!-- 09 · COMPONENT USAGE -->
+      <!-- COMPONENT USAGE -->
       <section class="guide-v2-section guide-v2-usage" id="usage">
-        <p class="guide-kicker">09 · COMPONENT USAGE</p>
+        <p class="guide-kicker">COMPONENT USAGE</p>
         <h2>AI에게 이렇게 요청하면 됩니다.</h2>
         <p class="guide-v2-usage-intro">새 화면을 만들 때 처음부터 디자인을 설명하지 않아도 됩니다. 위에서 확인한 컴포넌트 이름과 넣을 내용, 배치 방식만 함께 전달하세요. 아래 10~12번은 이 원칙을 다른 상황(Nuxt 전환·타 프로젝트 이식·스킬 구조 이해)에 확장한 것입니다.</p>
         <div class="guide-v2-prompt-grid">
@@ -1452,10 +1452,10 @@
         </div>
       </section>
 
-      <!-- 10 · NUXT -->
+      <!-- NUXT -->
       <section class="guide-v2-section" id="nuxt">
         <div class="guide-v2-section-head">
-          <p class="guide-kicker">10 · NUXT MIGRATION</p>
+          <p class="guide-kicker">NUXT MIGRATION</p>
           <h2>Nuxt로 변환하는 방법</h2>
           <p>이 프로젝트는 순수 HTML/CSS/바닐라 JS라 Nuxt 공식 마이그레이션 가이드가 없습니다. 대신 이 프로젝트의 구조(partials, css/@layer 아키텍처, 컴포넌트 단위 CSS, js 훅 패턴)에서 논리적으로 도출한 변환 원칙입니다.</p>
         </div>
@@ -1518,10 +1518,10 @@
         </div>
       </section>
 
-      <!-- 11 · PORTING -->
+      <!-- PORTING -->
       <section class="guide-v2-section" id="porting">
         <div class="guide-v2-section-head">
-          <p class="guide-kicker">11 · PORTING</p>
+          <p class="guide-kicker">PORTING</p>
           <h2>다른 웹사이트에 이 디자인 스킬 적용하는 방법</h2>
           <p><code>.claude/skills/html-css-architecture/references/porting.md</code>의 요약입니다(저장소 안 문서라 이 링크는 클릭이 아니라 경로 표기입니다). 토큰과 구체 수치만 자사 값으로 바꾸고, 방법론과 게이트 구조는 그대로 채택합니다.</p>
         </div>
@@ -1583,10 +1583,10 @@
         </div>
       </section>
 
-      <!-- 12 · SKILL META -->
+      <!-- SKILL META -->
       <section class="guide-v2-section" id="skill-meta">
         <div class="guide-v2-section-head">
-          <p class="guide-kicker">12 · SKILL STRUCTURE</p>
+          <p class="guide-kicker">SKILL STRUCTURE</p>
           <h2>Skill의 구조와 사용법</h2>
           <p><code>.claude/skills/html-css-architecture/</code> 자체의 구조를 설명합니다. 이 스킬은 문서가 아니라 "새로 만들지 말고 있는 것을 찾아 쓴다"는 제1규칙을 코드(게이트)와 문서(레퍼런스)로 함께 지킵니다. 파일별 이식 범위는 11번 표에서 이미 다뤘으므로, 여기서는 <strong>스킬이 무엇으로 구성되고 어떻게 호출·적용되는지</strong>에 집중합니다.</p>
         </div>

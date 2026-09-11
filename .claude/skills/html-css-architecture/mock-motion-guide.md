@@ -4,7 +4,7 @@
 
 - **CSS 파일**: `css/components/ui/mock-motion.css` (공용 — `main.css`가 로드)
 - **레이아웃**: `deck`·`detail`의 뼈대(`.mock-deck-*` · `.mock-detail-*`)는 `mock-motion.css`에 함께 있다 — index.html이 쓰게 되면서 컴포넌트 레벨로 올렸다. `ticker` 뼈대도 index.html PART 1(SkillCamp)이 쓰게 되면서 함께 올렸다. `replay` 뼈대만 아직 `css/pages/designsystem.css`의 `08 MOCKUP MOTION` 블록에 남아 있고, 다른 페이지에서 쓰게 되면 같은 방식으로 올린다.
-- **카탈로그**: `codepresso-designsystem.html` → `08 · MOCKUP MOTION` 섹션에서 A~F 6종이 실제로 돌아간다(G·run은 ax-build 01이 유일한 사용처)
+- **카탈로그**: `codepresso-designsystem.html` → `MOCKUP MOTION` 섹션에서 A~F 6종이 실제로 돌아간다(G·run은 ax-build 01이 유일한 사용처)
 - **JS 없음** — 전부 CSS 애니메이션. 스크롤 위치와 무관하게 항상 같은 리듬으로 반복한다.
   단 `stage`·`run`은 한 번 재생이라, 다시 보여주려면 쓰는 쪽이 되감아야 한다(F·G 항목 참고).
 
@@ -103,7 +103,7 @@
 
 ## 마크업 골격
 
-전체 예시는 `codepresso-designsystem.html`의 `08 · MOCKUP MOTION` 섹션을 그대로 복사해서 내용만 바꾸는 것이 가장 빠르다. 아래는 각 연출의 최소 뼈대다.
+전체 예시는 `codepresso-designsystem.html`의 `MOCKUP MOTION` 섹션을 그대로 복사해서 내용만 바꾸는 것이 가장 빠르다. 아래는 각 연출의 최소 뼈대다.
 
 ### A · focus
 

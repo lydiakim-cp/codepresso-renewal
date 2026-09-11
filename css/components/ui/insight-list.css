@@ -1,134 +1,165 @@
+/* Component: Insight List
+   썸네일 + 메타 + 제목형 콘텐츠 카드 목록. 첫 항목만 대표 카드로 확대한다. */
 .insight-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(4, 1fr);
-    column-gap: var(--space-48);
-    height: 480px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  column-gap: var(--space-48);
+  height: 480px;
+}
+
+.insight-list > li:first-child {
+  grid-row: 1 / -1;
+}
+
+.insight-list > li:not(:first-child) + li {
+  border-top: 1px solid var(--color-line);
+}
+
+.insight-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+  padding-block: var(--space-12);
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+
+.insight-card__thumb {
+  flex: 0 0 auto;
+  height: 96px;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-mist);
+  overflow: hidden;
+}
+
+.insight-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-hover) var(--ease-hover);
+}
+
+.insight-card:hover .insight-card__thumb img { transform: scale(1.03); }
+
+.insight-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.insight-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.insight-card__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-size: var(--text-body-18);
+  line-height: var(--leading-body-18);
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--duration-hover) var(--ease-hover);
+}
+
+.insight-card:hover .insight-card__title { color: var(--color-brand); }
+
+.insight-list > li:first-child .insight-card {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-24);
+  padding-block: 0;
+}
+
+.insight-list > li:first-child .insight-card__thumb {
+  order: -1;
+  width: 100%;
+  height: 350px;
+  border-radius: var(--radius-lg);
+}
+
+.insight-list > li:first-child .insight-card__body {
+  gap: var(--space-12);
+}
+
+.insight-list > li:first-child .insight-card__title {
+  font-size: var(--text-h3);
+  line-height: var(--leading-h3);
+}
+
+.insight-list > li:not(:first-child) .insight-card__title {
+  font-size: var(--text-body);
+}
+
+/* 우측 목록은 제목을 먼저 읽고 썸네일을 보도록 순서를 바꾼다. */
+.insight-list > li:not(:first-child) .insight-card__body { order: -1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .insight-card__thumb img { transition-duration: 0.001ms; }
+  .insight-card:hover .insight-card__thumb img { transform: none; }
+}
+
+@media (max-width: 900px) {
+  .insight-list {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    gap: var(--space-12);
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .insight-list > li:first-child {
-    grid-row: 1 / -1;
+    grid-row: auto;
   }
 
-  .insight-list > li:not(:first-child) + li {
-    border-top: 1px solid var(--color-line);
-  }
-
-  .insight-card {
-    display: flex;
+  /* 모바일에서는 대표 카드를 따로 키우지 않고 목록 카드와 같은 밀도로 표시한다. */
+  .insight-list > li:first-child .insight-card,.insight-list > li .insight-card {
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-24);
+    gap: var(--space-12);
     padding-block: var(--space-12);
-    height: 100%;
-    min-height: 0;
-  }
-
-  .insight-card__body {
-    gap: var(--space-8);
-  }
-
-  .insight-card__title {
-    font-size: var(--text-body-18);
-    line-height: var(--leading-body-18);
-    font-weight: normal;
-  }
-
-  .insight-card__thumb {
-    flex: 0 0 auto;
-    height: 96px;
-    aspect-ratio: 4 / 3;
-    border-radius: var(--radius-md);
-  }
-
-  .insight-list > li:first-child .insight-card {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-24);
-    padding-block: 0;
   }
 
   .insight-list > li:first-child .insight-card__thumb {
-    order: -1;
-    width: 100%;
-    height: 350px;
-    border-radius: var(--radius-lg);
+    order: 0;
+    width: auto;
+    height: 96px;
+    border-radius: var(--radius-md);
   }
 
   .insight-list > li:first-child .insight-card__body {
-    gap: var(--space-12);
+    order: -1;
+    gap: var(--space-8);
   }
 
-  .insight-list > li:first-child .insight-card__title {
-    font-size: var(--text-h3);
-    line-height: var(--leading-h3);
+  .insight-list > li,
+  .insight-list .insight-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
 
-  .insight-list > li:not(:first-child) .insight-card__title {
+  .insight-list .insight-card__title,.insight-list > li:first-child .insight-card__title {
+    overflow-wrap: anywhere;
+    -webkit-line-clamp: 3;
     font-size: var(--text-body);
+    line-height: 20px;
   }
-
-  /* 우측 목록은 제목을 먼저 읽고 썸네일을 보도록 순서를 바꾼다. */
-  .insight-list > li:not(:first-child) .insight-card__body { order: -1; }
-
-@media (max-width: 900px) {
-    .insight-list {
-      grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: auto;
-      gap: var(--space-24);
-      height: auto;
-      width: 100%;
-      max-width: 100%;
-      min-width: 0;
-    }
-
-    .insight-list > li:first-child {
-      grid-row: auto;
-    }
-
-    /* 모바일에서는 대표 카드를 따로 키우지 않고 목록 카드와 같은 밀도로 표시한다. */
-    .insight-list > li:first-child .insight-card {
-      flex-direction: row;
-      align-items: center;
-      gap: var(--space-24);
-      padding-block: var(--space-12);
-    }
-
-    .insight-list > li:first-child .insight-card__thumb {
-      order: 0;
-      width: auto;
-      height: 96px;
-      border-radius: var(--radius-md);
-    }
-
-    .insight-list > li:first-child .insight-card__body {
-      order: -1;
-      gap: var(--space-8);
-    }
-
-    .insight-list > li:first-child .insight-card__title {
-      font-size: var(--text-body);
-      line-height: var(--leading-body);
-    }
-
-    .insight-list > li,
-    .insight-list .insight-card {
-      width: 100%;
-      max-width: 100%;
-      min-width: 0;
-      box-sizing: border-box;
-    }
-
-    .insight-list .insight-card__body {
-      min-width: 0;
-    }
-
-    .insight-list .insight-card__title {
-      overflow-wrap: anywhere;
-    }
-
-    .insight-list .insight-card__thumb,
-    .insight-list .insight-card__thumb img {
-      max-width: 100%;
-    }
+  .insight-list > li + li {
+    border-top: 1px solid var(--color-line);
+  }
+  .insight-list .insight-card__thumb,
+  .insight-list .insight-card__thumb img {
+    max-width: 100%;
+  }
 }

@@ -21,7 +21,7 @@
 
 .btn-primary {
   background: var(--color-brand);
-  color: var(--color-surface);
+  color: var(--color-surface) !important;
   box-shadow: var(--shadow-sm);
 }
 
@@ -66,6 +66,7 @@
   padding: 10px 24px;
   font-size: var(--text-body);
 }
+
 
 .btn-pill {
   gap: var(--space-12);

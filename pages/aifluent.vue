@@ -135,7 +135,7 @@
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag">01 · What We Measure</p>
+          <p class="tag">What We Measure</p>
           <h2 data-i18n="aifluent-features-title">프롬프트 한 줄이 아니라, <br data-break="desktop">일을 완성하는 전 과정을 봅니다</h2>
           <p class="desc" data-i18n="aifluent-features-desc">AI를 업무 도구로 활용할 때 실제 성과를 가르는 네 가지 역량을 함께 평가합니다.</p>
         </div>
@@ -263,7 +263,7 @@
     <section class="intro fade-up">
       <div class="section-wrap row">
         <div class="section-title text-left">
-          <p class="tag">02 · Real-Work Assessment</p>
+          <p class="tag">Real-Work Assessment</p>
           <h2 data-i18n="aifluent-intro-title">시험 문제를 푸는 대신, <br data-break="desktop">실제 업무를 수행합니다</h2>
           <p class="desc" data-i18n="aifluent-intro-desc">참가자는 현업과 비슷한 자료와 목표를 받아 AI와 함께 결과물을 만듭니다. 입력한 문장이 아니라 일한 과정과 산출물을 봅니다.</p>
           <ul class="feature-points">
@@ -297,7 +297,7 @@
     <section class="catalog fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag">03 · Assessment Tracks</p>
+          <p class="tag">Assessment Tracks</p>
           <h2 data-i18n="aifluent-catalog-title">직군과 목표에 맞는 평가 트랙</h2>
           <p class="desc" data-i18n="aifluent-catalog-desc">전 구성원의 업무 활용 역량부터 개발 조직의 전문 기술 역량까지 필요한 범위로 구성합니다.</p>
         </div>
@@ -420,7 +420,7 @@
     <section class="catalog-level fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag">04 · Common Standard</p>
+          <p class="tag">Common Standard</p>
           <h2 data-i18n="aifluent-catalog-level-title">직군이 달라도 하나의 <br data-break="desktop">4단계 기준으로 비교합니다</h2>
           <p class="desc" data-i18n="aifluent-catalog-level-desc">개인의 현재 수준과 조직 전체의 역량 분포를 공통 레벨로 확인할 수 있습니다.</p>
         </div>
@@ -476,7 +476,7 @@
     <section class="process fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag">05 · Enterprise Process</p>
+          <p class="tag">Enterprise Process</p>
           <h2 data-i18n="aifluent-process-title">조직의 목적에 맞춰 진단하고, <br data-break="desktop">다음 행동까지 연결합니다</h2>
         </div>
         <div class="section-content">
@@ -542,7 +542,7 @@
     <section class="deliverables fade-up">
       <div class="section-wrap row">
         <div class="section-title text-left">
-          <p class="tag">06 · Actionable Report</p>
+          <p class="tag">Actionable Report</p>
           <h2 data-i18n="aifluent-deliverables-title">점수에서 끝나지 않고, <br data-break="desktop">다음 행동을 알려줍니다</h2>
           <p class="desc" data-i18n="aifluent-deliverables-desc">개인은 강점과 보완할 역량을, 조직은 직군별 분포와 Skill Gap을 확인합니다.</p>
           <ul class="feature-points">
@@ -591,7 +591,7 @@
     <section class="catalog-usecase fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag">07 · Use Cases</p>
+          <p class="tag">Use Cases</p>
           <h2 data-i18n="aifluent-catalog-usecase-title">평가 목적에 따라 이렇게 활용합니다</h2>
         </div>
         <div class="section-content">
@@ -654,7 +654,7 @@
     <section class="faq fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag">08 · FAQ</p>
+          <p class="tag">FAQ</p>
           <h2 data-i18n="aifluent-faq-title">도입 전에 많이 묻는 질문</h2>
         </div>
         <div class="section-content">

@@ -84,7 +84,7 @@
     <section class="process fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="skills-process-eyebrow">01 · The Growth Loop</p>
+          <p class="tag" data-i18n="skills-process-eyebrow">The Growth Loop</p>
           <h2 data-i18n="skills-process-title">진단부터 성과 증명까지 <br data-break="desktop">하나의 흐름으로</h2>
           <p class="desc" data-i18n="skills-process-desc">진단 없는 교육도, 교육 없는 평가도 만들지 않습니다.</p>
         </div>
@@ -183,7 +183,7 @@
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="skills-features-eyebrow">02 · Why It Matters</p>
+          <p class="tag" data-i18n="skills-features-eyebrow">Why It Matters</p>
           <h2 data-i18n="skills-features-title">교육의 출발점과 <br data-break="desktop">성공 기준을 먼저 정합니다</h2>
         </div>
         <div class="section-content">
@@ -205,7 +205,7 @@
               </div>
               <div class="section-body">
                 <div class="section-body-heading">
-                  <p class="section-body-title" data-i18n="skills-features-item-tag-01">01 · 수준</p>
+                  <p class="section-body-title" data-i18n="skills-features-item-tag-01">수준</p>
                   <span class="feature-card-arrow" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
@@ -235,7 +235,7 @@
               </div>
               <div class="section-body">
                 <div class="section-body-heading">
-                  <p class="section-body-title" data-i18n="skills-features-item-tag-02">02 · 순서</p>
+                  <p class="section-body-title" data-i18n="skills-features-item-tag-02">순서</p>
                   <span class="feature-card-arrow" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
@@ -264,7 +264,7 @@
               </div>
               <div class="section-body">
                 <div class="section-body-heading">
-                  <p class="section-body-title" data-i18n="skills-features-item-tag-03">03 · 기준</p>
+                  <p class="section-body-title" data-i18n="skills-features-item-tag-03">기준</p>
                   <span class="feature-card-arrow" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
@@ -287,7 +287,7 @@
     <section class="catalog fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="skills-catalog-eyebrow">03 · Assess</p>
+          <p class="tag" data-i18n="skills-catalog-eyebrow">Assess</p>
           <h2 data-i18n="skills-catalog-title">현재 역량을 <br data-break="desktop">실무 기준으로 진단합니다</h2>
           <p class="desc" data-i18n="skills-catalog-desc">AI 활용 역량과 IT 직무 역량을 각각의 실제 업무 방식에 맞춰 측정합니다.</p>
         </div>
@@ -379,7 +379,7 @@
       <div class="section-wrap row is-sticky">
         <div class="section-aside">
           <div class="section-title text-left">
-            <p class="tag" data-i18n="skills-catalog-learn-eyebrow">04 · Learn</p>
+            <p class="tag" data-i18n="skills-catalog-learn-eyebrow">Learn</p>
             <h2 data-i18n="skills-catalog-learn-title">부족한 역량에<br> 필요한 학습만 설계합니다</h2>
             <p class="desc" data-i18n="skills-catalog-learn-desc">하나의 방식에 조직을 맞추지 않고, <br data-break="desktop"> 진단 결과와 목표에 따라 학습 방식을 조합합니다.</p>
           </div>
@@ -775,7 +775,7 @@
     <section class="blend fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="skills-blend-eyebrow">05 · Blended Design</p>
+          <p class="tag" data-i18n="skills-blend-eyebrow">Blended Design</p>
           <h2 data-i18n="skills-blend-title">방식을 고르지 말고, <br data-break="desktop">필요한 조합을 설계하세요</h2>
           <p class="desc" data-i18n="skills-blend-desc">사전 진단을 기준으로 이러닝, 집합교육, 적응형 학습을 조합하고, <br data-break="desktop">교육 후 변화를 다시 측정합니다.</p>
         </div>
@@ -952,7 +952,7 @@
     <section class="features-analyze fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="skills-analyze-eyebrow">06 · Analyze &amp; Prove</p>
+          <p class="tag" data-i18n="skills-analyze-eyebrow">Analyze &amp; Prove</p>
           <h2 data-i18n="skills-analyze-title">역량 분석은 별도 제품이 아니라 <br data-break="desktop">기본 과정입니다</h2>
           <p class="desc" data-i18n="skills-analyze-desc">모든 진단과 교육 결과를 한곳에서 보고, 다음 교육 계획과 투자 판단에 활용합니다.</p>
         </div>
@@ -1126,7 +1126,7 @@
     <section class="outcomes is-dark fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="skills-outcomes-eyebrow">07 · Proof</p>
+          <p class="tag" data-i18n="skills-outcomes-eyebrow">Proof</p>
           <h2 data-i18n="skills-outcomes-title">교육을 했다면, <br data-break="desktop">역량의 변화가 있어야 합니다</h2>
         </div>
         <div class="section-content">
@@ -1218,7 +1218,7 @@
     <section class="faq fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="skills-faq-eyebrow">08 · FAQ</p>
+          <p class="tag" data-i18n="skills-faq-eyebrow">FAQ</p>
           <h2 data-i18n="skills-faq-title">도입 전에 많이 묻는 질문</h2>
         </div>
         <div class="section-content">

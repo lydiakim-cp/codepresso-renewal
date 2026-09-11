@@ -8,10 +8,7 @@
   color: var(--color-ink-light);
 }
 
-.text-label.brand {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-brand);
-}
+
 
 .text-caption {
   font-size: var(--text-body-14);
