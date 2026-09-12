@@ -16,7 +16,7 @@
       <div class="section-wrap row is-sticky">
         <div class="section-aside">
           <div class="section-title text-left">
-            <p class="tag" data-i18n="why-codepresso-outcomes-eyebrow">01 · The Problem</p>
+            <p class="tag" data-i18n="why-codepresso-outcomes-eyebrow">The Problem</p>
             <h2 data-i18n="why-codepresso-outcomes-title">AI를 도입한 기업은 많지만,<br data-break="desktop"> 성과를 내는 기업은 드뭅니다</h2>
             <p class="desc" data-i18n="why-codepresso-outcomes-desc">도입률과 성과율 사이의 간극은 예산이 아니라 구조의 문제입니다.</p>
           </div>
@@ -90,7 +90,7 @@
     <section class="intro fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="why-codepresso-intro-eyebrow">02 · Diagnosis</p>
+          <p class="tag" data-i18n="why-codepresso-intro-eyebrow">Diagnosis</p>
           <h2 data-i18n="why-codepresso-intro-title">원인은 하나, <br data-break="desktop">도구와 사람이 따로 가기 때문입니다</h2>
           <p class="desc" data-i18n="why-codepresso-intro-desc">AI를 쓰는 사람과 AI를 다루는 사람은 다릅니다. <br data-break="desktop">도구(일하는 방식)와 사람(역량)이 연결되지 않으면 전환은 완성되지 않습니다.</p>
         </div>
@@ -121,8 +121,6 @@
 
             <div class="slide-pair is-joined">
               <article class="slide-card is-ours">
-                <p class="tag slide-card-tag" data-i18n="why-codepresso-intro-item-tag-01">업무 자동화 · AXpresso</p>
-                <div class="slide-card-head">
                   <span class="start-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12 19.75C16.2802 19.75 19.75 16.2802 19.75 12C19.75 7.71979 16.2802 4.25 12 4.25C7.71979 4.25 4.25 7.71979 4.25 12C4.25 16.2802 7.71979 19.75 12 19.75Z" fill="var(--color-brand)"></path>
@@ -135,9 +133,11 @@
                       <path d="M12 14.5C13.3807 14.5 14.5 13.3807 14.5 12C14.5 10.6193 13.3807 9.5 12 9.5C10.6193 9.5 9.5 10.6193 9.5 12C9.5 13.3807 10.6193 14.5 12 14.5Z" fill="var(--color-surface)"></path>
                     </svg>
                   </span>
+                <div class="slide-card-head">
                   <h3 data-i18n="why-codepresso-intro-item-title-03">일하는 방식의 전환</h3>
-                </div>
                 <p class="slide-card-desc" data-i18n="why-codepresso-intro-item-desc-03"><strong>AXpresso</strong>가 일하는 방식을 AI 중심으로 재설계합니다.</p>
+
+                </div>
               </article>
 
               <div class="slide-join" aria-hidden="true">
@@ -154,9 +154,7 @@
               </div>
 
               <article class="slide-card is-ours">
-                <p class="tag slide-card-tag" data-i18n="why-codepresso-intro-item-tag-02">역량 진단·교육</p>
-                <div class="slide-card-head">
-                  <span class="start-icon" aria-hidden="true">
+                <span class="start-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M21 5H3C2.44772 5 2 5.44772 2 6V19C2 19.5523 2.44772 20 3 20H21C21.5523 20 22 19.5523 22 19V6C22 5.44772 21.5523 5 21 5Z" fill="var(--color-brand-dark)"></path>
                       <path d="M10 3H14C14.2652 3 14.5196 3.10537 14.7071 3.29291C14.8946 3.48044 15 3.73478 15 4V5H9V4C9 3.73478 9.10534 3.48044 9.29288 3.29291C9.48041 3.10537 9.73478 3 10 3Z" fill="var(--color-brand-dark)"></path>
@@ -165,9 +163,10 @@
                       <path d="M19 9H17V12H19V9Z" fill="var(--color-surface)"></path>
                     </svg>
                   </span>
+                <div class="slide-card-head">
                   <h3 data-i18n="why-codepresso-intro-item-title-04">일하는 사람의 전환</h3>
+                  <p class="slide-card-desc" data-i18n="why-codepresso-intro-item-desc-04"><strong>역량 진단·교육</strong>이 진단·학습·분석·개선의 성장 루프를 만듭니다.</p>
                 </div>
-                <p class="slide-card-desc" data-i18n="why-codepresso-intro-item-desc-04"><strong>역량 진단·교육</strong>이 진단·학습·분석·개선의 성장 루프를 만듭니다.</p>
 
               </article>
             </div>
@@ -181,7 +180,7 @@
     <section class="positioning is-dark fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="why-codepresso-positioning-eyebrow">03 · Position</p>
+          <p class="tag" data-i18n="why-codepresso-positioning-eyebrow">Position</p>
           <h2 data-i18n="why-codepresso-positioning-title">경쟁 구도에서 우리의 자리</h2>
           <p class="desc" data-i18n="why-codepresso-positioning-desc">진단만 하는 회사는 처방이 없고, 교육만 하는 회사는 실행 도구가 없습니다. <br data-break="desktop">우리는 진단, 교육, 도구, 그리고 연결까지 전부입니다.</p>
         </div>
@@ -203,7 +202,7 @@
     <section class="process fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="why-codepresso-process-eyebrow">04 · The Cycle</p>
+          <p class="tag" data-i18n="why-codepresso-process-eyebrow">The Cycle</p>
           <h2 data-i18n="why-codepresso-process-title">순환할수록 정교해지는 구조</h2>
         </div>
         <div class="section-content">
@@ -257,7 +256,7 @@
     <section class="journey fade-up">
       <div class="section-wrap col">
         <div class="section-title text-left">
-          <p class="tag" data-i18n="why-codepresso-journey-eyebrow">05 · Scenario</p>
+          <p class="tag" data-i18n="why-codepresso-journey-eyebrow">Scenario</p>
           <h2 data-i18n="why-codepresso-journey-title">김 대리의 3개월</h2>
           <p class="desc" data-i18n="why-codepresso-journey-desc">실제 고객 여정들을 한 사람의 이야기로 재구성했습니다. <br data-break="desktop">선순환이 어떻게 작동하는지 따라가 보세요.</p>
         </div>
@@ -398,7 +397,7 @@
     <section class="catalog fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="why-codepresso-catalog-eyebrow">06 · Industry</p>
+          <p class="tag" data-i18n="why-codepresso-catalog-eyebrow">Industry</p>
           <h2 data-i18n="why-codepresso-catalog-title">우리 회사에선 어떻게 쓰나요</h2>
         </div>
         <div class="section-content">
@@ -676,7 +675,7 @@
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="why-codepresso-features-eyebrow">07 · Start Anywhere</p>
+          <p class="tag" data-i18n="why-codepresso-features-eyebrow">Start Anywhere</p>
           <h2 data-i18n="why-codepresso-features-title">둘 다 있어야 완성되지만, <br data-break="desktop">시작은 더 급한 쪽부터</h2>
           <p class="desc" data-i18n="why-codepresso-features-desc">한쪽만 먼저 도입해도 됩니다. 데이터는 나중에 이어집니다.</p>
         </div>

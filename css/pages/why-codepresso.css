@@ -1,6 +1,8 @@
 /* Page: why-codepresso.html (코드프레소 차별점 — 데이터 선순환)
    main.css 위에 얹는 페이지 전용 계층. */
 
+@layer reset, tokens, base, components;
+
 @layer components {
   .difference-page {
     background: var(--color-surface);
@@ -212,7 +214,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: var(--space-16);
+    gap: var(--space-32);
     padding: 48px;
 
     border: 0;
@@ -243,9 +245,6 @@
     font-weight: var(--font-weight-semibold);
   }
 
-  .difference-page .slide-card-tag {
-    margin-top: calc(-1 * var(--space-4));
-  }
 
   /* 목업 4장을 대신하는 수치 한 줄. 숫자만 잉크로 올려 문장 안에서 먼저 잡히게 한다 */
   .difference-page .slide-fact {
@@ -258,6 +257,11 @@
     color: var(--color-ink-heaviest);
     font-weight: var(--font-weight-semibold);
     font-variant-numeric: tabular-nums;
+  }
+
+  /* 직계 두 덩어리를 카드 위·아래 끝으로 붙인다 */
+  .difference-page .slide-card.is-ours {
+    justify-content: space-between;
   }
 
   .difference-page .slide-card.is-ours .slide-fact strong {
@@ -274,11 +278,12 @@
   .difference-page .slide-row.is-fail .slide-card {
     flex: 1;
     min-width: 0;
-    padding: var(--space-20);
+    padding: var(--space-32);
   }
 
   .difference-page .slide-card.is-muted {
     background: color-mix(in srgb, var(--color-surface) 55%, var(--color-brand-tint-2));
+    gap: var(--space-16);
   }
 
   .difference-page .slide-card.is-muted .slide-card-head h3 {

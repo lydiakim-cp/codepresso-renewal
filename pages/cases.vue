@@ -74,6 +74,7 @@
               <button type="button" class="part-nav-item" data-case-tab="people" aria-pressed="false" data-i18n="cases-catalog-filter-03">역량 진단·교육</button>
             </nav>
 
+            <p class="case-count" data-case-count="" aria-live="polite">12개 사례</p>
           </div>
 
           <ul class="outcome-list" data-case-list="">
