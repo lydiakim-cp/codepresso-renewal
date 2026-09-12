@@ -66,7 +66,7 @@
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-left">
-          <p class="tag" data-i18n="skillcamp-features-eyebrow">01 · 배우는 방식</p>
+          <p class="tag" data-i18n="skillcamp-features-eyebrow">배우는 방식</p>
           <h2 data-i18n="skillcamp-features-title">듣는 교육이 아니라 해내는 교육</h2>
           <p class="desc" data-i18n="skillcamp-features-desc">미션을 받고 팀으로 만들고 전문가에게 검증받습니다. <br data-break="desktop">교육장에서 실제로 벌어지는 일입니다.</p>
         </div>
@@ -108,7 +108,7 @@
     <section class="process fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="skillcamp-process-eyebrow">02 · 운영 포맷</p>
+          <p class="tag" data-i18n="skillcamp-process-eyebrow">운영 포맷</p>
           <h2 data-i18n="skillcamp-process-title">하루 특강부터 수주 부트캠프까지</h2>
           <p class="desc" data-i18n="skillcamp-process-desc">인식을 바꾸는 것이 목표라면 특강으로 충분합니다. <br data-break="desktop">실무 역량까지 가져가려면 집합 과정 이상을 권합니다.</p>
         </div>
@@ -322,7 +322,7 @@
       <div class="section-wrap col">
         <div class="section-header">
           <div class="section-title text-left">
-            <p class="tag" data-i18n="skillcamp-outcomes-eyebrow">03 · 증거</p>
+            <p class="tag" data-i18n="skillcamp-outcomes-eyebrow">증거</p>
             <h2 data-i18n="skillcamp-outcomes-title">숫자와 이름이 <br data-break="mobile">증명합니다</h2>
             <p class="desc" data-i18n="skillcamp-outcomes-desc">교육 차수와 강사 수는 누적으로 쌓였고 <br data-break="desktop">재구매는 같은 기업이 다시 부른 결과입니다.</p>
           </div>
@@ -426,7 +426,7 @@
     <section class="faq fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="skillcamp-faq-eyebrow">04 · FAQ</p>
+          <p class="tag" data-i18n="skillcamp-faq-eyebrow">FAQ</p>
           <h2 data-i18n="skillcamp-faq-title">도입 전에 많이 묻는 질문</h2>
         </div>
         <div class="section-content">

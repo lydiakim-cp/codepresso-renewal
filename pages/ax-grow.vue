@@ -63,7 +63,7 @@
     <section class="process fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="ax-grow-process-eyebrow">01 · How AX Grow Works</p>
+          <p class="tag" data-i18n="ax-grow-process-eyebrow">How AX Grow Works</p>
           <h2 data-i18n="ax-grow-process-title">배우고, 함께 만들고, <br>조직으로 확산합니다</h2>
           <p class="desc" data-i18n="ax-grow-process-desc">세 단계가 하나의 프로그램으로 이어져야 실제 내재화가 일어납니다.</p>
         </div>
@@ -107,7 +107,7 @@
     <section class="intro fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="ax-grow-intro-eyebrow">02 · Why It Works</p>
+          <p class="tag" data-i18n="ax-grow-intro-eyebrow">Why It Works</p>
           <h2 data-i18n="ax-grow-intro-title">교육만 듣는 것과, 우리 힘으로 실행하는 것은 다릅니다</h2>
         </div>
         <div class="section-content">
@@ -133,7 +133,7 @@
     <section class="features fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="ax-grow-features-eyebrow">03 · Best Fit</p>
+          <p class="tag" data-i18n="ax-grow-features-eyebrow">Best Fit</p>
           <h2 data-i18n="ax-grow-features-title">이런 조직이라면 AX Grow가 맞습니다</h2>
         </div>
         <div class="section-content">
@@ -153,7 +153,7 @@
               </div>
               <div class="section-body">
                 <div class="section-body-heading">
-                  <p class="section-body-title" data-i18n="ax-grow-features-item-label-01">01 · 핵심 팀</p>
+                  <p class="section-body-title" data-i18n="ax-grow-features-item-label-01">핵심 팀</p>
                   <span class="feature-card-arrow" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
@@ -179,7 +179,7 @@
               </div>
               <div class="section-body">
                 <div class="section-body-heading">
-                  <p class="section-body-title" data-i18n="ax-grow-features-item-label-02">02 · 실무 성과</p>
+                  <p class="section-body-title" data-i18n="ax-grow-features-item-label-02">실무 성과</p>
                   <span class="feature-card-arrow" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
@@ -206,7 +206,7 @@
               </div>
               <div class="section-body">
                 <div class="section-body-heading">
-                  <p class="section-body-title" data-i18n="ax-grow-features-item-label-03">03 · 조직 확산</p>
+                  <p class="section-body-title" data-i18n="ax-grow-features-item-label-03">조직 확산</p>
                   <span class="feature-card-arrow" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   </span>
@@ -228,7 +228,7 @@
       <div class="section-wrap row is-sticky">
         <div class="section-aside">
           <div class="section-title text-left">
-            <p class="tag" data-i18n="ax-grow-process-days-eyebrow">04 · 16-Day Process</p>
+            <p class="tag" data-i18n="ax-grow-process-days-eyebrow">16-Day Process</p>
             <h2 data-i18n="ax-grow-process-days-title">16일 동안, 지식이 실행 역량이 됩니다</h2>
             <p class="desc" data-i18n="ax-grow-process-days-desc">조직과 업무를 이해한 뒤 교육하고, <br data-break="desktop">실제 과제를 함께 완성해 다음 확산 계획까지 연결합니다.</p>
           </div>
@@ -327,7 +327,7 @@
     <section class="deliverables fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="ax-grow-deliverables-eyebrow">05 · What Remains</p>
+          <p class="tag" data-i18n="ax-grow-deliverables-eyebrow">What Remains</p>
           <h2 data-i18n="ax-grow-deliverables-title">프로그램이 끝나면 네 가지가 조직에 남습니다</h2>
         </div>
         <div class="section-content">
@@ -392,7 +392,7 @@
     <section class="statement fade-up">
       <div class="section-wrap col">
         <div class="statement-inner">
-          <p class="statement-eyebrow" data-i18n="ax-grow-statement-eyebrow">06 · Internal Capability</p>
+          <p class="statement-eyebrow" data-i18n="ax-grow-statement-eyebrow">Internal Capability</p>
           <h2 class="statement-title" data-i18n="ax-grow-statement-title">첫 Agent보다 중요한 것은,<br data-break="desktop"> 두 번째를 <strong>우리 팀이 시작하는 힘</strong>입니다</h2>
           <p class="statement-desc" data-i18n="ax-grow-statement-desc">프로젝트 하나를 납품하는 것이 아니라, 조직이 AI 과제를 반복해서 실행할 수 있게 만드는 것이 목표입니다.</p>
         </div>
@@ -422,7 +422,7 @@
     <section class="positioning fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="ax-grow-positioning-eyebrow">07 · Build vs Grow</p>
+          <p class="tag" data-i18n="ax-grow-positioning-eyebrow">Build vs Grow</p>
           <h2 data-i18n="ax-grow-positioning-title">우리 조직의 목표에 맞게 시작하세요</h2>
         </div>
         <div class="section-content">
@@ -475,7 +475,7 @@
     <section class="faq fade-up">
       <div class="section-wrap col">
         <div class="section-title text-center">
-          <p class="tag" data-i18n="ax-grow-faq-eyebrow">08 · FAQ</p>
+          <p class="tag" data-i18n="ax-grow-faq-eyebrow">FAQ</p>
           <h2 data-i18n="ax-grow-faq-title">도입 전에 많이 묻는 질문</h2>
         </div>
         <div class="section-content">
