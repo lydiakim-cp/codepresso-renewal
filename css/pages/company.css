@@ -1,6 +1,8 @@
 /* Page: company.html (회사 소개 — 미션·철학·연혁·신뢰·고객의 목소리)
    main.css 위에 얹는 페이지 전용 계층. 배치만 담고 컴포넌트 생김새는 덮지 않는다. */
 
+@layer reset, tokens, base, components;
+
 @layer components {
   .company {
     background: var(--color-surface);

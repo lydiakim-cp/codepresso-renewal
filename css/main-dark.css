@@ -3,6 +3,8 @@
    정적 HTML의 페이지별 `@import ... layer(components)`와 같은 우선순위를
    Nuxt 전역 CSS에서도 유지한다. */
 
+@layer reset, tokens, base, components;
+
 @layer components {
 
 .main-dark {

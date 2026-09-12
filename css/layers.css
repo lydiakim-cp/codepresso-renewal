@@ -1,0 +1,2 @@
+/* Layer Order — dev 서버의 비동기 CSS 로드 레이스에도 순서가 항상 먼저 고정되도록 별도 분리. */
+@layer reset, tokens, base, components;

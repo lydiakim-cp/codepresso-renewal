@@ -1,6 +1,8 @@
 /* Mobile Breakpoints (900 / 720 / 560px)
    컴포넌트별로 흩어져 있던 반응형 규칙을 여기 한 곳에 모은다. */
 
+@layer reset, tokens, base, components;
+
 @layer components {
 /* max-width: 900px */
 

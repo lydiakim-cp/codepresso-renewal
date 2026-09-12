@@ -3,6 +3,8 @@
  * main.css 위에 얹는 이 페이지 전용 계층 — 섹션 배치와 면(배경)만 정한다.
  */
 
+@layer reset, tokens, base, components;
+
 @layer components {
   /* 페이지 전체를 덮는 위→아래 옅은 브랜드 그라디언트. */
   .skillpath {

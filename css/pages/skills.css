@@ -1,6 +1,8 @@
 /* Page: skills.html (역량 진단·교육 제품 소개)
    main.css 위에 얹는 페이지 전용 계층. */
 
+@layer reset, tokens, base, components;
+
 @layer components {
   .skills {
     background: var(--color-surface);

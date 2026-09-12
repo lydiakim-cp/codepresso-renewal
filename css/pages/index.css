@@ -1,6 +1,8 @@
 /* Page: index.html (메인 랜딩)
    main.css 위에 얹는 메인페이지 전용 계층. */
 
+@layer reset, tokens, base, components;
+
 @layer components {
   /* Component: Main Hero */
   .main-hero {

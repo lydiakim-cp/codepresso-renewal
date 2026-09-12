@@ -1,6 +1,8 @@
 /* Page: Design Guide v2 — Notion 스타일 문서형 레이아웃.
    계층형 목차 + 표 전환. 본문 콘텐츠 데모 CSS는 designsystem.css 규칙을 재사용한다. */
 
+@layer reset, tokens, base, components;
+
 @import url("index.css") layer(components);
 @import url("designsystem.css") layer(components);
 

@@ -1,6 +1,8 @@
 /* Page: ax-build.html (AX Build 제품 소개)
    main.css 위에 얹는 페이지 전용 계층. */
 
+@layer reset, tokens, base, components;
+
 @import url("../main-dark.css") layer(components);
 
 @layer components {

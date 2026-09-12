@@ -3,6 +3,8 @@
  * main.css 위에 얹는 이 페이지 전용 계층 — 섹션 배치와 면(배경)만 정한다.
  */
 
+@layer reset, tokens, base, components;
+
 @layer components {
   /* 섹션 배경 리듬 — 흰 면과 tint/sunken을 번갈아, 강조는 06 결론 배너와 최하단 CTA 두 곳. */
   .aifluent .features {

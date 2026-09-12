@@ -1,5 +1,7 @@
 /* Page: skillcertify.html — main.css 위에 얹는 페이지 전용 계층. */
 
+@layer reset, tokens, base, components;
+
 @layer components {
   .skillcertify { }
 

@@ -1,6 +1,8 @@
 /* Page: cases.html (고객 사례 전체 목록)
    main.css 위에 얹는 페이지 전용 계층. */
 
+@layer reset, tokens, base, components;
+
 @layer components {
   .cases {
     background: var(--color-surface);
